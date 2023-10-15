@@ -42,7 +42,7 @@ function Input(props) {
             id={props.title}
             maxlength={props.maxlength}
             readOnly={props.readOnly}
-          // onChange={}
+            onChange={e => inputHandler(e)}
           ></textarea>
           :
           <input
@@ -64,7 +64,7 @@ function Input(props) {
       </div>
       <div className="error">
         <div className="errorText">
-
+          {props.error}
         </div>
       </div>
     </div>

@@ -2,48 +2,59 @@
 @import '../../Assets/scss/fonts';
 
 
-.sidebarBox{
+.sidebarBox {
     position: relative;
     display: flex;
     flex-direction: column;
     gap: 16px;
-    .logo-dash{
+
+    .logo-dash {
         height: 60px;
         border-bottom: 2px solid rgb(255, 255, 255);
         display: flex;
         justify-content: center;
-        .logo{
+        background: rgba(255, 72, 0, 0.25);
+        .logo {
             position: relative;
             width: 180px;
         }
     }
-    .menu{
+
+    .menu {
         width: 90%;
         margin: auto;
         display: flex;
         flex-direction: column;
+        gap: 10px;
 
-        ul{
+        .item{
             display: flex;
-            flex-direction: column;
-            gap: 10px;
-            li{
-                display: flex;
-                flex-direction: row;
-                gap: 5px;
-                cursor: pointer;
-                padding: 10px 4px;
-                &:hover{
-                    background-color: rgba(255, 255, 255, 0.534);
-                    color: rgb(89, 0, 255);
-                    border-radius: 10px;
-                    font-weight: 600;
-                }
-                &:active{
-                    font-weight: 600;
-                }
+            flex-direction: row;
+            gap: 5px;
+            cursor: pointer;
+            padding: 10px 10px;
+            
+            &:link,
+            &:visited,
+            &:hover {
+                text-decoration: none;
+                color: black;
+            }
+            
+            &:hover {
+                padding: 10px 10px;
+                background-color: rgba(255, 255, 255, 0.534);
+                color: rgb(255, 72, 0);
+                border-radius: 10px;
+                font-weight: 600;
+            }
+
+            &:active {
+                font-weight: 600;
             }
         }
+
+
     }
 
 
