@@ -1,9 +1,19 @@
+import Login from './Pages/Login/Index';
+// import Login from './Pages/Login/Login';
+import Dashbord from './Pages/Dashbord/Index';
+import './App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
-    <div>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' index element={<Login/>}></Route>
+        <Route path='/dashboard' element={<Dashbord/>}>
 
-    </div>
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

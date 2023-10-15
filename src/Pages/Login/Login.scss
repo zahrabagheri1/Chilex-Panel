@@ -1,0 +1,75 @@
+@import '../../Assets/scss/fonts';
+@import '../../Assets/scss/variable';
+
+body {
+    overflow: hidden;
+}
+
+.loginPage {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    height: 100vh;
+    background-color: rgb(255, 255, 255);
+
+    .ball {
+        position: absolute;
+        opacity: 0.5;
+        border-radius: 2px;
+        z-index: 0;
+    }
+
+    .loginPhoto {
+        position: relative;
+
+    }
+
+    .loginForm {
+        z-index: 1;
+        width: 300px;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 36px 0;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+
+        .userPhoto {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            .photo {
+                width: 120px;
+                height: 120px;
+            }
+
+            .text {
+                text-align: center;
+                font-size: 24px;
+                font-weight: 900;
+                // text-shadow: 5px 5px 5px rgb(214, 170, 250);
+            }
+        }
+
+        .username , .password{
+            width: 72%;
+        }
+        
+        .loginbtn{
+            width: 72%;
+        }
+    }
+
+
+}

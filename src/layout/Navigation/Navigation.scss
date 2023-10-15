@@ -1,0 +1,73 @@
+@import '../../Assets/scss/fonts';
+@import '../../Assets/scss/variable';
+
+.navigationBox {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90%;
+    margin: auto;
+    align-items: center;
+    height: 100%;
+
+    .iconbtns{
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+        .switchTheme {
+            cursor: pointer;
+            background-color: rgb(255, 255, 255);
+            border-radius: 2px;
+            width: 26px;
+            height: 26px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .themeicon{
+    
+            }
+        }
+    
+        .notifBox {
+            cursor: pointer;
+            background-color: rgb(255, 255, 255);
+            border-radius: 2px;
+            width: 26px;
+            height: 26px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+    
+        }
+    
+    }
+
+    .searchBox {
+        cursor: pointer;
+
+    }
+
+    .logOutUser {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        .userBox {
+            cursor: pointer;
+
+            .imgUser {
+                width: 60px;
+            }
+
+        }
+
+        .logout {
+            cursor: pointer;
+            font-weight: 900;
+            &:link, &:visited, &:hover, &:active{
+                text-decoration: none;
+                color: black;
+            }
+        }
+    }
+}

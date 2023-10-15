@@ -1,0 +1,52 @@
+@import '../../Assets/scss/variable';
+@import '../../Assets/scss/fonts';
+
+
+.sidebarBox{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    .logo-dash{
+        height: 60px;
+        border-bottom: 2px solid rgb(255, 255, 255);
+        display: flex;
+        justify-content: center;
+        .logo{
+            position: relative;
+            width: 180px;
+        }
+    }
+    .menu{
+        width: 90%;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+
+        ul{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            li{
+                display: flex;
+                flex-direction: row;
+                gap: 5px;
+                cursor: pointer;
+                padding: 10px 4px;
+                &:hover{
+                    background-color: rgba(255, 255, 255, 0.534);
+                    color: rgb(89, 0, 255);
+                    border-radius: 10px;
+                    font-weight: 600;
+                }
+                &:active{
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+
+
+
+
+}

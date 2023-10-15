@@ -1,0 +1,17 @@
+
+
+.dashbord{
+    display: flex;
+    flex-direction: row;
+    .navigation{
+        background-color: #9d4eddbe;
+        width: 100%;
+        height: 60px;
+    }
+    .sidebar{
+        background-color: #9d4eddbe;
+        width: 20%;
+        height: 100vh;
+
+    }
+}
