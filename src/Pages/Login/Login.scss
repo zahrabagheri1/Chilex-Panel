@@ -1,12 +1,9 @@
 @import '../../Assets/scss/fonts';
 @import '../../Assets/scss/variable';
 
-body {
-    overflow: hidden;
-}
-
 .loginPage {
     display: flex;
+    overflow: hidden;
     justify-content: center;
     align-content: center;
     align-items: center;

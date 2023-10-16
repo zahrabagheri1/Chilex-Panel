@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import {tableHeadUsers} from '../../../Data/Sort';
+import './Users.scss';
 
 function Index() {
   const [users, setUsers] = useState(null)
@@ -17,7 +18,12 @@ function Index() {
               ))}</tr>
           </thead>
           <tbody>
-              
+            {/* {console.log(users)} */}
+              {users === null ? '' : users.map((user, k)=>(
+                <tr key={k}>{Object.values(user).map((item, index)=>(
+                  <td key={index}>{item}</td>
+                ))}</tr>
+              ))}
           </tbody>
       </table>
     </div>
