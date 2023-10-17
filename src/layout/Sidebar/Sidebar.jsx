@@ -17,7 +17,7 @@ function Sidebar() {
     HiOutlineArrowLeftOnRectangle: <HiOutlineArrowLeftOnRectangle/>,
   }
   return (
-    <div className='sidebarBox'>
+    <div className='sidebar'>
       <div className="logo-dash"><img className='logo' src={Logo}/></div>
       <div className="menu">
         {

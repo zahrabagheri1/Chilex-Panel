@@ -7,9 +7,9 @@ import { Outlet } from 'react-router-dom';
 function Index() {
   return (
     <div className='dashbord'>
-      <div className='sidebar'><Sidebar /></div>
+      <Sidebar/>
       <div className='layout'>
-        <div className='navigation'><Navigation /></div>
+        <Navigation />
         <div className='outlet'><Outlet/></div>
       </div>
     </div>

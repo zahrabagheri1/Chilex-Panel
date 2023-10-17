@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 function Navigation() {
 
   return (
-    <div className='navigationBox'>
+    <div className='navigation'>
       <img className='imgUser' src={imgUseer} />
       <Link to={'admin'} className='username'>User Name</Link>
     </div>

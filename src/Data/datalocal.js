@@ -1,8 +1,8 @@
 export const sideBarMenu = [
     {
-        name: 'Dashbord',
+        name: 'Dashboard',
         icon: 'HiComputerDesktop',
-        link: './',
+        link: '/dashboard',
     },
     {
         name: 'Inbox',

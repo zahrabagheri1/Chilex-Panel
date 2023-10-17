@@ -1,23 +1,23 @@
 @import '../../Assets/scss/fonts';
 @import '../../Assets/scss/variable';
 
-.navigationBox {
+.navigation {
     position: relative;
     display: flex;
     flex-direction: row;
     justify-content: end;
     align-items: center;
-    align-items: center;
-    width: 90%;
-    margin: auto;
-    height: 100%;    
+    width: 100%;
+    height: 10vh;
+    background: rgb(255, 174, 143) ;
     .imgUser {
         cursor: pointer;
         width: 60px;
     }
 
-    .username{
+    .username {
         font-weight: 600;
+        margin: 0 36px 0 0;
         &:link,
         &:visited,
         &:hover,
