@@ -1,0 +1,55 @@
+@font-face {
+    font-family: 'YekanBakh';
+    src: url(../../Assets/fonts/YekanBakh-Medium.woff);
+}
+@import '../../Assets/scss/fonts';
+@import '../../Assets/scss/variable';
+
+.inputBox{
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    .lable{
+        
+    }
+
+    .input{
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        margin: 10px auto;
+        border-bottom: 2px gray solid;
+
+        .inputIcon{
+            margin-right: 10px;
+        }
+        .inputControl{
+            border: none;
+            outline: none;
+            background: transparent;
+            font-size: 16px;
+            &::placeholder{
+                font-family: sans-serif;
+                font-size: $fontPlaceholder-lg;
+            }
+            &:focus, &:focus-visible, &:active, &::after{
+                border: none;
+            }
+            
+        }
+        .passwordEye{
+            display: none;
+            position: absolute;
+            right: 0;
+            &.active{
+                display: flex;
+            }
+        }
+    }
+    .error{
+        .errorText{
+            color: rgb(255, 0, 0);
+        }
+    }
+}

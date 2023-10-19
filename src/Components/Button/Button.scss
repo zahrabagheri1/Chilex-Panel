@@ -1,0 +1,23 @@
+.btnBox{
+    .btn {
+        width: 100%;
+        background-color:#007dc1;
+        border-radius:3px;
+        border:1px solid #124d77;
+        cursor:pointer;
+        color:#ffffff;
+        font-size:13px;
+        padding:8px 70px;
+        text-shadow:0px 1px 0px #154682;
+    }
+    .btn:hover {
+        background:linear-gradient(to bottom, #0061a7 5%, #007dc1 100%);
+        background-color:#0061a7;
+    }
+    .btn:active {
+        position:relative;
+        top:1px;
+    }
+}
+
+        

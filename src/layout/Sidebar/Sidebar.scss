@@ -1,0 +1,58 @@
+@import '../../Assets/scss/variable';
+@import '../../Assets/scss/fonts';
+
+
+.sidebar {
+    width: 16%;
+    height: 100vh;
+    position: fixed;
+    background: linear-gradient(180deg, rgb(255, 174, 143) 30%, rgb(255, 209, 191) 100%);
+
+    .logo-dash {
+        height: 10vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .logo {
+            position: relative;
+            width: 160px;
+            height: 60px;
+        }
+    }
+
+    .menu {
+        width: 90%;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .item {
+            display: flex;
+            flex-direction: row;
+            gap: 5px;
+            cursor: pointer;
+            padding: 10px 10px;
+
+            &:link,
+            &:visited,
+            &:hover {
+                text-decoration: none;
+                color: black;
+            }
+
+            &:hover {
+                padding: 10px 10px;
+                background-color: rgba(255, 255, 255, 0.534);
+                color: rgb(255, 72, 0);
+                border-radius: 10px;
+                font-weight: 600;
+            }
+
+            &:active {
+                font-weight: 600;
+            }
+        }
+    }
+}
