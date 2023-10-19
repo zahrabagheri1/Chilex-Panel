@@ -1,32 +1,41 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import './Table.scss';
 
-function Table(props) {
+
+function Table({ data }) {
+
+    useEffect(() => {
+
+    }, [])
+
     return (
-        <div>
-            {props.data === null ? '' :
-                <table>
-                    <thead>
-                        <tr>{Object.keys(props.data[0]).map((item) => (
-                            <th>{item}</th>
-                        ))}</tr>
-                    </thead>
-                    <tbody>
-                        {props.data.map((user, index) => (
-                            <tr key={index} >
-                                {Array.isArray(user) ?
-                                    user.map((item, index) => (
-                                        <td key={index}>{item}</td>
-                                    ))
+        <>
+            <table className='table'>
+                <thead className='header'>
+                    {data?.map((user, index) => (
+                        <tr key={index}>
+                            { user === undefined || user === null ? '':
+                                Object.keys(user[0]).map((key, index) => (
+                                    <th key={index}>{key}</th>
+                                ))
+                            }
+                        </tr>
+                    ))}
 
-                                    : Object.values(user).map((item, index) => (
-                                        <td key={index}>{item}</td>
-                                    ))}
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            }
-        </div>
+                </thead>
+                <tbody className='bodytable'>
+                    {data?.map((user, index) => (
+                        <tr key={index}>
+                            {
+                                Object.values(user).map((value, index) => (
+                                    <td key={index}>{value}</td>
+                                ))
+                            }
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </>
     );
 }
 

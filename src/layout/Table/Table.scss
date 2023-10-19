@@ -1,0 +1,32 @@
+.table {
+    position: relative;
+    font-family: sans-serif;
+
+    .header {
+        background-color: rgb(223, 97, 255);
+
+        .trhead {
+            .thhead {
+                padding: 10px 60px;
+                text-align: center;
+            }
+
+            .id {
+                padding: 10px !important;
+
+            }
+        }
+    }
+
+    .bodytable {
+        tr {
+            &:nth-child(2n) {
+                background-color: rgb(248, 219, 255);
+            }
+
+            td {
+                text-align: center;
+            }
+        }
+    }
+}
