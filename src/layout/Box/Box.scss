@@ -1,0 +1,35 @@
+.ntf {
+    width: 100%;
+    min-height: 6vh;
+    background: rgba(0, 81, 255, 0.256);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(7.2px);
+    -webkit-backdrop-filter: blur(7.2px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 10px;
+    font-size: 12px;
+    display: flex;
+    flex-direction: row;
+
+    .textBox {
+        width: 100%;
+        .dateread {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            .read {
+                color: blue;
+                cursor: pointer;
+            }
+        }
+
+    }
+
+    .mark {
+        background-color: red;
+        width: 12px;
+        height: 10px;
+        border-radius: 50%;
+    }
+}

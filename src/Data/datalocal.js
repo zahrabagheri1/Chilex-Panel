@@ -5,9 +5,9 @@ export const sideBarMenu = [
         link: '/dashboard',
     },
     {
-        name: 'Inbox',
+        name: 'Transaction',
         icon: 'HiInboxArrowDown',
-        link: 'inbox',
+        link: 'transaction',
     },
     {
         name: 'Users',
