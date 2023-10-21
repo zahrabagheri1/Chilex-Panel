@@ -1,6 +1,6 @@
 import Login from './Pages/Login/Index';
 import Dashboard from './Pages/Dashboard/Index';
-import Layout from './Pages/Dashboard/Layout/Index';
+import Layout from './Pages/Dashboard/LayOut/Index';
 import Admin from './Pages/Dashboard/Admin/Index';
 import Inbox from './Pages/Dashboard/Inbox/Index';
 import Users from './Pages/Dashboard/Users/Index';

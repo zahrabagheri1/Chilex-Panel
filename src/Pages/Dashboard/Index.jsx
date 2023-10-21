@@ -1,7 +1,7 @@
 import React from 'react';
 import Navigation from '../../layout/Navigation/Navigation';
 import Sidebar from '../../layout/Sidebar/Sidebar';
-import './Dashbord.scss';
+import './Dashboard.scss';
 import { Outlet } from 'react-router-dom';
 
 function Index() {
