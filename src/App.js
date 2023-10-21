@@ -1,11 +1,11 @@
 import Login from './Pages/Login/Index';
-import Dashboard from './Pages/Dashbord/Index';
-import Layout from './Pages/Dashbord/LayOut/Index';
-import Admin from './Pages/Dashbord/Admin/Index';
-import Transaction from './Pages/Dashbord/Transaction/Index';
-import Users from './Pages/Dashbord/Users/Index';
-import Support from './Pages/Dashbord/Support/Index';
-import Games from './Pages/Dashbord/Games/Index';
+import Transaction from './Pages/Dashboard/Transaction/Index';
+import Dashboard from './Pages/Dashboard/Index';
+import Layout from './Pages/Dashboard/LayOut/Index';
+import Admin from './Pages/Dashboard/Admin/Index';
+import Users from './Pages/Dashboard/Users/Index';
+import Support from './Pages/Dashboard/Support/Index';
+import Games from './Pages/Dashboard/Games/Index';
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
