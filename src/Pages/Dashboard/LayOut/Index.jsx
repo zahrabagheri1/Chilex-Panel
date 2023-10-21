@@ -6,8 +6,6 @@ function Index() {
         <div className='laout'>
             <div>
                 <div className=""></div>
-
-                <a href=""></a>
                 <div className=""></div>
                 <div className=""></div>
                 <div className=""></div>
