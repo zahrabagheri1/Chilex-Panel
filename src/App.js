@@ -1,9 +1,9 @@
 import Login from './Pages/Login/Index';
-import Transaction from './Pages/Dashbord/Transaction/Index';
-import Dashboard from './Pages/Dashbord/Index';
+import Transaction from './Pages/Dashboard/Transaction/Index';
+import Dashboard from './Pages/Dashboard/Index';
 import Layout from './Pages/Dashbord/LayOut/Index';
 import Admin from './Pages/Dashbord/Admin/Index';
-import Users from './Pages/Dashbord/Users/Index';
+import Users from './Pages/Dashboard/Users/Index';
 import Support from './Pages/Dashbord/Support/Index';
 import Games from './Pages/Dashbord/Games/Index';
 import './App.css';
