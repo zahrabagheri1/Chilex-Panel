@@ -5,7 +5,7 @@ import Table from '../../../layout/Table/Table';
 function Index() {
     const [Data, setData] = useState([]);
     useEffect(()=>{
-        axios.post('/admin-transaction/all?limit=20&offset=1').then((res) =>{
+        axios.get('/admin-transaction/all?limit=20&offset=1').then((res) =>{
             setData(res.data.data)
             // console.log(res.data)
 
