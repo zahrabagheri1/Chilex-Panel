@@ -1,46 +1,42 @@
-export const tableHeadUsers = [
+export const adminTransaction = [
     {
         name: 'id',
         status: true
     },
     {
-        name: 'job',
+        name: 'amount',
         status: true
     },
     {
-        name: 'email',
+        name: 'createdAt',
         status: true
     },
     {
-        name: 'fullname',
+        name: 'hashedCardNumber',
         status: true
     },
     {
-        name: 'phonenumber',
+        name: 'maskedCardNumber',
         status: true
     },
     {
-        name: 'payment',
+        name: 'shaparakRefNumber',
         status: true
     },
     {
-        name: 'compony',
+        name: 'status',
         status: true
     },
     {
-        name: 'rating',
+        name: 'updatedAt',
         status: true
     },
     {
-        name: 'creatcard',
+        name: 'userName',
         status: true
     },
     {
-        name: 'username',
+        name: 'action',
         status: true
     },
-    {
-        name: 'location',
-        status: true
-    }
 ]
