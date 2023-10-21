@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { tableHeadUsers } from '../../../Data/Sort';
 import './Users.scss';
 import Table from '../../../layout/Table/Table';
-import ScrollContainer from 'react-indiana-drag-scroll';
+// import ScrollContainer from 'react-indiana-drag-scroll';
 
 function Index() {
   const [users, setUsers] = useState(null);

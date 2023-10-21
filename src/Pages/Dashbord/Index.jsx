@@ -3,7 +3,7 @@ import Navigation from '../../layout/Navigation/Navigation';
 import Sidebar from '../../layout/Sidebar/Sidebar';
 import './Dashboard.scss';
 import { Outlet } from 'react-router-dom';
-import ScrollContainer from 'react-indiana-drag-scroll';
+// import ScrollContainer from 'react-indiana-drag-scroll';
 
 function Index() {
   return (
