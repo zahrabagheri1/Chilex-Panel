@@ -1,7 +1,7 @@
 import React from 'react';
 import './Sidebar.scss'
 import Logo from '../../Assets/image/logo/logo.png'
-import { HiMiniCreditCard, HiMiniArrowDownTray, HiPuzzlePiece, HiMiniUsers, HiOutlineArrowLeftOnRectangle, HiInboxArrowDown, HiComputerDesktop} from "react-icons/hi2";
+import { HiMiniCreditCard, HiMiniArrowDownTray, HiMiniSwatch, HiPuzzlePiece, HiMiniUsers, HiOutlineArrowLeftOnRectangle, HiInboxArrowDown, HiComputerDesktop} from "react-icons/hi2";
 import { Link } from 'react-router-dom';
 import {sideBarMenu} from '../../Data/datalocal';
 
@@ -11,6 +11,7 @@ function Sidebar() {
     HiMiniUsers: <HiMiniUsers/>,
     HiPuzzlePiece: <HiPuzzlePiece/>,
     HiMiniCreditCard: <HiMiniCreditCard/>,
+    HiMiniSwatch: <HiMiniSwatch/>,
     HiComputerDesktop: <HiComputerDesktop/>,
     HiInboxArrowDown: <HiInboxArrowDown/>,
     HiMiniArrowDownTray: <HiMiniArrowDownTray/>,

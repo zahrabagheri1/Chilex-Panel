@@ -35,8 +35,4 @@ export const adminTransaction = [
         name: 'userName',
         status: true
     },
-    {
-        name: 'action',
-        status: true
-    },
 ]

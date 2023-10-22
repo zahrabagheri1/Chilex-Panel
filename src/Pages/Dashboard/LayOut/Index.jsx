@@ -1,14 +1,12 @@
 import React from 'react';
 import './Layout.scss';
+import Cards from '../../../Components/Cards/Cards'
 
 function Index() {
     return (
-        <div className='laout'>
-            <div>
-                <div className=""></div>
-                <div className=""></div>
-                <div className=""></div>
-                <div className=""></div>
+        <div className='layout'>
+            <div className="cards">
+                <Cards />
             </div>
 
 

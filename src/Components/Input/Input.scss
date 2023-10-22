@@ -2,53 +2,50 @@
     font-family: 'YekanBakh';
     src: url(../../Assets/fonts/YekanBakh-Medium.woff);
 }
+
 @import '../../Assets/scss/fonts';
 @import '../../Assets/scss/variable';
 
-.inputBox{
+.inputBox {
     font-family: sans-serif;
     display: flex;
     flex-direction: column;
     gap: 4px;
-    .lable{
-        
-    }
 
-    .input{
+
+    .input {
         position: relative;
         display: flex;
         flex-direction: row;
         margin: 10px auto;
-        border-bottom: 2px gray solid;
 
-        .inputIcon{
+        .inputIcon {
             margin-right: 10px;
         }
-        .inputControl{
-            border: none;
-            outline: none;
-            background: transparent;
+
+        .inputControl {
             font-size: 16px;
-            &::placeholder{
+
+            &::placeholder {
                 font-family: sans-serif;
                 font-size: $fontPlaceholder-lg;
             }
-            &:focus, &:focus-visible, &:active, &::after{
-                border: none;
-            }
-            
+
         }
-        .passwordEye{
+
+        .passwordEye {
             display: none;
             position: absolute;
             right: 0;
-            &.active{
+
+            &.active {
                 display: flex;
             }
         }
     }
-    .error{
-        .errorText{
+
+    .error {
+        .errorText {
             color: rgb(255, 0, 0);
         }
     }

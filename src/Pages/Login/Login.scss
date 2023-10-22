@@ -45,12 +45,10 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-
             .photo {
                 width: 120px;
                 height: 120px;
             }
-
             .text {
                 text-align: center;
                 font-size: 24px;
@@ -59,14 +57,30 @@
             }
         }
 
-        .username , .password{
+        .username,
+        .password {
             width: 72%;
-        }
-        
-        .loginbtn{
-            width: 72%;
+            .input {
+                border-bottom: 2px rgb(8, 8, 8) solid;
+                .inputControl {
+                    border: none;
+                    outline: none;
+                    background: transparent;
+                    font-size: 16px;
+                    &:focus,
+                    &:focus-visible,
+                    &:active,
+                    &::after {
+                        border: none;
+                    }
+                }
+            }
         }
     }
 
-
+    .loginbtn {
+        width: 72%;
+    }
 }
+
+

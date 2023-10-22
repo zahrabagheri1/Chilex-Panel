@@ -62,10 +62,10 @@ function Index() {
           <div className='text' >Log In</div>
         </div>
         <div className='username'>
-          <Input type={"text"} placeholder={"type your username"} required={true} name={'user'} title={"UserName:"} icon={'HiUser'}/>
+          <Input type={"text"} className='' placeholder={"type your username"} required={true} name={'user'} title={"UserName:"} icon={'HiUser'}/>
         </div>
         <div className='password'>
-          <Input type={"password"} placeholder={"type your password"} required={true} title={"PassWord:"} icon={'HiLockClosed'} />
+          <Input type={"password"} className='' placeholder={"type your password"} required={true} title={"PassWord:"} icon={'HiLockClosed'} />
         </div>
         <Link to='/dashboard' className='loginbtn'><Button title={"Login"} /></Link>
       </div>

@@ -6,8 +6,13 @@ export const sideBarMenu = [
     },
     {
         name: 'Transaction',
-        icon: 'HiInboxArrowDown',
+        icon: 'HiPuzzlePiece',
         link: 'transaction',
+    },
+    {
+        name: 'Products',
+        icon: 'HiMiniSwatch',
+        link: 'products',
     },
     {
         name: 'Users',

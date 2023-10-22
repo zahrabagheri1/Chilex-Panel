@@ -6,6 +6,7 @@ import Admin from './Pages/Dashboard/Admin/Index';
 import Users from './Pages/Dashboard/Users/Index';
 import Support from './Pages/Dashboard/Support/Index';
 import Games from './Pages/Dashboard/Games/Index';
+import Products from './Pages/Dashboard/Products/Products';
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
@@ -18,6 +19,7 @@ function App() {
           <Route path='dashboard' element={<Dashboard/>}>
             <Route index element={<Layout/>}/>
             <Route path='admin' element={<Admin/>}/>
+            <Route path='products' element={<Products/>}/>
             <Route path='transaction' element={<Transaction/>}/>
             <Route path='users' element={<Users/>}/>
             <Route path='support' element={<Support/>}/>

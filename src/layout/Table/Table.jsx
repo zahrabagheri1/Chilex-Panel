@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import Dropdown from '../../Components/Dropdown/Dropdown';
 import './Table.scss';
 
 function Table(props) {
-    const [user, setUser] = useState()
-    
-    useEffect(() => {
-    }, [])
-
     return (
         <>
             {
@@ -19,7 +13,6 @@ function Table(props) {
                                 <th className="thhead">
                                     {name.name}
                                 </th>
-
                             ))
                             :null}
                         </tr>
@@ -31,9 +24,6 @@ function Table(props) {
                                 {Object.entries(item).map(([key,value])=>(
                                     <td className='tdbody'>{item[key]=== null ? 'null': item[key]}</td>
                                 ))}
-                                <td className='tdbody'>{
-                                    <Dropdown/>
-                                }</td>
                             </tr>
                         ))
                         :null}
