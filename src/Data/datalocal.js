@@ -12,7 +12,19 @@ export const sideBarMenu = [
     {
         name: 'Products',
         icon: 'HiMiniSwatch',
-        link: 'products',
+        link: null,
+        children: [
+            {
+                name: 'Add Bandel',
+                icon: 'IoAnalyticsOutline',
+                link: 'bandels',
+            }, 
+            {
+                name: 'Add Item',
+                icon: 'IoAnalytics',
+                link: 'items',
+            }
+        ]
     },
     {
         name: 'Users',
