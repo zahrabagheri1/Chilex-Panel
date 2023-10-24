@@ -10,9 +10,10 @@ function Table(props) {
                         <tr className='trhead'>
                             {Array.isArray(props.sort)? 
                             props.sort.map((name,index)=>(
-                                <th className="thhead" key={index}>
-                                    {name.name}
-                                </th>
+                                name.status === true? 
+                                <th className="thhead" key={index} colSpan={name.child ? name.child.length : '1' }>{name.name}</th>
+                                :
+                                ""
                             ))
                             :null}
                         </tr>
@@ -23,9 +24,10 @@ function Table(props) {
                             <tr className='trbody'>
                                 {Object.entries(item).map(([key,value])=>(
                                     Array.isArray(value) ?
-                                    (
-                                     console.log(Object.entries(value))  
-                                    )
+                                    (item[key].map(thing => 
+                                        Object.entries(thing).map(([thingKey, thingValue])=>
+                                            <td>{thing[thingKey]}</td>    
+                                    )))
                                     :
                                     <td className='tdbody'>{item[key]=== null ? 'null': item[key]}</td>
 

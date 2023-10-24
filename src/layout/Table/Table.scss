@@ -8,26 +8,25 @@
         .trhead {
             .thhead {
                 padding: 10px 10px;
-                // padding: 10px 10px;
                 text-align: center;
             }
-
+            
             .id {
                 padding: 10px !important;
-
+                
             }
         }
     }
-
+    
     .bodytable {
         .trbody {
+            text-align: center;
+            padding: 10px 10px;
             &:nth-child(2n) {
                 background-color: rgb(248, 219, 255);
             }
 
-            .tdbody {
-                text-align: center;
-            }
+
         }
     }
 }

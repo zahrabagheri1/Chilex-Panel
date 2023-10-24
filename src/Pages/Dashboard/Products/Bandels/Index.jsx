@@ -5,7 +5,7 @@ import {sortBandels} from '../../../../Data/Sort';
 import axios from 'axios';
 
 function Index() {
-  const [bandels, setBandels] = useState();
+  const [bandels, setBandels] = useState([]);
   useEffect(()=>{
     axios.post('/admin-stuff/bundles-all')
     .then((res)=>{

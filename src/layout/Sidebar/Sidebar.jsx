@@ -8,6 +8,7 @@ import { sideBarMenu } from '../../Data/datalocal';
 
 function Sidebar() {
   const [child, setChild] = useState(false)
+  const [click, setClick] = useState(false)
   const icons = {
     HiMiniUsers: <HiMiniUsers />,
     HiPuzzlePiece: <HiPuzzlePiece />,
@@ -19,8 +20,11 @@ function Sidebar() {
     HiOutlineArrowLeftOnRectangle: <HiOutlineArrowLeftOnRectangle />,
   }
 
-  const showChild = () => {
+  const clickHandler = () =>{
+    setClick(!click)
+  }
 
+  const showChild = () => {
     setChild(!child)
   }
 
@@ -30,7 +34,9 @@ function Sidebar() {
       <div className="menu">
         {sideBarMenu.map((item, key) => (
           <div>
-            <Link to={item.link} key={key} className='item' onClick={item.children ? showChild : item.name}>
+            {/* <Link to={item.link} key={key} className={`item ${click === true ? 'active' : '' }`} onClick={item.children ? showChild : (e) => clickHandler(e)}> */}
+            
+            <Link to={item.link} key={key} className='item' onClick={item.children ? showChild : clickHandler}>
               <div className='icon'>{icons[item.icon]}</div>
               <div className=''>{item.name}</div>
             </Link>
