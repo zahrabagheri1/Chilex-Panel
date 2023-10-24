@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './Table.scss';
 
 function Table(props) {
@@ -10,7 +10,7 @@ function Table(props) {
                         <tr className='trhead'>
                             {Array.isArray(props.sort)? 
                             props.sort.map((name,index)=>(
-                                <th className="thhead">
+                                <th className="thhead" key={index}>
                                     {name.name}
                                 </th>
                             ))
@@ -22,7 +22,13 @@ function Table(props) {
                         props.data?.map((item, index)=>(
                             <tr className='trbody'>
                                 {Object.entries(item).map(([key,value])=>(
+                                    Array.isArray(value) ?
+                                    (
+                                     console.log(Object.entries(value))  
+                                    )
+                                    :
                                     <td className='tdbody'>{item[key]=== null ? 'null': item[key]}</td>
+
                                 ))}
                             </tr>
                         ))

@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import './Products.scss';
-import Select from '../../../Components/Select/Select';
-import Input from '../../../Components/Input/Input';
+import { Outlet } from 'react-router-dom';
+import Navigation from '../../../layout/Navigation/Navigation';
+import Sidebar from '../../../layout/Sidebar/Sidebar';
 
 function Products() {
-    const [value, setValue] = useState(1);
 
     return (
         <div>
 
-        </div>
+      </div>
     );
 }
 

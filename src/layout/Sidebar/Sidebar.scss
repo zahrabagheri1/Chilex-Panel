@@ -33,7 +33,7 @@
             flex-direction: row;
             gap: 5px;
             cursor: pointer;
-            padding: 10px 10px;
+            padding: 10px;
 
             &:link,
             &:visited,
@@ -52,6 +52,34 @@
 
             &:active {
                 font-weight: 600;
+            }
+        }
+
+        .child {
+            position: relative;
+            left: 30px;
+            .childItem {
+                position: relative;
+                display: flex;
+                flex-direction: row;
+                gap: 5px;
+                cursor: pointer;
+                padding: 10px 10px;
+                &:link,
+                &:visited,
+                &:hover {
+                    text-decoration: none;
+                    color: rgba(0, 0, 0, 0.671);
+                }
+
+                &:hover {
+                    background-color: rgba(255, 255, 255, 0.534);
+                    width: calc(100% - 40px);
+                    color: rgb(86, 0, 144);
+                    border-radius: 10px 0 0 10px;
+                    font-weight: 550;
+
+                }
             }
         }
     }

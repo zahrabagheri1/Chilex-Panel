@@ -24,12 +24,6 @@ function Sidebar() {
     setChild(!child)
   }
 
-  sideBarMenu.map((item, key) => (
-    item.children?.map((child) => (
-      console.log(child)
-    ))
-  ))
-
   return (
     <div className='sidebar'>
       <div className="logo-dash"><img className='logo' src={Logo} /></div>
@@ -41,10 +35,10 @@ function Sidebar() {
               <div className=''>{item.name}</div>
             </Link>
 
-            <div className=''>
+            <div className='child'>
               {child === true ?
-                item.children?.map((childItem) => (
-                  <Link to={childItem.link} key={key} className='childItem'>
+                item.children?.map((childItem , index) => (
+                  <Link to={childItem.link} key={index} className='childItem'>
                     <div className='icon'>{icons[childItem.icon]}</div>
                     <div className=''>{childItem.name}</div>
                   </Link>

@@ -36,3 +36,55 @@ export const adminTransaction = [
         status: true
     },
 ]
+
+
+
+export const sortBandels = [
+    {
+        name: 'bundleAmount',
+        status: true
+    },
+    {
+        name: 'bundleId',
+        status: true
+    },
+    {
+        name: 'bundleName',
+        status: true
+    },
+    {
+        name: 'bundleSku',
+        status: true
+    },
+    {
+        name: 'bundleStatus',
+        status: true
+    },
+    {
+        name: 'bundleType',
+        status: true,
+    },
+    {
+        name: 'prices',
+        status: true,
+        child: [
+            {
+                name: 'amount',
+                status: true,
+            },
+            {
+                name: 'id',
+                status: true,
+            },
+            {
+                name: 'priceStatus',
+                status: true,
+            },
+            {
+                name: 'priceType',
+                status: true,
+            },
+        ]
+
+    },
+]

@@ -11,24 +11,23 @@ import Items from './Pages/Dashboard/Products/Items/Index';
 
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Products from './Pages/Dashboard/Products/Products';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path='/'>
-          <Route path='login' index element={<Login/>}/>
-          <Route path='dashboard' element={<Dashboard/>}>
-            <Route index element={<Layout/>}/>
-            <Route path='admin' element={<Admin/>}/>
-            <Route path='products'>
-              <Route path='addbandel' element={<Bandels/>}/>
-              <Route path='additem' element={<Items/>}/>
-            </Route>
-            <Route path='transaction' element={<Transaction/>}/>
-            <Route path='users' element={<Users/>}/>
-            <Route path='support' element={<Support/>}/>
-            <Route path='games' element={<Games/>}/>
+          <Route path='login' index element={<Login />} />
+          <Route path='dashboard' element={<Dashboard />}>
+            <Route index element={<Layout />} />
+            <Route path='admin' element={<Admin />} />
+            <Route path='bandels' element={<Bandels />} />
+            <Route path='items' element={<Items />} />
+            <Route path='transaction' element={<Transaction />} />
+            <Route path='users' element={<Users />} />
+            <Route path='support' element={<Support />} />
+            <Route path='games' element={<Games />} />
           </Route>
         </Route>
       </Routes>
