@@ -6,8 +6,8 @@ import Admin from './Pages/Dashboard/Admin/Index';
 import Users from './Pages/Dashboard/Users/Index';
 import Support from './Pages/Dashboard/Support/Index';
 import Games from './Pages/Dashboard/Games/Index';
-import Bandels from './Pages/Dashboard/Products/Bandels/Index';
-import Items from './Pages/Dashboard/Products/Items/Index';
+import Bandels from './Pages/Dashboard/Products/Bandels/Bandels';
+import Items from './Pages/Dashboard/Products/Items/Items';
 
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';

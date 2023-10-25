@@ -21,12 +21,12 @@ function Table(props) {
                     <tbody className='bodytable'>
                         {Array.isArray(props.data) ?
                         props.data?.map((item, index)=>(
-                            <tr className='trbody'>
+                            <tr className='trbody' key={index} >
                                 {Object.entries(item).map(([key,value])=>(
                                     Array.isArray(value) ?
                                     (item[key].map(thing => 
                                         Object.entries(thing).map(([thingKey, thingValue])=>
-                                            <td>{thing[thingKey]}</td>    
+                                            <td key={key}>{thing[thingKey]}</td>    
                                     )))
                                     :
                                     <td className='tdbody'>{item[key]=== null ? 'null': item[key]}</td>

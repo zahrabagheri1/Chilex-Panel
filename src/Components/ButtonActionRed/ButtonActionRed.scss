@@ -1,6 +1,7 @@
 .btnBox{
+    width: 20%;
+    position: relative;
     text-decoration: none;
-    
     &:focus,
     &:focus-visible,
     &:active,
@@ -10,26 +11,26 @@
     
     .btn {
         width: 100%;
-        height: 100%;
+        height: 26px;
         position: relative;
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color:#007dc1;
+        background-color: rgb(203, 8, 8);
         border-radius:3px;
-        border:1px solid #000000;
+        border:1px solid #6c000094;
         cursor:pointer;
         color:#ffffff;
         font-size:13px;
         font-family: sans-serif;
-    }
-    // .btn:hover {
-
-    //     background-color:#0061a7;
-    // }
-    .btn:active {
-        position:relative;
-        top:1px;
+        &:hover {
+    
+            background-color:#a70000;
+        }
+        &:active {
+            position:relative;
+            top:1px;
+        }
     }
 }
 

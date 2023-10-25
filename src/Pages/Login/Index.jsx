@@ -3,7 +3,6 @@ import './Login.scss';
 import Input from '../../Components/Input/Input';
 import data from '../../Data/datalocal';
 import Button from '../../Components/Button/Button';
-import { Link } from 'react-router-dom';
 import loginPhoto from '../../Assets/image/loginPhoto.svg';
 import userPhoto from '../../Assets/image/photoUser-removebg-preview.png';
 
@@ -67,7 +66,7 @@ function Index() {
         <div className='password'>
           <Input type={"password"} className='' placeholder={"type your password"} required={true} title={"PassWord:"} icon={'HiLockClosed'} />
         </div>
-        <Link to='/dashboard' className='loginbtn'><Button title={"Login"} /></Link>
+        <Button title="Login" path='/dashboard' className='loginbtn'/>
       </div>
     </div>
   );

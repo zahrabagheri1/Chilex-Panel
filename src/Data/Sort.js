@@ -11,14 +11,15 @@ export const adminTransaction = [
 ]
 
 
-
 export const sortBandels = [
-    {name: 'bundleAmount',status: true},
-    {name: 'bundleId',status: true},
-    {name: 'bundleName',status: true},
-    {name: 'bundleSku',status: true},
-    {name: 'bundleStatus',status: true},
-    {name: 'bundleType',status: true,},
+    {name: 'amount',status: true},
+    {name: 'id',status: true},
+    {name: 'type',status: true},
+    {name: 'name',status: true},
+    {name: 'sku',status: true},
+    {name: 'status',status: true},
+    {name: 'createdAt',status: true},
+    {name: 'updatedAt',status: true,},
     {name: 'prices',status: true,
         child: [
             {
@@ -42,7 +43,6 @@ export const sortBandels = [
 ]
 
 
-
 export const sortItems = [
     { name: 'id', status: true },
     { name: 'gameId', status: true },
@@ -50,8 +50,7 @@ export const sortItems = [
     { name: 'name', status: true },
     { name: 'createdAt', status: true },
     { name: 'expireTime', status: true },
-    { name: 'sku', status: false },
-    { name: 'sku', status: false },
+    { name: 'sku', status: true },
     {
         name: 'prices',
         status: true,

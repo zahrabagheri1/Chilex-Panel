@@ -2,11 +2,11 @@
 .layout{
     position: relative;
         .cards{
-            // width: 95%;
+            width: 95%;
             display: flex;
             flex-direction: row;
             // flex-wrap: wrap;
             gap: 20px;
-            // margin: 20px;
+            margin: 20px;
         }
     }

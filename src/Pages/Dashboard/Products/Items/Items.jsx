@@ -8,24 +8,31 @@ import axios from 'axios';
 function Index() {
   const [items, setItems] = useState([]);
 
+  console.log(items)
+  const addItemHandler = ()=>{
+
+  }
+
   useEffect(()=>{
-    axios.post('/admin-stuff/items-all')
+    axios.get('/admin-stuff/items-all')
     .then((res)=>{
       // console.log(res.data.data)
       setItems(res.data.data)
     })
-    .catch(
-      err=>console.log(err)
-    )
+    // .catch(err => console.log(err))
   },[])
+  
   return (
-    <div>
-      <div>
-        <HiPencilSquare/>
+    <div className='items'>
+      <Table data={items} sort={sortItems} action={true}/>
+
+      <div className='addItem' onClick={addItemHandler}>
+        <HiPencilSquare className='icon'/>
       </div>
 
-      <Table data={items} sort={sortItems} action={true}/>
-      
+      <div>
+        
+      </div>
     </div>
   );
 }
