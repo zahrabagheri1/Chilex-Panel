@@ -15,12 +15,12 @@ export const sideBarMenu = [
         link: null,
         children: [
             {
-                name: 'Add Bandel',
+                name: 'Bandels',
                 icon: 'IoAnalyticsOutline',
                 link: 'bandels',
             }, 
             {
-                name: 'Add Item',
+                name: 'Items',
                 icon: 'IoAnalytics',
                 link: 'items',
             }

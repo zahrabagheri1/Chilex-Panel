@@ -2,16 +2,17 @@ import React, { useRef } from 'react';
 import './ButtonActionRed.scss';
 import { Link } from 'react-router-dom';
 
-function Button(props) {
-  
-  const backHandler =(e)=>{
+function ButtonActionRed(props) {
 
+  const handler = (e) => {
+    props.handler()
   }
+
   return (
-    <div to={props.path} className='btnBox'>
-      <button id={props.id} className={`btn ${props.className}`} onClick={e => backHandler(e) } >{props.title}</button>
-    </div>
+    <button id={props.id} className={`redbtn ${props.className}`} onClick={e => handler(e)} >
+        {props.title}
+    </button>
   );
 }
 
-export default Button;
+export default ButtonActionRed;

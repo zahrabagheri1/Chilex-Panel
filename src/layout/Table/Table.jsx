@@ -2,6 +2,11 @@ import React from 'react';
 import './Table.scss';
 
 function Table(props) {
+
+    const showDetail = ()=>{
+       props.showDetail()
+    }
+
     return (
         <>
             {
@@ -21,7 +26,7 @@ function Table(props) {
                     <tbody className='bodytable'>
                         {Array.isArray(props.data) ?
                         props.data?.map((item, index)=>(
-                            <tr className='trbody' key={index} >
+                            <tr className='trbody' key={index} onClick={showDetail} >
                                 {Object.entries(item).map(([key,value])=>(
                                     Array.isArray(value) ?
                                     (item[key].map(thing => 

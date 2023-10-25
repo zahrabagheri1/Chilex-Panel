@@ -24,12 +24,13 @@ function Index() {
   
   return (
     <div className='items'>
-      <Table data={items} sort={sortItems} action={true}/>
-
+      
       <div className='addItem' onClick={addItemHandler}>
         <HiPencilSquare className='icon'/>
       </div>
 
+
+      <Table data={items} sort={sortItems} action={true}/>
       <div>
         
       </div>
