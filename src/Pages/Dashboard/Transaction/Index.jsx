@@ -10,7 +10,7 @@ import 'react-indiana-drag-scroll/dist/style.css'
 function Index() {
   const [Data, setData] = useState([]);
   useEffect(() => {
-    axios.post('/admin-transaction/all',
+    axios.get('/admin-transaction/all',
       {
         limit: parseInt(10),
         offset: parseInt(1)

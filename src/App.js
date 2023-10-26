@@ -1,3 +1,4 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Login from './Pages/Login/Index';
 import Transaction from './Pages/Dashboard/Transaction/Index';
 import Dashboard from './Pages/Dashboard/Index';
@@ -10,8 +11,7 @@ import Bandels from './Pages/Dashboard/Products/Bandels/Bandels';
 import Items from './Pages/Dashboard/Products/Items/Items';
 
 import './App.css';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Products from './Pages/Dashboard/Products/Products';
+import Details from './Pages/Dashboard/Products/Details/Details';
 
 function App() {
   return (
@@ -22,7 +22,9 @@ function App() {
           <Route path='dashboard' element={<Dashboard />}>
             <Route index element={<Layout />} />
             <Route path='admin' element={<Admin />} />
-            <Route path='bandels' element={<Bandels />} />
+            <Route path='bandels' element={<Bandels />}>
+              <Route path='detail' element={<Details />} />
+            </Route>
             <Route path='items' element={<Items />} />
             <Route path='transaction' element={<Transaction />} />
             <Route path='users' element={<Users />} />

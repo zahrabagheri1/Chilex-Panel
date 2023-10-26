@@ -2,17 +2,20 @@ import React, { useRef } from 'react';
 import './ButtonActionGreen.scss';
 import { Link } from 'react-router-dom';
 
-function Button(props) {
+function ButtonActionGreen(props) {
 
-  const btn = useRef();
-  const submitHandler =(e)=>{
+  //** props => id , className , handler, title */
 
+  const handler = (e) => {
+    props.handler()
   }
+
+
   return (
-    <div to={props.path} className='greenbtnBox'>
-      <button id={props.id} className={`greenbtn ${props.className}`} onClick={e => submitHandler(e) } >{props.title}</button>
-    </div>
+    <button id={props.id} className={`greenbtn ${props.className}`} onClick={e => handler(e)} >
+      {props.title}
+    </button>
   );
 }
 
-export default Button;
+export default ButtonActionGreen;
