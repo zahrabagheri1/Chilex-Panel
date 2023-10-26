@@ -6,7 +6,8 @@
     width: 16%;
     height: 100vh;
     position: fixed;
-    background: linear-gradient(180deg, rgb(143, 164, 255) 50%, rgb(115, 19, 139) 100%);
+    // background: linear-gradient(180deg, rgb(143, 164, 255) 50%, rgb(115, 19, 139) 100%);
+    background-color: #c772ff;
 
     .logo-dash {
         height: 10vh;
@@ -45,7 +46,7 @@
             &:hover, &.active {
                 padding: 10px 10px;
                 background-color: rgba(255, 255, 255, 0.534);
-                color: rgb(86, 0, 144);
+                color: rgb(0, 0, 0);
                 border-radius: 10px;
                 font-weight: 600;
             }

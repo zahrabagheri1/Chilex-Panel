@@ -1,0 +1,40 @@
+.dropdwon{
+
+    .dropTitle{
+        display: flex;
+        flex-direction: row;
+        cursor: pointer;
+    }
+    
+    .drop{
+        display: none;
+        position: absolute;
+        background-color: rgb(149, 0, 255);
+        color: white;
+        text-decoration: none;
+        padding: 12px 18px;
+        width: 80px;
+        border-radius: 5px;
+        gap: 5px;
+        flex-direction: column;
+        &.active{
+            display: flex;
+        }
+        
+        &:link, &:visited {
+            text-decoration: none;
+            color: rgb(255, 255, 255) ;
+        }
+          
+        &:hover, &:active{
+            color: rgb(0, 0, 0);
+            font-weight: 900;
+            font-size: 12px;
+        }
+        
+        div{
+            cursor: pointer;
+
+        }
+    }
+}

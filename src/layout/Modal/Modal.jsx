@@ -19,19 +19,19 @@ function Modal(props) {
     setData(props.data)
   }, [props])
 
-  useEffect(()=>{
+  useEffect(() => {
     axios.post('/admin-stuff/create-stuff')
-    .then(
-      res => {
-        setBandel(res.data.dat)
-        // console.log(res)
-      }
-    )
-    .catch(
-      err=> {
-        console.log(err)
-      }
-    )
+      .then(
+        res => {
+          setBandel(res.data.dat)
+          // console.log(res)
+        }
+      )
+      .catch(
+        err => {
+          console.log(err)
+        }
+      )
   })
 
   const handlerClose = (e) => {
@@ -51,35 +51,44 @@ function Modal(props) {
         </div>
 
         <div className='mainModal'>
-          <Input
-            value={value}
-            type={'number'}
-            title={'limit'}
-          />
-          <SelectOption
-            value={value}
-            defaultValue={'bundleType'}
-            type={'bandle'}
+          <SelectOption value={value} name={'stuffType'} defaultValue={'Type'} type={'bandle'}
             data={[
               { id: 0, bandle: 'Gem Bandle' },
-              { id: 1, bandle: 'Coin Bandle' }
+              { id: 1, bandle: 'Coin Bandle' },
+              { id: 2, bandle: 'Item' }
             ]}
           />
 
-          <SelectOption
-            value={value}
-            defaultValue={'bundleStatus'}
-            type={'status'}
+          <Input value={value} type={'text'} title={'name'} />
+
+          <Input value={value} type={'text'} title={'sku'} />
+
+          <Input value={value} type={'text'} title={'amount'} />
+
+          <Input value={value} type={'url'} title={'image'} />
+
+          <SelectOption value={value} name={'prices'} defaultValue={'Price'} type={'status'}
             data={[
-              { id: 0, status: 'Active' },
-              { id: 1, status: 'Deactive' }
+              { id: 0, status: 'Gem' },
+              { id: 1, status: 'Coin' },
+              { id: 2, status: 'Rial' },
             ]}
           />
 
-          <SelectOption
-            value={value}
-            defaultValue={'priceStatus '}
-            type={'status'}
+          <Input value={value} type={'date'} title={'ExpireTime'} />
+
+
+          <SelectOption value={value} name={'gameId'} defaultValue={'Game'} type={'status'}
+            data={[
+              { id: 0, status: 'Ludo' },
+              { id: 1, status: 'Uno' },
+              { id: 2, status: 'Backgammon ' },
+              { id: 3, status: 'Soccer' },
+              { id: 4, status: 'Yadzy' },
+            ]}
+          />
+
+          <SelectOption value={value} name={'status'} defaultValue={'Status'} type={'status'}
             data={[
               { id: 0, status: 'Active' },
               { id: 1, status: 'Deactive' }
@@ -103,3 +112,19 @@ function Modal(props) {
 }
 
 export default Modal;
+
+
+
+
+{/* 
+stuffType: number stuffType =>  gemBundle : 0 , coinBundle : 1 , Item : 2
+name: string
+amount: string
+image: number
+prices: [string]  
+  prices: { type: enumPriceType, amount: number }[] , 
+  type => GEM : 0 , COIN : 1 , RIAL : 2
+expireTime: string
+gameId: number
+status: number  status => ACTIVE : 0 , DEACTIVE : 1
+*/}

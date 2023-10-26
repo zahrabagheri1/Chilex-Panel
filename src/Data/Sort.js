@@ -46,11 +46,11 @@ export const sortBandels = [
 export const sortItems = [
     { name: 'id', status: true },
     { name: 'gameId', status: true },
-    { name: 'status', status: true },
     { name: 'name', status: true },
     { name: 'createdAt', status: true },
     { name: 'expireTime', status: true },
     { name: 'sku', status: true },
+    { name: 'status', status: true },
     {
         name: 'prices',
         status: true,

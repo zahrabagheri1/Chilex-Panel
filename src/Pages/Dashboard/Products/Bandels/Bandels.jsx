@@ -6,34 +6,40 @@ import { HiPlus } from "react-icons/hi2";
 import axios from 'axios';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import Modal from '../../../../layout/Modal/Modal';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
 
 function Index() {
   const [bandels, setBandels] = useState([]);
   const [modal, setModal] = useState(false);
   const [detailBandel, setDetailBandel] = useState(false);
 
+  const navigation = useNavigate()
+  const id = useParams()
+
+  useEffect(()=>{
+    // axios.get(`/admin-stuff/get-bundle/${id}`)
+  })
+
   useEffect(() => {
     axios.get('/admin-stuff/bundles-all')
       .then((res) => {
-        console.log(res.data.data)
+        // console.log(res.data.data)
         setBandels(res.data.data)
       })
       .catch(err => console.log(err))
   }, [])
 
+  const showDetailBandle = () => {
+    navigation(`${id}`)
+    console.log(id)
 
-  const showss = () => {
-    setDetailBandel(true)
   }
 
   const handelOpenModal = () => {
     setModal(true)
-
   }
   const handlerCloseModal = () => {
     setModal(false)
-
   }
 
   return (
@@ -49,24 +55,19 @@ function Index() {
       </div>
 
       <ScrollContainer>
-        <Table data={bandels} sort={sortBandels} action={true} showDetail={showss} />
+        <Table data={bandels} sort={sortBandels} action={true} showDetail={showDetailBandle} />
       </ScrollContainer>
 
 
       {modal === true ?
         <div className="modalBandel">
-          <Modal modalTitle={'Add New Bandle'} data={bandels} handelerSubmit={handelOpenModal} handlerClose={handlerCloseModal} />
+          <Modal modalTitle={'Add New Bandle'} data={bandels} path={'bandels'} handelerSubmit={handelOpenModal} handlerClose={handlerCloseModal} />
         </div>
 
         : ''
       }
 
-
-      {detailBandel === true ?
-        <div>
-          <Outlet/>
-        </div>
-        : ''}
+      {}
     </div>
   );
 }
