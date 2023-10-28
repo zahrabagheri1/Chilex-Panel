@@ -5,6 +5,7 @@ import Input from '../../Components/Input/Input';
 import SelectOption from '../../Components/SelectOption/SelectOption';
 import './Modal.scss';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Modal(props) {
 
@@ -12,7 +13,8 @@ function Modal(props) {
 
   const [data, setData] = useState(null);
   const [addBandel, setBandel] = useState(null);
-  const [value, setValue] = useState(null)
+  const [value, setValue] = useState(null);
+  const navigate = useNavigate();
   console.log(value)
 
   useEffect(() => {
@@ -38,9 +40,20 @@ function Modal(props) {
     props.handlerClose()
   }
 
+  // const handlerClose = (e) => {
+  //   navigate("./")
+  // }
+
   const handlerSubmit = () => {
 
   }
+
+
+  const changeName = () => {}
+  const changeSku = () => {}
+  const changeAmout = () => {}
+  const changeImage = () => {}
+  const changeExpireTime = () => {}
 
   return (
     <div className='modal'>
@@ -59,13 +72,13 @@ function Modal(props) {
             ]}
           />
 
-          <Input value={value} type={'text'} title={'name'} />
+          <Input value={value} type={'text'} title={'name'} changeInputValue={changeName} />
 
-          <Input value={value} type={'text'} title={'sku'} />
+          <Input value={value} type={'text'} title={'sku'} changeInputValue={changeSku} />
 
-          <Input value={value} type={'text'} title={'amount'} />
+          <Input value={value} type={'text'} title={'amount'} changeInputValue={changeAmout} />
 
-          <Input value={value} type={'url'} title={'image'} />
+          <Input value={value} type={'url'} title={'image'} changeInputValue={changeImage} />
 
           <SelectOption value={value} name={'prices'} defaultValue={'Price'} type={'status'}
             data={[
@@ -75,7 +88,7 @@ function Modal(props) {
             ]}
           />
 
-          <Input value={value} type={'date'} title={'ExpireTime'} />
+          <Input value={value} type={'date'} title={'ExpireTime'} changeInputValue={changeExpireTime} />
 
 
           <SelectOption value={value} name={'gameId'} defaultValue={'Game'} type={'status'}

@@ -13,6 +13,7 @@ export const sideBarMenu = [
         name: 'Products',
         icon: 'HiMiniSwatch',
         link: null,
+        dropdown: '',
         children: [
             {
                 name: 'Bandels',

@@ -10,7 +10,8 @@ import Games from './Pages/Dashboard/Games/Index';
 import Bandels from './Pages/Dashboard/Products/Bandels/Bandels';
 import Bandel from './Pages/Dashboard/Products/Bandels/Bandel/Bandel';
 import Items from './Pages/Dashboard/Products/Items/Items';
-import Details from './Pages/Dashboard/Products/Details/Details';
+import Item from './Pages/Dashboard/Products/Items/Item/Item';
+import Details from './Pages/Dashboard/Products/Bandels/Details/Details';
 
 import './App.css';
 
@@ -24,10 +25,13 @@ function App() {
             <Route index element={<Layout />} />
             <Route path='admin' element={<Admin />} />
             <Route path='bandels' element={<Bandels />}>
-              {/* <Route path='bandels' index element={<Bandel />} /> */}
-              <Route path=':id' element={<Details />} />
+              <Route index element={<Bandel/>} />
+              <Route path=':bandelId' element={<Details />} />
             </Route>
-            <Route path='items' element={<Items />} />
+            <Route path='items' element={<Items />}>
+              <Route index element={<Item/>}/>
+              {/* <Route path=':itemId' element={<Details/>}/> */}
+            </Route>
             <Route path='transaction' element={<Transaction />} />
             <Route path='users' element={<Users />} />
             <Route path='support' element={<Support />} />

@@ -13,12 +13,12 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.11.0",
     "react-indiana-drag-scroll": "^3.0.3-alpha",
-    "react-router-dom": "^6.16.0",
+    "react-router-dom": "^6.17.0",
     "react-scripts": "5.0.1",
     "sort-by": "^1.2.0",
     "web-vitals": "^2.1.4"
   },
-  "proxy": "http://192.168.1.129:3000",
+  "proxy": "http://dixo.panel.diacostudios.com/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

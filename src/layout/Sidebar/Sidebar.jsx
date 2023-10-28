@@ -36,7 +36,7 @@ function Sidebar() {
           <div key={key} >
             {/* <Link to={item.link} key={key} className={`item ${click === true ? 'active' : '' }`} onClick={item.children ? showChild : (e) => clickHandler(e)}> */}
             
-            <Link to={item.link} className='item' onClick={item.children ? showChild : clickHandler}>
+            <Link to={item.link} className='tab' onClick={item.children ? showChild : clickHandler}>
               <div className='icon'>{icons[item.icon]}</div>
               <div className=''>{item.name}</div>
             </Link>

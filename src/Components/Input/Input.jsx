@@ -3,6 +3,7 @@ import './Input.scss'
 import { HiUser, HiOutlineUser, HiMiniMagnifyingGlass, HiOutlineEye, HiLockClosed, HiOutlineEyeSlash, HiMiniEyeSlash, HiMiniEye } from "react-icons/hi2";
 
 function Input(props) {
+  const [value,setValue] = useState(props.value)
   const [eye, setEye] = useState(false)
 
   const icons = {
@@ -21,8 +22,9 @@ function Input(props) {
   }
 
 
-  const inputHandler = (e) => {
-    
+  const changeInputHandler = (e) => {
+    setValue(e.target.value)
+    props.changeInputValue(e)
   }
 
 
@@ -38,24 +40,25 @@ function Input(props) {
             name={props.name}
             className={`inputControl ${props.classname}`}
             disabled={props.disabled}
+            value={value}
             dir={props.dir}
             id={props.title}
             maxlength={props.maxlength}
             readOnly={props.readOnly}
-            onChange={e => inputHandler(e)}
+            onChange={changeInputHandler}
           ></textarea>
           :
           <input
             type={props.type === 'password'? (eye === true ? 'text': 'password') : props.type}
             className={`inputControl ${props.classname}`}
             name={props.name}
-            value={props.value}
+            value={value}
             placeholder={props.placeholder}
             readOnly={props.readOnly}
             dir={props.dir}
             disabled={props.disabled}
             checked={props.checked}
-            onChange={e => inputHandler(e)}
+            onChange={changeInputHandler}
             ref={props.ref}
           />}
         <div className={`passwordEye ${props.type === 'password' ? 'active' : ''}`} onClick={eyeHandler}>

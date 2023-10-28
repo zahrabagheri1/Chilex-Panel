@@ -15,7 +15,7 @@ function Bandel() {
     const [detailBandel, setDetailBandel] = useState(false);
   
     const navigation = useNavigate()
-    const id = useParams()
+    const bandelId = useParams()
   
     useEffect(() => {
       axios.get('/admin-stuff/bundles-all')
@@ -27,10 +27,10 @@ function Bandel() {
     }, [])
   
     const showDetailBandle =()=>{
-      navigation(`${id}`)
-      console.log(id)
-  
+      navigation(`${bandelId}`)
+      
     }
+    console.log(bandelId)
   
     const handelOpenModal = () => {
       setModal(true)
@@ -58,7 +58,12 @@ function Bandel() {
 
       {modal === true ?
         <div className="modalBandel">
-          <Modal modalTitle={'Add New Bandle'} data={bandels} path={'bandels'} handelerSubmit={handelOpenModal} handlerClose={handlerCloseModal} />
+          <Modal 
+            modalTitle={'Add New Bandle'} 
+            data={bandels} path={'bandels'} 
+            handelerSubmit={handelOpenModal} 
+            handlerClose={handlerCloseModal}
+          />
         </div>
 
         : ''
