@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './Item.scss';
+import './ItemList.scss';
 import axios from 'axios';
 import { HiPlus } from "react-icons/hi2";
 import { sortItems } from '../../../../../Data/Sort';
@@ -8,8 +8,8 @@ import Modal from '../../../../../layout/Modal/Modal';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import { useNavigate, useParams } from 'react-router-dom';
 
+function ItemList() {
 
-function Item() {
     const [items, setItems] = useState([]);
     const [modal, setModal] = useState(false);
     const [detailItem, setDetailItem] = useState(false);
@@ -49,12 +49,12 @@ function Item() {
             </div>
 
             <ScrollContainer>
-                <Table data={items} sort={sortItems} action={true} showDetail={showDetailItem}/>
+                <Table data={items} sort={sortItems} action={true} showDetail={showDetailItem} />
             </ScrollContainer>
 
             {modal === true ?
                 <div className="modalBandel">
-                    <Modal 
+                    <Modal
                         modalTitle={'Add New Item'}
                         data={items}
                         path={'items'}
@@ -70,4 +70,4 @@ function Item() {
     );
 }
 
-export default Item;
+export default ItemList;

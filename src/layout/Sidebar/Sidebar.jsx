@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Sidebar.scss'
 import Logo from '../../Assets/image/logo/logo.png'
-import { HiMiniShoppingCart, HiMiniCreditCard, HiMiniArrowDownTray, HiMiniSwatch, HiPuzzlePiece, HiMiniUsers, HiOutlineArrowLeftOnRectangle, HiInboxArrowDown, HiComputerDesktop } from "react-icons/hi2";
+import { HiRocketLaunch, HiMiniShoppingCart, HiMiniCreditCard, HiMiniArrowDownTray, HiMiniSwatch, HiCurrencyDollar, HiMiniChatBubbleLeftRight, HiOutlineArrowLeftOnRectangle, HiInboxArrowDown, HiComputerDesktop } from "react-icons/hi2";
 import { Link } from 'react-router-dom';
 import { sideBarMenu } from '../../Data/datalocal';
 
@@ -10,13 +10,14 @@ function Sidebar() {
   const [child, setChild] = useState(false)
   const [click, setClick] = useState(false)
   const icons = {
-    HiMiniUsers: <HiMiniUsers />,
-    HiPuzzlePiece: <HiPuzzlePiece />,
+    HiRocketLaunch: <HiRocketLaunch/>,
+    HiCurrencyDollar: <HiCurrencyDollar />,
     HiMiniCreditCard: <HiMiniCreditCard />,
     HiMiniSwatch: <HiMiniSwatch />,
     HiComputerDesktop: <HiComputerDesktop />,
     HiInboxArrowDown: <HiInboxArrowDown />,
     HiMiniArrowDownTray: <HiMiniArrowDownTray />,
+    HiMiniChatBubbleLeftRight: <HiMiniChatBubbleLeftRight />,
     HiOutlineArrowLeftOnRectangle: <HiOutlineArrowLeftOnRectangle />,
     HiMiniShoppingCart: <HiMiniShoppingCart/>,
   }

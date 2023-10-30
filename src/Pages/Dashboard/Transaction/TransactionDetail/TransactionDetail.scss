@@ -1,4 +1,4 @@
-.bundleDetail{
+.transactionDetail{
     height: 80vh;
     width: 100%;
     background: rgba(255, 255, 255, 0.44);
@@ -27,6 +27,7 @@
         .titleB{
             width: 28%;
             display: flex;
+            flex-direction: row;
             flex-direction: column;
             gap: 12px;
             
