@@ -6,7 +6,7 @@ export const sideBarMenu = [
     },
     {
         name: 'Transaction',
-        icon: 'HiPuzzlePiece',
+        icon: 'HiCurrencyDollar',
         link: 'transaction',
     },
     {
@@ -28,9 +28,9 @@ export const sideBarMenu = [
         ]
     },
     {
-        name: 'Users',
-        icon: 'HiMiniUsers',
-        link: 'users',
+        name: 'Chat',
+        icon: 'HiMiniChatBubbleLeftRight',
+        link: 'chats',
     },
     {
         name: 'Shopping History',
@@ -39,7 +39,7 @@ export const sideBarMenu = [
     },
     {
         name: 'Games',
-        icon: 'HiPuzzlePiece',
+        icon: 'HiRocketLaunch',
         link: 'games',
     },
     {

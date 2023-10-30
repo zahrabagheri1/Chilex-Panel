@@ -1,73 +1,70 @@
 import React, { useEffect, useState } from 'react';
-import './Item.scss';
-import axios from 'axios';
-import { HiPlus } from "react-icons/hi2";
-import { sortItems } from '../../../../../Data/Sort';
+import './BundleAll.scss';
 import Table from '../../../../../layout/Table/Table';
-import Modal from '../../../../../layout/Modal/Modal';
+import { sortBundles } from '../../../../../Data/Sort';
+import { HiPlus } from "react-icons/hi2";
+import axios from 'axios';
 import ScrollContainer from 'react-indiana-drag-scroll';
+import Modal from '../../../../../layout/Modal/Modal';
 import { useNavigate, useParams } from 'react-router-dom';
 
-
-function Item() {
-    const [items, setItems] = useState([]);
+function BundleAll() {
+    const [bundles, setBundles] = useState([]);
     const [modal, setModal] = useState(false);
-    const [detailItem, setDetailItem] = useState(false);
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+
 
     useEffect(() => {
-        axios.get('/admin-stuff/items-all')
+        axios.get('/admin-stuff/bundles-all')
             .then((res) => {
                 // console.log(res.data.data)
-                setItems(res.data.data)
+                setBundles(res.data.data)
             })
             .catch(err => console.log(err))
     }, [])
 
-    const showDetailItem = (id) => {
+    const showDetailBandle = (id) => {
         navigate(`${id}`)
     }
 
-    const handelOpenModal = () => {
+    const hundelOpenModal = () => {
         setModal(true)
     }
-
     const handlerCloseModal = () => {
         setModal(false)
     }
 
 
     return (
-        <div className='item'>
+        <div className='bundles'>
             <div className='top'>
+
                 <div className='filter'>
                 </div>
 
-                <div className='addItem' onClick={handelOpenModal}>
+                <div className='addBundle' onClick={hundelOpenModal}>
                     <HiPlus className='icon' />
                 </div>
             </div>
 
             <ScrollContainer>
-                <Table data={items} sort={sortItems} action={true} showDetail={showDetailItem}/>
+                <Table data={bundles} sort={sortBundles} action={true} showDetail={showDetailBandle} />
             </ScrollContainer>
 
             {modal === true ?
-                <div className="modalBandel">
-                    <Modal 
-                        modalTitle={'Add New Item'}
-                        data={items}
-                        path={'items'}
-                        handelerSubmit={handelOpenModal}
+                <div className="modalBundle">
+                    <Modal
+                        modalTitle={'Add New Bandle'}
+                        data={bundles}
+                        path={'bundles'}
+                        hundelerSubmit={hundelOpenModal}
                         handlerClose={handlerCloseModal}
                     />
                 </div>
-
                 : ''
             }
         </div>
-
     );
 }
 
-export default Item;
+export default BundleAll;

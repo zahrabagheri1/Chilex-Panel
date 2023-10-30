@@ -73,8 +73,6 @@ function ShoppingHistoryAll() {
             <div className='filter'>
             </div>
 
-
-
             <ScrollContainer>
                 <Table data={history} sort={sortHistory} action={true} showDetail={showDetailHistory} />
             </ScrollContainer>

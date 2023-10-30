@@ -1,6 +1,5 @@
 import React from 'react';
 import './Table.scss';
-import DropDown from '../../Components/DropDown/DropDown';
 
 function Table(props) {
 
@@ -10,8 +9,13 @@ function Table(props) {
 
 
     return (
-        <>
+        <div className='showData'>
             {
+                // (props.data === null || props.data === undefined || Array.isArray(props.data)) ?
+                // <div className='emptyTable'>
+                // WE DON'T HAVE ANY DATA!
+                // </div>
+                // :
                 <table className='table'>
                     <thead className='header'>
                         <tr className='trhead'>
@@ -28,10 +32,10 @@ function Table(props) {
                     <tbody className='bodytable'>
                         {Array.isArray(props.data) ?
                             props.data?.map((item, index) => (
-                                <tr className='trbody' key={index} onClick={()=>showDetail(item.id)} >
+                                <tr className='trbody' key={index} onClick={() => showDetail(item.id)} >
                                     {Object.entries(item).map(([key, value]) => (
                                         Array.isArray(value) ?
-                                            (item[key].map((thing , key) =>
+                                            (item[key].map((thing, key) =>
                                                 Object.entries(thing).map(([thingKey, thingValue], key) =>
                                                     <td key={key}>{thing[thingKey]}</td>
                                                 )))
@@ -47,7 +51,7 @@ function Table(props) {
                     </tbody>
                 </table>
             }
-        </>
+        </div>
     );
 }
 

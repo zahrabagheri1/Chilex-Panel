@@ -60,7 +60,6 @@ function ShoppingHistoryID() {
           ))
         )}
       </div>
-
     </div>
   );
 }
