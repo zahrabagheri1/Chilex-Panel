@@ -12,7 +12,7 @@ function ShoppingHistoryAll() {
     // const [history, setHistory] = useState(null)
     const navigate = useNavigate();
 
-    const history =[
+    const history = [
         {
             "id": 3,
             "type": 1,
@@ -69,15 +69,10 @@ function ShoppingHistoryAll() {
     }, [])
     return (
         <div className='shoppingHistory'>
-            <div className='top'>
 
-                <div className='filter'>
-                </div>
-
-                <div className='addBundle' >
-                    <HiPlus className='icon' />
-                </div>
+            <div className='filter'>
             </div>
+
 
 
             <ScrollContainer>

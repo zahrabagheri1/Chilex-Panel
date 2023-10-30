@@ -7,8 +7,8 @@ import './Details.scss';
 
 function Details() {
   const [detail, setDetail] = useState(null);
-  const {itemId}  = useParams()
-  const navigate =useNavigate()
+  const { itemId } = useParams()
+  const navigate = useNavigate()
 
   const type = [
     { id: 0, name: 'Gem bundle' },
@@ -24,7 +24,7 @@ function Details() {
     { id: 1, name: 'Deactive', status: false },
   ]
 
-  const handlerClose = ()=>{
+  const handlerClose = () => {
     navigate('./')
   }
 

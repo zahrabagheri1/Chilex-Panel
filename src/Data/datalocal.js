@@ -34,7 +34,7 @@ export const sideBarMenu = [
     },
     {
         name: 'Shopping History',
-        icon: 'HiMiniUsers',
+        icon: 'HiMiniShoppingCart',
         link: 'shopping-history',
     },
     {
