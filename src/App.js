@@ -7,11 +7,15 @@ import Admin from './Pages/Dashboard/Admin/Index';
 import Users from './Pages/Dashboard/Users/Index';
 import Support from './Pages/Dashboard/Support/Index';
 import Games from './Pages/Dashboard/Games/Index';
-import Bandels from './Pages/Dashboard/Products/Bandels/Bandels';
-import Bandel from './Pages/Dashboard/Products/Bandels/Bandel/Bandel';
+import Bundles from './Pages/Dashboard/Products/Bundles/Bandles';
+import Bundle from './Pages/Dashboard/Products/Bundles/Bundle/Bundle';
 import Items from './Pages/Dashboard/Products/Items/Items';
 import Item from './Pages/Dashboard/Products/Items/Item/Item';
-import Details from './Pages/Dashboard/Products/Bandels/Details/Details';
+import BundleDetail from './Pages/Dashboard/Products/Bundles/Details/Details';
+import ItemDetail from './Pages/Dashboard/Products/Items/Details/Details';
+import ShoppingHistory from './Pages/Dashboard/ShoppingHistory/ShoppingHistory';
+import ShoppingHistoryAll from './Pages/Dashboard/ShoppingHistory/ShoppingHistoryAll/ShoppingHistoryAll';
+import ShoppingHistoryID from './Pages/Dashboard/ShoppingHistory/ShoppingHistoryID/ShoppingHistoryID';
 
 import './App.css';
 
@@ -24,16 +28,21 @@ function App() {
           <Route path='dashboard' element={<Dashboard />}>
             <Route index element={<Layout />} />
             <Route path='admin' element={<Admin />} />
-            <Route path='bandels' element={<Bandels />}>
-              <Route index element={<Bandel/>} />
-              <Route path=':bandelId' element={<Details />} />
+            <Route path='bundles' element={<Bundles />}>
+              <Route index element={<Bundle/>} />
+              <Route path=':bundleId' element={<BundleDetail />} />
             </Route>
             <Route path='items' element={<Items />}>
               <Route index element={<Item/>}/>
-              {/* <Route path=':itemId' element={<Details/>}/> */}
+              <Route path=':itemId' element={<ItemDetail/>}/>
             </Route>
             <Route path='transaction' element={<Transaction />} />
             <Route path='users' element={<Users />} />
+            <Route path='shopping-history' element={<ShoppingHistory/>}>
+              <Route index element={<ShoppingHistoryAll/>}/>
+              <Route path=':historyId' element={<ShoppingHistoryID/>}/>
+              <Route/>
+            </Route>
             <Route path='support' element={<Support />} />
             <Route path='games' element={<Games />} />
           </Route>

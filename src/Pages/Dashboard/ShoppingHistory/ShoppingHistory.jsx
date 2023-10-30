@@ -1,14 +1,12 @@
 import React from 'react';
-import './Bandels.scss';
 import { Outlet } from 'react-router-dom';
 
-function Index() {
-
+function ShoppingHistory() {
   return (
-    <div className='bandels'>
+    <div className='shoppingHistory'>
       <Outlet/>
     </div>
   );
 }
 
-export default Index;
+export default ShoppingHistory;

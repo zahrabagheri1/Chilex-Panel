@@ -1,0 +1,67 @@
+.bundleDetail{
+    height: 80vh;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.44);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(7.2px);
+    -webkit-backdrop-filter: blur(7.2px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    display: flex;
+    flex-direction: column;
+
+    .backbtn{
+        margin: auto;
+        width: 10%;
+    }
+
+    .boxOfDetail{
+        // margin: auto;
+        margin: 4%;
+        width: 90%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 40px 20px;
+        
+        .titleB{
+            width: 28%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            
+            &.priceTitle{
+                width: 100%;
+                display: flex;
+                gap: 30px;
+                border-top: 2px solid #000000 ;
+                padding-top: 20px;
+            }
+
+            .header-title{
+                font-size: 18px;
+                color: rgba(0, 0, 0, 0.506);
+                font-weight: 700;
+            }
+
+            .data-title{
+                font-size: 18px;
+                color: rgb(0, 0, 0);
+                font-weight: 600;
+            }
+
+            .sub-data{
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 80px;
+            }
+            
+            .listItems{
+                display: flex;
+                flex-direction: row;
+                gap: 12px;
+            }
+        }
+    }
+}

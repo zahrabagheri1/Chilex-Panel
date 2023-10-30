@@ -11,7 +11,7 @@ export const adminTransaction = [
 ]
 
 
-export const sortBandels = [
+export const sortBundles = [
     {name: 'amount',status: true},
     {name: 'id',status: true},
     {name: 'type',status: true},
@@ -71,3 +71,21 @@ export const sortItems = [
 
     },
 ]
+
+
+
+
+export const sortHistory =[
+    { name: 'id', status: true },
+    { name: 'userId', status: true },
+    { name: 'type', status: true },
+    { name: 'amount', status: true },
+    { name: 'referenceType', status: true },
+    { name: 'referenceId', status: true },
+    { name: 'createdAt', status: true },
+    { name: 'username', status: true },
+    { name: 'transactionAmount', status: true },
+    { name: 'gatewayType', status: true },
+
+]
+

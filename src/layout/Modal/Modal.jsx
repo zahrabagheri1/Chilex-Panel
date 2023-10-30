@@ -64,11 +64,11 @@ function Modal(props) {
         </div>
 
         <div className='mainModal'>
-          <SelectOption value={value} name={'stuffType'} defaultValue={'Type'} type={'bandle'}
+          <SelectOption value={value} name={'stuffType'} defaultValue={'Type'} type={'bundle'}
             data={[
-              { id: 0, bandle: 'Gem Bandle' },
-              { id: 1, bandle: 'Coin Bandle' },
-              { id: 2, bandle: 'Item' }
+              { id: 0, bundle: 'Gem bundle' },
+              { id: 1, bundle: 'Coin bundle' },
+              { id: 2, bundle: 'Item' }
             ]}
           />
 

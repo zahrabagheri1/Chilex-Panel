@@ -16,9 +16,9 @@ export const sideBarMenu = [
         dropdown: '',
         children: [
             {
-                name: 'Bandels',
+                name: 'Bundles',
                 icon: 'IoAnalyticsOutline',
-                link: 'bandels',
+                link: 'bundles',
             }, 
             {
                 name: 'Items',
@@ -31,6 +31,11 @@ export const sideBarMenu = [
         name: 'Users',
         icon: 'HiMiniUsers',
         link: 'users',
+    },
+    {
+        name: 'Shopping History',
+        icon: 'HiMiniUsers',
+        link: 'shopping-history',
     },
     {
         name: 'Games',
