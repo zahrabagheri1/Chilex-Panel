@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from 'react';
-
-import './TransactionID.scss';
+import './TransactionDetail.scss';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
-function TransactionID() {
-    const [transaction, setTransaction] = useState();
-    const {transactionID} =useParams();
+function TransactionDetail() {
 
-    useEffect(()=>{
+    const [transaction, setTransaction] = useState();
+    const { transactionID } = useParams();
+
+    useEffect(() => {
         axios.get(`/admin-transaction/get-transaction/${transactionID}`)
-        .then(
-            res => {
-                setTransaction(res.data.data)
-            }
-        )
-        .catch(
-            err=>console.log(err)
-        )
-    },[])
+            .then(
+                res => {
+                    setTransaction(res.data.data)
+                }
+            )
+            .catch(
+                err => console.log(err)
+            )
+    }, [])
 
     return (
         <div className='transactionDetail'>
@@ -37,6 +37,7 @@ function TransactionID() {
 
         </div>
     );
+
 }
 
-export default TransactionID;
+export default TransactionDetail;

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './ItemAll.scss';
+import './ItemList.scss';
 import axios from 'axios';
 import { HiPlus } from "react-icons/hi2";
 import { sortItems } from '../../../../../Data/Sort';
@@ -8,7 +8,8 @@ import Modal from '../../../../../layout/Modal/Modal';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import { useNavigate, useParams } from 'react-router-dom';
 
-function ItemAll() {
+function ItemList() {
+
     const [items, setItems] = useState([]);
     const [modal, setModal] = useState(false);
     const [detailItem, setDetailItem] = useState(false);
@@ -69,4 +70,4 @@ function ItemAll() {
     );
 }
 
-export default ItemAll;
+export default ItemList;

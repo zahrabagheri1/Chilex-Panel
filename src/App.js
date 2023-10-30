@@ -7,17 +7,17 @@ import Users from './Pages/Dashboard/Users/Index';
 import Support from './Pages/Dashboard/Support/Index';
 import Games from './Pages/Dashboard/Games/Index';
 import Bundles from './Pages/Dashboard/Products/Bundles/Bandles';
-import BundleAll from './Pages/Dashboard/Products/Bundles/BundleAll/BundleAll';
+import BundleList from './Pages/Dashboard/Products/Bundles/BundleList/BundleList';
 import BundleDetail from './Pages/Dashboard/Products/Bundles/BundleDetail/BundleDetail';
 import Items from './Pages/Dashboard/Products/Items/Items';
-import ItemAll from './Pages/Dashboard/Products/Items/ItemAll/ItemAll';
-import ItemDetail from './Pages/Dashboard/Products/Items/ItemID/ItemID';
+import ItemList from './Pages/Dashboard/Products/Items/ItemList/ItemList';
+import ItemDetail from './Pages/Dashboard/Products/Items/ItemDetail/ItemDetail';
 import ShoppingHistory from './Pages/Dashboard/ShoppingHistory/ShoppingHistory';
-import ShoppingHistoryAll from './Pages/Dashboard/ShoppingHistory/ShoppingHistoryAll/ShoppingHistoryAll';
-import ShoppingHistoryDetail from './Pages/Dashboard/ShoppingHistory/ShoppingHistoryID/ShoppingHistoryID';
+import ShoppingHistoryList from './Pages/Dashboard/ShoppingHistory/ShoppingHistoryList/ShoppingHistoryList';
+import ShoppingHistoryDetail from './Pages/Dashboard/ShoppingHistory/ShoppingHistoryDetail/ShoppingHistoryDetail';
 import Transaction from './Pages/Dashboard/Transaction/Index';
-import TransactionAll from './Pages/Dashboard/Transaction/TransactionAll/TransactionAll';
-import TransactionDetail from './Pages/Dashboard/Transaction/TransactionID/TransactionID';
+import TransactionList from './Pages/Dashboard/Transaction/TransactionList/TransactionList';
+import TransactionDetail from './Pages/Dashboard/Transaction/TransactionDetail/TransactionDetail';
 
 import './App.css';
 
@@ -31,20 +31,20 @@ function App() {
             <Route index element={<Layout />} />
             <Route path='admin' element={<Admin />} />
             <Route path='bundles' element={<Bundles />}>
-              <Route index element={<BundleAll/>} />
+              <Route index element={<BundleList/>} />
               <Route path=':bundleId' element={<BundleDetail />} />
             </Route>
             <Route path='items' element={<Items />}>
-              <Route index element={<ItemAll/>}/>
+              <Route index element={<ItemList/>}/>
               <Route path=':itemId' element={<ItemDetail/>}/>
             </Route>
             <Route path='transaction' element={<Transaction />}>
-              <Route index element={<TransactionAll/>}/>
+              <Route index element={<TransactionList/>}/>
               <Route path=':transactId' element={<TransactionDetail/>}/>
             </Route>
             <Route path='users' element={<Users />} />
             <Route path='shopping-history' element={<ShoppingHistory/>}>
-              <Route index element={<ShoppingHistoryAll/>}/>
+              <Route index element={<ShoppingHistoryList/>}/>
               <Route path=':historyId' element={<ShoppingHistoryDetail/>}/>
             </Route>
             <Route path='support' element={<Support />} />
