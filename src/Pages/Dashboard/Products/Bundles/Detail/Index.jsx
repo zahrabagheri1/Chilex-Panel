@@ -22,10 +22,33 @@ function Index() {
         { id: 1, name: 'Deactive', status: false },
     ]
 
-
     const switchHandler = (boolean, id) => {
+        console.log("boolean , id", boolean, id)
+        axios.patch(`/admin-stuff/change-bundle-status/${id}`, {
+            status: boolean === true ? 0 : 1,
+        })
+            .then(
+                res => console.log(res)
+            )
+            .catch(
+                err => console.log(err)
+            )
+
+    }
+
+    const switchHandlerPrice = (boolean, id) => {
         console.log("boolean,id", boolean, id);
-        // onchange(boolean, id);
+        axios.patch(`/admin-stuff/change-price-status/${id}`, {
+            status: boolean === true ? 0 : 1,
+        })
+            .then(
+                res => {
+                    console.log(res)
+                }
+            )
+            .catch(
+                err => console.log(err)
+            )
     };
 
     useEffect(() => {
@@ -65,12 +88,11 @@ function Index() {
                                                                 ))
                                                                 :
                                                                 <Switch
-                                                                    id={value}
+                                                                    id={item.id}
                                                                     defaultChecked={value === 0 ? true : false}
-                                                                    disabled={true}
-                                                                    onChange={switchHandler}
+                                                                    disabled={false}
+                                                                    onChange={switchHandlerPrice}
                                                                 />
-
                                                             )
                                                             : value
                                                     }
@@ -82,12 +104,22 @@ function Index() {
                             ) : (
                                 <div className='data-title'>
                                     {
-                                        key === 'type' ?
-                                            type.map(item => (
-                                                item.id === value ?
-                                                    item.name
-                                                    :
-                                                    ""))
+                                        key === 'type' || key === "status" ?
+                                            key === 'type' ?
+                                                type.map(item => (
+                                                    item.id === value ?
+                                                        item.name
+                                                        :
+                                                        ""))
+
+                                                :
+                                                <Switch
+                                                    id={detail.id}
+                                                    defaultChecked={value === 0 ? true : false}
+                                                    disabled={false}
+                                                    onChange={switchHandler}
+                                                    error={false}
+                                                />
                                             :
                                             value
                                     }

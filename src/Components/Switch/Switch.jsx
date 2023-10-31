@@ -2,22 +2,23 @@ import React, { useRef, useState } from 'react';
 import './Switch.scss';
 
 // const props = {
-//   id: 'checkbox_X',
+//   id: '2',
 //   error: false,
 //   defaultChecked: false,
 //   errorText: '',
 //   disabled: true,
-//    onChange
+//    onChange: function
 // }
 
 function Switch(props) {
   const [value, setValue] = useState(props.defaultChecked)
   const inputValue = useRef('')
 
-  console.log(props.defaultChecked)
+  
   const changeSwitchHandler = () => {
+    console.log(props.defaultChecked, !value, props.id)
     setValue(!value);
-    props.onChange(!value, inputValue.current.id)
+    props.onChange(!value, props.id)
   }
 
   return (
@@ -26,7 +27,6 @@ function Switch(props) {
       <label className='switch'>
         <input
           type='checkbox'
-          id={props.id}
           checked={value}
           disabled={props.disabled}
           ref={inputValue}
