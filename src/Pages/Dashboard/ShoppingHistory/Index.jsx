@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 
-function ShoppingHistory() {
+function Index() {
   return (
     <div className='shoppingHistory'>
       <Outlet/>
@@ -9,4 +9,4 @@ function ShoppingHistory() {
   );
 }
 
-export default ShoppingHistory;
+export default Index;

@@ -3,12 +3,12 @@ import { HiPlus } from "react-icons/hi2";
 import Table from '../../../../layout/Table/Table';
 import { sortHistory } from '../../../../Data/Sort';
 import ScrollContainer from 'react-indiana-drag-scroll';
-import './ShoppingHistoryList.scss';
+import './List.scss';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 
-function ShoppingHistoryList() {
+function Index() {
 
 
     // const [history, setHistory] = useState(null)
@@ -84,4 +84,4 @@ function ShoppingHistoryList() {
 
 }
 
-export default ShoppingHistoryList;
+export default Index;

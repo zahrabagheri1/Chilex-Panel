@@ -6,18 +6,18 @@ import Admin from './Pages/Dashboard/Admin/Index';
 import Users from './Pages/Dashboard/Users/Index';
 import Support from './Pages/Dashboard/Support/Index';
 import Games from './Pages/Dashboard/Games/Index';
-import Bundles from './Pages/Dashboard/Products/Bundles/Bandles';
-import BundleList from './Pages/Dashboard/Products/Bundles/BundleList/BundleList';
-import BundleDetail from './Pages/Dashboard/Products/Bundles/BundleDetail/BundleDetail';
-import Items from './Pages/Dashboard/Products/Items/Items';
-import ItemList from './Pages/Dashboard/Products/Items/ItemList/ItemList';
-import ItemDetail from './Pages/Dashboard/Products/Items/ItemDetail/ItemDetail';
-import ShoppingHistory from './Pages/Dashboard/ShoppingHistory/ShoppingHistory';
-import ShoppingHistoryList from './Pages/Dashboard/ShoppingHistory/ShoppingHistoryList/ShoppingHistoryList';
-import ShoppingHistoryDetail from './Pages/Dashboard/ShoppingHistory/ShoppingHistoryDetail/ShoppingHistoryDetail';
+import Bundles from './Pages/Dashboard/Products/Bundles/Index';
+import BundleList from './Pages/Dashboard/Products/Bundles/List/Index';
+import BundleDetail from './Pages/Dashboard/Products/Bundles/Detail/Index';
+import Items from './Pages/Dashboard/Products/Items/Index';
+import ItemList from './Pages/Dashboard/Products/Items/List/Index';
+import ItemDetail from './Pages/Dashboard/Products/Items/Detail/Index';
+import ShoppingHistory from './Pages/Dashboard/ShoppingHistory/Index';
+import SHList from './Pages/Dashboard/ShoppingHistory/List/Index';
+import SHDetail from './Pages/Dashboard/ShoppingHistory/Detail/Index';
 import Transaction from './Pages/Dashboard/Transaction/Index';
-import TransactionList from './Pages/Dashboard/Transaction/TransactionList/TransactionList';
-import TransactionDetail from './Pages/Dashboard/Transaction/TransactionDetail/TransactionDetail';
+import TransactionList from './Pages/Dashboard/Transaction/List/Index';
+import TransactionDetail from './Pages/Dashboard/Transaction/Detail/Index';
 
 import './App.css';
 
@@ -44,8 +44,8 @@ function App() {
             </Route>
             <Route path='users' element={<Users />} />
             <Route path='shopping-history' element={<ShoppingHistory/>}>
-              <Route index element={<ShoppingHistoryList/>}/>
-              <Route path=':historyId' element={<ShoppingHistoryDetail/>}/>
+              <Route index element={<SHList/>}/>
+              <Route path=':historyId' element={<SHDetail/>}/>
             </Route>
             <Route path='support' element={<Support />} />
             <Route path='games' element={<Games />} />

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import './TransactionDetail.scss';
+import './Detail.scss';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
-function TransactionDetail() {
+function Index() {
 
     const [transaction, setTransaction] = useState();
     const { transactionID } = useParams();
@@ -40,4 +40,4 @@ function TransactionDetail() {
 
 }
 
-export default TransactionDetail;
+export default Index;

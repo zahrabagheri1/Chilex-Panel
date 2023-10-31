@@ -1,9 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import './ShoppingHistoryDetail.scss';
+import './Detail.scss';
 
-function ShoppingHistoryDetail() {
+function Index() {
 
     // const [history , setHistory] = useState()
     const { historyId } = useParams()
@@ -65,4 +65,4 @@ function ShoppingHistoryDetail() {
     );
 }
 
-export default ShoppingHistoryDetail;
+export default Index;

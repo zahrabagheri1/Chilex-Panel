@@ -3,12 +3,12 @@ import Table from '../../../../layout/Table/Table';
 import { adminTransaction } from '../../../../Data/Sort';
 import { ScrollContainer } from 'react-indiana-drag-scroll';
 import 'react-indiana-drag-scroll/dist/style.css';
-import './TransactionList.scss';
+import './List.scss';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 
-function TransactionList() {
+function Index() {
 
     const [transaction, setTransaction] = useState([]);
 
@@ -45,4 +45,4 @@ function TransactionList() {
     );
 }
 
-export default TransactionList;
+export default Index;

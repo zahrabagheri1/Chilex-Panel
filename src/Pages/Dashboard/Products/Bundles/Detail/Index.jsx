@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
-import './BundleDetail.scss';
+import './Detail.scss';
 import Switch from '../../../../../Components/Switch/Switch';
 
-function BundleDetail() {
+function Index() {
     const [detail, setDetail] = useState({});
     const { bundleId } = useParams()
     const navigate = useNavigate()
@@ -102,4 +102,4 @@ function BundleDetail() {
     );
 }
 
-export default BundleDetail;
+export default Index;

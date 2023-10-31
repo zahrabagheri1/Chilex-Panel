@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './BundleList.scss';
+import './List.scss';
 import Table from '../../../../../layout/Table/Table';
 import { sortBundles } from '../../../../../Data/Sort';
 import { HiPlus } from "react-icons/hi2";
@@ -8,7 +8,7 @@ import ScrollContainer from 'react-indiana-drag-scroll';
 import Modal from '../../../../../layout/Modal/Modal';
 import { useNavigate, useParams } from 'react-router-dom';
 
-function BundleList() {
+function Index() {
     const [bundles, setBundles] = useState([]);
     const [modal, setModal] = useState(false);
     const navigate = useNavigate();
@@ -66,5 +66,5 @@ function BundleList() {
     );
 }
 
-export default BundleList;
+export default Index;
 

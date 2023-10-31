@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
-import './ItemDetail.scss';
+import './Detail.scss';
 import Switch from '../../../../../Components/Switch/Switch';
 
-function ItemDetail() {
+function Index() {
 
     const [detail, setDetail] = useState(null);
     const { itemId } = useParams()
@@ -105,4 +105,4 @@ function ItemDetail() {
     );
 }
 
-export default ItemDetail;
+export default Index;
