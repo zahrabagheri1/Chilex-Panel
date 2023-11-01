@@ -2,34 +2,48 @@ import React, { useState } from 'react';
 import './SelectOption.scss';
 import { HiOutlineChevronDown } from "react-icons/hi2";
 
+
+// const props = {
+//   dataKey: "id",
+//   name: 'stufftype',
+//   defaultValue: "color",
+//   type: 'bundle',
+//   value: { value },
+//   onChange: (nextValue) => setValue(nextValue.id),
+//   data: [
+//     { id: 0, bundle: 'Gem bundle' },
+//     { id: 1, bundle: 'Coin bundle' },
+//     { id: 2, bundle: 'Item' }
+//   ],
+// }
+
 function SelectOption(props) {
   const data = props.data;
   const [changeTitle, setChangeTitle] = useState(null);
   const [click, setClick] = useState(false);
   const [value, setValue] = useState(props.value);
-  
+
   const clickHandler = (e) => {
     setClick(!click)
   }
-  
+
   const changeTitleHandler = (e) => {
     console.log(e)
     setChangeTitle(e)
     setClick(!click)
   }
 
-  
-  const changeOptionHandler = (e,id) => {
-    // props.changeOptionValue(id)
+
+  const changeOptionHandler = (e, id) => {
+    props.changeOptionValue(id)
     console.log(e.target)
   }
-  // setValue(changeTitle)
-  // console.log(changeTitle)
+
 
   return (
     <div>
-      <div className='title'>{props.defaultValue}:</div>
-      <div className="btn" >
+      <div className='title'>{props.defaultValue}</div>
+      <div className={`btn ${props.classname}`} >
         <div className='btnTitle' onClick={clickHandler} >
           {changeTitle === null ? props.defaultValue : changeTitle}
           <HiOutlineChevronDown className='chevronDown' style={{ transform: (click === true ? "rotate(180deg)" : 'rotate(0)') }} />
@@ -48,14 +62,3 @@ export default SelectOption;
 
 
 
-// <SelectOption
-//       dataKey="id"
-//       defaultValue="color"
-//       value={value}
-//       onChange={(nextValue) => setValue(nextValue.id)}
-//       data={[
-//         { id: 1, color: "Red" },
-//         { id: 2, color: "Yellow" },
-//         { id: 3, color: "Blue" },
-//       ]}
-//     />

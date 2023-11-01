@@ -5,21 +5,8 @@ import './Detail.scss';
 
 function Index() {
 
-    // const [history , setHistory] = useState()
+    const [history , setHistory] = useState()
     const { historyId } = useParams()
-    const history =
-    {
-        "id": 3,
-        "type": 1,
-        "amount": 400,
-        "referenceType": 0,
-        "referenceId": 7,
-        "userId": 201,
-        "createdAt": "2023-10-30T08:27:32.567Z",
-        "username": "688961_dixo",
-        "transactionAmount": null,
-        "gatewayType": 2
-    }
 
     const type = [
         { id: 0, name: 'Gem bundle' },
@@ -39,7 +26,7 @@ function Index() {
         axios.get(`/shopping-history/get-shoppingHistory/${historyId}`)
             .then(
                 res => {
-                    // setHistory(res.data.data)
+                    setHistory(res.data.data)
                 }
             )
             .catch(

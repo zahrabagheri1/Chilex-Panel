@@ -16,14 +16,13 @@ function Switch(props) {
 
   
   const changeSwitchHandler = () => {
-    console.log(props.defaultChecked, !value, props.id)
+    // console.log(props.defaultChecked, !value, props.id)
     setValue(!value);
     props.onChange(!value, props.id)
   }
 
   return (
     <div className={`switchCheckbox ${props.className}`}>
-
       <label className='switch'>
         <input
           type='checkbox'
@@ -32,7 +31,6 @@ function Switch(props) {
           ref={inputValue}
           onChange={() => changeSwitchHandler()}
         />
-
         <span className='slider round'></span>
       </label>
       <div className='error'>{props.errorText}</div>

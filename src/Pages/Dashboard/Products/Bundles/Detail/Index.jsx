@@ -23,7 +23,7 @@ function Index() {
     ]
 
     const switchHandler = (boolean, id) => {
-        console.log("boolean , id", boolean, id)
+        console.log("boolean , id", boolean, id);
         axios.patch(`/admin-stuff/change-bundle-status/${id}`, {
             status: boolean === true ? 0 : 1,
         })
@@ -118,7 +118,6 @@ function Index() {
                                                     defaultChecked={value === 0 ? true : false}
                                                     disabled={false}
                                                     onChange={switchHandler}
-                                                    error={false}
                                                 />
                                             :
                                             value

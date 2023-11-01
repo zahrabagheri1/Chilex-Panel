@@ -7,7 +7,7 @@ function Input(props) {
   const [eye, setEye] = useState(false)
 
   const icons = {
-    HiUser: <HiUser />,
+    HiUser: <HiUser/>,
     HiOutlineUser: <HiOutlineUser />,
     HiOutlineEye: <HiOutlineEye />,
     HiLockClosed: <HiLockClosed />,
