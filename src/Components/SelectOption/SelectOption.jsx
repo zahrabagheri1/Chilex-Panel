@@ -27,10 +27,11 @@ function SelectOption(props) {
     setClick(!click)
   }
 
-  const changeTitleHandler = (e) => {
-    console.log(e)
+  const changeTitleHandler = (e, id) => {
+    console.log("name and id :",e, id)
     setChangeTitle(e)
     setClick(!click)
+    props.changeOptinValue(id)
   }
 
 
@@ -50,7 +51,8 @@ function SelectOption(props) {
         </div>
         <div className='box' style={{ display: (click === true ? "flex" : 'none') }}>
           {data?.map((item) => (
-            <div className='option' value={item.id} onClick={() => changeTitleHandler(item[props.type],)}>{item[props.type]}</div>
+            <div className='option' value={item.id} onClick={() => changeTitleHandler(item[props.type],item.id)}>{item[props.type]}</div>
+
           ))}
         </div>
       </div>

@@ -6,15 +6,54 @@ import ScrollContainer from 'react-indiana-drag-scroll';
 import './List.scss';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import Input from '../../../../Components/Input/Input';
+import SelectOption from '../../../../Components/SelectOption/SelectOption';
 
 function Index() {
-    const [history, setHistory] = useState(null)
+    const [history, setHistory] = useState(null);
+    const [value, setValue] = useState();
     const navigate = useNavigate();
+    const [filters, setFilters] = useState({
+        userId: null,
+        gatewayTypes: null,
+        minAmount: null,
+        type: null,
+        referenceType: null,
+        sortBy: null,
+        orderBy: null,
+        offset: null,
+        limit: null,
+    })
 
-    const showDetailHistory = (id) => {
-        navigate(`${id}`)
+    // ${parameters.from === null ||  parameters.from === undefined? "" : "&RegisterDate.min=" + parameters.from}
+    //shopping-history/all?userId=454&gatewayTypes%5B%5D=1&minAmount=1&maxAmount=1&type=1&referenceType=1&sortBy=1&orderBy=1&offset=1&limit=1
+
+    useEffect(() => {
+        reqFilterShopHistory()
+    })
+
+    const reqFilterShopHistory = () => {
+        axios.get(`shopping-history/all?
+        ${filters.userId === null || filters.userId === undefined ? '' : 'userId=' + filters.userId + '&'}
+        ${filters.gatewayTypes === null || filters.gatewayTypes === undefined ? '' : 'gatewayTypes[]=' + filters.gatewayTypes + '&'}
+        ${filters.minAmount === null || filters.minAmount === undefined ? '' : 'minAmount=' + filters.minAmount + '&'}
+        ${filters.maxAmount === null || filters.maxAmount === undefined ? '' : 'maxAmount=' + filters.maxAmount + '&'}
+        ${filters.type === null || filters.type === undefined ? '' : 'type=' + filters.type + '&'}
+        ${filters.referenceType === null || filters.referenceType === undefined ? '' : 'referenceType=' + filters.referenceType + '&'}
+        ${filters.sortBy === null || filters.sortBy === undefined ? '' : 'sortBy=' + filters.sortBy + '&'}
+        ${filters.orderBy === null || filters.orderBy === undefined ? '' : 'orderBy=' + filters.orderBy + '&'}
+        ${filters.offset === null || filters.offset === undefined ? '' : 'offset=' + filters.offset + '&'}
+        ${filters.limit === null || filters.limit === undefined ? '' : 'limit=' + filters.limit + '&'}
+        `)
+            .then(
+                res => console.log(res)
+            )
+            .catch(
+                err => console.log(err)
+            )
     }
+
+
 
     console.log(history)
     useEffect(() => {
@@ -28,12 +67,76 @@ function Index() {
                 err => console.log(err)
             )
     }, [])
+
+    const showDetailHistory = (id) => {
+        navigate(`${id}`)
+    }
+
+    const changeOption = (e) => {
+        setFilters(e)
+    }
     return (
         <div className='shoppingHistory'>
 
-            <div className='filter'>
-            </div>
+            <div className="top">
+                <div className='filter'>
 
+                    <Input classname='controlinput' value={value} name={'userId'} type={'text'} title={"userId"} placeholder={'userId'} changeInputValue={changeOption} />
+
+                    <SelectOption classname='control' value={value} name={'gatewayTypes'} defaultValue={'gatewayTypes'} type={'status'} changeOptinValue={changeOption}
+                        data={[
+                            { id: 0, status: 'Pasargad' },
+                            { id: 1, status: 'cafe bazaar' },
+                            { id: 1, status: 'exchange' },
+                        ]}
+                    />
+
+                    <Input classname='controlinput' value={value} name={'minAmount'} type={'text'} title={"minAmount"} placeholder={'minAmount'} changeInputValue={changeOption} />
+
+                    <Input classname='controlinput' value={value} name={'maxAmount'} type={'text'} title={"maxAmount"} placeholder={'maxAmount'} changeInputValue={changeOption} />
+
+                    <SelectOption classname='control' value={value} name={'type'} defaultValue={'type'} type={'status'} changeOptinValue={changeOption}
+                        data={[
+                            { id: 0, status: 'Gem' },
+                            { id: 1, status: 'Coin' },
+                            { id: 1, status: 'Item' },
+                        ]}
+                    />
+
+                    <SelectOption classname='control' value={value} name={'referenceType'} defaultValue={'referenceType'} type={'status'} changeOptinValue={changeOption}
+                        data={[
+                            { id: 0, status: 'bundle' },
+                            { id: 1, status: 'item' },
+                            { id: 1, status: 'transaction' },
+                            { id: 1, status: 'setting' },
+                        ]}
+                    />
+
+                    <SelectOption classname='control' value={value} name={'sortBy'} defaultValue={'sortBy'} type={'status'} changeOptinValue={changeOption}
+                        data={[
+                            { id: 0, status: 'createdAt' },
+                            { id: 1, status: 'updatedAt' },
+                            { id: 2, status: 'amount' },
+                            { id: 3, status: 'id' },
+                            { id: 4, status: 'name' },
+                            { id: 5, status: 'status' },
+                        ]}
+                    />
+                    
+                    <SelectOption classname='control' value={value} name={'orderBy'} defaultValue={'orderBy'} type={'status'} changeOptinValue={changeOption}
+                        data={[
+                            { id: 0, status: 'DESC' },
+                            { id: 1, status: 'ASC' },
+                        ]}
+                    />
+                    
+                    <Input classname='controlinput' value={value} type={'text'} title={"limit"} placeholder={'limit'} changeInputValue={changeOption} />
+
+                    <Input classname='controlinput' value={value} type={'text'} title={"offset"} placeholder={'offset'} changeInputValue={changeOption} />
+
+                </div>
+
+            </div>
             <ScrollContainer>
                 <Table data={history} sort={sortHistory} action={true} showDetail={showDetailHistory} />
             </ScrollContainer>
