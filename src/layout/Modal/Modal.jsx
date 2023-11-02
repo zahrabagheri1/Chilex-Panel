@@ -64,7 +64,7 @@ function Modal(props) {
         </div>
 
         <div className='mainModal'>
-          <SelectOption value={value} name={'stuffType'} defaultValue={'Type'} type={'bundle'}
+          <SelectOption classname={'control'} value={value} name={'stuffType'} defaultValue={'Type'} type={'bundle'}
             data={[
               { id: 0, bundle: 'Gem bundle' },
               { id: 1, bundle: 'Coin bundle' },
@@ -72,15 +72,15 @@ function Modal(props) {
             ]}
           />
 
-          <Input value={value} type={'text'} title={'name'} changeInputValue={changeName} />
+          <Input classname={'controlinput'} value={value} type={'text'} title={'name'} changeInputValue={changeName} />
 
-          <Input value={value} type={'text'} title={'sku'} changeInputValue={changeSku} />
+          <Input classname={'controlinput'} value={value} type={'text'} title={'sku'} changeInputValue={changeSku} />
 
-          <Input value={value} type={'text'} title={'amount'} changeInputValue={changeAmout} />
+          <Input classname={'controlinput'} value={value} type={'text'} title={'amount'} changeInputValue={changeAmout} />
 
-          <Input value={value} type={'url'} title={'image'} changeInputValue={changeImage} />
+          <Input classname={'controlinput'} value={value} type={'url'} title={'image'} changeInputValue={changeImage} />
 
-          <SelectOption value={value} name={'prices'} defaultValue={'Price'} type={'status'}
+          <SelectOption classname={'control'} value={value} name={'prices'} defaultValue={'Price'} type={'status'}
             data={[
               { id: 0, status: 'Gem' },
               { id: 1, status: 'Coin' },
@@ -88,10 +88,10 @@ function Modal(props) {
             ]}
           />
 
-          <Input value={value} type={'date'} title={'ExpireTime'} changeInputValue={changeExpireTime} />
+          <Input classname={'controlinput'} value={value} type={'date'} title={'ExpireTime'} changeInputValue={changeExpireTime} />
 
 
-          <SelectOption value={value} name={'gameId'} defaultValue={'Game'} type={'status'}
+          <SelectOption classname={'control'} value={value} name={'gameId'} defaultValue={'Game'} type={'status'}
             data={[
               { id: 0, status: 'Ludo' },
               { id: 1, status: 'Uno' },
@@ -101,7 +101,7 @@ function Modal(props) {
             ]}
           />
 
-          <SelectOption value={value} name={'status'} defaultValue={'Status'} type={'status'}
+          <SelectOption classname={'control'} value={value} name={'status'} defaultValue={'Status'} type={'status'}
             data={[
               { id: 0, status: 'Active' },
               { id: 1, status: 'Deactive' }

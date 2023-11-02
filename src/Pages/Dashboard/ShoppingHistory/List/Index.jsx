@@ -72,39 +72,47 @@ function Index() {
         navigate(`${id}`)
     }
 
+    const changeOption = (e) => {
+        setFilters(e)
+    }
     return (
         <div className='shoppingHistory'>
 
             <div className="top">
                 <div className='filter'>
-                    <SelectOption classname='control' value={value} name={'bundleType'} defaultValue={'bundleType'} type={'status'}
+
+                    <Input classname='controlinput' value={value} name={'userId'} type={'text'} title={"userId"} placeholder={'userId'} changeInputValue={changeOption} />
+
+                    <SelectOption classname='control' value={value} name={'gatewayTypes'} defaultValue={'gatewayTypes'} type={'status'} changeOptinValue={changeOption}
                         data={[
-                            { id: 0, status: 'Gem bundle' },
-                            { id: 1, status: 'Coin bundle' },
+                            { id: 0, status: 'Pasargad' },
+                            { id: 1, status: 'cafe bazaar' },
+                            { id: 1, status: 'exchange' },
                         ]}
                     />
 
-                    <Input classname='controlinput' value={value} type={'text'} title={"sku"} placeholder={'sku'} changeInputValue={''} />
+                    <Input classname='controlinput' value={value} name={'minAmount'} type={'text'} title={"minAmount"} placeholder={'minAmount'} changeInputValue={changeOption} />
 
-                    <SelectOption classname='control' value={value} name={'bundleStatus'} defaultValue={'bundleStatus'} type={'status'}
+                    <Input classname='controlinput' value={value} name={'maxAmount'} type={'text'} title={"maxAmount"} placeholder={'maxAmount'} changeInputValue={changeOption} />
+
+                    <SelectOption classname='control' value={value} name={'type'} defaultValue={'type'} type={'status'} changeOptinValue={changeOption}
                         data={[
-                            { id: 0, status: 'Active' },
-                            { id: 1, status: 'Deactive' },
+                            { id: 0, status: 'Gem' },
+                            { id: 1, status: 'Coin' },
+                            { id: 1, status: 'Item' },
                         ]}
                     />
 
-                    <SelectOption classname='control' value={value} name={'priceStatus'} defaultValue={'priceStatus'} type={'status'}
+                    <SelectOption classname='control' value={value} name={'referenceType'} defaultValue={'referenceType'} type={'status'} changeOptinValue={changeOption}
                         data={[
-                            { id: 0, status: 'Active' },
-                            { id: 1, status: 'Deactive' },
+                            { id: 0, status: 'bundle' },
+                            { id: 1, status: 'item' },
+                            { id: 1, status: 'transaction' },
+                            { id: 1, status: 'setting' },
                         ]}
                     />
 
-                    <Input classname='controlinput' value={value} type={'text'} title={"limit"} placeholder={'limit'} changeInputValue={''} />
-
-                    <Input classname='controlinput' value={value} type={'text'} title={"offset"} placeholder={'offset'} changeInputValue={''} />
-
-                    <SelectOption classname='control' value={value} name={'sortBy'} defaultValue={'createdAt'} type={'status'}
+                    <SelectOption classname='control' value={value} name={'sortBy'} defaultValue={'sortBy'} type={'status'} changeOptinValue={changeOption}
                         data={[
                             { id: 0, status: 'createdAt' },
                             { id: 1, status: 'updatedAt' },
@@ -114,12 +122,18 @@ function Index() {
                             { id: 5, status: 'status' },
                         ]}
                     />
-                    <SelectOption classname='control' value={value} name={'orderBy'} defaultValue={'orderBy'} type={'status'}
+                    
+                    <SelectOption classname='control' value={value} name={'orderBy'} defaultValue={'orderBy'} type={'status'} changeOptinValue={changeOption}
                         data={[
                             { id: 0, status: 'DESC' },
                             { id: 1, status: 'ASC' },
                         ]}
                     />
+                    
+                    <Input classname='controlinput' value={value} type={'text'} title={"limit"} placeholder={'limit'} changeInputValue={changeOption} />
+
+                    <Input classname='controlinput' value={value} type={'text'} title={"offset"} placeholder={'offset'} changeInputValue={changeOption} />
+
                 </div>
 
             </div>

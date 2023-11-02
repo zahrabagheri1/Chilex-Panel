@@ -17,23 +17,23 @@
             min-height: calc(90vh - 20px);
             overflow: auto;
             // border-radius: 30px;
-            // scrollbar-width: thin;
-            // scrollbar-color: #9314FF #ffffff;
+            scrollbar-width: thin;
+            scrollbar-color: #9314FF #ffffff;
 
-            // &::-webkit-scrollbar {
-            //     width: 10px;
-            // }
+            &::-webkit-scrollbar {
+                width: 10px;
+            }
 
-            // &::-webkit-scrollbar-track {
-            //     background: #6a67b671;
-            //     border-radius: 20px;
-            // }
+            &::-webkit-scrollbar-track {
+                background: #6a67b671;
+                border-radius: 20px;
+            }
 
-            // &::-webkit-scrollbar-thumb {
-            //     background-color: #7a1496;
-            //     border-radius: 20px;
-            //     border: 2px outset #7e0ca8;
-            // }
+            &::-webkit-scrollbar-thumb {
+                background-color: #7a1496;
+                border-radius: 20px;
+                border: 2px outset #7e0ca8;
+            }
         }
 
     }
