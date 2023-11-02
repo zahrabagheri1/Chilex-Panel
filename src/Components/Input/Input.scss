@@ -37,6 +37,7 @@
             &:active {
                 outline: none;
                 border: 2px solid #918FF4;
+                box-shadow: 0  0.5px 5px 0.5px #918FF4;
             }
 
             &::placeholder {

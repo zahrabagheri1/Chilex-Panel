@@ -25,22 +25,24 @@ function Index() {
         sortBy: null,
         orderBy: null,
     })
-    // ${parameters.from === null ||  parameters.from === undefined? "" : "&RegisterDate.min=" + parameters.from}
 
+    // ${parameters.from === null ||  parameters.from === undefined? "" : "&RegisterDate.min=" + parameters.from}
     //admin-stuff/bundles-all?bundleType=0&sku=zahra&bundleStatus=0&priceStatus=1&limit=2&offset=1&sortBy=3&orderBy=1
+    
     useEffect(() => {
         reqFilterBundle()
     })
 
     const reqFilterBundle = () => {
-        axios.get(`/admin-stuff/bundles-all?bundleType=${filters.bundleType}
-        ${filters.sku === null || filters.sku === undefined ? '' : '&sku=' + filters.sku}
-        ${filters.bundleStatus === null || filters.bundleStatus === undefined ? '' : '&bundleStatus=' + filters.bundleStatus}
-        ${filters.limit === null || filters.limit === undefined ? '' : '&priceStatus=' + filters.priceStatus}
-        ${filters.limit === null || filters.limit === undefined ? '' : '&limit=' + filters.limit}
-        ${filters.offset === null || filters.offset === undefined ? '' : '&offset=' + filters.offset}
-        ${filters.sortBy === null || filters.sortBy === undefined ? '' : '&sortBy=' + filters.sortBy}
-        ${filters.orderBy === null || filters.orderBy === undefined ? '' : '&orderBy=' + filters.orderBy}`)
+        axios.get(`/admin-stuff/bundles-all?
+        ${filters.bundleType === null || filters.bundleType === undefined ? '' : 'bundleType=' +filters.bundleType + '&'}
+        ${filters.sku === null || filters.sku === undefined ? '' : 'sku=' + filters.sku + '&'}
+        ${filters.bundleStatus === null || filters.bundleStatus === undefined ? '' : 'bundleStatus=' + filters.bundleStatus + '&'}
+        ${filters.limit === null || filters.limit === undefined ? '' : 'priceStatus=' + filters.priceStatus + '&'}
+        ${filters.limit === null || filters.limit === undefined ? '' : 'limit=' + filters.limit + '&'}
+        ${filters.offset === null || filters.offset === undefined ? '' : 'offset=' + filters.offset + '&'}
+        ${filters.sortBy === null || filters.sortBy === undefined ? '' : 'sortBy=' + filters.sortBy + '&'}
+        ${filters.orderBy === null || filters.orderBy === undefined ? '' : 'orderBy=' + filters.orderBy + '&'}`)
             .then(
                 res => console.log(res)
             )
@@ -73,7 +75,7 @@ function Index() {
     return (
         <div className='bundles'>
             <div className='top'>
-
+                
                 <div className='filter'>
                     <SelectOption classname='control' value={value} name={'bundleType'} defaultValue={'bundleType'} type={'status'}
                         data={[

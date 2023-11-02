@@ -8,20 +8,32 @@
     gap: 20px;
 
     .filter {
+        z-index: 1;
+        position: relative;
         display: flex;
+        padding: 20px 30px;
         flex-direction: row;
-        gap: 20px;
-        height: 6vh;
-        width: 100%;
+        height: auto;
+        width: calc(100% - 60px);
         background: rgba(255, 255, 255, 0.44);
         border-radius: 16px;
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         backdrop-filter: blur(7.2px);
         -webkit-backdrop-filter: blur(7.2px);
         border: 1px solid rgba(255, 255, 255, 0.4);
-        display: flex;
         align-items: center;
-        justify-content: center;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        // gap: 5px;
+        
+        .control {
+            width: 140px;
+        }
+
+        .controlinput {
+            // width: 140px;
+            width: 46px;
+        }
 
     }
 }
