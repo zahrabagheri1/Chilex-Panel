@@ -28,18 +28,22 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
-            // gap: 5px;
+            z-index: 1;
+            position: relative;
+            flex-direction: row;
+            height: auto;
+            align-items: center;
+            gap: 10px;
             .control {
-                width: 140px;
+                width: 180px;
             }
             .controlinput {
-                // width: 140px;
-                width: 46px;
+                width: 180px;
+                // width: 46px;
             }
         }
 
         .addItem {
-            height: 94px;
             width: 6vh;
             background: rgba(255, 255, 255, 0.44);
             border-radius: 6px;

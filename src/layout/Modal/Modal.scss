@@ -45,14 +45,15 @@
         .mainModal {
             display: flex;
             flex-direction: row;
+            align-items: center;
+            justify-content: center;
             flex-wrap: wrap;
             gap: 20px;
             .control {
-                min-width: 140px;
+                width: 180px;
             }
             .controlinput {
-                width: 140px;
-                // width: 46px;
+                width: 180px;
             }
         }
     }

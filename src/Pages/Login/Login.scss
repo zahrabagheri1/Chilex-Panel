@@ -62,16 +62,19 @@
             width: 72%;
             .input {
                 border-bottom: 2px rgb(8, 8, 8) solid;
-                .inputControl {
+                .loginInput{
                     border: none;
                     outline: none;
+                    box-shadow: none;
                     background: transparent;
                     font-size: 16px;
                     &:focus,
                     &:focus-visible,
                     &:active,
-                    &::after {
-                        border: none;
+                    &::after,
+                    &:hover {
+                        border: none !important;
+                        box-shadow: none !important;
                     }
                 }
             }

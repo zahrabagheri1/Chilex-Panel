@@ -1,4 +1,13 @@
 .switchCheckbox {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    .header-title {
+        font-size: 18px;
+        color: rgba(0, 0, 0, 0.506);
+        font-weight: 700;
+    }
+
     .switch {
         position: relative;
         display: inline-block;

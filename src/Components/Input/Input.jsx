@@ -2,6 +2,22 @@ import React, { useState } from 'react';
 import './Input.scss'
 import { HiUser, HiOutlineUser, HiMiniMagnifyingGlass, HiOutlineEye, HiLockClosed, HiOutlineEyeSlash, HiMiniEyeSlash, HiMiniEye } from "react-icons/hi2";
 
+// const props = {
+//   title: 'name',
+//   name: '',
+//   icon: 'HiUser',
+//   classname: 'name',
+//   type: '',
+//   dir: '',
+//   disabled: '',
+//   maxlength: '',
+//   inputclassname: '',
+//   readOnly: true,
+//   checked: false,
+//   ref: '',
+//   error: 'errorrrrr! you shitting on it',
+// }
+
 function Input(props) {
   const [value,setValue] = useState(props.value)
   const [eye, setEye] = useState(false)
@@ -29,8 +45,8 @@ function Input(props) {
 
 
   return (
-    <div className='inputBox'>
-      <div className="lable">
+    <div className={`inputBox ${props.classname}`}>
+      <div className="header-title">
         <div id=''>{props.title}</div>
       </div>
       <div className="input">
@@ -38,7 +54,7 @@ function Input(props) {
         {props.type === "textarea" ?
           <textarea
             name={props.name}
-            className={`inputControl ${props.classname}`}
+            className={`inputControl ${props.inputclassname}`}
             disabled={props.disabled}
             value={value}
             dir={props.dir}
@@ -50,7 +66,7 @@ function Input(props) {
           :
           <input
             type={props.type === 'password'? (eye === true ? 'text': 'password') : props.type}
-            className={`inputControl ${props.classname}`}
+            className={`inputControl ${props.inputclassname} ${props.readOnly === true? 'readonlytext': 'notreadonlytext'}`}
             name={props.name}
             value={value}
             placeholder={props.placeholder}
@@ -65,11 +81,11 @@ function Input(props) {
           {eye === true ?<HiMiniEye/>:<HiMiniEyeSlash/>}
         </div>
       </div>
-      <div className="error">
+      {/* <div className="error">
         <div className="errorText">
           {props.error}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
