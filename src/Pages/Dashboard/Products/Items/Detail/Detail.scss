@@ -1,7 +1,8 @@
 @import "../.../../../../../../Assets/scss/mixin";
 
-.itemDetail{
-    min-height: 80vh;
+.itemDetail {
+    // min-height: 80vh;
+    height: auto;
     width: 100%;
     background: rgba(255, 255, 255, 0.44);
     border-radius: 16px;
@@ -11,6 +12,7 @@
     border: 1px solid rgba(255, 255, 255, 0.4);
     display: flex;
     flex-direction: row-reverse;
+    cursor: default;
 
     .edited {
         height: 4vh;
@@ -40,9 +42,6 @@
         // margin: auto;
         margin: 4%;
         width: 90%;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
         gap: 40px 20px;
 
         .active{
@@ -61,20 +60,21 @@
                 box-shadow: none !important;
             }
         }
-
+       .priceBox {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 30px;
+                border-top: 2px solid #000000;
+                padding-top: 20px;
+            }
         .titleB {
             width: 28%;
             display: flex;
             flex-direction: column;
             gap: 12px;
 
-            &.priceTitle {
-                width: 100%;
-                display: flex;
-                gap: 30px;
-                border-top: 2px solid #000000;
-                padding-top: 20px;
-            }
+     
 
             .header-title {
                 font-size: 18px;

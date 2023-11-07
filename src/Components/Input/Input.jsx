@@ -39,8 +39,9 @@ function Input(props) {
 
 
   const changeInputHandler = (e) => {
+    // console.log(e.target.value)
     setValue(e.target.value)
-    props.changeInputValue(e)
+    props.changeInputValue(e, props.id)
   }
 
 

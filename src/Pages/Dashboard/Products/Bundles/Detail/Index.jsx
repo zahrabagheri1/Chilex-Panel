@@ -5,12 +5,19 @@ import './Detail.scss';
 import Switch from '../../../../../Components/Switch/Switch';
 import Input from '../../../../../Components/Input/Input';
 import { HiPencilSquare } from "react-icons/hi2";
+import ButtonActionGreen from '../../../../../Components/ButtonActionGreen/ButtonActionGreen';
 
 function Index() {
     const [detail, setDetail] = useState({});
     const [edit, setEdit] = useState(false)
     const { bundleId } = useParams()
     const navigate = useNavigate()
+    const id = useParams()
+    const [updateData, setUpdateData] = useState({})
+
+    // console.log(JSON.stringify(updateData))
+
+
     const type = [
         { id: 0, name: 'Gem bundle' },
         { id: 1, name: 'Coin  bundle' },
@@ -26,8 +33,30 @@ function Index() {
     ]
 
     const editDetail = () => {
-        setEdit(!edit)
+        setEdit(true)
     }
+
+    const changeValueInput = (e) => {
+        setUpdateData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+
+    }
+
+    const changeValeSwitch = (e) => {
+        setUpdateData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+    }
+
+
+    const sendData = (id) => {
+        setEdit(false)
+        axios.patch(`/admin-stuff/update-bundle/${id}`, {})
+            .then(
+                res => console.log(res)
+            )
+            .catch(
+                err => console.log(err)
+            )
+    }
+
 
     const switchHandler = (boolean, id) => {
         console.log("boolean , id", boolean, id);
@@ -68,86 +97,95 @@ function Index() {
             })
     }, [])
 
-    console.log(Object.entries(detail))
 
     return (
         <div className='bundleDetail'>
-            <div className='edited' onClick={editDetail}><HiPencilSquare /></div>
-            <div className='boxOfDetail'>
+            <div className="btnEdit">
+                <div className='edited' onClick={editDetail}><HiPencilSquare /></div>
+                <div className='update'><ButtonActionGreen title={'Edit'} handler={sendData} /></div>
+            </div>
+            <div className='boxOfDetail row'>
                 {detail === null || detail === undefined ? '' : (
                     Object.entries(detail).map(([key, value], index) => (
-                        <div key={index} className={`titleB ${Array.isArray(value) ? 'priceTitle' : ''}`}>
-                            {Array.isArray(value) ? <div className='titlePrice'>{key}</div> : ''}
-                            {Array.isArray(value) ?
-                                <div className="priceBox row">
+                        Array.isArray(value) ?
+                            <div className="priceBox col-xl-12 col-lg-12 col-md-12 col-ms-12 col-xs-12">
+                                <div className='titlePrice'>{key}</div>
+                                <div className="priceBody row">
                                     {value.map((item, i) => (
                                         Object.entries(item).map(([key, value], index) => (
                                             key === 'priceType' || key === 'priceStatus' ?
-                                                <div className="col-xl-3 col-lg-3 col-md-6" key={index}>
+                                                <div className="col-xl-3 col-lg-3 col-md-4 col-ms-6 col-xs-6" key={index}>
                                                     {
                                                         key === 'priceType' ?
                                                             priceType.map(price => (
                                                                 price.id === value ?
-                                                                    <Input inputclassname={edit === false ? 'active' : ''} title={key} value={price.name} readOnly={edit === true ? false : true} />
+                                                                    <div className="titleB">
+                                                                        <div className='header-title'>{key}</div>
+                                                                        <div className='data-title'>{price.name}</div>
+                                                                    </div>
                                                                     :
                                                                     ""
                                                             ))
                                                             :
-                                                            <Switch
-                                                                id={index}
-                                                                title={key}
-                                                                defaultChecked={value === 0 ? true : false}
-                                                                disabled={false}
-                                                                onChange={switchHandlerPrice}
-                                                            />
+                                                            <div className="col-xl-3 col-lg-3 col-md-4 col-ms-6 col-xs-6">
+                                                                <Switch
+                                                                    id={index}
+                                                                    title={key}
+                                                                    defaultChecked={value === 0 ? true : false}
+                                                                    disabled={edit === false ? true : false}
+                                                                    onChange={switchHandlerPrice}
+                                                                />
+                                                            </div>
                                                     }
                                                 </div>
                                                 :
-                                                key === 'id' ?
-                                                    <div className="titleB dsfgsgerw">
-                                                        <div className='header-title'>{key}</div>
-                                                        <div className='data-title'>{value}</div>
-                                                    </div>
-                                                    :
-                                                    <div className='col-xl-3 col-lg-3 col-md-6 bdf' key={i}>
-                                                        <Input inputclassname={edit === false ? 'active' : ''} title={key} value={value} readOnly={edit === true ? false : true} />
-                                                    </div>
+
+                                                <div className="titleB col-xl-3 col-lg-3 col-md-4 col-ms-6 col-xs-6">
+                                                    <div className='header-title'>{key}</div>
+                                                    <div className='data-title'>{value}</div>
+                                                </div>
+
                                         ))
 
                                     ))}
                                 </div>
-                                :
-                                key === 'type' || key === 'status' ?
-                                    key === 'type' ?
-                                        type.map(item => (
-                                            item.id === value ?
-                                                <div className="">
-                                                    <Input inputclassname={edit === false ? 'active' : ''} title={key} value={item.name} readOnly={edit === true ? false : true} />
-                                                </div>
+                            </div>
+                            :
+                            <div className=" itembundle col-xl-3 col-lg-3 col-md-4 col-ms-6 col-xs-6">
+                                {
+                                    key === 'type' || key === 'status' ?
+                                        key === 'type' ?
+                                            type.map(item => (
+                                                item.id === value ?
+                                                    <div className="titleB ">
+                                                        <div className='header-title'>{key}</div>
+                                                        <div className='data-title'>{item.name}</div>
+                                                    </div>
+                                                    :
+                                                    ""))
+                                            :
 
-                                                :
-                                                ""))
+                                            <Switch
+                                                id={index}
+                                                title={key}
+                                                defaultChecked={value === 0 ? true : false}
+                                                disabled={edit === false ? true : false}
+                                                onChange={switchHandler}
+                                            />
+
                                         :
-                                        <Switch
-                                            id={index}
-                                            title={key}
-                                            defaultChecked={value === 0 ? true : false}
-                                            disabled={false}
-                                            onChange={switchHandlerPrice}
-                                        />
-                                    :
-                                    key === 'id' ?
-                                        <div className="titleB dsfgsgerw">
-                                            <div className='header-title'>{key}</div>
-                                            <div className='data-title'>{value}</div>
-                                        </div>
-                                        :
-                                        <div className="">
-                                            <Input inputclassname={edit === false ? 'active' : ''} title={key} value={value} readOnly={edit === true ? false : true} />
-                                        </div>}
-                        </div>
+                                        key === 'id' ?
+                                            <div className="titleB ">
+                                                <div className='header-title'>{key}</div>
+                                                <div className='data-title'>{value}</div>
+                                            </div>
+                                            :
+                                            <Input inputclassname={edit === false ? 'active' : ''} name={key} title={key} value={value} type={key === 'amount' ? 'number' : 'text'} readOnly={edit === true ? false : true} changeInputValue={changeValueInput} />
+                                }
+                            </div>
                     ))
                 )}
+
             </div>
         </div>
     );
