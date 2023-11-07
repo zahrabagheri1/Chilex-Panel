@@ -14,7 +14,7 @@ function Switch(props) {
   const [value, setValue] = useState(props.defaultChecked)
   const inputValue = useRef('')
 
-  
+
   const changeSwitchHandler = () => {
     // console.log(props.defaultChecked, !value, props.id)
     setValue(!value);
@@ -22,7 +22,10 @@ function Switch(props) {
   }
 
   return (
-    <div className={`switchCheckbox ${props.className}`}>
+    <div className={`switchCheckbox ${props.classname}`}>
+      <div className="header-title">
+        <div id=''>{props.title}</div>
+      </div>
       <label className='switch'>
         <input
           type='checkbox'

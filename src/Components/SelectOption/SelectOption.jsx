@@ -42,7 +42,7 @@ function SelectOption(props) {
 
 
   return (
-    <div>
+    <div className='optionBox'>
       <div className='title'>{props.defaultValue}</div>
       <div className={`btn ${props.classname}`} >
         <div className='btnTitle' onClick={clickHandler} >
