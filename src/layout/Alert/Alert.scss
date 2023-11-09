@@ -1,0 +1,21 @@
+.alert{
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: rgba(255, 0, 0, 0.475);
+    color: #ffffff;
+    max-width: 60%;
+    padding: 20px;
+    margin: 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    .close{
+        width: 30px;
+        height: 30px;
+        font-size: 20px;
+        background: none;
+        display: none;
+    }
+}
