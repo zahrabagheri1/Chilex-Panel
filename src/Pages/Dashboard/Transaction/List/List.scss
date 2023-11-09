@@ -10,7 +10,6 @@
     .filter {
         z-index: 1;
         position: relative;
-        display: flex;
         padding: 20px 30px;
         flex-direction: row;
         height: auto;
@@ -22,8 +21,6 @@
         -webkit-backdrop-filter: blur(7.2px);
         border: 1px solid rgba(255, 255, 255, 0.4);
         align-items: center;
-        flex-wrap: wrap;
-        justify-content: space-between;
         gap: 10px;
         
         .control {

@@ -12,21 +12,19 @@ function Index() {
     const [edit, setEdit] = useState(false)
     const { bundleId } = useParams()
     const navigate = useNavigate()
-    const id = useParams()
     const [updateData, setUpdateData] = useState({})
-
-    // console.log(JSON.stringify(updateData))
-
 
     const type = [
         { id: 0, name: 'Gem bundle' },
         { id: 1, name: 'Coin  bundle' },
     ]
+
     const priceType = [
         { id: 0, name: 'Gem' },
         { id: 1, name: 'Coin' },
         { id: 2, name: 'Rial' },
     ]
+
     const priceStatus = [
         { id: 0, name: 'Active', status: true },
         { id: 1, name: 'Deactive', status: false },
@@ -38,7 +36,6 @@ function Index() {
 
     const changeValueInput = (e) => {
         setUpdateData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
-
     }
 
     const changeValeSwitch = (e) => {
@@ -46,11 +43,24 @@ function Index() {
     }
 
 
-    const sendData = (id) => {
+    const sendData = () => {
         setEdit(false)
-        axios.patch(`/admin-stuff/update-bundle/${id}`, {})
+
+        axios.patch(`/admin-stuff/update-bundle/${bundleId}`,
+            {
+                name: updateData.name === null || updateData.name === undefined ? detail.name : updateData.name,
+                expireTime: updateData.expireTime === null || updateData.expireTime === undefined ? detail.expireTime : updateData.expireTime,
+                imageId: updateData.imageId === null || updateData.imageId === undefined ? detail.imageId : updateData.imageId,
+                sku: updateData.sku === null || updateData.sku === undefined ? detail.sku : updateData.sku,
+                amount: updateData.amount === null || updateData.amount === undefined ? detail.amount :parseInt(updateData.amount),
+                activityIntervalTime: updateData.activityIntervalTime === null || updateData.activityIntervalTime === undefined ? detail.activityIntervalTime : {}
+            })
             .then(
-                res => console.log(res)
+                res => {
+                    console.log(res)
+                    getData()
+                }
+
             )
             .catch(
                 err => console.log(err)
@@ -88,6 +98,10 @@ function Index() {
     };
 
     useEffect(() => {
+        getData()
+    }, [])
+
+    const getData = () => {
         axios.get(`/admin-stuff/get-bundle/${bundleId}`)
             .then(res => {
                 setDetail(res.data)
@@ -95,8 +109,7 @@ function Index() {
             .catch(err => {
                 console.log(err)
             })
-    }, [])
-
+    }
 
     return (
         <div className='bundleDetail'>

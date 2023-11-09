@@ -13,28 +13,40 @@ function Modal(props) {
 
   const [data, setData] = useState(null);
   const [addBandel, setBandel] = useState(null);
-  const [value, setValue] = useState(null);
+  const [addElement, setAddElement] = useState({})
   const navigate = useNavigate();
-  console.log(value)
 
-  useEffect(() => {
-    setData(props.data)
-  }, [props])
+  // useEffect(() => {
+  //   setData(props.data)
+  // }, [props])
 
-  useEffect(() => {
-    axios.post('/admin-stuff/create-stuff')
-      .then(
-        res => {
-          setBandel(res.data.dat)
-          // console.log(res)
-        }
-      )
-      .catch(
-        err => {
-          console.log(err)
-        }
-      )
-  })
+  // useEffect(() => {
+  //   axios.post('/admin-stuff/create-stuff', {
+  //     stuffType: addElement.stuffType === null || addElement.stuffType === undefined ? '' : parseInt(addElement.stuffType),
+  //     name: addElement.name === null || addElement.name === undefined ? '' : addElement.name,
+  //     sku: addElement.sku === null || addElement.sku === undefined ? '' : addElement.sku,
+  //     amount: addElement.amount === null || addElement.amount === undefined ? '' : parseInt(addElement.amount),
+  //     image: addElement.image === null || addElement.image === undefined ? '' : addElement.image,
+  //     expireTime: addElement.expireTime === null || addElement.expireTime === undefined ? '' : addElement.expireTime,
+  //     status: addElement.status === null || addElement.status === undefined ? '' : parseInt(addElement.status),
+  //     category: addElement.category === null || addElement.category === undefined ? '' : parseInt(addElement.category),
+  //     gameId: addElement.gameId === null || addElement.gameId === undefined ? '' : parseInt(addElement.gameId),
+  //     type: addElement.type === null || addElement.type === undefined ? '' : parseInt(addElement.type),
+  //     tier: addElement.tier === null || addElement.tier === undefined ? '' : parseInt(addElement.tier),
+  //     activityIntervalTime: {}
+  //   })
+  //     .then(
+  //       res => {
+  //         setBandel(res.data.dat)
+  //         // console.log(res)
+  //       }
+  //     )
+  //     .catch(
+  //       err => {
+  //         console.log(err)
+  //       }
+  //     )
+  // })
 
   const handlerClose = (e) => {
     props.handlerClose()
@@ -45,15 +57,39 @@ function Modal(props) {
   // }
 
   const handlerSubmit = () => {
-
+    axios.post('/admin-stuff/create-stuff', {
+      stuffType: addElement.stuffType === null || addElement.stuffType === undefined ? '' : parseInt(addElement.stuffType),
+      name: addElement.name === null || addElement.name === undefined ? '' : addElement.name,
+      sku: addElement.sku === null || addElement.sku === undefined ? '' : addElement.sku,
+      amount: addElement.amount === null || addElement.amount === undefined ? '' : parseInt(addElement.amount),
+      image: addElement.image === null || addElement.image === undefined ? '' : addElement.image,
+      expireTime: addElement.expireTime === null || addElement.expireTime === undefined ? '' : addElement.expireTime,
+      status: addElement.status === null || addElement.status === undefined ? '' : parseInt(addElement.status),
+      category: addElement.category === null || addElement.category === undefined ? '' : parseInt(addElement.category),
+      gameId: addElement.gameId === null || addElement.gameId === undefined ? '' : parseInt(addElement.gameId),
+      type: addElement.type === null || addElement.type === undefined ? '' : parseInt(addElement.type),
+      tier: addElement.tier === null || addElement.tier === undefined ? '' : parseInt(addElement.tier),
+      activityIntervalTime: {}
+    })
+      .then(
+        res => {
+          setBandel(res.data.dat)
+        }
+      )
+      .catch(
+        err => {
+          console.log(err)
+        }
+      )
   }
 
+  const updateInputData = (e) => {
+    setAddElement((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+  }
 
-  const changeName = () => {}
-  const changeSku = () => {}
-  const changeAmout = () => {}
-  const changeImage = () => {}
-  const changeExpireTime = () => {}
+  const updateOptionData = (name, id) => {
+    setAddElement((prev) => ({ ...prev, [name]: id }))
+  }
 
   return (
     <div className='modal'>
@@ -64,49 +100,112 @@ function Modal(props) {
         </div>
 
         <div className='mainModal'>
-          <SelectOption classname={'control'} value={value} name={'stuffType'} defaultValue={'Type'} type={'bundle'}
-            data={[
-              { id: 0, bundle: 'Gem bundle' },
-              { id: 1, bundle: 'Coin bundle' },
-              { id: 2, bundle: 'Item' }
-            ]}
-          />
+          {
+            props.type === 'bundle' ?
+          <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+              <SelectOption classnameBox={'control'} name={'stuffType'} defaultValue={'stuffType'} type={'status'} changeOptinValue={updateOptionData}
+                data={[
+                  { id: 0, status: 'Gem bundle' },
+                  { id: 1, status: 'Coin bundle' }
+                ]}
+              />
+          </div>
+          :
+          ''
+          }
 
-          <Input classname={'controlinput'} value={value} type={'text'} title={'name'} changeInputValue={changeName} />
+          <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+            <Input classname={'controlinput'} type={'text'} name={'name'} title={'name'} changeInputValue={updateInputData} />
+          </div>
 
-          <Input classname={'controlinput'} value={value} type={'text'} title={'sku'} changeInputValue={changeSku} />
+          <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+            <Input classname={'controlinput'} name={"sku"} type={'text'} title={'sku'} changeInputValue={updateInputData} />
+          </div>
 
-          <Input classname={'controlinput'} value={value} type={'text'} title={'amount'} changeInputValue={changeAmout} />
+          <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+            <Input classname={'controlinput'} name={'amount'} type={'number'} title={'amount'} changeInputValue={updateInputData} />
+          </div>
 
-          <Input classname={'controlinput'} value={value} type={'url'} title={'image'} changeInputValue={changeImage} />
+          <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+            <Input classname={'controlinput'} name={'image'} type={'url'} title={'image'} changeInputValue={updateInputData} />
+          </div>
 
-          <SelectOption classname={'control'} value={value} name={'prices'} defaultValue={'Price'} type={'status'}
-            data={[
-              { id: 0, status: 'Gem' },
-              { id: 1, status: 'Coin' },
-              { id: 2, status: 'Rial' },
-            ]}
-          />
+          <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+            <SelectOption classnameBox={'control'} name={'prices'} defaultValue={'Price'} type={'status'} changeOptinValue={updateOptionData}
+              data={[
+                { id: 0, status: 'Gem' },
+                { id: 1, status: 'Coin' },
+                { id: 2, status: 'Rial' },
+              ]}
+            />
+          </div>
 
-          <Input classname={'controlinput'} value={value} type={'date'} title={'ExpireTime'} changeInputValue={changeExpireTime} />
+          <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+            <Input classname={'controlinput'} name={'ExpireTime'} type={'date'} title={'ExpireTime'} changeInputValue={updateInputData} />
+          </div>
 
+          <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+            <SelectOption classnameBox={'control'} name={'tier'} defaultValue={'tier'} type={'status'} changeOptinValue={updateOptionData}
+              data={[
+                { id: 0, status: 'DEFAULT' },
+                { id: 1, status: 'COMMON' },
+                { id: 2, status: 'RARE' },
+                { id: 3, status: 'EPIC' },
+                { id: 4, status: 'LEGENDARY' }
+              ]}
+            />
+          </div>
 
-          <SelectOption classname={'control'} value={value} name={'gameId'} defaultValue={'Game'} type={'status'}
-            data={[
-              { id: 0, status: 'Ludo' },
-              { id: 1, status: 'Uno' },
-              { id: 2, status: 'Backgammon ' },
-              { id: 3, status: 'Soccer' },
-              { id: 4, status: 'Yadzy' },
-            ]}
-          />
+          <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+            <SelectOption classnameBox={'control'} name={'type'} defaultValue={'type'} type={'status'} changeOptinValue={updateOptionData}
+              data={[
+                { id: 0, status: 'CLOTHES' },
+                { id: 1, status: 'FACE' },
+                { id: 2, status: 'HAIR' },
+                { id: 3, status: 'BEARD' },
+                { id: 4, status: 'EYE' },
+                { id: 5, status: 'EYEBROWS' },
+                { id: 6, status: 'GLASESS' },
+                { id: 7, status: 'MASK' },
+                { id: 8, status: 'HAT' },
+                { id: 9, status: 'DICE SKIN' },
+                { id: 10, status: 'CARD SKIN' },
+                { id: 11, status: 'FLAG SKIN' },
+                { id: 12, status: 'FORMATION' }
+              ]}
+            />
+          </div>
 
-          <SelectOption classname={'control'} value={value} name={'status'} defaultValue={'Status'} type={'status'}
-            data={[
-              { id: 0, status: 'Active' },
-              { id: 1, status: 'Deactive' }
-            ]}
-          />
+          <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+            <SelectOption classnameBox={'control'} name={'category'} defaultValue={'category'} type={'status'} changeOptinValue={updateOptionData}
+              data={[
+                { id: 0, status: 'ELSE' },
+                { id: 1, status: 'GAME' },
+                { id: 2, status: 'CHARACTER' }
+              ]}
+            />
+          </div>
+
+          <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+            <SelectOption classnameBox={'control'} name={'gameId'} defaultValue={'Game'} type={'status'} changeOptinValue={updateOptionData}
+              data={[
+                { id: 0, status: 'Ludo' },
+                { id: 1, status: 'Uno' },
+                { id: 2, status: 'Backgammon ' },
+                { id: 3, status: 'Soccer' },
+                { id: 4, status: 'Yadzy' },
+              ]}
+            />
+          </div>
+
+          <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+            <SelectOption classnameBox={'control'} name={'status'} defaultValue={'Status'} type={'status'} changeOptinValue={updateOptionData}
+              data={[
+                { id: 0, status: 'Active' },
+                { id: 1, status: 'Deactive' }
+              ]}
+            />
+          </div>
         </div>
 
         <div className='btns'>
@@ -120,7 +219,8 @@ function Modal(props) {
         </div>
 
       </div>
-    </div>
+    </div >
+
   );
 }
 

@@ -67,50 +67,62 @@ function Index() {
 
     return (
         <div className='transaction'>
-            <div className='filter'>
-                <SelectOption classname='control' value={value} name={'bundleType'} defaultValue={'bundleType'} type={'status'}
-                    data={[
-                        { id: 0, status: 'Gem bundle' },
-                        { id: 1, status: 'Coin bundle' },
-                    ]}
-                />
+            <div className='filter row'>
+                <div className="col-xl-2 col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <SelectOption classname='control' value={value} name={'bundleType'} defaultValue={'bundleType'} type={'status'}
+                        data={[
+                            { id: 0, status: 'Gem bundle' },
+                            { id: 1, status: 'Coin bundle' },
+                        ]}
+                    />
+                </div>
+                <div className="col-xl-2 col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <Input classname='controlinput' value={value} type={'text'} title={"sku"} placeholder={'sku'} changeInputValue={''} />
+                </div>
+                <div className="col-xl-2 col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <SelectOption classname='control' value={value} name={'bundleStatus'} defaultValue={'bundleStatus'} type={'status'}
+                        data={[
+                            { id: 0, status: 'Active' },
+                            { id: 1, status: 'Deactive' },
+                        ]}
+                    />
+                </div>
+                <div className="col-xl-2 col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <SelectOption classname='control' value={value} name={'priceStatus'} defaultValue={'priceStatus'} type={'status'}
+                        data={[
+                            { id: 0, status: 'Active' },
+                            { id: 1, status: 'Deactive' },
+                        ]}
+                    />
+                </div>
 
-                <Input classname='controlinput' value={value} type={'text'} title={"sku"} placeholder={'sku'} changeInputValue={''} />
+                <div className="col-xl-2 col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <Input classname='controlinput' value={value} type={'text'} title={"limit"} placeholder={'limit'} changeInputValue={''} />
+                </div>
+                <div className="col-xl-2 col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <Input classname='controlinput' value={value} type={'text'} title={"offset"} placeholder={'offset'} changeInputValue={''} />
+                </div>
+                <div className="col-xl-2 col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <SelectOption classname='control' value={value} name={'sortBy'} defaultValue={'createdAt'} type={'status'}
+                        data={[
+                            { id: 0, status: 'createdAt' },
+                            { id: 1, status: 'updatedAt' },
+                            { id: 2, status: 'amount' },
+                            { id: 3, status: 'id' },
+                            { id: 4, status: 'name' },
+                            { id: 5, status: 'status' },
+                        ]}
+                    />
+                </div>
+                <div className="col-xl-2 col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <SelectOption classname='control' value={value} name={'orderBy'} defaultValue={'orderBy'} type={'status'}
+                        data={[
+                            { id: 0, status: 'DESC' },
+                            { id: 1, status: 'ASC' },
+                        ]}
+                    />
+                </div>
 
-                <SelectOption classname='control' value={value} name={'bundleStatus'} defaultValue={'bundleStatus'} type={'status'}
-                    data={[
-                        { id: 0, status: 'Active' },
-                        { id: 1, status: 'Deactive' },
-                    ]}
-                />
-
-                <SelectOption classname='control' value={value} name={'priceStatus'} defaultValue={'priceStatus'} type={'status'}
-                    data={[
-                        { id: 0, status: 'Active' },
-                        { id: 1, status: 'Deactive' },
-                    ]}
-                />
-
-                <Input classname='controlinput' value={value} type={'text'} title={"limit"} placeholder={'limit'} changeInputValue={''} />
-
-                <Input classname='controlinput' value={value} type={'text'} title={"offset"} placeholder={'offset'} changeInputValue={''} />
-
-                <SelectOption classname='control' value={value} name={'sortBy'} defaultValue={'createdAt'} type={'status'}
-                    data={[
-                        { id: 0, status: 'createdAt' },
-                        { id: 1, status: 'updatedAt' },
-                        { id: 2, status: 'amount' },
-                        { id: 3, status: 'id' },
-                        { id: 4, status: 'name' },
-                        { id: 5, status: 'status' },
-                    ]}
-                />
-                <SelectOption classname='control' value={value} name={'orderBy'} defaultValue={'orderBy'} type={'status'}
-                    data={[
-                        { id: 0, status: 'DESC' },
-                        { id: 1, status: 'ASC' },
-                    ]}
-                />
             </div>
 
             <ScrollContainer>

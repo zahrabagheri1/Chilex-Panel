@@ -15,36 +15,20 @@ function Index() {
     const [modal, setModal] = useState(false);
     const [value, setValue] = useState();
     const navigate = useNavigate();
-    const [filters, setFilters] = useState({
-        bundleType: null,
-        sku: null,
-        bundleStatus: null,
-        priceStatus: null,
-        limit: null,
-        offset: null,
-        sortBy: null,
-        orderBy: null,
-    })
+    const [filters, setFilters] = useState({})
 
     // ${parameters.from === null ||  parameters.from === undefined? "" : "&RegisterDate.min=" + parameters.from}
     //admin-stuff/bundles-all?bundleType=0&sku=zahra&bundleStatus=0&priceStatus=1&limit=2&offset=1&sortBy=3&orderBy=1
-    
+
     useEffect(() => {
         reqFilterBundle()
-    })
+    }, [filters])
 
     const reqFilterBundle = () => {
-        axios.get(`/admin-stuff/bundles-all?
-        ${filters.bundleType === null || filters.bundleType === undefined ? '' : 'bundleType=' +filters.bundleType + '&'}
-        ${filters.sku === null || filters.sku === undefined ? '' : 'sku=' + filters.sku + '&'}
-        ${filters.bundleStatus === null || filters.bundleStatus === undefined ? '' : 'bundleStatus=' + filters.bundleStatus + '&'}
-        ${filters.limit === null || filters.limit === undefined ? '' : 'priceStatus=' + filters.priceStatus + '&'}
-        ${filters.limit === null || filters.limit === undefined ? '' : 'limit=' + filters.limit + '&'}
-        ${filters.offset === null || filters.offset === undefined ? '' : 'offset=' + filters.offset + '&'}
-        ${filters.sortBy === null || filters.sortBy === undefined ? '' : 'sortBy=' + filters.sortBy + '&'}
-        ${filters.orderBy === null || filters.orderBy === undefined ? '' : 'orderBy=' + filters.orderBy + '&'}`)
+        // console.log("filterrrrrrrrrrrr", filters)
+        axios.get(`/admin-stuff/bundles-all?${filters.bundleType === null || filters.bundleType === undefined ? '' : 'bundleType=' + filters.bundleType + '&'}${filters.sku === null || filters.sku === undefined ? '' : 'sku=' + filters.sku + '&'}${filters.bundleStatus === null || filters.bundleStatus === undefined ? '' : 'bundleStatus=' + filters.bundleStatus + '&'}${filters.priceStatus === null || filters.priceStatus === undefined ? '' : 'priceStatus=' + filters.priceStatus + '&'}${filters.limit === null || filters.limit === undefined ? '' : 'limit=' + filters.limit + '&'}${filters.offset === null || filters.offset === undefined ? '' : 'offset=' + filters.offset + '&'}${filters.sortBy === null || filters.sortBy === undefined ? '' : 'sortBy=' + filters.sortBy + '&'}${filters.orderBy === null || filters.orderBy === undefined ? '' : 'orderBy=' + filters.orderBy}`)
             .then(
-                res => console.log(res)
+                res => console.log(res.data)
             )
             .catch(
                 err => console.log(err)
@@ -53,9 +37,8 @@ function Index() {
 
 
     useEffect(() => {
-        axios.get('/admin-stuff/bundles-all')
+        axios.get('/admin-stuff/bundles-all', { headers: { 'Cache-Control': 'no-cache' } })
             .then((res) => {
-                // console.log(res.data.data)
                 setBundles(res.data.data)
             })
             .catch(err => console.log(err))
@@ -72,54 +55,72 @@ function Index() {
         setModal(false)
     }
 
+    const updateInputData = (e) => {
+        setFilters((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+        console.log(filters)
+    }
+
+    const updateOptionData = (name, id) => {
+        setFilters((prev) => ({ ...prev, [name]: id }))
+    }
+
     return (
         <div className='bundles'>
             <div className='top'>
-                
-                <div className='filter'>
-                    <SelectOption classname='control' value={value} name={'bundleType'} defaultValue={'bundleType'} type={'status'}
-                        data={[
-                            { id: 0, status: 'Gem bundle' },
-                            { id: 1, status: 'Coin bundle' },
-                        ]}
-                    />
-                    
-                    <Input classname='controlinput' value={value} type={'text'} title={"sku"} placeholder={'sku'} changeInputValue={''} />
-                    
-                    <SelectOption classname='control' value={value} name={'bundleStatus'} defaultValue={'bundleStatus'} type={'status'}
-                        data={[
-                            { id: 0, status: 'Active' },
-                            { id: 1, status: 'Deactive' },
-                        ]}
-                    />
-                    
-                    <SelectOption classname='control' value={value} name={'priceStatus'} defaultValue={'priceStatus'} type={'status'}
-                        data={[
-                            { id: 0, status: 'Active' },
-                            { id: 1, status: 'Deactive' },
-                        ]}
-                    />
-                    
-                    <Input classname='controlinput' value={value} type={'text'} title={"limit"} placeholder={'limit'} changeInputValue={''} />
-                    
-                    <Input classname='controlinput' value={value} type={'text'} title={"offset"} placeholder={'offset'} changeInputValue={''} />
-
-                    <SelectOption classname='control' value={value} name={'sortBy'} defaultValue={'createdAt'} type={'status'}
-                        data={[
-                            { id: 0, status: 'createdAt' },
-                            { id: 1, status: 'updatedAt' },
-                            { id: 2, status: 'amount' },
-                            { id: 3, status: 'id' },
-                            { id: 4, status: 'name' },
-                            { id: 5, status: 'status' },
-                        ]}
-                    />
-                    <SelectOption classname='control' value={value} name={'orderBy'} defaultValue={'orderBy'} type={'status'}
-                        data={[
-                            { id: 0, status: 'DESC' },
-                            { id: 1, status: 'ASC' },
-                        ]}
-                    />
+                <div className='filter row'>
+                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
+                        <SelectOption classnameBox='control' value={value} name={'bundleType'} defaultValue={'bundleType'} type={'status'} changeOptinValue={updateOptionData}
+                            data={[
+                                { id: 0, status: 'Gem bundle' },
+                                { id: 1, status: 'Coin bundle' },
+                            ]}
+                        />
+                    </div>
+                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
+                        <Input classname='controlinput' name={'sku'} value={value} type={'text'} title={"sku"} placeholder={'sku'} changeInputValue={updateInputData} />
+                    </div>
+                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
+                        <SelectOption classnameBox='control' value={value} name={'bundleStatus'} defaultValue={'bundleStatus'} type={'status'} changeOptinValue={updateOptionData}
+                            data={[
+                                { id: 0, status: 'Active' },
+                                { id: 1, status: 'Deactive' },
+                            ]}
+                        />
+                    </div>
+                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
+                        <SelectOption classnameBox='control' value={value} name={'priceStatus'} defaultValue={'priceStatus'} type={'status'} changeOptinValue={updateOptionData}
+                            data={[
+                                { id: 0, status: 'Active' },
+                                { id: 1, status: 'Deactive' },
+                            ]}
+                        />
+                    </div>
+                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
+                        <Input classname='controlinput' value={value} name={'limit'} type={'number'} title={"limit"} placeholder={'limit'} changeInputValue={updateInputData} />
+                    </div>
+                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
+                        <Input classname='controlinput' value={value} name={'offset'} type={'number'} title={"offset"} placeholder={'offset'} changeInputValue={updateInputData} />
+                    </div>
+                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
+                        <SelectOption classnameBox='control' value={value} name={'sortBy'} defaultValue={'createdAt'} type={'status'} changeOptinValue={updateOptionData}
+                            data={[
+                                { id: 0, status: 'createdAt' },
+                                { id: 1, status: 'updatedAt' },
+                                { id: 2, status: 'amount' },
+                                { id: 3, status: 'id' },
+                                { id: 4, status: 'name' },
+                                { id: 5, status: 'status' },
+                            ]}
+                        />
+                    </div>
+                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
+                        <SelectOption classnameBox='control' value={value} name={'orderBy'} defaultValue={'orderBy'} type={'status'} changeOptinValue={updateOptionData}
+                            data={[
+                                { id: 0, status: 'DESC' },
+                                { id: 1, status: 'ASC' },
+                            ]}
+                        />
+                    </div>
                 </div>
 
                 <div className='addBundle' onClick={hundelOpenModal}>
@@ -136,6 +137,7 @@ function Index() {
                     <Modal
                         modalTitle={'Add New Bandle'}
                         data={bundles}
+                        type={'bundle'}
                         path={'bundles'}
                         hundelerSubmit={hundelOpenModal}
                         handlerClose={handlerCloseModal}

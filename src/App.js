@@ -6,6 +6,8 @@ import Admin from './Pages/Dashboard/Admin/Index';
 import Users from './Pages/Dashboard/Users/Index';
 import Support from './Pages/Dashboard/Support/Index';
 import Games from './Pages/Dashboard/Games/Index';
+import GameList from './Pages/Dashboard/Games/List/Index';
+
 import Bundles from './Pages/Dashboard/Products/Bundles/Index';
 import BundleList from './Pages/Dashboard/Products/Bundles/List/Index';
 import BundleDetail from './Pages/Dashboard/Products/Bundles/Detail/Index';
@@ -48,7 +50,10 @@ function App() {
               <Route path=':historyId' element={<SHDetail/>}/>
             </Route>
             <Route path='support' element={<Support />} />
-            <Route path='games' element={<Games />} />
+            <Route path='games' element={<Games />}>
+              <Route index element={<GameList/>}/>
+              
+            </Route>
           </Route>
         </Route>
       </Routes>

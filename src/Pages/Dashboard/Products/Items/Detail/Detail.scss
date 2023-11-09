@@ -1,7 +1,6 @@
 @import "../.../../../../../../Assets/scss/mixin";
 
 .itemDetail {
-    // min-height: 80vh;
     height: auto;
     width: 100%;
     background: rgba(255, 255, 255, 0.44);
@@ -14,23 +13,44 @@
     flex-direction: row-reverse;
     cursor: default;
 
-    .edited {
-        height: 4vh;
-        width: 4vh;
+
+     .itembtns {
         position: absolute;
-        background: rgba(255, 255, 255, 0.44);
-        border-radius: 8px;
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        backdrop-filter: blur(7.2px);
-        -webkit-backdrop-filter: blur(7.2px);
-        border: 1px solid rgba(255, 255, 255, 0.4);
         display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 20px;
-        cursor: pointer;
-        margin: 20px;
-        z-index: 1;
+
+        .btnEdit{
+            margin: 20px;
+            display: flex;
+            gap: 20px;
+
+            .edited {
+                height: 4vh;
+                width: 4vh;
+                background: rgba(255, 255, 255, 0.44);
+                border-radius: 8px;
+                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+                backdrop-filter: blur(7.2px);
+                -webkit-backdrop-filter: blur(7.2px);
+                border: 1px solid rgba(255, 255, 255, 0.4);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 20px;
+                cursor: pointer;
+                z-index: 1;
+            }
+    
+            .update {
+                height: 4vh;
+                width: 4vh;
+                font-size: 20px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+    
+            }
+        }
+
     }
 
     .backbtn {

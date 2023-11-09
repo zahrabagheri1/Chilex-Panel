@@ -10,7 +10,6 @@
     .filter {
         z-index: 1;
         position: relative;
-        display: flex;
         padding: 20px 30px;
         flex-direction: row;
         height: auto;
@@ -25,15 +24,6 @@
         flex-wrap: wrap;
         justify-content: space-between;
         gap: 10px;
-        
-        .control {
-            width: 150px;
-        }
-
-        .controlinput {
-            width: 150px !important;
-            // width: 46px;
-        }
 
     }
 }

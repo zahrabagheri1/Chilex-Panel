@@ -26,15 +26,12 @@
             backdrop-filter: blur(7.2px);
             -webkit-backdrop-filter: blur(7.2px);
             border: 1px solid rgba(255, 255, 255, 0.4);
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
             gap: 10px;
             .control {
-                width: 180px;
+                // width: 180px;
             }
             .controlinput {
-                width: 180px;
+                // width: 180px;
                 // width: 46px;
             }
         }

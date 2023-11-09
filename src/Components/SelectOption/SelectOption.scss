@@ -1,10 +1,11 @@
 .optionBox {
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 8px;
 
     .title {
-        font-size: 18px;
+        font-size: 14px;
         color: rgba(0, 0, 0, 0.506);
         font-weight: 700;
     }
@@ -29,7 +30,7 @@
             color: #595959;
             background-color: #fff;
             border: 1px solid rgb(0, 0, 0);
-            font-size: 14px;
+            font-size: 12px;
             text-transform: uppercase;
             transition: .3s;
             gap: 10px;
@@ -43,14 +44,14 @@
 
             }
 
-
+            
             .chevronDown {
                 // font-weight: 600 !important;
                 color: black;
 
             }
         }
-
+        
         .box {
             width: 100%;
             position: absolute;
@@ -65,13 +66,34 @@
             transform-origin: top;
             font-weight: 300;
             transition: .2s ease-in-out;
+            font-size: 12px;
+            max-height: 150px;
+            overflow-y: auto;
+
+            scrollbar-width: thin;
+            scrollbar-color: #9314FF #ffffff;
+
+            &::-webkit-scrollbar {
+                width: 4px;
+            }
+
+            &::-webkit-scrollbar-track {
+                background: #6a67b671;
+                border-radius: 20px;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background-color: #7a1496;
+                border-radius: 20px;
+                border: 2px outset #7e0ca8;
+            }
 
             .option {
                 cursor: pointer;
                 width: 100%;
                 transition: .3s;
                 text-align: center;
-                // padding: 10px 0;
+                padding: 10px 0;
                 height: 36px;
                 display: flex;
                 align-items: center;
