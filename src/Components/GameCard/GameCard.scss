@@ -1,5 +1,110 @@
-.gameCard{
-    width: 100%;
-    height: auto;
-    background-color: rgb(52, 217, 217);
+.gameCard {
+    width: 90%;
+    height: 80%;
+    padding: 14px;
+    border: 1px solid #bacdd8;
+    border-radius: 12px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    cursor: pointer;
+    .dot {
+        position: absolute;
+        background-color: rgb(245, 20, 20);
+        border: 2px solid rgba(199, 11, 11, 0.582);
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        z-index: 1;
+        right: 10px;
+        top: 10px;
+
+        &.activity{
+            background-color: rgb(20, 245, 20);
+            border: 2px solid rgba(33, 199, 11, 0.582);
+
+        }
+    }
+
+    .cardimgZoom {
+        width: 100%;
+        border-radius: 12px;
+        height: 200px;
+        overflow: hidden;
+
+        .cardimg {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.5s ease;
+        }
+    }
+
+    // .cardimg {
+    //     width: 100%;
+    //     border-radius: 12px;
+    //     height: 214px;
+    //     object-fit: cover;
+    // }
+
+
+    .carddetails {
+        padding: 16px 8px 8px 8px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        .imgname {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .subimgtext {
+            display: none;
+            width: 100%;
+            font-size: 14px;
+            color: #7f8c9b;
+            flex-direction: column;
+            gap: 10px;
+
+            .subimgtextItem {
+                display: flex;
+                flex-direction: row;
+                gap: 10px;
+
+                .subtitelimg {
+                    font-weight: bolder;
+                }
+            }
+        }
+    }
+
+
+
+    &:hover {
+        box-shadow: 1px 1px 6px #111111;
+        position: relative;
+        .cardimg {
+            // transform: scale(1.2);
+            // height: 80%;
+                transform: scale(1.1);
+    
+        }
+        .carddetails {
+            position: absolute;
+            // border-radius: 1%;
+            top: 40%;
+            width: 90%;
+            height: 50%;
+            background-color: rgba(255, 255, 255, 0.938);
+
+            .subimgtext {
+                display: flex;
+            }
+        }
+
+    }
+
 }

@@ -1,4 +1,22 @@
-.time{
+.timeBox{
     // display: flex;
     gap: 20px;
+    .timeTitle{
+        display: flex;
+        gap: 6px;
+        
+        .title {
+            font-size: 16px;
+            color: rgb(0, 0, 0);
+            font-weight: 700;
+        }
+    
+        .shouldfill{
+            width: 6px;
+            height: 6px;
+            background-color: red;
+            border-radius: 50%;
+        }
+    }
+
 }

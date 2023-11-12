@@ -40,7 +40,7 @@ function Sidebar() {
             
             <Link to={item.link} className='tab' onClick={item.children ? showChild : clickHandler}>
               <div className='icon'>{icons[item.icon]}</div>
-              <div className=''>{item.name}</div>
+              <div className='tabText'>{item.name}</div>
             </Link>
 
             <div className='child'>

@@ -1,0 +1,29 @@
+.PriceBox{
+    .priceTitle{
+        display: flex;
+        gap: 6px;
+        
+        .title {
+            font-size: 16px;
+            color: rgb(0, 0, 0);
+            font-weight: 700;
+        }
+    
+        .shouldfill{
+            width: 6px;
+            height: 6px;
+            background-color: red;
+            border-radius: 50%;
+        }
+    }
+
+    .addPriceItem{
+        display: flex;
+        width: 20px;
+        height: 20px;
+    }
+    .addPriceBox{
+        display: flex;
+        justify-content: end;
+    }
+}

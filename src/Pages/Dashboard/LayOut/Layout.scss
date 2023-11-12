@@ -1,12 +1,10 @@
 
 .layout{
-    position: relative;
+    // position: relative;
+    width: 90%;
+    margin: auto;
         .cards{
-            width: 95%;
-            display: flex;
-            flex-direction: row;
-            // flex-wrap: wrap;
-            gap: 20px;
-            margin: 20px;
+            width: 100%;
+            grid-gap: 40px !important;
         }
     }

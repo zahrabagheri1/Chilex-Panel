@@ -3,9 +3,13 @@ import './Button.scss';
 import { Link } from 'react-router-dom';
 
 function Button(props) {
+  const handler = (e) => {
+    props.handler()
+  }
+
   return (
-    <Link to={props.path} className='btnBox'>
-      <button className={`btn ${props.className}`}>{props.title}</button>
+    <Link to={props.path} className={`btnBox ${props.classnameBtn}`}>
+      <button className={`btn ${props.className}`} onClick={e => handler(e)}>{props.title}</button>
     </Link>
   );
 }

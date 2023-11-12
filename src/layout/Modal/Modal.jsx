@@ -15,7 +15,7 @@ function Modal(props) {
   //! props => modalTitle , data
 
   const [data, setData] = useState(null);
-  const [addBandel, setBandel] = useState(null);
+  const [addBandel, setBandel] = useState();
   const [showAlert, setShowAlert] = useState({
     status: false, msg: ''
   })
@@ -101,10 +101,10 @@ function Modal(props) {
   const updateOptionData = (name, id) => {
     setAddElement((prev) => ({ ...prev, [name]: parseInt(id) }))
 
-    props.type === "item" ?
-      setAddElement((prev) => ({ ...prev, ['stuffType']: 2 }))
-      :
-      ''
+    // props.type === "item" ?
+    //   setAddElement((prev) => ({ ...prev, ['stuffType']: 2 }))
+    //   :
+    //   ''
   }
 
   return (
@@ -124,7 +124,7 @@ function Modal(props) {
           {
             props.type === 'bundle' ?
               <div className="col-xl-2 col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <SelectOption classnameBox={'control'} name={'stuffType'} defaultValue={'stuffType'} type={'status'} changeOptinValue={updateOptionData}
+                <SelectOption classnameBox={'control'} name={'stuffType'} important={true} defaultValue={'stuffType'} type={'status'} changeOptinValue={updateOptionData}
                   data={[
                     { id: 0, status: 'Gem bundle' },
                     { id: 1, status: 'Coin bundle' }
@@ -136,11 +136,11 @@ function Modal(props) {
           }
 
           <div className="col-xl-2 col-lg-3 col-md-3 col-sm-6 col-xs-12">
-            <Input classname={'controlinput'} type={'text'} name={'name'} title={'name'} changeInputValue={updateInputData} />
+            <Input classname={'controlinput'} type={'text'} name={'name'} important={true} title={'name'} changeInputValue={updateInputData} />
           </div>
 
           <div className="col-xl-2 col-lg-3 col-md-3 col-sm-6 col-xs-12">
-            <Input classname={'controlinput'} name={"sku"} type={'text'} title={'sku'} changeInputValue={updateInputData} />
+            <Input classname={'controlinput'} name={"sku"} type={'text'} important={true} title={'sku'} changeInputValue={updateInputData} />
           </div>
 
           <div className="col-xl-2 col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -188,7 +188,7 @@ function Modal(props) {
           </div>
 
           <div className="col-xl-2 col-lg-3 col-md-3 col-sm-6 col-xs-12">
-            <SelectOption classnameBox={'control'} name={'category'} defaultValue={'category'} type={'status'} changeOptinValue={updateOptionData}
+            <SelectOption classnameBox={'control'} important={true}  name={'category'} defaultValue={'category'} type={'status'} changeOptinValue={updateOptionData}
               data={[
                 { id: 0, status: 'ELSE' },
                 { id: 1, status: 'GAME' },
@@ -210,7 +210,7 @@ function Modal(props) {
           </div>
 
           <div className="col-xl-2 col-lg-3 col-md-3 col-sm-6 col-xs-12">
-            <SelectOption classnameBox={'control'} name={'status'} defaultValue={'Status'} type={'status'} changeOptinValue={updateOptionData}
+            <SelectOption classnameBox={'control'} name={'status'} important={true}  defaultValue={'Status'} type={'status'} changeOptinValue={updateOptionData}
               data={[
                 { id: 0, status: 'Active' },
                 { id: 1, status: 'Deactive' }
@@ -220,12 +220,12 @@ function Modal(props) {
 
 
 
-          <div className='priceBox col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-              <Prices priceSlect={updateOptionData} priceInput={updateInputData}/>
+          <div className='modalBoxs col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+              <Prices important={true} priceSlect={updateOptionData} priceInput={updateInputData}/>
           </div>
 
-          <div className='priceBox col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-              {/* <Time timeInput={updateInputData}/> */}
+          <div className='modalBoxs col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+              <Time important={true} timeInput={updateInputData}/>
           </div>
 
         </div>

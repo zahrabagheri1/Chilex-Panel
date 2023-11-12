@@ -30,7 +30,7 @@ function SelectOption(props) {
   const changeTitleHandler = (e, id) => {
     setChangeTitle(e)
     setClick(!click)
-    props.changeOptinValue(props.name , id)
+    props.changeOptinValue(props.name, id)
   }
 
 
@@ -42,7 +42,15 @@ function SelectOption(props) {
 
   return (
     <div className={`optionBox ${props.classnameBox}`}>
-      <div className='title'>{props.defaultValue}</div>
+      <div className="optionTitleBox">
+        <div className='title'>{props.defaultValue}</div>
+        {
+          props.important === true ? 
+          <div className="shouldfill"></div>
+          :
+          ''
+        }
+      </div>
       <div className={`btn ${props.classname}`} >
         <div className='btnTitle' onClick={clickHandler} >
           {changeTitle === null ? props.defaultValue : changeTitle}
@@ -50,7 +58,7 @@ function SelectOption(props) {
         </div>
         <div className='box' style={{ display: (click === true ? "flex" : 'none') }}>
           {data?.map((item) => (
-            <div className='option' value={item.id} onClick={() => changeTitleHandler(item[props.type],item.id)}>{item[props.type]}</div>
+            <div className='option' value={item.id} onClick={() => changeTitleHandler(item[props.type], item.id)}>{item[props.type]}</div>
           ))}
         </div>
       </div>

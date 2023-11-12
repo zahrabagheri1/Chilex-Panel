@@ -4,10 +4,21 @@
     flex-direction: column;
     gap: 8px;
 
-    .title {
-        font-size: 14px;
-        color: rgba(0, 0, 0, 0.506);
-        font-weight: 700;
+    .optionTitleBox{
+        display: flex;
+        gap: 6px;
+        .title {
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.506);
+            font-weight: 700;
+        }
+    
+        .shouldfill{
+            width: 6px;
+            height: 6px;
+            background-color: red;
+            border-radius: 50%;
+        }
     }
 
     .btn {

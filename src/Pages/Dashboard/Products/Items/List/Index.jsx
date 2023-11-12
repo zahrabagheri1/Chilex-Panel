@@ -174,7 +174,7 @@ function Index() {
                 </div>
 
                 <div className='addItem' onClick={handelOpenModal}>
-                    <HiPlus className='icon' />
+                    <HiPlus />
                 </div>
             </div>
 

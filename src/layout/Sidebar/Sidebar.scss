@@ -9,6 +9,21 @@
     background: linear-gradient(180deg, rgb(143, 164, 255) 50%, rgb(115, 19, 139) 100%);
     // background-color: #c772ff;
 
+    position: fixed;
+    width: 50px;
+    top: 0;
+    height: 100vh;
+    z-index: 10;
+    background-color: #202020;
+    overflow: hidden;
+    transition: width .3s ease;
+    cursor: pointer;
+    box-shadow: 4px 7px 10px rgba(0, 0, 0, .4);
+    padding-left: 10px;
+    &:hover {
+        width: 210px;
+    }
+
     .logo-dash {
         height: 10vh;
         display: flex;
@@ -30,58 +45,78 @@
         gap: 10px;
 
         .tab {
+            position: relative;
             display: flex;
+            align-items: center;
             flex-direction: row;
-            gap: 5px;
+            gap: 16px;
             cursor: pointer;
             padding: 10px;
+            transition: all .3s ease;
 
-            &:link,
-            &:visited,
-            &:hover {
-                text-decoration: none;
-                color: black;
-            }
-
-            &:hover, &.active {
-                padding: 10px 10px;
-                background-color: rgba(255, 255, 255, 0.534);
-                color: rgb(0, 0, 0);
-                border-radius: 10px;
-                font-weight: 600;
-            }
-
-            &:active {
-                font-weight: 600;
-            }
-        }
-
-        .child {
-            position: relative;
-            left: 30px;
-            .childItem {
-                position: relative;
-                display: flex;
-                flex-direction: row;
-                gap: 5px;
-                cursor: pointer;
-                padding: 10px 10px;
                 &:link,
                 &:visited,
                 &:hover {
                     text-decoration: none;
-                    color: rgba(0, 0, 0, 0.671);
+                    color: black;
                 }
 
-                &:hover, &:focus {
+                &:hover,
+                &.active {
+                    padding: 10px 10px;
                     background-color: rgba(255, 255, 255, 0.534);
-                    width: calc(100% - 40px);
-                    color: rgb(86, 0, 144);
-                    border-radius: 10px 0 0 10px;
-                    font-weight: 550;
+                    color: rgb(0, 0, 0);
+                    border-radius: 10px;
+                    font-weight: 600;
+                }
 
+                &:active {
+                    font-weight: 600;
+                }
+
+                .icon{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size : 22px;
+                    color: rgb(0, 0, 0);
+                }
+
+                .tabText{
+                    font-size: 14px;
+                }
+
+            }
+
+            .child {
+                position: relative;
+                left: 40px;
+
+                .childItem {
+                    position: relative;
+                    display: flex;
+                    flex-direction: row;
+                    gap: 5px;
+                    cursor: pointer;
+                    padding: 10px 10px;
+
+                    &:link,
+                    &:visited,
+                    &:hover {
+                        text-decoration: none;
+                        color: rgba(0, 0, 0, 0.671);
+                    }
+
+                    &:hover,
+                    &:focus {
+                        background-color: rgba(255, 255, 255, 0.534);
+                        width: calc(100% - 40px);
+                        color: rgb(86, 0, 144);
+                        border-radius: 10px 0 0 10px;
+                        font-weight: 550;
+
+                    }
                 }
             }
         }
     }
-}

@@ -1,67 +1,70 @@
 import React from 'react';
 import './GameCard.scss';
-import {yatzy} from '../../Assets/image/yatzy.png';
-import {backgammon} from '../../Assets/image/backgammon.png';
-import {ludo} from '../../Assets/image/ludo.png';
-import {uno} from '../../Assets/image/uno.png';
-import {soccer} from '../../Assets/image/soccer.png';
+import yatzy from '../../Assets/image/yatzy.png';
+import backgammon from '../../Assets/image/backgammon.png';
+import ludo from '../../Assets/image/ludo.png';
+import uno from '../../Assets/image/uno.png';
+import soccer from '../../Assets/image/soccer.png';
 
+
+const props = {
+  id: 1,
+  name: "backgammon",
+  activity: false,
+  creaty: "2023-11-09T07:30:08.506Z",
+  updated: "2023-11-09T07:30:08.506Z"
+}
 
 function GameCard(props) {
+
+  const gameImgs = {
+    backgammon: backgammon,
+    soccer: soccer,
+    uno: uno,
+    ludo: ludo,
+    yatzy: yatzy
+  }
+
   return (
     <div className='gameCard'>
-      <div className="img">
-        <img src={props.imgSrc} alt={props.imgalt} />
+      <div className={`dot ${props.activity === true ? 'activity' : ''}`}></div>
+      <div className="cardimgZoom">
+
+        <img className='cardimg' src={gameImgs[props.name]} alt={props.name} />
       </div>
-      <div className="">
-        {props.name}
+
+      {/* <img className='cardimg' src={ludo} alt={props.name} /> */}
+
+
+      <div className="carddetails">
+        <div className="imgname">
+          {props.name}
+        </div>
+
+        <div className="subimgtext">
+          <div className="subimgtextItem">
+            <div className="subtitelimg">activity:</div>
+            <div className='subtext'>{props.activity === true ? 'active' : 'diactive'}</div>
+          </div>
+          <div className="subimgtextItem">
+            <div className="subtitelimg">createdAt:</div>
+            <div className='subtext'>{props.creaty}</div>
+          </div>
+
+          <div className="subimgtextItem">
+            <div className="subtitelimg">updatedAt:</div>
+            <div className='subtext'>{props.updated}</div>
+          </div>
+
+
+        </div>
+
       </div>
-      <div className="">
-     
-      </div>
-      <div className="">
-   
-      </div>
-      
+
+
+
     </div>
   );
 }
 
 export default GameCard;
-
-
-// {
-//   "id": 1,
-//   "name": "ludo",
-//   "active": true,
-//   "createdAt": "2023-11-09T07:30:08.506Z",
-//   "updatedAt": "2023-11-09T07:30:08.506Z"
-// },
-// {
-//   "id": 2,
-//   "name": "backgammon",
-//   "active": true,
-//   "createdAt": "2023-11-09T07:30:08.523Z",
-//   "updatedAt": "2023-11-09T07:30:08.523Z"
-// },
-// {
-//   "id": 3,
-//   "name": "uno",
-//   "active": true,
-//   "createdAt": "2023-11-09T07:30:08.535Z",
-//   "updatedAt": "2023-11-09T07:30:08.535Z"
-// },
-// {
-//   "id": 4,
-//   "name": "yatzy",
-//   "active": true,
-//   "createdAt": "2023-11-09T07:30:08.547Z",
-//   "updatedAt": "2023-11-09T07:30:08.547Z"
-// },
-// {
-//   "id": 5,
-//   "name": "soccer",
-//   "active": true,
-//   "createdAt": "2023-11-09T07:30:08.556Z",
-//   "updatedAt": "2023-11-09T07:30:08.556Z"
-// }

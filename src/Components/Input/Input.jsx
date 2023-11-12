@@ -19,18 +19,18 @@ import { HiUser, HiOutlineUser, HiMiniMagnifyingGlass, HiOutlineEye, HiLockClose
 // }
 
 function Input(props) {
-  const [value,setValue] = useState(props.value)
+  const [value, setValue] = useState(props.value)
   const [eye, setEye] = useState(false)
 
   const icons = {
-    HiUser: <HiUser/>,
+    HiUser: <HiUser />,
     HiOutlineUser: <HiOutlineUser />,
     HiOutlineEye: <HiOutlineEye />,
     HiLockClosed: <HiLockClosed />,
     HiOutlineEyeSlash: <HiOutlineEyeSlash />,
     HiMiniEyeSlash: <HiMiniEyeSlash />,
     HiMiniEye: <HiMiniEye />,
-    HiMiniMagnifyingGlass: <HiMiniMagnifyingGlass/>,
+    HiMiniMagnifyingGlass: <HiMiniMagnifyingGlass />,
   }
 
   const eyeHandler = () => {
@@ -47,7 +47,15 @@ function Input(props) {
   return (
     <div className={`inputBox ${props.classname}`}>
       <div className="header-title">
-        <div id=''>{props.title}</div>
+        <div id='' className='title' >{props.title}</div>
+        {
+
+          props.important === true ?
+            <div className="shouldfill"></div>
+            :
+            ''
+
+        }
       </div>
       <div className="input">
         <div className='inputIcon'>{icons[props.icon]}</div>
@@ -65,8 +73,8 @@ function Input(props) {
           ></textarea>
           :
           <input
-            type={props.type === 'password'? (eye === true ? 'text': 'password') : props.type}
-            className={`inputControl ${props.inputclassname} ${props.readOnly === true? 'readonlytext': 'notreadonlytext'}`}
+            type={props.type === 'password' ? (eye === true ? 'text' : 'password') : props.type}
+            className={`inputControl ${props.inputclassname} ${props.readOnly === true ? 'readonlytext' : 'notreadonlytext'}`}
             name={props.name}
             value={value}
             placeholder={props.placeholder}
@@ -74,11 +82,13 @@ function Input(props) {
             dir={props.dir}
             disabled={props.disabled}
             checked={props.checked}
+            min={props.min}
+            max={props.max}
             onChange={changeInputHandler}
             ref={props.ref}
           />}
         <div className={`passwordEye ${props.type === 'password' ? 'active' : ''}`} onClick={eyeHandler}>
-          {eye === true ?<HiMiniEye/>:<HiMiniEyeSlash/>}
+          {eye === true ? <HiMiniEye /> : <HiMiniEyeSlash />}
         </div>
       </div>
       {/* <div className="error">
