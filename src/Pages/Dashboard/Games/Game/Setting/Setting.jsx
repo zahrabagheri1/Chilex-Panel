@@ -1,6 +1,7 @@
 import React from 'react';
 
-function Index() {
+function Setting() {
+    
   return (
     <div>
       
@@ -8,4 +9,4 @@ function Index() {
   );
 }
 
-export default Index;
+export default Setting;

@@ -1,6 +1,6 @@
 .gameCard {
     width: 90%;
-    height: 80%;
+    height: 220px;
     padding: 14px;
     border: 1px solid #bacdd8;
     border-radius: 12px;
@@ -9,6 +9,35 @@
     flex-direction: column;
     position: relative;
     cursor: pointer;
+
+    &.diactivity {
+        opacity: 0.65;
+        cursor: not-allowed;
+        box-shadow: 1px 1px 6px #111111;
+        position: relative;
+
+        .cardimg {
+            // transform: scale(1.2);
+            // height: 80%;
+            transform: scale(1.1);
+
+        }
+
+        .carddetails {
+            position: absolute;
+            // border-radius: 1%;
+            top: 40%;
+            width: 90%;
+            height: 50%;
+            background-color: rgba(255, 255, 255, 0.938);
+
+            .subimgtext {
+                display: flex;
+            }
+        }
+
+    }
+
     .dot {
         position: absolute;
         background-color: rgb(245, 20, 20);
@@ -20,7 +49,7 @@
         right: 10px;
         top: 10px;
 
-        &.activity{
+        &.activity {
             background-color: rgb(20, 245, 20);
             border: 2px solid rgba(33, 199, 11, 0.582);
 
@@ -86,12 +115,14 @@
     &:hover {
         box-shadow: 1px 1px 6px #111111;
         position: relative;
+
         .cardimg {
             // transform: scale(1.2);
             // height: 80%;
-                transform: scale(1.1);
-    
+            transform: scale(1.1);
+
         }
+
         .carddetails {
             position: absolute;
             // border-radius: 1%;

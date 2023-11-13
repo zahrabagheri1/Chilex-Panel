@@ -6,6 +6,9 @@
         font-size: 18px;
         color: rgba(0, 0, 0, 0.506);
         font-weight: 700;
+        &.disabledTitle{
+            display: none;
+        }
     }
 
     .switch {
@@ -75,5 +78,8 @@
         font-size: 12px;
         margin-top: 5px;
         color: #f54c4c;
+        &.disabledError{
+            display: none;
+        }
     }
 }

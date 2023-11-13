@@ -23,8 +23,8 @@ function Switch(props) {
 
   return (
     <div className={`switchCheckbox ${props.classname}`}>
-      <div className="header-title">
-        <div id=''>{props.title}</div>
+      <div className={`header-title ${props.disabledDiv ? 'disabledTitle': ''}`}>
+        <div>{props.title}</div>
       </div>
       <label className='switch'>
         <input
@@ -36,7 +36,7 @@ function Switch(props) {
         />
         <span className='slider round'></span>
       </label>
-      <div className='error'>{props.errorText}</div>
+      <div className={`error ${props.disabledDiv ? 'disabledError': ''}`}>{props.errorText}</div>
 
     </div>
   );
