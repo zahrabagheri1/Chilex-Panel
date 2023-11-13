@@ -108,7 +108,8 @@
                     }
 
                     &:hover,
-                    &:focus {
+                    &:focus,
+                    &.active {
                         background-color: rgba(255, 255, 255, 0.534);
                         width: calc(100% - 40px);
                         color: rgb(86, 0, 144);

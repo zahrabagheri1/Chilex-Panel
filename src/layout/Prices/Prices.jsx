@@ -8,20 +8,21 @@ import './Prices.scss';
 function Prices(props) {
     const [prices, setPrices] = useState(1)
     const [priceList , setPriceList] = useState([])
-
+   
+    const x = {}
+    
     const addPrices = () => {
         setPrices(prices + 1)
     }
 
     const selectChange = (name, value) => {
-        setPriceList((prev)=> ([...prev, {[name]: value}]))
+        // x= {[name]: value}
+        setPriceList((prev)=> ({...prev, [name]: value}))
     }
 
     const inputChange = (e) => {
-       setPriceList((prev)=>([ ...prev, {[e.target.name]: e.target.value} ]))
+       setPriceList((prev)=>({...prev, [e.target.name]: e.target.value}))
     }
-
-    console.log(priceList)
 
     return (
         <div className='PriceBox row'>

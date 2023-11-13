@@ -22,13 +22,15 @@ function Sidebar() {
     HiMiniShoppingCart: <HiMiniShoppingCart/>,
   }
 
-  const clickHandler = () =>{
-    setClick(!click)
+  const clickHandler = (key) =>{
+    setClick(key)
   }
 
   const showChild = () => {
     setChild(!child)
   }
+
+
 
   return (
     <div className='sidebar'>
@@ -38,7 +40,7 @@ function Sidebar() {
           <div key={key} >
             {/* <Link to={item.link} key={key} className={`item ${click === true ? 'active' : '' }`} onClick={item.children ? showChild : (e) => clickHandler(e)}> */}
             
-            <Link to={item.link} className='tab' onClick={item.children ? showChild : clickHandler}>
+            <Link to={item.link} className={`tab ${click === true ? 'active' : ''}`} onClick={item.children ? showChild : clickHandler}>
               <div className='icon'>{icons[item.icon]}</div>
               <div className='tabText'>{item.name}</div>
             </Link>
@@ -46,7 +48,7 @@ function Sidebar() {
             <div className='child'>
               {child === true ?
                 item.children?.map((childItem , index) => (
-                  <Link to={childItem.link} key={index} className='childItem'>
+                  <Link to={childItem.link} key={index} className={`childItem ${click === true ? 'active' : ''}`}>
                     <div className='icon'>{icons[childItem.icon]}</div>
                     <div className=''>{childItem.name}</div>
                   </Link>
