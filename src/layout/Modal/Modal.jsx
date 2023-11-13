@@ -13,15 +13,15 @@ import Time from '../Time/Time';
 function Modal(props) {
 
   //! props => modalTitle , data
-
-  const [data, setData] = useState(null);
   const [addBandel, setBandel] = useState();
   const [showAlert, setShowAlert] = useState({
     status: false, msg: ''
   })
+
   const [addElement, setAddElement] = useState({
     prices: [{ type: 0, amount: 5 }]
   })
+
   const navigate = useNavigate();
 
   // useEffect(() => {
@@ -64,6 +64,8 @@ function Modal(props) {
   //   navigate("./")
   // }
 
+
+
   const handlerSubmit = () => {
 
 
@@ -81,7 +83,7 @@ function Modal(props) {
           setShowAlert({ status: true, msg: err.message })
           setTimeout(() => {
             setShowAlert({ status: false, msg: err.message })
-            
+
           }, 3000)
         }
       )
@@ -100,12 +102,9 @@ function Modal(props) {
 
   const updateOptionData = (name, id) => {
     setAddElement((prev) => ({ ...prev, [name]: parseInt(id) }))
-
-    // props.type === "item" ?
-    //   setAddElement((prev) => ({ ...prev, ['stuffType']: 2 }))
-    //   :
-    //   ''
   }
+
+  
 
   return (
     <div className='modal'>
@@ -123,7 +122,7 @@ function Modal(props) {
         <div className='mainModal row'>
           {
             props.type === 'bundle' ?
-              <div className="col-xl-2 col-lg-3 col-md-3 col-sm-6 col-xs-12">
+              <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
                 <SelectOption classnameBox={'control'} name={'stuffType'} important={true} defaultValue={'stuffType'} type={'status'} changeOptinValue={updateOptionData}
                   data={[
                     { id: 0, status: 'Gem bundle' },
@@ -135,23 +134,23 @@ function Modal(props) {
               ''
           }
 
-          <div className="col-xl-2 col-lg-3 col-md-3 col-sm-6 col-xs-12">
+          <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
             <Input classname={'controlinput'} type={'text'} name={'name'} important={true} title={'name'} changeInputValue={updateInputData} />
           </div>
 
-          <div className="col-xl-2 col-lg-3 col-md-3 col-sm-6 col-xs-12">
+          <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
             <Input classname={'controlinput'} name={"sku"} type={'text'} important={true} title={'sku'} changeInputValue={updateInputData} />
           </div>
 
-          <div className="col-xl-2 col-lg-3 col-md-3 col-sm-6 col-xs-12">
+          <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
             <Input classname={'controlinput'} name={'amount'} type={'number'} title={'amount'} changeInputValue={updateInputData} />
           </div>
 
-          <div className="col-xl-2 col-lg-3 col-md-3 col-sm-6 col-xs-12">
+          <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
             <Input classname={'controlinput'} name={'image'} type={'text'} title={'image'} changeInputValue={updateInputData} />
           </div>
 
-          <div className="col-xl-2 col-lg-3 col-md-3 col-sm-6 col-xs-12">
+          <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
             <SelectOption classnameBox={'control'} name={'tier'} defaultValue={'tier'} type={'status'} changeOptinValue={updateOptionData}
               data={[
                 { id: 0, status: 'DEFAULT' },
@@ -163,11 +162,11 @@ function Modal(props) {
             />
           </div>
 
-          <div className="col-xl-2 col-lg-3 col-md-3 col-sm-6 col-xs-12">
+          <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
             <Input classname={'controlinput'} name={'expireTime'} type={'date'} title={'expireTime'} changeInputValue={updateInputData} />
           </div>
 
-          <div className="col-xl-2 col-lg-3 col-md-3 col-sm-6 col-xs-12">
+          <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
             <SelectOption classnameBox={'control'} name={'type'} defaultValue={'type'} type={'status'} changeOptinValue={updateOptionData}
               data={[
                 { id: 0, status: 'CLOTHES' },
@@ -187,8 +186,8 @@ function Modal(props) {
             />
           </div>
 
-          <div className="col-xl-2 col-lg-3 col-md-3 col-sm-6 col-xs-12">
-            <SelectOption classnameBox={'control'} important={true}  name={'category'} defaultValue={'category'} type={'status'} changeOptinValue={updateOptionData}
+          <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
+            <SelectOption classnameBox={'control'} important={true} name={'category'} defaultValue={'category'} type={'status'} changeOptinValue={updateOptionData}
               data={[
                 { id: 0, status: 'ELSE' },
                 { id: 1, status: 'GAME' },
@@ -197,7 +196,7 @@ function Modal(props) {
             />
           </div>
 
-          <div className="col-xl-2 col-lg-3 col-md-3 col-sm-6 col-xs-12">
+          <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
             <SelectOption classnameBox={'control'} name={'gameId'} defaultValue={'Game'} type={'status'} changeOptinValue={updateOptionData}
               data={[
                 { id: 0, status: 'Ludo' },
@@ -209,8 +208,8 @@ function Modal(props) {
             />
           </div>
 
-          <div className="col-xl-2 col-lg-3 col-md-3 col-sm-6 col-xs-12">
-            <SelectOption classnameBox={'control'} name={'status'} important={true}  defaultValue={'Status'} type={'status'} changeOptinValue={updateOptionData}
+          <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
+            <SelectOption classnameBox={'control'} name={'status'} important={true} defaultValue={'Status'} type={'status'} changeOptinValue={updateOptionData}
               data={[
                 { id: 0, status: 'Active' },
                 { id: 1, status: 'Deactive' }
@@ -221,11 +220,11 @@ function Modal(props) {
 
 
           <div className='modalBoxs col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-              <Prices important={true} priceSlect={updateOptionData} priceInput={updateInputData}/>
+            <Prices important={true}  />
           </div>
 
           <div className='modalBoxs col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-              <Time important={true} timeInput={updateInputData}/>
+            <Time important={true} />
           </div>
 
         </div>

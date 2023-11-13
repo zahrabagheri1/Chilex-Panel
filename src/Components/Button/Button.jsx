@@ -9,7 +9,7 @@ function Button(props) {
 
   return (
     <Link to={props.path} className={`btnBox ${props.classnameBtn}`}>
-      <button className={`btn ${props.className}`} onClick={e => handler(e)}>{props.title}</button>
+      <button className={`btn ${props.className} ${props.disabled === true ? 'disableBtn': ''}`} disabled={props.disabled} onClick={e => handler(e)}>{props.title}</button>
     </Link>
   );
 }

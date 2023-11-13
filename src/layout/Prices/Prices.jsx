@@ -1,28 +1,40 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import SelectOption from '../../Components/SelectOption/SelectOption';
 import Input from '../../Components/Input/Input';
 import Button from '../../Components/Button/Button';
-import { HiPlus } from "react-icons/hi2";
+import { HiPlus , HiCheck } from "react-icons/hi2";
 import './Prices.scss';
 
 function Prices(props) {
     const [prices, setPrices] = useState(1)
-    const [priceList , setPriceList] = useState([])
-   
-    const x = {}
-    
+    const [priceList, setPriceList] = useState({})
+    const [addObjectArray, setAddObjectArray] = useState([])
+    const buttonClickedRef = useRef(false);
+
     const addPrices = () => {
         setPrices(prices + 1)
+        buttonClickedRef.current = false;
     }
 
     const selectChange = (name, value) => {
-        // x= {[name]: value}
-        setPriceList((prev)=> ({...prev, [name]: value}))
+        setPriceList((prev) => ({ ...prev, [name]: value }))  
+    }
+    
+    const inputChange = (e) => {
+        setPriceList((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+    }
+    
+    
+    const checkPrices = () => {
+        setAddObjectArray((prevArray) => ([...prevArray, priceList]))
+        if (!buttonClickedRef.current) {
+            buttonClickedRef.current = true;
+        }
+        
     }
 
-    const inputChange = (e) => {
-       setPriceList((prev)=>({...prev, [e.target.name]: e.target.value}))
-    }
+  console.log(addObjectArray)
+  console.log( buttonClickedRef.current)
 
     return (
         <div className='PriceBox row'>
@@ -36,12 +48,12 @@ function Prices(props) {
                 }
             </div>
 
-            <div className='col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-8'>
+            <div className='PriceItems col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-8'>
                 {
                     [...Array(prices)].map((index) => (
-                        <div className='row' key={index}>
-                            <div className="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                <SelectOption classnameBox={'control'} name={'prices'} defaultValue={'Price'} type={'status'}
+                        <div className='PriceItemsBox row' key={index} >
+                            <div className="col-xl-4 col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                                <SelectOption classnameBox={'control'} name={'type'} defaultValue={'Price'} type={'status'}
                                     changeOptinValue={selectChange}
                                     data={[
                                         { id: 0, status: 'Gem' },
@@ -50,9 +62,12 @@ function Prices(props) {
                                     ]}
                                 />
                             </div>
-                            <div className="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div className="col-xl-4 col-lg-3 col-md-3 col-sm-4 col-xs-12">
                                 <Input classname={'controlinput'} name={'amount'} type={'number'} title={'amount'}
                                     changeInputValue={inputChange} />
+                            </div>
+                            <div className="checkPriceItemBox col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                            <Button title={<HiCheck />} className={'checkPriceItembtn'} classnameBtn={'checkPriceItem'} disabled={ buttonClickedRef.current} handler={checkPrices} />
                             </div>
                         </div>
                     ))
@@ -60,7 +75,7 @@ function Prices(props) {
             </div>
 
             <div className='addPriceBox col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-3'>
-                <Button classnameBtn={'addPriceItem'} title={<HiPlus />} handler={addPrices} />
+                <Button classnameBtn={'addPriceItem'} title={<HiPlus />} disabled={true} handler={addPrices} />
             </div>
         </div>
     );

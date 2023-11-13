@@ -16,14 +16,40 @@
             border-radius: 50%;
         }
     }
-
-    .addPriceItem{
+    .PriceItems{
+        width: 100%;
+        margin: auto;
+        padding-left: 4px;
         display: flex;
-        width: 20px;
-        height: 20px;
+        flex-direction: column;
+        gap: 10px;
+
     }
+
+    .checkPriceItemBox{
+        display: flex;
+        align-items: center;
+        top: 7px;
+        position: relative;
+        .checkPriceItem{
+            display: flex;
+            width: 20px;
+            height: 20px;
+            .checkPriceItembtn{
+                background-color: rgb(0, 138, 0) ;
+                color: white;
+                font-weight: 900;
+            }
+        }
+    }
+
     .addPriceBox{
         display: flex;
         justify-content: end;
+        .addPriceItem{
+            display: flex;
+            width: 20px;
+            height: 20px;
+        }
     }
 }

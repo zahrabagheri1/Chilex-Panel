@@ -11,8 +11,6 @@ function Time(props) {
         setPriceList((prev) => ([ ...prev, {[e.target.name]: e.target.value} ]))
     }
 
-    console.log(priceList)
-
     return (
         <div className='timeBox row'>
             <div className='timeTitle col-xl-1 col-lg-1 col-md-1 col-sm-1 col-xs-1'>
