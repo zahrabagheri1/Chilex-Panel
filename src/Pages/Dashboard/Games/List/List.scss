@@ -1,5 +1,66 @@
-.gameList{
+.gameList {
     width: 90%;
     margin: auto;
     // grid-gap: 50px !important;
+
+    .modalGame {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: #00000090;
+        z-index: 10;
+        border-radius: 0px;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        
+        &.active{
+            display: flex;
+        }
+
+        .modalGameBox {
+            width: 30%;
+            height: 20%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 36px;
+            background-color: rgb(255, 255, 255);
+            border-radius: 10px;
+            padding: 20px;
+
+            .modalGameTitle{
+                font-size: 20px;
+                font-weight: 900;
+            }
+
+            .btnGameBox {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                gap: 36px;
+
+                .setting,
+                .played {
+                    font-size: 16px;
+                    font-weight: 900;
+                    width: 150px;
+                    height: 50px;
+                    border-radius: 10px;
+                    background-color: rgba(0, 0, 0, 0.26);
+                }
+
+                .settingTitle,
+                .playedTitle {
+                    font-size: 16px;
+                    font-weight: 600;
+                }
+
+            }
+        }
+    }
 }

@@ -59,6 +59,7 @@ function Prices(props) {
                                         { id: 0, status: 'Gem' },
                                         { id: 1, status: 'Coin' },
                                         { id: 2, status: 'Tonam' },
+                                        { id: 3, status: 'Free' },
                                     ]}
                                 />
                             </div>

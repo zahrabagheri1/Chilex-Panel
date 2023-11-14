@@ -54,7 +54,11 @@ function App() {
             <Route path='games' element={<Games />}>
               <Route index element={<GameList />} />
               <Route path='settings' element={<Game />}>
-                <Route path=':gameName' index element={<Setting />} />
+                <Route index  element={<Setting />}/>
+                <Route path=':gameName' />
+              </Route>
+              <Route>
+                
               </Route>
             </Route>
           </Route>

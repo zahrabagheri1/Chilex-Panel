@@ -30,6 +30,7 @@ function GameCard(props) {
 
   const changeActivity = (value) => {
     setActivity(value)
+    props.diactivefun(value)
   }
 
   
