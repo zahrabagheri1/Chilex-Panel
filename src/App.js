@@ -19,10 +19,10 @@ import SHDetail from './Pages/Dashboard/ShoppingHistory/Detail/Index';
 import Transaction from './Pages/Dashboard/Transaction/Index';
 import TransactionList from './Pages/Dashboard/Transaction/List/Index';
 import TransactionDetail from './Pages/Dashboard/Transaction/Detail/Index';
-
-import './App.css';
-import Setting from './Pages/Dashboard/Games/Game/Setting/Setting';
+import Setting from './Pages/Dashboard/Games/Setting/Setting';
 import Game from './Pages/Dashboard/Games/Game/Game';
+import './App.css';
+import Played from './Pages/Dashboard/Games/Played/Played';
 
 function App() {
   return (
@@ -54,11 +54,11 @@ function App() {
             <Route path='games' element={<Games />}>
               <Route index element={<GameList />} />
               <Route path='settings' element={<Game />}>
-                <Route index  element={<Setting />}/>
-                <Route path=':gameName' />
+                <Route index  />
+                <Route path=':gameName' element={<Setting />}/>
               </Route>
-              <Route>
-                
+              <Route path='played'>
+                <Route path=':gameName' element={<Played/>}/>
               </Route>
             </Route>
           </Route>

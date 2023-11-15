@@ -41,7 +41,7 @@ function Index() {
   }
 
   const gameSetting = () => {
-    navigate(`/settings`)
+    // navigate(`/settings`)
   }
 
   const gamePlayed = () => {
