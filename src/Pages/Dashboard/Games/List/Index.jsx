@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import GameCard from '../../../../Components/GameCard/GameCard';
 import './List.scss';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import Button from '../../../../Components/Button/Button';
 
 
@@ -12,7 +12,7 @@ function Index() {
   const [name, setName] = useState()
   const [active, setActive] = useState()
   const navigate = useNavigate();
-
+  const [id] = useSearchParams()
   useEffect(() => {
     gameIAP();
   }, [])
@@ -41,7 +41,8 @@ function Index() {
   }
 
   const gameSetting = () => {
-    navigate(`/settings`)
+    console.log('settings URL',id)
+    navigate('/settings')
   }
 
   const gamePlayed = () => {
@@ -54,6 +55,8 @@ function Index() {
 
   return (
     <div className='gameList row'>
+            <Button title='test' className='settingTitle' classnameBtn='setting' handler={gameSetting} />
+
       {
         games?.map((game, index) => (
           <div key={index} className="col-xl-3 col-lg-4 col-md-4 col-ms-6 col-xs-6">
@@ -67,13 +70,16 @@ function Index() {
         <div className="modalGameBox">
           <div className="modalGameTitle">{name}</div>
           <div className="btnGameBox">
-            <Button title='Setting' className='settingTitle' classnameBtn='setting' handler={gameSetting} />
+            <Button title='Settings' className='settingTitle' classnameBtn='setting' handler={gameSetting} />
             <Button title='Played' className='playedTitle' classnameBtn='played' handler={gamePlayed} />
           </div>
         </div>
       </div>
+
+
     </div>
   );
 }
 
 export default Index;
+

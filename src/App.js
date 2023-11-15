@@ -6,6 +6,7 @@ import Admin from './Pages/Dashboard/Admin/Index';
 import Users from './Pages/Dashboard/Users/Index';
 import Support from './Pages/Dashboard/Support/Index';
 import Games from './Pages/Dashboard/Games/Index';
+import Resources from './Pages/Dashboard/Games/Game/Resources/Index';
 import GameList from './Pages/Dashboard/Games/List/Index';
 import Bundles from './Pages/Dashboard/Products/Bundles/Index';
 import BundleList from './Pages/Dashboard/Products/Bundles/List/Index';
@@ -20,10 +21,9 @@ import Transaction from './Pages/Dashboard/Transaction/Index';
 import TransactionList from './Pages/Dashboard/Transaction/List/Index';
 import TransactionDetail from './Pages/Dashboard/Transaction/Detail/Index';
 
+import Settings from './Pages/Dashboard/Games/Game/Settings/Settings';
 import './App.css';
-import Setting from './Pages/Dashboard/Games/Game/Setting/Setting';
 import Game from './Pages/Dashboard/Games/Game/Game';
-
 function App() {
   return (
     <BrowserRouter>
@@ -46,23 +46,22 @@ function App() {
               <Route path=':transactId' element={<TransactionDetail />} />
             </Route>
             <Route path='users' element={<Users />} />
-            <Route path='shopping-history' element={<ShoppingHistory />}>
-              <Route index element={<SHList />} />
+            <Route path='shopping-history' element={<SHList />}>
+              {/* <Route index element={<SHList />} /> */}
               <Route path=':historyId' element={<SHDetail />} />
             </Route>
             <Route path='support' element={<Support />} />
-            <Route path='games' element={<Games />}>
-              <Route index element={<GameList />} />
-              <Route path='settings' element={<Game />}>
-                <Route index  element={<Setting />}/>
-                <Route path=':gameName' />
-              </Route>
+            <Route path='games' element={<GameList />}>
+              {/* <Route index element={<GameList />} /> */}
+                {/* <Route index  element={<Setting />}/> */}
+              {/* </Route> */}
+                <Route path='gg' element={<Resources/>} />
               <Route>
-                
               </Route>
             </Route>
           </Route>
         </Route>
+        <Route path='*' element={'404'} />
       </Routes>
     </BrowserRouter>
   );
