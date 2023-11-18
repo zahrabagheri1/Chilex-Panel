@@ -19,52 +19,46 @@ import SHDetail from './Pages/Dashboard/ShoppingHistory/Detail/Index';
 import Transaction from './Pages/Dashboard/Transaction/Index';
 import TransactionList from './Pages/Dashboard/Transaction/List/Index';
 import TransactionDetail from './Pages/Dashboard/Transaction/Detail/Index';
-import Setting from './Pages/Dashboard/Games/Setting/Setting';
+import Played from './Pages/Dashboard/Games/Played/Played';
+import Settings from './Pages/Dashboard/Games/Settings/Settings';
 import Game from './Pages/Dashboard/Games/Game/Game';
 import './App.css';
-import Played from './Pages/Dashboard/Games/Played/Played';
-
+import Notfound from './Pages/NotFound/Notfound';
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path='/'>
-          <Route path='login' index element={<Login />} />
-          <Route path='dashboard' element={<Dashboard />}>
-            <Route index element={<Layout />} />
-            <Route path='admin' element={<Admin />} />
-            <Route path='bundles' element={<Bundles />}>
-              <Route index element={<BundleList />} />
-              <Route path=':bundleId' element={<BundleDetail />} />
-            </Route>
-            <Route path='items' element={<Items />}>
-              <Route index element={<ItemList />} />
-              <Route path=':itemId' element={<ItemDetail />} />
-            </Route>
-            <Route path='transaction' element={<Transaction />}>
-              <Route index element={<TransactionList />} />
-              <Route path=':transactId' element={<TransactionDetail />} />
-            </Route>
-            <Route path='users' element={<Users />} />
-            <Route path='shopping-history' element={<ShoppingHistory />}>
-              <Route index element={<SHList />} />
-              <Route path=':historyId' element={<SHDetail />} />
-            </Route>
-            <Route path='support' element={<Support />} />
-            <Route path='games' element={<Games />}>
-              <Route index element={<GameList />} />
-              <Route path='settings' element={<Game />}>
-                <Route index  />
-                <Route path=':gameName' element={<Setting />}/>
-              </Route>
-              <Route path='played'>
-                <Route path=':gameName' element={<Played/>}/>
-              </Route>
-            </Route>
+    <Routes>
+      <Route path='/'>
+        <Route path='login' index element={<Login />} />
+        <Route path='dashboard' element={<Dashboard />}>
+          <Route index element={<Layout />} />
+          <Route path='admin' element={<Admin />} />
+          <Route path='bundles' element={<Bundles />}>
+            <Route index element={<BundleList />} />
+            <Route path=':bundleId' element={<BundleDetail />} />
           </Route>
+          <Route path='items' element={<Items />}>
+            <Route index element={<ItemList />} />
+            <Route path=':itemId' element={<ItemDetail />} />
+          </Route>
+          <Route path='transaction' element={<Transaction />}>
+            <Route index element={<TransactionList />} />
+            <Route path=':transactId' element={<TransactionDetail />} />
+          </Route>
+          <Route path='users' element={<Users />} />
+          <Route path='shopping-history' element={<ShoppingHistory />}>
+            <Route index element={<SHList />} />
+            <Route path=':historyId' element={<SHDetail />} />
+          </Route>
+          <Route path='support' element={<Support />} />
+          <Route path='games' element={<Games />}>
+            <Route index element={<GameList />} />
+          </Route>
+          <Route path='played/ludo' element={<Played/>}/>
+          <Route path='settings/ludo' element={<Settings/>}/>
         </Route>
-      </Routes>
-    </BrowserRouter>
+      </Route>
+      <Route path='*' element={<Notfound />} />
+    </Routes>
   );
 }
 

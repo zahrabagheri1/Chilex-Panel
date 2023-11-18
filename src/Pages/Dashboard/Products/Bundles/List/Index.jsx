@@ -15,7 +15,16 @@ function Index() {
     const [modal, setModal] = useState(false);
     const [value, setValue] = useState();
     const navigate = useNavigate();
-    const [filters, setFilters] = useState({})
+    const [filters, setFilters] = useState({
+        bundleType: null,
+        sku: null,
+        bundleStatus: null,
+        priceStatus: null,
+        limit: null,
+        offset: null,
+        sortBy: null,
+        orderBy: null,
+    })
 
     // ${parameters.from === null ||  parameters.from === undefined? "" : "&RegisterDate.min=" + parameters.from}
     //admin-stuff/bundles-all?bundleType=0&sku=zahra&bundleStatus=0&priceStatus=1&limit=2&offset=1&sortBy=3&orderBy=1
@@ -42,7 +51,7 @@ function Index() {
                 setBundles(res.data.data)
             })
             .catch(err => console.log(err))
-    }, [])
+    }, [filters])
 
     const showDetailBandle = (id) => {
         navigate(`${id}`)

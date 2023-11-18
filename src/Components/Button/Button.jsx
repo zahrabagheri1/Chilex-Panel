@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 function Button(props) {
   const handler = (e) => {
-    props.handler()
+    // props.handler()
   }
 
   return (

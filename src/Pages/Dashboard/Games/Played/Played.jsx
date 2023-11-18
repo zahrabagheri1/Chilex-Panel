@@ -8,23 +8,26 @@ import Input from '../../../../Components/Input/Input';
 import SelectOption from '../../../../Components/SelectOption/SelectOption';
 
 const props = {
-    gameName: 'uno',
+    gameName: 'ludo',
 }
 
 function Played() {
     const [data, setData] = useState()
     const [filter, setFilter] = useState({
-        offset: 2,
-        orderBy: 0,
+        startDate: null,
+        endDate: null,
+        limit: null,
+        offset: 1,
+        orderBy: 1
     })
 
     useEffect(() => {
         getPlayed()
-    }, [])
+    }, [filter])
 
     //dixo.diacostudios.com/games/played/uno?startDate=2023-05-12&endDate=2023-10-12&limit=10&offset=2&orderBy=1
     const getPlayed = () => {
-        axios.get(`/games/played/${props.gameName}?${filter.startDate === null || filter.startDate === undefined ? '' : '' + filter.startDate + '&'}${filter.endDate === null || filter.endDate === undefined ? '' : '' + filter.endDate + '&'}${filter.limit === null || filter.limit === undefined ? '' : '' + filter.limit + '&'}'offset='${filter.offset}'&orderBy='${filter.orderBy}`)
+        axios.get(`/games/played/${props.gameName}?${filter.startDate === null || filter.startDate === undefined ? '' : 'startDate=' + filter.startDate + '&'}${filter.endDate === null || filter.endDate === undefined ? '' : 'endDate=' + filter.endDate + '&'}${filter.limit === null || filter.limit === undefined ? '' : 'limit=' + filter.limit + '&'}${'offset=' + filter.offset + '&orderBy=' + filter.orderBy}`)
             .then(
                 res => {
                     setData(res.data.data)
@@ -62,11 +65,11 @@ function Played() {
                 </div>
 
                 <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                    <Input classname='controlinput' value={'2'} name={'offset'} type={'number'} title={"offset"} placeholder={'offset'} changeInputValue={updateInputData} />
+                    <Input classname='controlinput' name={'offset'} type={'number'} title={"offset"} placeholder={'offset'} changeInputValue={updateInputData} />
                 </div>
 
                 <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                    <SelectOption classnameBox='control' value={0} name={'orderBy'} defaultValue={'orderBy'} type={'status'} changeOptinValue={updateOptionData}
+                    <SelectOption classnameBox='control' name={'orderBy'} defaultValue={'orderBy'} type={'status'} changeOptinValue={updateOptionData}
                         data={[
                             { id: 0, status: 'DESC' },
                             { id: 1, status: 'ASC' },
