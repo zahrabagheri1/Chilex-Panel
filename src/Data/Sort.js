@@ -86,6 +86,30 @@ export const sortHistory =[
     { name: 'username', status: true },
     { name: 'transactionAmount', status: true },
     { name: 'gatewayType', status: true },
-
 ]
 
+export const sortGamePlayed = [
+    {name: 'id' , status: true},
+    {name: 'matchId' , status: true},
+    {name: 'matchRank' , status: true},
+    {name: 'settingId' , status: true},
+    {name: 'game' , status: true},
+    {name: 'processId' , status: true},
+    {name: 'finished' , status: true},
+    {name: 'createdAt' , status: true},
+    {name: 'updatedAt' , status: true}
+]
+
+export const sortGameSettings = [
+    {name: 'id' , status: true},
+    {name: 'name' , status: true},
+    {name: 'active' , status: true},
+    {name: 'game' , status: true},
+    {name: 'playersLength' , status: true},
+    {name: 'type' , status: true},
+    {name: 'description' , status: true},
+    {name: 'level' , status: true},
+    {name: 'botLevel' , status: true},
+    {name: 'createdAt' , status: true},
+    {name: 'updatedAt' , status: true}
+]

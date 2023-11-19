@@ -7,7 +7,6 @@ function Table(props) {
         props.showDetail(id)
     }
 
-
     return (
         <div className='showData'>
             {

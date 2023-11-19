@@ -1,0 +1,54 @@
+.settingCard {
+    height: auto;
+    width: calc(100% - 60px);
+    padding: 20px 30px;
+    background: rgba(255, 255, 255, 0.44);
+    border-radius: 8px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(7.2px);
+    -webkit-backdrop-filter: blur(7.2px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+
+    .settingStatus {
+        display: flex;
+        justify-content: end;
+        .settingdiactive {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: red;
+            .settingActive{
+                background-color: green;
+
+            }
+        }
+
+    }
+
+    .settingName {
+        font-size: 24px;
+        font-weight: 900;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+    .settingDetail{
+
+
+        .cupName{
+            width: 120px;
+            height: 30px;
+            border-radius: 8px;
+            background-color: #cd7f32;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+    }
+}

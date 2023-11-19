@@ -22,6 +22,7 @@ function Input(props) {
   const [value, setValue] = useState(props.value)
   const [eye, setEye] = useState(false)
 
+  console.log(props)
   const icons = {
     HiUser: <HiUser />,
     HiOutlineUser: <HiOutlineUser />,

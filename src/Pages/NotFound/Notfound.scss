@@ -1,0 +1,35 @@
+.notFound {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+
+    .notFound-title {
+        font-size: 350px;
+        font-weight: 900;
+        font-family: serif;
+        color: rgb(29, 123, 112);
+        text-shadow: 20px 19px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .notFound-subtitle {
+        font-size: 32px;
+        font-family: serif;
+    }
+
+    .notFound-message {
+        font-size: 18px;
+        color: #888;
+        font-family: serif;
+    }
+
+    .notFound-button {
+        width: 80px;
+        height: 30px;
+        border: none;
+        background-color: rgb(41, 97, 123);
+        color: #ffffff;
+        border-radius: 8px;
+    }
+
+}
