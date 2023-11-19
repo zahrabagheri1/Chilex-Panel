@@ -35,7 +35,9 @@ function GameCard(props) {
 
   
   const showGameDetail = (e) => {
-    props.showGame(e.target.name)
+    if(activity === true ){
+      props.showGame(e.target.name)
+    }
   }
 
   return (

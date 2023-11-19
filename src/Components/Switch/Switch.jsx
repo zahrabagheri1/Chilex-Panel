@@ -26,7 +26,7 @@ function Switch(props) {
       <div className={`header-title ${props.disabledDiv ? 'disabledTitle': ''}`}>
         <div>{props.title}</div>
       </div>
-      <label className='switch'>
+      <label className={`switch ${props.disabled === true ? 'switchDisabled':'switchAbled'}`}>
         <input
           type='checkbox'
           checked={value}

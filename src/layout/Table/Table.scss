@@ -38,7 +38,9 @@
                 text-align: center;
                 padding: 10px 10px;
                 cursor: pointer;
-
+                .tdbody{
+                    text-overflow: ellipsis;
+                }
                 &:nth-child(2n) {
                     background-color: rgb(248, 219, 255);
                 }

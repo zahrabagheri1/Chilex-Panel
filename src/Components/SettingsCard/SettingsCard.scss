@@ -15,32 +15,53 @@
 
     .settingStatus {
         display: flex;
-        justify-content: end;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+
         .settingdiactive {
             width: 12px;
             height: 12px;
             border-radius: 50%;
             background-color: red;
-            .settingActive{
+
+            &.settingActive {
                 background-color: green;
 
             }
         }
 
+        .settingName {
+            font-size: 24px;
+            font-weight: 900;
+            margin-bottom: 10px;
+            text-transform: capitalize;
+        }
+
     }
 
-    .settingName {
-        font-size: 24px;
-        font-weight: 900;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 10px;
-    }
-    .settingDetail{
 
+    .settingDetail {
 
-        .cupName{
+        .disabled {
+            border: none;
+            outline: none;
+            box-shadow: none;
+            background: transparent;
+            font-size: 16px;
+            font-weight: bold;
+
+            &:focus,
+            &:focus-visible,
+            &:active,
+            &::after,
+            &:hover {
+                border: none !important;
+                box-shadow: none !important;
+                outline: none;
+            }
+        }
+
+        .cupName {
             width: 120px;
             height: 30px;
             border-radius: 8px;
