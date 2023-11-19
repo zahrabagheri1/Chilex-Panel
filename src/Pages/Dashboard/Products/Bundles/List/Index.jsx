@@ -13,7 +13,6 @@ import SelectOption from '../../../../../Components/SelectOption/SelectOption';
 function Index() {
     const [bundles, setBundles] = useState([]);
     const [modal, setModal] = useState(false);
-    const [value, setValue] = useState();
     const navigate = useNavigate();
     const [filters, setFilters] = useState({
         bundleType: null,
@@ -37,21 +36,12 @@ function Index() {
         // console.log("filterrrrrrrrrrrr", filters)
         axios.get(`/admin-stuff/bundles-all?${filters.bundleType === null || filters.bundleType === undefined ? '' : 'bundleType=' + filters.bundleType + '&'}${filters.sku === null || filters.sku === undefined ? '' : 'sku=' + filters.sku + '&'}${filters.bundleStatus === null || filters.bundleStatus === undefined ? '' : 'bundleStatus=' + filters.bundleStatus + '&'}${filters.priceStatus === null || filters.priceStatus === undefined ? '' : 'priceStatus=' + filters.priceStatus + '&'}${filters.limit === null || filters.limit === undefined ? '' : 'limit=' + filters.limit + '&'}${filters.offset === null || filters.offset === undefined ? '' : 'offset=' + filters.offset + '&'}${filters.sortBy === null || filters.sortBy === undefined ? '' : 'sortBy=' + filters.sortBy + '&'}${filters.orderBy === null || filters.orderBy === undefined ? '' : 'orderBy=' + filters.orderBy}`)
             .then(
-                res => console.log(res.data)
+                res => setBundles(res.data.data)
             )
             .catch(
                 err => console.log(err)
             )
     }
-
-
-    useEffect(() => {
-        axios.get('/admin-stuff/bundles-all', { headers: { 'Cache-Control': 'no-cache' } })
-            .then((res) => {
-                setBundles(res.data.data)
-            })
-            .catch(err => console.log(err))
-    }, [filters])
 
     const showDetailBandle = (id) => {
         navigate(`${id}`)
@@ -78,7 +68,7 @@ function Index() {
             <div className='top'>
                 <div className='filter row'>
                     <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <SelectOption classnameBox='control' value={value} name={'bundleType'} defaultValue={'bundleType'} type={'status'} changeOptinValue={updateOptionData}
+                        <SelectOption classnameBox='control' name={'bundleType'} defaultValue={'bundleType'} type={'status'} changeOptinValue={updateOptionData}
                             data={[
                                 { id: 0, status: 'Gem bundle' },
                                 { id: 1, status: 'Coin bundle' },
@@ -86,10 +76,10 @@ function Index() {
                         />
                     </div>
                     <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <Input classname='controlinput' name={'sku'} value={value} type={'text'} title={"sku"} placeholder={'sku'} changeInputValue={updateInputData} />
+                        <Input classname='controlinput' name={'sku'} type={'text'} title={"sku"} placeholder={'sku'} changeInputValue={updateInputData} />
                     </div>
                     <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <SelectOption classnameBox='control' value={value} name={'bundleStatus'} defaultValue={'bundleStatus'} type={'status'} changeOptinValue={updateOptionData}
+                        <SelectOption classnameBox='control' name={'bundleStatus'} defaultValue={'bundleStatus'} type={'status'} changeOptinValue={updateOptionData}
                             data={[
                                 { id: 0, status: 'Active' },
                                 { id: 1, status: 'Deactive' },
@@ -97,7 +87,7 @@ function Index() {
                         />
                     </div>
                     <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <SelectOption classnameBox='control' value={value} name={'priceStatus'} defaultValue={'priceStatus'} type={'status'} changeOptinValue={updateOptionData}
+                        <SelectOption classnameBox='control' name={'priceStatus'} defaultValue={'priceStatus'} type={'status'} changeOptinValue={updateOptionData}
                             data={[
                                 { id: 0, status: 'Active' },
                                 { id: 1, status: 'Deactive' },
@@ -105,13 +95,13 @@ function Index() {
                         />
                     </div>
                     <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <Input classname='controlinput' value={value} name={'limit'} type={'number'} title={"limit"} placeholder={'limit'} changeInputValue={updateInputData} />
+                        <Input classname='controlinput' name={'limit'} type={'number'} title={"limit"} placeholder={'limit'} changeInputValue={updateInputData} />
                     </div>
                     <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <Input classname='controlinput' value={value} name={'offset'} type={'number'} title={"offset"} placeholder={'offset'} changeInputValue={updateInputData} />
+                        <Input classname='controlinput' name={'offset'} type={'number'} title={"offset"} placeholder={'offset'} changeInputValue={updateInputData} />
                     </div>
                     <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <SelectOption classnameBox='control' value={value} name={'sortBy'} defaultValue={'createdAt'} type={'status'} changeOptinValue={updateOptionData}
+                        <SelectOption classnameBox='control' name={'sortBy'} defaultValue={'createdAt'} type={'status'} changeOptinValue={updateOptionData}
                             data={[
                                 { id: 0, status: 'createdAt' },
                                 { id: 1, status: 'updatedAt' },
@@ -123,7 +113,7 @@ function Index() {
                         />
                     </div>
                     <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <SelectOption classnameBox='control' value={value} name={'orderBy'} defaultValue={'orderBy'} type={'status'} changeOptinValue={updateOptionData}
+                        <SelectOption classnameBox='control' name={'orderBy'} defaultValue={'orderBy'} type={'status'} changeOptinValue={updateOptionData}
                             data={[
                                 { id: 0, status: 'DESC' },
                                 { id: 1, status: 'ASC' },
