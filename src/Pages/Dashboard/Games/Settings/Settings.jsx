@@ -28,20 +28,22 @@ function Settings() {
     )
   }
 
-  const hundelOpenModal =()=>{
+  const hundelOpenModal = () => {
 
   }
-  
+
   return (
     <div className='settings'>
-      <div className='addBundle' onClick={hundelOpenModal}>
-        <HiPlus className='icon' />
+      <div className="addBox">
+        <div className='addSetting' onClick={hundelOpenModal}>
+          <HiPlus />
+        </div>
       </div>
       <div className="row">
         {
-          [...Array(3)].map(card => (
+          data?.map(card => (
             <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <SettingsCard />
+              <SettingsCard data={card}/>
             </div>
           ))
         }

@@ -2,7 +2,9 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    position: relative;
     gap: 8px;
+    z-index: 100;
 
     .optionTitleBox{
         display: flex;
@@ -85,7 +87,7 @@
             align-items: center;
             top: 34px;
             background-color: #918ff4;
-            z-index: 15;
+            z-index: 100;
             margin-top: 5px;
             box-shadow: 0 5px 10px 0 rgba(152, 152, 152, 0.6);
             // transform: scaleY(0);

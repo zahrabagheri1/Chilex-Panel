@@ -18,7 +18,7 @@
     "sort-by": "^1.2.0",
     "web-vitals": "^2.1.4"
   },
-  "proxy": "https://dixo.diacostudios.com/",
+  "proxy": "https://dixo.diacostudios.com",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
