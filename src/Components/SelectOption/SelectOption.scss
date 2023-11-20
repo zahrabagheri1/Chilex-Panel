@@ -2,7 +2,9 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    position: relative;
     gap: 8px;
+    z-index: 100;
 
     .optionTitleBox{
         display: flex;
@@ -11,6 +13,7 @@
             font-size: 14px;
             color: rgba(0, 0, 0, 0.506);
             font-weight: 700;
+            text-transform: capitalize;
         }
     
         .shouldfill{
@@ -30,6 +33,20 @@
         flex-direction: column;
         font-family: sans-serif;
 
+        .btnTitleRO{
+            width: 100%;
+            height: 32px;
+            display: flex;
+            position: relative;
+            color: #050505;
+            font-size: 16px;
+            font-weight: bold;
+            gap: 10px;
+            text-transform: capitalize;
+            align-items: center;
+
+        }
+
         .btnTitle {
             width: 100%;
             height: 32px;
@@ -42,9 +59,9 @@
             background-color: #fff;
             border: 1px solid rgb(0, 0, 0);
             font-size: 12px;
-            text-transform: uppercase;
             transition: .3s;
             gap: 10px;
+            text-transform: capitalize;
 
             &:hover {
                 color: #000000;
@@ -70,7 +87,7 @@
             align-items: center;
             top: 34px;
             background-color: #918ff4;
-            z-index: 6;
+            z-index: 100;
             margin-top: 5px;
             box-shadow: 0 5px 10px 0 rgba(152, 152, 152, 0.6);
             // transform: scaleY(0);

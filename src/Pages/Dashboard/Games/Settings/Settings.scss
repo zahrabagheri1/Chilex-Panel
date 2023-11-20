@@ -1,4 +1,4 @@
-.settings{
+.settings {
     width: 90%;
     margin: auto;
     display: flex;
@@ -7,5 +7,26 @@
     padding-top: 20px;
     gap: 20px;
 
-    
+    .addBox {
+        display: flex;
+        justify-content: end;
+        .addSetting {
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.44);
+            border-radius: 8px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(7.2px);
+            -webkit-backdrop-filter: blur(7.2px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            position: fixed;
+            z-index: 12;
+        }
+    }
+
+
 }

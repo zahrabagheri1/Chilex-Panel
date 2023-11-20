@@ -24,6 +24,7 @@ import Settings from './Pages/Dashboard/Games/Settings/Settings';
 import Game from './Pages/Dashboard/Games/Game/Game';
 import './App.css';
 import Notfound from './Pages/NotFound/Notfound';
+import Resources from './Pages/Dashboard/Games/Resources/Resources';
 function App() {
   return (
     <Routes>
@@ -55,6 +56,7 @@ function App() {
           </Route>
           <Route path='played/ludo' element={<Played/>}/>
           <Route path='settings/ludo' element={<Settings/>}/>
+          <Route path='resources/:settingId' element={<Resources/>}/>
         </Route>
       </Route>
       <Route path='*' element={<Notfound />} />

@@ -193,7 +193,7 @@ function Index() {
                                                 <div className='data-title'>{value}</div>
                                             </div>
                                             :
-                                            <Input inputclassname={edit === false ? 'active' : ''} name={key} title={key} value={value} type={key === 'amount' ? 'number' : 'text'} readOnly={edit === true ? false : true} changeInputValue={changeValueInput} />
+                                            <Input inputclassname={edit === false ? 'disabled' : ''} name={key} title={key} value={value} type={key === 'amount' ? 'number' : 'text'} readOnly={edit === true ? false : true} changeInputValue={changeValueInput} />
                                 }
                             </div>
                     ))

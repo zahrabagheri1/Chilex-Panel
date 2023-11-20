@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Input.scss'
+import './Input.scss';
 import { HiUser, HiOutlineUser, HiMiniMagnifyingGlass, HiOutlineEye, HiLockClosed, HiOutlineEyeSlash, HiMiniEyeSlash, HiMiniEye } from "react-icons/hi2";
 
 // const props = {
@@ -22,7 +22,7 @@ function Input(props) {
   const [value, setValue] = useState(props.value)
   const [eye, setEye] = useState(false)
 
-  console.log(props)
+
   const icons = {
     HiUser: <HiUser />,
     HiOutlineUser: <HiOutlineUser />,
@@ -41,7 +41,7 @@ function Input(props) {
 
   const changeInputHandler = (e) => {
     setValue(e.target.value)
-    props.changeInputValue(e, props.id)
+    // props.changeInputValue(e, props.id)
   }
 
 

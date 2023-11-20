@@ -19,9 +19,8 @@ import { HiOutlineChevronDown } from "react-icons/hi2";
 
 function SelectOption(props) {
   const data = props.data;
-  const [changeTitle, setChangeTitle] = useState(null);
+  const [changeTitle, setChangeTitle] = useState(props.value);
   const [click, setClick] = useState(false);
-  const [value, setValue] = useState(props.value);
 
   const clickHandler = (e) => {
     setClick(!click)
@@ -45,23 +44,43 @@ function SelectOption(props) {
       <div className="optionTitleBox">
         <div className='title'>{props.defaultValue}</div>
         {
-          props.important === true ? 
-          <div className="shouldfill"></div>
-          :
-          ''
+          props.important === true ?
+            <div className="shouldfill"></div>
+            :
+            ''
         }
       </div>
-      <div className={`btn ${props.classname}`} >
-        <div className='btnTitle' onClick={clickHandler} >
-          {changeTitle === null ? props.defaultValue : changeTitle}
-          <HiOutlineChevronDown className='chevronDown' style={{ transform: (click === true ? "rotate(180deg)" : 'rotate(0)') }} />
-        </div>
-        <div className='box' style={{ display: (click === true ? "flex" : 'none') }}>
-          {data?.map((item) => (
-            <div className='option' value={item.id} onClick={() => changeTitleHandler(item[props.type], item.id)}>{item[props.type]}</div>
-          ))}
-        </div>
-      </div>
+      {
+        props.readOnly === false ?
+          <div className={`btn ${props.classname}`} >
+            <div className='btnTitle' onClick={clickHandler} >
+              {
+                changeTitle === null ?
+                  typeof props.defaultValue === 'boolean' ?
+                    props.data.map(item => (
+                      item.id === props.defaultValue?
+                      'dsfsd':''
+                    ))
+                    :
+                    ''
+                  :
+                  changeTitle
+              }
+              <HiOutlineChevronDown className='chevronDown' style={{ transform: (click === true ? "rotate(180deg)" : 'rotate(0)') }} />
+            </div>
+            <div className='box' style={{ display: (click === true ? "flex" : 'none') }}>
+              {data?.map((item) => (
+                <div className='option' value={item.id} onClick={() => changeTitleHandler(item[props.type], item.id)}>{item[props.type]}</div>
+              ))}
+            </div>
+          </div>
+          :
+          <div className={`btn ${props.classname}`} >
+            <div className='btnTitleRO' onClick={clickHandler} >
+              {changeTitle === null ? props.defaultValue : changeTitle}
+            </div>
+          </div>
+      }
     </div>
   );
 }

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { HiPlus } from "react-icons/hi2";
 import Button from '../../../../Components/Button/Button';
-import './Settings.scss';
-import axios from 'axios';
 import SettingsCard from '../../../../Components/SettingsCard/SettingsCard';
+import axios from 'axios';
+import './Settings.scss';
 
 const props = {
   gameName: 'ludo'
@@ -27,13 +28,22 @@ function Settings() {
     )
   }
 
+  const hundelOpenModal = () => {
+
+  }
+
   return (
     <div className='settings'>
+      <div className="addBox">
+        <div className='addSetting' onClick={hundelOpenModal}>
+          <HiPlus />
+        </div>
+      </div>
       <div className="row">
         {
-          [...Array(3)].map(card => (
-            <div className="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-12">
-              <SettingsCard />
+          data?.map(card => (
+            <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <SettingsCard data={card}/>
             </div>
           ))
         }

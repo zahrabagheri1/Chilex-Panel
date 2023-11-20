@@ -1,6 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './SettingsCard.scss';
 import Input from '../Input/Input';
+import { HiPencilSquare } from "react-icons/hi2";
+import ButtonActionGreen from '../../Components/ButtonActionGreen/ButtonActionGreen';
+import Switch from '../Switch/Switch';
+import SelectOption from '../SelectOption/SelectOption';
+import axios from 'axios';
+import Button from '../Button/Button';
+
 
 const props = {
     id: '1',
@@ -16,32 +23,111 @@ const props = {
     updatedAt: '2023-11-16T09:07:02.831Z'
 }
 
-// name	string
-// active	boolean
-// game	string
-// playersLength	number
-// description	string
-// botLevel	number
+const editable = [
+    { name: 'name', status: true, select: false },
+    { name: 'active', status: true, select: false },
+    { name: 'game', status: false, select: false },
+    { name: 'playersLength', status: true, select: true },
+    { name: 'description', status: true, select: false },
+    { name: 'botLevel', status: true, select: true },
+    { name: 'id', status: false, select: false },
+    { name: 'type', status: false, select: false },
+    { name: 'level', status: false, select: false },
+    { name: 'createdAt', status: false, select: false },
+    { name: 'updatedAt', status: false, select: false },
 
-function SettingsCard() {
+]
+
+function SettingsCard(props) {
+    const [edit, setEdit] = useState(false)
+    const [data, setData] = useState()
+
+    const id = '100'
+    const editDetting = () => {
+        axios.patch(`/games/setting/${id}`).then(
+            res => {
+                setData(res.data)
+                console.log(res.data)
+            }
+        ).catch(
+            err => console.log(err)
+        )
+    }
+
+    useEffect(()=>{
+        editDetting()
+    },[])
+
+    
+    const sendAndEditData = () => {
+        setEdit(!edit)
+    }
+
+    const sendAndResourcesData = () => {
+
+    }
+
+    const changeValueInput = (e) => {
+        console.log(e);
+    }
+
+    const updateOptionData = (e) => {
+        console.log(e);
+
+    }
+
+    const switchHandlerPrice = (boolean, id) => {
+        console.log("boolean,id", boolean, id);
+    };
+
+    const botLevel = [{ id: 0, name: 'Easy' }, { id: 1, name: 'Medium' }, { id: 2, name: 'Hard' }]
+    const playersLength = [{ id: 0, name: '2 Player' }, { id: 1, name: '3 Player' }, { id: 2, name: '4 Player' }]
+
     return (
         <div className='settingCard'>
-            <div className="">
-                <div className='settingStatus'>
-                    <div className="settingdiactive"></div>
-                </div>
-                <div className='settingName'>{props.game}</div>
+            <div className='settingName'>{props.data.game}</div>
+    
+
+            <div className='settingDetail row'>
                 {
-                    Object.entries(props).map(([key, value], index) => (
-
-                        <div className='settingDetail'>
-                            <div className="cupName">{props.name}</div>
-                            <Input name={'name'} title={'name'} type={props.name === 'amount' ? 'number' : 'text'} />
-
-                        </div>
-
+                    Object.entries(props.data).map(([key, value], index) => (
+                        editable.map((item) => (
+                            item.name === key ?
+                                <div key={index} className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                    {
+                                        typeof value === 'boolean' ?
+                                            <Switch id={index} title={key} defaultChecked={value} disabled={edit === false ? true : false} onChange={switchHandlerPrice} />
+                                            :
+                                            item.status === false ?
+                                                < Input type={typeof value === 'number' ? 'number' : 'text'} inputclassname={'disabled'} name={key} value={value} title={key} readOnly={true} changeInputValue={changeValueInput} />
+                                                :
+                                                item.select === false ?
+                                                    < Input type={typeof value === 'number' ? 'number' : 'text'} inputclassname={edit === false ? 'disabled' : ''} name={key} value={value} title={key} readOnly={edit === true ? false : true} changeInputValue={changeValueInput} />
+                                                    :
+                                                    item.name === 'botLevel' ?
+                                                        <SelectOption name={key} readOnly={edit === false ? true : false} defaultValue={key} value={value} type={'name'} data={botLevel} changeOptinValue={updateOptionData} />
+                                                        :
+                                                        item.name === 'playersLength' ?
+                                                            <SelectOption name={key} readOnly={edit === false ? true : false} defaultValue={key} value={value} type={'name'} data={playersLength} changeOptinValue={updateOptionData} />
+                                                            :
+                                                            ''
+                                    }
+                                </div>
+                                :
+                                ''
+                        ))
                     ))
                 }
+
+            </div>
+
+            <div className="row">
+                <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                    <div className='update'><ButtonActionGreen title={'Edit'} handler={sendAndEditData} /></div>
+                </div>
+                <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                    <div className='update'><Button title={'resources'} handler={sendAndResourcesData} /></div>
+                </div>
             </div>
         </div>
 

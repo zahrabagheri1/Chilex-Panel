@@ -9,46 +9,39 @@
     -webkit-backdrop-filter: blur(7.2px);
     border: 1px solid rgba(255, 255, 255, 0.4);
     position: relative;
-    z-index: 1;
     display: flex;
     flex-direction: column;
+    gap: 20px;
 
-    .settingStatus {
-        display: flex;
-        justify-content: end;
-        .settingdiactive {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: red;
-            .settingActive{
-                background-color: green;
 
-            }
+        .settingName {
+            font-size: 24px;
+            font-weight: 900;
+            margin-bottom: 10px;
+            text-transform: capitalize;
         }
 
-    }
-
-    .settingName {
-        font-size: 24px;
-        font-weight: 900;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 10px;
-    }
-    .settingDetail{
+    
 
 
-        .cupName{
-            width: 120px;
-            height: 30px;
-            border-radius: 8px;
-            background-color: #cd7f32;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+    .settingDetail {
+        .disabled {
+            border: none;
+            outline: none;
+            box-shadow: none;
+            background: transparent;
+            font-size: 16px;
+            font-weight: bold;
 
+            &:focus,
+            &:focus-visible,
+            &:active,
+            &::after,
+            &:hover {
+                border: none !important;
+                box-shadow: none !important;
+                outline: none;
+            }
         }
     }
 }
