@@ -16,8 +16,8 @@ function Resources(props) {
         { id: 2, name: 'Cup' },
         { id: 3, name: 'XP' }
     ]
-    
-    const sendAndEditData = () => {
+
+    const sendAndEditData = (index) => {
         setEdit(!edit)
     }
 
@@ -59,7 +59,7 @@ function Resources(props) {
                         }
                     </div>
                     <div className="resourceBtn col-xl-1 col-lg-1 col-md-1 col-sm-1 col-xs-1">
-                        <ButtonActionGreen title={'Edit'} handler={sendAndEditData} />
+                        <ButtonActionGreen title={'Edit'} handler={() => sendAndEditData(index)} />
                         <ButtonActionRed title={'Delete'} handler={deleteData} />
                     </div>
                 </div>
