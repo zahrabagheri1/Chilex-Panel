@@ -5,9 +5,15 @@ import Input from '../../../Components/Input/Input';
 import SelectOption from '../../../Components/SelectOption/SelectOption';
 import ButtonActionGreen from '../../../Components/ButtonActionGreen/ButtonActionGreen';
 
+const settingId = 2
+
+
 function ModalPrizes() {
   const [value, setValue] = useState()
-  
+  const [addEntry, setAddEntry] = useState({
+    settingId: settingId
+  })
+
   const resourceType = [
     { id: 0, name: 'Gem' },
     { id: 1, name: 'coin' },
@@ -15,25 +21,32 @@ function ModalPrizes() {
     { id: 3, name: 'xp' },
   ]
 
-  
-  const settingId = '1'
 
-  const changeValueInput = () => {
 
+
+  const changeValueInput = (e) => {
+    setAddEntry(prev => ({ ...prev, [e.target.name]: parseInt(e.target.value) }))
   }
 
-  const updateOptionData = () => {
+  const updateOptionData = (name, id) => {
+    setAddEntry(prev => ({ ...prev, [name]: parseInt(id) }))
+  }
 
+  console.log(addEntry)
+
+  const sendAndEditData = () => {
+    axios.get(`/games/setting/prize`, addEntry)
+      .then(
+        res => {
+          console.log(res)
+        }
+      ).catch(
+        err => console.log(err)
+      )
   }
 
   useEffect(() => {
-    axios.get(`/games/setting/prize`).then(
-      res => {
-        console.log(res)
-      }
-    ).catch(
-      err => console.log(err)
-    )
+   
   }, [])
 
   return (
@@ -49,7 +62,7 @@ function ModalPrizes() {
             <Input type={'number'} name={'amount'} value={value} title={'amount'} readOnly={false} changeInputValue={changeValueInput} />
           </div>
           <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <SelectOption name={'type'} readOnly={false} defaultValue={'key'} value={1} type={'name'} data={resourceType} changeOptinValue={updateOptionData} />
+            <SelectOption name={'type'} readOnly={false} defaultValue={'type'} value={1} type={'name'} data={resourceType} changeOptinValue={updateOptionData} />
           </div>
           <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-6">
             <Input type={'number'} name={'rank'} value={value} title={'rank'} readOnly={false} changeInputValue={changeValueInput} />
@@ -57,7 +70,7 @@ function ModalPrizes() {
         </div>
 
         <div className="resourceBtn">
-          <ButtonActionGreen title={'Add Entry'} handler={() => sendAndEditData(index)} />
+          <ButtonActionGreen title={'Add Entry'} handler={sendAndEditData} />
         </div>
       </div>
     </div >

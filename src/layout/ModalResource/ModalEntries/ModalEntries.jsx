@@ -5,12 +5,15 @@ import Input from '../../../Components/Input/Input';
 import SelectOption from '../../../Components/SelectOption/SelectOption';
 import ButtonActionGreen from '../../../Components/ButtonActionGreen/ButtonActionGreen';
 
-function ModalEntries() {
+  const settingId = 5;
 
+function ModalEntries(props) {
   const [value, setValue] = useState()
-  // settingId*	number
-  // amount*	number
-  // type*	number
+  const [addEntry, setAddEntry] = useState({
+    settingId: settingId
+  })
+
+
   const resourceType = [
     { id: 0, name: 'Gem' },
     { id: 1, name: 'coin' },
@@ -19,46 +22,52 @@ function ModalEntries() {
   ]
 
 
-  const settingId = '1'
 
-  const changeValueInput = () => {
-
+  const changeValueInput = (e) => {
+    setAddEntry(prev => ({ ...prev, [e.target.name]: parseInt(e.target.value) }))
   }
 
-  const updateOptionData = () => {
-
+  const updateOptionData = (name, id) => {
+    setAddEntry(prev => ({ ...prev, [name]: parseInt(id) }))
   }
 
+  console.log(addEntry)
+
+
+  const sendAndEditData = () => {
+    axios.post(`/games/setting/entry`, addEntry)
+      .then(
+        res => {
+          console.log(res)
+        }
+      ).catch(
+        err => console.log(err)
+      )
+  }
 
   useEffect(() => {
-    axios.get(`/games/setting/entry`).then(
-      res => {
-        console.log(res)
-      }
-    ).catch(
-      err => console.log(err)
-    )
+    sendAndEditData()
   }, [])
 
   return (
-    <div className='modalEntries'>
+    <div className='modalEntries' onClick={props.mousedown}>
       <div className="modalEntriesMain">
         <div className="modalEntriesTitle">Add New Entry</div>
 
         <div className="row">
           <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <Input type={'number'} inputclassname={'disabled'} name={'settingId'} value={settingId} title={'settingId'} readOnly={true} changeInputValue={changeValueInput} />
+            <Input type={'number'} inputclassname={'disabled'} name={'settingId'} value={settingId} title={'settingId'} readOnly={true} changeInputValue={()=>changeValueInput(settingId)} />
           </div>
           <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <Input type={'number'} name={'amount'} value={value} title={'amount'} readOnly={false} changeInputValue={changeValueInput} />
+            <Input type={'number'} important={true} name={'amount'} title={'amount'} value={''} readOnly={false} changeInputValue={changeValueInput} />
           </div>
           <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <SelectOption name={'type'} readOnly={false} defaultValue={'key'} value={1} type={'name'} data={resourceType} changeOptinValue={updateOptionData} />
+            <SelectOption name={'type'} important={true} readOnly={false} defaultValue={'type'} type={'name'} data={resourceType} changeOptinValue={updateOptionData} />
           </div>
         </div>
 
         <div className="resourceBtn">
-          <ButtonActionGreen title={'Add Entry'} handler={() => sendAndEditData(index)} />
+          <ButtonActionGreen title={'Add Entry'} handler={sendAndEditData} />
         </div>
       </div>
     </div >

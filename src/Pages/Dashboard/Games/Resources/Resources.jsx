@@ -38,7 +38,7 @@ function Resources() {
     })
 
     const mouseOut = () => {
-        setOpenResource(null)
+        // setOpenResource(null)
     }
 
 
@@ -86,20 +86,18 @@ function Resources() {
                     </div>
                 }
 
-                <div onClick={mouseOut}>
-                    {openResource === 'requirment' ?
-                        <ModalRequirment />
+                {
+                    openResource === 'requirment' ?
+                        <ModalRequirment mousedown={mouseOut} />
                         :
                         openResource === 'entry' ?
-                            <ModalEntries />
+                            <ModalEntries mousedown={mouseOut} />
                             :
                             openResource === 'prize' ?
-                                <ModalPrizes />
+                                <ModalPrizes mousedown={mouseOut} />
                                 :
                                 ''
-                    }
-                </div>
-
+                }
             </div>
     );
 }
