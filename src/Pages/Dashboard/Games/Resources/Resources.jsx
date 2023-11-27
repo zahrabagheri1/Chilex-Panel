@@ -6,25 +6,27 @@ import Resource from '../../../../Components/Resource/Resource';
 import ModalRequirment from '../../../../layout/ModalResource/ModalRequirment/ModalRequirment';
 import ModalEntries from '../../../../layout/ModalResource/ModalEntries/ModalEntries';
 import ModalPrizes from '../../../../layout/ModalResource/ModalPrizes/ModalPrizes';
+    
+const settingId = 2
 
 function Resources() {
     const [data, setData] = useState()
     const [openResource, setOpenResource] = useState('')
 
-
-    const settingId = '2'
-
-    useEffect(() => {
+    const getResource = () => {
         axios.get(`/games/setting/resources/${settingId}`)
             .then(
                 res => {
                     setData(res.data)
-                    console.log(res.data)
                 }
             )
             .catch(
-                err => console.log(err)
+                err => console.log(err.message)
             )
+    }
+
+    useEffect(() => {
+        getResource()
     }, [])
 
     const addResource = (type => {
@@ -38,7 +40,7 @@ function Resources() {
     })
 
     const mouseOut = () => {
-        // setOpenResource(null)
+
     }
 
 
@@ -54,7 +56,7 @@ function Resources() {
                                 <HiPlus />
                             </div>
                         </div>
-                        <Resource data={data.requirements} />
+                        <Resource data={data.requirements} type={'requirements'} onchange={getResource}/>
                     </div>
                 }
 
@@ -68,7 +70,7 @@ function Resources() {
                                 <HiPlus />
                             </div>
                         </div>
-                        <Resource data={data.entries} />
+                        <Resource data={data.entries} type={'entries'} onchange={getResource}/>
                     </div>
                 }
 
@@ -82,19 +84,19 @@ function Resources() {
                                 <HiPlus />
                             </div>
                         </div>
-                        <Resource data={data.prizes} />
+                        <Resource data={data.prizes} type={'prizes'} onchange={getResource}/>
                     </div>
                 }
 
                 {
                     openResource === 'requirment' ?
-                        <ModalRequirment mousedown={mouseOut} />
+                        <ModalRequirment mousedown={mouseOut} onchange={getResource}/>
                         :
                         openResource === 'entry' ?
-                            <ModalEntries mousedown={mouseOut} />
+                            <ModalEntries mousedown={mouseOut} onchange={getResource}/>
                             :
                             openResource === 'prize' ?
-                                <ModalPrizes mousedown={mouseOut} />
+                                <ModalPrizes mousedown={mouseOut} onchange={getResource}/>
                                 :
                                 ''
                 }

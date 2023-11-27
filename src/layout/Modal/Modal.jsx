@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ButtonActionRed from '../../Components/ButtonActionRed/ButtonActionRed';
-import ButtonActionGreen from '../../Components/ButtonActionGreen/ButtonActionGreen';
+import ButtonActionBlue from '../../Components/ButtonActionBlue/ButtonActionBlue';
 import Input from '../../Components/Input/Input';
 import SelectOption from '../../Components/SelectOption/SelectOption';
 import './Modal.scss';
@@ -123,7 +123,7 @@ function Modal(props) {
           {
             props.type === 'bundle' ?
               <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
-                <SelectOption classnameBox={'control'} name={'stuffType'} important={true} defaultValue={'stuffType'} type={'status'} changeOptinValue={updateOptionData}
+                <SelectOption readOnly={false} name={'stuffType'} important={true} defaultValue={'stuffType'} type={'status'} changeOptinValue={updateOptionData}
                   data={[
                     { id: 0, status: 'Gem bundle' },
                     { id: 1, status: 'Coin bundle' }
@@ -151,7 +151,7 @@ function Modal(props) {
           </div>
 
           <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
-            <SelectOption classnameBox={'control'} name={'tier'} defaultValue={'tier'} type={'status'} changeOptinValue={updateOptionData}
+            <SelectOption readOnly={false} name={'tier'} defaultValue={'tier'} type={'status'} changeOptinValue={updateOptionData}
               data={[
                 { id: 0, status: 'DEFAULT' },
                 { id: 1, status: 'COMMON' },
@@ -167,7 +167,7 @@ function Modal(props) {
           </div>
 
           <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
-            <SelectOption classnameBox={'control'} name={'type'} defaultValue={'type'} type={'status'} changeOptinValue={updateOptionData}
+            <SelectOption readOnly={false} name={'type'} defaultValue={'type'} type={'status'} changeOptinValue={updateOptionData}
               data={[
                 { id: 0, status: 'CLOTHES' },
                 { id: 1, status: 'FACE' },
@@ -187,7 +187,7 @@ function Modal(props) {
           </div>
 
           <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
-            <SelectOption classnameBox={'control'} important={true} name={'category'} defaultValue={'category'} type={'status'} changeOptinValue={updateOptionData}
+            <SelectOption readOnly={false} important={true} name={'category'} defaultValue={'category'} type={'status'} changeOptinValue={updateOptionData}
               data={[
                 { id: 0, status: 'ELSE' },
                 { id: 1, status: 'GAME' },
@@ -197,7 +197,7 @@ function Modal(props) {
           </div>
 
           <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
-            <SelectOption classnameBox={'control'} name={'gameId'} defaultValue={'Game'} type={'status'} changeOptinValue={updateOptionData}
+            <SelectOption readOnly={false} name={'gameId'} defaultValue={'Game'} type={'status'} changeOptinValue={updateOptionData}
               data={[
                 { id: 0, status: 'Ludo' },
                 { id: 1, status: 'Uno' },
@@ -209,7 +209,7 @@ function Modal(props) {
           </div>
 
           <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
-            <SelectOption classnameBox={'control'} name={'status'} important={true} defaultValue={'Status'} type={'status'} changeOptinValue={updateOptionData}
+            <SelectOption readOnly={false} name={'status'} important={true} defaultValue={'Status'} type={'status'} changeOptinValue={updateOptionData}
               data={[
                 { id: 0, status: 'Active' },
                 { id: 1, status: 'Deactive' }
@@ -235,7 +235,7 @@ function Modal(props) {
           </div>
 
           <div className="acsseptbtn">
-            <ButtonActionGreen title={'Submit'} handler={handlerSubmit} />
+            <ButtonActionBlue title={'Submit'} handler={handlerSubmit} />
           </div>
         </div>
 

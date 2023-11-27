@@ -1,9 +1,13 @@
+@import "../../Assets/scss/mixin";
+@import "../../Assets/scss/variable";
+
 .dashbord {
     width: 100%;
     min-height: 100vh;
+    color: $fontColor;
 
     .layout1 {
-        background-color: #EFEEEE;
+        background-color: $bgColor;
         display: flex;
         flex-direction: column;
         height: 100vh;
@@ -12,27 +16,25 @@
 
         .outlet {
             position: relative;
-            // width: 95%;
-            // margin: 20px auto;
             min-height: calc(90vh - 20px);
             overflow: auto;
-            // border-radius: 30px;
             scrollbar-width: thin;
-            scrollbar-color: #9314FF #ffffff;
+            scrollbar-color: $Gray;
 
             &::-webkit-scrollbar {
                 width: 10px;
             }
 
             &::-webkit-scrollbar-track {
-                background: #6a67b671;
-                border-radius: 20px;
+                background: $Gray;
+                // border-radius: 20px 0 20px 0;
+                border-radius: 10px;
             }
 
             &::-webkit-scrollbar-thumb {
-                background-color: #7a1496;
+                background-color: $lightGray;
                 border-radius: 20px;
-                border: 2px outset #7e0ca8;
+                border: 2px outset $lighterGray;
             }
         }
 

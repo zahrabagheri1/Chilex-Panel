@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './SettingsCard.scss';
 import Input from '../Input/Input';
 import { HiPencilSquare } from "react-icons/hi2";
-import ButtonActionGreen from '../../Components/ButtonActionGreen/ButtonActionGreen';
+import ButtonActionBlue from '../../Components/ButtonActionBlue/ButtonActionBlue';
 import Switch from '../Switch/Switch';
 import SelectOption from '../SelectOption/SelectOption';
 import axios from 'axios';
@@ -123,7 +123,8 @@ function SettingsCard(props) {
 
             <div className="row">
                 <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                    <div className='update'><ButtonActionGreen title={'Edit'} handler={sendAndEditData} /></div>
+                    <div className='update'><ButtonActionBlue
+                     title={'Edit'} handler={sendAndEditData} /></div>
                 </div>
                 <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
                     <div className='update'><Button title={'resources'} handler={sendAndResourcesData} /></div>

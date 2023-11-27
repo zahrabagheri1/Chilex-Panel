@@ -1,3 +1,6 @@
+@import "../../Assets/scss/mixin";
+@import "../../Assets/scss/variable";
+
 .btnBox {
     text-decoration: none;
     width: 100%;
@@ -19,17 +22,17 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: #c5c5c5;
+        background-color: $lightGray;
         border-radius: 3px;
-        border: 1px solid #000000a4;
+        border: 1px solid $lighterGray;
         cursor: pointer;
-        color: #000000;
+        color: $fontColor;
         font-size: 13px;
         font-family: sans-serif;
 
         &:hover {
 
-            background-color: #e6e6e6;
+            background-color: $lighterGray;
         }
 
         &:active {

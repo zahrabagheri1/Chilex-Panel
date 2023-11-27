@@ -5,7 +5,7 @@ import './Detail.scss';
 import Switch from '../../../../../Components/Switch/Switch';
 import Input from '../../../../../Components/Input/Input';
 import { HiPencilSquare } from "react-icons/hi2";
-import ButtonActionGreen from '../../../../../Components/ButtonActionGreen/ButtonActionGreen';
+import ButtonActionBlue from '../../../../../Components/ButtonActionBlue/ButtonActionBlue';
 
 function Index() {
     const [detail, setDetail] = useState({});
@@ -28,22 +28,13 @@ function Index() {
         { id: 1, name: 'Deactive', status: false },
     ]
 
-    const editDetail = () => {
-        setEdit(true)
-    }
-
     const changeValueInput = (e) => {
         setUpdateData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
 
     }
 
-    const changeValeSwitch = (e) => {
-        setUpdateData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
-    }
-
-
     const sendData = () => {
-        setEdit(false)
+        setEdit(!edit)
         axios.patch(`/admin-stuff/update-item/${itemId}`,
             {
                 name: updateData.name === null || updateData.name === undefined ? detail.name : updateData.name,
@@ -71,7 +62,9 @@ function Index() {
             status: boolean === true ? 0 : 1,
         })
             .then(
-                res => console.log(res)
+                res => {
+                    getData()
+                }
             )
             .catch(
                 err => console.log(err)
@@ -85,7 +78,7 @@ function Index() {
         })
             .then(
                 res => {
-                    console.log(res)
+                    getData()
                 }
             )
             .catch(
@@ -116,8 +109,8 @@ function Index() {
         <div className='itemDetail'>
             <div className="itembtns">
                 <div className="btnEdit">
-                <div className='edited' onClick={editDetail}><HiPencilSquare /></div>
-                <div className='update'><ButtonActionGreen title={'Edit'} handler={sendData} /></div>
+                <div className='edited' onClick={sendData}><HiPencilSquare /></div>
+                {/* <div className='update'><ButtonActionBlue title={'Edit'} handler={sendData} /></div> */}
                 </div>
                 <div className="addPrice">
                     <div className="">

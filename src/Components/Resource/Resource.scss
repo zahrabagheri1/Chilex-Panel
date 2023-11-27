@@ -1,0 +1,75 @@
+@import "../../Assets/scss/mixin";
+@import "../../Assets/scss/variable";
+
+.resource{
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+
+    .resourceAddBox {
+        display: flex;
+        justify-content: space-between;
+
+        .resourceTitle {
+            font-size: 20px;
+            font-weight: bold;
+            text-transform: capitalize;
+        }
+
+        .resourceAdd {
+            width: 30px;
+            height: 30px;
+            background: $Gray;
+            border-radius: 8px;
+            border: 2px solid $lightGray;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+    }
+
+
+    .resourceBox {
+        height: auto;
+        width: calc(100% - 60px);
+        padding: 20px 30px;
+        background: $Gray;
+        border-radius: 8px;
+        border: 2px solid $lightGray;
+        position: relative;
+
+        .resourceItem {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            .disabled {
+                border: none;
+                outline: none;
+                box-shadow: none;
+                background: transparent;
+                font-size: 16px;
+                font-weight: bold;
+                padding-left: 0 !important;
+                
+                &:focus,
+                &:focus-visible,
+                &:active,
+                &::after,
+                &:hover {
+                    border: none !important;
+                    box-shadow: none !important;
+                    outline: none;
+                }
+            }
+        }
+
+        .resourceBtn {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            gap: 8px;
+        }
+    }
+}

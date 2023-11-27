@@ -8,22 +8,22 @@
     justify-content: end;
     align-items: center;
     width: 100%;
+    gap: 10px;
     height: 10vh;
-    // background: rgb(143, 164, 255) ;
     .imgUser {
         cursor: pointer;
-        width: 60px;
+        margin: 0 30px 0 0;
+        width: 50px;
     }
 
     .username {
         font-weight: 600;
-        margin: 0 36px 0 0;
         &:link,
         &:visited,
         &:hover,
         &:active {
             text-decoration: none;
-            color: black;
+            color: $fontColorlight;
         }
     }
 

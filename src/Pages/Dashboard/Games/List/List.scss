@@ -1,3 +1,5 @@
+@import '../../../../Assets/scss/variable';
+
 .gameList {
     width: 90%;
     margin: auto;
@@ -9,7 +11,7 @@
         position: fixed;
         top: 0;
         left: 0;
-        background-color: #00000090;
+        background-color: $black-90;
         z-index: 10;
         border-radius: 0px;
         display: none;
@@ -28,7 +30,7 @@
             justify-content: center;
             align-items: center;
             gap: 36px;
-            background-color: rgb(255, 255, 255);
+            background-color: $lightGray;
             border-radius: 10px;
             padding: 20px;
 

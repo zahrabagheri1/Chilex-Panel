@@ -1,10 +1,12 @@
+@import '../../Assets/scss/variable';
+
 .modal {
     width: 100%;
     height: 100%;
     position: fixed;
     top: 0;
     left: 0;
-    background-color: #00000090;
+    background-color: $black-90;
     z-index: 10;
     border-radius: 0px;
     display: flex;
@@ -17,26 +19,25 @@
         display: flex;
         flex-direction: column;
         gap: 36px;
-        background-color: rgb(255, 255, 255);
+        background-color: $Gray;
         border-radius: 10px;
         padding: 20px;
         overflow-y: auto;
         scrollbar-width: thin;
-        scrollbar-color: #9314FF #ffffff;
 
         &::-webkit-scrollbar {
             width: 6px;
         }
 
         &::-webkit-scrollbar-track {
-            background: #6a67b671;
+            background: $Gray;
             border-radius: 0 20px 20px 0;
         }
         
         &::-webkit-scrollbar-thumb {
-            background-color: #7a1496;
+            background-color: $lightGray;
             border-radius: 0 20px 20px 0;
-            border: 2px outset #7e0ca8;
+            border: 2px outset $lighterGray;
         }
 
         .titleModal {

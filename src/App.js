@@ -25,13 +25,14 @@ import Game from './Pages/Dashboard/Games/Game/Game';
 import './App.css';
 import Notfound from './Pages/NotFound/Notfound';
 import Resources from './Pages/Dashboard/Games/Resources/Resources';
+import Charts from './Pages/Dashboard/Charts/Charts';
 function App() {
   return (
     <Routes>
       <Route path='/'>
         <Route path='login' index element={<Login />} />
         <Route path='dashboard' element={<Dashboard />}>
-          <Route index element={<Layout />} />
+          <Route index element={<Charts />} />
           <Route path='admin' element={<Admin />} />
           <Route path='bundles' element={<Bundles />}>
             <Route index element={<BundleList />} />

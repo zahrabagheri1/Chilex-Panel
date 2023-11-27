@@ -1,16 +1,14 @@
 import React, { useEffect } from 'react';
 import './Login.scss';
 import Input from '../../Components/Input/Input';
-import data from '../../Data/datalocal';
 import Button from '../../Components/Button/Button';
-import loginPhoto from '../../Assets/image/loginPhoto.svg';
 import userPhoto from '../../Assets/image/photoUser-removebg-preview.png';
 
 function Index() {
 
   useEffect(() => {
-    const colors = ["#FFD500", "#FDC500", "#5C0099", "#510087", "#3D0066"];
-    const numBalls = 25;
+    const colors = ["#2A85FF", "#0C499B", "#272A2F"];
+    const numBalls = 35;
     const balls = [];
 
     for (let i = 0; i < numBalls; i++) {

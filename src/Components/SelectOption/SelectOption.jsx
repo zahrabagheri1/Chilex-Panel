@@ -42,7 +42,7 @@ function SelectOption(props) {
   return (
     <div className={`optionBox ${props.classnameBox}`}>
       <div className="optionTitleBox">
-        <div className='title'>{props.defaultValue}</div>
+        <div className='title'>{props.name}</div>
         {
           props.important === true ?
             <div className="shouldfill"></div>
@@ -54,18 +54,19 @@ function SelectOption(props) {
         props.readOnly === false ?
           <div className={`btn ${props.classname}`} >
             <div className='btnTitle' onClick={clickHandler} >
-              {
+              {/* {
                 changeTitle === null ?
                   typeof props.defaultValue === 'boolean' ?
                     props.data.map(item => (
                       item.id === props.defaultValue?
-                      'dsfsd':''
+                      '': props.defaultValue
                     ))
                     :
-                    ''
+                    props.defaultValue
                   :
                   changeTitle
-              }
+              } */}
+              {props.defaultValue}
               <HiOutlineChevronDown className='chevronDown' style={{ transform: (click === true ? "rotate(180deg)" : 'rotate(0)') }} />
             </div>
             <div className='box' style={{ display: (click === true ? "flex" : 'none') }}>

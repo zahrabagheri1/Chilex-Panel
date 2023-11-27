@@ -1,3 +1,6 @@
+@import '../../../../Assets/scss/variable';
+@import '../../../../Assets/scss/mixin';
+
 .shoppingHistory {
     width: 95%;
     margin: auto;
@@ -14,16 +17,14 @@
         flex-direction: row;
         height: auto;
         width: calc(100% - 60px);
-        background: rgba(255, 255, 255, 0.44);
+        background: $Gray;
         border-radius: 8px;
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        backdrop-filter: blur(7.2px);
-        -webkit-backdrop-filter: blur(7.2px);
-        border: 1px solid rgba(255, 255, 255, 0.4);
+        border: 2px solid $lightGray;
         align-items: center;
+        gap: 10px;
         flex-wrap: wrap;
         justify-content: space-between;
-        gap: 10px;
+
 
     }
 }

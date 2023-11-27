@@ -7,8 +7,8 @@ function Navigation() {
 
   return (
     <div className='navigation'>
-      <img className='imgUser' src={imgUseer} />
       <Link to={'admin'} className='username'>User Name</Link>
+      <img className='imgUser' src={imgUseer} />
     </div>
   );
 }

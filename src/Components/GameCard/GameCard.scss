@@ -1,10 +1,13 @@
+@import '../../Assets/scss/variable';
+@import '../../Assets/scss/fonts';
+
 .gameCard {
     width: 90%;
     height: 220px;
     padding: 14px;
-    border: 1px solid #bacdd8;
+    border: 2px solid $lightGray;
+    background-color: $Gray;
     border-radius: 12px;
-    background-color: white;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -13,23 +16,18 @@
     &.diactivity {
         opacity: 0.65;
         cursor: not-allowed;
-        box-shadow: 1px 1px 6px #111111;
         position: relative;
 
         .cardimg {
-            // transform: scale(1.2);
-            // height: 80%;
             transform: scale(1.1);
-
         }
 
         .carddetails {
             position: absolute;
-            // border-radius: 1%;
             top: 40%;
             width: 90%;
             height: 50%;
-            background-color: rgba(255, 255, 255, 0.938);
+            background-color: $Gray;
 
             .subimgtext {
                 display: flex;
@@ -94,7 +92,7 @@
             display: none;
             width: 100%;
             font-size: 14px;
-            color: #7f8c9b;
+            color: $fontColorlight;
             flex-direction: column;
             gap: 10px;
 
@@ -113,23 +111,20 @@
 
 
     &:hover {
-        box-shadow: 1px 1px 6px #111111;
         position: relative;
-
         .cardimg {
             // transform: scale(1.2);
             // height: 80%;
             transform: scale(1.1);
-
         }
 
         .carddetails {
             position: absolute;
             // border-radius: 1%;
-            top: 40%;
-            width: 90%;
-            height: 50%;
-            background-color: rgba(255, 255, 255, 0.938);
+            top: calc(100% - 60%);
+            width: calc(100% - 40px);
+            height: auto;
+            background-color: $Gray-10;
 
             .subimgtext {
                 display: flex;

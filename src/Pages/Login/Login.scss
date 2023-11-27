@@ -10,7 +10,7 @@
     flex-wrap: wrap;
     flex-direction: column;
     height: 100vh;
-    background-color: rgb(255, 255, 255);
+    background-color: $bgColor;
 
     .ball {
         position: absolute;
@@ -33,12 +33,9 @@
         align-items: center;
         gap: 20px;
         padding: 36px 0;
-        background: rgba(255, 255, 255, 0.2);
+        background: $Gray-10;
         border-radius: 16px;
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(5px);
-        border: 1px solid rgba(255, 255, 255, 0.3);
+        border: 1px solid $lightGray;
 
         .userPhoto {
             display: flex;
@@ -53,7 +50,7 @@
                 text-align: center;
                 font-size: 24px;
                 font-weight: 900;
-                // text-shadow: 5px 5px 5px rgb(214, 170, 250);
+                color: $white;
             }
         }
 

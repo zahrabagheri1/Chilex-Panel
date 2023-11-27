@@ -1,3 +1,5 @@
+@import '../../Assets//scss/variable';
+
 .switchCheckbox {
     display: flex;
     flex-direction: column;
@@ -5,7 +7,7 @@
 
     .header-title {
         font-size: 14px;
-        color: rgba(0, 0, 0, 0.506);
+        color: $fontColor;
         font-weight: 700;
         text-transform: capitalize;
 

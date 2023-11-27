@@ -10,7 +10,7 @@ function Sidebar() {
   const [child, setChild] = useState(false)
   const [click, setClick] = useState(false)
   const icons = {
-    HiRocketLaunch: <HiRocketLaunch/>,
+    HiRocketLaunch: <HiRocketLaunch />,
     HiCurrencyDollar: <HiCurrencyDollar />,
     HiMiniCreditCard: <HiMiniCreditCard />,
     HiMiniSwatch: <HiMiniSwatch />,
@@ -19,10 +19,10 @@ function Sidebar() {
     HiMiniArrowDownTray: <HiMiniArrowDownTray />,
     HiMiniChatBubbleLeftRight: <HiMiniChatBubbleLeftRight />,
     HiOutlineArrowLeftOnRectangle: <HiOutlineArrowLeftOnRectangle />,
-    HiMiniShoppingCart: <HiMiniShoppingCart/>,
+    HiMiniShoppingCart: <HiMiniShoppingCart />,
   }
 
-  const clickHandler = (key) =>{
+  const clickHandler = (key) => {
     setClick(key)
   }
 
@@ -34,12 +34,10 @@ function Sidebar() {
 
   return (
     <div className='sidebar'>
-      <div className="logo-dash"><img className='logo' src={Logo} /></div>
+      <div className="logo-dash">D</div>
       <div className="menu">
         {sideBarMenu.map((item, key) => (
           <div key={key} >
-            {/* <Link to={item.link} key={key} className={`item ${click === true ? 'active' : '' }`} onClick={item.children ? showChild : (e) => clickHandler(e)}> */}
-            
             <Link to={item.link} className={`tab ${click === true ? 'active' : ''}`} onClick={item.children ? showChild : clickHandler}>
               <div className='icon'>{icons[item.icon]}</div>
               <div className='tabText'>{item.name}</div>
@@ -47,7 +45,7 @@ function Sidebar() {
 
             <div className='child'>
               {child === true ?
-                item.children?.map((childItem , index) => (
+                item.children?.map((childItem, index) => (
                   <Link to={childItem.link} key={index} className={`childItem ${click === true ? 'active' : ''}`}>
                     <div className='icon'>{icons[childItem.icon]}</div>
                     <div className=''>{childItem.name}</div>

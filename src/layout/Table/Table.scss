@@ -1,13 +1,12 @@
+@import '../../Assets/scss/variable';
+
 .showData {
     .emptyTable {
-        height: 6vh;
-        width: 100%;
-        background: rgba(255, 255, 255, 0.44);
+        height: calc(100vh - 50vh);
+        width: calc(100% - 4px);
+        background-color: $Gray;
         border-radius: 16px;
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        backdrop-filter: blur(7.2px);
-        -webkit-backdrop-filter: blur(7.2px);
-        border: 1px solid rgba(255, 255, 255, 0.4);
+        border: 2px solid $lightGray;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -18,7 +17,7 @@
         font-family: sans-serif;
 
         .header {
-            background-color: rgb(223, 97, 255);
+            background-color: $Gray;
 
             .trhead {
                 .thhead {
@@ -38,11 +37,13 @@
                 text-align: center;
                 padding: 10px 10px;
                 cursor: pointer;
-                .tdbody{
+
+                .tdbody {
                     text-overflow: ellipsis;
                 }
+
                 &:nth-child(2n) {
-                    background-color: rgb(248, 219, 255);
+                    background-color: $lightGray;
                 }
 
 

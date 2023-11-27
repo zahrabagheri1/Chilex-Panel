@@ -71,10 +71,10 @@ function Index() {
             <div className="top">
                 <div className='filter row'>
                     <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <Input classname='controlinput' value={value} name={'userId'} type={'text'} title={"userId"} placeholder={'userId'} changeInputValue={changeOption} />
+                        <Input value={value} name={'userId'} type={'text'} title={"userId"} placeholder={'userId'} changeInputValue={changeOption} />
                     </div>
                     <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <SelectOption classname='control' value={value} name={'gatewayTypes'} defaultValue={'gatewayTypes'} type={'status'} changeOptinValue={changeOption}
+                        <SelectOption value={value} name={'gatewayTypes'} defaultValue={'gatewayTypes'} type={'status'} readOnly={false} changeOptinValue={changeOption}
                             data={[
                                 { id: 0, status: 'Pasargad' },
                                 { id: 1, status: 'cafe bazaar' },
@@ -83,10 +83,10 @@ function Index() {
                         />
                     </div>
                     <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <Input classname='controlinput' value={value} name={'maxAmount'} type={'text'} title={"maxAmount"} placeholder={'maxAmount'} changeInputValue={changeOption} />
+                        <Input value={value} name={'maxAmount'} type={'text'} title={"maxAmount"} placeholder={'maxAmount'} changeInputValue={changeOption} />
                     </div>
                     <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <SelectOption classname='control' value={value} name={'orderBy'} defaultValue={'orderBy'} type={'status'} changeOptinValue={changeOption}
+                        <SelectOption value={value} name={'orderBy'} defaultValue={'orderBy'} type={'status'} readOnly={false} changeOptinValue={changeOption}
                             data={[
                                 { id: 0, status: 'DESC' },
                                 { id: 1, status: 'ASC' },
@@ -94,10 +94,10 @@ function Index() {
                         />
                     </div>
                     <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <Input classname='controlinput' value={value} name={'minAmount'} type={'text'} title={"minAmount"} placeholder={'minAmount'} changeInputValue={changeOption} />
+                        <Input value={value} name={'minAmount'} type={'text'} title={"minAmount"} placeholder={'minAmount'} changeInputValue={changeOption} />
                     </div>
                     <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <SelectOption classname='control' value={value} name={'sortBy'} defaultValue={'sortBy'} type={'status'} changeOptinValue={changeOption}
+                        <SelectOption value={value} name={'sortBy'} defaultValue={'sortBy'} type={'status'} readOnly={false} changeOptinValue={changeOption}
                             data={[
                                 { id: 0, status: 'createdAt' },
                                 { id: 1, status: 'updatedAt' },
@@ -109,7 +109,7 @@ function Index() {
                         />
                     </div>
                     <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <SelectOption classname='control' value={value} name={'referenceType'} defaultValue={'referenceType'} type={'status'} changeOptinValue={changeOption}
+                        <SelectOption value={value} name={'referenceType'} defaultValue={'referenceType'} type={'status'} readOnly={false} changeOptinValue={changeOption}
                             data={[
                                 { id: 0, status: 'bundle' },
                                 { id: 1, status: 'item' },
@@ -119,7 +119,7 @@ function Index() {
                         />
                     </div>
                     <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <SelectOption classname='control' value={value} name={'type'} defaultValue={'type'} type={'status'} changeOptinValue={changeOption}
+                        <SelectOption value={value} name={'type'} defaultValue={'type'} type={'status'} readOnly={false} changeOptinValue={changeOption}
                             data={[
                                 { id: 0, status: 'Gem' },
                                 { id: 1, status: 'Coin' },
@@ -128,10 +128,10 @@ function Index() {
                         />
                     </div>
                     <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <Input classname='controlinput' value={value} type={'text'} title={"limit"} placeholder={'limit'} changeInputValue={changeOption} />
+                        <Input value={value} type={'text'} title={"limit"} placeholder={'limit'} changeInputValue={changeOption} />
                     </div>
                     <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <Input classname='controlinput' value={value} type={'text'} title={"offset"} placeholder={'offset'} changeInputValue={changeOption} />
+                        <Input value={value} type={'text'} title={"offset"} placeholder={'offset'} changeInputValue={changeOption} />
                     </div>
                 </div>
 

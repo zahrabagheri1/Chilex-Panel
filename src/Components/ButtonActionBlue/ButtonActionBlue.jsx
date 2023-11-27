@@ -1,13 +1,12 @@
 import React, { useRef } from 'react';
-import './ButtonActionGreen.scss';
-import { Link } from 'react-router-dom';
+import './ButtonActionBlue.scss';
 
-function ButtonActionGreen(props) {
+function ButtonActionBlue(props) {
 
   //** props => id , className , handler, title */
 
   const handler = (e) => {
-    props.handler()
+    props.handler(e)
   }
 
 
@@ -18,4 +17,4 @@ function ButtonActionGreen(props) {
   );
 }
 
-export default ButtonActionGreen;
+export default ButtonActionBlue;

@@ -24,7 +24,7 @@ function Index() {
     })
 
     // ${parameters.from === null ||  parameters.from === undefined? "" : "&RegisterDate.min=" + parameters.from}
-    //admin-transaction/all?statuses%5B%5D=0&gatewayTypes%5B%5D=string&limit=1&offset=1&sortBy=1&orderBy=1
+    //admin-transaction/all?statuses%5B%5D=0&gatewayTypes%5B%5D=string&limit=0&offset=0&sortBy=0&orderBy=0
 
     useEffect(() => {
         reqFilterTransaction()
@@ -63,41 +63,35 @@ function Index() {
         <div className='transaction'>
             <div className='filter row'>
                 <div className="col-xl-2 col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                    <SelectOption classname='control' value={value} name={'bundleType'} defaultValue={'bundleType'} type={'status'}
+                    <SelectOption readOnly={false} value={value} name={'statuses'} defaultValue={'statuses'} type={'status'}
                         data={[
-                            { id: 0, status: 'Gem bundle' },
-                            { id: 1, status: 'Coin bundle' },
-                        ]}
-                    />
-                </div>
-                <div className="col-xl-2 col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                    <Input classname='controlinput' value={value} type={'text'} title={"sku"} placeholder={'sku'} changeInputValue={''} />
-                </div>
-                <div className="col-xl-2 col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                    <SelectOption classname='control' value={value} name={'bundleStatus'} defaultValue={'bundleStatus'} type={'status'}
-                        data={[
-                            { id: 0, status: 'Active' },
-                            { id: 1, status: 'Deactive' },
-                        ]}
-                    />
-                </div>
-                <div className="col-xl-2 col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                    <SelectOption classname='control' value={value} name={'priceStatus'} defaultValue={'priceStatus'} type={'status'}
-                        data={[
-                            { id: 0, status: 'Active' },
-                            { id: 1, status: 'Deactive' },
+                            { id: 0, status: 'Pending ENDING' },
+                            { id: 1, status: 'True check result' },
+                            { id: 2, status: 'False check result' },
+                            { id: 3, status: 'Failed' },
+                            { id: 4, status: 'Successful' },
+                            { id: 5, status: 'Refunded' },
                         ]}
                     />
                 </div>
 
                 <div className="col-xl-2 col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                    <Input classname='controlinput' value={value} type={'text'} title={"limit"} placeholder={'limit'} changeInputValue={''} />
+                    <SelectOption readOnly={false} value={value} name={'gatewayTypes'} defaultValue={'gatewayTypes'} type={'status'}
+                        data={[
+                            { id: 0, status: 'Pasargad' },
+                            { id: 1, status: 'Cafe Bazar' },
+                        ]}
+                    />
+                </div>
+
+                <div className="col-xl-2 col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <Input value={value} type={'text'} title={"limit"} placeholder={'limit'} changeInputValue={''} />
                 </div>
                 <div className="col-xl-2 col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                    <Input classname='controlinput' value={value} type={'text'} title={"offset"} placeholder={'offset'} changeInputValue={''} />
+                    <Input value={value} type={'text'} title={"offset"} placeholder={'offset'} changeInputValue={''} />
                 </div>
                 <div className="col-xl-2 col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                    <SelectOption classname='control' value={value} name={'sortBy'} defaultValue={'createdAt'} type={'status'}
+                <SelectOption readOnly={false} value={value} name={'sortBy'} defaultValue={'createdAt'} type={'status'}
                         data={[
                             { id: 0, status: 'createdAt' },
                             { id: 1, status: 'updatedAt' },
@@ -109,14 +103,13 @@ function Index() {
                     />
                 </div>
                 <div className="col-xl-2 col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                    <SelectOption classname='control' value={value} name={'orderBy'} defaultValue={'orderBy'} type={'status'}
+                    <SelectOption readOnly={false} value={value} name={'orderBy'} defaultValue={'orderBy'} type={'status'}
                         data={[
                             { id: 0, status: 'DESC' },
                             { id: 1, status: 'ASC' },
                         ]}
                     />
                 </div>
-
             </div>
 
             <ScrollContainer>

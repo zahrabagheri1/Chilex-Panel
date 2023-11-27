@@ -1,3 +1,6 @@
+@import "../../../../Assets/scss/variable";
+@import "../../../../Assets/scss/variable";
+
 .resources {
     width: 90%;
     margin: auto;
@@ -9,87 +12,8 @@
     gap: 20px;
 
     .hrLine {
-        border: 1px solid rgba(0, 116, 248, 0.836);
+        border: 1px solid $lightGray;
         border-radius: 50%;
     }
 
-
-    .resource{
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-
-        .resourceAddBox {
-            display: flex;
-            justify-content: space-between;
-
-            .resourceTitle {
-                font-size: 20px;
-                font-weight: bold;
-                text-transform: capitalize;
-            }
-
-            .resourceAdd {
-                width: 30px;
-                height: 30px;
-                background: rgba(255, 255, 255, 0.44);
-                border-radius: 8px;
-                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-                backdrop-filter: blur(7.2px);
-                -webkit-backdrop-filter: blur(7.2px);
-                border: 1px solid rgba(255, 255, 255, 0.4);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                cursor: pointer;
-            }
-        }
-
-
-        .resourceBox {
-            height: auto;
-            width: calc(100% - 60px);
-            padding: 20px 30px;
-            background: rgba(255, 255, 255, 0.44);
-            border-radius: 8px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(7.2px);
-            -webkit-backdrop-filter: blur(7.2px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            position: relative;
-
-            .resourceItem {
-                display: flex;
-                flex-direction: column;
-                gap: 8px;
-
-                .disabled {
-                    border: none;
-                    outline: none;
-                    box-shadow: none;
-                    background: transparent;
-                    font-size: 16px;
-                    font-weight: bold;
-                    padding-left: 0 !important;
-                    
-                    &:focus,
-                    &:focus-visible,
-                    &:active,
-                    &::after,
-                    &:hover {
-                        border: none !important;
-                        box-shadow: none !important;
-                        outline: none;
-                    }
-                }
-            }
-
-            .resourceBtn {
-                display: flex;
-                flex-direction: column;
-                justify-content: space-evenly;
-                gap: 8px;
-            }
-        }
-    }
 }

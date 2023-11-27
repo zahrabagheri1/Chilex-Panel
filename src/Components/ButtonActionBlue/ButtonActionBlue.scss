@@ -1,25 +1,25 @@
 @import "../../Assets/scss/mixin";
 @import "../../Assets/scss/variable";
 
-.redbtn {
+.greenbtn {
     width: 100%;
     height: 26px;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: $Gray;
+    background-color: $actionBlue;
     border-radius: 3px;
-    border: 1px solid $lightGray;
+    border: 1px solid $actionBlue;
     cursor: pointer;
-    font-weight: 600;
     color: $fontColor;
     font-size: $font-md;
     font-family: sans-serif;
+    font-weight: 600;
 
     &:hover {
 
-        background-color: $darkGray;
+        background-color: $actionBluelight;
     }
 
     &:active {

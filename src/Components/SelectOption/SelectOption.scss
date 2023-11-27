@@ -1,25 +1,28 @@
+@import '../../Assets/scss/mixin';
+@import '../../Assets/scss/variable';
+
 .optionBox {
     width: 100%;
     display: flex;
     flex-direction: column;
     position: relative;
     gap: 8px;
-    z-index: 100;
 
-    .optionTitleBox{
+    .optionTitleBox {
         display: flex;
         gap: 6px;
+
         .title {
             font-size: 14px;
-            color: rgba(0, 0, 0, 0.506);
+            color: $fontColorlight;
             font-weight: 700;
             text-transform: capitalize;
         }
-    
-        .shouldfill{
+
+        .shouldfill {
             width: 6px;
             height: 6px;
-            background-color: red;
+            background-color: $red;
             border-radius: 50%;
         }
     }
@@ -33,12 +36,12 @@
         flex-direction: column;
         font-family: sans-serif;
 
-        .btnTitleRO{
+        .btnTitleRO {
             width: 100%;
             height: 32px;
             display: flex;
             position: relative;
-            color: #050505;
+            color: $fontColor;
             font-size: 16px;
             font-weight: bold;
             gap: 10px;
@@ -55,65 +58,64 @@
             position: relative;
             justify-content: center;
             align-items: center;
-            color: #595959;
-            background-color: #fff;
-            border: 1px solid rgb(0, 0, 0);
-            font-size: 12px;
+            border: 1px solid $lightGray;
+            border-radius: 8px;
+            text-overflow: ellipsis;
+            background-color: $lightGray;
+            color: $fontColorlight;
+            font-size: $font-sm;
             transition: .3s;
-            gap: 10px;
+            gap: 50px;
             text-transform: capitalize;
 
             &:hover {
-                color: #000000;
+                color: $fontColor;
                 outline: none;
-                border: 1px solid #918FF4 !important;
-                box-shadow: 0 0.5px 5px 0.5px #918FF4  !important;
-                outline:#918FF4;
-
+                border: 1px solid $lightGray !important;
+                box-shadow: 0 0.5px 5px 0.5px $lightGray !important;
+                outline: $lightGray;
             }
 
-            
+
             .chevronDown {
-                // font-weight: 600 !important;
-                color: black;
+                color: $fontColor;
+                font-weight: 900;
 
             }
         }
-        
+
         .box {
             width: 100%;
             position: absolute;
             flex-direction: column;
             align-items: center;
             top: 34px;
-            background-color: #918ff4;
+            background-color: $lightGray;
+            border: 1px solid $Gray;
+            border-radius: 8px;
             z-index: 100;
             margin-top: 5px;
-            box-shadow: 0 5px 10px 0 rgba(152, 152, 152, 0.6);
-            // transform: scaleY(0);
             transform-origin: top;
-            font-weight: 300;
+            font-weight: 900;
             transition: .2s ease-in-out;
             font-size: 12px;
             height: 100px;
             overflow-y: auto;
-
-            scrollbar-width: thin;
-            scrollbar-color: #9314FF #ffffff;
+            color: $fontColorlight;
 
             &::-webkit-scrollbar {
                 width: 4px;
             }
 
             &::-webkit-scrollbar-track {
-                background: #6a67b671;
+                background: $darkGray;
                 border-radius: 20px;
             }
 
             &::-webkit-scrollbar-thumb {
-                background-color: #7a1496;
+                background-color: $actionOldBurgundy;
                 border-radius: 20px;
-                border: 2px outset #7e0ca8;
+                border: 2px outset $actionOldBurgundy;
             }
 
             .option {
@@ -128,8 +130,7 @@
                 justify-content: center;
 
                 &:hover {
-                    background-color: #6261a165;
-                    font-weight: 550;
+                    background-color: $lighterGray;
                 }
             }
         }

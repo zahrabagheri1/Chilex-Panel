@@ -3,11 +3,11 @@ import './ModalRequirment.scss';
 import axios from 'axios';
 import Input from '../../../Components/Input/Input';
 import SelectOption from '../../../Components/SelectOption/SelectOption';
-import ButtonActionGreen from '../../../Components/ButtonActionGreen/ButtonActionGreen';
+import ButtonActionBlue from '../../../Components/ButtonActionBlue/ButtonActionBlue';
 
 const settingId = 2
 
-function ModalRequirment() {
+function ModalRequirment(props) {
   const [value, setValue] = useState()
   const [addRequirment, setAddRequirment] = useState({
     settingId: settingId
@@ -21,9 +21,6 @@ function ModalRequirment() {
   ]
 
 
-
-
-
   const changeValueInput = (e) => {
     setAddRequirment(prev => ({ ...prev, [e.target.name]: parseInt(e.target.value) }))
   }
@@ -33,17 +30,18 @@ function ModalRequirment() {
   }
 
   const sendAndEditData = () => {
-    axios.post(`/games/setting/Requirment`, addRequirment).then(
+    axios.post(`/games/setting/requirement`, addRequirment).then(
       res => {
-        console.log(res)
+        console.log(res.data)
       }
     ).catch(
-      err => console.log(err)
+      err => console.log(err.message)
     )
+    props.mousedown() 
   }
 
   useEffect(() => {
-
+    sendAndEditData()
   }, [])
 
   return (
@@ -56,18 +54,18 @@ function ModalRequirment() {
             <Input type={'number'} inputclassname={'disabled'} name={'settingId'} value={settingId} title={'settingId'} readOnly={true} changeInputValue={changeValueInput} />
           </div>
           <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <SelectOption name={'type'} readOnly={false} defaultValue={'type'} value={1} type={'name'} data={resourceType} changeOptinValue={updateOptionData} />
+            <SelectOption name={'type'}  important={true} readOnly={false} defaultValue={'type'} value={1} type={'name'} data={resourceType} changeOptinValue={updateOptionData} />
           </div>
           <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <Input type={'number'} name={'min'} value={value} title={'min'} readOnly={false} changeInputValue={changeValueInput} />
+            <Input type={'number'}  important={true}  name={'min'} value={value} title={'min'} readOnly={false} changeInputValue={changeValueInput} />
           </div>
           <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <Input type={'number'} name={'max'} value={value} title={'max'} readOnly={false} changeInputValue={changeValueInput} />
+            <Input type={'number'} important={true}  name={'max'} value={value} title={'max'} readOnly={false} changeInputValue={changeValueInput} />
           </div>
         </div>
 
         <div className="resourceBtn">
-          <ButtonActionGreen title={'Add Requirment'} handler={sendAndEditData} />
+          <ButtonActionBlue title={'Add Requirment'} handler={e => sendAndEditData(e)} />
         </div>
       </div>
     </div >

@@ -1,11 +1,11 @@
 import React, { useRef } from 'react';
 import './ButtonActionRed.scss';
-import { Link } from 'react-router-dom';
 
 function ButtonActionRed(props) {
+  //** props => id , className , handler, title */
 
   const handler = (e) => {
-    props.handler()
+    props.handler(e)
   }
 
   return (

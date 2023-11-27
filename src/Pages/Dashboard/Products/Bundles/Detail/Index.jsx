@@ -5,7 +5,7 @@ import './Detail.scss';
 import Switch from '../../../../../Components/Switch/Switch';
 import Input from '../../../../../Components/Input/Input';
 import { HiPencilSquare } from "react-icons/hi2";
-import ButtonActionGreen from '../../../../../Components/ButtonActionGreen/ButtonActionGreen';
+import ButtonActionBlue from '../../../../../Components/ButtonActionBlue/ButtonActionBlue';
 
 function Index() {
     const [detail, setDetail] = useState({});
@@ -115,7 +115,7 @@ function Index() {
         <div className='bundleDetail'>
             <div className="btnEdit">
                 <div className='edited' onClick={editDetail}><HiPencilSquare /></div>
-                <div className='update'><ButtonActionGreen title={'Edit'} handler={sendData} /></div>
+                <div className='update'><ButtonActionBlue title={'Edit'} handler={sendData} /></div>
             </div>
             <div className='boxOfDetail row'>
                 {detail === null || detail === undefined ? '' : (

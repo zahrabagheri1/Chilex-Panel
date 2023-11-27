@@ -1,18 +1,15 @@
 @import "../.../../../../../../Assets/scss/mixin";
+@import "../.../../../../../../Assets/scss/variable";
 
 .itemDetail {
     height: auto;
     width: 100%;
-    background: rgba(255, 255, 255, 0.44);
+    background-color: $Gray;
     border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(7.2px);
-    -webkit-backdrop-filter: blur(7.2px);
-    border: 1px solid rgba(255, 255, 255, 0.4);
+    border: 1px solid $lightGray;
     display: flex;
     flex-direction: row-reverse;
     cursor: default;
-
 
      .itembtns {
         position: absolute;
@@ -26,11 +23,7 @@
             .edited {
                 height: 4vh;
                 width: 4vh;
-                background: rgba(255, 255, 255, 0.44);
                 border-radius: 8px;
-                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-                backdrop-filter: blur(7.2px);
-                -webkit-backdrop-filter: blur(7.2px);
                 border: 1px solid rgba(255, 255, 255, 0.4);
                 display: flex;
                 justify-content: center;
@@ -85,7 +78,7 @@
                 display: flex;
                 flex-direction: column;
                 gap: 30px;
-                border-top: 2px solid #000000;
+                border-top: 2px solid $black;
                 padding-top: 20px;
             }
         .titleB {
@@ -97,14 +90,14 @@
      
 
             .header-title {
-                font-size: 18px;
-                color: rgba(0, 0, 0, 0.506);
-                font-weight: 700;
+                font-size: $font-xl;
+                color:  $fontColorlight;
+                font-weight: 600;
             }
 
             .data-title {
                 font-size: 18px;
-                color: rgb(0, 0, 0);
+                color: $white;
                 font-weight: 600;
             }
 

@@ -10,11 +10,11 @@ function Table(props) {
     return (
         <div className='showData'>
             {
-                // (props.data === null || props.data === undefined || Array.isArray(props.data)) ?
-                // <div className='emptyTable'>
-                // WE DON'T HAVE ANY DATA!
-                // </div>
-                // :
+                props.data === null || props.data === undefined ?
+                <div className='emptyTable'>
+                WE DON'T HAVE ANY DATA!
+                </div>
+                :
                 <table className='table'>
                     <thead className='header'>
                         <tr className='trhead'>

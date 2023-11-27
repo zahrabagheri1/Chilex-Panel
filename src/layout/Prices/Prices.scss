@@ -1,3 +1,5 @@
+@import '../../Assets/scss/variable';
+
 .PriceBox{
     .priceTitle{
         display: flex;
@@ -5,7 +7,7 @@
         
         .title {
             font-size: 16px;
-            color: rgb(0, 0, 0);
+            color: $fontColorlight;
             font-weight: 700;
         }
     
