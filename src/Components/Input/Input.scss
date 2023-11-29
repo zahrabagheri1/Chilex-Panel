@@ -56,12 +56,13 @@
             border-radius: 8px;
             text-overflow: ellipsis;
             background-color: $lightGray;
-            color: $fontColor;
+            color: $fontColorlight;
             &:hover,
             &:focus,
             &:link,
             &:visited,
             &:active {
+                color: $fontColor;
                 outline: none;
             }
             

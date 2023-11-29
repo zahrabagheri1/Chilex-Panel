@@ -7,9 +7,13 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.5.1",
+    "chart.js": "^4.4.0",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
+    "moment-jalaali": "^0.10.0",
     "react": "^18.2.0",
+    "react-apexcharts": "^1.4.1",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.11.0",
     "react-indiana-drag-scroll": "^3.0.3-alpha",
@@ -18,7 +22,7 @@
     "sort-by": "^1.2.0",
     "web-vitals": "^2.1.4"
   },
-  "proxy": "https://dixo.diacostudios.com",
+  "proxy": "https://dixo.diacostudios.com/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

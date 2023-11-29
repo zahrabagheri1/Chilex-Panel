@@ -65,8 +65,9 @@
             color: $fontColorlight;
             font-size: $font-sm;
             transition: .3s;
-            gap: 50px;
+            gap: 10px;
             text-transform: capitalize;
+            text-overflow: ellipsis;
 
             &:hover {
                 color: $fontColor;
@@ -76,6 +77,9 @@
                 outline: $lightGray;
             }
 
+            .btnTitleText{
+                text-overflow: ellipsis;
+            }
 
             .chevronDown {
                 color: $fontColor;

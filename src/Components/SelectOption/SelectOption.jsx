@@ -54,19 +54,14 @@ function SelectOption(props) {
         props.readOnly === false ?
           <div className={`btn ${props.classname}`} >
             <div className='btnTitle' onClick={clickHandler} >
-              {/* {
-                changeTitle === null ?
-                  typeof props.defaultValue === 'boolean' ?
-                    props.data.map(item => (
-                      item.id === props.defaultValue?
-                      '': props.defaultValue
-                    ))
-                    :
-                    props.defaultValue
+              <div className="btnTitleText">
+              {
+                changeTitle === null || changeTitle === undefined ?
+                  props.defaultValue
                   :
                   changeTitle
-              } */}
-              {props.defaultValue}
+              }
+              </div>
               <HiOutlineChevronDown className='chevronDown' style={{ transform: (click === true ? "rotate(180deg)" : 'rotate(0)') }} />
             </div>
             <div className='box' style={{ display: (click === true ? "flex" : 'none') }}>
