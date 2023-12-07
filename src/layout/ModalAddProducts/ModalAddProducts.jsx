@@ -3,23 +3,24 @@ import ButtonActionRed from '../../Components/ButtonActionRed/ButtonActionRed';
 import ButtonActionBlue from '../../Components/ButtonActionBlue/ButtonActionBlue';
 import Input from '../../Components/Input/Input';
 import SelectOption from '../../Components/SelectOption/SelectOption';
-import './Modal.scss';
+import './ModalAddProducts.scss';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Alert from '../Alert/Alert';
 import Prices from '../Prices/Prices';
 import Time from '../Time/Time';
 
-function Modal(props) {
+function ModalAddProducts(props) {
 
-  //! props => modalTitle , data
+  // props => modalTitle , data
   const [addBandel, setBandel] = useState();
   const [showAlert, setShowAlert] = useState({
     status: false, msg: ''
   })
 
   const [addElement, setAddElement] = useState({
-    prices: [{ type: 0, amount: 5 }]
+    prices: [{ type: 0, amount: 5 }],
+    stuffType: props.type === 'bundle' ? null : 2,
   })
 
   const navigate = useNavigate();
@@ -28,23 +29,6 @@ function Modal(props) {
   //   setData(props.data)
   // }, [props])
 
-  // useEffect(() => {
-  //   axios.post('/admin-stuff/create-stuff', {
-  //     stuffType: addElement.stuffType === null || addElement.stuffType === undefined ? '' : parseInt(addElement.stuffType),
-  //     name: addElement.name === null || addElement.name === undefined ? '' : addElement.name,
-  //     sku: addElement.sku === null || addElement.sku === undefined ? '' : addElement.sku,
-  //     amount: addElement.amount === null || addElement.amount === undefined ? '' : parseInt(addElement.amount),
-  //     image: addElement.image === null || addElement.image === undefined ? '' : addElement.image,
-  //     expireTime: addElement.expireTime === null || addElement.expireTime === undefined ? '' : addElement.expireTime,
-  //     status: addElement.status === null || addElement.status === undefined ? '' : parseInt(addElement.status),
-  //     category: addElement.category === null || addElement.category === undefined ? '' : parseInt(addElement.category),
-  //     gameId: addElement.gameId === null || addElement.gameId === undefined ? '' : parseInt(addElement.gameId),
-  //     type: addElement.type === null || addElement.type === undefined ? '' : parseInt(addElement.type),
-  //     tier: addElement.tier === null || addElement.tier === undefined ? '' : parseInt(addElement.tier),
-  //     activityIntervalTime: {}
-  //   })
-  //     .then(
-  //       res => {
   //         setBandel(res.data.dat)
   //         // console.log(res)
   //       }
@@ -104,7 +88,7 @@ function Modal(props) {
     setAddElement((prev) => ({ ...prev, [name]: parseInt(id) }))
   }
 
-  
+
 
   return (
     <div className='modal'>
@@ -167,7 +151,17 @@ function Modal(props) {
           </div>
 
           <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
-            <SelectOption readOnly={false} name={'type'} defaultValue={'type'} type={'status'} changeOptinValue={updateOptionData}
+            <SelectOption readOnly={false} important={true} name={'category'} defaultValue={'category'} type={'status'} changeOptinValue={updateOptionData}
+              data={[
+                { id: 0, status: 'ELSE' },
+                { id: 1, status: 'GAME' },
+                { id: 2, status: 'CHARACTER' }
+              ]}
+            />
+          </div>
+
+          <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
+            <SelectOption readOnly={false} name={'type'} defaultValue={'type'} type={'status'} changeOptinValue={updateOptionData} disable={addElement.category === 2 ? false : true}
               data={[
                 { id: 0, status: 'CLOTHES' },
                 { id: 1, status: 'FACE' },
@@ -187,17 +181,7 @@ function Modal(props) {
           </div>
 
           <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
-            <SelectOption readOnly={false} important={true} name={'category'} defaultValue={'category'} type={'status'} changeOptinValue={updateOptionData}
-              data={[
-                { id: 0, status: 'ELSE' },
-                { id: 1, status: 'GAME' },
-                { id: 2, status: 'CHARACTER' }
-              ]}
-            />
-          </div>
-
-          <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
-            <SelectOption readOnly={false} name={'gameId'} defaultValue={'Game'} type={'status'} changeOptinValue={updateOptionData}
+            <SelectOption readOnly={false} name={'gameId'} defaultValue={'Game'} type={'status'} changeOptinValue={updateOptionData} disable={addElement.category === 1 ? false : true}
               data={[
                 { id: 0, status: 'Ludo' },
                 { id: 1, status: 'Uno' },
@@ -217,15 +201,17 @@ function Modal(props) {
             />
           </div>
 
-
-
           <div className='modalBoxs col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-            <Prices important={true}  />
+            <Prices important={true} stuffType={addElement.stuffType} disable={addElement.stuffType === null || addElement.stuffType === undefined ? true : false} />
           </div>
 
-          <div className='modalBoxs col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-            <Time important={true} />
-          </div>
+          {
+            props.type === 'bundle' ?
+              <div className='modalBoxs col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+                <Time important={true} />
+              </div>
+              : ''
+          }
 
         </div>
 
@@ -245,7 +231,7 @@ function Modal(props) {
   );
 }
 
-export default Modal;
+export default ModalAddProducts;
 
 
 

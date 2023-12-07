@@ -18,6 +18,7 @@
         .btnEdit{
             margin: 20px;
             display: flex;
+            flex-direction: row-reverse;
             gap: 20px;
 
             .edited {
@@ -33,13 +34,20 @@
                 z-index: 1;
             }
     
-            .update {
+            .disableupdate{
+                display: none;
+            }
+            .ableupdate {
                 height: 4vh;
                 width: 4vh;
-                font-size: 20px;
+                border-radius: 8px;
+                border: 1px solid rgba(255, 255, 255, 0.4);
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                font-size: 20px;
+                cursor: pointer;
+                z-index: 1;
     
             }
         }
@@ -52,7 +60,6 @@
     }
 
     .boxOfDetail {
-        // margin: auto;
         margin: 4%;
         width: 90%;
         gap: 40px 20px;

@@ -6,6 +6,7 @@ import axios from 'axios';
 import { LineController, PolarAreaController } from 'chart.js';
 
 
+
 function Chart() {
     const [data, setData] = useState({})
     const [filter, setFilter] = useState({
@@ -16,7 +17,7 @@ function Chart() {
         endtDate: '2023-11-27',
     })
 
-    console.log(data)
+    // console.log(data)
 
     const [state, setState] = useState()
 
@@ -107,6 +108,11 @@ function Chart() {
                         <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-6">
                             <Input type={'date'} name={'endDate'} title={'endDate'} value={'2023-11-21'} changeInputValue={updateInputData} />
                         </div>
+
+                        <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-6">
+                            {/* <Datepicker type={'date'} name={'endDate'} title={'endDate'} value={'2023-11-21'} changeInputValue={updateInputData} /> */}
+                        </div>
+                   
                     </div>
                 </div>
             }

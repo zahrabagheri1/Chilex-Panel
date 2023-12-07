@@ -5,13 +5,13 @@ import { sortBundles } from '../../../../../Data/Sort';
 import { HiPlus } from "react-icons/hi2";
 import axios from 'axios';
 import ScrollContainer from 'react-indiana-drag-scroll';
-import Modal from '../../../../../layout/Modal/Modal';
+import ModalAddProducts from '../../../../../layout/ModalAddProducts/ModalAddProducts';
 import { useNavigate, useParams } from 'react-router-dom';
 import Input from '../../../../../Components/Input/Input';
 import SelectOption from '../../../../../Components/SelectOption/SelectOption';
 
 function Index() {
-    const [bundles, setBundles] = useState([]);
+    const [bundles, setBundles] = useState(null);
     const [modal, setModal] = useState(false);
     const navigate = useNavigate();
     const [filters, setFilters] = useState({
@@ -21,8 +21,8 @@ function Index() {
         priceStatus: null,
         limit: null,
         offset: null,
-        sortBy: null,
-        orderBy: null,
+        sortBy: 3,
+        orderBy: 1,
     })
 
     // ${parameters.from === null ||  parameters.from === undefined? "" : "&RegisterDate.min=" + parameters.from}
@@ -30,7 +30,7 @@ function Index() {
 
     useEffect(() => {
         reqFilterBundle()
-    }, [filters])
+    },[filters])
 
     const reqFilterBundle = () => {
         axios.get(`/admin-stuff/bundles-all?${filters.bundleType === null || filters.bundleType === undefined ? '' : 'bundleType=' + filters.bundleType + '&'}${filters.sku === null || filters.sku === undefined ? '' : 'sku=' + filters.sku + '&'}${filters.bundleStatus === null || filters.bundleStatus === undefined ? '' : 'bundleStatus=' + filters.bundleStatus + '&'}${filters.priceStatus === null || filters.priceStatus === undefined ? '' : 'priceStatus=' + filters.priceStatus + '&'}${filters.limit === null || filters.limit === undefined ? '' : 'limit=' + filters.limit + '&'}${filters.offset === null || filters.offset === undefined ? '' : 'offset=' + filters.offset + '&'}${filters.sortBy === null || filters.sortBy === undefined ? '' : 'sortBy=' + filters.sortBy + '&'}${filters.orderBy === null || filters.orderBy === undefined ? '' : 'orderBy=' + filters.orderBy}`)
@@ -41,6 +41,7 @@ function Index() {
                 err => console.log(err)
             )
     }
+  
 
     const showDetailBandle = (id) => {
         navigate(`${id}`)
@@ -99,7 +100,7 @@ function Index() {
                         <Input name={'offset'} type={'number'} title={"offset"} placeholder={'offset'} changeInputValue={updateInputData} />
                     </div>
                     <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <SelectOption readOnly={false} name={'sortBy'} defaultValue={'createdAt'} type={'status'} changeOptinValue={updateOptionData}
+                        <SelectOption readOnly={false} name={'sortBy'} defaultValue={'id'} type={'status'} changeOptinValue={updateOptionData}
                             data={[
                                 { id: 0, status: 'createdAt' },
                                 { id: 1, status: 'updatedAt' },
@@ -111,7 +112,7 @@ function Index() {
                         />
                     </div>
                     <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <SelectOption readOnly={false} name={'orderBy'} defaultValue={'orderBy'} type={'status'} changeOptinValue={updateOptionData}
+                        <SelectOption readOnly={false} name={'orderBy'} defaultValue={'ASC'} type={'status'} changeOptinValue={updateOptionData}
                             data={[
                                 { id: 0, status: 'DESC' },
                                 { id: 1, status: 'ASC' },
@@ -131,7 +132,7 @@ function Index() {
 
             {modal === true ?
                 <div className="modalBundle">
-                    <Modal
+                    <ModalAddProducts
                         modalTitle={'Add New Bandle'}
                         data={bundles}
                         type={'bundle'}

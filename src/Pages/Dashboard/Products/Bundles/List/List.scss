@@ -40,11 +40,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-
-            .icon {
-                font-size: $font-xl;
-                cursor: pointer;
-            }
+            cursor: pointer;
+            font-size: $font-xl;
         }
     }
 }

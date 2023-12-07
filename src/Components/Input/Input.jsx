@@ -50,7 +50,6 @@ function Input(props) {
       <div className="header-title">
         <div id='' className='title' >{props.title}</div>
         {
-
           props.important === true ?
             <div className="shouldfill"></div>
             :

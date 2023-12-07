@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './SelectOption.scss';
 import { HiOutlineChevronDown } from "react-icons/hi2";
 
@@ -18,8 +18,8 @@ import { HiOutlineChevronDown } from "react-icons/hi2";
 // }
 
 function SelectOption(props) {
-  const data = props.data;
-  const [changeTitle, setChangeTitle] = useState(props.value);
+  const [data, setData] = useState(props.data)
+  const [changeTitle, setChangeTitle] = useState();
   const [click, setClick] = useState(false);
 
   const clickHandler = (e) => {
@@ -33,11 +33,13 @@ function SelectOption(props) {
   }
 
 
-  const changeOptionHandler = (e, id) => {
-    props.changeOptionValue(id)
-    console.log(e.target)
-  }
-
+  useEffect(() => {
+    data.map(item => (
+      item.id === props.value ?
+        setChangeTitle(item.name)
+        : ''
+    ))
+  }, [])
 
   return (
     <div className={`optionBox ${props.classnameBox}`}>
@@ -52,15 +54,15 @@ function SelectOption(props) {
       </div>
       {
         props.readOnly === false ?
-          <div className={`btn ${props.classname}`} >
+          <div className={`btn ${props.classname} ${props.disable === true ? 'disableSelect' : ''}`} >
             <div className='btnTitle' onClick={clickHandler} >
               <div className="btnTitleText">
-              {
-                changeTitle === null || changeTitle === undefined ?
-                  props.defaultValue
-                  :
-                  changeTitle
-              }
+                {
+                  changeTitle === null || changeTitle === undefined ?
+                    props.defaultValue
+                    :
+                    changeTitle
+                }
               </div>
               <HiOutlineChevronDown className='chevronDown' style={{ transform: (click === true ? "rotate(180deg)" : 'rotate(0)') }} />
             </div>
@@ -73,7 +75,7 @@ function SelectOption(props) {
           :
           <div className={`btn ${props.classname}`} >
             <div className='btnTitleRO' onClick={clickHandler} >
-              {changeTitle === null ? props.defaultValue : changeTitle}
+              {changeTitle === null || changeTitle === undefined ? props.defaultValue : changeTitle}
             </div>
           </div>
       }

@@ -23,13 +23,20 @@ export const sortBundles = [
     {
         name: 'prices', status: true,
         child: [
-            { name: 'id', status: true },
+            { name: 'id', status: false },
             { name: 'amount', status: true },
             { name: 'priceTypes', status: true },
             { name: 'priceStatus', status: true }
         ]
     },
-    { name: 'activityIntervalTime', status: true, },
+    {
+        name: 'activityIntervalTime', status: true,
+        child: [
+            { name: 'day', status: true },
+            { name: 'hour', status: true },
+            { name: 'minute', status: true },
+        ]
+    },
 ]
 
 
@@ -59,11 +66,11 @@ export const sortItems = [
 
 export const sortHistory = [
     { name: 'id', status: true },
-    { name: 'userId', status: true },
     { name: 'type', status: true },
     { name: 'amount', status: true },
     { name: 'referenceType', status: true },
     { name: 'referenceId', status: true },
+    { name: 'userId', status: true },
     { name: 'createdAt', status: true },
     { name: 'username', status: true },
     { name: 'transactionAmount', status: true },
@@ -95,3 +102,58 @@ export const sortGameSettings = [
     { name: 'createdAt', status: true },
     { name: 'updatedAt', status: true }
 ]
+
+
+
+export const sortOfOrderList = {
+
+}
+
+
+// stuffType*	number
+//     stuffType =>  gemBundle : 0 , coinBundle : 1 , Item : 2
+// name*	string
+// sku*	string
+// amount	number
+// image	string
+// prices*	[
+//     prices: { type: enumPriceType, amount: number }[] , 
+//     type => GEM : 0 , COIN : 1 , RIAL : 2
+// string]
+// expireTime	string
+// nullable: true
+// status*	number
+// minimum: 0
+// maximum: 1
+//     status => ACTIVE : 0 , DEACTIVE : 1
+// category*	number
+// minimum: 0
+// maximum: 2
+//     ELSE : 0 , GAME : 1 , CHARACTER : 2
+// gameId	number
+// gameItemType	number
+//     DICE_SKIN: 0,
+//     CARD_SKIN: 1,
+//     FLAG_SKIN: 2,
+//     FORMATION: 3
+// characterItemType	number
+//     CLOTHES : 0,
+//     FACE: 1,
+//     HAIR: 2,
+//     BEARD: 3,
+//     EYE: 4,
+//     EYEBROWS: 5,
+//     GLASESS: 6,
+//     MASK: 7,
+//     HAT: 8
+// tier	number
+//     DEFAULT : 0,
+//     COMMON : 1 ,
+//     RARE :2 ,
+//     EPIC : 3,
+//     LEGENDARY : 4,
+// activityIntervalTime	{
+// description:	
+//     {day : number , hour : number , minute : number}
+// }
+// }

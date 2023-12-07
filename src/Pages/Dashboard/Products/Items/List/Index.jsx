@@ -4,16 +4,15 @@ import axios from 'axios';
 import { HiPlus } from "react-icons/hi2";
 import { sortItems } from '../../../../../Data/Sort';
 import Table from '../../../../../layout/Table/Table';
-import Modal from '../../../../../layout/Modal/Modal';
+import ModalAddProducts from '../../../../../layout/ModalAddProducts/ModalAddProducts';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import { useNavigate, useParams } from 'react-router-dom';
 import Input from '../../../../../Components/Input/Input';
 import SelectOption from '../../../../../Components/SelectOption/SelectOption';
 
 function Index() {
-    const [items, setItems] = useState([]);
+    const [items, setItems] = useState(null);
     const [modal, setModal] = useState(false);
-    const [detailItem, setDetailItem] = useState(false);
     const [value, setValue] = useState();
     const navigate = useNavigate()
     const [filter, setFilter] = useState({
@@ -42,15 +41,6 @@ function Index() {
                 err => console.log(err)
             )
     }
-
-    // useEffect(() => {
-    //     axios.get('/admin-stuff/items-all', { headers: { 'Cache-Control': 'no-cache' } })
-    //         .then((res) => {
-    //             // console.log(res.data.data)
-    //             setItems(res.data.data)
-    //         })
-    //         .catch(err => console.log(err))
-    // }, [])
 
     const showDetailItem = (id) => {
         navigate(`${id}`)
@@ -186,7 +176,7 @@ function Index() {
 
             {modal === true ?
                 <div className="modalBandel">
-                    <Modal
+                    <ModalAddProducts
                         modalTitle={'Add New Item'}
                         data={items}
                         type={'item'}

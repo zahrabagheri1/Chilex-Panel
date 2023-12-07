@@ -1,16 +1,18 @@
 @import "../.../../../../../Assets/scss/mixin";
+@import "../.../../../../../Assets/scss/variable";
 
 .historyDetail {
-    // min-height: 80vh;
+    min-height: 80vh;
     width: 100%;
-    background: rgba(255, 255, 255, 0.44);
+    background-color: $Gray;
     border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(7.2px);
-    -webkit-backdrop-filter: blur(7.2px);
-    border: 1px solid rgba(255, 255, 255, 0.4);
+    border: 1px solid $lightGray;
     display: flex;
     flex-direction: row-reverse;
+    cursor: default;
+    display: flex;
+    flex-direction: row-reverse;
+
 
     .backbtn {
         margin: auto;
@@ -18,18 +20,12 @@
     }
 
     .boxOfDetail {
-        // margin: auto;
         margin: 4%;
         width: 90%;
-        // display: flex;
-        // flex-direction: row;
-        // flex-wrap: wrap;
-        // gap: 40px 20px;
 
         .titleB {
             width: 28%;
             display: flex;
-            // flex-direction: row;
             flex-direction: column;
             gap: 12px;
 
@@ -60,14 +56,14 @@
             }
 
             .header-title {
-                font-size: 18px;
-                color: rgba(0, 0, 0, 0.506);
-                font-weight: 700;
+                font-size: $font-xl;
+                color:  $fontColorlight;
+                font-weight: 600;
             }
-
+            
             .data-title {
                 font-size: 18px;
-                color: rgb(0, 0, 0);
+                color:  $fontColor;
                 font-weight: 600;
             }
 

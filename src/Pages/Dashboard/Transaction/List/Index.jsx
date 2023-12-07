@@ -11,7 +11,7 @@ import SelectOption from '../../../../Components/SelectOption/SelectOption';
 
 
 function Index() {
-    const [transaction, setTransaction] = useState([]);
+    const [transaction, setTransaction] = useState(null);
     const [value, setValue] = useState();
     const navigate = useNavigate()
     const [filters, setFilters] = useState({
@@ -62,7 +62,7 @@ function Index() {
     return (
         <div className='transaction'>
             <div className='filter row'>
-                <div className="col-xl-2 col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-6">
                     <SelectOption readOnly={false} value={value} name={'statuses'} defaultValue={'statuses'} type={'status'}
                         data={[
                             { id: 0, status: 'Pending ENDING' },
@@ -74,8 +74,7 @@ function Index() {
                         ]}
                     />
                 </div>
-
-                <div className="col-xl-2 col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-6">
                     <SelectOption readOnly={false} value={value} name={'gatewayTypes'} defaultValue={'gatewayTypes'} type={'status'}
                         data={[
                             { id: 0, status: 'Pasargad' },
@@ -83,15 +82,14 @@ function Index() {
                         ]}
                     />
                 </div>
-
-                <div className="col-xl-2 col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-6">
                     <Input value={value} type={'text'} title={"limit"} placeholder={'limit'} changeInputValue={''} />
                 </div>
-                <div className="col-xl-2 col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-6">
                     <Input value={value} type={'text'} title={"offset"} placeholder={'offset'} changeInputValue={''} />
                 </div>
-                <div className="col-xl-2 col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                <SelectOption readOnly={false} value={value} name={'sortBy'} defaultValue={'createdAt'} type={'status'}
+                <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                    <SelectOption readOnly={false} value={value} name={'sortBy'} defaultValue={'createdAt'} type={'status'}
                         data={[
                             { id: 0, status: 'createdAt' },
                             { id: 1, status: 'updatedAt' },
@@ -102,7 +100,7 @@ function Index() {
                         ]}
                     />
                 </div>
-                <div className="col-xl-2 col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-6">
                     <SelectOption readOnly={false} value={value} name={'orderBy'} defaultValue={'orderBy'} type={'status'}
                         data={[
                             { id: 0, status: 'DESC' },

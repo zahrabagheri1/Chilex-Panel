@@ -30,9 +30,6 @@ function Index() {
         { id: 1, name: 'Deactive', status: false },
     ]
 
-    const editDetail = () => {
-        setEdit(true)
-    }
 
     const changeValueInput = (e) => {
         setUpdateData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
@@ -42,10 +39,17 @@ function Index() {
         setUpdateData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
     }
 
+    // {
+    //     "name": "string",
+    //     "expireTime": "string",
+    //     "imageId": "string",
+    //     "sku": "string",
+    //     "amount": 0,
+    //     "activityIntervalTime": {}
+    //   }
 
     const sendData = () => {
-        setEdit(false)
-
+        setEdit(!edit)
         axios.patch(`/admin-stuff/update-bundle/${bundleId}`,
             {
                 name: updateData.name === null || updateData.name === undefined ? detail.name : updateData.name,
@@ -114,8 +118,8 @@ function Index() {
     return (
         <div className='bundleDetail'>
             <div className="btnEdit">
-                <div className='edited' onClick={editDetail}><HiPencilSquare /></div>
-                <div className='update'><ButtonActionBlue title={'Edit'} handler={sendData} /></div>
+                <div className='edited' onClick={sendData}><HiPencilSquare /></div>
+                {/* <div className='update'><ButtonActionBlue title={'Edit'} handler={sendData} /></div> */}
             </div>
             <div className='boxOfDetail row'>
                 {detail === null || detail === undefined ? '' : (
@@ -193,7 +197,9 @@ function Index() {
                                                 <div className='data-title'>{value}</div>
                                             </div>
                                             :
-                                            <Input inputclassname={edit === false ? 'disabled' : ''} name={key} title={key} value={value} type={key === 'amount' ? 'number' : 'text'} readOnly={edit === true ? false : true} changeInputValue={changeValueInput} />
+                                            // <Input inputclassname={edit === false ? 'disabled' : ''} name={key} title={key} value={value} type={key === 'amount' ? 'number' : 'text'} readOnly={edit === true ? false : true} changeInputValue={changeValueInput} />
+                                            <Input inputclassname={'disabled'} name={key} title={key} value={value} type={key === 'amount' ? 'number' : 'text'} readOnly={true} changeInputValue={changeValueInput} />
+                                
                                 }
                             </div>
                     ))
