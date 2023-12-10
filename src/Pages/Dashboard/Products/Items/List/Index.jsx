@@ -175,7 +175,6 @@ function Index() {
             </ScrollContainer>
 
             {modal === true ?
-                <div className="modalBandel">
                     <ModalAddProducts
                         modalTitle={'Add New Item'}
                         data={items}
@@ -184,8 +183,6 @@ function Index() {
                         handelerSubmit={handelOpenModal}
                         handlerClose={handlerCloseModal}
                     />
-                </div>
-
                 : ''
             }
         </div>

@@ -8,9 +8,11 @@ import { HiUserMinus } from "react-icons/hi2";
 import './List.scss';
 import SelectOption from '../../../../../Components/SelectOption/SelectOption';
 import Input from '../../../../../Components/Input/Input';
+import ModalBanUser from '../../../../../layout/ModalBanUser/ModalBanUser';
 
 function Index() {
   const [userList, setUserList] = useState()
+  const [modal, setModal] = useState()
   const [filter, setFilter] = useState({
     limit: null,
     offset: null,
@@ -32,6 +34,10 @@ function Index() {
 
   const showDetailBanUser = (id) => {
     navigate(`${id}`)
+  }
+
+  const handelOpenModal = () => {
+    setModal(true)
   }
 
   const banUser = () => {
@@ -82,12 +88,17 @@ function Index() {
             />
           </div>
         </div>
-        <div className="banuser"><HiUserMinus /></div>
+        <div className="banuser" onClick={handelOpenModal}><HiUserMinus /></div>
       </div>
 
       <ScrollContainer>
         <Table data={userList} sort={sortUserList} action={true} showDetail={showDetailBanUser} />
       </ScrollContainer>
+
+
+      {modal === true ?
+        <ModalBanUser />
+        : ''}
     </div>
   );
 }
