@@ -9,10 +9,8 @@ function Notfound() {
     }
     return (
         <div className='notFound'>
-            <div className='notFound-title'>404</div>
-            <div className='notFound-subtitle'> Not Found</div>
-            <div className='notFound-message'>Sorry, the page you are looking for does not exist.</div>
-            <button onClick={backBtn} className='notFound-button'>Back</button>
+                <div className='notFound-title'>404</div>
+                <div className='notFound-subtitle' onClick={backBtn}>This page is not found</div>
         </div>
     );
 }

@@ -9,7 +9,7 @@ function Table(props) {
         props.showDetail(id)
     }
 
-    console.log(props.data)
+    // console.log(props.data)
 
     const types = ['Gem bundle', 'Coin bundle', 'Item', 'Free'];
     const tiers = ['DEFAULT', 'COMMON', 'RARE', 'EPIC', 'LEGENDARY'];

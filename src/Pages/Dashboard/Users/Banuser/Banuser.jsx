@@ -1,10 +1,10 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-
+import './Banuser.scss';
 
 function Banuser() {
   return (
-    <div>
+    <div className='banuser'>
       <Outlet/>
     </div>
   );

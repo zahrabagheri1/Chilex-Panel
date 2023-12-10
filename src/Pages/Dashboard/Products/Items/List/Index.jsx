@@ -63,7 +63,7 @@ function Index() {
     }
 
     return (
-        <div className='item'>
+        <div className='itemList'>
             <div className='top'>
                 <div className='filter row'>
                     <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">

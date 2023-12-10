@@ -1,12 +1,9 @@
 @import '../../../../Assets/scss/variable';
 
-.transaction {
-    width: 90%;
-    margin: auto;
+.transactionList {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding-top: 20px;
     gap: 20px;
 
     .filter {

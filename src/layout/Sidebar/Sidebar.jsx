@@ -24,14 +24,21 @@ function Sidebar() {
     
   }
 
-  const clickHandler = (key) => {
-    setClick(key)
-  }
+  
+  const clickHandler = (key, name) => {
+    const item = sideBarMenu[key]
+    console.log(sideBarMenu[key], '445454', name)
 
-  const showChild = () => {
-    setChild(!child)
-  }
+    if(item.name === name){
+      setClick(key)
+      setChild(true)
+    }
+    else{
+      setChild(false)
 
+    }
+   
+  }
 
 
   return (
@@ -40,7 +47,7 @@ function Sidebar() {
       <div className="menu">
         {sideBarMenu.map((item, key) => (
           <div key={key} >
-            <Link to={item.link} className={`tab ${click === true ? 'active' : ''}`} onClick={item.children ? showChild : clickHandler}>
+            <Link to={item.link} className={`tab ${click === true ? 'active' : ''}`} onClick={()=> clickHandler(key, item.name)}>
               <div className='icon'>{icons[item.icon]}</div>
               <div className='tabText'>{item.name}</div>
             </Link>
