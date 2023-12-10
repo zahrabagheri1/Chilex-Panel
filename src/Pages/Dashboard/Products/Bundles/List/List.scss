@@ -1,12 +1,9 @@
 @import '../../../../../Assets/scss/variable';
 
-.bundles {
-    width: 95%;
-    margin: auto;
+.bundleList {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding-top: 20px;
     gap: 20px;
 
     .top {
@@ -42,6 +39,7 @@
             justify-content: center;
             cursor: pointer;
             font-size: $font-xl;
+            color: $iconColor;
         }
     }
 }

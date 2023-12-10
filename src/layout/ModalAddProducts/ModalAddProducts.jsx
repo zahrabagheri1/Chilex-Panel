@@ -57,7 +57,7 @@ function ModalAddProducts(props) {
     axios.post('/admin-stuff/create-stuff', addElement)
       .then(
         res => {
-          setBandel(res.data.dat)
+          setBandel(res.data.data)
         }
       )
       .catch(

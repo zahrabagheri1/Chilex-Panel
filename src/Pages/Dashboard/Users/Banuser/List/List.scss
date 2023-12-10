@@ -1,13 +1,17 @@
-@import '../../../../Assets/scss/variable';
-@import '../../../../Assets/scss/mixin';
 
-.shoppingHistoryList {
+@import '../../../../../Assets/scss/mixin';
+@import '../../../../../Assets/scss/variable';
+
+.banuserlist{
+    width: 90%;
+    margin: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding-top: 20px;
     gap: 20px;
-
-    .filter {
+    
+    .filterBanUser{
         z-index: 1;
         position: relative;
         padding: 20px 30px;
@@ -19,9 +23,5 @@
         border: 2px solid $lightGray;
         align-items: center;
         gap: 10px;
-        flex-wrap: wrap;
-        justify-content: space-between;
-
-
     }
 }

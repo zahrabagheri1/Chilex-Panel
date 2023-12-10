@@ -60,7 +60,7 @@ function Index() {
     }
 
     return (
-        <div className='shoppingHistory'>
+        <div className='shoppingHistoryList'>
             <div className="top">
                 <div className='filter row'>
                     <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">

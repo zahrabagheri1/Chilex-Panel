@@ -10,6 +10,21 @@ export const sideBarMenu = [
         link: 'transaction',
     },
     {
+        name: 'Users',
+        icon: 'HiMiniUser',
+        link: null,
+        children: [
+            {
+                name: 'Alluser',
+                link: 'alluser',
+            }, 
+            {
+                name: 'Banuser',
+                link: 'banuser',
+            }
+        ]
+    },
+    {
         name: 'Products',
         icon: 'HiMiniSwatch',
         link: null,
@@ -17,12 +32,10 @@ export const sideBarMenu = [
         children: [
             {
                 name: 'Bundles',
-                icon: 'IoAnalyticsOutline',
                 link: 'bundles',
             }, 
             {
                 name: 'Items',
-                icon: 'IoAnalytics',
                 link: 'items',
             }
         ]

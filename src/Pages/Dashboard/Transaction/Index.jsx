@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 
 function Index() {
   return (
-    <div className='transaction'>
+    <div>
       <Outlet />
     </div>
   );

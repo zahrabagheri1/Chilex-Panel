@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Sidebar.scss'
 import Logo from '../../Assets/image/logo/logo.png'
-import { HiRocketLaunch, HiMiniShoppingCart, HiMiniCreditCard, HiMiniArrowDownTray, HiMiniSwatch, HiCurrencyDollar, HiMiniChatBubbleLeftRight, HiOutlineArrowLeftOnRectangle, HiInboxArrowDown, HiComputerDesktop } from "react-icons/hi2";
+import { HiRocketLaunch, HiMiniUser, HiMiniShoppingCart, HiMiniCreditCard, HiMiniArrowDownTray, HiMiniSwatch, HiCurrencyDollar, HiMiniChatBubbleLeftRight, HiOutlineArrowLeftOnRectangle, HiInboxArrowDown, HiComputerDesktop } from "react-icons/hi2";
 import { Link } from 'react-router-dom';
 import { sideBarMenu } from '../../Data/datalocal';
 
@@ -20,6 +20,8 @@ function Sidebar() {
     HiMiniChatBubbleLeftRight: <HiMiniChatBubbleLeftRight />,
     HiOutlineArrowLeftOnRectangle: <HiOutlineArrowLeftOnRectangle />,
     HiMiniShoppingCart: <HiMiniShoppingCart />,
+    HiMiniUser: <HiMiniUser/>
+    
   }
 
   const clickHandler = (key) => {

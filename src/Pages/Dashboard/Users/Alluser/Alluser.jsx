@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 
-function Index() {
+function Alluser() {
   return (
     <div>
       <Outlet/>
@@ -9,4 +9,4 @@ function Index() {
   );
 }
 
-export default Index;
+export default Alluser;

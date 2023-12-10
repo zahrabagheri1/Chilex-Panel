@@ -1,6 +1,8 @@
+
 @import '../../../../../Assets/scss/mixin';
 @import '../../../../../Assets/scss/variable';
-.item {
+
+.userList{
     width: 90%;
     margin: auto;
     display: flex;
@@ -8,8 +10,7 @@
     justify-content: space-between;
     padding-top: 20px;
     gap: 20px;
-
-    .top {
+    .filterandban{
         position: relative;
         display: flex;
         flex-direction: row;
@@ -31,7 +32,7 @@
             gap: 10px;
         }
 
-        .addItem {
+        .banuser{
             width: 6vh;
             background: $Gray;
             border-radius: 6px;
@@ -40,9 +41,8 @@
             align-items: center;
             justify-content: center;
             font-size: $font-xl;
-            color: $iconColor;
             cursor: pointer;
+            color: $iconColor;
         }
     }
-
 }

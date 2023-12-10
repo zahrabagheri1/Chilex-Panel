@@ -10,7 +10,6 @@ export const adminTransaction = [
     { name: 'userName', status: true },
 ]
 
-
 export const sortBundles = [
     { name: 'amount', status: true },
     { name: 'id', status: true },
@@ -39,7 +38,6 @@ export const sortBundles = [
     },
 ]
 
-
 export const sortItems = [
     { name: 'id', status: true },
     { name: 'name', status: true },
@@ -60,9 +58,6 @@ export const sortItems = [
 
     },
 ]
-
-
-
 
 export const sortHistory = [
     { name: 'id', status: true },
@@ -102,11 +97,23 @@ export const sortGameSettings = [
     { name: 'createdAt', status: true },
     { name: 'updatedAt', status: true }
 ]
+export const sortBanUsers = [
+    { name: 'userId', status: true },
+    { name: 'type', status: true },
+    { name: 'status', status: true },
+    { name: 'description', status: true },
+]
+
+export const sortUserList = [
+    { name: 'userId', status: true },
+    { name: 'type', status: true },
+    { name: 'status', status: true },
+    { name: 'description', status: true },
+]
 
 
 
 export const sortOfOrderList = {
-
 }
 
 

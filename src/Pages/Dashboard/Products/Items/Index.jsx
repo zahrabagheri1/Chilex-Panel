@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom';
 
 function Index() {
   return (
-    <div className='item'>
+    <div>
       <Outlet/>
     </div>
 

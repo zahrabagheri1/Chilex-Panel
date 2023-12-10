@@ -3,7 +3,9 @@ import Login from './Pages/Login/Index';
 import Dashboard from './Pages/Dashboard/Index';
 import Layout from './Pages/Dashboard/LayOut/Index';
 import Admin from './Pages/Dashboard/Admin/Index';
-import Users from './Pages/Dashboard/Users/Index';
+import Alluser from './Pages/Dashboard/Users/Alluser/Alluser';
+import AlluserList from './Pages/Dashboard/Users/Alluser/List/Index';
+import AlluserDetail from './Pages/Dashboard/Users/Alluser/Detail/Detail';
 import Support from './Pages/Dashboard/Support/Index';
 import Games from './Pages/Dashboard/Games/Index';
 import GameList from './Pages/Dashboard/Games/List/Index';
@@ -22,10 +24,15 @@ import TransactionDetail from './Pages/Dashboard/Transaction/Detail/Index';
 import Played from './Pages/Dashboard/Games/Played/Played';
 import Settings from './Pages/Dashboard/Games/Settings/Settings';
 import Game from './Pages/Dashboard/Games/Game/Game';
-import './App.css';
 import Notfound from './Pages/NotFound/Notfound';
 import Resources from './Pages/Dashboard/Games/Resources/Resources';
 import Charts from './Pages/Dashboard/Charts/Charts';
+
+import './App.css';
+import Banuser from './Pages/Dashboard/Users/Banuser/Banuser';
+import BanuserList from './Pages/Dashboard/Users/Banuser/List/Index';
+import BanuserDetail from './Pages/Dashboard/Users/Banuser/Detail/Detail';
+
 function App() {
   return (
     <Routes>
@@ -46,7 +53,15 @@ function App() {
             <Route index element={<TransactionList />} />
             <Route path=':transactId' element={<TransactionDetail />} />
           </Route>
-          <Route path='users' element={<Users />} />
+          <Route path='alluser' element={<Alluser/>}>
+            <Route index element={<AlluserList/>} />
+            <Route path=':user' element={<AlluserDetail/>}/>
+          </Route>
+
+          <Route path='banuser' element={<Banuser/>}>
+            <Route index element={<BanuserList/>}/>
+            <Route path=':banuser' element={<BanuserDetail/>}/>
+          </Route>
           <Route path='shopping-history' element={<ShoppingHistory />}>
             <Route index element={<SHList />} />
             <Route path=':historyId' element={<SHDetail />} />
