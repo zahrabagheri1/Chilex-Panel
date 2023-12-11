@@ -15,6 +15,7 @@
     cursor: pointer;
     box-shadow: 4px 7px 10px rgba(0, 0, 0, .4);
     padding-left: 10px;
+
     &:hover {
         width: 210px;
     }
@@ -44,70 +45,82 @@
             padding: 10px;
             transition: all .3s ease;
             color: $fontColorlight;
+            font-weight: 700;
+
+            &:link,
+            &:visited,
+            &:hover {
+                text-decoration: none;
+            }
+
+            &:hover,
+            &.active {
+                padding: 10px 10px;
+                background-color: $lighterGray;
+                border-radius: 10px;
+                font-weight: 600;
+                color: $fontColor;
+
+                .icon {
+                    color: $fontColor;
+                }
+            }
+
+            .icon {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: $font-fluid;
+                color: $fontColorlight;
+            }
+
+            .tabText {
+                font-size: $font-md;
+            }
+
+        }
+
+        .child {
+            display: none;
+
+        }
+
+        .activechild {
+            display: flex;
+            position: relative;
+            width: calc(100% - 20px);
+            left: 40px;
+            color: $fontColorlight;
+            flex-direction: column;
+            gap: 10px;
+            padding-top: 10px;
+
+            .childItem {
+                position: relative;
+                display: flex;
+                flex-direction: row;
+                gap: 5px;
+                cursor: pointer;
+                padding: 10px 10px;
+                font-weight: 550;
+                font-size: $font-md;
 
                 &:link,
                 &:visited,
                 &:hover {
                     text-decoration: none;
-                    font-weight: 600;
-                }
-
-                &:hover,
-                &.active {
-                    padding: 10px 10px;
-                    background-color: $lighterGray;
-                    border-radius: 10px;
-                    font-weight: 600;
-                    color: $fontColor;
-                    .icon{
-                        color: $fontColor;
-                    }
-                }
-
-                .icon{
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    font-size : $font-fluid;
                     color: $fontColorlight;
                 }
 
-                .tabText{
-                    font-size: $font-md;
-                }
-
-            }
-
-            .child {
-                position: relative;
-                left: 40px;
-                color: $fontColorlight;
-
-                .childItem {
-                    position: relative;
-                    display: flex;
-                    flex-direction: row;
-                    gap: 5px;
-                    cursor: pointer;
-                    padding: 10px 10px;
-                    font-weight: 600;
-                    font-size: $font-md;
-                    &:link,
-                    &:visited,
-                    &:hover {
-                        text-decoration: none;
-                        color: $fontColorlight;
-                    }
-
-                    &:hover,
-                    &:focus,
-                    &.active {
-                        background-color: $lighterGray;
-                        width: calc(100% - 40px);
-                        color: $fontColor;
-                        border-radius: 10px 0 0 10px;
-                    }
+                &:hover,
+                &:focus,
+                &.active {
+                    background-color: $lighterGray;
+                    width: calc(100% - 40px);
+                    color: $fontColor;
+                    border-radius: 10px ;
                 }
             }
         }
     }
+}

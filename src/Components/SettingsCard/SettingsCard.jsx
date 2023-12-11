@@ -40,11 +40,19 @@ const editable = [
 
 function SettingsCard(props) {
     const [edit, setEdit] = useState(false)
+    const [updatedata, setUpdateData] = useState({})
     const [data, setData] = useState()
 
-    const id = '100'
+    const id = '6'
     const editDetting = () => {
-        axios.patch(`/games/setting/${id}`).then(
+        axios.patch(`/games/setting/${id}`, {
+            // name: updatedata.name === null || updatedata.name === undefined ? data.name : updatedata.name,
+            // active: updatedata.active === null || updatedata.active === undefined ? data.active : updatedata.active,
+            // game: updatedata.game === null || updatedata.game === undefined ? data.game : updatedata.game,
+            // playersLength: updatedata.playersLength === null || updatedata.playersLength === undefined ? data.playersLength : updatedata.playersLength,
+            // description: updatedata.description === null || updatedata.description === undefined ? data.description : updatedata.description,
+            // botLevel: updatedata.botLevel === null || updatedata.botLevel === undefined ? data.botLevel : updatedata.botLevel
+        }).then(
             res => {
                 setData(res.data)
                 console.log(res.data)
@@ -54,11 +62,11 @@ function SettingsCard(props) {
         )
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         editDetting()
-    },[])
+    }, [])
 
-    
+
     const sendAndEditData = () => {
         setEdit(!edit)
     }
@@ -67,17 +75,24 @@ function SettingsCard(props) {
 
     }
 
-    const changeValueInput = (e) => {
-        console.log(e);
+
+    const updateInputData = (e) => {
+        if (e.target.type === 'number') {
+            setUpdateData((prev) => ({ ...prev, [e.target.name]: parseInt(e.target.value) }))
+            setEdit(true)
+        } else {
+            setUpdateData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+            setEdit(true)
+        }
     }
 
-    const updateOptionData = (e) => {
-        console.log(e);
-
+    const updateOptionData = (name, id) => {
+        setUpdateData((prev) => ({ ...prev, [name]: parseInt(id) }))
+        setEdit(true)
     }
 
     const switchHandlerPrice = (boolean, id) => {
-        console.log("boolean,id", boolean, id);
+        setUpdateData((prev) => ({ ...prev, ['active']: boolean }))
     };
 
     const botLevel = [{ id: 0, name: 'Easy' }, { id: 1, name: 'Medium' }, { id: 2, name: 'Hard' }]
@@ -86,8 +101,6 @@ function SettingsCard(props) {
     return (
         <div className='settingCard'>
             <div className='settingName'>{props.data.game}</div>
-    
-
             <div className='settingDetail row'>
                 {
                     Object.entries(props.data).map(([key, value], index) => (
@@ -99,10 +112,10 @@ function SettingsCard(props) {
                                             <Switch id={index} title={key} defaultChecked={value} disabled={edit === false ? true : false} onChange={switchHandlerPrice} />
                                             :
                                             item.status === false ?
-                                                < Input type={typeof value === 'number' ? 'number' : 'text'} inputclassname={'disabled'} name={key} value={value} title={key} readOnly={true} changeInputValue={changeValueInput} />
+                                                < Input type={typeof value === 'number' ? 'number' : 'text'} inputclassname={'disabled'} name={key} value={value} title={key} readOnly={true} changeInputValue={updateInputData} />
                                                 :
                                                 item.select === false ?
-                                                    < Input type={typeof value === 'number' ? 'number' : 'text'} inputclassname={edit === false ? 'disabled' : ''} name={key} value={value} title={key} readOnly={edit === true ? false : true} changeInputValue={changeValueInput} />
+                                                    < Input type={typeof value === 'number' ? 'number' : 'text'} inputclassname={edit === false ? 'disabled' : ''} name={key} value={value} title={key} readOnly={edit === true ? false : true} changeInputValue={updateInputData} />
                                                     :
                                                     item.name === 'botLevel' ?
                                                         <SelectOption name={key} readOnly={edit === false ? true : false} defaultValue={key} value={value} type={'name'} data={botLevel} changeOptinValue={updateOptionData} />
@@ -124,7 +137,7 @@ function SettingsCard(props) {
             <div className="row">
                 <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
                     <div className='update'><ButtonActionBlue
-                     title={'Edit'} handler={sendAndEditData} /></div>
+                        title={'Edit'} handler={sendAndEditData} /></div>
                 </div>
                 <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
                     <div className='update'><Button title={'resources'} handler={sendAndResourcesData} /></div>

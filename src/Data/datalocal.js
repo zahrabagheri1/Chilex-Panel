@@ -1,69 +1,89 @@
 export const sideBarMenu = [
     {
+        id: 0,
         name: 'Dashboard',
         icon: 'HiComputerDesktop',
         link: '/dashboard',
+        children: null
     },
     {
+        id: 1,
         name: 'Transaction',
         icon: 'HiCurrencyDollar',
         link: 'transaction',
+        children: null
     },
     {
+        id: 2,
         name: 'Users',
         icon: 'HiMiniUser',
         link: null,
         children: [
             {
+                id: 0,
                 name: 'Alluser',
                 link: 'alluser',
             }, 
             {
+                id: 1,
                 name: 'Banuser',
                 link: 'banuser',
             }
         ]
     },
     {
+        id: 3,
         name: 'Products',
         icon: 'HiMiniSwatch',
         link: null,
         dropdown: '',
         children: [
             {
+                id: 0,
                 name: 'Bundles',
                 link: 'bundles',
             }, 
             {
+                id: 1,
                 name: 'Items',
                 link: 'items',
             }
         ]
     },
     {
+        id: 4,
         name: 'Chat',
         icon: 'HiMiniChatBubbleLeftRight',
         link: 'chats',
+        children: null
     },
     {
+        id: 5,
         name: 'Shopping History',
         icon: 'HiMiniShoppingCart',
         link: 'shopping-history',
+        children: null
     },
     {
+        id: 6,
         name: 'Games',
         icon: 'HiRocketLaunch',
         link: 'games',
+        children: null
     },
     {
+        id: 7,
         name: 'Support',
         icon: 'HiMiniCreditCard',
         link: 'support',
+        children: null
     },
     {
+        id: 8,
         name: 'LogOut',
         icon: 'HiOutlineArrowLeftOnRectangle',
         link: '../login',
+        children: null
     },
 
 ]
