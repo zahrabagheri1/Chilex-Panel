@@ -13,7 +13,7 @@ function Sidebar() {
       <div className="menu">
         {sideBarMenu.map((item, index) => (
           <div key={index} >
-            <Tab data={item}/>
+            <Tab data={item} id={item.id}/>
           </div>
         ))
         }
