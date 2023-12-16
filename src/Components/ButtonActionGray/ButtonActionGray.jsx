@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
-import './ButtonActionRed.scss';
+import './ButtonActionGray.scss';
 
-function ButtonActionRed(props) {
+function ButtonActionGray(props) {
   //** props => id , className , handler, title */
 
   const handler = (e) => {
@@ -9,10 +9,10 @@ function ButtonActionRed(props) {
   }
 
   return (
-    <button id={props.id} className={`redbtn ${props.className}`} onClick={e => handler(e)} >
+    <button id={props.id} className={`graybtn ${props.className}`} onClick={e => handler(e)} >
         {props.title}
     </button>
   );
 }
 
-export default ButtonActionRed;
+export default ButtonActionGray;

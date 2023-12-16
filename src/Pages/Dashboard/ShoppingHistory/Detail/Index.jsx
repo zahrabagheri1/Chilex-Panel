@@ -3,24 +3,15 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Input from '../../../../Components/Input/Input';
 import './Detail.scss';
+import moment from 'moment-jalaali';
 
 function Index() {
     const [history, setHistory] = useState({});
     const { historyId } = useParams()
 
-    const type = [
-        { id: 0, name: 'Gem bundle' },
-        { id: 1, name: 'Coin  bundle' },
-    ]
-    const priceType = [
-        { id: 0, name: 'Gem' },
-        { id: 1, name: 'Coin' },
-        { id: 2, name: 'Rial' },
-    ]
-    const priceStatus = [
-        { id: 0, name: 'Active', status: true },
-        { id: 1, name: 'Deactive', status: false },
-    ]
+
+    const referenceType = ['BUNDLE', 'ITEM', 'TRANSACTION', 'SETTING']
+    const type = ['Gem', 'Coin', 'Item']
 
     useEffect(() => {
         axios.get(`/shopping-history/get-shoppingHistory/${historyId}`)
@@ -34,20 +25,40 @@ function Index() {
             )
     }, [])
 
+
     return (
         <div className='historyDetail'>
             <div className='boxOfDetail row'>
                 {history === null || history === undefined ? '' : (
                     Object.entries(history).map(([key, value], index) => (
-                        key === 'id' ?
+                        key === 'updatedAt' || key === 'createdAt' ?
                             <div key={index} className='titleB col-xl-3 col-lg-3 col-md-4 col-ms-6 col-xs-6'>
                                 <div className='header-title'>{key}</div>
-                                <div className='data-title'>{value}</div>
+                                <div className='data-title'>{moment(value, 'YYYY/MM/DD').format('jYYYY/jM/jD')}</div>
                             </div>
                             :
-                            <div key={index} className='titleB col-xl-3 col-lg-3 col-md-4 col-ms-6 col-xs-6'>
-                                <Input inputclassname={'disableInput'} title={key} value={value} readOnly={true} />
-                            </div>
+
+                            key === 'type' ?
+                                <div key={index} className='titleB col-xl-3 col-lg-3 col-md-4 col-ms-6 col-xs-6'>
+                                    <div className='header-title'>{key}</div>
+                                    <div className='data-title'>{type[value]}</div>
+                                </div>
+                                :
+                                key === 'referenceType' ?
+                    
+                                        <div key={index} className='titleB col-xl-3 col-lg-3 col-md-4 col-ms-6 col-xs-6'>
+                                            <div className='header-title'>{key}</div>
+                                            <div className='data-title'>{referenceType[value]}</div>
+                                        </div>
+                     
+                                    :
+                                    value === null ?
+                                    null :
+                                    <div key={index} className='titleB col-xl-3 col-lg-3 col-md-4 col-ms-6 col-xs-6'>
+                                        <div className='header-title'>{key}</div>
+                                        <div className='data-title'>{value}</div>
+                                    </div>
+
                     ))
                 )}
             </div>

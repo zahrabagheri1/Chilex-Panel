@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Resource.scss';
 import ButtonActionBlue from '../ButtonActionBlue/ButtonActionBlue';
-import ButtonActionRed from '../ButtonActionRed/ButtonActionRed';
+import ButtonActionGray from '../ButtonActionGray/ButtonActionGray';
 import Input from '../Input/Input';
 import SelectOption from '../SelectOption/SelectOption';
 import axios from 'axios';
@@ -176,7 +176,7 @@ function Resources(props) {
 
                     <div className="resourceBtn col-xl-1 col-lg-1 col-md-1 col-sm-1 col-xs-1">
                         <ButtonActionBlue title={'Edit'} handler={() => sendAndEditData(requirement.id, props.type, requirement)} />
-                        <ButtonActionRed title={'Delete'} handler={() => deleteData(requirement.id, props.type, requirement)} />
+                        <ButtonActionGray title={'Delete'} handler={() => deleteData(requirement.id, props.type, requirement)} />
                     </div>
                 </div>
             ))

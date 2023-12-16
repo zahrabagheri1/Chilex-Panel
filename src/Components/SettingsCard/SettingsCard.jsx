@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import './SettingsCard.scss';
 import Input from '../Input/Input';
-import { HiPencilSquare } from "react-icons/hi2";
 import ButtonActionBlue from '../../Components/ButtonActionBlue/ButtonActionBlue';
 import Switch from '../Switch/Switch';
 import SelectOption from '../SelectOption/SelectOption';
 import axios from 'axios';
 import Button from '../Button/Button';
+import moment from 'moment-jalaali';
+import Alert from '../../layout/Alert/Alert';
+import ButtonActionGray from '../ButtonActionGray/ButtonActionGray';
 
 
 const props = {
@@ -41,34 +43,47 @@ const editable = [
 function SettingsCard(props) {
     const [edit, setEdit] = useState(false)
     const [updatedata, setUpdateData] = useState({})
-    const [data, setData] = useState()
+    const data = props.data;
+    const [showAlert, setShowAlert] = useState({
+        status: false, msg: '', success: ''
+    })
 
-    const id = '6'
     const editDetting = () => {
-        axios.patch(`/games/setting/${id}`, {
-            // name: updatedata.name === null || updatedata.name === undefined ? data.name : updatedata.name,
-            // active: updatedata.active === null || updatedata.active === undefined ? data.active : updatedata.active,
-            // game: updatedata.game === null || updatedata.game === undefined ? data.game : updatedata.game,
-            // playersLength: updatedata.playersLength === null || updatedata.playersLength === undefined ? data.playersLength : updatedata.playersLength,
-            // description: updatedata.description === null || updatedata.description === undefined ? data.description : updatedata.description,
-            // botLevel: updatedata.botLevel === null || updatedata.botLevel === undefined ? data.botLevel : updatedata.botLevel
-        }).then(
-            res => {
-                setData(res.data)
-                console.log(res.data)
-            }
-        ).catch(
-            err => console.log(err)
-        )
+
     }
 
-    useEffect(() => {
-        editDetting()
-    }, [])
-
-
     const sendAndEditData = () => {
-        setEdit(!edit)
+        axios.patch(`/games/setting/${data.id}`, {
+            name: updatedata.name === null || updatedata.name === undefined ? data.name : updatedata.name,
+            active: updatedata.active === null || updatedata.active === undefined ? data.active : updatedata.active,
+            game: updatedata.game === null || updatedata.game === undefined ? data.game : updatedata.game,
+            playersLength: updatedata.playersLength === null || updatedata.playersLength === undefined ? data.playersLength : updatedata.playersLength,
+            description: updatedata.description === null || updatedata.description === undefined ? data.description : updatedata.description,
+            botLevel: updatedata.botLevel === null || updatedata.botLevel === undefined ? data.botLevel : updatedata.botLevel
+        }).then(
+            res => {
+                props.getData()
+                if (res.status < 300 && res.status >= 200) {
+                    setShowAlert({ status: true, msg: res.statusText + '!  edit is successful', success: true })
+                    setTimeout(() => {
+                        setShowAlert({ status: false, success: true })
+
+                    }, 3000)
+                }
+                setEdit(false)
+            }
+        ).catch(
+            err => {
+                console.log(err);
+
+                setShowAlert({ status: true, msg: res.statusText + 'name is same', success: false })
+                setTimeout(() => {
+                    setShowAlert({ status: false, success: true })
+
+                }, 3000)
+
+            }
+        )
     }
 
     const sendAndResourcesData = () => {
@@ -96,10 +111,16 @@ function SettingsCard(props) {
     };
 
     const botLevel = [{ id: 0, name: 'Easy' }, { id: 1, name: 'Medium' }, { id: 2, name: 'Hard' }]
+    const game = [{ id: 0, name: 'ludo' }, { id: 1, name: 'uno' }, { id: 2, name: '' }, { id: 3, name: '' }, { id: 4, name: '' }]
     const playersLength = [{ id: 0, name: '2 Player' }, { id: 1, name: '3 Player' }, { id: 2, name: '4 Player' }]
 
     return (
         <div className='settingCard'>
+            {showAlert.status === true ?
+                <Alert message={showAlert.msg} success={showAlert.success} />
+                :
+                ''
+            }
             <div className='settingName'>{props.data.game}</div>
             <div className='settingDetail row'>
                 {
@@ -112,7 +133,14 @@ function SettingsCard(props) {
                                             <Switch id={index} title={key} defaultChecked={value} disabled={edit === false ? true : false} onChange={switchHandlerPrice} />
                                             :
                                             item.status === false ?
-                                                < Input type={typeof value === 'number' ? 'number' : 'text'} inputclassname={'disabled'} name={key} value={value} title={key} readOnly={true} changeInputValue={updateInputData} />
+                                                item.name === 'updatedAt' || item.name === 'createdAt' ?
+                                                    <div className='titleB'>
+                                                        <div className='header-title'>{key}</div>
+                                                        <div className='data-title'>{moment(value, 'YYYY/MM/DD').format('jYYYY/jM/jD')}</div>
+                                                    </div>
+
+                                                    :
+                                                    < Input type={typeof value === 'number' ? 'number' : 'text'} inputclassname={'disabled'} name={key} value={value} title={key} readOnly={true} />
                                                 :
                                                 item.select === false ?
                                                     < Input type={typeof value === 'number' ? 'number' : 'text'} inputclassname={edit === false ? 'disabled' : ''} name={key} value={value} title={key} readOnly={edit === true ? false : true} changeInputValue={updateInputData} />
@@ -121,9 +149,12 @@ function SettingsCard(props) {
                                                         <SelectOption name={key} readOnly={edit === false ? true : false} defaultValue={key} value={value} type={'name'} data={botLevel} changeOptinValue={updateOptionData} />
                                                         :
                                                         item.name === 'playersLength' ?
-                                                            <SelectOption name={key} readOnly={edit === false ? true : false} defaultValue={key} value={value} type={'name'} data={playersLength} changeOptinValue={updateOptionData} />
-                                                            :
-                                                            ''
+                                                            props.gameName === 'ludo' || props.gameName === 'uno' ?
+                                                                <SelectOption name={key} readOnly={edit === false ? true : false} defaultValue={key} value={value} type={'name'} data={playersLength} changeOptinValue={updateOptionData} />
+                                                                :
+                                                                <SelectOption name={key} readOnly={true} defaultValue={key} value={value} type={'name'} data={playersLength} changeOptinValue={updateOptionData} />
+                                                            : null
+
                                     }
                                 </div>
                                 :
@@ -134,15 +165,31 @@ function SettingsCard(props) {
 
             </div>
 
-            <div className="row">
-                <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                    <div className='update'><ButtonActionBlue
-                        title={'Edit'} handler={sendAndEditData} /></div>
-                </div>
-                <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                    <div className='update'><Button title={'resources'} handler={sendAndResourcesData} /></div>
-                </div>
-            </div>
+
+
+            {
+                edit === false ?
+                    <div className="row">
+                        <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <div className='update'><ButtonActionBlue title={'Edit data'} handler={() => setEdit(true)} /></div>
+                        </div>
+                        <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <div className='update'><ButtonActionGray title={'resources'} handler={sendAndResourcesData} /></div>
+                        </div>
+                    </div>
+                    :
+                    <div className="row">
+                        <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <div className='update'><ButtonActionBlue title={'Edit'} handler={sendAndEditData} /></div>
+                        </div>
+                        <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <div className='update'><ButtonActionGray title={'Cancel'} handler={() => setEdit(false)} /></div>
+                        </div>
+
+                    </div>
+
+            }
+
         </div>
 
     );

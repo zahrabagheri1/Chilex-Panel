@@ -6,8 +6,7 @@ import ludo from '../../Assets/image/ludo.png';
 import uno from '../../Assets/image/uno.png';
 import soccer from '../../Assets/image/soccer.png';
 import Switch from '../Switch/Switch';
-import { useNavigate } from 'react-router-dom';
-import { format } from 'timeago.js';
+import { useNavigate } from 'react-router-dom'
 import moment from 'moment-jalaali';
 
 const props = {
@@ -67,13 +66,11 @@ function GameCard(props) {
           <div className="subimgtextItem">
             <div className="subtitelimg">createdAt:</div>
             <div className='subtext'>{moment(props.creaty, 'YYYY/MM/DD').format('jYYYY/jM/jD')}</div>
-            <div className='subtext'>{format(props.creaty)}</div>
           </div>
 
           <div className="subimgtextItem">
             <div className="subtitelimg">updatedAt:</div>
             <div className='subtext'>{moment(props.updated, 'YYYY/MM/DD').format('jYYYY/jM/jD')}</div>
-            <div className='subtext'>{format(props.updated)}</div>
           </div>
         </div>
       </div>

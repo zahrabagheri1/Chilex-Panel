@@ -1,0 +1,133 @@
+@import '../../Assets/scss/variable';
+
+.datepicker {
+    width: 100% !important;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    .title {
+        font-size: 14px !important;
+        color: $fontColorlight;
+        font-weight: 700;
+        text-transform: capitalize;
+    }
+
+    .rmdp-container {
+        width: 100% !important;
+    }
+
+    .rmdp-input {
+        width: 100%;
+        height: 32px;
+        padding: 0;
+        border-radius: 8px;
+        background: $lightGray;
+        outline: none;
+        border: none;
+        border: 1px solid $lightGray;
+        color: $fontColorlight;
+        font-size: 14px;
+        font-family: 'iranBakh';
+        padding: 0 15px;
+        width: calc(100% - 30px);
+
+        &:focus {
+            border: 1px solid $lightGray !important;
+            box-shadow: 0 0.5px 5px 0.5px $lightGray !important;
+            outline: $lightGray;
+        }
+
+        &:hover {
+            color: $fontColor;
+        }
+    }
+
+    .rmdp-ep-arrow[direction=top] {
+        border-bottom: none;
+    }
+
+    .rmdp-ep-arrow:after {
+        background-color: #272A2F;
+        content: "";
+        height: 12px;
+        position: absolute;
+        transform: rotate(45deg);
+        width: 12px;
+    }
+
+    .rmdp-ep-arrow[direction=bottom] {
+        margin-top: -1px;
+        border: none;
+    }
+
+    .rmdp-ep-border:after {
+        border: 1px solid #1A1D1F;
+        border-radius: 2px;
+    }
+
+    .rmdp-ep-border::after {
+        border: 1px solid #1A1D1F;
+
+    }
+
+    .rmdp-wrapper,
+    .rmdp-month-picker,
+    .rmdp-year-picker {
+        // background-color: $lightGray;
+        background-color: #272A2F;
+        border: 1px solid #1A1D1F;
+        font-size: 14px;
+        color: $fontColor;
+        font-family: 'iranBakh';
+        border-radius: 8px;
+
+        .rmdp-day {
+            color: $fontColor !important;
+        }
+    }
+
+    .rmdp-day.rmdp-selected span:not(.highlight) {
+        background-color: #0074d9;
+        box-shadow: 0 0 3px $lightGray;
+        color: $white;
+    }
+
+    .rmdp-header-values {
+        color: $fontColor !important;
+    }
+
+    .rmdp-day-picker {
+        color: $fontColor !important;
+
+        .rmdp-day {
+            color: $fontColor !important;
+        }
+
+        .rmdp-deactive {
+            color: $fontColor !important;
+        }
+
+        .rmdp-week-day {
+            color: $actionBlue !important;
+        }
+    }
+
+    .sc-kAyceB {
+        background-color: $lightGray;
+        border: 1px solid $lightGray;
+        color: $fontColor ;
+
+        .sc-gsFSXq {
+
+            border: 1px solid $lightGray;
+            border-radius: 5px;
+            background-color: $white;
+
+            .sc-fqkvVR {
+                color: $fontColor;
+            }
+        }
+    }
+}

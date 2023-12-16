@@ -6,6 +6,7 @@ import { sortGamePlayed } from '../../../../Data/Sort';
 import './Played.scss';
 import Input from '../../../../Components/Input/Input';
 import SelectOption from '../../../../Components/SelectOption/SelectOption';
+import DatePikerFarsi from '../../../../Components/DatePikerFarsi/DatePikerFarsi';
 
 const props = {
     gameName: 'ludo',
@@ -31,7 +32,7 @@ function Played() {
             .then(
                 res => {
                     setData(res.data.data)
-                    console.log(res.data.data)
+                    // console.log(res.data.data)                
                 }
             )
             .catch(
@@ -49,27 +50,31 @@ function Played() {
         setFilter((prev) => ({ ...prev, [name]: id }))
     }
 
+    const updateDataPiker = (e , title) => {
+        setFilter((prev) => ({ ...prev, [title]: e }))
+    }
+
     return (
         <div className='played'>
             <div className="filter row">
                 <div className='col-xl-2 col-lg-2 col-md-4 col-sm-6 col-xs-12'>
-                    <Input classname='controlinput' name={'startDate'} type={'date'} title={"Start Date"} placeholder={'Start Date'} changeInputValue={updateInputData} />
+                    <DatePikerFarsi handlerChangeDate={updateDataPiker}  value={'1402/02/02'} title={'startDate'}/>
                 </div>
 
                 <div className="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-xs-12">
-                    <Input classname='controlinput' name={'endDate'} type={'date'} title={"End Date"} placeholder={'End Date'} changeInputValue={updateInputData} />
+                    <DatePikerFarsi handlerChangeDate={updateDataPiker}  value={'1402/02/02'} title={'endDate'}/>
                 </div>
 
                 <div className="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-xs-12">
-                    <Input classname='controlinput' name={'limit'} type={'number'} title={"limit"} placeholder={'limit'} changeInputValue={updateInputData} />
+                    <Input name={'limit'} type={'number'} title={"limit"} placeholder={'limit'} changeInputValue={updateInputData} />
                 </div>
 
                 <div className="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-xs-12">
-                    <Input classname='controlinput' name={'offset'} type={'number'} title={"offset"} placeholder={'offset'} changeInputValue={updateInputData} />
+                    <Input  name={'offset'} type={'number'} title={"offset"} placeholder={'offset'} changeInputValue={updateInputData} />
                 </div>
 
                 <div className="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-xs-12">
-                    <SelectOption classnameBox='control' name={'orderBy'} defaultValue={'orderBy'} type={'status'} changeOptinValue={updateOptionData}
+                    <SelectOption readOnly={false} name={'orderBy'} defaultValue={'orderBy'} type={'status'} changeOptinValue={updateOptionData}
                         data={[
                             { id: 0, status: 'DESC' },
                             { id: 1, status: 'ASC' },

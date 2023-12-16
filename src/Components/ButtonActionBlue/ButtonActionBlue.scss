@@ -7,19 +7,18 @@
     position: relative;
     display: flex;
     align-items: center;
+    background-color: $actionBluelight;
     justify-content: center;
-    background-color: $actionBlue;
     border-radius: 3px;
-    border: 1px solid $actionBlue;
+    border: 1px solid $actionBluelight;
     cursor: pointer;
     color: $fontColor;
     font-size: $font-md;
     font-family: sans-serif;
     font-weight: 600;
-
+    
     &:hover {
-
-        background-color: $actionBluelight;
+        background-color: $actionBlue;
     }
 
     &:active {

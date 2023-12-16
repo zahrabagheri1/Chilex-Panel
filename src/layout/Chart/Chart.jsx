@@ -4,6 +4,7 @@ import Input from '../../Components/Input/Input';
 import './Chart.scss';
 import axios from 'axios';
 import { LineController, PolarAreaController } from 'chart.js';
+import DatePikerFarsi from '../../Components/DatePikerFarsi/DatePikerFarsi';
 
 
 
@@ -17,16 +18,21 @@ function Chart() {
         endtDate: '2023-11-27',
     })
 
-    // console.log(data)
-
     const [state, setState] = useState()
 
     const updateOptionData = (name, id) => {
         setFilter(prev => ({ ...prev, [name]: id }))
     }
+    
     const updateInputData = (e) => {
         setFilter(prev => ({ ...prev, [e.target.name]: e.target.value }))
     }
+
+    const updateDataPiker = (e , title)=>{
+        // console.log(e, title)
+        setFilter((prev) => ({ ...prev, [title]: e }))
+    }
+
 
     useEffect(() => {
         getChart()
@@ -45,28 +51,13 @@ function Chart() {
             )
     }
 
-    const data1 = {
-        labels: ['Red', 'Orange', 'Blue'],
-        datasets: [
-            {
-                label: 'Popularity of colours',
-                data: [55, 23, 96],
-                backgroundColor: [
-                    'rgba(255, 255, 255, 0.6)',
-                    'rgba(255, 255, 255, 0.6)',
-                    'rgba(255, 255, 255, 0.6)'
-                ],
-                borderWidth: 1,
-            }
-        ]
-    }
     return (
         <div className='chart-filter-bg'>
             {data === undefined || data === null ? '' :
                 <div className="chart-filter-box row">
                     <div className="chart-filter-title col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">Transaction</div>
                     <div className="chart-box col-xl-9 col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                        
+
                     </div>
 
                     <div className="filter-chart col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-3">
@@ -91,7 +82,7 @@ function Chart() {
                         </div>
 
                         <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-6">
-                            <SelectOption name={'type '} defaultValue={'monthly'} readOnly={false} type={'name'} changeOptinValue={updateOptionData}
+                            <SelectOption name={'type'} defaultValue={'monthly'} readOnly={false} type={'name'} changeOptinValue={updateOptionData}
                                 data={[
                                     { id: 0, name: 'hourly' },
                                     { id: 1, name: 'daily' },
@@ -102,17 +93,21 @@ function Chart() {
                         </div>
 
                         <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-6">
-                            <Input type={'date'} name={'startDate'} title={'startDate'} value={'2023-04-21'} changeInputValue={updateInputData} />
+                            <DatePikerFarsi
+                                handlerChangeDate={updateDataPiker}
+                                value={'1402/02/02'}
+                                title="startDate"
+                            />
                         </div>
 
                         <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-6">
-                            <Input type={'date'} name={'endDate'} title={'endDate'} value={'2023-11-21'} changeInputValue={updateInputData} />
+                            <DatePikerFarsi
+                                handlerChangeDate={updateDataPiker}
+                                value={'1402/02/02'}
+                                title="endtDate"
+                            />
                         </div>
 
-                        <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-6">
-                            {/* <Datepicker type={'date'} name={'endDate'} title={'endDate'} value={'2023-11-21'} changeInputValue={updateInputData} /> */}
-                        </div>
-                   
                     </div>
                 </div>
             }

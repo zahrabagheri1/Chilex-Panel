@@ -1,14 +1,14 @@
 @import "../../Assets/scss/mixin";
 @import "../../Assets/scss/variable";
 
-.redbtn {
+.graybtn {
     width: 100%;
     height: 26px;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: $Gray;
+    background-color: $lightGray;
     border-radius: 3px;
     border: 1px solid $lightGray;
     cursor: pointer;
@@ -18,8 +18,7 @@
     font-family: sans-serif;
 
     &:hover {
-
-        background-color: $darkGray;
+        background-color: $lighterGray;
     }
 
     &:active {

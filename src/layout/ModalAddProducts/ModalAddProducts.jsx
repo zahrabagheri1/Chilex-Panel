@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import ButtonActionRed from '../../Components/ButtonActionRed/ButtonActionRed';
+import ButtonActionGray from '../../Components/ButtonActionGray/ButtonActionGray';
 import ButtonActionBlue from '../../Components/ButtonActionBlue/ButtonActionBlue';
 import Input from '../../Components/Input/Input';
 import SelectOption from '../../Components/SelectOption/SelectOption';
@@ -17,43 +17,16 @@ function ModalAddProducts(props) {
   const [showAlert, setShowAlert] = useState({
     status: false, msg: ''
   })
-
   const [addElement, setAddElement] = useState({
     prices: [{ type: 0, amount: 5 }],
     stuffType: props.type === 'bundle' ? null : 2,
   })
 
-  const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   setData(props.data)
-  // }, [props])
-
-  //         setBandel(res.data.dat)
-  //         // console.log(res)
-  //       }
-  //     )
-  //     .catch(
-  //       err => {
-  //         console.log(err)
-  //       }
-  //     )
-  // })
-
   const handlerClose = (e) => {
     props.handlerClose()
   }
 
-  // const handlerClose = (e) => {
-  //   navigate("./")
-  // }
-
-
-
   const handlerSubmit = () => {
-
-
-
     axios.post('/admin-stuff/create-stuff', addElement)
       .then(
         res => {
@@ -72,9 +45,6 @@ function ModalAddProducts(props) {
         }
       )
   }
-
-
-
 
   const updateInputData = (e) => {
     if (e.target.type === 'number') {
@@ -217,7 +187,7 @@ function ModalAddProducts(props) {
 
         <div className='btns'>
           <div className='backbtn'>
-            <ButtonActionRed title={'Back'} handler={handlerClose} />
+            <ButtonActionGray title={'Back'} handler={handlerClose} />
           </div>
 
           <div className="acsseptbtn">

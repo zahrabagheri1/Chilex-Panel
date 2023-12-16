@@ -13,17 +13,13 @@
     display: flex;
     font-size: $font-xl;
     color: $iconColor;
-    cursor: pointer;
 
-        .settingName {
-            font-size: 24px;
-            font-weight: 900;
-            margin-bottom: 10px;
-            text-transform: capitalize;
-        }
-
-    
-
+    .settingName {
+        font-size: 24px;
+        font-weight: 900;
+        margin-bottom: 10px;
+        text-transform: capitalize;
+    }
 
     .settingDetail {
         .disabled {
@@ -34,6 +30,7 @@
             font-size: 16px;
             font-weight: bold;
             padding-left: 0 !important;
+
             &:focus,
             &:focus-visible,
             &:active,
@@ -42,6 +39,28 @@
                 border: none !important;
                 box-shadow: none !important;
                 outline: none;
+            }
+        }
+
+        .titleB {
+            font-family: sans-serif;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+
+            .header-title {
+                font-size: 14px;
+                color: $fontColorlight;
+                font-weight: 700;
+                text-transform: capitalize;
+            }
+
+            .data-title {
+                cursor: default !important;
+                color: $fontColor;
+                font-size: 16px;
+                font-weight: 700;
             }
         }
     }

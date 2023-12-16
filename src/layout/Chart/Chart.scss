@@ -12,19 +12,19 @@
         position: relative;
 
         .chart-filter-title {
-        font-size: 18px;
-        font-weight: 700;
-        color: $fontColor;
+            font-size: 18px;
+            font-weight: 700;
+            color: $fontColor;
         }
-
+        
         .chart-box {
             border-radius: 6px;
             background-color: $lightGray;
-            padding: 10px;
+            height: 100%;
         }
-
+        
         .filter-chart {
-            // margin-top: 20px;
+            margin-bottom: 10px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;

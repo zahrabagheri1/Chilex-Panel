@@ -22,16 +22,15 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: $lightGray;
+        background-color: $Gray;
         border-radius: 3px;
-        border: 1px solid $lighterGray;
+        border: 1px solid $lightGray;
         cursor: pointer;
         color: $fontColor;
         font-size: 13px;
         font-family: sans-serif;
 
         &:hover {
-
             background-color: $lighterGray;
         }
 
