@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Input.scss';
 import { HiUser, HiOutlineUser, HiMiniMagnifyingGlass, HiOutlineEye, HiLockClosed, HiOutlineEyeSlash, HiMiniEyeSlash, HiMiniEye } from "react-icons/hi2";
+import moment from 'moment-jalaali';
 
 // const props = {
 //   title: 'name',
@@ -19,7 +20,11 @@ import { HiUser, HiOutlineUser, HiMiniMagnifyingGlass, HiOutlineEye, HiLockClose
 // }
 
 function Input(props) {
-  const [value, setValue] = useState(props.value)
+  const [value, setValue] = useState(
+    props.name === 'createdAt' || props.name === 'updatedAt' ?
+      (moment(props.value, 'YYYY/MM/DD').format('jYYYY/jM/jD'))
+      : props.value
+  )
   const [eye, setEye] = useState(false)
 
 

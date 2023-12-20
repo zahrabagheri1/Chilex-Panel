@@ -28,6 +28,11 @@ export const sideBarMenu = [
                 id: 1,
                 name: 'Banuser',
                 link: 'banuser',
+            }, 
+            {
+                id: 2,
+                name: 'Reports',
+                link: 'reports',
             }
         ]
     },

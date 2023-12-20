@@ -58,11 +58,11 @@ function Played() {
         <div className='played'>
             <div className="filter row">
                 <div className='col-xl-2 col-lg-2 col-md-4 col-sm-6 col-xs-12'>
-                    <DatePikerFarsi handlerChangeDate={updateDataPiker}  value={'1402/02/02'} title={'startDate'}/>
+                    <DatePikerFarsi value={'1402/02/02'} title={'startDate'} handlerChangeDate={updateDataPiker} />
                 </div>
 
                 <div className="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-xs-12">
-                    <DatePikerFarsi handlerChangeDate={updateDataPiker}  value={'1402/02/02'} title={'endDate'}/>
+                    <DatePikerFarsi  value={'1402/02/02'} title={'endDate'} handlerChangeDate={updateDataPiker} />
                 </div>
 
                 <div className="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-xs-12">
@@ -85,7 +85,7 @@ function Played() {
             </div>
 
             <ScrollContainer>
-                <Table data={data} sort={sortGamePlayed} action={true} />
+                <Table data={data} sort={sortGamePlayed} action={true} showDetailStatus={false}/>
             </ScrollContainer>
         </div>
     );

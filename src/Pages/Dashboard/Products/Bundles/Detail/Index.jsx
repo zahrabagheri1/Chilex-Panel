@@ -4,11 +4,12 @@ import axios from 'axios';
 import './Detail.scss';
 import Switch from '../../../../../Components/Switch/Switch';
 import Input from '../../../../../Components/Input/Input';
-import { HiPencilSquare } from "react-icons/hi2";
+import { HiPencilSquare, HiCheck } from "react-icons/hi2";
 import ButtonActionBlue from '../../../../../Components/ButtonActionBlue/ButtonActionBlue';
 
 function Index() {
     const [detail, setDetail] = useState({});
+    const [editAble, setEditAble] = useState(false)
     const [edit, setEdit] = useState(false)
     const { bundleId } = useParams()
     const navigate = useNavigate()
@@ -39,17 +40,11 @@ function Index() {
         setUpdateData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
     }
 
-    // {
-    //     "name": "string",
-    //     "expireTime": "string",
-    //     "imageId": "string",
-    //     "sku": "string",
-    //     "amount": 0,
-    //     "activityIntervalTime": {}
-    //   }
+    const editData = () => {
+        setEditAble(!editAble)
+    }
 
     const sendData = () => {
-        setEdit(!edit)
         axios.patch(`/admin-stuff/update-bundle/${bundleId}`,
             {
                 name: updateData.name === null || updateData.name === undefined ? detail.name : updateData.name,
@@ -118,14 +113,14 @@ function Index() {
     return (
         <div className='bundleDetail'>
             <div className="btnEdit">
-                <div className='edited' onClick={sendData}><HiPencilSquare /></div>
-                {/* <div className='update'><ButtonActionBlue title={'Edit'} handler={sendData} /></div> */}
-            </div>
+                    <div className='edited' onClick={editData}><HiPencilSquare /></div>
+                    <div className={editAble === true ? 'ableupdate' : 'disableupdate'} onClick={sendData}><HiCheck /></div>
+                </div>
             <div className='boxOfDetail row'>
                 {detail === null || detail === undefined ? '' : (
                     Object.entries(detail).map(([key, value], index) => (
                         Array.isArray(value) ?
-                            <div className="priceBox col-xl-12 col-lg-12 col-md-12 col-ms-12 col-xs-12">
+                            <div key={index} className="priceBox col-xl-12 col-lg-12 col-md-12 col-ms-12 col-xs-12">
                                 <div className='titlePrice'>{key}</div>
                                 <div className="priceBody row">
                                     {value.map((item, i) => (
@@ -149,7 +144,7 @@ function Index() {
                                                                     id={index}
                                                                     title={key}
                                                                     defaultChecked={value === 0 ? true : false}
-                                                                    disabled={edit === false ? true : false}
+                                                                    disabled={editAble === false ? true : false}
                                                                     onChange={switchHandlerPrice}
                                                                 />
                                                             </div>
@@ -186,7 +181,7 @@ function Index() {
                                                 id={index}
                                                 title={key}
                                                 defaultChecked={value === 0 ? true : false}
-                                                disabled={edit === false ? true : false}
+                                                disabled={editAble === false ? true : false}
                                                 onChange={switchHandler}
                                             />
 
@@ -197,8 +192,8 @@ function Index() {
                                                 <div className='data-title'>{value}</div>
                                             </div>
                                             :
-                                            // <Input inputclassname={edit === false ? 'disabled' : ''} name={key} title={key} value={value} type={key === 'amount' ? 'number' : 'text'} readOnly={edit === true ? false : true} changeInputValue={changeValueInput} />
-                                            <Input inputclassname={'disabled'} name={key} title={key} value={value} type={key === 'amount' ? 'number' : 'text'} readOnly={true} changeInputValue={changeValueInput} />
+                                            <Input inputclassname={editAble === false ? 'disabled' : ''} name={key} title={key} value={value} type={key === 'amount' ? 'number' : 'text'} readOnly={edit === true ? false : true} changeInputValue={changeValueInput} />
+                                            // <Input inputclassname={'disabled'} name={key} title={key} value={value} type={key === 'amount' ? 'number' : 'text'} readOnly={true} changeInputValue={changeValueInput} />
                                 
                                 }
                             </div>

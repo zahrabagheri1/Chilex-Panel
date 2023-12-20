@@ -8,7 +8,7 @@ import ButtonActionGray from '../../Components/ButtonActionGray/ButtonActionGray
 import Alert from '../Alert/Alert';
 
 function ModalSetting(props) {
-  const [data, setData] = useState()
+  // const [data, setData] = useState()
   const [addSetting, setAddSetting] = useState({})
   const [error, setError] = useState()
   const [showAlert, setShowAlert] = useState({
@@ -19,17 +19,17 @@ function ModalSetting(props) {
     axios.post(`/games/setting`, addSetting)
       .then(
         res => {
-          setData(res.data)
+          // setData(res.data)
           // show alert that new setting creatting.
           if (res.status < 300 && res.status >= 200) {
-            setShowAlert({ status: true, msg: res.statusText, success: true })
+            setShowAlert({ status: true, msg: res.statusText,success: true  })
             setTimeout(() => {
               setShowAlert({ status: false })
               setTimeout(() => {
                 props.canceladd()
               }, 0)
             }, 3000)
-      
+
           }
 
         }
@@ -37,7 +37,7 @@ function ModalSetting(props) {
       .catch(
         err => {
           console.log(err)
-          setShowAlert({ status: true, msg: err.message + ".   Filling the blank", success: false })
+          setShowAlert({ status: true, msg: err.message + ".   Filling the blank", success: false})
           setTimeout(() => {
             setShowAlert({ status: false })
 
@@ -59,7 +59,7 @@ function ModalSetting(props) {
   }
 
   const botLevel = [{ id: 0, name: 'Easy' }, { id: 1, name: 'Medium' }, { id: 2, name: 'Hard' }]
-  const game = [{ id: 0, name: 'ludo' }, { id: 1, name: 'uno' }, { id: 2, name: 'Backgammon' }, { id: 3, name: 'Soccer' }, { id: 4, name: 'Yadzy' }]
+  const game = [{ id: 'ludo', name: 'ludo' }, { id: 'uno', name: 'uno' }, { id: 'backgammon', name: 'Backgammon' }, { id: 'Soccer', name: 'Soccer' }, { id: 'Yadzy', name: 'Yadzy' }]
   const playersLength = [{ id: 0, name: '2 Player' }, { id: 1, name: '3 Player' }, { id: 2, name: '4 Player' }]
 
   return (
@@ -78,14 +78,15 @@ function ModalSetting(props) {
             <Input name={'name'} type={'text'} title={'name'} changeInputValue={updateInputData} />
           </div>
 
-          <div className="col-xl-2 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+          {/* <div className="col-xl-2 col-lg-4 col-md-4 col-sm-6 col-xs-12">
             <Input name={'game'} type={'text'} title={'game'} changeInputValue={updateInputData} />
-          </div>
+          </div> */}
+
           {/* we have 5 games so i think it should be  work with id */}
 
-          {/* <div className="col-xl-2 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+          <div className="col-xl-2 col-lg-4 col-md-4 col-sm-6 col-xs-12">
             <SelectOption name={'game'} readOnly={false} defaultValue={'game'} value={'value'} type={'name'} data={game} changeOptinValue={updateOptionData} />
-          </div> */}
+          </div>
 
           <div className="col-xl-2 col-lg-4 col-md-4 col-sm-6 col-xs-12">
             <SelectOption name={'playersLength'} readOnly={false} defaultValue={'playersLength'} value={'playersLength'} type={'name'} data={playersLength} changeOptinValue={updateOptionData} />

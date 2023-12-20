@@ -41,8 +41,8 @@ function Index() {
   }
 
   const gameSetting = () => {
-    console.log('settings URL',id)
-    navigate('/settings')
+    console.log('settings URL',name)
+    navigate(`/settings/${name}`)
   }
 
   const gamePlayed = () => {
@@ -50,7 +50,7 @@ function Index() {
   }
 
   const mouseOut = ()=>{
-    setModal(false)
+    // setModal(false)
   }
 
   return (
@@ -73,8 +73,6 @@ function Index() {
           </div>
         </div>
       </div>
-
-
     </div>
   );
 }

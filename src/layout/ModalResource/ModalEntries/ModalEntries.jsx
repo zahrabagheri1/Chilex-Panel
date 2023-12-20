@@ -4,6 +4,8 @@ import axios from 'axios';
 import Input from '../../../Components/Input/Input';
 import SelectOption from '../../../Components/SelectOption/SelectOption';
 import ButtonActionBlue from '../../../Components/ButtonActionBlue/ButtonActionBlue';
+import Alert from '../../Alert/Alert';
+import ButtonActionGray from '../../../Components/ButtonActionGray/ButtonActionGray';
 
 const settingId = 2;
 
@@ -11,6 +13,9 @@ function ModalEntries(props) {
   const [value, setValue] = useState()
   const [addEntry, setAddEntry] = useState({
     settingId: settingId
+  })
+  const [showAlert, setShowAlert] = useState({
+    status: false, msg: '', success: null
   })
 
   const resourceType = [
@@ -28,25 +33,48 @@ function ModalEntries(props) {
     setAddEntry(prev => ({ ...prev, [name]: parseInt(id) }))
   }
 
-  console.log(addEntry)
-
-  const sendAndEditData = () => {
+  const sendData = () => {
     axios.post(`/games/setting/entry`, addEntry)
       .then(
         res => {
-          console.log(res.data)
+          // show alert that new setting creatting.
+          if (res.status < 300 && res.status >= 200) {
+            setShowAlert({ status: true, msg: 'Created Entry succesful', success: true })
+            setTimeout(() => {
+              setShowAlert({ status: false })
+              setTimeout(() => {
+                props.canceladd()
+              }, 0)
+            }, 2000)
+          }
+          
+          else if (res.status = 400) {
+            setShowAlert({ status: true, msg: res.message, success: false })
+            setTimeout(() => {
+              setShowAlert({ status: false })
+            }, 2000)
+          }
+          
+          props.onchange()
         }
       ).catch(
-        err => console.log(err)
+        err => {
+          console.log(err)
+        }
       )
   }
 
   useEffect(() => {
-    sendAndEditData()
+    sendData()
   }, [])
 
   return (
     <div className='modalEntries'>
+      {showAlert.status === true ?
+        <Alert message={showAlert.msg} success={showAlert.success} />
+        :
+        ''
+      }
       <div className="modalEntriesMain">
         <div className="modalEntriesTitle">Add New Entry</div>
 
@@ -62,8 +90,9 @@ function ModalEntries(props) {
           </div>
         </div>
 
-        <div className="resourceBtn">
-          <ButtonActionBlue title={'Add Entry'} handler={e => sendAndEditData(e)} />
+        <div className="modalEntriesBtn">
+          <ButtonActionBlue title={'Add Entry'} handler={() => sendData()} />
+          <ButtonActionGray title={'cancel'} handler={() => props.canceladd() } />
         </div>
       </div>
     </div >

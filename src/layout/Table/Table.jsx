@@ -6,7 +6,11 @@ import format from "moment-jalaali";
 function Table(props) {
 
     const showDetail = (id) => {
-        props.showDetail(id)
+        if (props.showDetailStatus === false) {
+
+        } else {
+            props.showDetail(id)
+        }
     }
 
     // console.log(props.data)
@@ -45,10 +49,9 @@ function Table(props) {
                                 props.data?.map((item, index) => (
                                     <tr className='trbody' key={index} onClick={() => showDetail(item.id)} >
                                         {Object.entries(item).map(([key, value]) => (
-                                            (Array.isArray(value)) ?
+                                            (Array.isArray(value)) && key === 'prices' ?
                                                 (item[key].map((price) =>
                                                     Object.entries(price).map(([priceKey, priceValue], index) =>
-
                                                         priceKey === 'priceStatus' ?
                                                             priceValue === 0 ?
                                                                 <td key={index} className='tdbody'>Active</td>
@@ -126,7 +129,13 @@ function Table(props) {
                                                                                     :
                                                                                     <td class="tdbody" colspan="1">null</td>
                                                                                 :
-                                                                                <td class="tdbody">{item[key]}</td>
+                                                                                key === 'finished' ?
+                                                                                    item[key] === true ?
+                                                                                        <td className="tdbody statusActive">Finished</td>
+                                                                                        :
+                                                                                        <td className="tdbody statusInactive">Not finished</td>
+                                                                                    :
+                                                                                    <td class="tdbody">{item[key]}</td>
                                         ))}
                                     </tr>
                                 ))

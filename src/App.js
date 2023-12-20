@@ -22,7 +22,7 @@ import TransactionList from './Pages/Dashboard/Transaction/List/Index';
 import TransactionDetail from './Pages/Dashboard/Transaction/Detail/Index';
 import Played from './Pages/Dashboard/Games/Played/Played';
 import Settings from './Pages/Dashboard/Games/Settings/Settings';
-import Game from './Pages/Dashboard/Games/Game/Game';
+
 import Notfound from './Pages/NotFound/Notfound';
 import Resources from './Pages/Dashboard/Games/Resources/Resources';
 import Charts from './Pages/Dashboard/Charts/Charts';
@@ -31,6 +31,10 @@ import './App.css';
 import Banuser from './Pages/Dashboard/Users/Banuser/Banuser';
 import BanuserList from './Pages/Dashboard/Users/Banuser/List/Index';
 import BanuserDetail from './Pages/Dashboard/Users/Banuser/Detail/Detail';
+
+import Reports from './Pages/Dashboard/Users/Reports/Reports';
+import ReportsList from './Pages/Dashboard/Users/Reports/List/List';
+
 
 function App() {
   return (
@@ -57,6 +61,10 @@ function App() {
             <Route path=':user' element={<AlluserDetail/>}/>
           </Route>
 
+          <Route path='reports' element={<Reports/>}>
+            <Route index element={<ReportsList/>}/>
+          </Route>
+
           <Route path='banuser' element={<Banuser/>}>
             <Route index element={<BanuserList/>}/>
             <Route path=':banuser' element={<BanuserDetail/>}/>
@@ -70,8 +78,8 @@ function App() {
             <Route index element={<GameList />} />
           </Route>
           <Route path='played/ludo' element={<Played/>}/>
-          <Route path='settings/ludo' element={<Settings/>}/>
-          <Route path='resources/:settingId' element={<Resources/>}/>
+          <Route path='settings/backgammon' element={<Settings/>}/>
+          <Route path='settings/resources/backgammon' element={<Resources/>}/>
         </Route>
       </Route>
       <Route path='*' element={<Notfound />} />

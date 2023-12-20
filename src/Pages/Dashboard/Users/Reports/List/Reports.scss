@@ -1,0 +1,24 @@
+
+@import '../../../../../Assets/scss/mixin';
+@import '../../../../../Assets/scss/variable';
+
+.reportUserslist{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+    
+    .filterReportUser{
+        z-index: 1;
+        position: relative;
+        padding: 20px 30px;
+        flex-direction: row;
+        height: auto;
+        width: calc(100% - 60px);
+        background: $Gray;
+        border-radius: 8px;
+        border: 2px solid $lightGray;
+        align-items: center;
+        gap: 10px;
+    }
+}

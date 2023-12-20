@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './Resources.scss';
 import axios from 'axios';
 import { HiPlus } from "react-icons/hi2";
-import Resource from '../../../../Components/Resource/Resource';
+import Resource from '../../../../layout/Resource/Resource';
 import ModalRequirment from '../../../../layout/ModalResource/ModalRequirment/ModalRequirment';
 import ModalEntries from '../../../../layout/ModalResource/ModalEntries/ModalEntries';
 import ModalPrizes from '../../../../layout/ModalResource/ModalPrizes/ModalPrizes';
@@ -39,8 +39,9 @@ function Resources() {
         }
     })
 
-    const mouseOut = () => {
-
+    const closeModal = () => {
+        setOpenResource(false)
+        getResource()
     }
 
 
@@ -90,13 +91,13 @@ function Resources() {
 
                 {
                     openResource === 'requirment' ?
-                        <ModalRequirment mousedown={mouseOut} onchange={getResource}/>
+                        <ModalRequirment onchange={getResource} canceladd={closeModal}/>
                         :
                         openResource === 'entry' ?
-                            <ModalEntries mousedown={mouseOut} onchange={getResource}/>
+                            <ModalEntries onchange={getResource} canceladd={closeModal}/>
                             :
                             openResource === 'prize' ?
-                                <ModalPrizes mousedown={mouseOut} onchange={getResource}/>
+                                <ModalPrizes onchange={getResource} canceladd={closeModal}/>
                                 :
                                 ''
                 }

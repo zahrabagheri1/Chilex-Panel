@@ -2,9 +2,9 @@ import React from 'react';
 import './Alert.scss';
 
 function Alert(props) {
-  console.log(props)
+
   return (
-    <div className={`alert ${props.success === true ? 'success' : 'unsuccess'}`} role="alert">
+    <div className={`alert ${props.success === true ? 'success' : props.success === false ?  'unsuccess' : 'deleted'}`} role="alert">
       <p>{props.message}</p>
     </div>
   );

@@ -11,12 +11,14 @@
     display: flex;
     flex-direction: row-reverse;
 
-    .btnEdit{
+    .btnEdit {
         margin: 20px;
         display: flex;
+        flex-direction: row-reverse;
         gap: 20px;
         position: absolute;
-        .edited{
+
+        .edited {
             height: 4vh;
             width: 4vh;
             border-radius: 8px;
@@ -28,6 +30,24 @@
             cursor: pointer;
             z-index: 1;
         }
+
+        .disableupdate {
+            display: none;
+        }
+
+        .ableupdate {
+            height: 4vh;
+            width: 4vh;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 1;
+
+        }
     }
 
     .backbtn {
@@ -37,7 +57,7 @@
 
     .boxOfDetail {
         margin: 4%;
-        width: 95%;  
+        width: 95%;
         gap: 40px 20px;
 
         .disabled {
@@ -45,7 +65,7 @@
             outline: none;
             box-shadow: none;
             background: transparent;
-            font-size:  $font-lg;
+            font-size: $font-lg;
             font-weight: bold;
             padding-left: 0 !important;
 
@@ -67,7 +87,7 @@
             border-top: 2px solid $bgColor;
             padding-top: 20px;
 
-            .titlePrice{
+            .titlePrice {
                 font-size: $font-xxl;
             }
         }
@@ -79,7 +99,7 @@
 
             .header-title {
                 font-size: 18px;
-                color:  $fontColorlight;
+                color: $fontColorlight;
                 font-weight: 700;
             }
 

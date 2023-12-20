@@ -9,6 +9,7 @@
     margin: 60px 20px 0px 20px ;
     z-index: 100;
     border-radius: 12px;
+    
     &.success{
         background-color: $blue-90;
     }
@@ -16,5 +17,10 @@
     &.unsuccess{
         background-color: $red-90;
     }
+    
+    &.deleted{
+        background-color: $yellow-90;
+    }
+
 
 }

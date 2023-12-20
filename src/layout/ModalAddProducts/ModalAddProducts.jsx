@@ -37,7 +37,7 @@ function ModalAddProducts(props) {
         err => {
           console.log(err.message)
 
-          setShowAlert({ status: true, msg: err.message })
+          setShowAlert({ status: true, msg: err.message, success: false })
           setTimeout(() => {
             setShowAlert({ status: false, msg: err.message })
 
