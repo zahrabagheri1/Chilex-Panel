@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import SelectOption from '../../../Components/SelectOption/SelectOption';
-import Input from '../../../Components/Input/Input';
-import ButtonActionBlue from '../../../Components/ButtonActionBlue/ButtonActionBlue';
-import ButtonActionGray from '../../../Components/ButtonActionGray/ButtonActionGray';
+import SelectOption from '../../Components/SelectOption/SelectOption';
+import Input from '../../Components/Input/Input';
+import ButtonActionBlue from '../../Components/ButtonActionBlue/ButtonActionBlue';
+import ButtonActionGray from '../../Components/ButtonActionGray/ButtonActionGray';
 import axios from 'axios';
-import Alert from '../../Alert/Alert';
+import Alert from '../Alert/Alert';
+import './ResourceBox.scss';
 
 function ResourceBox(props) {
 
@@ -14,8 +15,6 @@ function ResourceBox(props) {
         status: false, msg: '', success: null
     })
 
-    // console.log(addRequirment)
-
     const resourceType = [
         { id: 0, name: 'Gem' },
         { id: 1, name: 'Coin' },
@@ -24,43 +23,13 @@ function ResourceBox(props) {
     ]
 
     const deleteRequirement = (id) => {
-        axios.delete(`/games/setting/requirement/${id}`)
-            .then(
-                res => {
-                    // show alert that  deleted successfully
-                    if (res.status < 300 && res.status >= 200) {
-                        setShowAlert({ status: true, msg: `Data by id: ${id} was delete successfully` })
-                        setTimeout(() => {
-                            setShowAlert({ status: false })
-                        }, 2000)
-                    }
-                    props.onchange()
-                }
-            )
-            .catch(
-                err => console.log(err)
-            )
+        props.onchange(id,'requirement')
+        console.log(id,'requirement')
     }
 
     const detelePrize = (id) => {
-        console.log(id)
-        axios.delete(`/games/setting/prize/${id}`)
-            .then(
-                res => {
-                    // show alert that  deleted successfully
-                    if (res.status < 300 && res.status >= 200) {
-                        setShowAlert({ status: true, msg: 'Data deleted successfully' })
-                        setTimeout(() => {
-                            setShowAlert({ status: false })
-                        }, 2000)
-                    }
-                    props.onchange()
-                }
-            )
-            .catch(
-                err => console.log(err)
-            )
-
+        console.log(id,'prize')
+        props.onchange(id,'prize')
     }
 
     const deleteEntry = (id) => {
@@ -68,12 +37,10 @@ function ResourceBox(props) {
             .then(
                 res => {
                     // show alert that  deleted successfully
-                    if (res.status < 300 && res.status >= 200) {
-                        setShowAlert({ status: true, msg: 'Data deleted successfully' })
-                        setTimeout(() => {
-                            setShowAlert({ status: false })
-                        }, 2000)
-                    }
+                    setShowAlert({ status: true, msg: `Data by id: ${id} was delete successfully` })    
+                    setTimeout(() => {
+                        setShowAlert({ status: false })
+                    }, 2000)
 
                     props.onchange()
                 }
@@ -115,12 +82,10 @@ function ResourceBox(props) {
         })
             .then(
                 res => {
-                    if (res.status < 300 && res.status >= 200) {
-                        setShowAlert({ status: true, msg: res.statusText, success: true })
-                        setTimeout(() => {
-                            setShowAlert({ status: false })
-                        }, 2000)
-                    }
+                    setShowAlert({ status: true, msg: res.statusText, success: true })
+                    setTimeout(() => {
+                        setShowAlert({ status: false })
+                    }, 2000)
                     props.onchange()
                     setEdit(false)
                 }
@@ -139,12 +104,10 @@ function ResourceBox(props) {
         })
             .then(
                 res => {
-                    if (res.status < 300 && res.status >= 200) {
-                        setShowAlert({ status: true, msg: res.statusText, success: true })
-                        setTimeout(() => {
-                            setShowAlert({ status: false })
-                        }, 2000)
-                    }
+                    setShowAlert({ status: true, msg: res.statusText, success: true })
+                    setTimeout(() => {
+                        setShowAlert({ status: false })
+                    }, 2000)
                     props.onchange()
                     setEdit(false)
                 }
@@ -193,7 +156,7 @@ function ResourceBox(props) {
                 ''
             }
             <div className="row col-xl-11 col-lg-11 col-md-11 col-sm-11 col-xs-11">
-                {Object.entries(props.requirement).map(([key, value], index) => (
+                {Object.entries(props.data).map(([key, value], index) => (
                     <div key={index} className="resourceItem col-xl-2 col-lg-2 col-md-3 col-sm-4 col-xs-6">
                         {
                             key === 'type' ?
@@ -212,13 +175,13 @@ function ResourceBox(props) {
 
             {edit === true ?
                 <div className="resourceBtn col-xl-1 col-lg-1 col-md-1 col-sm-1 col-xs-1">
-                    <ButtonActionBlue title={'Done'} handler={() => sendData(props.requirement.id, props.type, props.requirement)} />
+                    <ButtonActionBlue title={'Done'} handler={() => sendData(props.data.id, props.type, props.data)} />
                     <ButtonActionGray title={'Cancel'} handler={() => setEdit(false)} />
                 </div>
                 :
                 <div className="resourceBtn col-xl-1 col-lg-1 col-md-1 col-sm-1 col-xs-1">
                     <ButtonActionBlue title={'Edit'} handler={() => setEdit(true)} />
-                    <ButtonActionGray title={'Delete'} handler={() => deleteData(props.requirement.id, props.type)} />
+                    <ButtonActionGray title={'Delete'} handler={() => deleteData(props.data.id, props.type)} />
                 </div>
             }
         </div>

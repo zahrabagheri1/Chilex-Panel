@@ -1,0 +1,172 @@
+@import '../../../Assets/scss/mixin';
+@import '../../../Assets/scss/variable';
+
+.support {
+    width: 95%;
+    margin: auto;
+
+    .chatMenu {
+        .chatMenuWrapper {
+            padding: 20px 0;
+            width: 100%;
+            // height: calc(100% - 40px);
+            position: relative;
+
+            .chatMenuSearchBox {
+                width: 100%;
+                padding: 10px;
+                border: none;
+                color: #ffffff;
+                // font-weight: 600;
+                font-size: 14px;
+                // border-bottom: 1px solid gray;
+                background-color: #444243;
+                border-radius: 10px;
+
+                &:hover,
+                &:focus,
+                &:active {
+                    border: none;
+                    background-color: none;
+                    outline: none;
+                }
+            }
+
+            .chatMenuBox {
+                overflow-y: scroll;
+                position: relative;
+                // height: calc(100vh - 76px);
+
+                &::-webkit-scrollbar {
+                    width: 5px;
+                    display: none;
+                }
+
+                &::-webkit-scrollbar-track {
+                    background: #ebebeb;
+                    border-radius: 50px;
+                    display: none;
+
+                }
+
+                &::-webkit-scrollbar-thumb {
+                    background: #00000086;
+                    border-radius: 50px;
+                    display: none;
+
+                }
+
+                &::-webkit-scrollbar-thumb:hover {
+                    background: #555;
+                    display: none;
+                }
+
+            }
+        }
+    }
+
+    .chatBox {
+        .chatBoxWrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 100%;
+
+            .chatBoxMain {
+
+                .chatboxbody {
+                    height: calc(100vh - 220px);
+                    overflow-y: scroll;
+                    display: flex;
+                    flex-direction: column;
+                    padding-right: 40px;
+                    gap: 10px;
+
+                    &::-webkit-scrollbar {
+                        width: 5px;
+                    }
+
+                    &::-webkit-scrollbar-track {
+                        background: #44444434;
+                        border-radius: 50px;
+
+                    }
+
+                    &::-webkit-scrollbar-thumb {
+                        background: #555;
+                        border-radius: 50px;
+
+                    }
+
+                    &::-webkit-scrollbar-thumb:hover {
+                        background: #555;
+                    }
+
+
+                    .chatempty {
+                        width: 100%;
+                        height: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        gap: 10px;
+
+                        .noMessage {
+                            color: #646263;
+                            font-size: 18px;
+                        }
+
+                        .sendMessage {
+                            color: #444243;
+                            font-size: 18px;
+                        }
+
+                    }
+                }
+            }
+
+            .chatBoxTextarea {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+                gap: 5px;
+                background-color: $lightGray;
+                border-radius:  5px 50px 50px 5px;
+                .chatMessageInput {
+                    width: 86%;
+                    height: 40px;
+                    padding: 10px;
+                    border: none;
+                    border-radius: 5px;
+                    color: $fontColor;
+                    background-color: $lightGray;
+                    resize: none; 
+                    &:hover,
+                    &:focus,
+                    &:active {
+                        background-color: none;
+                        outline: none;
+                    }
+                }
+
+                .chatSubmitButton {
+                    width: 60px;
+                    height: 60px;
+                    border-radius: 50% !important;
+                    border: none;
+                    border-radius: 5px;
+                }
+            }
+        }
+    }
+
+    .chatDetials{
+        
+        .chatDetialsWrapper{
+            padding-left: 20px;
+            width: 100%;
+        }
+    }
+}

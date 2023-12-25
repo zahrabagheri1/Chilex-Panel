@@ -3,6 +3,8 @@
 @import '../../../../../Assets/scss/variable';
 
 .userList{
+    width: 95%;
+    margin: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

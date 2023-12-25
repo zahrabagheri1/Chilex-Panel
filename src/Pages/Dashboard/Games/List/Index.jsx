@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import GameCard from '../../../../Components/GameCard/GameCard';
 import './List.scss';
 import axios from 'axios';
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { Link, useHistory, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import Button from '../../../../Components/Button/Button';
 
 
@@ -12,7 +12,8 @@ function Index() {
   const [name, setName] = useState()
   const [active, setActive] = useState()
   const navigate = useNavigate();
-  const [id] = useSearchParams()
+  const { id } = useSearchParams()
+
   useEffect(() => {
     gameIAP();
   }, [])
@@ -41,16 +42,16 @@ function Index() {
   }
 
   const gameSetting = () => {
-    console.log('settings URL',name)
-    navigate(`/settings/${name}`)
+    navigate(`settings/${name}`)
   }
-
+  
   const gamePlayed = () => {
+    navigate(`played/${name}`)
 
   }
 
-  const mouseOut = ()=>{
-    // setModal(false)
+  const mouseOut = () => {
+    setModal(false)
   }
 
   return (
@@ -64,12 +65,12 @@ function Index() {
           </div>
         ))
       }
-      <div className={`modalGame ${modal ? 'active': ''}`} onClick={mouseOut}>
+      <div className={`modalGame ${modal ? 'active' : ''}`} onClick={mouseOut}>
         <div className="modalGameBox">
           <div className="modalGameTitle">{name}</div>
           <div className="btnGameBox">
-            <Button title='Settings' className='settingTitle' classnameBtn='settingBtn' handler={gameSetting} />
-            <Button title='Played' className='playedTitle' classnameBtn='playedBtn' handler={gamePlayed} />
+            <Button title='Settings' className='settingTitle' classnameBtn='settingBtn' handler={() => gameSetting(name)} />
+            <Button title='Played' className='playedTitle' classnameBtn='playedBtn' handler={() => gamePlayed(name)} />
           </div>
         </div>
       </div>

@@ -48,6 +48,7 @@ function Index() {
 
 
     const showDetailHistory = (id) => {
+        console.log('hstory iddddd',id )
         navigate(`${id}`)
     }
     const updateInputData = (e) => {

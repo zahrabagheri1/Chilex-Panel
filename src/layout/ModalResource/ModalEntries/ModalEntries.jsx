@@ -37,24 +37,14 @@ function ModalEntries(props) {
     axios.post(`/games/setting/entry`, addEntry)
       .then(
         res => {
-          // show alert that new setting creatting.
-          if (res.status < 300 && res.status >= 200) {
-            setShowAlert({ status: true, msg: 'Created Entry succesful', success: true })
+          // show alert that new setting entry creatting.
+          setShowAlert({ status: true, msg: 'Created Entry succesful', success: true })
+          setTimeout(() => {
+            setShowAlert({ status: false })
             setTimeout(() => {
-              setShowAlert({ status: false })
-              setTimeout(() => {
-                props.canceladd()
-              }, 0)
-            }, 2000)
-          }
-          
-          else if (res.status = 400) {
-            setShowAlert({ status: true, msg: res.message, success: false })
-            setTimeout(() => {
-              setShowAlert({ status: false })
-            }, 2000)
-          }
-          
+              props.canceladd()
+            }, 0)
+          }, 2000)
           props.onchange()
         }
       ).catch(
@@ -92,7 +82,7 @@ function ModalEntries(props) {
 
         <div className="modalEntriesBtn">
           <ButtonActionBlue title={'Add Entry'} handler={() => sendData()} />
-          <ButtonActionGray title={'cancel'} handler={() => props.canceladd() } />
+          <ButtonActionGray title={'cancel'} handler={() => props.canceladd()} />
         </div>
       </div>
     </div >

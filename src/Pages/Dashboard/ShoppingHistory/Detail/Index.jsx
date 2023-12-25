@@ -7,14 +7,15 @@ import moment from 'moment-jalaali';
 
 function Index() {
     const [history, setHistory] = useState({});
-    const { historyId } = useParams()
+    const { id } = useParams()
 
 
     const referenceType = ['BUNDLE', 'ITEM', 'TRANSACTION', 'SETTING']
     const type = ['Gem', 'Coin', 'Item']
 
     useEffect(() => {
-        axios.get(`/shopping-history/get-shoppingHistory/${historyId}`)
+        console.log('detail ID', id)
+        axios.get(`/shopping-history/get-shoppingHistory/${id}`)
             .then(
                 res => {
                     setHistory(res.data.data)

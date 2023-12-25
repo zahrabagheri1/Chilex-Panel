@@ -46,20 +46,37 @@
             text-align: center;
         }
 
-.btns{
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
+        .modalSettingNG {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            .modalSettingNGTitle {
+                font-size: 14px;
+                color: $fontColorlight;
+                font-weight: 700;
+                text-transform: capitalize;
+            }
+            .modalSettingNGText {
+                font-size: 18px;
+                color: $fontColor;
+                font-weight: 600px;
+            }
+        }
 
-    .backbtn {
-        width: 50%;
+        .btns {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
 
-    }
+            .backbtn {
+                width: 50%;
 
-    .acsseptbtn {
-        width: 50%;
-    }
-}
+            }
+
+            .acsseptbtn {
+                width: 50%;
+            }
+        }
     }
 
 

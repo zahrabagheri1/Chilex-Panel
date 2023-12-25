@@ -1,0 +1,31 @@
+
+@import '../../Assets/scss/mixin';
+@import '../../Assets/scss/variable';
+
+.conversation {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+
+    &:hover {
+        // background-color: #615545;
+        background-color: $lighterGray;
+        border-radius: 20px;
+    }
+
+    .conversationImg {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 20px;
+    }
+
+    .conversationName {
+        font-weight: 700;
+        font-size: 16px;
+        color: $fontColor;
+    }
+}

@@ -67,8 +67,8 @@ function SelectOption(props) {
               <HiOutlineChevronDown className='chevronDown' style={{ transform: (click === true ? "rotate(180deg)" : 'rotate(0)') }} />
             </div>
             <div className='box' style={{ display: (click === true ? "flex" : 'none') }}>
-              {data?.map((item) => (
-                <div className='option' value={item.id} onClick={() => changeTitleHandler(item[props.type], item.id)}>{item[props.type]}</div>
+              {data?.map((item, index) => (
+                <div  key={index} className='option' value={item.id} onClick={() => changeTitleHandler(item[props.type], item.id)}>{item[props.type]}</div>
               ))}
             </div>
           </div>

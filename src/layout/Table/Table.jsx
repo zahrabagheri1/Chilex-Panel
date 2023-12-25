@@ -9,6 +9,7 @@ function Table(props) {
         if (props.showDetailStatus === false) {
 
         } else {
+            console.log('table id ', id)
             props.showDetail(id)
         }
     }

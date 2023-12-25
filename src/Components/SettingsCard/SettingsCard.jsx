@@ -9,6 +9,7 @@ import Button from '../Button/Button';
 import moment from 'moment-jalaali';
 import Alert from '../../layout/Alert/Alert';
 import ButtonActionGray from '../ButtonActionGray/ButtonActionGray';
+import { useNavigate } from 'react-router-dom';
 
 
 const props = {
@@ -41,18 +42,15 @@ const editable = [
 ]
 
 function SettingsCard(props) {
+    const data = props.data;
+    const navigate =useNavigate()
     const [edit, setEdit] = useState(false)
     const [updatedata, setUpdateData] = useState({})
-    const data = props.data;
     const [showAlert, setShowAlert] = useState({
         status: false, msg: '', success: ''
     })
 
-    const editDetting = () => {
-
-    }
-
-    const sendAndEditData = () => {
+    const sendData = () => {
         axios.patch(`/games/setting/${data.id}`, {
             name: updatedata.name === null || updatedata.name === undefined ? data.name : updatedata.name,
             active: updatedata.active === null || updatedata.active === undefined ? data.active : updatedata.active,
@@ -63,13 +61,13 @@ function SettingsCard(props) {
         }).then(
             res => {
                 props.getData()
-                if (res.status < 300 && res.status >= 200) {
-                    setShowAlert({ status: true, msg: res.statusText + '!  edit is successful',success: true })
-                    setTimeout(() => {
-                        setShowAlert({ status: false, success: true })
 
-                    }, 3000)
-                }
+                setShowAlert({ status: true, msg: res.statusText + '!  edit is successful', success: true })
+                setTimeout(() => {
+                    setShowAlert({ status: false, success: true })
+
+                }, 3000)
+
                 setEdit(false)
             }
         ).catch(
@@ -86,8 +84,8 @@ function SettingsCard(props) {
         )
     }
 
-    const sendAndResourcesData = () => {
-
+    const goToResources = () => {
+        navigate(`/dashboard/games/settings/resources/${data.id}`)
     }
 
 
@@ -111,7 +109,6 @@ function SettingsCard(props) {
     };
 
     const botLevel = [{ id: 0, name: 'Easy' }, { id: 1, name: 'Medium' }, { id: 2, name: 'Hard' }]
-    const game = [{ id: 0, name: 'ludo' }, { id: 1, name: 'uno' }, { id: 2, name: '' }, { id: 3, name: '' }, { id: 4, name: '' }]
     const playersLength = [{ id: 0, name: '2 Player' }, { id: 1, name: '3 Player' }, { id: 2, name: '4 Player' }]
 
     return (
@@ -140,7 +137,7 @@ function SettingsCard(props) {
                                                 //     </div>
 
                                                 //     :
-                                                    < Input type={typeof value === 'number' ? 'number' : 'text'} inputclassname={'disabled'} name={key} value={value} title={key} readOnly={true} />
+                                                < Input type={typeof value === 'number' ? 'number' : 'text'} inputclassname={'disabled'} name={key} value={value} title={key} readOnly={true} />
                                                 :
                                                 item.select === false ?
                                                     < Input type={typeof value === 'number' ? 'number' : 'text'} inputclassname={edit === false ? 'disabled' : ''} name={key} value={value} title={key} readOnly={edit === true ? false : true} changeInputValue={updateInputData} />
@@ -164,23 +161,20 @@ function SettingsCard(props) {
                 }
 
             </div>
-
-
-
             {
                 edit === false ?
                     <div className="row">
                         <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                            <div className='update'><ButtonActionBlue title={'Edit data'} handler={() => setEdit(true)} /></div>
+                            <div className='update'><ButtonActionBlue title={'Edit'} handler={() => setEdit(true)} /></div>
                         </div>
                         <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                            <div className='update'><ButtonActionGray title={'resources'} handler={sendAndResourcesData} /></div>
+                            <div className='update'><ButtonActionGray title={'resources'} handler={()=> goToResources()} /></div>
                         </div>
                     </div>
                     :
                     <div className="row">
                         <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                            <div className='update'><ButtonActionBlue title={'Edit'} handler={sendAndEditData} /></div>
+                            <div className='update'><ButtonActionBlue title={'Done'} handler={sendData} /></div>
                         </div>
                         <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
                             <div className='update'><ButtonActionGray title={'Cancel'} handler={() => setEdit(false)} /></div>

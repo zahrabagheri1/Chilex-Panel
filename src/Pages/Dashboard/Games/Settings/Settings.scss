@@ -11,9 +11,13 @@
 
     .addBox {
         display: flex;
-        justify-content: end;
+        justify-content: space-between;
 
-        .addSetting {
+        .titleSetting {
+            font-size: 36px;
+        }
+
+        .addSetting, .backSetting {
             width: 36px;
             height: 36px;
             background: $Gray;
@@ -25,8 +29,7 @@
             font-size: $font-xl;
             color: $iconColor;
             cursor: pointer;
-            position: fixed;
-            z-index: 10;
+            position: relative;
         }
     }
 

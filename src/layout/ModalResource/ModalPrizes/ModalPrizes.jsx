@@ -41,16 +41,14 @@ function ModalPrizes(props) {
     axios.post(`/games/setting/prize`, addPrize)
       .then(
         res => {
-          // show alert that new prize creatting.
-          if (res.status < 300 && res.status >= 200) {
-            setShowAlert({ status: true, msg: 'Created Prize succesful', success: true })
+          // show alert that new setting prize creatting.
+          setShowAlert({ status: true, msg: 'Created Prize succesful', success: true })
+          setTimeout(() => {
+            setShowAlert({ status: false })
             setTimeout(() => {
-              setShowAlert({ status: false })
-              setTimeout(() => {
-                props.canceladd()
-              }, 0)
-            }, 2000)
-          }
+              props.canceladd()
+            }, 0)
+          }, 2000)
           props.onchange()
         }
       ).catch(
@@ -100,7 +98,7 @@ function ModalPrizes(props) {
 
         <div className="modalPrizesBtn">
           <ButtonActionBlue title={'Add Prize'} handler={() => sendData()} />
-          <ButtonActionGray title={'cancel'} handler={() => props.canceladd() } />
+          <ButtonActionGray title={'cancel'} handler={() => props.canceladd()} />
         </div>
       </div>
     </div >

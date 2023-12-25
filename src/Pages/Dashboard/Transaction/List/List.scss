@@ -1,6 +1,8 @@
 @import '../../../../Assets/scss/variable';
 
 .transactionList {
+    width: 95%;
+    margin: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

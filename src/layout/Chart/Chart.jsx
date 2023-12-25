@@ -11,16 +11,15 @@ import moment from 'moment-jalaali';
 
 
 function Chart() {
+    const dateNow =  Date.now();
     const [data, setData] = useState({})
     const [filter, setFilter] = useState({
         statuses: null,
         gatewayTypes: null,
         type: 1,
-        startDate: '2023-11-24',
-        endtDate: new Date('2018-02-12').getTime(),
+        startDate: moment(dateNow).subtract(1,'months').format('jYYYY/jM/jD'),
+        endtDate: moment(dateNow).format('jYYYY/jM/jD'),
     })
-
-    console.log(data)
     const [state, setState] = useState()
 
     const updateOptionData = (name, id) => {
@@ -49,13 +48,11 @@ function Chart() {
             })
             .catch(
                 err => {
-                    console.log(err)
+                    // console.log(err)
                 }
             )
     }
-
-    console.log(data)
-    const zahra = {
+    const chartData = {
         series: [
             {
                 name: 'South',
@@ -168,7 +165,7 @@ function Chart() {
                 <div className="chart-filter-box row">
                     <div className="chart-filter-title col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">Transaction</div>
                     <div className="chart-box col-xl-9 col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                        <ReactApexChart options={zahra.options} series={zahra.series} type="area" height={350} />
+                        <ReactApexChart options={chartData.options} series={chartData.series} type="area" height={350} />
                     </div>
 
                     <div className="filter-chart col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-3">
@@ -206,7 +203,7 @@ function Chart() {
                         <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-6">
                             <DatePikerFarsi
                                 handlerChangeDate={updateDataPiker}
-                                value={'1402/02/02'}
+                                value={filter.startDate}
                                 title="startDate"
                             />
                         </div>
@@ -214,7 +211,7 @@ function Chart() {
                         <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-6">
                             <DatePikerFarsi
                                 handlerChangeDate={updateDataPiker}
-                                value={'1402/02/02'}
+                                value={filter.endtDate}
                                 title="endtDate"
                             />
                         </div>

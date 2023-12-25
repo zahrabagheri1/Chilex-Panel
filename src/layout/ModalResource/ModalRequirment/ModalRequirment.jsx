@@ -34,12 +34,12 @@ function ModalRequirment(props) {
     setAddRequirment(prev => ({ ...prev, [name]: parseInt(id) }))
   }
 
-  const sendAndEditData = () => {
+  const sendData = () => {
     axios.post(`/games/setting/requirement`, addRequirment).then(
       res => {
         console.log(res)
-        // show alert that new setting creatting.
-        if (res.status < 300 && res.status >= 200) {
+        // show alert that new setting requirement creatting.
+
           setShowAlert({ status: true, msg: 'Created Entry succesful', success: true })
           setTimeout(() => {
             setShowAlert({ status: false })
@@ -47,7 +47,7 @@ function ModalRequirment(props) {
               props.canceladd()
             }, 0)
           }, 2000)
-        }
+        
       }
       ).catch(
         err => {
@@ -62,9 +62,6 @@ function ModalRequirment(props) {
     )
   }
 
-  useEffect(() => {
-    sendAndEditData()
-  }, [])
 
   return (
     <div className='modalRequirments'>
@@ -92,7 +89,7 @@ function ModalRequirment(props) {
         </div>
 
         <div className="modalRequirmentsBtn">
-          <ButtonActionBlue title={'Add Requirment'} handler={e => sendAndEditData(e)} />
+          <ButtonActionBlue title={'Add Requirment'} handler={e => sendData(e)} />
           <ButtonActionGray title={'cancel'} handler={() => props.canceladd() } />
         </div>
       </div>

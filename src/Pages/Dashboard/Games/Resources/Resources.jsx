@@ -2,19 +2,22 @@ import React, { useEffect, useState } from 'react';
 import './Resources.scss';
 import axios from 'axios';
 import { HiPlus } from "react-icons/hi2";
-import Resource from '../../../../layout/Resource/Resource';
 import ModalRequirment from '../../../../layout/ModalResource/ModalRequirment/ModalRequirment';
 import ModalEntries from '../../../../layout/ModalResource/ModalEntries/ModalEntries';
 import ModalPrizes from '../../../../layout/ModalResource/ModalPrizes/ModalPrizes';
-    
+import { useParams } from 'react-router-dom';
+import ResourceBox from '../../../../layout/ResourceBox/ResourceBox';
+
+
 const settingId = 2
 
 function Resources() {
     const [data, setData] = useState()
     const [openResource, setOpenResource] = useState('')
+    const { id } = useParams()
 
     const getResource = () => {
-        axios.get(`/games/setting/resources/${settingId}`)
+        axios.get(`/games/setting/resources/${id}`)
             .then(
                 res => {
                     setData(res.data)
@@ -43,11 +46,22 @@ function Resources() {
         setOpenResource(false)
         getResource()
     }
+    const deleteRequirement = (id,type) =>{
+        console.log(id,type)
+        axios.delete(`/games/setting/${type}/${id}`)
+        .then(
+            res => {
+                getResource()
+            }
+        )
+        .catch(
+            err => console.log(err)
+        )
+    }
 
-
+    console.log(data)
     return (
         data === undefined || data === null ? '' :
-
             <div className='resources'>
                 {data.requirements === null || data.requirements === undefined ? '' :
                     <div className="resource">
@@ -57,12 +71,15 @@ function Resources() {
                                 <HiPlus />
                             </div>
                         </div>
-                        <Resource data={data.requirements} type={'requirements'} onchange={getResource}/>
+                        {
+                            data.requirements.map((item) => (
+                                // console.log('itemmmm : ', item, deleteRequirement(29,'requirement'))
+                                <ResourceBox data={item} type={'requirements'} onchange={deleteRequirement} />
+                            ))
+                        }
                     </div>
                 }
-
                 <hr className='hrLine' />
-
                 {data.entries === null || data.entries === undefined ? '' :
                     <div className="resource">
                         <div className="resourceAddBox">
@@ -71,7 +88,13 @@ function Resources() {
                                 <HiPlus />
                             </div>
                         </div>
-                        <Resource data={data.entries} type={'entries'} onchange={getResource}/>
+
+                        {
+                            data.entries.map((item) => (
+                                <ResourceBox data={item} type={'entries'} onchange={deleteRequirement} />
+                            ))
+                        }
+
                     </div>
                 }
 
@@ -85,19 +108,24 @@ function Resources() {
                                 <HiPlus />
                             </div>
                         </div>
-                        <Resource data={data.prizes} type={'prizes'} onchange={getResource}/>
+                        {
+                            data.prizes.map((item) => (
+                                <ResourceBox data={item} type={'prizes'} onchange={getResource} />
+                            ))
+                        }
+
                     </div>
                 }
 
                 {
                     openResource === 'requirment' ?
-                        <ModalRequirment onchange={getResource} canceladd={closeModal}/>
+                        <ModalRequirment onchange={getResource} canceladd={closeModal} />
                         :
                         openResource === 'entry' ?
-                            <ModalEntries onchange={getResource} canceladd={closeModal}/>
+                            <ModalEntries onchange={getResource} canceladd={closeModal} />
                             :
                             openResource === 'prize' ?
-                                <ModalPrizes onchange={getResource} canceladd={closeModal}/>
+                                <ModalPrizes onchange={getResource} canceladd={closeModal} />
                                 :
                                 ''
                 }

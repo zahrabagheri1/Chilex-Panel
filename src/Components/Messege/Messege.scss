@@ -1,0 +1,63 @@
+@import '../../Assets/scss/mixin';
+@import '../../Assets/scss/variable';
+
+.message,
+.ownMessage {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+
+    .messageImg {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 20px;
+    }
+
+    .messageTextBox {
+        max-width: 300px;
+
+        .messageText {
+            padding: 10px;
+            text-align: start;
+            border-radius: 20px;
+            color: $fontColor;
+            width: 100%;
+        }
+
+        .messageTime {
+            font-size: 12px;
+            margin-top: 2px;
+            display: flex;
+            justify-content: flex-end;
+            color: $fontColorlight;
+        }
+
+    }
+}
+
+
+.ownMessage {
+    justify-content: flex-end;
+    .messageImg {
+        display: none;
+    }
+
+    .messageText {
+        background-color: $lightGray;
+    }
+
+
+}
+
+.message {
+    .messageTextBox {
+        max-width: 300px;
+
+        .messageText {
+            background-color: $lighterGray;
+        }
+
+    }
+}

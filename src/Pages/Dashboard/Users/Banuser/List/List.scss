@@ -2,7 +2,9 @@
 @import '../../../../../Assets/scss/mixin';
 @import '../../../../../Assets/scss/variable';
 
-.banuserlist{
+.banUserlist{
+    width: 95%;
+    margin: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

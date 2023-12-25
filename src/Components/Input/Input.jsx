@@ -81,7 +81,7 @@ function Input(props) {
             type={props.type === 'password' ? (eye === true ? 'text' : 'password') : props.type}
             className={`inputControl ${props.inputclassname} ${props.readOnly === true ? 'readonlytext' : 'notreadonlytext'}`}
             name={props.name}
-            value={value}
+            value={value === null || value === undefined ? '': value}
             placeholder={props.placeholder}
             readOnly={props.readOnly}
             dir={props.dir}
@@ -91,6 +91,7 @@ function Input(props) {
             max={props.max}
             onChange={changeInputHandler}
             ref={props.ref}
+            autoComplete = 'off'
           />}
         <div className={`passwordEye ${props.type === 'password' ? 'active' : ''}`} onClick={eyeHandler}>
           {eye === true ? <HiMiniEye /> : <HiMiniEyeSlash />}
