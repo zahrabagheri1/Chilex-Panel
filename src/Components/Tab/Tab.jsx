@@ -31,11 +31,7 @@ function Tab(props) {
         if (e.target.id == item.id && item.children === null) {
             if (e.target.id === '7') {
                 // document.cookie = "accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
-                
-                // Cookies.remove('accessToken', { path: '/' })
-                console.log(
-
-                    )
+                removeCookie('accessToken',{expires:'Thu, 01 Jan 1970 00:00:00 UTC', path:'/'} )
                 navigate(item.link)
             } else {
                 navigate(item.link)
@@ -43,6 +39,11 @@ function Tab(props) {
                 setClick(true)
 
             }
+        }else {
+            navigate(item.link)
+            setChild(!child)
+            setClick(true)
+
         }
 
     }
