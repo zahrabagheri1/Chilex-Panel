@@ -12,9 +12,7 @@ import { Cookies, useCookies } from 'react-cookie';
 function Index() {
   const navigate = useNavigate();
   const [value, setValue] = useState();
-  const cookies = new Cookies()
-  const token = useCookies(['accessToken']);
-
+  const [cookies, setCookie, removeCookie] = useCookies(['accessToken']);
   const [user, setUser] = useState({
     username: null,
     password: null,
@@ -25,7 +23,6 @@ function Index() {
 
   useEffect(() => {
     // balls in background
-
     const colors = ["#2A85FF", "#0C499B", "#272A2F"];
     const numBalls = 35;
     const balls = [];
@@ -65,28 +62,19 @@ function Index() {
       );
     });
 
-    // getCookie('accessToken')
-
     // if cookies set dont need login 
-
-    token[0].accessToken ? navigate('/dashboard') : navigate('/login');
+    cookies.accessToken ? navigate('/dashboard') : navigate('/login');
   }, [])
-  // console.log(token[0].accessToken)
-  // const v = Object.assign({}, token)
-  // console.log(v)
 
 
   const submitData = () => {
-
     axios.defaults.withCredentials = true;
     axios.post(`/auth/admin/login`, {
       username: user.username,
       password: user.password
     }).then(
       res => {
-        console.log(res)
-        cookies.set('accessToken', res.data.accessToken);
-
+        setCookie( 'accessToken' ,res.data.accessToken);
         navigate('/dashboard');
       }
     ).catch(

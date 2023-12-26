@@ -57,34 +57,27 @@ export const sideBarMenu = [
     },
     {
         id: 4,
-        name: 'Chat',
-        icon: 'HiMiniChatBubbleLeftRight',
-        link: 'chats',
-        children: null
-    },
-    {
-        id: 5,
         name: 'Shopping History',
         icon: 'HiMiniShoppingCart',
         link: 'shopping-history',
         children: null
     },
     {
-        id: 6,
+        id: 5,
         name: 'Games',
         icon: 'HiRocketLaunch',
         link: 'games',
         children: null
     },
     {
-        id: 7,
+        id: 6,
         name: 'Support',
         icon: 'HiMiniCreditCard',
         link: 'support',
         children: null
     },
     {
-        id: 8,
+        id: 7,
         name: 'LogOut',
         icon: 'HiOutlineArrowLeftOnRectangle',
         link: '../login',

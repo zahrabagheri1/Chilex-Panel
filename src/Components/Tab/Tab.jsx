@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useCookies } from 'react-cookie';
+
 import { HiRocketLaunch, HiMiniUser, HiMiniShoppingCart, HiMiniCreditCard, HiMiniArrowDownTray, HiMiniSwatch, HiCurrencyDollar, HiMiniChatBubbleLeftRight, HiOutlineArrowLeftOnRectangle, HiInboxArrowDown, HiComputerDesktop } from "react-icons/hi2";
 import { useNavigate } from 'react-router-dom';
 
@@ -6,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 function Tab(props) {
     const [child, setChild] = useState(false)
     const [click, setClick] = useState(false)
+    const [cookies, setCookie, removeCookie] = useCookies(['accessToken']);
     const [clickChild, setClickChild] = useState(false)
     const navigate = useNavigate()
     const icons = {
@@ -25,21 +28,30 @@ function Tab(props) {
 
 
     const clickHandler = (e, item) => {
-        if ( e.target.id == item.id && item.children === null) {
+        if (e.target.id == item.id && item.children === null) {
+            if (e.target.id === '7') {
+                // document.cookie = "accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+                
+                // Cookies.remove('accessToken', { path: '/' })
+                console.log(
+
+                    )
+                navigate(item.link)
+            } else {
                 navigate(item.link)
                 setChild(false)
                 setClick(true)
-            }else{
-                setClick(false)
-                setChild(true)
+
+            }
         }
+
     }
     const clickChildHandler = (e, childItem) => {
-             if ( e.target.id == childItem.id ) {
-                navigate(childItem.link)
-                setClickChild(true)
-            }else{
-                setClickChild(false)
+        if (e.target.id == childItem.id) {
+            navigate(childItem.link)
+            setClickChild(true)
+        } else {
+            setClickChild(false)
         }
     }
 
