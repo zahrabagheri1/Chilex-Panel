@@ -8,11 +8,13 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Input from '../../../../Components/Input/Input';
 import SelectOption from '../../../../Components/SelectOption/SelectOption';
+import { useCookies } from 'react-cookie';
 
 function Index() {
     const [history, setHistory] = useState(null);
     const [value, setValue] = useState();
     const navigate = useNavigate();
+    const [cookies] = useCookies(['accessToken']);
     const [filters, setFilters] = useState({
         userId: null,
         gatewayTypes: null,
@@ -27,13 +29,19 @@ function Index() {
 
     // ${parameters.from === null ||  parameters.from === undefined? "" : "&RegisterDate.min=" + parameters.from}
     //shopping-history/all?userId=2&gatewayTypes%5B%5D=2&minAmount=2&maxAmount=2&type=2&referenceType=2&sortBy=2&orderBy=2&offset=2&limit=2
-   
+
     useEffect(() => {
         reqFilterShopHistory()
     }, [filters])
 
     const reqFilterShopHistory = () => {
-        axios.get(`/shopping-history/all?${filters.userId === null || filters.userId === undefined ? '' : 'userId=' + filters.userId + '&'}${filters.gatewayTypes === null || filters.gatewayTypes === undefined ? '' : 'gatewayTypes[]=' + filters.gatewayTypes + '&'}${filters.minAmount === null || filters.minAmount === undefined ? '' : 'minAmount=' + filters.minAmount + '&'}${filters.maxAmount === null || filters.maxAmount === undefined ? '' : 'maxAmount=' + filters.maxAmount + '&'}${filters.type === null || filters.type === undefined ? '' : 'type=' + filters.type + '&'}${filters.referenceType === null || filters.referenceType === undefined ? '' : 'referenceType=' + filters.referenceType + '&'}${filters.sortBy === null || filters.sortBy === undefined ? '' : 'sortBy=' + filters.sortBy + '&'}${filters.orderBy === null || filters.orderBy === undefined ? '' : 'orderBy=' + filters.orderBy + '&'}${filters.offset === null || filters.offset === undefined ? '' : 'offset=' + filters.offset + '&'}${filters.limit === null || filters.limit === undefined ? '' : 'limit=' + filters.limit}`)
+        axios.get(`/shopping-history/all?${filters.userId === null || filters.userId === undefined ? '' : 'userId=' + filters.userId + '&'}${filters.gatewayTypes === null || filters.gatewayTypes === undefined ? '' : 'gatewayTypes[]=' + filters.gatewayTypes + '&'}${filters.minAmount === null || filters.minAmount === undefined ? '' : 'minAmount=' + filters.minAmount + '&'}${filters.maxAmount === null || filters.maxAmount === undefined ? '' : 'maxAmount=' + filters.maxAmount + '&'}${filters.type === null || filters.type === undefined ? '' : 'type=' + filters.type + '&'}${filters.referenceType === null || filters.referenceType === undefined ? '' : 'referenceType=' + filters.referenceType + '&'}${filters.sortBy === null || filters.sortBy === undefined ? '' : 'sortBy=' + filters.sortBy + '&'}${filters.orderBy === null || filters.orderBy === undefined ? '' : 'orderBy=' + filters.orderBy + '&'}${filters.offset === null || filters.offset === undefined ? '' : 'offset=' + filters.offset + '&'}${filters.limit === null || filters.limit === undefined ? '' : 'limit=' + filters.limit}`,
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + cookies.accessToken
+                }
+            })
             .then(
                 res => {
                     setHistory(res.data.data)
@@ -48,7 +56,7 @@ function Index() {
 
 
     const showDetailHistory = (id) => {
-        console.log('hstory iddddd',id )
+        console.log('hstory iddddd', id)
         navigate(`${id}`)
     }
     const updateInputData = (e) => {

@@ -6,6 +6,7 @@ import Switch from '../../../../../Components/Switch/Switch';
 import Input from '../../../../../Components/Input/Input';
 import { HiPencilSquare, HiCheck } from "react-icons/hi2";
 import ButtonActionBlue from '../../../../../Components/ButtonActionBlue/ButtonActionBlue';
+import { useCookies } from 'react-cookie';
 
 function Index() {
     const [detail, setDetail] = useState({});
@@ -14,6 +15,7 @@ function Index() {
     const { bundleId } = useParams()
     const navigate = useNavigate()
     const [updateData, setUpdateData] = useState({})
+    const [cookies] = useCookies(['accessToken']);
 
     const type = [
         { id: 0, name: 'Gem bundle' },
@@ -51,8 +53,14 @@ function Index() {
                 expireTime: updateData.expireTime === null || updateData.expireTime === undefined ? detail.expireTime : updateData.expireTime,
                 imageId: updateData.imageId === null || updateData.imageId === undefined ? detail.imageId : updateData.imageId,
                 sku: updateData.sku === null || updateData.sku === undefined ? detail.sku : updateData.sku,
-                amount: updateData.amount === null || updateData.amount === undefined ? detail.amount :parseInt(updateData.amount),
+                amount: updateData.amount === null || updateData.amount === undefined ? detail.amount : parseInt(updateData.amount),
                 activityIntervalTime: updateData.activityIntervalTime === null || updateData.activityIntervalTime === undefined ? detail.activityIntervalTime : {}
+            },
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + cookies.accessToken
+                }
             })
             .then(
                 res => {
@@ -71,7 +79,13 @@ function Index() {
         console.log("boolean , id", boolean, id);
         axios.patch(`/admin-stuff/change-bundle-status/${id}`, {
             status: boolean === true ? 0 : 1,
-        })
+        },
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + cookies.accessToken
+                }
+            })
             .then(
                 res => console.log(res)
             )
@@ -85,7 +99,13 @@ function Index() {
         console.log("boolean,id", boolean, id);
         axios.patch(`/admin-stuff/change-price-status/${id}`, {
             status: boolean === true ? 0 : 1,
-        })
+        },
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + cookies.accessToken
+                }
+            })
             .then(
                 res => {
                     console.log(res)
@@ -101,7 +121,13 @@ function Index() {
     }, [])
 
     const getData = () => {
-        axios.get(`/admin-stuff/get-bundle/${bundleId}`)
+        axios.get(`/admin-stuff/get-bundle/${bundleId}`,
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + cookies.accessToken
+                }
+            })
             .then(res => {
                 setDetail(res.data)
             })
@@ -113,9 +139,9 @@ function Index() {
     return (
         <div className='bundleDetail'>
             <div className="btnEdit">
-                    <div className='edited' onClick={editData}><HiPencilSquare /></div>
-                    <div className={editAble === true ? 'ableupdate' : 'disableupdate'} onClick={sendData}><HiCheck /></div>
-                </div>
+                <div className='edited' onClick={editData}><HiPencilSquare /></div>
+                <div className={editAble === true ? 'ableupdate' : 'disableupdate'} onClick={sendData}><HiCheck /></div>
+            </div>
             <div className='boxOfDetail row'>
                 {detail === null || detail === undefined ? '' : (
                     Object.entries(detail).map(([key, value], index) => (
@@ -193,8 +219,8 @@ function Index() {
                                             </div>
                                             :
                                             <Input inputclassname={editAble === false ? 'disabled' : ''} name={key} title={key} value={value} type={key === 'amount' ? 'number' : 'text'} readOnly={edit === true ? false : true} changeInputValue={changeValueInput} />
-                                            // <Input inputclassname={'disabled'} name={key} title={key} value={value} type={key === 'amount' ? 'number' : 'text'} readOnly={true} changeInputValue={changeValueInput} />
-                                
+                                    // <Input inputclassname={'disabled'} name={key} title={key} value={value} type={key === 'amount' ? 'number' : 'text'} readOnly={true} changeInputValue={changeValueInput} />
+
                                 }
                             </div>
                     ))

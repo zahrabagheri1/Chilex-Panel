@@ -6,6 +6,7 @@ import SelectOption from '../../../Components/SelectOption/SelectOption';
 import ButtonActionBlue from '../../../Components/ButtonActionBlue/ButtonActionBlue';
 import Alert from '../../Alert/Alert';
 import ButtonActionGray from '../../../Components/ButtonActionGray/ButtonActionGray';
+import { useCookies } from 'react-cookie';
 
 const settingId = 2
 
@@ -15,6 +16,7 @@ function ModalPrizes(props) {
   const [addPrize, setAddPrize] = useState({
     settingId: settingId
   })
+  const [cookies] = useCookies(['accessToken']);
 
   const [showAlert, setShowAlert] = useState({
     status: false, msg: '', success: null
@@ -38,7 +40,13 @@ function ModalPrizes(props) {
   console.log(addPrize)
 
   const sendData = () => {
-    axios.post(`/games/setting/prize`, addPrize)
+    axios.post(`/games/setting/prize`, addPrize,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + cookies.accessToken
+        }
+      })
       .then(
         res => {
           // show alert that new setting prize creatting.

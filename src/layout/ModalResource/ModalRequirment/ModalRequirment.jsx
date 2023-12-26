@@ -6,11 +6,13 @@ import SelectOption from '../../../Components/SelectOption/SelectOption';
 import ButtonActionBlue from '../../../Components/ButtonActionBlue/ButtonActionBlue';
 import Alert from '../../Alert/Alert';
 import ButtonActionGray from '../../../Components/ButtonActionGray/ButtonActionGray';
+import { useCookies } from 'react-cookie';
 
 const settingId = 2
 
 function ModalRequirment(props) {
   const [value, setValue] = useState()
+  const [cookies] = useCookies(['accessToken']);
   const [addRequirment, setAddRequirment] = useState({
     settingId: settingId
   })
@@ -24,8 +26,6 @@ function ModalRequirment(props) {
     { id: 2, name: 'cup' },
     { id: 3, name: 'xp' },
   ]
-
-
   const changeValueInput = (e) => {
     setAddRequirment(prev => ({ ...prev, [e.target.name]: parseInt(e.target.value) }))
   }
@@ -35,10 +35,16 @@ function ModalRequirment(props) {
   }
 
   const sendData = () => {
-    axios.post(`/games/setting/requirement`, addRequirment).then(
-      res => {
-        console.log(res)
-        // show alert that new setting requirement creatting.
+    axios.post(`/games/setting/requirement`, addRequirment,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + cookies.accessToken
+        }
+      }).then(
+        res => {
+          console.log(res)
+          // show alert that new setting requirement creatting.
 
           setShowAlert({ status: true, msg: 'Created Entry succesful', success: true })
           setTimeout(() => {
@@ -47,19 +53,19 @@ function ModalRequirment(props) {
               props.canceladd()
             }, 0)
           }, 2000)
-        
-      }
+
+        }
       ).catch(
         err => {
-        console.log(err)
-        if (err.status === 400) {
-          setShowAlert({ status: true, msg: 'err.response.data.message[0]', success: false })
-          setTimeout(() => {
-            setShowAlert({ status: false })
-          }, 2000)
+          console.log(err)
+          if (err.status === 400) {
+            setShowAlert({ status: true, msg: 'err.response.data.message[0]', success: false })
+            setTimeout(() => {
+              setShowAlert({ status: false })
+            }, 2000)
+          }
         }
-      }
-    )
+      )
   }
 
 
@@ -90,7 +96,7 @@ function ModalRequirment(props) {
 
         <div className="modalRequirmentsBtn">
           <ButtonActionBlue title={'Add Requirment'} handler={e => sendData(e)} />
-          <ButtonActionGray title={'cancel'} handler={() => props.canceladd() } />
+          <ButtonActionGray title={'cancel'} handler={() => props.canceladd()} />
         </div>
       </div>
     </div >

@@ -4,12 +4,14 @@ import './List.scss';
 import axios from 'axios';
 import { Link, useHistory, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import Button from '../../../../Components/Button/Button';
+import { useCookies } from 'react-cookie';
 
 
 function Index() {
   const [games, setGames] = useState()
   const [modal, setModal] = useState(false)
   const [name, setName] = useState()
+  const [cookies] = useCookies(['accessToken']);
   const [active, setActive] = useState()
   const navigate = useNavigate();
   const { id } = useSearchParams()
@@ -19,7 +21,14 @@ function Index() {
   }, [])
 
   const gameIAP = () => {
-    axios.get('/games')
+    axios.get('/games',
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + cookies.accessToken
+    }
+    }
+    )
       .then(
         res => {
           setGames(res.data.data)
@@ -44,7 +53,7 @@ function Index() {
   const gameSetting = () => {
     navigate(`settings/${name}`)
   }
-  
+
   const gamePlayed = () => {
     navigate(`played/${name}`)
 

@@ -4,18 +4,25 @@ import { useParams } from 'react-router-dom';
 import Input from '../../../../Components/Input/Input';
 import './Detail.scss';
 import moment from 'moment-jalaali';
+import { useCookies } from 'react-cookie';
 
 function Index() {
     const [history, setHistory] = useState({});
     const { id } = useParams()
-
+    const [cookies] = useCookies(['accessToken']);
 
     const referenceType = ['BUNDLE', 'ITEM', 'TRANSACTION', 'SETTING']
     const type = ['Gem', 'Coin', 'Item']
 
     useEffect(() => {
         console.log('detail ID', id)
-        axios.get(`/shopping-history/get-shoppingHistory/${id}`)
+        axios.get(`/shopping-history/get-shoppingHistory/${id}`,
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + cookies.accessToken
+                }
+            })
             .then(
                 res => {
                     setHistory(res.data.data)
@@ -46,19 +53,19 @@ function Index() {
                                 </div>
                                 :
                                 key === 'referenceType' ?
-                    
-                                        <div key={index} className='titleB col-xl-3 col-lg-3 col-md-4 col-ms-6 col-xs-6'>
-                                            <div className='header-title'>{key}</div>
-                                            <div className='data-title'>{referenceType[value]}</div>
-                                        </div>
-                     
-                                    :
-                                    value === null ?
-                                    null :
+
                                     <div key={index} className='titleB col-xl-3 col-lg-3 col-md-4 col-ms-6 col-xs-6'>
                                         <div className='header-title'>{key}</div>
-                                        <div className='data-title'>{value}</div>
+                                        <div className='data-title'>{referenceType[value]}</div>
                                     </div>
+
+                                    :
+                                    value === null ?
+                                        null :
+                                        <div key={index} className='titleB col-xl-3 col-lg-3 col-md-4 col-ms-6 col-xs-6'>
+                                            <div className='header-title'>{key}</div>
+                                            <div className='data-title'>{value}</div>
+                                        </div>
 
                     ))
                 )}

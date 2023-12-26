@@ -6,11 +6,13 @@ import SelectOption from '../../../Components/SelectOption/SelectOption';
 import ButtonActionBlue from '../../../Components/ButtonActionBlue/ButtonActionBlue';
 import Alert from '../../Alert/Alert';
 import ButtonActionGray from '../../../Components/ButtonActionGray/ButtonActionGray';
+import { useCookies } from 'react-cookie';
 
 const settingId = 2;
 
 function ModalEntries(props) {
   const [value, setValue] = useState()
+  const [cookies] = useCookies(['accessToken']);
   const [addEntry, setAddEntry] = useState({
     settingId: settingId
   })
@@ -34,7 +36,13 @@ function ModalEntries(props) {
   }
 
   const sendData = () => {
-    axios.post(`/games/setting/entry`, addEntry)
+    axios.post(`/games/setting/entry`, addEntry,
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + cookies.accessToken
+    }
+    })
       .then(
         res => {
           // show alert that new setting entry creatting.

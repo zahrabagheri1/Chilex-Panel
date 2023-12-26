@@ -7,17 +7,25 @@ import ModalEntries from '../../../../layout/ModalResource/ModalEntries/ModalEnt
 import ModalPrizes from '../../../../layout/ModalResource/ModalPrizes/ModalPrizes';
 import { useParams } from 'react-router-dom';
 import ResourceBox from '../../../../layout/ResourceBox/ResourceBox';
+import { useCookies } from 'react-cookie';
 
 
 const settingId = 2
 
 function Resources() {
     const [data, setData] = useState()
+    const [cookies] = useCookies(['accessToken']);
     const [openResource, setOpenResource] = useState('')
     const { id } = useParams()
 
     const getResource = () => {
-        axios.get(`/games/setting/resources/${id}`)
+        axios.get(`/games/setting/resources/${id}`,
+        {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + cookies.accessToken
+            }
+        })
             .then(
                 res => {
                     setData(res.data)
@@ -48,7 +56,13 @@ function Resources() {
     }
     const deleteRequirement = (id,type) =>{
         console.log(id,type)
-        axios.delete(`/games/setting/${type}/${id}`)
+        axios.delete(`/games/setting/${type}/${id}`,
+        {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + cookies.accessToken
+            }
+        })
         .then(
             res => {
                 getResource()

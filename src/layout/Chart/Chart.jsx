@@ -7,17 +7,19 @@ import { LineController, PolarAreaController } from 'chart.js';
 import DatePikerFarsi from '../../Components/DatePikerFarsi/DatePikerFarsi';
 import ReactApexChart from 'react-apexcharts';
 import moment from 'moment-jalaali';
+import { useCookies } from 'react-cookie';
 
 
 
 function Chart() {
-    const dateNow =  Date.now();
+    const dateNow = Date.now();
+    const [cookies, setCookie, removeCookie] = useCookies(['accessToken']);
     const [data, setData] = useState({})
     const [filter, setFilter] = useState({
         statuses: null,
         gatewayTypes: null,
         type: 1,
-        startDate: moment(dateNow).subtract(1,'months').format('jYYYY/jM/jD'),
+        startDate: moment(dateNow).subtract(1, 'months').format('jYYYY/jM/jD'),
         endtDate: moment(dateNow).format('jYYYY/jM/jD'),
     })
     const [state, setState] = useState()
@@ -42,7 +44,12 @@ function Chart() {
 
     //admin-transaction/chart?statuses%5B%5D=5&gatewayTypes%5B%5D=1&type=1&startDate=2023-11-24&endtDate=2023-11-27
     const getChart = () => {
-        axios.get(`/admin-transaction/chart?${filter.statuses === null || filter.statuses === undefined ? '' : ('statuses[]=' + filter.statuses + '&')}${filter.gatewayTypes === null || filter.gatewayTypes === undefined ? '' : ('gatewayTypes[]=' + filter.gatewayTypes + '&')}${'type=' + filter.type + '&'}${'startDate=' + filter.startDate + '&'}${'endtDate=' + filter.endtDate}`)
+        axios.get(`/admin-transaction/chart?${filter.statuses === null || filter.statuses === undefined ? '' : ('statuses[]=' + filter.statuses + '&')}${filter.gatewayTypes === null || filter.gatewayTypes === undefined ? '' : ('gatewayTypes[]=' + filter.gatewayTypes + '&')}${'type=' + filter.type + '&'}${'startDate=' + filter.startDate + '&'}${'endtDate=' + filter.endtDate}`,
+            {
+                headers: {
+                    accessToken: cookies.accessToken,
+                }
+            })
             .then(res => {
                 setData(res.data.data)
             })

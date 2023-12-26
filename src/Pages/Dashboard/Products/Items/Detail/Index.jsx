@@ -6,6 +6,7 @@ import Switch from '../../../../../Components/Switch/Switch';
 import Input from '../../../../../Components/Input/Input';
 import { HiPencilSquare, HiCheck } from "react-icons/hi2";
 import SelectOption from '../../../../../Components/SelectOption/SelectOption';
+import { useCookies } from 'react-cookie';
 
 function Index() {
     const [detail, setDetail] = useState({});
@@ -13,6 +14,7 @@ function Index() {
     const [edit, setEdit] = useState(false)
     const { itemId } = useParams()
     const [updateData, setUpdateData] = useState({})
+    const [cookies] = useCookies(['accessToken']);
     const items = [
         {
             name: 'tier',
@@ -119,6 +121,12 @@ function Index() {
                     gameId: updateData.gameId === null || updateData.gameId === undefined ? detail.gameId : updateData.gameId,
                     gameItemType: updateData.gameItemType === null || updateData.gameItemType === undefined ? detail.gameItemType : updateData.gameItemType,
                     characterItemType: updateData.characterItemType === null || updateData.characterItemType === undefined ? detail.characterItemType : updateData.characterItemType,
+                },
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: 'Bearer ' + cookies.accessToken
+                    }
                 })
                 .then(
                     res => {
@@ -136,7 +144,13 @@ function Index() {
         console.log("boolean,id", boolean, id);
         axios.patch(`/admin-stuff/change-item-status/${id}`, {
             status: boolean === true ? 0 : 1,
-        })
+        },
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + cookies.accessToken
+                }
+            })
             .then(
                 res => {
                     getData()
@@ -151,7 +165,13 @@ function Index() {
         console.log("boolean,id", boolean, id);
         axios.patch(`/admin-stuff/change-price-status/${id}`, {
             status: boolean === true ? 0 : 1,
-        })
+        },
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + cookies.accessToken
+                }
+            })
             .then(
                 res => {
                     getData()
@@ -168,7 +188,13 @@ function Index() {
     }, [])
 
     const getData = () => {
-        axios.get(`/admin-stuff/get-item/${itemId}`)
+        axios.get(`/admin-stuff/get-item/${itemId}`,
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + cookies.accessToken
+                }
+            })
             .then(res => {
                 setDetail(res.data)
             })

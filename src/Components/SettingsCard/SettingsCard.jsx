@@ -10,6 +10,7 @@ import moment from 'moment-jalaali';
 import Alert from '../../layout/Alert/Alert';
 import ButtonActionGray from '../ButtonActionGray/ButtonActionGray';
 import { useNavigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 
 const props = {
@@ -46,6 +47,7 @@ function SettingsCard(props) {
     const navigate =useNavigate()
     const [edit, setEdit] = useState(false)
     const [updatedata, setUpdateData] = useState({})
+    const [cookies] = useCookies(['accessToken']);
     const [showAlert, setShowAlert] = useState({
         status: false, msg: '', success: ''
     })
@@ -58,6 +60,12 @@ function SettingsCard(props) {
             playersLength: updatedata.playersLength === null || updatedata.playersLength === undefined ? data.playersLength : updatedata.playersLength,
             description: updatedata.description === null || updatedata.description === undefined ? data.description : updatedata.description,
             botLevel: updatedata.botLevel === null || updatedata.botLevel === undefined ? data.botLevel : updatedata.botLevel
+        },
+        {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + cookies.accessToken
+            }
         }).then(
             res => {
                 props.getData()

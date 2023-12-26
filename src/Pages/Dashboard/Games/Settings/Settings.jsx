@@ -5,6 +5,7 @@ import axios from 'axios';
 import './Settings.scss';
 import ModalSetting from '../../../../layout/ModalSetting/ModalSetting';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 const props = {
   gameName: 'backgammon'
@@ -12,6 +13,7 @@ const props = {
 
 function Settings() {
   const [data, setData] = useState()
+  const [cookies] = useCookies(['accessToken']);
   const [openModal, setOpenModal] = useState()
   const { id } = useParams()
   const navigate = useNavigate()
@@ -20,15 +22,23 @@ function Settings() {
   }, [])
 
   const getSettings = () => {
-    axios.get(`/games/settings/${id}`).then(
-      res => {
-        setData(res.data.data)
-      }
-    ).catch(
-      err => {
-        console.log(err)
+    axios.get(`/games/settings/${id}`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + cookies.accessToken
+        }
       }
     )
+      .then(
+        res => {
+          setData(res.data.data)
+        }
+      ).catch(
+        err => {
+          console.log(err)
+        }
+      )
   }
 
   const hundelOpenModal = () => {
@@ -60,7 +70,7 @@ function Settings() {
       </div>
       {/* what is "id"? id is the name og game that we need it to show in other component */}
 
-      {openModal === true ? <ModalSetting  gameName={id} canceladd={() => setOpenModal(false)} /> : null}
+      {openModal === true ? <ModalSetting gameName={id} canceladd={() => setOpenModal(false)} /> : null}
 
     </div>
   );

@@ -4,12 +4,13 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import Input from '../../../../Components/Input/Input';
 import { HiPencilSquare } from "react-icons/hi2";
+import { useCookies } from 'react-cookie';
 
 function Index() {
     const [edit, setEdit] = useState(false)
     const [transaction, setTransaction] = useState({});
     const { transactionID } = useParams();
-
+    const [cookies] = useCookies(['accessToken']);
     const type = [
         { id: 0, name: 'Gem bundle' },
         { id: 1, name: 'Coin  bundle' },
@@ -30,7 +31,13 @@ function Index() {
 
 
     useEffect(() => {
-        axios.get(`/admin-transaction/get-transaction/${transactionID}`)
+        axios.get(`/admin-transaction/get-transaction/${transactionID}`,
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + cookies.accessToken
+                }
+            })
             .then(
                 res => {
                     setTransaction(res.data.data)

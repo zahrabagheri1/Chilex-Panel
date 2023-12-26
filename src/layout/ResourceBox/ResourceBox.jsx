@@ -6,9 +6,10 @@ import ButtonActionGray from '../../Components/ButtonActionGray/ButtonActionGray
 import axios from 'axios';
 import Alert from '../Alert/Alert';
 import './ResourceBox.scss';
+import { useCookies } from 'react-cookie';
 
 function ResourceBox(props) {
-
+    const [cookies] = useCookies(['accessToken']);
     const [edit, setEdit] = useState(false)
     const [addRequirment, setAddRequirment] = useState({})
     const [showAlert, setShowAlert] = useState({
@@ -33,7 +34,13 @@ function ResourceBox(props) {
     }
 
     const deleteEntry = (id) => {
-        axios.delete(`/games/setting/entry/${id}`)
+        axios.delete(`/games/setting/entry/${id}`,
+        {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + cookies.accessToken
+            }
+        })
             .then(
                 res => {
                     // show alert that  deleted successfully
@@ -57,6 +64,12 @@ function ResourceBox(props) {
             min: addRequirment.min === null || addRequirment.min === undefined ? requirement.min : addRequirment.min,
             max: addRequirment.max === null || addRequirment.max === undefined ? requirement.max : addRequirment.max
 
+        },
+        {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + cookies.accessToken
+            }
         })
             .then(
                 res => {
@@ -79,6 +92,12 @@ function ResourceBox(props) {
         axios.patch(`/games/setting/entry/${id}`, {
             amount: addRequirment.amount === null || addRequirment.amount === undefined ? requirement.amount : addRequirment.amount,
             type: addRequirment.type === null || addRequirment.type === undefined ? requirement.type : addRequirment.type
+        },
+        {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + cookies.accessToken
+            }
         })
             .then(
                 res => {
@@ -101,6 +120,12 @@ function ResourceBox(props) {
         axios.patch(`/games/setting/prize/${id}`, {
             amount: addRequirment.amount === null || addRequirment.amount === undefined ? requirement.amount : addRequirment.amount,
             type: addRequirment.type === null || addRequirment.type === undefined ? requirement.type : addRequirment.type
+        },
+        {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + cookies.accessToken
+            }
         })
             .then(
                 res => {

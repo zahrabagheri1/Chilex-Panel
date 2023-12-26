@@ -9,10 +9,12 @@ import './List.scss';
 import SelectOption from '../../../../../Components/SelectOption/SelectOption';
 import Input from '../../../../../Components/Input/Input';
 import ModalBanUser from '../../../../../layout/ModalBanUser/ModalBanUser';
+import { useCookies } from 'react-cookie';
 
 function Index() {
   const [userList, setUserList] = useState()
   const [modal, setModal] = useState()
+  const [cookies] = useCookies(['accessToken']);
   const [filter, setFilter] = useState({
     limit: null,
     offset: null,
@@ -41,7 +43,13 @@ function Index() {
   }
 
   const banUser = () => {
-    axios.get(`?${filter.limit === undefined || filter.limit === null ? '' : 'limit=' + filter.limit + '&'}${filter.offset === undefined || filter.offset === null ? '' : 'offset=' + filter.offset + '&'}${filter.type === undefined || filter.type === null ? '' : 'type=' + filter.type + '&'}${filter.userId === undefined || filter.userId === null ? '' : 'userId=' + filter.userId + '&'}${filter.sortBy === undefined || filter.sortBy === null ? '' : 'sortBy=' + filter.sortBy + '&'}${filter.orderBy === undefined || filter.orderBy === null ? '' : 'orderBy=' + filter.orderBy}`)
+    axios.get(`?${filter.limit === undefined || filter.limit === null ? '' : 'limit=' + filter.limit + '&'}${filter.offset === undefined || filter.offset === null ? '' : 'offset=' + filter.offset + '&'}${filter.type === undefined || filter.type === null ? '' : 'type=' + filter.type + '&'}${filter.userId === undefined || filter.userId === null ? '' : 'userId=' + filter.userId + '&'}${filter.sortBy === undefined || filter.sortBy === null ? '' : 'sortBy=' + filter.sortBy + '&'}${filter.orderBy === undefined || filter.orderBy === null ? '' : 'orderBy=' + filter.orderBy}`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + cookies.accessToken
+        }
+      })
       .then(
         res => {
           setUserList(res.data.data)

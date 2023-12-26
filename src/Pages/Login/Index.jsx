@@ -68,7 +68,7 @@ function Index() {
 
 
   const submitData = () => {
-    axios.defaults.withCredentials = true;
+    // axios.defaults.withCredentials = true;
     axios.post(`/auth/admin/login`, {
       username: user.username,
       password: user.password

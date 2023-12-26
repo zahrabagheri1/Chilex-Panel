@@ -7,9 +7,11 @@ import { useNavigate } from 'react-router-dom';
 import './Reports.scss';
 import Input from '../../../../../Components/Input/Input';
 import SelectOption from '../../../../../Components/SelectOption/SelectOption';
+import { useCookies } from 'react-cookie';
 
 function List() {
     const [reportuserList, setReportuserList] = useState(null)
+    const [cookies] = useCookies(['accessToken']);
     const [filter, setFilter] = useState({
         limit: null,
         offset: null,
@@ -28,15 +30,22 @@ function List() {
 
     //reports/all?limit=1&offset=1&types%5B%5D=1&userId=1&sortBy=1&orderBy=1
     const listOfReportuser = () => {
-        axios.get(`/reports/all?${filter.limit === undefined || filter.limit === null ? '' : 'limit=' + filter.limit + '&'}${filter.offset === undefined || filter.offset === null ? '' : 'offset=' + filter.offset + '&'}${filter.types === undefined || filter.types === null ? '' : 'types[]=' + filter.types + '&'}${filter.userId === undefined || filter.userId === null ? '' : 'userId=' + filter.userId + '&'}${filter.sortBy === undefined || filter.sortBy === null ? '' : 'sortBy=' + filter.sortBy + '&'}${filter.orderBy === undefined || filter.orderBy === null ? '' : 'orderBy=' + filter.orderBy}`).then(
-            res => {
-                setReportuserList(res.data.data)
-            }
-        ).catch(
-            err => {
-                console.log(err)
-            }
-        )
+        axios.get(`/reports/all?${filter.limit === undefined || filter.limit === null ? '' : 'limit=' + filter.limit + '&'}${filter.offset === undefined || filter.offset === null ? '' : 'offset=' + filter.offset + '&'}${filter.types === undefined || filter.types === null ? '' : 'types[]=' + filter.types + '&'}${filter.userId === undefined || filter.userId === null ? '' : 'userId=' + filter.userId + '&'}${filter.sortBy === undefined || filter.sortBy === null ? '' : 'sortBy=' + filter.sortBy + '&'}${filter.orderBy === undefined || filter.orderBy === null ? '' : 'orderBy=' + filter.orderBy}`,
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + cookies.accessToken
+                }
+            })
+            .then(
+                res => {
+                    setReportuserList(res.data.data)
+                }
+            ).catch(
+                err => {
+                    console.log(err)
+                }
+            )
     }
 
     const updateOptionData = (name, id) => {

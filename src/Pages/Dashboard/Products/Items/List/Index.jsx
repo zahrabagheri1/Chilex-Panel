@@ -9,11 +9,13 @@ import ScrollContainer from 'react-indiana-drag-scroll';
 import { useNavigate, useParams } from 'react-router-dom';
 import Input from '../../../../../Components/Input/Input';
 import SelectOption from '../../../../../Components/SelectOption/SelectOption';
+import { useCookies } from 'react-cookie';
 
 function Index() {
     const [items, setItems] = useState(null);
     const [modal, setModal] = useState(false);
     const [value, setValue] = useState();
+    const [cookies] = useCookies(['accessToken']);
     const navigate = useNavigate()
     const [filter, setFilter] = useState({
         sku: null,
@@ -32,7 +34,13 @@ function Index() {
     }, [filter])
 
     const reqFilterItem = () => {
-        axios.get(`/admin-stuff/items-all?${filter.sku === null || filter.sku === undefined ? '' : "sku=" + filter.sku + '&'}${filter.itemStatus === null || filter.itemStatus === undefined ? '' : "itemStatus=" + filter.itemStatus + '&'}${filter.itemGameId === null || filter.itemGameId === undefined ? '' : "itemGameId=" + filter.itemGameId + '&'}${filter.priceStatus === null || filter.priceStatus === undefined ? '' : "priceStatus=" + filter.priceStatus + '&'}${filter.limit === null || filter.limit === undefined ? '' : "limit=" + filter.limit + '&'}${filter.offset === null || filter.offset === undefined ? '' : "offset=" + filter.offset + '&'}${filter.sortBy === null || filter.sortBy === undefined ? '' : "sortBy=" + filter.sortBy + '&'}${filter.orderBy === null || filter.orderBy === undefined ? '' : "orderBy=" + filter.orderBy}`)
+        axios.get(`/admin-stuff/items-all?${filter.sku === null || filter.sku === undefined ? '' : "sku=" + filter.sku + '&'}${filter.itemStatus === null || filter.itemStatus === undefined ? '' : "itemStatus=" + filter.itemStatus + '&'}${filter.itemGameId === null || filter.itemGameId === undefined ? '' : "itemGameId=" + filter.itemGameId + '&'}${filter.priceStatus === null || filter.priceStatus === undefined ? '' : "priceStatus=" + filter.priceStatus + '&'}${filter.limit === null || filter.limit === undefined ? '' : "limit=" + filter.limit + '&'}${filter.offset === null || filter.offset === undefined ? '' : "offset=" + filter.offset + '&'}${filter.sortBy === null || filter.sortBy === undefined ? '' : "sortBy=" + filter.sortBy + '&'}${filter.orderBy === null || filter.orderBy === undefined ? '' : "orderBy=" + filter.orderBy}`,
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + cookies.accessToken
+                }
+            })
             .then(
                 res => {
                     setItems(res.data.data)
@@ -71,7 +79,7 @@ function Index() {
                     </div>
 
                     <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                        <SelectOption  readOnly={false} value={value} name={'itemStatus'} defaultValue={'itemStatus'} type={'status'} changeOptinValue={updateOptionData}
+                        <SelectOption readOnly={false} value={value} name={'itemStatus'} defaultValue={'itemStatus'} type={'status'} changeOptinValue={updateOptionData}
                             data={[
                                 { id: 0, status: 'Active' },
                                 { id: 1, status: 'Deactive' },
@@ -81,7 +89,7 @@ function Index() {
                     </div>
 
                     <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                        <SelectOption  readOnly={false} value={value} name={'itemGameId'} defaultValue={'itemGameId'} type={'status'} changeOptinValue={updateOptionData}
+                        <SelectOption readOnly={false} value={value} name={'itemGameId'} defaultValue={'itemGameId'} type={'status'} changeOptinValue={updateOptionData}
                             data={[
                                 { id: 0, status: 'Ludo' },
                                 { id: 1, status: 'Uno' },
@@ -93,7 +101,7 @@ function Index() {
                     </div>
 
                     <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                        <SelectOption  readOnly={false} value={value} name={'itemTypes'} defaultValue={'itemTypes'} type={'status'} changeOptinValue={updateOptionData}
+                        <SelectOption readOnly={false} value={value} name={'itemTypes'} defaultValue={'itemTypes'} type={'status'} changeOptinValue={updateOptionData}
                             data={[
                                 { id: 0, status: 'CLOTHES' },
                                 { id: 1, status: 'FACE' },
@@ -114,7 +122,7 @@ function Index() {
                     </div>
 
                     <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                        <SelectOption  readOnly={false} value={value} name={'itemCategories'} defaultValue={'itemCategories'} type={'status'} changeOptinValue={updateOptionData}
+                        <SelectOption readOnly={false} value={value} name={'itemCategories'} defaultValue={'itemCategories'} type={'status'} changeOptinValue={updateOptionData}
                             data={[
                                 { id: 0, status: 'ELSE' },
                                 { id: 1, status: 'GAME' },
@@ -125,7 +133,7 @@ function Index() {
                     </div>
 
                     <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                        <SelectOption  readOnly={false} value={value} name={'priceStatus'} defaultValue={'priceStatus'} type={'status'} changeOptinValue={updateOptionData}
+                        <SelectOption readOnly={false} value={value} name={'priceStatus'} defaultValue={'priceStatus'} type={'status'} changeOptinValue={updateOptionData}
                             data={[
                                 { id: 0, status: 'Active' },
                                 { id: 1, status: 'Deactive' },
@@ -142,7 +150,7 @@ function Index() {
                     </div>
 
                     <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                        <SelectOption  readOnly={false} value={value} name={'sortBy'} defaultValue={'createdAt'} type={'status'} changeOptinValue={updateOptionData}
+                        <SelectOption readOnly={false} value={value} name={'sortBy'} defaultValue={'createdAt'} type={'status'} changeOptinValue={updateOptionData}
                             data={[
                                 { id: 0, status: 'createdAt' },
                                 { id: 1, status: 'updatedAt' },
@@ -155,7 +163,7 @@ function Index() {
                     </div>
 
                     <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                        <SelectOption  readOnly={false} value={value} name={'orderBy'} defaultValue={'orderBy'} type={'status'} changeOptinValue={updateOptionData}
+                        <SelectOption readOnly={false} value={value} name={'orderBy'} defaultValue={'orderBy'} type={'status'} changeOptinValue={updateOptionData}
                             data={[
                                 { id: 0, status: 'DESC' },
                                 { id: 1, status: 'ASC' },
@@ -175,14 +183,14 @@ function Index() {
             </ScrollContainer>
 
             {modal === true ?
-                    <ModalAddProducts
-                        modalTitle={'Add New Item'}
-                        data={items}
-                        type={'item'}
-                        path={'items'}
-                        handelerSubmit={handelOpenModal}
-                        handlerClose={handlerCloseModal}
-                    />
+                <ModalAddProducts
+                    modalTitle={'Add New Item'}
+                    data={items}
+                    type={'item'}
+                    path={'items'}
+                    handelerSubmit={handelOpenModal}
+                    handlerClose={handlerCloseModal}
+                />
                 : ''
             }
         </div>

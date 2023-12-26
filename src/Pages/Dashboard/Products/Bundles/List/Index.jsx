@@ -14,7 +14,7 @@ import { useCookies } from 'react-cookie';
 function Index() {
     const [bundles, setBundles] = useState(null);
     const [modal, setModal] = useState(false);
-    const [cookies, setCookie, removeCookie] = useCookies(['accessToken']);
+    const [cookies] = useCookies(['accessToken']);
     const navigate = useNavigate();
     const [filters, setFilters] = useState({
         bundleType: null,
@@ -26,19 +26,19 @@ function Index() {
         sortBy: 3,
         orderBy: 1,
     })
-    console.log(cookies)
+
     // ${parameters.from === null ||  parameters.from === undefined? "" : "&RegisterDate.min=" + parameters.from}
     //admin-stuff/bundles-all?bundleType=0&sku=zahra&bundleStatus=0&priceStatus=1&limit=2&offset=1&sortBy=3&orderBy=1
-
     useEffect(() => {
         reqFilterBundle()
     }, [filters])
-
+ console.log(cookies)
     const reqFilterBundle = () => {
         axios.get(`/admin-stuff/bundles-all?${filters.bundleType === null || filters.bundleType === undefined ? '' : 'bundleType=' + filters.bundleType + '&'}${filters.sku === null || filters.sku === undefined ? '' : 'sku=' + filters.sku + '&'}${filters.bundleStatus === null || filters.bundleStatus === undefined ? '' : 'bundleStatus=' + filters.bundleStatus + '&'}${filters.priceStatus === null || filters.priceStatus === undefined ? '' : 'priceStatus=' + filters.priceStatus + '&'}${filters.limit === null || filters.limit === undefined ? '' : 'limit=' + filters.limit + '&'}${filters.offset === null || filters.offset === undefined ? '' : 'offset=' + filters.offset + '&'}${filters.sortBy === null || filters.sortBy === undefined ? '' : 'sortBy=' + filters.sortBy + '&'}${filters.orderBy === null || filters.orderBy === undefined ? '' : 'orderBy=' + filters.orderBy}`,
             {
                 headers: {
-                    Cookie: '',
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + cookies.accessToken
                 }
             })
             .then(

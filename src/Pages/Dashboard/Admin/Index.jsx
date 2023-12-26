@@ -1,12 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import './Admin.scss';
 import axios from 'axios';
+import { useCookies } from 'react-cookie';
 
 function Index() {
+    const [cookies] = useCookies(['accessToken']);
     const [data , setData] = useState(null);
     // console.log(data[0])
     useEffect(()=>{
-        axios.get('https://retoolapi.dev/DQqY1W/data')
+        axios.get('https://retoolapi.dev/DQqY1W/data',
+        {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + cookies.accessToken
+            }
+        })
         .then(response => setData(response.data))
     },[])
 

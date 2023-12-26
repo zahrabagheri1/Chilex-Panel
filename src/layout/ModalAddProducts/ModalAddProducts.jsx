@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import Alert from '../Alert/Alert';
 import Prices from '../Prices/Prices';
 import Time from '../Time/Time';
+import { useCookies } from 'react-cookie';
 
 function ModalAddProducts(props) {
 
@@ -21,13 +22,20 @@ function ModalAddProducts(props) {
     prices: [{ type: 0, amount: 5 }],
     stuffType: props.type === 'bundle' ? null : 2,
   })
+  const [cookies] = useCookies(['accessToken']);
 
   const handlerClose = (e) => {
     props.handlerClose()
   }
 
   const handlerSubmit = () => {
-    axios.post('/admin-stuff/create-stuff', addElement)
+    axios.post('/admin-stuff/create-stuff', addElement,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + cookies.accessToken
+        }
+      })
       .then(
         res => {
           setBandel(res.data.data)

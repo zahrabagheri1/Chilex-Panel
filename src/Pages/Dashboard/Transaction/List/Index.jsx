@@ -8,12 +8,14 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Input from '../../../../Components/Input/Input';
 import SelectOption from '../../../../Components/SelectOption/SelectOption';
+import { useCookies } from 'react-cookie';
 
 
 function Index() {
     const [transaction, setTransaction] = useState(null);
     const [value, setValue] = useState();
     const navigate = useNavigate()
+    const [cookies] = useCookies(['accessToken']);
     const [filters, setFilters] = useState({
         statuses: 3,
         gatewayTypes: null,
@@ -31,7 +33,13 @@ function Index() {
     }, [])
 
     const reqFilterTransaction = () => {
-        axios.get(`/admin-transaction/all?${filters.statuses === null || filters.statuses === undefined ? '' : 'statuses[]=' + filters.statuses + '&'}${filters.gatewayTypes === null || filters.gatewayTypes === undefined ? '' : 'gatewayTypes[]=' + filters.gatewayTypes + '&'}${filters.limit === null || filters.limit === undefined ? '' : 'limit=' + filters.limit + '&'}${filters.offset === null || filters.offset === undefined ? '' : 'offset=' + filters.offset + '&'}${filters.sortBy === null || filters.sortBy === undefined ? '' : 'sortBy=' + filters.sortBy + '&'}${filters.orderBy === null || filters.orderBy === undefined ? '' : 'orderBy=' + filters.orderBy + '&'}`)
+        axios.get(`/admin-transaction/all?${filters.statuses === null || filters.statuses === undefined ? '' : 'statuses[]=' + filters.statuses + '&'}${filters.gatewayTypes === null || filters.gatewayTypes === undefined ? '' : 'gatewayTypes[]=' + filters.gatewayTypes + '&'}${filters.limit === null || filters.limit === undefined ? '' : 'limit=' + filters.limit + '&'}${filters.offset === null || filters.offset === undefined ? '' : 'offset=' + filters.offset + '&'}${filters.sortBy === null || filters.sortBy === undefined ? '' : 'sortBy=' + filters.sortBy + '&'}${filters.orderBy === null || filters.orderBy === undefined ? '' : 'orderBy=' + filters.orderBy + '&'}`,
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + cookies.accessToken
+                }
+            })
             .then(
                 res => console.log(res)
             )
@@ -46,6 +54,12 @@ function Index() {
             {
                 limit: parseInt(10),
                 offset: parseInt(1)
+            },
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + cookies.accessToken
+                }
             }).then((res) => {
                 setTransaction(res.data.data)
                 //   console.log(res.data.data)

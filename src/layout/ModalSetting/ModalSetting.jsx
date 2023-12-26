@@ -6,9 +6,11 @@ import SelectOption from '../../Components/SelectOption/SelectOption';
 import ButtonActionBlue from '../../Components/ButtonActionBlue/ButtonActionBlue';
 import ButtonActionGray from '../../Components/ButtonActionGray/ButtonActionGray';
 import Alert from '../Alert/Alert';
+import { useCookies } from 'react-cookie';
 
 function ModalSetting(props) {
   // const [data, setData] = useState()
+  const [cookies] = useCookies(['accessToken']);
   const [addSetting, setAddSetting] = useState({
     game: props.gameName
   })
@@ -18,7 +20,13 @@ function ModalSetting(props) {
   })
 
   const handlerSubmit = () => (
-    axios.post(`/games/setting`, addSetting)
+    axios.post(`/games/setting`, addSetting,
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + cookies.accessToken
+    }
+    })
       .then(
         res => {
           // show alert that new setting creatting.
