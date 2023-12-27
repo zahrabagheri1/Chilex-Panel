@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Table from '../../../../layout/Table/Table';
 import { adminTransaction } from '../../../../Data/Sort';
 import { ScrollContainer } from 'react-indiana-drag-scroll';
@@ -9,10 +9,11 @@ import { useNavigate } from 'react-router-dom';
 import Input from '../../../../Components/Input/Input';
 import SelectOption from '../../../../Components/SelectOption/SelectOption';
 import { useCookies } from 'react-cookie';
-
+import { LoadingContext } from '../../../Loading/LoadingContext';
 
 function Index() {
     const [transaction, setTransaction] = useState(null);
+    const { loading, setLoading } = useContext(LoadingContext)
     const [value, setValue] = useState();
     const navigate = useNavigate()
     const [cookies] = useCookies(['accessToken']);
@@ -33,6 +34,7 @@ function Index() {
     }, [])
 
     const reqFilterTransaction = () => {
+        setLoading(!loading)
         axios.get(`/admin-transaction/all?${filters.statuses === null || filters.statuses === undefined ? '' : 'statuses[]=' + filters.statuses + '&'}${filters.gatewayTypes === null || filters.gatewayTypes === undefined ? '' : 'gatewayTypes[]=' + filters.gatewayTypes + '&'}${filters.limit === null || filters.limit === undefined ? '' : 'limit=' + filters.limit + '&'}${filters.offset === null || filters.offset === undefined ? '' : 'offset=' + filters.offset + '&'}${filters.sortBy === null || filters.sortBy === undefined ? '' : 'sortBy=' + filters.sortBy + '&'}${filters.orderBy === null || filters.orderBy === undefined ? '' : 'orderBy=' + filters.orderBy + '&'}`,
             {
                 headers: {
@@ -41,33 +43,15 @@ function Index() {
                 }
             })
             .then(
-                res => console.log(res)
+                res => {
+                    setTransaction(res.data.data);
+                    setLoading(loading)
+                }
             )
             .catch(
                 err => console.log(err)
             )
     }
-
-
-    useEffect(() => {
-        axios.get('/admin-transaction/all',
-            {
-                limit: parseInt(10),
-                offset: parseInt(1)
-            },
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: 'Bearer ' + cookies.accessToken
-                }
-            }).then((res) => {
-                setTransaction(res.data.data)
-                //   console.log(res.data.data)
-
-            }).catch(err => {
-                console.log(err)
-            })
-    }, [])
 
     const showDetailTransaction = (id) => {
         navigate(`${id}`)

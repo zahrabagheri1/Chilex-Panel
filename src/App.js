@@ -24,6 +24,8 @@ import BanUserDetail from './Pages/Dashboard/Users/Banuser/Detail/Detail';
 import ReportsList from './Pages/Dashboard/Users/Reports/List/List';
 import { CookiesProvider, useCookies } from "react-cookie";
 import './App.css';
+import LoadingProvider from './Pages/Loading/LoadingProvider';
+import LoginProvider from './Pages/Login/LoginProvider';
 
 function App() {
   const [cookies, setCookie] = useCookies(["user"]);
@@ -31,37 +33,42 @@ function App() {
   function handleLogin(user) {
     setCookie("user", user, { path: "/" });
   }
-  
-  return (
-    <Routes>
-      <Route path='/'>
-        <Route path='login' index element={<Login />} />
-        <Route path='dashboard' element={<Dashboard />}>
-          <Route index element={<Charts />} />
-          <Route path='admin' element={<Admin />} />
-          <Route path='bundles' element={<BundleList />} />
-          <Route path='bundles/:bundleId' element={<BundleDetail />} />
-          <Route path='items' element={<ItemList />} />
-          <Route path='items/:itemId' element={<ItemDetail />} />
-          <Route path='transaction' element={<TransactionList />} />
-          <Route path='transaction/:transactId' element={<TransactionDetail />} />
-          <Route path='alluser' element={<AlluserList />} />
-          <Route path='alluser/:user' element={<AlluserDetail />} />
-          <Route path='reports' element={<ReportsList />} />
-          <Route path='banuser' element={<BanUserList />} />
-          <Route path='banuser/:id' element={<BanUserDetail />} />
-          <Route path='shopping-history' element={<SHList />} />
-          <Route path='shopping-history/:id' element={<SHDetail />} />
-          <Route path='support' element={<Support />} />
-          <Route path='games' element={<GameList />} />
-          <Route path='games/played/:id' element={<Played />} />
-          <Route path='games/settings/:id' element={<Settings />} />
-          <Route path='games/settings/resources/:id' element={<Resources />} />
-        </Route>
-        <Route path='*' element={<Notfound />} />
-      </Route>
 
-    </Routes>
+  return (
+    <LoadingProvider>
+      <LoginProvider>
+        <div className='routers'>
+          <Routes>
+            <Route path='/'>
+              <Route path='dashboard' element={<Dashboard />}>
+                <Route index element={<Charts />} />
+                <Route path='admin' element={<Admin />} />
+                <Route path='bundles' element={<BundleList />} />
+                <Route path='bundles/:bundleId' element={<BundleDetail />} />
+                <Route path='items' element={<ItemList />} />
+                <Route path='items/:itemId' element={<ItemDetail />} />
+                <Route path='transaction' element={<TransactionList />} />
+                <Route path='transaction/:id' element={<TransactionDetail />} />
+                <Route path='alluser' element={<AlluserList />} />
+                <Route path='alluser/:user' element={<AlluserDetail />} />
+                <Route path='reports' element={<ReportsList />} />
+                <Route path='banuser' element={<BanUserList />} />
+                <Route path='banuser/:id' element={<BanUserDetail />} />
+                <Route path='shopping-history' element={<SHList />} />
+                <Route path='shopping-history/:id' element={<SHDetail />} />
+                <Route path='support' element={<Support />} />
+                <Route path='games' element={<GameList />} />
+                <Route path='games/played/:id' element={<Played />} />
+                <Route path='games/settings/:id' element={<Settings />} />
+                <Route path='games/settings/resources/:id' element={<Resources />} />
+              </Route>
+              <Route index path='login' element={<Login />} />
+              <Route path='*' element={<Notfound />} />
+            </Route>
+          </Routes>
+        </div>
+      </LoginProvider>
+    </LoadingProvider>
   );
 }
 

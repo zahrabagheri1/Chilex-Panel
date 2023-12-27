@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import SelectOption from '../../Components/SelectOption/SelectOption';
 import Input from '../../Components/Input/Input';
 import './Chart.scss';
@@ -8,13 +8,14 @@ import DatePikerFarsi from '../../Components/DatePikerFarsi/DatePikerFarsi';
 import ReactApexChart from 'react-apexcharts';
 import moment from 'moment-jalaali';
 import { useCookies } from 'react-cookie';
-
+import { LoadingContext } from '../../Pages/Loading/LoadingContext';
 
 
 function Chart() {
     const dateNow = Date.now();
-    const [cookies, setCookie, removeCookie] = useCookies(['accessToken']);
+    const [cookies] = useCookies(['accessToken']);
     const [data, setData] = useState({})
+    const { loading, setLoading } = useContext(LoadingContext)
     const [filter, setFilter] = useState({
         statuses: null,
         gatewayTypes: null,
@@ -22,18 +23,12 @@ function Chart() {
         startDate: moment(dateNow).subtract(1, 'months').format('jYYYY/jM/jD'),
         endtDate: moment(dateNow).format('jYYYY/jM/jD'),
     })
-    const [state, setState] = useState()
 
     const updateOptionData = (name, id) => {
         setFilter(prev => ({ ...prev, [name]: id }))
     }
 
-    const updateInputData = (e) => {
-        setFilter(prev => ({ ...prev, [e.target.name]: e.target.value }))
-    }
-
     const updateDataPiker = (e, title) => {
-        // console.log(e, title)
         setFilter((prev) => ({ ...prev, [title]: e }))
     }
 
@@ -44,18 +39,21 @@ function Chart() {
 
     //admin-transaction/chart?statuses%5B%5D=5&gatewayTypes%5B%5D=1&type=1&startDate=2023-11-24&endtDate=2023-11-27
     const getChart = () => {
+        setLoading(!loading)
         axios.get(`/admin-transaction/chart?${filter.statuses === null || filter.statuses === undefined ? '' : ('statuses[]=' + filter.statuses + '&')}${filter.gatewayTypes === null || filter.gatewayTypes === undefined ? '' : ('gatewayTypes[]=' + filter.gatewayTypes + '&')}${'type=' + filter.type + '&'}${'startDate=' + filter.startDate + '&'}${'endtDate=' + filter.endtDate}`,
             {
                 headers: {
-                    accessToken: cookies.accessToken,
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + cookies.accessToken
                 }
             })
             .then(res => {
                 setData(res.data.data)
+                setLoading(loading)
             })
             .catch(
                 err => {
-                    // console.log(err)
+                    console.log(err)
                 }
             )
     }

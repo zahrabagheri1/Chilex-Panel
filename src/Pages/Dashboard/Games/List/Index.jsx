@@ -1,10 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import GameCard from '../../../../Components/GameCard/GameCard';
 import './List.scss';
 import axios from 'axios';
 import { Link, useHistory, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import Button from '../../../../Components/Button/Button';
 import { useCookies } from 'react-cookie';
+import { LoadingContext } from '../../../Loading/LoadingContext';
+import { LogingContext } from '../../../Login/LoginContext';
 
 
 function Index() {
@@ -15,23 +17,28 @@ function Index() {
   const [active, setActive] = useState()
   const navigate = useNavigate();
   const { id } = useSearchParams()
+  const { loading, setLoading } = useContext(LoadingContext);
+  const { goToLoginPage } = useContext(LogingContext);
 
   useEffect(() => {
+    goToLoginPage(cookies.accessToken);
     gameIAP();
   }, [])
 
   const gameIAP = () => {
+    setLoading(!loading)
     axios.get('/games',
-    {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + cookies.accessToken
-    }
-    }
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + cookies.accessToken
+        }
+      }
     )
       .then(
         res => {
           setGames(res.data.data)
+          setLoading(loading)
         }
       )
       .catch(

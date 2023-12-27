@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import './Detail.scss';
@@ -7,6 +7,7 @@ import Input from '../../../../../Components/Input/Input';
 import { HiPencilSquare, HiCheck } from "react-icons/hi2";
 import ButtonActionBlue from '../../../../../Components/ButtonActionBlue/ButtonActionBlue';
 import { useCookies } from 'react-cookie';
+import { LoadingContext } from '../../../../Loading/LoadingContext';
 
 function Index() {
     const [detail, setDetail] = useState({});
@@ -16,7 +17,7 @@ function Index() {
     const navigate = useNavigate()
     const [updateData, setUpdateData] = useState({})
     const [cookies] = useCookies(['accessToken']);
-
+    const { loading, setLoading } = useContext(LoadingContext)
     const type = [
         { id: 0, name: 'Gem bundle' },
         { id: 1, name: 'Coin  bundle' },
@@ -121,6 +122,7 @@ function Index() {
     }, [])
 
     const getData = () => {
+        setLoading(!loading)
         axios.get(`/admin-stuff/get-bundle/${bundleId}`,
             {
                 headers: {
@@ -130,6 +132,7 @@ function Index() {
             })
             .then(res => {
                 setDetail(res.data)
+                setLoading(loading)
             })
             .catch(err => {
                 console.log(err)
@@ -219,7 +222,6 @@ function Index() {
                                             </div>
                                             :
                                             <Input inputclassname={editAble === false ? 'disabled' : ''} name={key} title={key} value={value} type={key === 'amount' ? 'number' : 'text'} readOnly={edit === true ? false : true} changeInputValue={changeValueInput} />
-                                    // <Input inputclassname={'disabled'} name={key} title={key} value={value} type={key === 'amount' ? 'number' : 'text'} readOnly={true} changeInputValue={changeValueInput} />
 
                                 }
                             </div>

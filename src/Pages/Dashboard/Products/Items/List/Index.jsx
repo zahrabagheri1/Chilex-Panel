@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './List.scss';
 import axios from 'axios';
 import { HiPlus } from "react-icons/hi2";
@@ -10,12 +10,14 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Input from '../../../../../Components/Input/Input';
 import SelectOption from '../../../../../Components/SelectOption/SelectOption';
 import { useCookies } from 'react-cookie';
+import { LoadingContext } from '../../../../Loading/LoadingContext';
 
 function Index() {
     const [items, setItems] = useState(null);
     const [modal, setModal] = useState(false);
     const [value, setValue] = useState();
     const [cookies] = useCookies(['accessToken']);
+    const { loading, setLoading } = useContext(LoadingContext)
     const navigate = useNavigate()
     const [filter, setFilter] = useState({
         sku: null,
@@ -34,6 +36,7 @@ function Index() {
     }, [filter])
 
     const reqFilterItem = () => {
+        setLoading(!loading)
         axios.get(`/admin-stuff/items-all?${filter.sku === null || filter.sku === undefined ? '' : "sku=" + filter.sku + '&'}${filter.itemStatus === null || filter.itemStatus === undefined ? '' : "itemStatus=" + filter.itemStatus + '&'}${filter.itemGameId === null || filter.itemGameId === undefined ? '' : "itemGameId=" + filter.itemGameId + '&'}${filter.priceStatus === null || filter.priceStatus === undefined ? '' : "priceStatus=" + filter.priceStatus + '&'}${filter.limit === null || filter.limit === undefined ? '' : "limit=" + filter.limit + '&'}${filter.offset === null || filter.offset === undefined ? '' : "offset=" + filter.offset + '&'}${filter.sortBy === null || filter.sortBy === undefined ? '' : "sortBy=" + filter.sortBy + '&'}${filter.orderBy === null || filter.orderBy === undefined ? '' : "orderBy=" + filter.orderBy}`,
             {
                 headers: {
@@ -44,6 +47,7 @@ function Index() {
             .then(
                 res => {
                     setItems(res.data.data)
+                    setLoading(loading)
                 }
             ).catch(
                 err => console.log(err)
@@ -141,13 +145,13 @@ function Index() {
                         />
                     </div>
 
-                    <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                    {/* <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
                         <Input value={value} type={'text'} title={"limit"} placeholder={'limit'} changeInputValue={updateInputData} />
                     </div>
 
                     <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
                         <Input value={value} type={'text'} title={"offset"} placeholder={'offset'} changeInputValue={updateInputData} />
-                    </div>
+                    </div> */}
 
                     <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
                         <SelectOption readOnly={false} value={value} name={'sortBy'} defaultValue={'createdAt'} type={'status'} changeOptinValue={updateOptionData}

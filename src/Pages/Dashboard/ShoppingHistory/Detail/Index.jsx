@@ -1,13 +1,15 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Input from '../../../../Components/Input/Input';
 import './Detail.scss';
 import moment from 'moment-jalaali';
 import { useCookies } from 'react-cookie';
+import { LoadingContext } from '../../../Loading/LoadingContext';
 
 function Index() {
     const [history, setHistory] = useState({});
+    const { loading, setLoading } = useContext(LoadingContext)
     const { id } = useParams()
     const [cookies] = useCookies(['accessToken']);
 
@@ -15,7 +17,7 @@ function Index() {
     const type = ['Gem', 'Coin', 'Item']
 
     useEffect(() => {
-        console.log('detail ID', id)
+        setLoading(!loading)
         axios.get(`/shopping-history/get-shoppingHistory/${id}`,
             {
                 headers: {
@@ -26,6 +28,7 @@ function Index() {
             .then(
                 res => {
                     setHistory(res.data.data)
+                    setLoading(loading)
                 }
             )
             .catch(

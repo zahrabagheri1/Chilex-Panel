@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { HiPlus, HiChevronLeft } from "react-icons/hi2";
 import SettingsCard from '../../../../Components/SettingsCard/SettingsCard';
 import axios from 'axios';
@@ -6,6 +6,7 @@ import './Settings.scss';
 import ModalSetting from '../../../../layout/ModalSetting/ModalSetting';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
+import { LoadingContext } from '../../../Loading/LoadingContext';
 
 const props = {
   gameName: 'backgammon'
@@ -15,6 +16,7 @@ function Settings() {
   const [data, setData] = useState()
   const [cookies] = useCookies(['accessToken']);
   const [openModal, setOpenModal] = useState()
+  const { loading, setLoading } = useContext(LoadingContext)
   const { id } = useParams()
   const navigate = useNavigate()
   useEffect(() => {
@@ -22,6 +24,7 @@ function Settings() {
   }, [])
 
   const getSettings = () => {
+    setLoading(!loading)
     axios.get(`/games/settings/${id}`,
       {
         headers: {
@@ -33,6 +36,7 @@ function Settings() {
       .then(
         res => {
           setData(res.data.data)
+          setLoading(loading)
         }
       ).catch(
         err => {

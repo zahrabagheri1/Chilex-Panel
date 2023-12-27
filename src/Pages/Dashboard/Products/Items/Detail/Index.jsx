@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import './Detail.scss';
@@ -7,11 +7,13 @@ import Input from '../../../../../Components/Input/Input';
 import { HiPencilSquare, HiCheck } from "react-icons/hi2";
 import SelectOption from '../../../../../Components/SelectOption/SelectOption';
 import { useCookies } from 'react-cookie';
+import { LoadingContext } from '../../../../Loading/LoadingContext';
 
 function Index() {
     const [detail, setDetail] = useState({});
     const [editAble, setEditAble] = useState(false)
     const [edit, setEdit] = useState(false)
+    const { loading, setLoading } = useContext(LoadingContext)
     const { itemId } = useParams()
     const [updateData, setUpdateData] = useState({})
     const [cookies] = useCookies(['accessToken']);
@@ -188,6 +190,7 @@ function Index() {
     }, [])
 
     const getData = () => {
+        setLoading(!loading)
         axios.get(`/admin-stuff/get-item/${itemId}`,
             {
                 headers: {
@@ -197,6 +200,7 @@ function Index() {
             })
             .then(res => {
                 setDetail(res.data)
+                setLoading(loading)
             })
             .catch(err => {
                 console.log(err)
@@ -220,7 +224,7 @@ function Index() {
                 {detail === null || detail === undefined ? '' : (
                     Object.entries(detail).map(([key, value], index) => (
                         Array.isArray(value) && key === "prices" ?
-                            <div className="priceBox col-xl-12 col-lg-12 col-md-12 col-ms-12 col-xs-12">
+                            <div key={index} className="priceBox col-xl-12 col-lg-12 col-md-12 col-ms-12 col-xs-12">
                                 <div className='titlePrice'>{key}</div>
                                 <div className="priceBody row">
                                     {value.map((item, i) => (
@@ -251,7 +255,6 @@ function Index() {
                                                     }
                                                 </div>
                                                 :
-
                                                 <div className="titleB col-xl-3 col-lg-3 col-md-4 col-ms-6 col-xs-6">
                                                     <div className='header-title'>{key}</div>
                                                     <div className='data-title'>{value}</div>
@@ -295,7 +298,7 @@ function Index() {
                                                         />
 
                                                         :
-                                                        null
+                                                        ''
                                                 ))
 
                                 }

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import Table from '../../../../layout/Table/Table';
 import { sortGamePlayed } from '../../../../Data/Sort';
@@ -9,7 +9,7 @@ import SelectOption from '../../../../Components/SelectOption/SelectOption';
 import DatePikerFarsi from '../../../../Components/DatePikerFarsi/DatePikerFarsi';
 import { useParams } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
-
+import { LoadingContext } from '../../../Loading/LoadingContext';
 const props = {
     gameName: 'ludo',
 }
@@ -17,6 +17,7 @@ const props = {
 function Played() {
     const [data, setData] = useState()
     const [cookies] = useCookies(['accessToken']);
+    const { loading, setLoading } = useContext(LoadingContext)
     const [filter, setFilter] = useState({
         startDate: null,
         endDate: null,
@@ -32,6 +33,7 @@ function Played() {
 
     //dixo.diacostudios.com/games/played/uno?startDate=2023-05-12&endDate=2023-10-12&limit=10&offset=2&orderBy=1
     const getPlayed = () => {
+        setLoading(!loading)
         axios.get(`/games/played/${id}?${filter.startDate === null || filter.startDate === undefined ? '' : 'startDate=' + filter.startDate + '&'}${filter.endDate === null || filter.endDate === undefined ? '' : 'endDate=' + filter.endDate + '&'}${filter.limit === null || filter.limit === undefined ? '' : 'limit=' + filter.limit + '&'}${'offset=' + filter.offset + '&orderBy=' + filter.orderBy}`,
         {
             headers: {
@@ -42,7 +44,7 @@ function Played() {
             .then(
                 res => {
                     setData(res.data.data)
-                    // console.log(res.data.data)                
+                    setLoading(loading)            
                 }
             )
             .catch(

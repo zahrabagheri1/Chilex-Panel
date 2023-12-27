@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { HiPlus } from "react-icons/hi2";
 import Table from '../../../../layout/Table/Table';
 import { sortHistory } from '../../../../Data/Sort';
@@ -9,9 +9,11 @@ import { useNavigate } from 'react-router-dom';
 import Input from '../../../../Components/Input/Input';
 import SelectOption from '../../../../Components/SelectOption/SelectOption';
 import { useCookies } from 'react-cookie';
+import { LoadingContext } from '../../../Loading/LoadingContext';
 
 function Index() {
     const [history, setHistory] = useState(null);
+    const { loading, setLoading } = useContext(LoadingContext)
     const [value, setValue] = useState();
     const navigate = useNavigate();
     const [cookies] = useCookies(['accessToken']);
@@ -35,6 +37,7 @@ function Index() {
     }, [filters])
 
     const reqFilterShopHistory = () => {
+        setLoading(!loading)
         axios.get(`/shopping-history/all?${filters.userId === null || filters.userId === undefined ? '' : 'userId=' + filters.userId + '&'}${filters.gatewayTypes === null || filters.gatewayTypes === undefined ? '' : 'gatewayTypes[]=' + filters.gatewayTypes + '&'}${filters.minAmount === null || filters.minAmount === undefined ? '' : 'minAmount=' + filters.minAmount + '&'}${filters.maxAmount === null || filters.maxAmount === undefined ? '' : 'maxAmount=' + filters.maxAmount + '&'}${filters.type === null || filters.type === undefined ? '' : 'type=' + filters.type + '&'}${filters.referenceType === null || filters.referenceType === undefined ? '' : 'referenceType=' + filters.referenceType + '&'}${filters.sortBy === null || filters.sortBy === undefined ? '' : 'sortBy=' + filters.sortBy + '&'}${filters.orderBy === null || filters.orderBy === undefined ? '' : 'orderBy=' + filters.orderBy + '&'}${filters.offset === null || filters.offset === undefined ? '' : 'offset=' + filters.offset + '&'}${filters.limit === null || filters.limit === undefined ? '' : 'limit=' + filters.limit}`,
             {
                 headers: {
@@ -45,7 +48,7 @@ function Index() {
             .then(
                 res => {
                     setHistory(res.data.data)
-                    console.log(res.data.data)
+                    setLoading(loading)
                 }
             )
             .catch(

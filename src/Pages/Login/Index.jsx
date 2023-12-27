@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Login.scss';
 import Input from '../../Components/Input/Input';
 import Button from '../../Components/Button/Button';
@@ -8,6 +8,7 @@ import axios from 'axios';
 import Alert from '../../layout/Alert/Alert';
 import { useNavigate } from 'react-router-dom';
 import { Cookies, useCookies } from 'react-cookie';
+import { LoadingContext } from '../Loading/LoadingContext';
 
 function Index() {
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ function Index() {
   const [showAlert, setShowAlert] = useState({
     status: false, msg: '', success: null
   });
-
+  const { loading, setLoading } = useContext(LoadingContext);
   useEffect(() => {
     // balls in background
     const colors = ["#2A85FF", "#0C499B", "#272A2F"];
@@ -64,6 +65,7 @@ function Index() {
 
     // if cookies set dont need login 
     cookies.accessToken ? navigate('/dashboard') : navigate('/login');
+    setLoading(false)
   }, [])
 
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './List.scss';
 import Table from '../../../../../layout/Table/Table';
 import { sortBundles } from '../../../../../Data/Sort';
@@ -10,11 +10,13 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Input from '../../../../../Components/Input/Input';
 import SelectOption from '../../../../../Components/SelectOption/SelectOption';
 import { useCookies } from 'react-cookie';
+import { LoadingContext } from '../../../../Loading/LoadingContext';
 
 function Index() {
     const [bundles, setBundles] = useState(null);
     const [modal, setModal] = useState(false);
     const [cookies] = useCookies(['accessToken']);
+    const { loading, setLoading } = useContext(LoadingContext)
     const navigate = useNavigate();
     const [filters, setFilters] = useState({
         bundleType: null,
@@ -32,8 +34,9 @@ function Index() {
     useEffect(() => {
         reqFilterBundle()
     }, [filters])
- console.log(cookies)
+
     const reqFilterBundle = () => {
+        setLoading(!loading)
         axios.get(`/admin-stuff/bundles-all?${filters.bundleType === null || filters.bundleType === undefined ? '' : 'bundleType=' + filters.bundleType + '&'}${filters.sku === null || filters.sku === undefined ? '' : 'sku=' + filters.sku + '&'}${filters.bundleStatus === null || filters.bundleStatus === undefined ? '' : 'bundleStatus=' + filters.bundleStatus + '&'}${filters.priceStatus === null || filters.priceStatus === undefined ? '' : 'priceStatus=' + filters.priceStatus + '&'}${filters.limit === null || filters.limit === undefined ? '' : 'limit=' + filters.limit + '&'}${filters.offset === null || filters.offset === undefined ? '' : 'offset=' + filters.offset + '&'}${filters.sortBy === null || filters.sortBy === undefined ? '' : 'sortBy=' + filters.sortBy + '&'}${filters.orderBy === null || filters.orderBy === undefined ? '' : 'orderBy=' + filters.orderBy}`,
             {
                 headers: {
@@ -42,7 +45,9 @@ function Index() {
                 }
             })
             .then(
-                res => setBundles(res.data.data)
+                res => {setBundles(res.data.data)
+                    setLoading(loading)
+                }
             )
             .catch(
                 err => console.log(err)
@@ -100,12 +105,12 @@ function Index() {
                             ]}
                         />
                     </div>
-                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
+                    {/* <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
                         <Input name={'limit'} type={'number'} title={"limit"} placeholder={'limit'} changeInputValue={updateInputData} />
                     </div>
                     <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
                         <Input name={'offset'} type={'number'} title={"offset"} placeholder={'offset'} changeInputValue={updateInputData} />
-                    </div>
+                    </div> */}
                     <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
                         <SelectOption readOnly={false} name={'sortBy'} defaultValue={'id'} type={'status'} changeOptinValue={updateOptionData}
                             data={[

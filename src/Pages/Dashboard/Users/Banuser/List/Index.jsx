@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import Table from '../../../../../layout/Table/Table';
 import axios from 'axios';
@@ -8,10 +8,12 @@ import './List.scss'
 import Input from '../../../../../Components/Input/Input';
 import SelectOption from '../../../../../Components/SelectOption/SelectOption';
 import { useCookies } from 'react-cookie';
+import { LoadingContext } from '../../../../Loading/LoadingContext';
 
 function Index() {
     const [banuserList, setBanuserList] = useState(null)
     const [cookies] = useCookies(['accessToken']);
+    const { loading, setLoading } = useContext(LoadingContext)
     const [filter, setFilter] = useState({
         limit: null,
         offset: null,
@@ -29,6 +31,7 @@ function Index() {
 
     //admin-ban/get-all?limit=1&offset=1&type=1&userId=1&sortBy=0&orderBy=0
     const listOfBanUsers = () => {
+        setLoading(!loading)
         axios.get(`/admin-ban/get-all?${filter.limit === undefined || filter.limit === null ? '' : 'limit=' + filter.limit + '&'}${filter.offset === undefined || filter.offset === null ? '' : 'offset=' + filter.offset + '&'}${filter.type === undefined || filter.type === null ? '' : 'type=' + filter.type + '&'}${filter.userId === undefined || filter.userId === null ? '' : 'userId=' + filter.userId + '&'}${filter.sortBy === undefined || filter.sortBy === null ? '' : 'sortBy=' + filter.sortBy + '&'}${filter.orderBy === undefined || filter.orderBy === null ? '' : 'orderBy=' + filter.orderBy}`,
             {
                 headers: {
@@ -39,6 +42,7 @@ function Index() {
             .then(
                 res => {
                     setBanuserList(res.data.data)
+                    setLoading(loading)
                 }
             ).catch(
                 err => {
