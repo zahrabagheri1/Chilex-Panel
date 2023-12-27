@@ -10,6 +10,7 @@ import Input from '../../../../Components/Input/Input';
 import SelectOption from '../../../../Components/SelectOption/SelectOption';
 import { useCookies } from 'react-cookie';
 import { LoadingContext } from '../../../Loading/LoadingContext';
+import { LoginContext } from '../../../Login/LoginContext';
 
 function Index() {
     const [history, setHistory] = useState(null);
@@ -17,6 +18,7 @@ function Index() {
     const [value, setValue] = useState();
     const navigate = useNavigate();
     const [cookies] = useCookies(['accessToken']);
+    const { goToLoginPage } = useContext(LoginContext);
     const [filters, setFilters] = useState({
         userId: null,
         gatewayTypes: null,
@@ -33,6 +35,7 @@ function Index() {
     //shopping-history/all?userId=2&gatewayTypes%5B%5D=2&minAmount=2&maxAmount=2&type=2&referenceType=2&sortBy=2&orderBy=2&offset=2&limit=2
 
     useEffect(() => {
+        goToLoginPage(cookies.accessToken);
         reqFilterShopHistory()
     }, [filters])
 

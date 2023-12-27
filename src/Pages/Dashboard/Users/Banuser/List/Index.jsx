@@ -9,11 +9,14 @@ import Input from '../../../../../Components/Input/Input';
 import SelectOption from '../../../../../Components/SelectOption/SelectOption';
 import { useCookies } from 'react-cookie';
 import { LoadingContext } from '../../../../Loading/LoadingContext';
+import { LoginContext } from '../../../../Login/LoginContext';
+
 
 function Index() {
     const [banuserList, setBanuserList] = useState(null)
     const [cookies] = useCookies(['accessToken']);
-    const { loading, setLoading } = useContext(LoadingContext)
+    const { loading, setLoading } = useContext(LoadingContext);
+    const { goToLoginPage } = useContext(LoginContext);
     const [filter, setFilter] = useState({
         limit: null,
         offset: null,
@@ -26,6 +29,7 @@ function Index() {
     const [value, setValue] = useState()
 
     useEffect(() => {
+        goToLoginPage(cookies.accessToken);
         listOfBanUsers()
     }, [filter])
 

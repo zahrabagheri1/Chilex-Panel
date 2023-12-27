@@ -10,6 +10,7 @@ import DatePikerFarsi from '../../../../Components/DatePikerFarsi/DatePikerFarsi
 import { useParams } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { LoadingContext } from '../../../Loading/LoadingContext';
+import { LoginContext } from '../../../Login/LoginContext';
 const props = {
     gameName: 'ludo',
 }
@@ -17,7 +18,8 @@ const props = {
 function Played() {
     const [data, setData] = useState()
     const [cookies] = useCookies(['accessToken']);
-    const { loading, setLoading } = useContext(LoadingContext)
+    const { loading, setLoading } = useContext(LoadingContext);
+    const { goToLoginPage } = useContext(LoginContext);
     const [filter, setFilter] = useState({
         startDate: null,
         endDate: null,
@@ -28,6 +30,7 @@ function Played() {
     const { id } = useParams()
 
     useEffect(() => {
+        goToLoginPage(cookies.accessToken);
         getPlayed()
     }, [filter])
 

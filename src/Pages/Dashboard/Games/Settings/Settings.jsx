@@ -7,7 +7,7 @@ import ModalSetting from '../../../../layout/ModalSetting/ModalSetting';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { LoadingContext } from '../../../Loading/LoadingContext';
-
+import { LoginContext } from '../../../Login/LoginContext';
 const props = {
   gameName: 'backgammon'
 }
@@ -16,10 +16,12 @@ function Settings() {
   const [data, setData] = useState()
   const [cookies] = useCookies(['accessToken']);
   const [openModal, setOpenModal] = useState()
-  const { loading, setLoading } = useContext(LoadingContext)
+  const { loading, setLoading } = useContext(LoadingContext);
+  const { goToLoginPage } = useContext(LoginContext);
   const { id } = useParams()
   const navigate = useNavigate()
   useEffect(() => {
+    goToLoginPage(cookies.accessToken);
     getSettings()
   }, [])
 

@@ -8,12 +8,14 @@ import { HiPencilSquare, HiCheck } from "react-icons/hi2";
 import SelectOption from '../../../../../Components/SelectOption/SelectOption';
 import { useCookies } from 'react-cookie';
 import { LoadingContext } from '../../../../Loading/LoadingContext';
+import { LoginContext } from '../../../../Login/LoginContext';
 
 function Index() {
     const [detail, setDetail] = useState({});
     const [editAble, setEditAble] = useState(false)
     const [edit, setEdit] = useState(false)
-    const { loading, setLoading } = useContext(LoadingContext)
+    const { loading, setLoading } = useContext(LoadingContext);
+    const { goToLoginPage } = useContext(LoginContext);
     const { itemId } = useParams()
     const [updateData, setUpdateData] = useState({})
     const [cookies] = useCookies(['accessToken']);
@@ -186,6 +188,7 @@ function Index() {
     };
 
     useEffect(() => {
+        goToLoginPage(cookies.accessToken);
         getData()
     }, [])
 

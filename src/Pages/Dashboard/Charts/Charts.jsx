@@ -5,12 +5,14 @@ import { useCookies } from 'react-cookie';
 import moment from 'moment-jalaali';
 import axios from 'axios';
 import { LoadingContext } from '../../Loading/LoadingContext';
+import { LoginContext } from '../../Login/LoginContext';
 
 function Charts() {
     const dateNow = Date.now();
     const [cookies] = useCookies(['accessToken']);
     const [data, setData] = useState({});
     const { loading, setLoading } = useContext(LoadingContext)
+    const { goToLoginPage } = useContext(LoginContext);
     const [filter, setFilter] = useState({
         statuses: null,
         gatewayTypes: null,
@@ -20,6 +22,7 @@ function Charts() {
     })
 
     useEffect(() => {
+        goToLoginPage(cookies.accessToken);
         getChart()
     }, [filter])
 

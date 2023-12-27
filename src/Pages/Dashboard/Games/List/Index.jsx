@@ -6,7 +6,7 @@ import { Link, useHistory, useNavigate, useParams, useSearchParams } from 'react
 import Button from '../../../../Components/Button/Button';
 import { useCookies } from 'react-cookie';
 import { LoadingContext } from '../../../Loading/LoadingContext';
-import { LogingContext } from '../../../Login/LoginContext';
+import { LoginContext } from '../../../Login/LoginContext';
 
 
 function Index() {
@@ -18,7 +18,7 @@ function Index() {
   const navigate = useNavigate();
   const { id } = useSearchParams()
   const { loading, setLoading } = useContext(LoadingContext);
-  const { goToLoginPage } = useContext(LogingContext);
+  const { goToLoginPage } = useContext(LoginContext);
 
   useEffect(() => {
     goToLoginPage(cookies.accessToken);

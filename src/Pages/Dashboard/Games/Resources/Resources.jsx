@@ -9,14 +9,14 @@ import { useNavigate, useParams } from 'react-router-dom';
 import ResourceBox from '../../../../layout/ResourceBox/ResourceBox';
 import { useCookies } from 'react-cookie';
 import { LoadingContext } from '../../../Loading/LoadingContext';
-
-const settingId = 2
+import { LoginContext } from '../../../Login/LoginContext';
 
 function Resources() {
     const [data, setData] = useState()
     const [cookies] = useCookies(['accessToken']);
     const [openResource, setOpenResource] = useState('')
     const { loading, setLoading } = useContext(LoadingContext)
+    const { goToLoginPage } = useContext(LoginContext);
     const { id } = useParams()
     const navigate = useNavigate()
     const getResource = () => {
@@ -40,6 +40,7 @@ function Resources() {
     }
 
     useEffect(() => {
+        goToLoginPage(cookies.accessToken);
         getResource()
     }, [])
 

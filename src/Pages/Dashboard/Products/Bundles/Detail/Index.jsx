@@ -8,6 +8,7 @@ import { HiPencilSquare, HiCheck } from "react-icons/hi2";
 import ButtonActionBlue from '../../../../../Components/ButtonActionBlue/ButtonActionBlue';
 import { useCookies } from 'react-cookie';
 import { LoadingContext } from '../../../../Loading/LoadingContext';
+import { LoginContext } from '../../../../Login/LoginContext';
 
 function Index() {
     const [detail, setDetail] = useState({});
@@ -17,7 +18,8 @@ function Index() {
     const navigate = useNavigate()
     const [updateData, setUpdateData] = useState({})
     const [cookies] = useCookies(['accessToken']);
-    const { loading, setLoading } = useContext(LoadingContext)
+    const { loading, setLoading } = useContext(LoadingContext);
+    const { goToLoginPage } = useContext(LoginContext);
     const type = [
         { id: 0, name: 'Gem bundle' },
         { id: 1, name: 'Coin  bundle' },
@@ -118,6 +120,7 @@ function Index() {
     };
 
     useEffect(() => {
+        goToLoginPage(cookies.accessToken);
         getData()
     }, [])
 

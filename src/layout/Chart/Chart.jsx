@@ -9,13 +9,15 @@ import ReactApexChart from 'react-apexcharts';
 import moment from 'moment-jalaali';
 import { useCookies } from 'react-cookie';
 import { LoadingContext } from '../../Pages/Loading/LoadingContext';
+import { LoginContext } from '../../Pages/Login/LoginContext';
 
 
 function Chart() {
     const dateNow = Date.now();
     const [cookies] = useCookies(['accessToken']);
     const [data, setData] = useState({})
-    const { loading, setLoading } = useContext(LoadingContext)
+    const { loading, setLoading } = useContext(LoadingContext);
+    const { goToLoginPage } = useContext(LoginContext);
     const [filter, setFilter] = useState({
         statuses: null,
         gatewayTypes: null,
@@ -34,6 +36,7 @@ function Chart() {
 
 
     useEffect(() => {
+        goToLoginPage(cookies.accessToken);
         getChart()
     }, [filter])
 

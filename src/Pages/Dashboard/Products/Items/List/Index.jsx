@@ -11,6 +11,7 @@ import Input from '../../../../../Components/Input/Input';
 import SelectOption from '../../../../../Components/SelectOption/SelectOption';
 import { useCookies } from 'react-cookie';
 import { LoadingContext } from '../../../../Loading/LoadingContext';
+import { LoginContext } from '../../../../Login/LoginContext';
 
 function Index() {
     const [items, setItems] = useState(null);
@@ -18,6 +19,7 @@ function Index() {
     const [value, setValue] = useState();
     const [cookies] = useCookies(['accessToken']);
     const { loading, setLoading } = useContext(LoadingContext)
+    const { goToLoginPage } = useContext(LoginContext);
     const navigate = useNavigate()
     const [filter, setFilter] = useState({
         sku: null,
@@ -32,6 +34,7 @@ function Index() {
     //admin-stuff/items-all?sku=rgdrf&itemStatus=2&itemGameId=2&priceStatus=2&limit=2&offset=2&sortBy=2&orderBy=2
 
     useEffect(() => {
+        goToLoginPage(cookies.accessToken);
         reqFilterItem()
     }, [filter])
 

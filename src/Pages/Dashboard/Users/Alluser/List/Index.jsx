@@ -15,7 +15,7 @@ import { LoadingContext } from '../../../../Loading/LoadingContext';
 function Index() {
   const [userList, setUserList] = useState()
   const [modal, setModal] = useState()
-  const { loading, setLoading } = useContext(LoadingContext)
+  const { loading, setLoading } = useContext(LoadingContext);
   const [cookies] = useCookies(['accessToken']);
   const [filter, setFilter] = useState({
     limit: null,

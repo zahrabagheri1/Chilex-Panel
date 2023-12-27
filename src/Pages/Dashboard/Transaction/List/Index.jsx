@@ -10,10 +10,12 @@ import Input from '../../../../Components/Input/Input';
 import SelectOption from '../../../../Components/SelectOption/SelectOption';
 import { useCookies } from 'react-cookie';
 import { LoadingContext } from '../../../Loading/LoadingContext';
+import { LoginContext } from '../../../Login/LoginContext';
 
 function Index() {
     const [transaction, setTransaction] = useState(null);
-    const { loading, setLoading } = useContext(LoadingContext)
+    const { loading, setLoading } = useContext(LoadingContext);
+    const { goToLoginPage } = useContext(LoginContext);
     const [value, setValue] = useState();
     const navigate = useNavigate()
     const [cookies] = useCookies(['accessToken']);
@@ -30,6 +32,7 @@ function Index() {
     //admin-transaction/all?statuses%5B%5D=0&gatewayTypes%5B%5D=string&limit=0&offset=0&sortBy=0&orderBy=0
 
     useEffect(() => {
+        goToLoginPage(cookies.accessToken);
         reqFilterTransaction()
     }, [])
 

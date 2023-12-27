@@ -6,18 +6,20 @@ import './Detail.scss';
 import moment from 'moment-jalaali';
 import { useCookies } from 'react-cookie';
 import { LoadingContext } from '../../../Loading/LoadingContext';
+import { LoginContext } from '../../../Login/LoginContext';
 
 function Index() {
     const [history, setHistory] = useState({});
     const { loading, setLoading } = useContext(LoadingContext)
     const { id } = useParams()
     const [cookies] = useCookies(['accessToken']);
-
+    const { goToLoginPage } = useContext(LoginContext);
     const referenceType = ['BUNDLE', 'ITEM', 'TRANSACTION', 'SETTING']
     const type = ['Gem', 'Coin', 'Item']
 
-    useEffect(() => {
-        setLoading(!loading)
+
+    const historyGet = ()=>{
+                setLoading(!loading)
         axios.get(`/shopping-history/get-shoppingHistory/${id}`,
             {
                 headers: {
@@ -34,6 +36,10 @@ function Index() {
             .catch(
                 err => console.log(err)
             )
+    }
+    useEffect(() => {
+        goToLoginPage(cookies.accessToken);
+        historyGet()
     }, [])
 
 

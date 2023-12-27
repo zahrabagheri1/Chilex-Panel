@@ -1,21 +1,20 @@
-import React, { useContext, useState } from 'react'
-import { LogingContext } from './LoginContext';
+import React from 'react'
+import { LoginContext } from './LoginContext';
 import { useNavigate } from 'react-router-dom';
-import { LoadingContext } from '../Loading/LoadingContext';
 
 export const LoginProvider = ({ children }) => {
     const navigate = useNavigate();
 
-    const goToLoginPage = (cookie)=>{
-        if(cookie === undefined || cookie === null){
+    const goToLoginPage = (cookie) => {
+        if (cookie === undefined || cookie === null) {
             navigate('login')
         }
     }
 
     return (
-        <LogingContext.Provider value={{ goToLoginPage }}>
+        <LoginContext.Provider value={{ goToLoginPage }}>
             {children}
-        </LogingContext.Provider>
+        </LoginContext.Provider>
     )
 }
 

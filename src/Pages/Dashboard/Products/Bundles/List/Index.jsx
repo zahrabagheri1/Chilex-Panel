@@ -11,12 +11,13 @@ import Input from '../../../../../Components/Input/Input';
 import SelectOption from '../../../../../Components/SelectOption/SelectOption';
 import { useCookies } from 'react-cookie';
 import { LoadingContext } from '../../../../Loading/LoadingContext';
-
+import { LoginContext } from '../../../../Login/LoginContext';
 function Index() {
     const [bundles, setBundles] = useState(null);
     const [modal, setModal] = useState(false);
     const [cookies] = useCookies(['accessToken']);
-    const { loading, setLoading } = useContext(LoadingContext)
+    const { loading, setLoading } = useContext(LoadingContext);
+    const { goToLoginPage } = useContext(LoginContext);
     const navigate = useNavigate();
     const [filters, setFilters] = useState({
         bundleType: null,
@@ -32,6 +33,7 @@ function Index() {
     // ${parameters.from === null ||  parameters.from === undefined? "" : "&RegisterDate.min=" + parameters.from}
     //admin-stuff/bundles-all?bundleType=0&sku=zahra&bundleStatus=0&priceStatus=1&limit=2&offset=1&sortBy=3&orderBy=1
     useEffect(() => {
+        goToLoginPage(cookies.accessToken);
         reqFilterBundle()
     }, [filters])
 

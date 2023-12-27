@@ -6,6 +6,7 @@ import Input from '../../../../Components/Input/Input';
 import { HiPencilSquare } from "react-icons/hi2";
 import { useCookies } from 'react-cookie';
 import { LoadingContext } from '../../../Loading/LoadingContext';
+import { LoginContext } from '../../../Login/LoginContext';
 import moment from 'moment-jalaali';
 
 function Index() {
@@ -13,9 +14,10 @@ function Index() {
     const { id } = useParams();
     const { loading, setLoading } = useContext(LoadingContext)
     const [cookies] = useCookies(['accessToken']);
+    const { goToLoginPage } = useContext(LoginContext);
 
 
-    useEffect(() => {
+    const transactionGet = () => {
         setLoading(!loading)
         axios.get(`/admin-transaction/get-transaction/${id}`,
             {
@@ -33,6 +35,10 @@ function Index() {
             .catch(
                 err => { console.log(err) }
             )
+    }
+    useEffect(() => {
+        goToLoginPage(cookies.accessToken);
+        transactionGet()
     }, [])
 
     return (
