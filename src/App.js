@@ -44,9 +44,9 @@ function App() {
                 <Route index element={<Charts />} />
                 <Route path='admin' element={<Admin />} />
                 <Route path='bundles' element={<BundleList />} />
-                <Route path='bundles/:bundleId' element={<BundleDetail />} />
+                <Route path='bundles/:id' element={<BundleDetail />} />
                 <Route path='items' element={<ItemList />} />
-                <Route path='items/:itemId' element={<ItemDetail />} />
+                <Route path='items/:id' element={<ItemDetail />} />
                 <Route path='transaction' element={<TransactionList />} />
                 <Route path='transaction/:id' element={<TransactionDetail />} />
                 <Route path='alluser' element={<AlluserList />} />

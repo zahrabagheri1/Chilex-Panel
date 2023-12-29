@@ -29,9 +29,9 @@
         border: 1px solid $lightGray;
         color: $fontColorlight;
         font-size: 14px;
-        font-family: 'iranBakh';
         padding: 0 15px;
         width: calc(100% - 30px);
+        
 
         &:focus {
             border: 1px solid $lightGray !important;
@@ -80,7 +80,6 @@
         border: 1px solid #1A1D1F;
         font-size: 14px;
         color: $fontColor;
-        font-family: 'iranBakh';
         border-radius: 8px;
 
         .rmdp-day {

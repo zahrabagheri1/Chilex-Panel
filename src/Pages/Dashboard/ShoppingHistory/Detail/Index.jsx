@@ -1,8 +1,9 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Input from '../../../../Components/Input/Input';
 import './Detail.scss';
+import { HiChevronLeft } from "react-icons/hi2";
 import moment from 'moment-jalaali';
 import { useCookies } from 'react-cookie';
 import { LoadingContext } from '../../../Loading/LoadingContext';
@@ -16,10 +17,10 @@ function Index() {
     const { goToLoginPage } = useContext(LoginContext);
     const referenceType = ['BUNDLE', 'ITEM', 'TRANSACTION', 'SETTING']
     const type = ['Gem', 'Coin', 'Item']
+    const navigate = useNavigate()
 
-
-    const historyGet = ()=>{
-                setLoading(!loading)
+    const historyGet = () => {
+        setLoading(!loading)
         axios.get(`/shopping-history/get-shoppingHistory/${id}`,
             {
                 headers: {
@@ -43,8 +44,18 @@ function Index() {
     }, [])
 
 
+    const hundelBack = () => {
+        navigate(-1)
+    }
     return (
         <div className='historyDetail'>
+            <div className="backbtn">
+                <div className='backHistory' onClick={hundelBack}>
+                    <HiChevronLeft />
+                </div>
+                <div className="titleHistory">Details Of Shopping History {id}</div>
+                <div></div>
+            </div>
             <div className='boxOfDetail row'>
                 {history === null || history === undefined ? '' : (
                     Object.entries(history).map(([key, value], index) => (

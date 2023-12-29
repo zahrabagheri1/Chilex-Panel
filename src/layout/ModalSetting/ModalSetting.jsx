@@ -9,11 +9,8 @@ import Alert from '../Alert/Alert';
 import { useCookies } from 'react-cookie';
 
 function ModalSetting(props) {
-  // const [data, setData] = useState()
   const [cookies] = useCookies(['accessToken']);
-  const [addSetting, setAddSetting] = useState({
-    game: props.gameName
-  })
+  const [addSetting, setAddSetting] = useState({ game: props.gameName})
   const [error, setError] = useState()
   const [showAlert, setShowAlert] = useState({
     status: false, msg: '', success: null
@@ -21,22 +18,22 @@ function ModalSetting(props) {
 
   const handlerSubmit = () => (
     axios.post(`/games/setting`, addSetting,
-    {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'Bearer ' + cookies.accessToken
-    }
-    })
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + cookies.accessToken
+        }
+      })
       .then(
         res => {
           // show alert that new setting creatting.
-            setShowAlert({ status: true, msg: res.statusText, success: true })
+          setShowAlert({ status: true, msg: res.statusText, success: true })
+          setTimeout(() => {
+            setShowAlert({ status: false })
             setTimeout(() => {
-              setShowAlert({ status: false })
-              setTimeout(() => {
-                props.canceladd()
-              }, 0)
-            }, 3000)
+              props.canceladd()
+            }, 0)
+          }, 3000)
         }
       )
       .catch(
@@ -56,12 +53,16 @@ function ModalSetting(props) {
   }
 
   const updateOptionData = (name, id) => {
-    setAddSetting((prev) => ({ ...prev, [name]: id }))
+   setAddSetting((prev) => ({ ...prev, [name]:  id })) 
   }
 
   const handlerClose = () => {
     props.canceladd()
   }
+  
+  useEffect(()=>{
+    props.gameName !== 'uno' || props.gameName !== 'ludo' ? setAddSetting((prev) => ({ ...prev, playersLength:  2 })): ''
+  },)
 
   const botLevel = [{ id: 0, name: 'Easy' }, { id: 1, name: 'Medium' }, { id: 2, name: 'Hard' }]
   const playersLength = [{ id: 0, name: '2 Player' }, { id: 1, name: '3 Player' }, { id: 2, name: '4 Player' }]
@@ -88,16 +89,20 @@ function ModalSetting(props) {
           </div>
 
           <div className="col-xl-2 col-lg-4 col-md-4 col-sm-6 col-xs-12">
-            <SelectOption name={'playersLength'} readOnly={false} defaultValue={'playersLength'} value={'playersLength'} type={'name'} data={playersLength} changeOptinValue={updateOptionData} />
+            <SelectOption name={'botLevel'} readOnly={false} defaultValue={'botLevel'} value={'botLevel'} type={'name'} data={botLevel} changeOptinValue={updateOptionData} />
           </div>
+          {
+            props.gameName === 'uno' || props.gameName === 'ludo' ?
+              <div className="col-xl-2 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                <SelectOption name={'playersLength'} readOnly={false} defaultValue={'playersLength'} value={'playersLength'} type={'name'} data={playersLength} changeOptinValue={updateOptionData} />
+              </div>
+              : ''
+          }
 
           <div className="col-xl-2 col-lg-4 col-md-4 col-sm-6 col-xs-12">
             <Input name={'description'} type={'text'} title={'description'} changeInputValue={updateInputData} />
           </div>
 
-          <div className="col-xl-2 col-lg-4 col-md-4 col-sm-6 col-xs-12">
-            <SelectOption name={'botLevel'} readOnly={false} defaultValue={'botLevel'} value={'botLevel'} type={'name'} data={botLevel} changeOptinValue={updateOptionData} />
-          </div>
         </div>
 
         <div className='btns'>

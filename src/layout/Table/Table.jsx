@@ -9,12 +9,9 @@ function Table(props) {
         if (props.showDetailStatus === false) {
 
         } else {
-            console.log('table id ', id)
             props.showDetail(id)
         }
     }
-
-    // console.log(props.data)
 
     const types = ['Gem bundle', 'Coin bundle', 'Item', 'Free'];
     const tiers = ['DEFAULT', 'COMMON', 'RARE', 'EPIC', 'LEGENDARY'];
@@ -49,9 +46,9 @@ function Table(props) {
                             {Array.isArray(props.data) ?
                                 props.data?.map((item, index) => (
                                     <tr className='trbody' key={index} onClick={() => showDetail(item.id)} >
-                                        {Object.entries(item).map(([key, value]) => (
+                                        {Object.entries(item).map(([key, value], index) => (
                                             (Array.isArray(value)) && key === 'prices' ?
-                                                (item[key].map((price) =>
+                                                (item[key].map((price, key) =>
                                                     Object.entries(price).map(([priceKey, priceValue], index) =>
                                                         priceKey === 'priceStatus' ?
                                                             priceValue === 0 ?
@@ -77,7 +74,7 @@ function Table(props) {
                                                                     <td className='tdbody' key={index}>{price[priceKey]}</td>
                                                     )))
                                                 : typeof value === 'object' && value !== undefined && value !== null ?
-                                                    Object.entries(value).map(([timeKey, timeValue], key) => (
+                                                    Object.entries(value).map(([timeKey, timeValue], index) => (
                                                         timeKey === 'day' ?
                                                             <td className='tdbody' key={index}>  {timeValue + 'd '}</td>
                                                             : timeKey === 'hour' ?
@@ -88,55 +85,55 @@ function Table(props) {
                                                     ))
                                                     :
                                                     key === 'createdAt' || key === 'updatedAt' ?
-                                                        <td className='tdbody'>{moment(item[key], 'YYYY/MM/DD').format('jYYYY/jM/jD')}</td>
+                                                        <td className='tdbody' key={index}>{moment(item[key], 'YYYY/MM/DD').format('jYYYY/jM/jD')}</td>
                                                         :
                                                         key === 'status' ?
                                                             item[key] === null ?
                                                                 null
                                                                 :
                                                                 item[key] === 0 ?
-                                                                    <td className="tdbody statusActive">Active</td>
+                                                                    <td className="tdbody statusActive" key={index}>Active</td>
                                                                     :
-                                                                    <td className="tdbody statusInactive">Inactive</td>
+                                                                    <td className="tdbody statusInactive" key={index}>Inactive</td>
                                                             :
                                                             key === 'type' ?
-                                                                types.map(type => (
+                                                                types.map((type, index) => (
                                                                     value === types.indexOf(type) ?
-                                                                        <td className='tdbody'>{type}</td>
+                                                                        <td className='tdbody' key={index}>{type}</td>
                                                                         :
                                                                         null
                                                                 ))
                                                                 :
                                                                 key === 'referenceType' ?
-                                                                    referenceTypes.map(referenceType => (
+                                                                    referenceTypes.map((referenceType, index) => (
                                                                         value === referenceTypes.indexOf(referenceType) ?
-                                                                            <td>{referenceType}</td> : null
+                                                                            <td key={index}>{referenceType}</td> : null
                                                                     ))
                                                                     :
                                                                     key === 'gatewayType' ?
-                                                                        gatewayTypes.map(gatewayType => (
+                                                                        gatewayTypes.map((gatewayType, index) => (
                                                                             value === gatewayTypes.indexOf(gatewayType) ?
-                                                                                <td>{gatewayType}</td> : null
+                                                                                <td key={index}>{gatewayType}</td> : null
                                                                         ))
                                                                         : key === 'tier' ?
-                                                                            tiers.map(tier => (
+                                                                            tiers.map((tier, index) => (
                                                                                 value === tiers.indexOf(tier) ?
-                                                                                    <td className='tdbody'>{tier}</td> : null
+                                                                                    <td key={index} className='tdbody'>{tier}</td> : null
                                                                             ))
                                                                             :
                                                                             item[key] === null ?
                                                                                 key === 'activityIntervalTime' ?
-                                                                                    <td class="tdbody" colspan="3">null</td>
+                                                                                    <td key={index} className="tdbody" colSpan="3">null</td>
                                                                                     :
-                                                                                    <td class="tdbody" colspan="1">null</td>
+                                                                                    <td key={index} className="tdbody" colSpan="1">null</td>
                                                                                 :
                                                                                 key === 'finished' ?
                                                                                     item[key] === true ?
-                                                                                        <td className="tdbody statusActive">Finished</td>
+                                                                                        <td key={index} className="tdbody statusActive">Finished</td>
                                                                                         :
-                                                                                        <td className="tdbody statusInactive">Not finished</td>
+                                                                                        <td key={index} className="tdbody statusInactive">Not finished</td>
                                                                                     :
-                                                                                    <td class="tdbody">{item[key]}</td>
+                                                                                    <td key={index} className="tdbody">{item[key]}</td>
                                         ))}
                                     </tr>
                                 ))

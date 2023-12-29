@@ -2,64 +2,55 @@
 @import "../.../../../../../../Assets/scss/variable";
 
 .bundleDetail {
-    height: auto;
     width: 95%;
     margin: auto;
-    background: $Gray;
-    border: 2px solid $lightGray;
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    cursor: default;
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: column;
+    gap: 8px;
+    user-select: none;
 
-    .btnEdit {
-        margin: 20px;
+    .addBox {
         display: flex;
-        flex-direction: row-reverse;
-        gap: 20px;
-        position: absolute;
+        justify-content: space-between;
 
-        .edited {
-            height: 4vh;
-            width: 4vh;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.4);
+        .titleBundle {
+            font-size: 36px;
+        }
+
+        .backBundle,
+        .editBundle {
+            width: 36px;
+            height: 36px;
+            background: $Gray;
+            border-radius: 6px;
+            border: 2px solid $lightGray;
             display: flex;
-            justify-content: center;
             align-items: center;
-            font-size: 20px;
+            justify-content: center;
+            font-size: $font-xl;
+            color: $iconColor;
             cursor: pointer;
-            z-index: 1;
+            position: relative;
         }
 
-        .disableupdate {
-            display: none;
-        }
-
-        .ableupdate {
-            height: 4vh;
-            width: 4vh;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.4);
+        .btnEdit,
+        .btnEditCancel {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 20px;
-            cursor: pointer;
-            z-index: 1;
-
+            flex-direction: row;
+            gap: 6px;
         }
-    }
 
-    .backbtn {
-        margin: auto;
-        width: 10%;
     }
 
     .boxOfDetail {
-        margin: 4%;
-        width: 95%;
+        width: calc(100% - 60px);
+        min-height: 68vh;
+        padding: 30px;
         gap: 40px 20px;
+        background-color: $Gray;
+        border-radius: 16px;
+        border: 1px solid $lightGray;
 
         .disabled {
             border: none;
@@ -69,7 +60,7 @@
             font-size: $font-lg;
             font-weight: bold;
             padding-left: 0 !important;
-
+            user-select: none;
             &:focus,
             &:focus-visible,
             &:active,

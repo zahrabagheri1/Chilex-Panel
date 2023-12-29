@@ -57,11 +57,11 @@ function Settings() {
   return (
     <div className='settings'>
       <div className="addBox">
-        <div className='addSetting' onClick={hundelBack}>
+        <div className='backSetting' onClick={hundelBack}>
           <HiChevronLeft />
         </div>
         <div className="titleSetting">Game Settings</div>
-        <div className='backSetting' onClick={hundelOpenModal}>
+        <div className='addSetting' onClick={hundelOpenModal}>
           <HiPlus />
         </div>
       </div>

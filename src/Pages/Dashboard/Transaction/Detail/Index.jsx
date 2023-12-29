@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './Detail.scss';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Input from '../../../../Components/Input/Input';
 import { HiPencilSquare } from "react-icons/hi2";
+import { HiPlus, HiChevronLeft } from "react-icons/hi2";
 import { useCookies } from 'react-cookie';
 import { LoadingContext } from '../../../Loading/LoadingContext';
 import { LoginContext } from '../../../Login/LoginContext';
@@ -15,7 +16,7 @@ function Index() {
     const { loading, setLoading } = useContext(LoadingContext)
     const [cookies] = useCookies(['accessToken']);
     const { goToLoginPage } = useContext(LoginContext);
-
+    const navigate = useNavigate()
 
     const transactionGet = () => {
         setLoading(!loading)
@@ -41,8 +42,19 @@ function Index() {
         transactionGet()
     }, [])
 
+    const hundelBack = () => {
+        navigate(-1)
+    }
+
     return (
         <div className='transactionDetail'>
+            <div className="backbtn">
+                <div className='backTransaction' onClick={hundelBack}>
+                    <HiChevronLeft />
+                </div>
+                <div className="titleTransaction">Details Of Transaction {id}</div>
+                <div></div>
+            </div>
             <div className='boxOfDetail row'>
                 {transaction === null || transaction === undefined ? '' : (
                     Object.entries(transaction).map(([key, value], index) => (
@@ -60,7 +72,6 @@ function Index() {
                     ))
                 )}
             </div>
-
         </div>
     );
 
