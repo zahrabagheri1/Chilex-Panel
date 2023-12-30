@@ -3,13 +3,13 @@
 
 .graybtn {
     width: 100%;
-    height: 26px;
+    height: 30px;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: $lightGray;
-    border-radius: 3px;
+    border-radius: 8px;
     border: 1px solid $lightGray;
     cursor: pointer;
     font-weight: 600;

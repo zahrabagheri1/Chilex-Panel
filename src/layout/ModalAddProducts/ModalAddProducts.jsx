@@ -10,11 +10,14 @@ import Alert from '../Alert/Alert';
 import Prices from '../Prices/Prices';
 import Time from '../Time/Time';
 import { useCookies } from 'react-cookie';
+import DatePikerFarsi from '../../Components/DatePikerFarsi/DatePikerFarsi';
+import moment from 'moment-jalaali';
 
 function ModalAddProducts(props) {
 
   // props => modalTitle , data
   const [addBandel, setBandel] = useState();
+  const [stuffType, setStuffType] = useState();
   const [showAlert, setShowAlert] = useState({
     status: false, msg: ''
   })
@@ -65,7 +68,14 @@ function ModalAddProducts(props) {
   const updateOptionData = (name, id) => {
     setAddElement((prev) => ({ ...prev, [name]: parseInt(id) }))
   }
+  console.log(addElement)
 
+  const updateDataPiker = (e, title) => {
+    setAddElement((prev) => ({ ...prev, [title]: e }))
+  }
+
+  const sendBackData = () => {
+  }
 
 
   return (
@@ -85,7 +95,7 @@ function ModalAddProducts(props) {
           {
             props.type === 'bundle' ?
               <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
-                <SelectOption readOnly={false} name={'stuffType'} important={true} defaultValue={'stuffType'} type={'status'} changeOptinValue={updateOptionData}
+                <SelectOption readOnly={false} name={'stuffType'}  important={true} defaultValue={'stuffType'} type={'status'} changeOptinValue={updateOptionData}
                   data={[
                     { id: 0, status: 'Gem bundle' },
                     { id: 1, status: 'Coin bundle' }
@@ -125,7 +135,7 @@ function ModalAddProducts(props) {
           </div>
 
           <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
-            <Input classname={'controlinput'} name={'expireTime'} type={'date'} title={'expireTime'} changeInputValue={updateInputData} />
+            <DatePikerFarsi inputClass={'controlinput'} value={moment(Date.now()).format('jYYYY/jM/jD')} title={'expireTime'} handlerChangeDate={updateDataPiker} />
           </div>
 
           <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
@@ -210,19 +220,3 @@ function ModalAddProducts(props) {
 }
 
 export default ModalAddProducts;
-
-
-
-
-{/* 
-stuffType: number stuffType =>  gemBundle : 0 , coinBundle : 1 , Item : 2
-name: string
-amount: string
-image: number
-prices: [string]  
-  prices: { type: enumPriceType, amount: number }[] , 
-  type => GEM : 0 , COIN : 1 , RIAL : 2
-expireTime: string
-gameId: number
-status: number  status => ACTIVE : 0 , DEACTIVE : 1
-*/}

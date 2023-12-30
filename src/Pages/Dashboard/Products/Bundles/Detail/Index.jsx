@@ -104,74 +104,72 @@ function Index() {
 
 
     const switchHandler = (boolean, id) => {
-        edit ?
-            axios.patch(`/admin-stuff/change-bundle-status/${id}`, {
-                status: boolean === true ? 0 : 1,
-            },
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: 'Bearer ' + cookies.accessToken
-                    }
-                })
-                .then(
-                    res => {
-                        console.log(res)
-                        setShowAlert({ status: true, msg: res.message, success: true })
-                        setTimeout(() => {
-                            setShowAlert({ status: false, msg: res.message })
-                        }, 3000)
-                        getData()
-                        setEditAble(false)
-                    }
-                )
-                .catch(
-                    err => {
-                        console.log(err)
-                        setShowAlert({ status: true, msg: err.message, success: false })
-                        setTimeout(() => {
-                            setShowAlert({ status: false, msg: err.message })
-                        }, 3000)
-                    }
-                )
-            :
-            setEditAble(false)
+        console.log('dgdfgdfbdfb', boolean, id)
+        axios.patch(`/admin-stuff/change-bundle-status/${id}`, {
+            status: boolean  ? 0 : 1,
+        },
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + cookies.accessToken
+                }
+            })
+            .then(
+                res => {
+                    console.log(res)
+                    setShowAlert({ status: true, msg: res.data.msg, success: true })
+                    setTimeout(() => {
+                        setShowAlert({ status: false, msg: res.data.msg })
+                    }, 3000)
+                    getData()
+                    setEditAble(false)
+                }
+            )
+            .catch(
+                err => {
+                    console.log(err)
+                    setShowAlert({ status: true, msg: err.message, success: false })
+                    setTimeout(() => {
+                        setShowAlert({ status: false, msg: err.message })
+                    }, 3000)
+                }
+            )
+        setEditAble(false)
     }
 
     const switchHandlerPrice = (boolean, id) => {
-        edit ?
-            axios.patch(`/admin-stuff/change-price-status/${id}`, {
-                status: boolean === true ? 0 : 1,
-            },
-                {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: 'Bearer ' + cookies.accessToken
-                    }
-                })
-                .then(
-                    res => {
-                        console.log(res)
-                        setShowAlert({ status: true, msg: res.message, success: true })
-                        setTimeout(() => {
-                            setShowAlert({ status: false, msg: res.message })
-                        }, 3000)
-                        getData()
-                        setEditAble(false)
-                    }
-                )
-                .catch(
-                    err => {
-                        console.log(err)
-                        setShowAlert({ status: true, msg: err.message, success: false })
-                        setTimeout(() => {
-                            setShowAlert({ status: false, msg: err.message })
 
-                        }, 3000)
-                    }
-                )
-            :
-            setEditAble(false)
+        axios.patch(`/admin-stuff/change-price-status/${id}`, {
+            status: boolean === true ? 0 : 1,
+        },
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + cookies.accessToken
+                }
+            })
+            .then(
+                res => {
+                    console.log(res)
+                    setShowAlert({ status: true, msg: res.data.msg, success: true })
+                    setTimeout(() => {
+                        setShowAlert({ status: false, msg: res.data.msg })
+                    }, 3000)
+                    // getData()
+                    setEditAble(false)
+                }
+            )
+            .catch(
+                err => {
+                    console.log(err)
+                    setShowAlert({ status: true, msg: err.message, success: false })
+                    setTimeout(() => {
+                        setShowAlert({ status: false, msg: err.message })
+
+                    }, 3000)
+                }
+            )
+        setEditAble(false)
     };
 
     const hundelBack = () => {
@@ -204,7 +202,7 @@ function Index() {
     return (
         <div className='bundleDetail'>
             {showAlert.status === true ?
-                <Alert message={showAlert.msg} success={showAlert.success}/>
+                <Alert message={showAlert.msg} success={showAlert.success} />
                 :
                 ''
             }

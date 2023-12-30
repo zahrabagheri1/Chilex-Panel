@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import './ModalBanUser.scss';
 import Input from '../../Components/Input/Input';
 import SelectOption from '../../Components/SelectOption/SelectOption';
+import ButtonActionGray from '../../Components/ButtonActionGray/ButtonActionGray';
+import ButtonActionBlue from '../../Components/ButtonActionBlue/ButtonActionBlue';
+import { useCookies } from 'react-cookie';
+import axios from 'axios';
 
 const props = {
     modalTitle: '',
@@ -12,15 +16,12 @@ const props = {
     data: ''
 }
 
-
-// userId * number
-// type * number
-// EVERYTHING: 0
-// CHATING: 1
-// description * string
-
-function ModalBanUser() {
-    const [banuser, setBanuser] = useState()
+function ModalBanUser(props) {
+    const [banuser, setBanuser] = useState();
+    const [cookies] = useCookies(['accessToken']);
+    const [showAlert, setShowAlert] = useState({
+        status: false, msg: '', success: null
+    })
 
     const updateInputData = (e) => {
         if (e.target.type === 'number') {
@@ -34,6 +35,40 @@ function ModalBanUser() {
         setBanuser((prev) => ({ ...prev, [name]: parseInt(id) }))
     }
 
+    const handlerClose = () => {
+        props.canceladd()
+    }
+
+    const banUser = () => {
+        axios.post(`/admin-ban/ban`, banuser,
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + cookies.accessToken
+                }
+            })
+            .then(
+                res => {
+                    setShowAlert({ status: true, msg: res.statusText, success: true })
+                    setTimeout(() => {
+                        setShowAlert({ status: false })
+                        setTimeout(() => {
+                            props.canceladd()
+                        }, 0)
+                    }, 3000)
+                }
+            )
+            .catch(
+                err => {
+                    console.log(err)
+                    setShowAlert({ status: true, msg: err.message + ".   Filling the blank", success: false })
+                    setTimeout(() => {
+                        setShowAlert({ status: false })
+
+                    }, 4000)
+                }
+            )
+    }
 
     return (
         <div className='modalBanUser'>
@@ -59,7 +94,8 @@ function ModalBanUser() {
                 </div>
 
                 <div className="banuserbtn">
-                    
+                    <ButtonActionGray title={'Cancel'} handler={handlerClose} />
+                    <ButtonActionBlue title={'Ban User'} handler={banUser} />
                 </div>
 
 

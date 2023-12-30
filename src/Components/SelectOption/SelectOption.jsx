@@ -32,12 +32,14 @@ function SelectOption(props) {
     props.changeOptinValue(props.name, id)
   }
 
+  // props.sendBackData()
 
   useEffect(() => {
     data.map(item => (
       item.id === props.value ?
         setChangeTitle(item.name)
         : ''
+
     ))
   }, [])
 

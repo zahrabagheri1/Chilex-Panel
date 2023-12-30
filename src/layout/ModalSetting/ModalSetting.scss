@@ -22,24 +22,6 @@
         background-color: $Gray;
         border-radius: 10px;
         padding: 20px;
-        overflow-y: auto;
-        scrollbar-width: thin;
-
-        &::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        &::-webkit-scrollbar-track {
-            background: $Gray;
-            border-radius: 0 20px 20px 0;
-        }
-
-        &::-webkit-scrollbar-thumb {
-            background-color: $lightGray;
-            border-radius: 0 20px 20px 0;
-            border: 2px outset $lighterGray;
-        }
-
         .titleModalSetting {
             font-size: 26px;
             font-weight: 800;
