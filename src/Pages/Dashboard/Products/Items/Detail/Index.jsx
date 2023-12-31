@@ -66,7 +66,7 @@ function Index() {
                 { id: 0, name: 'ELSE' },
                 { id: 1, name: 'GAME' },
                 { id: 2, name: 'CHARACTER' },
-                { id: 3, name: 'نمیدونم چیه :/' },
+                { id: 3, name: 'Emot' },
             ],
         }
         ,
@@ -143,9 +143,9 @@ function Index() {
                 .catch(
                     err => {
                         console.log(err)
-                        setShowAlert({ status: true, msg: err.message, success: false })
+                        setShowAlert({ status: true, msg: err.response.data.message, success: false })
                         setTimeout(() => {
-                            setShowAlert({ status: false, msg: err.message ,  success: false })
+                            setShowAlert({ status: false, msg: err.response.data.message ,  success: false })
                         }, 3000)
                     }
                 )
@@ -177,9 +177,9 @@ function Index() {
             .catch(
                 err => {
                     console.log(err)
-                    setShowAlert({ status: true, msg: err.message, success: false })
+                    setShowAlert({ status: true, msg:  err.response.data.message, success: false })
                     setTimeout(() => {
-                        setShowAlert({ status: false, msg: err.message ,  success: false })
+                        setShowAlert({ status: false, msg: err.response.data.message ,  success: false })
                     }, 3000)
                 }
             )
@@ -210,9 +210,9 @@ function Index() {
             .catch(
                 err => {
                     console.log(err)
-                    setShowAlert({ status: true, msg: err.message, success: true })
+                    setShowAlert({ status: true, msg: err.response.data.message, success: true })
                     setTimeout(() => {
-                        setShowAlert({ status: false, msg: err.message })
+                        setShowAlert({ status: false, msg: err.response.data.message })
                     }, 3000)
                 }
             )
@@ -278,7 +278,7 @@ function Index() {
                 <div className='backBundle' onClick={hundelBack}>
                     <HiChevronLeft />
                 </div>
-                <div className="titleBundle">Details Of Bundle {id}</div>
+                <div className="titleBundle">Details Of Item {id}</div>
                 <div className="btnEdit">
                     {editAble ?
                         <div className="btnEditCancel">
@@ -370,6 +370,9 @@ function Index() {
                                                 :
                                                 items.map(item => (
                                                     item.name === key ?
+
+                                                    // key === 'category' || value === 'game'?
+
                                                         < SelectOption readOnly={editAble === true ? false : true} disable={''} name={key} value={value} defaultValue={value} type={'name'} changeOptinValue={updateOptionData}
                                                             data={item.data}
                                                         />

@@ -21,7 +21,8 @@ export const LoadingProvider = ({ children }) => {
                     <span style={{"--i":8}}>H</span>
                     <span style={{"--i":9}}>I</span>
                     <span style={{"--i":10}}>L</span>
-                    <span style={{"--i":11}}>X</span>
+                    <span style={{"--i":11}}>E</span>
+                    <span style={{"--i":12}}>X</span>
                 </div>
             </div>
 

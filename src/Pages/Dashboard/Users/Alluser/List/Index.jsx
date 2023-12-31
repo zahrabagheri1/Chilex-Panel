@@ -109,7 +109,7 @@ function Index() {
 
 
       {modal === true ?
-        <ModalBanUser />
+        <ModalBanUser canceladd={() => setModal(false)}/>
         : ''}
     </div>
   );

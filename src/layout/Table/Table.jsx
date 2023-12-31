@@ -16,7 +16,7 @@ function Table(props) {
     const types = ['Gem bundle', 'Coin bundle', 'Item', 'Free'];
     const tiers = ['DEFAULT', 'COMMON', 'RARE', 'EPIC', 'LEGENDARY'];
     const gatewayTypes = ['PASARGAD', 'CAFE_BAZAAR', 'EXCHANGE'];
-    const referenceTypes = ['DEFAULT', 'COMMON', 'RARE', 'EPIC', 'LEGENDARY'];
+    const referenceTypes = ['BUNDLE','ITEM' ,'TRANSACTION','SETTING',];
 
     return (
         <div className='showData'>

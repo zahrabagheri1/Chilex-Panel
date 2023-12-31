@@ -122,9 +122,9 @@
             }
 
             &::-webkit-scrollbar-thumb {
-                background-color: $actionBlue;
+                background-color: $lighterGray;
                 border-radius: 20px;
-                border: 2px outset $actionBlue;
+                border: 2px outset $lighterGray;
             }
 
             .option {
