@@ -1,0 +1,1 @@
+  exports.BaseURL = 'http://dixo.diacostudios.com'
