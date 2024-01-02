@@ -82,7 +82,7 @@ function SettingsCard(props) {
             err => {
                 console.log(err);
 
-                setShowAlert({ status: true, msg: res.statusText + 'name is same', success: false })
+                setShowAlert({ status: true, msg: err.statusText + 'name is same', success: false })
                 setTimeout(() => {
                     setShowAlert({ status: false, success: true })
 

@@ -9,6 +9,7 @@ import Alert from '../../layout/Alert/Alert';
 import { useNavigate } from 'react-router-dom';
 import { Cookies, useCookies } from 'react-cookie';
 import { LoadingContext } from '../Loading/LoadingContext';
+import { BaseURL } from '../../BaseURl';
 
 function Index() {
   const navigate = useNavigate();
@@ -36,8 +37,6 @@ function Index() {
       ball.style.transform = `scale(${Math.random()})`;
       ball.style.width = `${Math.random()}em`;
       ball.style.height = ball.style.width;
-
-
       balls.push(ball);
       document.getElementsByClassName('loginPage')[0].append(ball);
     }
@@ -71,7 +70,7 @@ function Index() {
 
   const submitData = () => {
     // axios.defaults.withCredentials = true;
-    axios.post(`/auth/admin/login`, {
+    axios.post( BaseURL + `/auth/admin/login`, {
       username: user.username,
       password: user.password
     }).then(

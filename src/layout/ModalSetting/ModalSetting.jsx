@@ -61,7 +61,7 @@ function ModalSetting(props) {
   }
   
   useEffect(()=>{
-    props.gameName !== 'uno' || props.gameName !== 'ludo' ? setAddSetting((prev) => ({ ...prev, playersLength:  2 })): ''
+    // props.gameName !== 'uno' || props.gameName !== 'ludo' ? setAddSetting((prev) => ({ ...prev, playersLength:  2 })): ''
   },)
 
   const botLevel = [{ id: 0, name: 'Easy' }, { id: 1, name: 'Medium' }, { id: 2, name: 'Hard' }]
