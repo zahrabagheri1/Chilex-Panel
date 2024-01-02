@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useCookies } from 'react-cookie';
-
 import { HiRocketLaunch, HiMiniUser, HiMiniShoppingCart, HiMiniCreditCard, HiMiniArrowDownTray, HiMiniSwatch, HiCurrencyDollar, HiMiniChatBubbleLeftRight, HiOutlineArrowLeftOnRectangle, HiInboxArrowDown, HiComputerDesktop } from "react-icons/hi2";
 import { useNavigate } from 'react-router-dom';
 

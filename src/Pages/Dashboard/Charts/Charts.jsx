@@ -19,8 +19,8 @@ function Charts() {
         statuses: null,
         gatewayTypes: null,
         type: 1,
-        startDate: moment(dateNow).subtract(1, 'months').format('jYYYY/jM/jD'),
-        endtDate: moment(dateNow).format('jYYYY/jM/jD'),
+        startDate: moment(dateNow).subtract(1, 'months').format('jYYYY-jM-jD'),
+        endtDate: moment(dateNow).format('jYYYY-jM-jD'),
     })
 
     useEffect(() => {
