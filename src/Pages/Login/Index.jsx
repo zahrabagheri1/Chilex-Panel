@@ -9,7 +9,6 @@ import Alert from '../../layout/Alert/Alert';
 import { useNavigate } from 'react-router-dom';
 import { Cookies, useCookies } from 'react-cookie';
 import { LoadingContext } from '../Loading/LoadingContext';
-import { BaseURL } from '../../BaseURl';
 
 function Index() {
   const navigate = useNavigate();
@@ -70,7 +69,7 @@ function Index() {
 
   const submitData = () => {
     // axios.defaults.withCredentials = true;
-    axios.post( BaseURL + `/auth/admin/login`, {
+    axios.post(`/auth/admin/login`, {
       username: user.username,
       password: user.password
     }).then(
