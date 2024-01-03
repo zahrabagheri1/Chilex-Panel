@@ -89,7 +89,7 @@ function Input(props) {
             min={props.min}
             max={props.max}
             onChange={changeInputHandler}
-            ref={props.ref}
+            ref={props.inputRef}
             onKeyDown={props.onKeyDown}
             autoComplete = 'off'
           />}

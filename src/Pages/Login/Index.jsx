@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import './Login.scss';
 import Input from '../../Components/Input/Input';
 import Button from '../../Components/Button/Button';
@@ -11,9 +11,10 @@ import { Cookies, useCookies } from 'react-cookie';
 import { LoadingContext } from '../Loading/LoadingContext';
 
 function Index() {
-  const navigate = useNavigate();
-  const [value, setValue] = useState();
-  const [cookies, setCookie, removeCookie] = useCookies(['accessToken']);
+  const navigate = useNavigate()
+  const usernameRef = useRef(null)
+  const passwordRef = useRef(null)
+  const [cookies, setCookie, removeCookie] = useCookies(['accessToken'])
   const [user, setUser] = useState({
     username: null,
     password: null,
@@ -21,8 +22,8 @@ function Index() {
   const [showAlert, setShowAlert] = useState({
     status: false, msg: '', success: null
   });
-  const { loading, setLoading } = useContext(LoadingContext);
-  
+  const { loading, setLoading } = useContext(LoadingContext)
+
   useEffect(() => {
     // balls in background
     const colors = ["#2A85FF", "#0C499B", "#272A2F"];
@@ -96,7 +97,7 @@ function Index() {
           setTimeout(() => {
             setShowAlert({ status: false })
           }, 2000)
-        }else {
+        } else {
           setShowAlert({ status: true, msg: 'Username or password is not correct! Try again.', success: false })
           setTimeout(() => {
             setShowAlert({ status: false })
@@ -115,7 +116,13 @@ function Index() {
 
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
-      submitData();
+    event.preventDefault()
+      if (document.activeElement === usernameRef.current) {
+        passwordRef.current.focus()
+      } else if(document.activeElement === passwordRef.current){
+        submitData()
+      } 
+      
     }
   }
 
@@ -134,10 +141,10 @@ function Index() {
           <div className='text' >Log In</div>
         </div>
         <div className='username'>
-          <Input type={"text"} inputclassname='loginInput' placeholder={"type your username"} required={true} value={value} name={'username'} readOnly={false} title={"UserName:"} icon={'HiUser'} changeInputValue={changeValueInput} onKeyDown={handleKeyPress} />
+          <Input type={"text"} inputclassname='loginInput' inputRef={usernameRef} placeholder={"type your username"} required={true} name={'username'} readOnly={false} title={"UserName:"} icon={'HiUser'} changeInputValue={changeValueInput} onKeyDown={handleKeyPress} />
         </div>
         <div className='password'>
-          <Input type={"password"} inputclassname='loginInput' placeholder={"type your password"} required={true} value={value} name={'password'} title={"PassWord:"} icon={'HiLockClosed'} changeInputValue={changeValueInput} onKeyDown={handleKeyPress} />
+          <Input type={"password"} inputclassname='loginInput' inputRef={passwordRef} placeholder={"type your password"} required={true} name={'password'} title={"PassWord:"} icon={'HiLockClosed'} changeInputValue={changeValueInput} onKeyDown={handleKeyPress} />
         </div>
         <Button title="Login" path='/dashboard' className='loginbtn' handler={submitData} />
       </div>
