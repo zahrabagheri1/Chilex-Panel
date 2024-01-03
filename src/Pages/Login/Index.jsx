@@ -22,6 +22,7 @@ function Index() {
     status: false, msg: '', success: null
   });
   const { loading, setLoading } = useContext(LoadingContext);
+  
   useEffect(() => {
     // balls in background
     const colors = ["#2A85FF", "#0C499B", "#272A2F"];
@@ -62,7 +63,7 @@ function Index() {
     });
 
     // if cookies set dont need login 
-    cookies.accessToken ? navigate('/dashboard') : navigate('/login');
+    cookies.accessToken ? navigate('/dashboard') : navigate('/');
     setLoading(false)
   }, [])
 
@@ -74,7 +75,7 @@ function Index() {
       password: user.password
     }).then(
       res => {
-        setCookie( 'accessToken' ,res.data.accessToken);
+        setCookie('accessToken', res.data.accessToken);
         navigate('/dashboard');
       }
     ).catch(
@@ -95,6 +96,11 @@ function Index() {
           setTimeout(() => {
             setShowAlert({ status: false })
           }, 2000)
+        }else {
+          setShowAlert({ status: true, msg: 'Username or password is not correct! Try again.', success: false })
+          setTimeout(() => {
+            setShowAlert({ status: false })
+          }, 2000)
         }
       }
     )
@@ -107,6 +113,12 @@ function Index() {
     setUser(prev => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      submitData();
+    }
+  }
+
   return (
     <div className='loginPage'>
       {showAlert.status === true ?
@@ -115,16 +127,17 @@ function Index() {
         ''
       }
 
+
       <div className="loginForm">
         <div className='userPhoto'>
           <img src={userPhoto} className='photo' />
           <div className='text' >Log In</div>
         </div>
         <div className='username'>
-          <Input type={"text"} inputclassname='loginInput' placeholder={"type your username"} required={true} value={value} name={'username'} readOnly={false} title={"UserName:"} icon={'HiUser'} changeInputValue={changeValueInput} />
+          <Input type={"text"} inputclassname='loginInput' placeholder={"type your username"} required={true} value={value} name={'username'} readOnly={false} title={"UserName:"} icon={'HiUser'} changeInputValue={changeValueInput} onKeyDown={handleKeyPress} />
         </div>
         <div className='password'>
-          <Input type={"password"} inputclassname='loginInput' placeholder={"type your password"} required={true} value={value} name={'password'} title={"PassWord:"} icon={'HiLockClosed'} changeInputValue={changeValueInput} />
+          <Input type={"password"} inputclassname='loginInput' placeholder={"type your password"} required={true} value={value} name={'password'} title={"PassWord:"} icon={'HiLockClosed'} changeInputValue={changeValueInput} onKeyDown={handleKeyPress} />
         </div>
         <Button title="Login" path='/dashboard' className='loginbtn' handler={submitData} />
       </div>

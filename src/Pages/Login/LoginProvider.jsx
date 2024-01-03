@@ -7,7 +7,7 @@ export const LoginProvider = ({ children }) => {
 
     const goToLoginPage = (cookie) => {
         if (cookie === undefined || cookie === null) {
-            navigate('login')
+            navigate('/')
         }
     }
 
