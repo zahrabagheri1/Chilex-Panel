@@ -38,6 +38,7 @@ function Index() {
                 err => console.log(err)
             )
     }
+    
     useEffect(() => {
         goToLoginPage(cookies.accessToken);
         historyGet()

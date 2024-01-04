@@ -51,7 +51,7 @@ function App() {
                 <Route path='transaction' element={<TransactionList />} />
                 <Route path='transaction/:id' element={<TransactionDetail />} />
                 <Route path='alluser' element={<AlluserList />} />
-                <Route path='alluser/:user' element={<AlluserDetail />} />
+                <Route path='alluser/:id' element={<AlluserDetail />} />
                 <Route path='reports' element={<ReportsList />} />
                 <Route path='banuser' element={<BanUserList />} />
                 <Route path='banuser/:id' element={<BanUserDetail />} />

@@ -68,7 +68,7 @@ function Index() {
     }
 
     return (
-        <div className='banUdserlist'>
+        <div className='banUserlist'>
             <div className="filterBanUser row">
                 <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
                     <Input value={value} type={'text'} title={"type"} placeholder={'type'} changeInputValue={updateInputData} />
