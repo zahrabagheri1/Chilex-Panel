@@ -47,8 +47,8 @@ function Charts() {
                     dataChart.push(makeObj);
                 })
                 setTransactionData(dataChart)
-                console.log(dataChart)
-                console.log(res.data.data)
+                // console.log(dataChart)
+                // console.log(res.data.data)
                 setLoading(loading)
             })
             .catch(

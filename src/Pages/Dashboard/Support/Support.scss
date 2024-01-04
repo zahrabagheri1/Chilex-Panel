@@ -35,7 +35,21 @@
             .chatMenuBox {
                 overflow-y: scroll;
                 position: relative;
-                // height: calc(100vh - 76px);
+
+                .data {
+                    display: block;
+
+                    .username {
+                        font-size: 16px;
+                    }
+
+                    .msg {
+                        font-size: 14px;
+                        opacity: 0.4;
+                    }
+
+                    // height: calc(100vh - 76px);
+                }
 
                 &::-webkit-scrollbar {
                     width: 5px;
@@ -133,7 +147,8 @@
                 width: 100%;
                 gap: 5px;
                 background-color: $lightGray;
-                border-radius:  5px 50px 50px 5px;
+                border-radius: 5px 50px 50px 5px;
+
                 .chatMessageInput {
                     width: 86%;
                     height: 40px;
@@ -142,7 +157,8 @@
                     border-radius: 5px;
                     color: $fontColor;
                     background-color: $lightGray;
-                    resize: none; 
+                    resize: none;
+
                     &:hover,
                     &:focus,
                     &:active {
@@ -162,9 +178,9 @@
         }
     }
 
-    .chatDetials{
-        
-        .chatDetialsWrapper{
+    .chatDetials {
+
+        .chatDetialsWrapper {
             padding-left: 20px;
             width: 100%;
         }

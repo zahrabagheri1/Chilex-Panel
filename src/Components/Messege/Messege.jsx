@@ -1,3 +1,4 @@
+import moment from 'moment-jalaali';
 import React from 'react';
 import user from '../../Assets/image/user.jpg';
 import './Messege.scss';
@@ -13,11 +14,11 @@ const propss = {
 
 function Message(props) {
   return (
-    <div className={props.own ? 'ownMessage' : 'message'}>
-        <img src={props.img} className={'messageImg'} alt="" srcSet="" />
+    <div className={props.own !== -1 ? 'ownMessage' : 'message'}>
+
         <div className="messageTextBox">
-          <div className="messageText">{propss.message}</div>
-          <div className="messageTime">{props.time}</div>
+          <div className="messageText">{props.message}</div>
+          <div className="messageTime">{moment(props.time).format('YYYY/MM/DD - HH:MM')}</div>
         </div>
       </div>
   );
