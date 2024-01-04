@@ -10,9 +10,12 @@ function Chatroom(props) {
     const [data, setData] = useState(props.data)
     const inputMsg = useRef()
     const [chat, setChats] = useState()
+    const scrollEnd  = useRef(null)
 
     useEffect(() => {
         ResiveChts(props.id)
+        // scroll.scrollTop = scroll.scrollHeight;
+        scrollEnd.current.scrollTop = scrollEnd.current.scrollHeight
     }, [props.id])
 
     const ResiveChts = (id) => {
@@ -33,10 +36,15 @@ function Chatroom(props) {
         console.log('Sended Message : ' + inputMsg.current.value)
         socket.emit('adminMessage', 'chat', {
             message: inputMsg.current.value,
-            anotherPersonId: 201,
+            anotherPersonId: props.id,
             messageType: 0
-        }, (response) => { console.log('response:', response); });
+        }, (response) => { 
+            console.log('response:', response)
+            ResiveChts(props.id) 
+            inputMsg.current.value = ''
+        });
     }
+ 
 
     return (
         <div className="chatBox col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -44,21 +52,21 @@ function Chatroom(props) {
                 <div className="chatBoxMain">
                     <div className="chatboxheader">
                         <div className='chatHeader'>
-                            <img className='chatHeaderImg'  alt="" />
+                            <img className='chatHeaderImg'  src="" alt="" />
                             <div className="chatHeaderName">
                                 <div className="chatHeaderusername">{chat?.userName}</div>
                                 <div className="chatHeaderactivity">{chat?.status ? 'Online' : ''}</div>
                             </div>
                         </div>
                     </div>
-                    <div className="chatboxbody">
+                    <div ref={scrollEnd} className="chatboxbody">
                         <div className="chatmessage">
                             {chat?.chatBoxes.map((msg ,index)=>(
                                 <div key={index}>
-                                    {console.log('sender : '  + msg?.senderId)}
                                     <Messege message={msg.message} name={chat?.userName} img='user' gender='female' receiverId={msg?.receiverId} own={msg?.senderId } time={msg?.date} />
                                 </div>
-                            ))}
+                            )).reverse()
+                            }
                         </div>
                     </div>
                 </div>
