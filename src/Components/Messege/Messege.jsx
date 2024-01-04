@@ -14,7 +14,7 @@ const propss = {
 function Message(props) {
   return (
     <div className={props.own ? 'ownMessage' : 'message'}>
-        <img src={props.img} className={'messageImg'} alt="" srcset="" />
+        <img src={props.img} className={'messageImg'} alt="" srcSet="" />
         <div className="messageTextBox">
           <div className="messageText">{propss.message}</div>
           <div className="messageTime">{props.time}</div>

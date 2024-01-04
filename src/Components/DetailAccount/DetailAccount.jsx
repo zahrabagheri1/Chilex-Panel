@@ -29,7 +29,7 @@ function DetailAccount() {
             <div className="detailAccountInformation">
                 {
                     Object.entries(props.data).map(([key, value], index) => (
-                        <div className="detailAccountifo">
+                        <div className="detailAccountifo" key={index}>
                             <div className="detailAccountSubTitle">{key}:</div>
                             <div className="detailAccountText">{value}</div>
                         </div>

@@ -16,7 +16,7 @@ function Conversation() {
    
     return (
       <div className='conversation' onClick={() => gotopv()}>
-        <img className='conversationImg' src={props.img ? props.img : user} alt={`img of user ${props.name}`} srcset="" />
+        <img className='conversationImg' src={props.img ? props.img : user} alt={`img of user ${props.name}`} srcSet="" />
         <div className="conversationName">{props.name}</div>
       </div>
     );
