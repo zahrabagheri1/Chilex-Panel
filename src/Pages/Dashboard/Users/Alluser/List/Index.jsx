@@ -96,15 +96,15 @@ function Index() {
 
 
           <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-            <Input type={'text'} title={"name"} placeholder={'name'} changeInputValue={updateInputData} />
+            <Input type={'text'} title={"name"} placeholder={'name'} name={'name'} changeInputValue={updateInputData} />
           </div>
 
           <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-            <Input type={'text'} title={"email"} placeholder={'email'} changeInputValue={updateInputData} />
+            <Input type={'text'} title={"email"} placeholder={'email'} name={'email'} changeInputValue={updateInputData} />
           </div>
 
           <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-            <Input type={'text'} title={"phone"} placeholder={'phone'} changeInputValue={updateInputData} />
+            <Input type={'text'} title={"phone"} placeholder={'phone'} name={'phone'} changeInputValue={updateInputData} />
           </div>
 
           <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">

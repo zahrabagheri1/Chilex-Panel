@@ -20,7 +20,7 @@ function Index() {
     const navigate = useNavigate()
     const [cookies] = useCookies(['accessToken']);
     const [filters, setFilters] = useState({
-        statuses: 3,
+        statuses: null,
         gatewayTypes: null,
         limit: null,
         offset: null,

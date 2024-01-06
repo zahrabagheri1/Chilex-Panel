@@ -82,7 +82,7 @@ function Index() {
             <div className='top'>
                 <div className='filter row'>
                     <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                        <Input value={value} type={'text'} title={"sku"} placeholder={'sku'} changeInputValue={updateInputData} />
+                        <Input value={value} type={'text'} title={"sku"} placeholder={'sku'} name={'sku'} changeInputValue={updateInputData} />
                     </div>
 
                     <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
@@ -149,11 +149,11 @@ function Index() {
                     </div>
 
                     {/* <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                        <Input value={value} type={'text'} title={"limit"} placeholder={'limit'} changeInputValue={updateInputData} />
+                        <Input value={value} type={'text'} title={"limit"} placeholder={'limit'} name={'limit'} changeInputValue={updateInputData} />
                     </div>
 
                     <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                        <Input value={value} type={'text'} title={"offset"} placeholder={'offset'} changeInputValue={updateInputData} />
+                        <Input value={value} type={'text'} title={"offset"} placeholder={'offset'} name={'offset'} changeInputValue={updateInputData} />
                     </div> */}
 
                     <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">

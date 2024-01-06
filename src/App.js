@@ -23,7 +23,7 @@ import BanUserList from './Pages/Dashboard/Users/Banuser/List/Index';
 import BanUserDetail from './Pages/Dashboard/Users/Banuser/Detail/Detail';
 import ReportsList from './Pages/Dashboard/Users/Reports/List/List';
 import { CookiesProvider, useCookies } from "react-cookie";
-import './App.css';
+import './App.scss';
 import LoadingProvider from './Pages/Loading/LoadingProvider';
 import LoginProvider from './Pages/Login/LoginProvider';
 

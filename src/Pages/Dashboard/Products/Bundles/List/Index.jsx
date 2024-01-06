@@ -107,12 +107,14 @@ function Index() {
                             ]}
                         />
                     </div>
+                    
                     {/* <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
                         <Input name={'limit'} type={'number'} title={"limit"} placeholder={'limit'} changeInputValue={updateInputData} />
                     </div>
                     <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
                         <Input name={'offset'} type={'number'} title={"offset"} placeholder={'offset'} changeInputValue={updateInputData} />
                     </div> */}
+
                     <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
                         <SelectOption readOnly={false} name={'sortBy'} defaultValue={'id'} type={'status'} changeOptinValue={updateOptionData}
                             data={[
