@@ -22,7 +22,7 @@ function ModalAddProducts(props) {
     status: false, msg: ''
   })
   const [addElement, setAddElement] = useState({
-    prices: [{ type: 0, amount: 5 }],
+    prices:  [{ type: 3, amount: 0 }],
     stuffType: props.type === 'bundle' ? null : 2,
   })
   const [cookies] = useCookies(['accessToken']);
@@ -31,6 +31,7 @@ function ModalAddProducts(props) {
     props.handlerClose()
   }
 
+  console.log(addElement.prices)
   const handlerSubmit = () => {
     axios.post('/admin-stuff/create-stuff', addElement,
       {
@@ -42,6 +43,11 @@ function ModalAddProducts(props) {
       .then(
         res => {
           setBandel(res.data.data)
+          setShowAlert({ status: true, msg: res.message, success: false })
+          setTimeout(() => {
+            setShowAlert({ status: false, msg: res.message })
+
+          }, 3000)
         }
       )
       .catch(
@@ -57,7 +63,7 @@ function ModalAddProducts(props) {
       )
   }
 
-  const updateInputData = (e) => {
+  const addInputData = (e) => {
     if (e.target.type === 'number') {
       setAddElement((prev) => ({ ...prev, [e.target.name]: parseInt(e.target.value) }))
     } else {
@@ -65,13 +71,21 @@ function ModalAddProducts(props) {
     }
   }
 
-  const updateOptionData = (name, id) => {
+  const addOptionData = (name, id) => {
     setAddElement((prev) => ({ ...prev, [name]: parseInt(id) }))
   }
-  console.log(addElement)
 
-  const updateDataPiker = (e, title) => {
+  const addDataPiker = (e, title) => {
     setAddElement((prev) => ({ ...prev, [title]: e }))
+  }
+
+  const sendPriceAmute = (priceList) => {
+    // setAddElement((prev) => ({ ...prev, ['prices']: priceList }))
+
+  }
+  const sendActivityInteralTime = (timeList) => {
+    setAddElement((prev) => ({ ...prev, ['activityIntervalTime']: timeList }))
+
   }
 
   return (
@@ -91,7 +105,7 @@ function ModalAddProducts(props) {
           {
             props.type === 'bundle' ?
               <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
-                <SelectOption readOnly={false} name={'stuffType'}  important={true} defaultValue={'stuffType'} type={'status'} changeOptinValue={updateOptionData}
+                <SelectOption readOnly={false} name={'stuffType'} important={true} defaultValue={'stuffType'} type={'status'} changeOptinValue={addOptionData}
                   data={[
                     { id: 0, status: 'Gem bundle' },
                     { id: 1, status: 'Coin bundle' }
@@ -103,23 +117,23 @@ function ModalAddProducts(props) {
           }
 
           <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
-            <Input type={'text'} name={'name'} important={true} title={'name'} changeInputValue={updateInputData} />
+            <Input type={'text'} name={'name'} important={true} title={'name'} changeInputValue={addInputData} />
           </div>
 
           <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
-            <Input name={"sku"} type={'text'} important={true} title={'sku'} changeInputValue={updateInputData} />
+            <Input name={"sku"} type={'text'} important={true} title={'sku'} changeInputValue={addInputData} />
           </div>
 
           <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
-            <Input name={'amount'} type={'number'} title={'amount'} changeInputValue={updateInputData} />
+            <Input name={'amount'} type={'number'} title={'amount'} changeInputValue={addInputData} />
           </div>
 
           <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
-            <Input name={'image'} type={'text'} title={'image'} changeInputValue={updateInputData} />
+            <Input name={'image'} type={'text'} title={'image'} changeInputValue={addInputData} />
           </div>
 
           <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
-            <SelectOption readOnly={false} name={'tier'} defaultValue={'tier'} type={'status'} changeOptinValue={updateOptionData}
+            <SelectOption readOnly={false} name={'tier'} defaultValue={'tier'} type={'status'} changeOptinValue={addOptionData}
               data={[
                 { id: 0, status: 'DEFAULT' },
                 { id: 1, status: 'COMMON' },
@@ -131,11 +145,11 @@ function ModalAddProducts(props) {
           </div>
 
           <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
-            <DatePikerFarsi inputClass={'controlinput'} value={moment(Date.now()).format('jYYYY/jM/jD')} title={'expireTime'} handlerChangeDate={updateDataPiker} />
+            <DatePikerFarsi inputClass={'controlinput'} value={moment(Date.now()).format('jYYYY/jM/jD')} title={'expireTime'} handlerChangeDate={addDataPiker} />
           </div>
 
           <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
-            <SelectOption readOnly={false} important={true} name={'category'} defaultValue={'category'} type={'status'} changeOptinValue={updateOptionData}
+            <SelectOption readOnly={false} important={true} name={'category'} defaultValue={'category'} type={'status'} changeOptinValue={addOptionData}
               data={[
                 { id: 0, status: 'ELSE' },
                 { id: 1, status: 'GAME' },
@@ -145,7 +159,7 @@ function ModalAddProducts(props) {
           </div>
 
           <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
-            <SelectOption readOnly={false} name={'type'} defaultValue={'type'} type={'status'} changeOptinValue={updateOptionData} disable={addElement.category === 2 ? false : true}
+            <SelectOption readOnly={false} name={'type'} defaultValue={'type'} type={'status'} changeOptinValue={addOptionData} disable={addElement.category === 2 ? false : true}
               data={[
                 { id: 0, status: 'CLOTHES' },
                 { id: 1, status: 'FACE' },
@@ -165,7 +179,7 @@ function ModalAddProducts(props) {
           </div>
 
           <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
-            <SelectOption readOnly={false} name={'gameId'} defaultValue={'Game'} type={'status'} changeOptinValue={updateOptionData} disable={addElement.category === 1 ? false : true}
+            <SelectOption readOnly={false} name={'gameId'} defaultValue={'Game'} type={'status'} changeOptinValue={addOptionData} disable={addElement.category === 1 ? false : true}
               data={[
                 { id: 0, status: 'Ludo' },
                 { id: 1, status: 'Uno' },
@@ -175,17 +189,17 @@ function ModalAddProducts(props) {
               ]}
             />
           </div>
-          
+
           <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
-            <Input important={true}  name={'datasetId'} type={'text'} title={'datasetId'} changeInputValue={updateInputData} />
+            <Input important={true} name={'datasetId'} type={'text'} title={'datasetId'} changeInputValue={addInputData} />
           </div>
 
           <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
-            <Input name={'datasetGroup'} type={'text'} title={'datasetGroup'} changeInputValue={updateInputData} />
+            <Input name={'datasetGroup'} type={'text'} title={'datasetGroup'} changeInputValue={addInputData} />
           </div>
 
           <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
-            <SelectOption readOnly={false} name={'status'} important={true} defaultValue={'Status'} type={'status'} changeOptinValue={updateOptionData}
+            <SelectOption readOnly={false} name={'status'} important={true} defaultValue={'Status'} type={'status'} changeOptinValue={addOptionData}
               data={[
                 { id: 0, status: 'Active' },
                 { id: 1, status: 'Deactive' }
@@ -194,13 +208,13 @@ function ModalAddProducts(props) {
           </div>
 
           <div className='modalBoxs col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-            <Prices important={true} stuffType={addElement.stuffType} disable={addElement.stuffType === null || addElement.stuffType === undefined ? true : false} />
+            <Prices important={true} stuffType={addElement.stuffType} disable={addElement.stuffType === null || addElement.stuffType === undefined ? true : false} sendPrice={sendPriceAmute} />
           </div>
 
           {
             props.type === 'bundle' ?
               <div className='modalBoxs col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-                <Time important={true} />
+                <Time important={true} sendTime={sendActivityInteralTime} />
               </div>
               : ''
           }

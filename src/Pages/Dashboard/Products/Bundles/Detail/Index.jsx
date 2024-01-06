@@ -24,6 +24,11 @@ function Index() {
     const [showAlert, setShowAlert] = useState({
         status: false, msg: ''
     })
+    const [timeList, setTimeList] = useState({
+        day: null,
+        hour: null,
+        minute: null
+    })
     const type = [
         { id: 0, name: 'Gem bundle' },
         { id: 1, name: 'Coin  bundle' },
@@ -40,6 +45,9 @@ function Index() {
         { id: 1, name: 'Deactive', status: false },
     ]
 
+    const inputChange = (e) => {
+        setTimeList((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+    }
 
     const changeValueInput = (e) => {
         setUpdateData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -106,7 +114,7 @@ function Index() {
     const switchHandler = (boolean, id) => {
         console.log('dgdfgdfbdfb', boolean, id)
         axios.patch(`/admin-stuff/change-bundle-status/${id}`, {
-            status: boolean  ? 0 : 1,
+            status: boolean ? 0 : 1,
         },
             {
                 headers: {
@@ -171,6 +179,10 @@ function Index() {
             )
         setEditAble(false)
     };
+    const sendActivityInteralTime = (timeList) => {
+        setUpdateData((prev) => ({ ...prev, ['activityIntervalTime']: timeList }))
+
+    }
 
     const hundelBack = () => {
         navigate(-1)
@@ -233,6 +245,53 @@ function Index() {
             <div className='boxOfDetail row'>
                 {detail === null || detail === undefined ? '' : (
                     Object.entries(detail).map(([key, value], index) => (
+                        key === 'activityIntervalTime' || key === 'prices' ?
+                            null :
+                            <div key={index} className=" itembundle col-xl-3 col-lg-3 col-md-4 col-ms-6 col-xs-6">
+                                {
+                                    key === 'type' || key === 'status' ?
+                                        key === 'type' ?
+                                            type.map((item, index) => (
+                                                item.id === value ?
+                                                    <div key={index} className="titleB ">
+                                                        <div className='header-title'>{key}</div>
+                                                        <div className='data-title'>{item.name}</div>
+                                                    </div>
+                                                    :
+                                                    ""))
+                                            :
+
+                                            <Switch
+                                                id={index}
+                                                title={key}
+                                                defaultChecked={value === 0 ? true : false}
+                                                disabled={editAble === false ? true : false}
+                                                onChange={switchHandler}
+                                            />
+
+                                        :
+                                        key === 'id' ?
+                                            <div key={index} className="titleB ">
+                                                <div className='header-title'>{key}</div>
+                                                <div className='data-title'>{value}</div>
+                                            </div>
+                                            :
+
+                                            key === 'expireTime' ?
+                                                <DatePikerFarsi disable={'disabled'} value={value} readOnly={editAble ? false : true} title={key} handlerChangeDate={updateDataPiker} />
+                                                :
+
+
+                                                <Input inputclassname={editAble === false ? 'disabled' : ''} name={key} title={key} value={value} type={key === 'amount' ? 'number' : 'text'} readOnly={editAble ? false : true} changeInputValue={changeValueInput} />
+
+                                }
+                            </div>
+                    ))
+                )}
+
+
+                {detail === null || detail === undefined ? '' : (
+                    Object.entries(detail).map(([key, value], index) => (
                         Array.isArray(value) ?
                             <div key={index} className="priceBox col-xl-12 col-lg-12 col-md-12 col-ms-12 col-xs-12">
                                 <div className='titlePrice'>{key}</div>
@@ -277,43 +336,26 @@ function Index() {
                                 </div>
                             </div>
                             :
-                            <div key={index} className=" itembundle col-xl-3 col-lg-3 col-md-4 col-ms-6 col-xs-6">
-                                {
-                                    key === 'type' || key === 'status' ?
-                                        key === 'type' ?
-                                            type.map((item, index) => (
-                                                item.id === value ?
-                                                    <div key={index} className="titleB ">
-                                                        <div className='header-title'>{key}</div>
-                                                        <div className='data-title'>{item.name}</div>
-                                                    </div>
-                                                    :
-                                                    ""))
-                                            :
 
-                                            <Switch
-                                                id={index}
-                                                title={key}
-                                                defaultChecked={value === 0 ? true : false}
-                                                disabled={editAble === false ? true : false}
-                                                onChange={switchHandler}
-                                            />
 
-                                        :
-                                        key === 'id' ?
-                                            <div key={index} className="titleB ">
-                                                <div className='header-title'>{key}</div>
-                                                <div className='data-title'>{value}</div>
-                                            </div>
-                                            :
+                            key === 'activityIntervalTime' ?
+                                <div className='timeBox col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+                                    <div className="titleTime">{key}</div>
+                                    <div className="timeBody row">
+                                        {
+                                            console.log(value)
+                                            // Object.entries(value).map((key,value) => (
 
-                                            key === 'expireTime' ?
-                                                <DatePikerFarsi disable={'disabled'} value={value} readOnly={editAble ? false : true} title={key} handlerChangeDate={updateDataPiker} />
-                                                :
-                                                <Input inputclassname={editAble === false ? 'disabled' : ''} name={key} title={key} value={value} type={key === 'amount' ? 'number' : 'text'} readOnly={editAble ? false : true} changeInputValue={changeValueInput} />
+                                                // <div className="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                //     <Input inputclassname={editAble === false ? 'disabled' : ''} readOnly={editAble ? false : true} name={keyTime} value={valueTime} type={'number'} title={'day'} changeInputValue={inputChange} />
+                                                // </div>
+                                            // ))
+                                        }
+                                    </div>
+                                </div>
 
-                                }
-                            </div>
+                                :
+                                null
                     ))
                 )}
 

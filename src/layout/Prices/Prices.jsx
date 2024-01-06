@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import SelectOption from '../../Components/SelectOption/SelectOption';
 import Input from '../../Components/Input/Input';
 import Button from '../../Components/Button/Button';
@@ -34,13 +34,12 @@ function Prices(props) {
         if (!buttonClickedRef.current) {
             buttonClickedRef.current = true;
         }
-
     }
 
-    // console.log(addObjectArray)
-    // console.log(buttonClickedRef.current)
-
-    console.log('2222222222222222',props.stuffType)
+    console.log(priceList)
+    useEffect(() => {
+        props.sendPrice(priceList)
+    }, [])
 
     return (
         <div className='PriceBox row'>
@@ -70,44 +69,44 @@ function Prices(props) {
                                                 { id: 3, status: 'Free' },
                                             ]}
                                         />
-                                        :''
-                                        
+                                        : ''
+
                                 }
                                 {
                                     props.stuffType === 1 ?
-                                    <SelectOption classnameBox={'control'} readOnly={false} name={'type'} defaultValue={'Price'} type={'status'}
-                                        changeOptinValue={selectChange}
-                                        data={[
-                                            { id: 0, status: 'Gem' },
-                                            { id: 3, status: 'Free' },
-                                        ]}
-                                    />
-                                    :
-                                   ''
+                                        <SelectOption classnameBox={'control'} readOnly={false} name={'type'} defaultValue={'Price'} type={'status'}
+                                            changeOptinValue={selectChange}
+                                            data={[
+                                                { id: 0, status: 'Gem' },
+                                                { id: 3, status: 'Free' },
+                                            ]}
+                                        />
+                                        :
+                                        ''
                                 }
                                 {
                                     props.stuffType === 2 ?
-                                    <SelectOption classnameBox={'control'} readOnly={false} name={'type'} defaultValue={'Price'} type={'status'}
-                                        changeOptinValue={selectChange}
-                                        data={[
-                                            { id: 0, status: 'Gem' },
-                                            { id: 1, status: 'Coin' },
-                                        ]}
-                                    />
-                                    :
-                                   ''
+                                        <SelectOption classnameBox={'control'} readOnly={false} name={'type'} defaultValue={'Price'} type={'status'}
+                                            changeOptinValue={selectChange}
+                                            data={[
+                                                { id: 0, status: 'Gem' },
+                                                { id: 1, status: 'Coin' },
+                                            ]}
+                                        />
+                                        :
+                                        ''
                                 }
                                 {
                                     props.stuffType === null || props.stuffType === undefined ?
-                                    <SelectOption classnameBox={'control'} readOnly={false} name={'type'} defaultValue={'Price'} type={'status'}
-                                        changeOptinValue={selectChange}
-                                        data={[
-                                            { id: 0, status: 'Gem' },
-                                            { id: 3, status: 'Free' },
-                                        ]}
-                                    />
-                                    :
-                                   ''
+                                        <SelectOption classnameBox={'control'} readOnly={false} name={'type'} defaultValue={'Price'} type={'status'}
+                                            changeOptinValue={selectChange}
+                                            data={[
+                                                { id: 0, status: 'Gem' },
+                                                { id: 3, status: 'Free' },
+                                            ]}
+                                        />
+                                        :
+                                        ''
                                 }
                             </div>
                             <div className="col-xl-4 col-lg-3 col-md-3 col-sm-4 col-xs-12">
