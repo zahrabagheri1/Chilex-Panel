@@ -24,8 +24,8 @@ function Index() {
         gatewayTypes: null,
         limit: null,
         offset: null,
-        sortBy: null,
-        orderBy: null,
+        sortBy: 3,
+        orderBy: 1,
     })
 
     // ${parameters.from === null ||  parameters.from === undefined? "" : "&RegisterDate.min=" + parameters.from}
@@ -60,11 +60,20 @@ function Index() {
         navigate(`${id}`)
     }
 
+    const updateInputData = (e) => {
+        console.log(e.target.value)
+        setFilters((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+    }
+
+    const updateOptionData = (name, id) => {
+        setFilters((prev) => ({ ...prev, [name]: id }))
+    }
+
     return (
         <div className='transactionList'>
             <div className='filter row'>
                 <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-6">
-                    <SelectOption readOnly={false} value={value} name={'statuses'} defaultValue={'statuses'} type={'status'}
+                    <SelectOption readOnly={false} value={value} name={'statuses'} defaultValue={'statuses'} type={'status'} changeOptinValue={updateOptionData}
                         data={[
                             { id: 0, status: 'Pending ENDING' },
                             { id: 1, status: 'True check result' },
@@ -76,21 +85,21 @@ function Index() {
                     />
                 </div>
                 <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-6">
-                    <SelectOption readOnly={false} value={value} name={'gatewayTypes'} defaultValue={'gatewayTypes'} type={'status'}
+                    <SelectOption readOnly={false} value={value} name={'gatewayTypes'} defaultValue={'gatewayTypes'} type={'status'} changeOptinValue={updateOptionData}
                         data={[
                             { id: 0, status: 'Pasargad' },
                             { id: 1, status: 'Cafe Bazar' },
                         ]}
                     />
                 </div>
-                <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-6">
-                    <Input value={value} type={'text'} title={"limit"} placeholder={'limit'} changeInputValue={''} />
+                {/* <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                    <Input value={value} type={'text'} title={"limit"} placeholder={'limit'} changeInputValue={updateInputData} />
                 </div>
                 <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-6">
-                    <Input value={value} type={'text'} title={"offset"} placeholder={'offset'} changeInputValue={''} />
-                </div>
+                    <Input value={value} type={'text'} title={"offset"} placeholder={'offset'} changeInputValue={updateInputData} />
+                </div> */}
                 <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-6">
-                    <SelectOption readOnly={false} value={value} name={'sortBy'} defaultValue={'createdAt'} type={'status'}
+                    <SelectOption readOnly={false} value={value} name={'sortBy'} defaultValue={'id'} type={'status'} changeOptinValue={updateOptionData}
                         data={[
                             { id: 0, status: 'createdAt' },
                             { id: 1, status: 'updatedAt' },
@@ -102,7 +111,7 @@ function Index() {
                     />
                 </div>
                 <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-6">
-                    <SelectOption readOnly={false} value={value} name={'orderBy'} defaultValue={'orderBy'} type={'status'}
+                    <SelectOption readOnly={false} value={value} name={'orderBy'} defaultValue={'ASC'} type={'status'} changeOptinValue={updateOptionData}
                         data={[
                             { id: 0, status: 'DESC' },
                             { id: 1, status: 'ASC' },

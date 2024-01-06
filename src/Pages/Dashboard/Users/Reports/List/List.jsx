@@ -21,8 +21,8 @@ function List() {
         offset: null,
         types: null,
         userId: null,
-        sortBy: null,
-        orderBy: null,
+        sortBy: 3,
+        orderBy: 1,
     })
 
     const navigate = useNavigate()
@@ -80,7 +80,7 @@ function List() {
                 </div>
 
                 <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                    <SelectOption readOnly={false} value={value} name={'sortBy'} defaultValue={'createdAt'} type={'status'} changeOptinValue={updateOptionData}
+                    <SelectOption readOnly={false} value={value} name={'sortBy'} defaultValue={'id'} type={'status'} changeOptinValue={updateOptionData}
                         data={[
                             { id: 0, status: 'createdAt' },
                             { id: 1, status: 'updatedAt' },
@@ -92,7 +92,7 @@ function List() {
                 </div>
 
                 <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                    <SelectOption readOnly={false} value={value} name={'orderBy'} defaultValue={'orderBy'} type={'status'} changeOptinValue={updateOptionData}
+                    <SelectOption readOnly={false} value={value} name={'orderBy'} defaultValue={'ASC'} type={'status'} changeOptinValue={updateOptionData}
                         data={[
                             { id: 0, status: 'DESC' },
                             { id: 1, status: 'ASC' },

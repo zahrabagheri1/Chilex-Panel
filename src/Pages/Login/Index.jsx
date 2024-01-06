@@ -76,7 +76,7 @@ function Index() {
       password: user.password
     }).then(
       res => {
-        setCookie('accessToken', res.data.accessToken);
+        setCookie('accessToken', res.data.accessToken)
         navigate('/dashboard');
       }
     ).catch(
