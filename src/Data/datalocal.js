@@ -57,7 +57,7 @@ export const sideBarMenu = [
     },
     {
         id: 4,
-        name: 'Shopping History',
+        name: 'Shop History',
         icon: 'HiMiniShoppingCart',
         link: 'shopping-history',
         children: null

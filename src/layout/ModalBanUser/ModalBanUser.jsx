@@ -6,6 +6,7 @@ import ButtonActionGray from '../../Components/ButtonActionGray/ButtonActionGray
 import ButtonActionBlue from '../../Components/ButtonActionBlue/ButtonActionBlue';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
+import Alert from '../Alert/Alert';
 
 const props = {
     modalTitle: '',
@@ -24,7 +25,7 @@ function ModalBanUser(props) {
     })
 
     const updateInputData = (e) => {
-        if (e.target.type === 'number') {
+        if (e.target.name === 'userId') {
             setBanuser((prev) => ({ ...prev, [e.target.name]: parseInt(e.target.value) }))
         } else {
             setBanuser((prev) => ({ ...prev, [e.target.name]: e.target.value }))
@@ -72,6 +73,11 @@ function ModalBanUser(props) {
 
     return (
         <div className='modalBanUser'>
+            {showAlert.status === true ?
+                <Alert message={showAlert.msg} success={showAlert.success} />
+                :
+                ''
+            }
             <div className="mainbanuser">
                 <div className="titlebanuser">Ban User</div>
                 <div className="row">

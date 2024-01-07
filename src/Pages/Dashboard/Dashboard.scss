@@ -13,6 +13,10 @@
         height: 100vh;
         width: calc(100% - 50px);
         margin: 0 0 0 auto;
+        &.active{
+            width: calc(100% - 150px);
+
+        }
 
         .outlet {
             position: relative;

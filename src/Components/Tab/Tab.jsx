@@ -5,11 +5,14 @@ import { useNavigate } from 'react-router-dom';
 
 
 function Tab(props) {
-    const [child, setChild] = useState(false)
     const [click, setClick] = useState(false)
     const [cookies, setCookie, removeCookie] = useCookies(['accessToken']);
-    const [clickChild, setClickChild] = useState(false)
     const navigate = useNavigate()
+
+    const [child ,setChild] = useState()
+    const [childId ,setChildId] = useState()
+    const [parentId ,setParentId] = useState()
+
     const icons = {
         HiRocketLaunch: <HiRocketLaunch />,
         HiCurrencyDollar: <HiCurrencyDollar />,
@@ -28,43 +31,38 @@ function Tab(props) {
 
     const clickHandler = (e, item) => {
         if (e.target.id == item.id && item.children === null) {
-            if (e.target.id === '7') {
+            if (e.target.id === 7) {
                 // document.cookie = "accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
                 removeCookie('accessToken',{expires:'Thu, 01 Jan 1970 00:00:00 UTC', path:'/'} )
                 navigate(item.link)
             } else {
                 navigate(item.link)
-                setChild(false)
                 setClick(true)
 
             }
         }else {
             navigate(item.link)
-            setChild(!child)
             setClick(true)
-
+            setChild(true)
         }
 
     }
-    const clickChildHandler = (e, childItem) => {
-        if (e.target.id == childItem.id) {
-            navigate(childItem.link)
-            setClickChild(true)
-        } else {
-            setClickChild(false)
-        }
+    const clickChildHandler = (e, id, link) => {
+        console.log(e.target.id,id )
+        navigate(link)
+        setChildId(id)
     }
 
     return (
         <div>
-            <div className={`tab ${click === true ? 'active' : ''}`} id={props.id} onClick={(e) => clickHandler(e, props.data)}>
+            <div className={`tab ${props.id === parentId ? 'active': ''}`} id={props.id} onClick={(e) => clickHandler(e, props.data)}>
                 <div className='icon'>{icons[props.data.icon]}</div>
                 <div className='tabText'>{props.data.name}</div>
             </div>
 
             <div className={child === true ? 'activechild' : 'child'}>
                 {props.data.children?.map((childItem, key) => (
-                    <div key={key} className={`childItem ${clickChild === true ? 'active' : ''}`} id={childItem.id} onClick={(e) => clickChildHandler(e, childItem)}>
+                    <div key={key} className={`childItem ${childItem.id === childId ? 'active' : ''}`}  id={childItem.id} onClick={(e) => clickChildHandler(e, childItem.id, childItem.link)}>
                         <div className='icon'>{icons[childItem.icon]}</div>
                         <div className=''>{childItem.name}</div>
                     </div>

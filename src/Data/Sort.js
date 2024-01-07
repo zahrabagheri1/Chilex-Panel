@@ -98,17 +98,30 @@ export const sortGameSettings = [
     { name: 'updatedAt', status: true }
 ]
 export const sortBanUsers = [
+    { name: 'id', status: true },
     { name: 'userId', status: true },
     { name: 'type', status: true },
-    { name: 'status', status: true },
     { name: 'description', status: true },
+    { name: 'createdAt', status: true },
 ]
 
 export const sortUserList = [
-    { name: 'userId', status: true },
-    { name: 'type', status: true },
-    { name: 'status', status: true },
-    { name: 'description', status: true },
+    { name: 'id', status: true },
+    { name: 'name', status: true },
+    { name: 'email', status: true },
+    { name: 'phone', status: true },
+    { name: 'register', status: true },
+    { name: 'online', status: true },
+    { name: 'bot', status: true },
+    { name: 'inviteCode', status: true },
+    { name: 'invitedBy', status: true },
+    { name: 'createdAt', status: true },
+    { name: 'level', status: true },
+    { name: 'cup', status: true },
+    { name: 'gem', status: true },
+    { name: 'coin', status: true },
+    { name: 'unfinishedGames', status: true },
+    { name: 'ban', status: true },
 ]
 
 
