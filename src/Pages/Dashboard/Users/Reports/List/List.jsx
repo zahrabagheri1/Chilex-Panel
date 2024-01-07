@@ -10,6 +10,7 @@ import SelectOption from '../../../../../Components/SelectOption/SelectOption';
 import { useCookies } from 'react-cookie';
 import { LoadingContext } from '../../../../Loading/LoadingContext';
 import { LoginContext } from '../../../../Login/LoginContext';
+import { HiOutlineTrash } from 'react-icons/hi2';
 
 function List() {
     const [reportuserList, setReportuserList] = useState(null)
@@ -66,38 +67,54 @@ function List() {
     const showDetailBanUser = (id) => {
         navigate(`${id}`)
     }
+    const resetFillters = () => {
+        setFilter({
+            limit: null,
+            offset: null,
+            types: null,
+            userId: null,
+            sortBy: 3,
+            orderBy: 1,
+        })
+    }
 
 
     return (
         <div className='reportUserslist'>
-            <div className="filterReportUser row">
-                <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                    <Input value={value} type={'text'} title={"types"} placeholder={'types'} changeInputValue={updateInputData} />
-                </div>
+            <div className="filterReportUser">
+                <div className="row">
 
-                <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                    <Input value={value} type={'text'} title={"userId"} placeholder={'userId'} changeInputValue={updateInputData} />
-                </div>
+                    <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                        <Input value={value} type={'text'} title={"types"} placeholder={'types'} changeInputValue={updateInputData} />
+                    </div>
 
-                <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                    <SelectOption readOnly={false} value={value} name={'sortBy'} defaultValue={'id'} type={'status'} changeOptinValue={updateOptionData}
-                        data={[
-                            { id: 0, status: 'createdAt' },
-                            { id: 1, status: 'updatedAt' },
-                            { id: 2, status: 'id' },
-                            { id: 3, status: 'type' },
-                            { id: 4, status: 'userId' }
-                        ]}
-                    />
-                </div>
+                    <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                        <Input value={value} type={'text'} title={"userId"} placeholder={'userId'} changeInputValue={updateInputData} />
+                    </div>
 
-                <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                    <SelectOption readOnly={false} value={value} name={'orderBy'} defaultValue={'ASC'} type={'status'} changeOptinValue={updateOptionData}
-                        data={[
-                            { id: 0, status: 'DESC' },
-                            { id: 1, status: 'ASC' },
-                        ]}
-                    />
+                    <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                        <SelectOption readOnly={false} value={value} name={'sortBy'} defaultValue={'id'} type={'status'} changeOptinValue={updateOptionData}
+                            data={[
+                                { id: 0, status: 'createdAt' },
+                                { id: 1, status: 'updatedAt' },
+                                { id: 2, status: 'id' },
+                                { id: 3, status: 'type' },
+                                { id: 4, status: 'userId' }
+                            ]}
+                        />
+                    </div>
+
+                    <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                        <SelectOption readOnly={false} value={value} name={'orderBy'} defaultValue={'ASC'} type={'status'} changeOptinValue={updateOptionData}
+                            data={[
+                                { id: 0, status: 'DESC' },
+                                { id: 1, status: 'ASC' },
+                            ]}
+                        />
+                    </div>
+                </div>
+                <div className="resetFillters" onClick={resetFillters}>
+                    <HiOutlineTrash />
                 </div>
             </div>
 

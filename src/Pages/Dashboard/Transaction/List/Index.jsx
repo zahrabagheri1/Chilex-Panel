@@ -11,6 +11,7 @@ import SelectOption from '../../../../Components/SelectOption/SelectOption';
 import { useCookies } from 'react-cookie';
 import { LoadingContext } from '../../../Loading/LoadingContext';
 import { LoginContext } from '../../../Login/LoginContext';
+import { HiOutlineTrash } from 'react-icons/hi2';
 
 function Index() {
     const [transaction, setTransaction] = useState(null);
@@ -69,56 +70,75 @@ function Index() {
         setFilters((prev) => ({ ...prev, [name]: id }))
     }
 
+
+    const resetFillters = () => {
+        setFilters({
+            statuses: null,
+            gatewayTypes: null,
+            limit: null,
+            offset: null,
+            sortBy: 3,
+            orderBy: 1,
+        })
+    }
+
     return (
         <div className='transactionList'>
-            <div className='filter row'>
-                <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-6">
-                    <SelectOption readOnly={false} value={value} name={'statuses'} defaultValue={'statuses'} type={'status'} changeOptinValue={updateOptionData}
-                        data={[
-                            { id: 0, status: 'Pending ENDING' },
-                            { id: 1, status: 'True check result' },
-                            { id: 2, status: 'False check result' },
-                            { id: 3, status: 'Failed' },
-                            { id: 4, status: 'Successful' },
-                            { id: 5, status: 'Refunded' },
-                        ]}
-                    />
-                </div>
-                <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-6">
-                    <SelectOption readOnly={false} value={value} name={'gatewayTypes'} defaultValue={'gatewayTypes'} type={'status'} changeOptinValue={updateOptionData}
-                        data={[
-                            { id: 0, status: 'Pasargad' },
-                            { id: 1, status: 'Cafe Bazar' },
-                        ]}
-                    />
-                </div>
-                {/* <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-6">
+            <div className='filter'>
+                <div className="row">
+                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                        <SelectOption readOnly={false} value={value} name={'statuses'} defaultValue={'statuses'} type={'status'} changeOptinValue={updateOptionData}
+                            data={[
+                                { id: 0, status: 'Pending ENDING' },
+                                { id: 1, status: 'True check result' },
+                                { id: 2, status: 'False check result' },
+                                { id: 3, status: 'Failed' },
+                                { id: 4, status: 'Successful' },
+                                { id: 5, status: 'Refunded' },
+                            ]}
+                        />
+                    </div>
+                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                        <SelectOption readOnly={false} value={value} name={'gatewayTypes'} defaultValue={'gatewayTypes'} type={'status'} changeOptinValue={updateOptionData}
+                            data={[
+                                { id: 0, status: 'Pasargad' },
+                                { id: 1, status: 'Cafe Bazar' },
+                            ]}
+                        />
+                    </div>
+                    {/* <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-6">
                     <Input value={value} type={'text'} title={"limit"} placeholder={'limit'} changeInputValue={updateInputData} />
                 </div>
                 <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-6">
                     <Input value={value} type={'text'} title={"offset"} placeholder={'offset'} changeInputValue={updateInputData} />
                 </div> */}
-                <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-6">
-                    <SelectOption readOnly={false} value={value} name={'sortBy'} defaultValue={'id'} type={'status'} changeOptinValue={updateOptionData}
-                        data={[
-                            { id: 0, status: 'createdAt' },
-                            { id: 1, status: 'updatedAt' },
-                            { id: 2, status: 'amount' },
-                            { id: 3, status: 'id' },
-                            { id: 4, status: 'name' },
-                            { id: 5, status: 'status' },
-                        ]}
-                    />
+                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                        <SelectOption readOnly={false} value={value} name={'sortBy'} defaultValue={'id'} type={'status'} changeOptinValue={updateOptionData}
+                            data={[
+                                { id: 0, status: 'createdAt' },
+                                { id: 1, status: 'updatedAt' },
+                                { id: 2, status: 'amount' },
+                                { id: 3, status: 'id' },
+                                { id: 4, status: 'name' },
+                                { id: 5, status: 'status' },
+                            ]}
+                        />
+                    </div>
+                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                        <SelectOption readOnly={false} value={value} name={'orderBy'} defaultValue={'ASC'} type={'status'} changeOptinValue={updateOptionData}
+                            data={[
+                                { id: 0, status: 'DESC' },
+                                { id: 1, status: 'ASC' },
+                            ]}
+                        />
+                    </div>
                 </div>
-                <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-6">
-                    <SelectOption readOnly={false} value={value} name={'orderBy'} defaultValue={'ASC'} type={'status'} changeOptinValue={updateOptionData}
-                        data={[
-                            { id: 0, status: 'DESC' },
-                            { id: 1, status: 'ASC' },
-                        ]}
-                    />
-                </div>
+
+                <div className="resetFillters" onClick={resetFillters}>
+                        <HiOutlineTrash />
+                    </div>
             </div>
+
 
             <ScrollContainer>
                 <Table data={transaction} sort={adminTransaction} action={true} showDetail={showDetailTransaction} />

@@ -4,7 +4,7 @@ import Table from '../../../../../layout/Table/Table';
 import axios from 'axios';
 import { sortUserList } from '../../../../../Data/Sort';
 import { useNavigate } from 'react-router-dom';
-import { HiUserMinus } from "react-icons/hi2";
+import { HiOutlineTrash, HiUserMinus } from "react-icons/hi2";
 import './List.scss';
 import SelectOption from '../../../../../Components/SelectOption/SelectOption';
 import Input from '../../../../../Components/Input/Input';
@@ -40,6 +40,28 @@ function Index() {
   })
   const navigate = useNavigate()
   const [value, setValue] = useState()
+
+  const resetFillters = () => {
+    setFilter({
+      name: null,
+      email: null,
+      phone: null,
+      ban: 0,
+      // createdAt:  moment(dateNow).format('jYYYY-jM-jD'),
+      createdAt: null,
+      createdAtType: 1,
+      register: 0,
+      inviteBy: 0,
+      lastOnline: 0,
+      limit: 200,
+      online: 2,
+      unfinishedGame: 0,
+      page: 1,
+      sortBy: 1,
+      order: 0
+    })
+  }
+
 
   const updateOptionData = (name, id) => {
     setFilter((prev) => ({ ...prev, [name]: id }))
@@ -92,113 +114,117 @@ function Index() {
   return (
     <div className='userList'>
       <div className="filterandban">
-        <div className="filter row">
+        <div className="filter">
 
+          <div className="row">
 
-          <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-            <Input type={'text'} title={"name"} placeholder={'name'} name={'name'} changeInputValue={updateInputData} />
+            <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+              <Input type={'text'} title={"name"} placeholder={'name'} name={'name'} changeInputValue={updateInputData} />
+            </div>
+
+            <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+              <Input type={'text'} title={"email"} placeholder={'email'} name={'email'} changeInputValue={updateInputData} />
+            </div>
+
+            <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+              <Input type={'text'} title={"phone"} placeholder={'phone'} name={'phone'} changeInputValue={updateInputData} />
+            </div>
+
+            <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+              <SelectOption readOnly={false} name={'ban'} defaultValue={'all users'} type={'status'} changeOptinValue={updateOptionData}
+                data={[
+                  { id: 0, status: 'all users' },
+                  { id: 1, status: 'ban users' }
+                ]}
+              />
+            </div>
+
+            <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+              <DatePikerFarsi value={Date.now()} title={'createdAt'} handlerChangeDate={updateDataPiker} />
+            </div>
+
+            <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+              <SelectOption readOnly={false} name={'register'} defaultValue={'all'} type={'status'} changeOptinValue={updateOptionData}
+                data={[
+                  { id: 0, status: 'all' },
+                  { id: 1, status: 'guest' },
+                  { id: 2, status: 'google' },
+                  { id: 3, status: 'phone' }
+                ]}
+              />
+            </div>
+
+            {/* createdAtType */}
+
+            <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+              <SelectOption readOnly={false} name={'register'} defaultValue={'all'} type={'status'} changeOptinValue={updateOptionData}
+                data={[
+                  { id: 0, status: 'all' },
+                  { id: 1, status: 'guest' },
+                  { id: 2, status: 'google' },
+                  { id: 3, status: 'phone' }
+                ]}
+              />
+            </div>
+
+            {/* inviteBy */}
+
+            {/* lastOnline */}
+
+            {/* limit */}
+
+            <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+              <SelectOption readOnly={false} name={'online'} defaultValue={'offline and online users'} type={'status'} changeOptinValue={updateOptionData}
+                data={[
+                  { id: 0, status: 'offline users' },
+                  { id: 1, status: 'online users' },
+                  { id: 2, status: 'offline and online users' }
+                ]}
+              />
+            </div>
+
+            <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+              <SelectOption readOnly={false} name={'unfinishedGame'} defaultValue={'all users'} type={'status'} changeOptinValue={updateOptionData}
+                data={[
+                  { id: 0, status: 'all users' },
+                  { id: 1, status: 'createdat' },
+                  { id: 2, status: 'online' },
+                  { id: 3, status: 'unfinished games' }
+
+                  // 0 => all users
+                  // 1 => users have unfinished game
+                  // backgammon => users have unfinished backgammon game
+                  // ludo => ...
+                  // soccer =>...
+                  // yatzy =>...
+                  // uno =>...
+                ]}
+              />
+            </div>
+
+            <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+              <SelectOption readOnly={false} name={'sortBy'} defaultValue={'createdat'} type={'status'} changeOptinValue={updateOptionData}
+                data={[
+                  { id: 0, status: 'bot' },
+                  { id: 1, status: 'createdat' },
+                  { id: 2, status: 'online' },
+                  { id: 3, status: 'unfinished games' }
+                ]}
+              />
+            </div>
+
+            <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+              <SelectOption readOnly={false} name={'order'} defaultValue={'ASC'} type={'status'} changeOptinValue={updateOptionData}
+                data={[
+                  { id: 0, status: 'ASC' },
+                  { id: 1, status: 'DESC' },
+                ]}
+              />
+            </div>
           </div>
-
-          <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-            <Input type={'text'} title={"email"} placeholder={'email'} name={'email'} changeInputValue={updateInputData} />
+          <div className="resetFillters" onClick={resetFillters}>
+            <HiOutlineTrash />
           </div>
-
-          <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-            <Input type={'text'} title={"phone"} placeholder={'phone'} name={'phone'} changeInputValue={updateInputData} />
-          </div>
-
-          <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-            <SelectOption readOnly={false} name={'ban'} defaultValue={'all users'} type={'status'} changeOptinValue={updateOptionData}
-              data={[
-                { id: 0, status: 'all users' },
-                { id: 1, status: 'ban users' }
-              ]}
-            />
-          </div>
-
-          <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-            <DatePikerFarsi value={Date.now()} title={'createdAt'} handlerChangeDate={updateDataPiker} />
-          </div>
-
-          <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-            <SelectOption readOnly={false} name={'register'} defaultValue={'all'} type={'status'} changeOptinValue={updateOptionData}
-              data={[
-                { id: 0, status: 'all' },
-                { id: 1, status: 'guest' },
-                { id: 2, status: 'google' },
-                { id: 3, status: 'phone' }
-              ]}
-            />
-          </div>
-
-          {/* createdAtType */}
-
-          <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-            <SelectOption readOnly={false} name={'register'} defaultValue={'all'} type={'status'} changeOptinValue={updateOptionData}
-              data={[
-                { id: 0, status: 'all' },
-                { id: 1, status: 'guest' },
-                { id: 2, status: 'google' },
-                { id: 3, status: 'phone' }
-              ]}
-            />
-          </div>
-
-          {/* inviteBy */}
-
-          {/* lastOnline */}
-
-          {/* limit */}
-
-          <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-            <SelectOption readOnly={false} name={'online'} defaultValue={'offline and online users'} type={'status'} changeOptinValue={updateOptionData}
-              data={[
-                { id: 0, status: 'offline users' },
-                { id: 1, status: 'online users' },
-                { id: 2, status: 'offline and online users' }
-              ]}
-            />
-          </div>
-
-          <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-            <SelectOption readOnly={false} name={'unfinishedGame'} defaultValue={'all users'} type={'status'} changeOptinValue={updateOptionData}
-              data={[
-                { id: 0, status: 'all users' },
-                { id: 1, status: 'createdat' },
-                { id: 2, status: 'online' },
-                { id: 3, status: 'unfinished games' }
-
-                // 0 => all users
-                // 1 => users have unfinished game
-                // backgammon => users have unfinished backgammon game
-                // ludo => ...
-                // soccer =>...
-                // yatzy =>...
-                // uno =>...
-              ]}
-            />
-          </div>
-
-          <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-            <SelectOption readOnly={false} name={'sortBy'} defaultValue={'createdat'} type={'status'} changeOptinValue={updateOptionData}
-              data={[
-                { id: 0, status: 'bot' },
-                { id: 1, status: 'createdat' },
-                { id: 2, status: 'online' },
-                { id: 3, status: 'unfinished games' }
-              ]}
-            />
-          </div>
-
-          <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-            <SelectOption readOnly={false} name={'order'} defaultValue={'ASC'} type={'status'} changeOptinValue={updateOptionData}
-              data={[
-                { id: 0, status: 'ASC' },
-                { id: 1, status: 'DESC' },
-              ]}
-            />
-          </div>
-
         </div>
         <div className="banuser" onClick={handelOpenModal}><HiUserMinus /></div>
       </div>

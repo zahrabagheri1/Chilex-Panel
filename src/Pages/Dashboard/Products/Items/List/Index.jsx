@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './List.scss';
 import axios from 'axios';
-import { HiPlus } from "react-icons/hi2";
+import { HiOutlineTrash, HiPlus } from "react-icons/hi2";
 import { sortItems } from '../../../../../Data/Sort';
 import Table from '../../../../../layout/Table/Table';
 import ModalAddProducts from '../../../../../layout/ModalAddProducts/ModalAddProducts';
@@ -77,107 +77,124 @@ function Index() {
         setFilter((prev) => ({ ...prev, [e.target.name]: e.target.value }))
     }
 
+    const resetFillters = () => {
+        setFilter({
+            sku: null,
+            itemStatus: null,
+            priceStatus: null,
+            limit: null,
+            offset: null,
+            orderBy: null,
+        })
+    }
+
     return (
         <div className='itemList'>
             <div className='top'>
-                <div className='filter row'>
-                    <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                        <Input value={value} type={'text'} title={"sku"} placeholder={'sku'} name={'sku'} changeInputValue={updateInputData} />
+                <div className='filter'>
+                    <div className="row">
+
+                        <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                            <Input value={filter.sku} type={'text'} title={"sku"} placeholder={'sku'} name={'sku'} changeInputValue={updateInputData} />
+                        </div>
+
+                        <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                            <SelectOption readOnly={false} value={filter.itemStatus} name={'itemStatus'} defaultValue={'itemStatus'} type={'status'} changeOptinValue={updateOptionData}
+                                data={[
+                                    { id: 0, status: 'Active' },
+                                    { id: 1, status: 'Deactive' },
+                                ]}
+                            />
+
+                        </div>
+
+                        <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                            <SelectOption readOnly={false} value={filter.itemGameId} name={'itemGameId'} defaultValue={'itemGameId'} type={'status'} changeOptinValue={updateOptionData}
+                                data={[
+                                    { id: 0, status: 'Ludo' },
+                                    { id: 1, status: 'Uno' },
+                                    { id: 2, status: 'Backgammon ' },
+                                    { id: 3, status: 'Soccer' },
+                                    { id: 4, status: 'Yadzy' },
+                                ]}
+                            />
+                        </div>
+
+                        <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                            <SelectOption readOnly={false} value={filter.itemTypes} name={'itemTypes'} defaultValue={'itemTypes'} type={'status'} changeOptinValue={updateOptionData}
+                                data={[
+                                    { id: 0, status: 'CLOTHES' },
+                                    { id: 1, status: 'FACE' },
+                                    { id: 2, status: 'HAIR' },
+                                    { id: 3, status: 'BEARD' },
+                                    { id: 4, status: 'EYE' },
+                                    { id: 5, status: 'EYEBROWS' },
+                                    { id: 6, status: 'GLASESS' },
+                                    { id: 7, status: 'MASK' },
+                                    { id: 8, status: 'HAT' },
+                                    { id: 9, status: 'DICE_SKIN' },
+                                    { id: 10, status: 'CARD_SKIN ' },
+                                    { id: 11, status: 'FLAG_SKIN' },
+                                    { id: 12, status: 'FORMATION' }
+                                ]}
+                            />
+
+                        </div>
+
+                        <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                            <SelectOption readOnly={false} value={filter.itemCategories} name={'itemCategories'} defaultValue={'itemCategories'} type={'status'} changeOptinValue={updateOptionData}
+                                data={[
+                                    { id: 0, status: 'ELSE' },
+                                    { id: 1, status: 'GAME' },
+                                    { id: 2, status: 'CHARACTER' },
+                                ]}
+                            />
+
+                        </div>
+
+                        <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                            <SelectOption readOnly={false} value={filter.priceStatus} name={'priceStatus'} defaultValue={'priceStatus'} type={'status'} changeOptinValue={updateOptionData}
+                                data={[
+                                    { id: 0, status: 'Active' },
+                                    { id: 1, status: 'Deactive' },
+                                ]}
+                            />
+                        </div>
+
+                        {/* <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                        <Input value={filter.limit} type={'text'} title={"limit"} placeholder={'limit'} name={'limit'} changeInputValue={updateInputData} />
                     </div>
-
+                    
                     <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                        <SelectOption readOnly={false} value={value} name={'itemStatus'} defaultValue={'itemStatus'} type={'status'} changeOptinValue={updateOptionData}
-                            data={[
-                                { id: 0, status: 'Active' },
-                                { id: 1, status: 'Deactive' },
-                            ]}
-                        />
-
-                    </div>
-
-                    <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                        <SelectOption readOnly={false} value={value} name={'itemGameId'} defaultValue={'itemGameId'} type={'status'} changeOptinValue={updateOptionData}
-                            data={[
-                                { id: 0, status: 'Ludo' },
-                                { id: 1, status: 'Uno' },
-                                { id: 2, status: 'Backgammon ' },
-                                { id: 3, status: 'Soccer' },
-                                { id: 4, status: 'Yadzy' },
-                            ]}
-                        />
-                    </div>
-
-                    <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                        <SelectOption readOnly={false} value={value} name={'itemTypes'} defaultValue={'itemTypes'} type={'status'} changeOptinValue={updateOptionData}
-                            data={[
-                                { id: 0, status: 'CLOTHES' },
-                                { id: 1, status: 'FACE' },
-                                { id: 2, status: 'HAIR' },
-                                { id: 3, status: 'BEARD' },
-                                { id: 4, status: 'EYE' },
-                                { id: 5, status: 'EYEBROWS' },
-                                { id: 6, status: 'GLASESS' },
-                                { id: 7, status: 'MASK' },
-                                { id: 8, status: 'HAT' },
-                                { id: 9, status: 'DICE_SKIN' },
-                                { id: 10, status: 'CARD_SKIN ' },
-                                { id: 11, status: 'FLAG_SKIN' },
-                                { id: 12, status: 'FORMATION' }
-                            ]}
-                        />
-
-                    </div>
-
-                    <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                        <SelectOption readOnly={false} value={value} name={'itemCategories'} defaultValue={'itemCategories'} type={'status'} changeOptinValue={updateOptionData}
-                            data={[
-                                { id: 0, status: 'ELSE' },
-                                { id: 1, status: 'GAME' },
-                                { id: 2, status: 'CHARACTER' },
-                            ]}
-                        />
-
-                    </div>
-
-                    <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                        <SelectOption readOnly={false} value={value} name={'priceStatus'} defaultValue={'priceStatus'} type={'status'} changeOptinValue={updateOptionData}
-                            data={[
-                                { id: 0, status: 'Active' },
-                                { id: 1, status: 'Deactive' },
-                            ]}
-                        />
-                    </div>
-
-                    {/* <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                        <Input value={value} type={'text'} title={"limit"} placeholder={'limit'} name={'limit'} changeInputValue={updateInputData} />
-                    </div>
-
-                    <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                        <Input value={value} type={'text'} title={"offset"} placeholder={'offset'} name={'offset'} changeInputValue={updateInputData} />
+                        <Input value={filter.offset} type={'text'} title={"offset"} placeholder={'offset'} name={'offset'} changeInputValue={updateInputData} />
                     </div> */}
 
-                    <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                        <SelectOption readOnly={false} value={value} name={'sortBy'} defaultValue={'createdAt'} type={'status'} changeOptinValue={updateOptionData}
-                            data={[
-                                { id: 0, status: 'createdAt' },
-                                { id: 1, status: 'updatedAt' },
-                                { id: 2, status: 'amount' },
-                                { id: 3, status: 'id' },
-                                { id: 4, status: 'name' },
-                                { id: 5, status: 'status' },
-                            ]}
-                        />
+                        <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                            <SelectOption readOnly={false} value={filter.sortBy} name={'sortBy'} defaultValue={'createdAt'} type={'status'} changeOptinValue={updateOptionData}
+                                data={[
+                                    { id: 0, status: 'createdAt' },
+                                    { id: 1, status: 'updatedAt' },
+                                    { id: 2, status: 'amount' },
+                                    { id: 3, status: 'id' },
+                                    { id: 4, status: 'name' },
+                                    { id: 5, status: 'status' },
+                                ]}
+                            />
+                        </div>
+
+                        <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                            <SelectOption readOnly={false} value={filter.orderBy} name={'orderBy'} defaultValue={'orderBy'} type={'status'} changeOptinValue={updateOptionData}
+                                data={[
+                                    { id: 0, status: 'DESC' },
+                                    { id: 1, status: 'ASC' },
+                                ]}
+                            />
+                        </div>
                     </div>
 
-                    <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                        <SelectOption readOnly={false} value={value} name={'orderBy'} defaultValue={'orderBy'} type={'status'} changeOptinValue={updateOptionData}
-                            data={[
-                                { id: 0, status: 'DESC' },
-                                { id: 1, status: 'ASC' },
-                            ]}
-                        />
+                    <div className="resetFillters" onClick={resetFillters}>
+                        <HiOutlineTrash />
                     </div>
-
                 </div>
 
                 <div className='addItem' onClick={handelOpenModal}>

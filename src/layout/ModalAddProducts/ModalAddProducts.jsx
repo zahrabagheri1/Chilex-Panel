@@ -22,7 +22,7 @@ function ModalAddProducts(props) {
     status: false, msg: ''
   })
   const [addElement, setAddElement] = useState({
-    prices:  [{ type: 3, amount: 0 }],
+    prices:  [],
     stuffType: props.type === 'bundle' ? null : 2,
   })
   const [cookies] = useCookies(['accessToken']);
@@ -31,7 +31,6 @@ function ModalAddProducts(props) {
     props.handlerClose()
   }
 
-  console.log(addElement.prices)
   const handlerSubmit = () => {
     axios.post('/admin-stuff/create-stuff', addElement,
       {
@@ -80,9 +79,10 @@ function ModalAddProducts(props) {
   }
 
   const sendPriceAmute = (priceList) => {
-    // setAddElement((prev) => ({ ...prev, ['prices']: priceList }))
-
+    addElement.prices.push(priceList)
+    console.log(addElement)
   }
+
   const sendActivityInteralTime = (timeList) => {
     setAddElement((prev) => ({ ...prev, ['activityIntervalTime']: timeList }))
 
@@ -208,7 +208,7 @@ function ModalAddProducts(props) {
           </div>
 
           <div className='modalBoxs col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-            <Prices important={true} stuffType={addElement.stuffType} disable={addElement.stuffType === null || addElement.stuffType === undefined ? true : false} sendPrice={sendPriceAmute} />
+            <Prices important={true} stuffType={addElement.stuffType}  sendPrice={sendPriceAmute} />
           </div>
 
           {

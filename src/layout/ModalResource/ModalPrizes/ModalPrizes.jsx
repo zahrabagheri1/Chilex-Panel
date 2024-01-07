@@ -8,13 +8,11 @@ import Alert from '../../Alert/Alert';
 import ButtonActionGray from '../../../Components/ButtonActionGray/ButtonActionGray';
 import { useCookies } from 'react-cookie';
 
-const settingId = 2
-
 
 function ModalPrizes(props) {
   const [value, setValue] = useState()
   const [addPrize, setAddPrize] = useState({
-    settingId: settingId
+    settingId: parseInt(props.settingId)
   })
   const [cookies] = useCookies(['accessToken']);
 
@@ -91,7 +89,7 @@ function ModalPrizes(props) {
 
         <div className="row">
           <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <Input type={'number'} inputclassname={'disabled'} name={'settingId'} value={settingId} title={'settingId'} readOnly={true} changeInputValue={changeValueInput} />
+            <Input type={'number'} inputclassname={'disabled'} name={'settingId'} value={addPrize.settingId} title={'settingId'} readOnly={true} changeInputValue={changeValueInput} />
           </div>
           <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-6">
             <Input type={'number'} name={'amount'} important={true} value={value} title={'amount'} readOnly={false} changeInputValue={changeValueInput} />

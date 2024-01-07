@@ -12,7 +12,6 @@ import './Prices.scss';
 function Prices(props) {
     const [prices, setPrices] = useState(1)
     const [priceList, setPriceList] = useState({})
-    const [addObjectArray, setAddObjectArray] = useState([])
     const buttonClickedRef = useRef(false);
     // const stuffType = useContext(props.stuffType);
     const addPrices = () => {
@@ -30,15 +29,14 @@ function Prices(props) {
 
 
     const checkPrices = () => {
-        setAddObjectArray((prevArray) => ([...prevArray, priceList]))
+        props.sendPrice(priceList)
         if (!buttonClickedRef.current) {
             buttonClickedRef.current = true;
         }
     }
 
-    console.log(priceList)
     useEffect(() => {
-        props.sendPrice(priceList)
+
     }, [])
 
     return (

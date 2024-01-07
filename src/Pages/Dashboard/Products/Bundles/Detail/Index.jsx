@@ -211,6 +211,8 @@ function Index() {
             })
     }
 
+    console.log(detail)
+
     return (
         <div className='bundleDetail'>
             {showAlert.status === true ?
@@ -343,13 +345,13 @@ function Index() {
                                     <div className="titleTime">{key}</div>
                                     <div className="timeBody row">
                                         {
-                                            console.log(value)
-                                            // Object.entries(value).map((key,value) => (
+                                            Object.entries(value).map(([key,value]) => (
+                                                console.log('key')
 
                                                 // <div className="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                                 //     <Input inputclassname={editAble === false ? 'disabled' : ''} readOnly={editAble ? false : true} name={keyTime} value={valueTime} type={'number'} title={'day'} changeInputValue={inputChange} />
                                                 // </div>
-                                            // ))
+                                            ))
                                         }
                                     </div>
                                 </div>
