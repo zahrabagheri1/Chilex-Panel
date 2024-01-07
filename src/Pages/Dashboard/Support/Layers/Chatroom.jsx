@@ -8,77 +8,90 @@ import Messege from '../../../../Components/Messege/Messege';
 import { socket } from "../../../../Socket";
 
 function Chatroom(props) {
-    const [data, setData] = useState(props.data)
     const inputMsg = useRef()
     const [chat, setChats] = useState()
     const scrollEnd = useRef(null)
-    const [counterChats, setCounterChats] = useState(20)
+    const [limit, setLimit] = useState(0)
+    const [saveMessages, setSaveMessage] = useState([])
 
     useEffect(() => {
-        ResiveChts(props.id)
-        
+        ResiveChts(props.id, limit)
         scrollEnd.current.addEventListener('scroll', handleScroll);
         return () => {
             scrollEnd.current.removeEventListener('scroll', handleScroll);
         };
-    console.log('chat : ', counterChats)
-
     }, [props.id])
 
-    const saveMessages = useMemo(() => ({ chat, setChats }), [])
+    // const saveMessages = useMemo(() => ({ chat, setChats }), [])
 
-    const handleScroll = () => {
-        console.log(counterChats)
-        setCounterChats(counterChats + 5)
-
-        if (counterChats === 20) {
-            return ''
+    const handleScroll = (counter) => {
+        if (counter === 0) {
+            if (scrollEnd.current.scrollTop === 0) {
+                scrollEnd.current.scrollTop = scrollEnd.current.scrollHeight
+            }
         } else {
             if (scrollEnd.current.scrollTop === 0) {
-                console.log(11)
-                ResiveChts(props.id)
-                console.log('counter sended :' , counterChats)
+                // setLimit(counter + 15)
+                console.log('limit  :', limit)
+                // ResiveChts(props.id, limit)
 
             }
         }
 
+        //     console.log('handleScroll : ',scrollEnd.current.scrollHeight)
+        //     if (counterChats === 20) {
+        //         return ''
+        //     } else {
+        //         if (scrollEnd.current.scrollTop === 0) {
+        //             setCounterChats(counterChats + 20)
+        //             ResiveChts(props.id)
+        //             // scrollEnd.current.scrollTop = scrollEnd.current.scrollHeight
+        //             // console.log('counter sended :' , counterChats)
+        //         } else if (scrollEnd.current.scrollTop === scrollEnd.current.scrollHeight) {
+        //             setCounterChats(counterChats - 20)
+        //             ResiveChts(props.id)    
+        //         } else {
+        //             console.log(counterChats, scrollEnd.current.scrollTop)
+        //         }
+        //     }
+
     };
-    const ResiveChts = (id) => {
-        console.log('------------------------- 1 -------------------------',counterChats , counterChats -5)
-        const data = { anotherPersonId: id, limit: counterChats, offset: 0 }
+
+    const ResiveChts = (id, counter) => {
+        const data = { anotherPersonId: id, limit: 15, offset: counter }
         socket.emit('adminMessage', 'get-a-support-chat', data, (response) => {
             setChats(response.chatBoxes)
-            saveMessages.chat === undefined || saveMessages.chat === null ? setChats(response.chatBoxes) : response.chatBoxes.map((Newchat) => { console.log('------------------------- 2 -------------------------',Newchat) })
-            console.log('new : ', saveMessages)
-
-            if (counterChats === 20 || scrollEnd.current) {
-                scrollEnd.current.scrollTop = scrollEnd.current.scrollHeight;
-            }
+            handleScroll(counter + 15)
+            setLimit(counter + 15)
         });
     }
-    const sendNewMessage = (e) => {
-        // console.log(e.target.value, inputMsg.current.value)
+
+    console.log("Saved :  ", saveMessages)
+    console.log('Chat : ', chat)
+
+    const log = (data) => {
+        setLimit(limit + 15)
+        ResiveChts(props.id, limit)
+        saveMessages.push()
+        chat.map((SaveChat) => { saveMessages.push(SaveChat) })
     }
 
+    // const sendNewMessage = (e) => {
+    //     // console.log(e.target.value, inputMsg.current.value)
+    // }
+
     const SendMessage = (e) => {
-        // console.log('Sended Message : ' + inputMsg.current.value)
         socket.emit('adminMessage', 'chat', {
             message: inputMsg.current.value,
             anotherPersonId: props.id,
             messageType: 0
         }, (response) => {
             // console.log('response:', response)   
-            ResiveChts(props.id)
+            ResiveChts(props.id, limit)
             inputMsg.current.value = ''
         });
     }
 
-    console.log("saveed :  ", saveMessages)
-    console.log('chat : ', chat)
-    const log = () => {
-        console.log(scrollEnd.current.scrollTop, scrollEnd.current.scrollHeight, scrollEnd.current.scrollHeight)
-
-    }
     return (
         <div className="chatBox col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
             <div className="chatBoxWrapper">
@@ -92,14 +105,21 @@ function Chatroom(props) {
                             </div>
                         </div>
                     </div>
-                    <button onClick={handleScroll}>log</button>
+                    <button onClick={log}>log</button>
                     <div ref={scrollEnd} className="chatboxbody">
                         {chat?.map((msg, index) => (
+                                <div key={index}>
+                                    <Messege message={msg.message} name={chat?.userName} img='user' gender='female' receiverId={msg?.receiverId} own={msg?.senderId} time={msg?.date} />
+                                </div>
+                            )).reverse()
+                        }
+
+                        {saveMessages?.map((msg, index) => (
                             <div key={index}>
                                 <Messege message={msg.message} name={chat?.userName} img='user' gender='female' receiverId={msg?.receiverId} own={msg?.senderId} time={msg?.date} />
                             </div>
-                        )).reverse()
-                        }
+                        )).reverse()}
+
                     </div>
                 </div>
                 <div className="chatBoxTextarea">
@@ -107,7 +127,6 @@ function Chatroom(props) {
                         className="chatMessageInput"
                         placeholder='write somthing...'
                         ref={inputMsg}
-                        onChange={(e) => sendNewMessage(e)}
                     >
                     </textarea>
 

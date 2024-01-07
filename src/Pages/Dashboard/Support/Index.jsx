@@ -33,10 +33,12 @@ function Index() {
 
   useEffect(() => {
     socket.connect()
+    GetResiveAllChats()
+
     socket.on("connect", () => {
       console.table('Connected')
+      GetResiveAllChats()
     })
-    socket.on('connect', GetResiveAllChats);
     socket.on("disconnect", () => {
       console.table('Disconnected')
     })
