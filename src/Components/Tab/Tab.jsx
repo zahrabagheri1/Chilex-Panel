@@ -9,6 +9,7 @@ function Tab(props) {
     const [cookies, setCookie, removeCookie] = useCookies(['accessToken']);
     const navigate = useNavigate()
 
+    const [child ,setChild] = useState()
     const [childId ,setChildId] = useState()
     const [parentId ,setParentId] = useState()
 
@@ -42,6 +43,7 @@ function Tab(props) {
         }else {
             navigate(item.link)
             setClick(true)
+            setChild(true)
         }
 
     }
