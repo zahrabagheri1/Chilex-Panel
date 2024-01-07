@@ -147,7 +147,7 @@ function Index() {
             {modal === true ?
 
                 <ModalAddProducts
-                    modalTitle={'Add New Bandle'}
+                    modalTitle={'Add New bundle'}
                     data={bundles}
                     type={'bundle'}
                     path={'bundles'}

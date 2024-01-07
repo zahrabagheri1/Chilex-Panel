@@ -74,10 +74,6 @@ function ModalAddProducts(props) {
     setAddElement((prev) => ({ ...prev, [title]: e }))
   }
 
-  const sendBackData = () => {
-  }
-
-
   return (
     <div className='modal'>
       {showAlert.status === true ?
@@ -107,19 +103,19 @@ function ModalAddProducts(props) {
           }
 
           <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
-            <Input classname={'controlinput'} type={'text'} name={'name'} important={true} title={'name'} changeInputValue={updateInputData} />
+            <Input type={'text'} name={'name'} important={true} title={'name'} changeInputValue={updateInputData} />
           </div>
 
           <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
-            <Input classname={'controlinput'} name={"sku"} type={'text'} important={true} title={'sku'} changeInputValue={updateInputData} />
+            <Input name={"sku"} type={'text'} important={true} title={'sku'} changeInputValue={updateInputData} />
           </div>
 
           <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
-            <Input classname={'controlinput'} name={'amount'} type={'number'} title={'amount'} changeInputValue={updateInputData} />
+            <Input name={'amount'} type={'number'} title={'amount'} changeInputValue={updateInputData} />
           </div>
 
           <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
-            <Input classname={'controlinput'} name={'image'} type={'text'} title={'image'} changeInputValue={updateInputData} />
+            <Input name={'image'} type={'text'} title={'image'} changeInputValue={updateInputData} />
           </div>
 
           <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
@@ -178,6 +174,14 @@ function ModalAddProducts(props) {
                 { id: 4, status: 'Yadzy' },
               ]}
             />
+          </div>
+          
+          <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
+            <Input important={true}  name={'datasetId'} type={'text'} title={'datasetId'} changeInputValue={updateInputData} />
+          </div>
+
+          <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
+            <Input name={'datasetGroup'} type={'text'} title={'datasetGroup'} changeInputValue={updateInputData} />
           </div>
 
           <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">

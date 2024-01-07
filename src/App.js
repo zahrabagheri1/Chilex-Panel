@@ -40,6 +40,7 @@ function App() {
         <div className='routers'>
           <Routes>
             <Route path='/'>
+              <Route index element={<Login />} />
               <Route path='dashboard' element={<Dashboard />}>
                 <Route index element={<Charts />} />
                 <Route path='admin' element={<Admin />} />
@@ -62,7 +63,6 @@ function App() {
                 <Route path='games/settings/:id' element={<Settings />} />
                 <Route path='games/settings/resources/:id' element={<Resources />} />
               </Route>
-              <Route index path='login' element={<Login />} />
               <Route path='*' element={<Notfound />} />
             </Route>
           </Routes>

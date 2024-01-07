@@ -80,7 +80,7 @@ export const sideBarMenu = [
         id: 7,
         name: 'LogOut',
         icon: 'HiOutlineArrowLeftOnRectangle',
-        link: '../login',
+        link: '/',
         children: null
     },
 

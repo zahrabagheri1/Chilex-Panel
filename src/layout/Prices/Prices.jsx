@@ -61,7 +61,6 @@ function Prices(props) {
                             <div className="col-xl-4 col-lg-3 col-md-3 col-sm-4 col-xs-12">
                                 {
                                     // stuffType => Gem Bindle: 0 , Coin Bundle: 1
-
                                     props.stuffType === 0 ?
                                         <SelectOption classnameBox={'control'} readOnly={false} name={'type'} defaultValue={'Price'} type={'status'}
                                             changeOptinValue={selectChange}
@@ -76,6 +75,18 @@ function Prices(props) {
                                 }
                                 {
                                     props.stuffType === 1 ?
+                                    <SelectOption classnameBox={'control'} readOnly={false} name={'type'} defaultValue={'Price'} type={'status'}
+                                        changeOptinValue={selectChange}
+                                        data={[
+                                            { id: 0, status: 'Gem' },
+                                            { id: 3, status: 'Free' },
+                                        ]}
+                                    />
+                                    :
+                                   ''
+                                }
+                                {
+                                    props.stuffType === null || props.stuffType === undefined ?
                                     <SelectOption classnameBox={'control'} readOnly={false} name={'type'} defaultValue={'Price'} type={'status'}
                                         changeOptinValue={selectChange}
                                         data={[

@@ -49,7 +49,6 @@ function Input(props) {
     props.changeInputValue(e, props.id)
   }
 
-
   return (
     <div className={`inputBox ${props.classname}`}>
       <div className="header-title">
@@ -90,7 +89,8 @@ function Input(props) {
             min={props.min}
             max={props.max}
             onChange={changeInputHandler}
-            ref={props.ref}
+            ref={props.inputRef}
+            onKeyDown={props.onKeyDown}
             autoComplete = 'off'
           />}
         <div className={`passwordEye ${props.type === 'password' ? 'active' : ''}`} onClick={eyeHandler}>

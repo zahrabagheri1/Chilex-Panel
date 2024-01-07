@@ -25,8 +25,8 @@ function Index() {
         minAmount: null,
         type: null,
         referenceType: null,
-        sortBy: null,
-        orderBy: null,
+        sortBy: 3,
+        orderBy: 1,
         offset: null,
         limit: null,
     })
@@ -94,7 +94,7 @@ function Index() {
                         <Input value={value} name={'maxAmount'} type={'text'} title={"maxAmount"} placeholder={'maxAmount'} changeInputValue={updateInputData} />
                     </div>
                     <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <SelectOption value={value} name={'orderBy'} defaultValue={'orderBy'} type={'status'} readOnly={false} changeOptinValue={updateOptionData}
+                        <SelectOption value={value} name={'orderBy'} defaultValue={'ASC'} type={'status'} readOnly={false} changeOptinValue={updateOptionData}
                             data={[
                                 { id: 0, status: 'DESC' },
                                 { id: 1, status: 'ASC' },
@@ -105,7 +105,7 @@ function Index() {
                         <Input value={value} name={'minAmount'} type={'text'} title={"minAmount"} placeholder={'minAmount'} changeInputValue={updateInputData} />
                     </div>
                     <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <SelectOption value={value} name={'sortBy'} defaultValue={'sortBy'} type={'status'} readOnly={false} changeOptinValue={updateOptionData}
+                        <SelectOption value={value} name={'sortBy'} defaultValue={'id'} type={'status'} readOnly={false} changeOptinValue={updateOptionData}
                             data={[
                                 { id: 0, status: 'createdAt' },
                                 { id: 1, status: 'updatedAt' },
