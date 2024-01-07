@@ -10,6 +10,7 @@ import SelectOption from '../../../../../Components/SelectOption/SelectOption';
 import { useCookies } from 'react-cookie';
 import { LoadingContext } from '../../../../Loading/LoadingContext';
 import { LoginContext } from '../../../../Login/LoginContext';
+import { HiOutlineTrash } from 'react-icons/hi2';
 
 
 function Index() {
@@ -55,6 +56,18 @@ function Index() {
             )
     }
 
+    const resetFillters = () => {
+        setFilter({
+            limit: null,
+            offset: null,
+            type: null,
+            userId: null,
+            sortBy: 3,
+            orderBy: 1,
+        })
+    }
+
+
     const updateOptionData = (name, id) => {
         setFilter((prev) => ({ ...prev, [name]: id }))
     }
@@ -68,35 +81,41 @@ function Index() {
     }
 
     return (
-        <div className='banUdserlist'>
-            <div className="filterBanUser row">
-                <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                    <Input value={value} type={'text'} title={"type"} placeholder={'type'} changeInputValue={updateInputData} />
+        <div className='banUserlist'>
+            <div className="filterBanUser">
+                <div className="row">
+                    <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                        <Input value={value} type={'text'} title={"type"} placeholder={'type'} changeInputValue={updateInputData} />
+                    </div>
+
+                    <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                        <Input value={value} type={'text'} title={"userId"} placeholder={'userId'} changeInputValue={updateInputData} />
+                    </div>
+
+                    <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                        <SelectOption readOnly={false} value={value} name={'sortBy'} defaultValue={'id'} type={'status'} changeOptinValue={updateOptionData}
+                            data={[
+                                { id: 0, status: 'createdAt' },
+                                { id: 1, status: 'updatedAt' },
+                                { id: 2, status: 'id' },
+                                { id: 3, status: 'type' },
+                                { id: 4, status: 'userId' }
+                            ]}
+                        />
+                    </div>
+
+                    <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                        <SelectOption readOnly={false} value={value} name={'orderBy'} defaultValue={'id'} type={'status'} changeOptinValue={updateOptionData}
+                            data={[
+                                { id: 0, status: 'DESC' },
+                                { id: 1, status: 'ASC' },
+                            ]}
+                        />
+                    </div>
                 </div>
 
-                <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                    <Input value={value} type={'text'} title={"userId"} placeholder={'userId'} changeInputValue={updateInputData} />
-                </div>
-
-                <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                    <SelectOption readOnly={false} value={value} name={'sortBy'} defaultValue={'id'} type={'status'} changeOptinValue={updateOptionData}
-                        data={[
-                            { id: 0, status: 'createdAt' },
-                            { id: 1, status: 'updatedAt' },
-                            { id: 2, status: 'id' },
-                            { id: 3, status: 'type' },
-                            { id: 4, status: 'userId' }
-                        ]}
-                    />
-                </div>
-
-                <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                    <SelectOption readOnly={false} value={value} name={'orderBy'} defaultValue={'id'} type={'status'} changeOptinValue={updateOptionData}
-                        data={[
-                            { id: 0, status: 'DESC' },
-                            { id: 1, status: 'ASC' },
-                        ]}
-                    />
+                <div className="resetFillters" onClick={resetFillters}>
+                    <HiOutlineTrash />
                 </div>
             </div>
 

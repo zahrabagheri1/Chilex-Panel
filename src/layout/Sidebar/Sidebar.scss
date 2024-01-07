@@ -9,15 +9,15 @@
     position: fixed;
     background: $Gray;
     top: 0;
-    z-index: 10;
+    // z-index: 10;
     overflow: hidden;
     transition: width .3s ease;
     cursor: pointer;
     box-shadow: 4px 7px 10px rgba(0, 0, 0, .4);
-    padding-left: 10px;
+    padding-left: 5px;
 
-    &:hover {
-        width: 210px;
+    &.active {
+        width: 150px;
     }
 
     .logo-dash {

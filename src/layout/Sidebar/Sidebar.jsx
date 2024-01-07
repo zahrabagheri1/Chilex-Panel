@@ -8,8 +8,8 @@ import Tab from '../../Components/Tab/Tab';
 function Sidebar() {
 
   return (
-    <div className='sidebar'>
-      <div className="logo-dash">D</div>
+    <div className='sidebar active'>
+      <div className="logo-dash">Chilex</div>
       <div className="menu">
         {sideBarMenu.map((item, index) => (
           <div key={index} >
