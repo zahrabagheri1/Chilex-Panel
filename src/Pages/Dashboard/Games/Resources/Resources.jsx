@@ -31,6 +31,7 @@ function Resources() {
             .then(
                 res => {
                     setData(res.data)
+                    // console.log(res.data)
                     setLoading(loading)
                 }
             )
@@ -149,13 +150,13 @@ function Resources() {
 
                     {
                         openResource === 'requirment' ?
-                            <ModalRequirment onchange={getResource} canceladd={closeModal} />
+                            <ModalRequirment onchange={getResource} canceladd={closeModal} settingId={id}/>
                             :
                             openResource === 'entry' ?
-                                <ModalEntries onchange={getResource} canceladd={closeModal} />
+                                <ModalEntries onchange={getResource} canceladd={closeModal} settingId={id}/>
                                 :
                                 openResource === 'prize' ?
-                                    <ModalPrizes onchange={getResource} canceladd={closeModal} />
+                                    <ModalPrizes onchange={getResource} canceladd={closeModal} settingId={id}/>
                                     :
                                     ''
                     }

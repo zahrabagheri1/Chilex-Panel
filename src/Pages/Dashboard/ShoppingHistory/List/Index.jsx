@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { HiPlus } from "react-icons/hi2";
+import { HiOutlineTrash, HiPlus } from "react-icons/hi2";
 import Table from '../../../../layout/Table/Table';
 import { sortHistory } from '../../../../Data/Sort';
 import ScrollContainer from 'react-indiana-drag-scroll';
@@ -74,76 +74,93 @@ function Index() {
         setFilters((prev) => ({ ...prev, [name]: id }))
     }
 
+    const resetFillters = () => {
+        setFilters({
+            userId: null,
+            gatewayTypes: null,
+            minAmount: null,
+            type: null,
+            referenceType: null,
+            sortBy: 3,
+            orderBy: 1,
+            offset: null,
+            limit: null,
+        })
+    }
+
     return (
         <div className='shoppingHistoryList'>
-            <div className="top">
-                <div className='filter row'>
-                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <Input value={value} name={'userId'} type={'text'} title={"userId"} placeholder={'userId'} changeInputValue={updateInputData} />
+                <div className='filter'>
+                    <div className="row">
+                        <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
+                            <Input value={filters.userId} name={'userId'} type={'text'} title={"userId"} placeholder={'userId'} changeInputValue={updateInputData} />
+                        </div>
+                        <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
+                            <SelectOption value={filters.gatewayTypes} name={'gatewayTypes'} defaultValue={'gatewayTypes'} type={'status'} readOnly={false} changeOptinValue={updateOptionData}
+                                data={[
+                                    { id: 0, status: 'Pasargad' },
+                                    { id: 1, status: 'cafe bazaar' },
+                                    { id: 2, status: 'exchange' },
+                                ]}
+                            />
+                        </div>
+                        <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
+                            <Input value={filters.maxAmount} name={'maxAmount'} type={'text'} title={"maxAmount"} placeholder={'maxAmount'} changeInputValue={updateInputData} />
+                        </div>
+                        <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
+                            <SelectOption value={filters.orderBy} name={'orderBy'} defaultValue={'ASC'} type={'status'} readOnly={false} changeOptinValue={updateOptionData}
+                                data={[
+                                    { id: 0, status: 'DESC' },
+                                    { id: 1, status: 'ASC' },
+                                ]}
+                            />
+                        </div>
+                        <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
+                            <Input value={filters.minAmount} name={'minAmount'} type={'text'} title={"minAmount"} placeholder={'minAmount'} changeInputValue={updateInputData} />
+                        </div>
+                        <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
+                            <SelectOption value={filters.sortBy} name={'sortBy'} defaultValue={'id'} type={'status'} readOnly={false} changeOptinValue={updateOptionData}
+                                data={[
+                                    { id: 0, status: 'createdAt' },
+                                    { id: 1, status: 'updatedAt' },
+                                    { id: 2, status: 'amount' },
+                                    { id: 3, status: 'id' },
+                                    { id: 4, status: 'name' },
+                                    { id: 5, status: 'status' },
+                                ]}
+                            />
+                        </div>
+                        <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
+                            <SelectOption value={filters.referenceType} name={'referenceType'} defaultValue={'referenceType'} type={'status'} readOnly={false} changeOptinValue={updateOptionData}
+                                data={[
+                                    { id: 0, status: 'bundle' },
+                                    { id: 1, status: 'item' },
+                                    { id: 1, status: 'transaction' },
+                                    { id: 1, status: 'setting' },
+                                ]}
+                            />
+                        </div>
+                        <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
+                            <SelectOption value={filters.type} name={'type'} defaultValue={'type'} type={'status'} readOnly={false} changeOptinValue={updateOptionData}
+                                data={[
+                                    { id: 0, status: 'Gem' },
+                                    { id: 1, status: 'Coin' },
+                                    { id: 1, status: 'Item' },
+                                ]}
+                            />
+                        </div>
+                        <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
+                            <Input value={filters.limit} name={'limit'} type={'text'} title={"limit"} placeholder={'limit'} changeInputValue={updateInputData} />
+                        </div>
+                        <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
+                            <Input value={filters.offset} name={'offset'} type={'text'} title={"offset"} placeholder={'offset'} changeInputValue={updateInputData} />
+                        </div>
                     </div>
-                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <SelectOption value={value} name={'gatewayTypes'} defaultValue={'gatewayTypes'} type={'status'} readOnly={false} changeOptinValue={updateOptionData}
-                            data={[
-                                { id: 0, status: 'Pasargad' },
-                                { id: 1, status: 'cafe bazaar' },
-                                { id: 2, status: 'exchange' },
-                            ]}
-                        />
-                    </div>
-                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <Input value={value} name={'maxAmount'} type={'text'} title={"maxAmount"} placeholder={'maxAmount'} changeInputValue={updateInputData} />
-                    </div>
-                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <SelectOption value={value} name={'orderBy'} defaultValue={'ASC'} type={'status'} readOnly={false} changeOptinValue={updateOptionData}
-                            data={[
-                                { id: 0, status: 'DESC' },
-                                { id: 1, status: 'ASC' },
-                            ]}
-                        />
-                    </div>
-                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <Input value={value} name={'minAmount'} type={'text'} title={"minAmount"} placeholder={'minAmount'} changeInputValue={updateInputData} />
-                    </div>
-                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <SelectOption value={value} name={'sortBy'} defaultValue={'id'} type={'status'} readOnly={false} changeOptinValue={updateOptionData}
-                            data={[
-                                { id: 0, status: 'createdAt' },
-                                { id: 1, status: 'updatedAt' },
-                                { id: 2, status: 'amount' },
-                                { id: 3, status: 'id' },
-                                { id: 4, status: 'name' },
-                                { id: 5, status: 'status' },
-                            ]}
-                        />
-                    </div>
-                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <SelectOption value={value} name={'referenceType'} defaultValue={'referenceType'} type={'status'} readOnly={false} changeOptinValue={updateOptionData}
-                            data={[
-                                { id: 0, status: 'bundle' },
-                                { id: 1, status: 'item' },
-                                { id: 1, status: 'transaction' },
-                                { id: 1, status: 'setting' },
-                            ]}
-                        />
-                    </div>
-                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <SelectOption value={value} name={'type'} defaultValue={'type'} type={'status'} readOnly={false} changeOptinValue={updateOptionData}
-                            data={[
-                                { id: 0, status: 'Gem' },
-                                { id: 1, status: 'Coin' },
-                                { id: 1, status: 'Item' },
-                            ]}
-                        />
-                    </div>
-                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <Input value={value} name={'limit'} type={'text'} title={"limit"} placeholder={'limit'} changeInputValue={updateInputData} />
-                    </div>
-                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <Input value={value} name={'offset'} type={'text'} title={"offset"} placeholder={'offset'} changeInputValue={updateInputData} />
-                    </div>
+                <div className="resetFillters" onClick={resetFillters}>
+                    <HiOutlineTrash />
                 </div>
-
-            </div>
+                </div>
+ 
 
             <ScrollContainer>
                 <Table data={history} sort={sortHistory} action={true} showDetail={showDetailHistory} />

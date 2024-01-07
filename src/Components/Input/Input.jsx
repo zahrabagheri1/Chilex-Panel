@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Input.scss';
 import { HiUser, HiOutlineUser, HiMiniMagnifyingGlass, HiOutlineEye, HiLockClosed, HiOutlineEyeSlash, HiMiniEyeSlash, HiMiniEye } from "react-icons/hi2";
 import moment from 'moment-jalaali';
@@ -20,11 +20,7 @@ import moment from 'moment-jalaali';
 // }
 
 function Input(props) {
-  const [value, setValue] = useState(
-    props.name === 'createdAt' || props.name === 'updatedAt' ?
-      (moment(props.value, 'YYYY/MM/DD').format('jYYYY/jM/jD'))
-      : props.value
-  )
+  const [value, setValue] = useState(props.value)
   const [eye, setEye] = useState(false)
 
 
@@ -48,6 +44,10 @@ function Input(props) {
     setValue(e.target.value)
     props.changeInputValue(e, props.id)
   }
+
+  useEffect(() => {
+   setValue(props.value)
+  }, [props.value])
 
   return (
     <div className={`inputBox ${props.classname}`}>
@@ -80,7 +80,7 @@ function Input(props) {
             type={props.type === 'password' ? (eye === true ? 'text' : 'password') : props.type}
             className={`inputControl ${props.inputclassname} ${props.readOnly === true ? 'readonlytext' : 'notreadonlytext'}`}
             name={props.name}
-            value={value === null || value === undefined ? '': value}
+            value={value}
             placeholder={props.placeholder}
             readOnly={props.readOnly}
             dir={props.dir}
@@ -91,7 +91,7 @@ function Input(props) {
             onChange={changeInputHandler}
             ref={props.inputRef}
             onKeyDown={props.onKeyDown}
-            autoComplete = 'off'
+            autoComplete='off'
           />}
         <div className={`passwordEye ${props.type === 'password' ? 'active' : ''}`} onClick={eyeHandler}>
           {eye === true ? <HiMiniEye /> : <HiMiniEyeSlash />}

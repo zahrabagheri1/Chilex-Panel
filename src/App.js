@@ -23,7 +23,7 @@ import BanUserList from './Pages/Dashboard/Users/Banuser/List/Index';
 import BanUserDetail from './Pages/Dashboard/Users/Banuser/Detail/Detail';
 import ReportsList from './Pages/Dashboard/Users/Reports/List/List';
 import { CookiesProvider, useCookies } from "react-cookie";
-import './App.css';
+import './App.scss';
 import LoadingProvider from './Pages/Loading/LoadingProvider';
 import LoginProvider from './Pages/Login/LoginProvider';
 
@@ -51,7 +51,7 @@ function App() {
                 <Route path='transaction' element={<TransactionList />} />
                 <Route path='transaction/:id' element={<TransactionDetail />} />
                 <Route path='alluser' element={<AlluserList />} />
-                <Route path='alluser/:user' element={<AlluserDetail />} />
+                <Route path='alluser/:id' element={<AlluserDetail />} />
                 <Route path='reports' element={<ReportsList />} />
                 <Route path='banuser' element={<BanUserList />} />
                 <Route path='banuser/:id' element={<BanUserDetail />} />

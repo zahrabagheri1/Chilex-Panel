@@ -74,8 +74,8 @@ function Settings() {
           ))
         }
       </div>
-      {/* what is "id"? id is the name og game that we need it to show in other component */}
 
+      {/* what is "id"? id is the name og game that we need it to show in other component */}
       {openModal === true ? <ModalSetting gameName={id} canceladd={() => setOpenModal(false)} /> : null}
 
     </div>
