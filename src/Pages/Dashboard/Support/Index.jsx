@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import './Support.scss';
 import Conversation from '../../../Components/Conversation/Conversation';
-import DetailAccount from '../../../Components/DetailAccount/DetailAccount';
 import { useEffect } from 'react';
 import { socket, getCookie } from '../../../Socket';
 import { useCookies } from 'react-cookie';
 import Chatroom from './Layers/Chatroom';
-import Information from './Layers/Information';
 
 function Index() {
   const [listChats, setListChats] = useState()
@@ -74,7 +72,6 @@ function Index() {
           idChat.status? 
           <Chatroom id={idChat.userId} /> : ''
         }
-       {/* <Information /> */}
       </div>
     );
   }

@@ -26,6 +26,7 @@ import { CookiesProvider, useCookies } from "react-cookie";
 import './App.scss';
 import LoadingProvider from './Pages/Loading/LoadingProvider';
 import LoginProvider from './Pages/Login/LoginProvider';
+import SupportUi from './Pages/Dashboard/SupportUi/SupportUi';
 
 function App() {
   const [cookies, setCookie] = useCookies(["user"]);
@@ -57,7 +58,8 @@ function App() {
                 <Route path='banuser/:id' element={<BanUserDetail />} />
                 <Route path='shopping-history' element={<SHList />} />
                 <Route path='shopping-history/:id' element={<SHDetail />} />
-                <Route path='support' element={<Support />} />
+                {/* <Route path='support' element={<Support />} /> */}
+                <Route path='support' element={<SupportUi />} />
                 <Route path='games' element={<GameList />} />
                 <Route path='games/played/:id' element={<Played />} />
                 <Route path='games/settings/:id' element={<Settings />} />
