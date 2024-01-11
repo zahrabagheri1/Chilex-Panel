@@ -258,12 +258,12 @@
                         margin: 10px 20px;
                         gap: 20px;
 
-                        .meBox {
+                        .ownMessage {
                             width: 100%;
                             display: flex;
                             justify-content: end;
 
-                            .me {
+                            .messageTextBox {
                                 max-width: 350px;
                                 background: #3c3e40b4;
                                 border-radius: 12px 0 12px 12px;
@@ -275,12 +275,12 @@
                                 gap: 6px;
 
                                 // justify-content: end;
-                                .metext {
+                                .messageText {
                                     font-size: 16px;
 
                                 }
 
-                                .timeread {
+                                .messageTime {
                                     display: flex;
                                     flex-direction: row;
                                     // justify-content: start;
@@ -288,12 +288,12 @@
                                     align-items: center;
                                     gap: 6px;
 
-                                    .metime {
+                                    .messageTimeDate {
                                         color: #868686;
                                         font-size: 12px;
                                     }
 
-                                    .readtext {
+                                    .messageRead {
                                         display: none;
                                         color: #0039ff;
                                         font-size: 18px;
@@ -302,13 +302,13 @@
                             }
                         }
 
-                        .youBox {
+                        .message {
                             width: 100%;
                             left: 0;
                             display: flex;
                             justify-content: start;
 
-                            .you {
+                            .messageTextBox {
                                 max-width: 350px;
                                 background: #1a1d1fb4;
                                 border-radius: 0 12px 12px 12px;
@@ -318,12 +318,12 @@
                                 flex-direction: column;
                                 gap: 6px;
 
-                                .youtext {
+                                .messageText {
                                     font-size: 16px;
 
                                 }
 
-                                .youtime {
+                                .messageTimeDate {
                                     color: #868686;
                                     display: flex;
                                     justify-content: end;

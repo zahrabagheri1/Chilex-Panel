@@ -122,6 +122,9 @@ function Chatroom(props) {
 
                     </div>
                 </div>
+
+
+                
                 <div className="chatBoxTextarea">
                     <textarea
                         className="chatMessageInput"
