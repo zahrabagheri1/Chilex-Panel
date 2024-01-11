@@ -1,22 +1,26 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Socket } from 'socket.io-client'
+
 import { socket } from '../../../../Socket'
 import Message from '../Message/Message'
+import { HiBars3 } from 'react-icons/hi2'
+import ninja from '../../../../Assets/image/ninja.avif'
+import { RiSendPlaneFill } from 'react-icons/ri'
 
 function ChatRoom(props) {
 
     const inputMsg = useRef()
-    const scrollEnd = useRef(null)
     const [chat, setChat] = useState()
+    const scrollEnd = useRef(null)
     const [limit, setLimit] = useState(0)
     const [saveMessages, setSaveMessage] = useState([])
 
     useEffect(() => {
         ResiveChts(props.id, limit)
-        scrollEnd.current.addEventListener('scroll', handleScroll)
+        console.log(scrollEnd)
+        scrollEnd.current.addEventListener('scroll', handleScroll);
         return () => {
-            scrollEnd.current.removeEventListener('scroll', handleScroll)
-        }
+            scrollEnd.current.removeEventListener('scroll', handleScroll);
+        };
     }, [props.id])
 
 
@@ -32,7 +36,8 @@ function ChatRoom(props) {
                 // ResiveChts(props.id, limit)
             }
         }
-        console.log('handleScroll : ', scrollEnd.current.scrollHeight)
+
+        // console.log('handleScroll : ', scrollEnd.current.scrollHeight)
     }
 
 
@@ -45,8 +50,8 @@ function ChatRoom(props) {
         })
     }
 
-    console.log("Saved :  ", saveMessages)
-    console.log('Chat : ', chat)
+    // console.log("Saved :  ", saveMessages)
+    // console.log('Chat : ', chat)
 
     const ReadMoreMessages = (data) => {
         setLimit(limit + 15)
@@ -66,6 +71,9 @@ function ChatRoom(props) {
             inputMsg.current.value = ''
         })
     }
+    const fullscreenchat = () => {
+
+    }
 
     return (
         <div className='chatroom'>
@@ -80,13 +88,13 @@ function ChatRoom(props) {
                         </div>
                     </div>
 
-                    <div className="threeline " onclick={fullscreenchat}> <HiBars3 /></div>
+                    <div className="threeline " onClick={fullscreenchat}> <HiBars3 /></div>
                 </div>
             </div>
 
             <div className="mainchatBox">
                 <div className="mainchatBoxWrapper">
-                    
+
                     {
                         chat ?
                             <div className="mainchat" >
@@ -97,9 +105,9 @@ function ChatRoom(props) {
                                     <div className="textlinelift"></div>
                                 </div> */}
 
-                                <button className='readmoremessages' onclick={ReadMoreMessages}>read more</button>
+                                <button className='readmoremessages' onClick={ReadMoreMessages}>read more</button>
 
-                                <div className="chattss" ref={scrollEnd}>
+                                <div ref={scrollEnd} className="chattss" >
                                     {
                                         chat?.map((msg, index) => (
                                             <div key={index}>
@@ -135,7 +143,7 @@ function ChatRoom(props) {
 
                         <div className="sendtext">
                             <textarea className='textareamesseg' name="text" placeholder='Type a message ...' ref={inputMsg}></textarea>
-                            <button className='sendmessegbtn' onclick={SendMessage}>
+                            <button className='sendmessegbtn' onClick={SendMessage}>
                                 Send
                                 <RiSendPlaneFill />
                             </button>

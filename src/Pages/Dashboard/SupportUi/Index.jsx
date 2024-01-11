@@ -5,10 +5,12 @@ import { RiCheckDoubleFill, RiCheckFill, RiSendPlaneFill } from "react-icons/ri"
 import { socket } from '../../../Socket';
 import Conversation from './Conversation/Conversation';
 import Chatroom from './ChatRoom/ChatRoom';
+import AlrtConnetion from '../../../layout/AlrtConnetion/AlrtConnetion';
 
 function Index() {
     const [listChats, setListChats] = useState()
     const [idChat, setIdChat] = useState({ status: false, userId: null })
+    const [connection, setConnection] = useState(false)
 
     const searchUser = () => {
         console.log('searchUser')
@@ -19,11 +21,13 @@ function Index() {
         GetResiveAllChats()
 
         socket.on('connect', () => {
+            setConnection(true)
             console.log('connected')
             GetResiveAllChats()
         })
 
         socket.on('disconnect', () => {
+            setConnection(false)
             console.table('Disconnected')
         })
     })
@@ -34,13 +38,15 @@ function Index() {
 
     console.log('list : ' + JSON.stringify(listChats))
 
-    const showChat = () => {
+    const showChat = (id) => {
         console.log('show chat : ' + id)
         setIdChat({ status: true, userId: id })
     }
 
     return (
         <div className='supportUi'>
+            <AlrtConnetion status={connection}/>
+
             {listChats === null || listChats === undefined ?
                 <div className='supportUi'>
                     {console.log('Not Load')}
