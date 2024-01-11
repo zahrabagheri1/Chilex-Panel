@@ -137,7 +137,7 @@
             width: 100%;
             background-color: #1a1d1fb4;
 
-            .headerchatwall {
+            .mainchatBoxWrapper {
                 width: 90%;
                 margin: auto;
                 display: flex;
@@ -167,7 +167,7 @@
                 }
 
 
-                .threeline{
+                .threeline {
                     font-size: 22px;
                     cursor: pointer;
                 }
@@ -205,7 +205,7 @@
                         border: 2px outset $lighterGray;
                     }
 
-                    .readmoremessages{
+                    .readmoremessages {
                         width: 100%;
                         background: #202325;
                         border: none;
@@ -222,7 +222,7 @@
                             color: $white;
                             outline: none;
                             background: #25282b;
-                            
+
                         }
 
                     }
@@ -247,8 +247,7 @@
                             text-align: center;
                         }
 
-                        .textlinelift {
-                        }
+                        .textlinelift {}
                     }
 
                     .chattss {
