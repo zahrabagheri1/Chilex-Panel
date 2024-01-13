@@ -13,14 +13,26 @@ const propss = {
 }
 
 function Message(props) {
-  return (
-    <div className={props.own !== -1 ? 'ownMessage' : 'message'}>
 
-        <div className="messageTextBox">
-          <div className="messageText">{props.message}</div>
-          <div className="messageTime">{moment(props.time).format('YYYY/MM/DD - HH:MM')}</div>
+
+  
+  return (
+    <div className={props.own !== -1 ? 'message' :  'ownMessage'}>
+      <div className="messageTextBox">
+        <div className="messageText">{props.message}</div>
+        <div className="messageTime">
+          <div className="messageTimeDate">{moment(props.time).format('YYYY/MM/DD - HH:MM')}</div>
+          {/* <div className="messageRead">
+            {read ?
+              <RiCheckDoubleFill />
+              :
+              <RiCheckFill />
+            }
+          </div> */}
         </div>
       </div>
+    </div>
+
   );
 }
 

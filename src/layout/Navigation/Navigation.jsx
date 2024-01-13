@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Navigation.scss';
-import imgUseer from '../../Assets/image/photoUser-removebg-preview.png';
+import adminImg from '../../Assets/image/admin.jpg';
 import { Link } from 'react-router-dom';
 
 function Navigation() {
@@ -29,8 +29,8 @@ function Navigation() {
       <div className="timeZone">{ date + wish + time}</div>
 
       <div className="usernameBox">
-        <Link to={'admin'} className='username'>User Name</Link>
-        <img className='imgUser' src={imgUseer} />
+        <Link to={'admin'} className='username'> Admin1, Wellcome</Link>
+        <img className='imgUser' src={adminImg} />
       </div>
 
     </div>

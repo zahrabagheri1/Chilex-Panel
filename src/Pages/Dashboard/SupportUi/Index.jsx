@@ -36,7 +36,7 @@ function Index() {
         socket.emit('adminMessage', 'get-all-support-chats', (response) => { setListChats(response) })
     }
 
-    console.log('list : ' + JSON.stringify(listChats))
+    // console.log('list : ' + JSON.stringify(listChats))
 
     const showChat = (id) => {
         console.log('show chat : ' + id)

@@ -1,4 +1,3 @@
-
 @import '../../Assets/scss/mixin';
 @import '../../Assets/scss/variable';
 
@@ -8,11 +7,21 @@
     padding: 10px;
     cursor: pointer;
     margin-top: 10px;
+    flex-direction: row;
+    justify-content: start;
+    gap: 15px;
+
 
     &:hover {
         // background-color: #615545;
         background-color: $lighterGray;
-        border-radius: 20px;
+        border-radius: 10px;
+    }
+
+    &.active {
+        background-color: #2a2f31;
+        border-radius: 10px;
+
     }
 
     .conversationImg {
@@ -20,12 +29,31 @@
         height: 36px;
         border-radius: 50%;
         object-fit: cover;
-        margin-right: 20px;
     }
 
     .conversationName {
         font-weight: 700;
-        font-size: 16px;
+        font-size: 14px;
         color: $fontColor;
+    }
+
+
+    .data {
+        display: block;
+
+        .username {
+            font-size: 16px;
+        }
+
+        .lastmsg {
+            font-size: 12px;
+            width: 110px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: #c7c7c7b6;
+        }
+
+        // height: calc(100vh - 76px);
     }
 }

@@ -58,8 +58,8 @@ function App() {
                 <Route path='banuser/:id' element={<BanUserDetail />} />
                 <Route path='shopping-history' element={<SHList />} />
                 <Route path='shopping-history/:id' element={<SHDetail />} />
-                {/* <Route path='support' element={<Support />} /> */}
-                <Route path='support' element={<Supportt />} />
+                <Route path='support' element={<Support />} />
+                {/* <Route path='support' element={<Supportt />} /> */}
                 <Route path='games' element={<GameList />} />
                 <Route path='games/played/:id' element={<Played />} />
                 <Route path='games/settings/:id' element={<Settings />} />

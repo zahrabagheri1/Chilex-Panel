@@ -18,9 +18,12 @@ function ChatRoom(props) {
         ResiveChts(props.id, limit)
         console.log(scrollEnd)
         scrollEnd.current.addEventListener('scroll', handleScroll);
+
+
         return () => {
             scrollEnd.current.removeEventListener('scroll', handleScroll);
-        };
+        }
+
     }, [props.id])
 
 
