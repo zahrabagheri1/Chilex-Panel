@@ -136,7 +136,7 @@ function Index() {
                             setShowAlert({ status: false, msg: 'Done' })
                         }, 3000)
                         getData()
-       
+
                         setEditAble(false)
                     }
                 )
@@ -145,7 +145,7 @@ function Index() {
                         console.log(err)
                         setShowAlert({ status: true, msg: err.response.data.message, success: false })
                         setTimeout(() => {
-                            setShowAlert({ status: false, msg: err.response.data.message ,  success: false })
+                            setShowAlert({ status: false, msg: err.response.data.message, success: false })
                         }, 3000)
                     }
                 )
@@ -177,9 +177,9 @@ function Index() {
             .catch(
                 err => {
                     console.log(err)
-                    setShowAlert({ status: true, msg:  err.response.data.message, success: false })
+                    setShowAlert({ status: true, msg: err.response.data.message, success: false })
                     setTimeout(() => {
-                        setShowAlert({ status: false, msg: err.response.data.message ,  success: false })
+                        setShowAlert({ status: false, msg: err.response.data.message, success: false })
                     }, 3000)
                 }
             )
@@ -242,15 +242,13 @@ function Index() {
             })
     }
 
-
     const editData = () => {
         setEditAble(!editAble)
     }
     const editDataCancel = () => {
         setEditAble(!editAble)
     }
-
-
+    console.log(detail)
     const hundelBack = () => {
         navigate(-1)
     }
@@ -323,7 +321,7 @@ function Index() {
                                                             :
                                                             <div className="col-xl-3 col-lg-3 col-md-4 col-ms-6 col-xs-6">
                                                                 <Switch
-                                                                    id={index}
+                                                                    id={id}
                                                                     title={key}
                                                                     defaultChecked={value === 0 ? true : false}
                                                                     disabled={editAble === false ? true : false}
@@ -353,7 +351,7 @@ function Index() {
                                             :
 
                                             <Switch
-                                                id={index}
+                                                id={id}
                                                 title={key}
                                                 defaultChecked={value === 0 ? true : false}
                                                 disabled={editAble === false ? true : false}
@@ -365,13 +363,13 @@ function Index() {
                                             <Input inputclassname={editAble === false ? 'active' : ''} name={key} title={key} value={value} type={key === 'amount' ? 'number' : 'text'} readOnly={editAble === true ? false : true} changeInputValue={updateInputData} />
                                             :
                                             key === 'expireTime' ?
-                                            <DatePikerFarsi disable={'disabled'} value={value} readOnly={editAble ? false : true} title={key} handlerChangeDate={updateDataPiker} />
+                                                <DatePikerFarsi disable={'disabled'} value={value} readOnly={editAble ? false : true} title={key} handlerChangeDate={updateDataPiker} />
 
                                                 :
                                                 items.map(item => (
                                                     item.name === key ?
 
-                                                    // key === 'category' || value === 'game'?
+                                                        // key === 'category' || value === 'game'?
 
                                                         < SelectOption readOnly={editAble === true ? false : true} disable={''} name={key} value={value} defaultValue={value} type={'name'} changeOptinValue={updateOptionData}
                                                             data={item.data}

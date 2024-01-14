@@ -40,13 +40,14 @@ function Index() {
         { id: 2, name: 'Rial' },
     ]
 
-    const priceStatus = [
-        { id: 0, name: 'Active', status: true },
-        { id: 1, name: 'Deactive', status: false },
-    ]
+    const activityIntervalTime = { day: null, hour: null, minute: null }
 
     const inputChange = (e) => {
         setTimeList((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+    }
+
+    const sendActivityInteralTime = (timeList) => {
+        setUpdateData((prev) => ({ ...prev, ['activityIntervalTime']: timeList }))
     }
 
     const changeValueInput = (e) => {
@@ -57,6 +58,7 @@ function Index() {
     const editData = () => {
         setEditAble(!editAble)
     }
+
     const editDataCancel = () => {
         setEditAble(!editAble)
     }
@@ -99,9 +101,9 @@ function Index() {
                     err => {
                         console.log(err)
 
-                        setShowAlert({ status: true, msg: err.message, success: false })
+                        setShowAlert({ status: true, msg: err.response.data.message, success: false })
                         setTimeout(() => {
-                            setShowAlert({ status: false, msg: err.message })
+                            setShowAlert({ status: false, msg: err.response.data.message })
 
                         }, 3000)
                     }
@@ -112,9 +114,9 @@ function Index() {
 
 
     const switchHandler = (boolean, id) => {
-        console.log('dgdfgdfbdfb', boolean, id)
+        console.log('first', boolean, id)
         axios.patch(`/admin-stuff/change-bundle-status/${id}`, {
-            status: boolean ? 0 : 1,
+            status: boolean === true ? 0 : 1,
         },
             {
                 headers: {
@@ -124,13 +126,14 @@ function Index() {
             })
             .then(
                 res => {
-                    console.log(res)
+                    console.log(res.data)
                     setShowAlert({ status: true, msg: res.data.msg, success: true })
                     setTimeout(() => {
                         setShowAlert({ status: false, msg: res.data.msg })
                     }, 3000)
                     getData()
                     setEditAble(false)
+                    console.log('second', boolean, id)
                 }
             )
             .catch(
@@ -146,7 +149,6 @@ function Index() {
     }
 
     const switchHandlerPrice = (boolean, id) => {
-
         axios.patch(`/admin-stuff/change-price-status/${id}`, {
             status: boolean === true ? 0 : 1,
         },
@@ -158,12 +160,12 @@ function Index() {
             })
             .then(
                 res => {
-                    console.log(res)
+                    console.log(res.data)
                     setShowAlert({ status: true, msg: res.data.msg, success: true })
                     setTimeout(() => {
                         setShowAlert({ status: false, msg: res.data.msg })
                     }, 3000)
-                    // getData()
+                    getData()
                     setEditAble(false)
                 }
             )
@@ -178,10 +180,6 @@ function Index() {
                 }
             )
         setEditAble(false)
-    };
-    const sendActivityInteralTime = (timeList) => {
-        setUpdateData((prev) => ({ ...prev, ['activityIntervalTime']: timeList }))
-
     }
 
     const hundelBack = () => {
@@ -212,7 +210,6 @@ function Index() {
     }
 
     console.log(detail)
-
     return (
         <div className='bundleDetail'>
             {showAlert.status === true ?
@@ -244,12 +241,12 @@ function Index() {
 
                 </div>
             </div>
-            <div className='boxOfDetail row'>
-                {detail === null || detail === undefined ? '' : (
-                    Object.entries(detail).map(([key, value], index) => (
+            {detail === null || detail === undefined ? '' :
+                <div className='boxOfDetail row'>
+                    {Object.entries(detail).map(([key, value], index) => (
                         key === 'activityIntervalTime' || key === 'prices' ?
                             null :
-                            <div key={index} className=" itembundle col-xl-3 col-lg-3 col-md-4 col-ms-6 col-xs-6">
+                            <div key={index} className=" itembundle col-xl-3 col-lg-2 col-md-2 col-ms-6 col-xs-6">
                                 {
                                     key === 'type' || key === 'status' ?
                                         key === 'type' ?
@@ -264,7 +261,7 @@ function Index() {
                                             :
 
                                             <Switch
-                                                id={index}
+                                                id={id}
                                                 title={key}
                                                 defaultChecked={value === 0 ? true : false}
                                                 disabled={editAble === false ? true : false}
@@ -273,7 +270,7 @@ function Index() {
 
                                         :
                                         key === 'id' ?
-                                            <div key={index} className="titleB ">
+                                            <div className="titleB ">
                                                 <div className='header-title'>{key}</div>
                                                 <div className='data-title'>{value}</div>
                                             </div>
@@ -282,18 +279,12 @@ function Index() {
                                             key === 'expireTime' ?
                                                 <DatePikerFarsi disable={'disabled'} value={value} readOnly={editAble ? false : true} title={key} handlerChangeDate={updateDataPiker} />
                                                 :
-
-
                                                 <Input inputclassname={editAble === false ? 'disabled' : ''} name={key} title={key} value={value} type={key === 'amount' ? 'number' : 'text'} readOnly={editAble ? false : true} changeInputValue={changeValueInput} />
 
                                 }
                             </div>
-                    ))
-                )}
-
-
-                {detail === null || detail === undefined ? '' : (
-                    Object.entries(detail).map(([key, value], index) => (
+                    ))}
+                    {Object.entries(detail).map(([key, value], index) => (
                         Array.isArray(value) ?
                             <div key={index} className="priceBox col-xl-12 col-lg-12 col-md-12 col-ms-12 col-xs-12">
                                 <div className='titlePrice'>{key}</div>
@@ -301,7 +292,7 @@ function Index() {
                                     {value.map((item, i) => (
                                         Object.entries(item).map(([key, value], index) => (
                                             key === 'priceType' || key === 'priceStatus' ?
-                                                <div className="col-xl-3 col-lg-3 col-md-4 col-ms-6 col-xs-6" key={index}>
+                                                <div className="col-xl-3 col-lg-2 col-md-2 col-ms-6 col-xs-6" key={index}>
                                                     {
                                                         key === 'priceType' ?
                                                             priceType.map((price, index) => (
@@ -314,9 +305,9 @@ function Index() {
                                                                     ""
                                                             ))
                                                             :
-                                                            <div key={index} className="col-xl-3 col-lg-3 col-md-4 col-ms-6 col-xs-6">
+                                                            <div key={index} className="col-xl-3 col-lg-2 col-md-2 col-ms-6 col-xs-6">
                                                                 <Switch
-                                                                    id={index}
+                                                                    id={id}
                                                                     title={key}
                                                                     defaultChecked={value === 0 ? true : false}
                                                                     disabled={editAble === false ? true : false}
@@ -327,7 +318,7 @@ function Index() {
                                                 </div>
                                                 :
 
-                                                <div key={index} className="titleB col-xl-3 col-lg-3 col-md-4 col-ms-6 col-xs-6">
+                                                <div key={index} className="titleB col-xl-3 col-lg-2 col-md-2 col-ms-6 col-xs-6">
                                                     <div className='header-title' >{key}</div>
                                                     <div className='data-title'>{value}</div>
                                                 </div>
@@ -341,16 +332,22 @@ function Index() {
 
 
                             key === 'activityIntervalTime' ?
-                                <div className='timeBox col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+                                <div key={index} className='timeBox col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12'>
                                     <div className="titleTime">{key}</div>
                                     <div className="timeBody row">
-                                        {
-                                            Object.entries(value).map(([key,value]) => (
-                                                console.log('key')
+                                        {value === undefined || value === null ?
+                                            Object.entries(activityIntervalTime).map(([keyTime, valueTime], index) => (
+                                                <div key={index} className="col-xl-4 col-lg-2 col-md-2 col-sm-3 col-xs-12">
+                                                    <Input inputclassname={editAble === false ? 'disabled' : ''} readOnly={editAble ? false : true} name={keyTime} value={'null'} type={'number'} title={keyTime} changeInputValue={sendActivityInteralTime} />
+                                                </div>
+                                            ))
+                                            :
+                                            Object.entries(value).map(([keyTime, valueTime], index) => (
 
-                                                // <div className="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                                //     <Input inputclassname={editAble === false ? 'disabled' : ''} readOnly={editAble ? false : true} name={keyTime} value={valueTime} type={'number'} title={'day'} changeInputValue={inputChange} />
-                                                // </div>
+                                                // console.log(value)
+                                                <div key={index} className="col-xl-4 col-lg-2 col-md-2 col-sm-3 col-xs-12">
+                                                    <Input inputclassname={editAble === false ? 'disabled' : ''} readOnly={editAble ? false : true} name={keyTime} value={valueTime} type={'number'} title={keyTime} changeInputValue={inputChange} />
+                                                </div>
                                             ))
                                         }
                                     </div>
@@ -358,10 +355,9 @@ function Index() {
 
                                 :
                                 null
-                    ))
-                )}
-
-            </div>
+                    ))}
+                </div>
+            }
         </div>
     );
 }
