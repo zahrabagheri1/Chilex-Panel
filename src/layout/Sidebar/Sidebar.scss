@@ -35,12 +35,15 @@
         flex-direction: column;
         gap: 10px;
 
-        .tab {
+
+        .tab,
+        .tabHaveChild {
             position: relative;
             display: flex;
             align-items: center;
             flex-direction: row;
-            gap: 16px;
+            justify-content: space-between;
+            // gap: 16px;
             cursor: pointer;
             padding: 10px;
             transition: all .3s ease;
@@ -53,18 +56,59 @@
                 text-decoration: none;
             }
 
+
+
+        }
+
+        .tab {
+
             &:hover,
             &.active {
                 padding: 10px 10px;
                 background-color: $lighterGray;
                 border-radius: 10px;
-                font-weight: 600;
+                font-weight: 700;
                 color: $fontColor;
 
                 .icon {
                     color: $fontColor;
                 }
             }
+        }
+
+        .tabIconText {
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            gap: 16px;
+
+            .icon {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: $font-fluid;
+                color: $fontColorlight;
+            }
+
+            .tabText {
+                font-size: $font-md;
+            }
+        }
+
+
+        .tabHaveChild {
+
+            &:hover,
+            &.active {
+                font-weight: 700;
+                color: $fontColor;
+
+                .icon {
+                    color: $fontColor;
+                }
+            }
+
+            .dropdownicon {}
 
             .icon {
                 display: flex;
@@ -78,7 +122,14 @@
                 font-size: $font-md;
             }
 
+            .dropdownicon {
+                &.active {
+                    transform: rotate(180deg);
+                }
+            }
+
         }
+
 
         .child {
             display: none;
@@ -118,7 +169,7 @@
                     background-color: $lighterGray;
                     width: calc(100% - 40px);
                     color: $fontColor;
-                    border-radius: 10px ;
+                    border-radius: 10px;
                 }
             }
         }

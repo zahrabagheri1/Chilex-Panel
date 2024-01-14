@@ -306,7 +306,7 @@ function Index() {
                                     {value.map((item, i) => (
                                         Object.entries(item).map(([key, value], index) => (
                                             key === 'priceType' || key === 'priceStatus' ?
-                                                <div className="col-xl-3 col-lg-3 col-md-4 col-ms-6 col-xs-6" key={index}>
+                                                <div className="col-xl-3 col-lg-2 col-md-2 col-ms-6 col-xs-6" key={index}>
                                                     {
                                                         key === 'priceType' ?
                                                             priceTypes.map(price => (
@@ -319,7 +319,7 @@ function Index() {
                                                                     ""
                                                             ))
                                                             :
-                                                            <div className="col-xl-3 col-lg-3 col-md-4 col-ms-6 col-xs-6">
+                                                            <div className="col-xl-3 col-lg-2 col-md-2 col-ms-6 col-xs-6">
                                                                 <Switch
                                                                     id={id}
                                                                     title={key}
@@ -331,7 +331,7 @@ function Index() {
                                                     }
                                                 </div>
                                                 :
-                                                <div className="titleB col-xl-3 col-lg-3 col-md-4 col-ms-6 col-xs-6">
+                                                <div className="titleB col-xl-3 col-lg-2 col-md-2 col-ms-6 col-xs-6">
                                                     <div className='header-title'>{key}</div>
                                                     <div className='data-title'>{value}</div>
                                                 </div>
@@ -340,7 +340,7 @@ function Index() {
                                 </div>
                             </div>
                             :
-                            <div className=" itembundle col-xl-3 col-lg-2 col-md-4 col-ms-6 col-xs-6">
+                            <div key={index} className=" itembundle col-xl-3 col-lg-2 col-md-4 col-ms-6 col-xs-6">
                                 {
                                     key === 'id' || key === 'status' || key === 'gameId' ?
                                         key === 'id' || key === 'gameId' ?
