@@ -43,12 +43,12 @@
             align-items: center;
             flex-direction: row;
             justify-content: space-between;
-            // gap: 16px;
-            cursor: pointer;
-            padding: 10px;
             transition: all .3s ease;
             color: $fontColorlight;
             font-weight: 700;
+            // font-size: ;
+            cursor: pointer;
+            padding: 10px;
 
             &:link,
             &:visited,
@@ -108,7 +108,9 @@
                 }
             }
 
-            .dropdownicon {}
+            .dropdownicon {
+
+            }
 
             .icon {
                 display: flex;
@@ -139,8 +141,7 @@
         .activechild {
             display: flex;
             position: relative;
-            width: calc(100% - 20px);
-            left: 40px;
+            width: calc(100%);
             color: $fontColorlight;
             flex-direction: column;
             gap: 10px;
@@ -152,22 +153,18 @@
                 flex-direction: row;
                 gap: 5px;
                 cursor: pointer;
-                padding: 10px 10px;
+                padding: 10px;
                 font-weight: 550;
                 font-size: $font-md;
 
                 &:link,
                 &:visited,
-                &:hover {
-                    text-decoration: none;
-                    color: $fontColorlight;
-                }
-
                 &:hover,
                 &:focus,
-                &.active {
+                &.active {   
+                     text-decoration: none;
+                    color: $fontColorlight;
                     background-color: $lighterGray;
-                    width: calc(100% - 40px);
                     color: $fontColor;
                     border-radius: 10px;
                 }
