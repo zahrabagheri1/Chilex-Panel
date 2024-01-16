@@ -2,56 +2,81 @@
 @import '../../../Assets/scss/variable';
 
 .support {
-    width: 95%;
+    // width: 95%;
+    // margin: auto;
+    width: 100%;
     margin: auto;
+    height: calc(90vh - 10px);
+    // background-color: rgb(84, 84, 84);
+    display: flex;
+    flex-direction: row;
 
     .chatMenu {
+        width: 200px;
+        position: relative;
+        background-color: #1a1d1fb4;
+        overflow: hidden;
+
         .chatMenuWrapper {
-            padding: 20px 0;
-            width: 100%;
-            // height: calc(100% - 40px);
+            width: 90%;
+            margin: auto;
+            display: flex;
             position: relative;
+            flex-direction: column;
+            gap: 15px;
+            padding-top: 15px;
 
             .chatMenuSearchBox {
                 width: 100%;
-                padding: 10px;
                 border: none;
                 color: #ffffff;
-                // font-weight: 600;
                 font-size: 14px;
-                // border-bottom: 1px solid gray;
-                background-color: #444243;
-                border-radius: 10px;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                background-color: #202325;
+                height: 30px;
+                padding: 10px;
+                border-radius: 5px;
 
                 &:hover,
                 &:focus,
+                &:link,
+                &:visited,
                 &:active {
                     border: none;
+                    color: $fontColor;
                     background-color: none;
                     outline: none;
                 }
             }
 
+            input[type='search']::-webkit-search-cancel-button {
+                -webkit-appearance: none;
+            }
+
             .chatMenuBox {
+                display: flex;
+                flex-direction: column;
                 overflow-y: scroll;
                 position: relative;
-                // height: calc(100vh - 76px);
 
                 &::-webkit-scrollbar {
-                    width: 5px;
+                    width: 4px;
                     display: none;
                 }
 
                 &::-webkit-scrollbar-track {
-                    background: #ebebeb;
-                    border-radius: 50px;
+                    background: $darkGray;
+                    border-radius: 20px;
                     display: none;
 
                 }
 
                 &::-webkit-scrollbar-thumb {
-                    background: #00000086;
-                    border-radius: 50px;
+                    background-color: $lighterGray;
+                    border-radius: 20px;
+                    border: 2px outset $lighterGray;
                     display: none;
 
                 }
@@ -66,22 +91,82 @@
     }
 
     .chatBox {
+        // background-color: rgba(186, 219, 247, 0.515);
+        width: calc(100% - 200px);
+        display: flex;
+        flex-direction: column;
+
         .chatBoxWrapper {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             width: 100%;
+            height: 100vh;
 
             .chatBoxMain {
 
+                .chatboxheader {
+                    padding: 15px 0;
+                    width: 100%;
+                    background-color: #1a1d1fb4;
+
+                    .chatHeader {
+                        width: 90%;
+                        margin: auto;
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        gap: 15px;
+
+                        .chatHeaderImg {
+                            width: 36px;
+                            height: 36px;
+                            border-radius: 50%;
+                        }
+
+                        .chatHeaderName {
+                            display: flex;
+                            flex-direction: column;
+
+                            gap: 6px;
+
+                            .chatHeaderusername {
+                                display: flex;
+                                flex-direction: column;
+                                font-size: 14px;
+                                color: rgb(255, 255, 255);
+
+                            }
+
+                            .chatHeaderactivity {
+                                display: flex;
+                                flex-direction: column;
+                                font-size: 12px;
+                                color: rgba(232, 232, 232, 0.741);
+                            }
+                        }
+
+
+                        .threeline {
+                            font-size: 22px;
+                            cursor: pointer;
+                        }
+                    }
+
+                }
+
+
+
                 .chatboxbody {
-                    height: calc(100vh - 220px);
+                    height: calc(100vh - 250px);
                     overflow-y: scroll;
                     display: flex;
                     flex-direction: column;
-                    padding-right: 40px;
+                    padding-right: 20px;
                     gap: 10px;
-
+                    width: calc(100% - 40px);
+                    margin: 10px 20px;
+                    z-index: 20;
                     &::-webkit-scrollbar {
                         width: 5px;
                     }
@@ -102,6 +187,44 @@
                         background: #555;
                     }
 
+                    .readmoremessages {
+                        width: 100%;
+                        background: #111315;
+                        border: none;
+                        color: $white;
+                        cursor: pointer;
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+
+                        &:hover,
+                        &:focus,
+                        &:link,
+                        &:visited,
+                        &:active {
+                            color: $white;
+                            outline: none;
+                            background: none;
+
+                        }
+
+                        .textlineright,
+                        .textlinelift {
+                            width: 100%;
+                            background: #868686;
+                            height: 2px;
+
+                        }
+
+                        .readmore {
+                            font-size: 16px;
+                            width: 50%;
+                            text-align: center;
+                        }
+
+                        .textlinelift {}
+
+                    }
 
                     .chatempty {
                         width: 100%;
@@ -111,62 +234,88 @@
                         justify-content: center;
                         align-items: center;
                         gap: 10px;
+                        margin: auto;
+                        height: -webkit-fill-available;
+                        height: calc(90vh - 158px);
 
                         .noMessage {
-                            color: #646263;
-                            font-size: 18px;
+                            font-size: 26px;
+                            font-weight: 800;
+                            color: rgb(169, 169, 169);
                         }
 
                         .sendMessage {
-                            color: #444243;
-                            font-size: 18px;
+                            font-size: 22px;
+                            font-weight: 800;
+                            color: rgba(169, 169, 169, 0.398);
                         }
 
                     }
                 }
             }
 
-            .chatBoxTextarea {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                width: 100%;
-                gap: 5px;
-                background-color: $lightGray;
-                border-radius:  5px 50px 50px 5px;
-                .chatMessageInput {
-                    width: 86%;
-                    height: 40px;
-                    padding: 10px;
-                    border: none;
-                    border-radius: 5px;
-                    color: $fontColor;
-                    background-color: $lightGray;
-                    resize: none; 
-                    &:hover,
-                    &:focus,
-                    &:active {
-                        background-color: none;
-                        outline: none;
+
+            .sendtextBox {
+                width: calc(100% - 12px);
+                padding: 6px;
+                background-color: #171A1B;
+                .chatBoxTextarea {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    gap: 5px;
+                    width: calc(100% - 32px);
+                    margin: 10px;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    background-color: #202325;
+                    border-radius: 50px;
+                    padding: 6px;
+                    z-index: 21;
+                    .chatMessageInput {
+                        border-radius: 5px;
+                        color: $fontColor;
+                        resize: none;
+                        width: 100%;
+                        height: 20px;
+                        border: none;
+                        background: none;
+                        padding: 6px;
+                     
+
+                        &:hover,
+                        &:focus,
+                        &:link,
+                        &:visited,
+                        &:active {
+                            color: $fontColor;
+                            outline: none;
+                        }
+                    }
+
+                    .chatSubmitButton {
+                        width: 60px;
+                        height: 60px;
+                        border-radius: 50% !important;
+                        border: none;
+                        border-radius: 5px;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: center;
+                        align-items: center;
+                        gap: 6px;
+                        height: 20px;
+                        background: none;
+                        cursor: pointer;
+                        padding: 0 12px;
+                        border: none;
+                        border-radius: 0 50px 50px 0;
+                        color: $actionBlue;
+
                     }
                 }
-
-                .chatSubmitButton {
-                    width: 60px;
-                    height: 60px;
-                    border-radius: 50% !important;
-                    border: none;
-                    border-radius: 5px;
-                }
             }
-        }
-    }
-
-    .chatDetials{
-        
-        .chatDetialsWrapper{
-            padding-left: 20px;
-            width: 100%;
         }
     }
 }

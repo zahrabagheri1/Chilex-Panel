@@ -1,63 +1,77 @@
 @import '../../Assets/scss/mixin';
 @import '../../Assets/scss/variable';
 
-.message,
 .ownMessage {
+    width: 100%;
     display: flex;
-    flex-direction: row;
-    position: relative;
-
-    .messageImg {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        object-fit: cover;
-        margin-right: 20px;
-    }
+    justify-content: end;
 
     .messageTextBox {
-        max-width: 300px;
+        max-width: 350px;
+        background: #3c3e40b4;
+        border-radius: 12px 0 12px 12px;
+        padding: 12px;
+        right: 0;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
 
+        // justify-content: end;
         .messageText {
-            padding: 10px;
-            text-align: start;
-            border-radius: 20px;
-            color: $fontColor;
-            width: 100%;
+            font-size: 16px;
+
         }
 
         .messageTime {
-            font-size: 12px;
-            margin-top: 2px;
             display: flex;
-            justify-content: flex-end;
-            color: $fontColorlight;
+            flex-direction: row;
+            // justify-content: start;
+            justify-content: end;
+            align-items: center;
+            gap: 6px;
+
+            .messageTimeDate {
+                color: #868686;
+                font-size: 12px;
+            }
+
+            .messageRead {
+                display: none;
+                color: #0039ff;
+                font-size: 18px;
+            }
         }
-
     }
-}
-
-
-.ownMessage {
-    justify-content: flex-end;
-    .messageImg {
-        display: none;
-    }
-
-    .messageText {
-        background-color: $lightGray;
-    }
-
-
 }
 
 .message {
+    width: 100%;
+    left: 0;
+    display: flex;
+    justify-content: start;
+
     .messageTextBox {
-        max-width: 300px;
+        max-width: 350px;
+        background: #1a1d1fb4;
+        border-radius: 0 12px 12px 12px;
+        padding: 12px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
 
         .messageText {
-            background-color: $lighterGray;
+            font-size: 16px;
+
         }
 
+        .messageTimeDate {
+            color: #868686;
+            display: flex;
+            justify-content: end;
+            font-size: 12px;
+
+        }
     }
 }

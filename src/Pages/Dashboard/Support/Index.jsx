@@ -1,89 +1,81 @@
 import React, { useState } from 'react';
 import './Support.scss';
 import Conversation from '../../../Components/Conversation/Conversation';
-import Messege from '../../../Components/Messege/Messege';
-import ChatHeader from '../../../Components/ChatHeader/ChatHeader';
-import ButtonActionBlue from '../../../Components/ButtonActionBlue/ButtonActionBlue';
-import DetailAccount from '../../../Components/DetailAccount/DetailAccount';
+import { useEffect } from 'react';
+import { socket, getCookie } from '../../../Socket';
+import { useCookies } from 'react-cookie';
+import Chatroom from './Layers/Chatroom';
 
 function Index() {
+  const [listChats, setListChats] = useState()
+  const [idChat, setIdChat] = useState({ status: false, userId: null, image: null, username: null })
+  // const [isConnected, setIsConnected] = useState(socket.connected);
+  // const [emptyChat, setEmptyChat] = useState(false)
+  // const [newMessage, setNewMessage] = useState('')
+  // const [dataAccount, setDataAccount] = useState({
+  //   pv: null,
+  //   img: null,
+  //   name: null,
+  //   status: null,
+  //   lastseen: null,
+  //   chat: null
+  // })
+  // const [cookies, setCookie] = useCookies(["accessToken"]);
+  // const gotopvuser = (key, value) => {
+  //   setDataAccount(prev => ({ ...prev, [key]: value }))
+  // }
 
-  const [emptyChat, setEmptyChat] = useState(false)
-  const [newMessage, setNewMessage] = useState('')
-  const [dataAccount, setDataAccount] = useState({
-    pv: null,
-    img: null,
-    name: null,
-    status: null,
-    lastseen: null,
-    chat: null
-  })
-
-  const gotopvuser = (key, value) => {
-    setDataAccount(prev => ({ ...prev, [key]: value }))
+  const searchUser = (e) => {
+    console.log('searchUser')
   }
 
-  const sendNewMessage = (e) => {
-    setNewMessage(e.target.value)
+  useEffect(() => {
+    socket.connect()
+    GetResiveAllChats()
+
+    socket.on("connect", () => {
+      console.table('Connected')
+      GetResiveAllChats()
+    })
+    socket.on("disconnect", () => {
+      console.table('Disconnected')
+    })
+  }, [])
+
+  function GetResiveAllChats() {
+    socket.emit('adminMessage', 'get-all-support-chats', (response) => { setListChats(response) });
+  }
+  // console.log('list : ' + JSON.stringify(listChats))
+  const showChat = (id, img, username) => {
+    console.log('show chat : ' + id)
+    setIdChat({ status: true, userId: id, image: img, username: username })
   }
 
-  const submitHandler = (e) => {
-
-  }
-  const searchUser = () => {
-
-  }
-
-  return (
-    <div className='support row'>
-      <div className="chatMenu col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-3">
-        <div className="chatMenuWrapper">
-          <input type="search" className='chatMenuSearchBox' placeholder='Search User' onChange={searchUser} />
-          <div className="chatMenuBox">
-            <Conversation />
-            <Conversation />
-            <Conversation />
-          </div>
-        </div>
-      </div>
-      <div className="chatBox col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
-        <div className="chatBoxWrapper">
-          <div className="chatBoxMain">
-            <div className="chatboxheader">
-              <ChatHeader />
-            </div>
-            <div className="chatboxbody">
-              <div className="chatmessage">
-                <Messege name='zizi' img='user' gender='female' own={true} time='1 hour ago' />
-                <Messege name='zizi' img='user' gender='female' own={false} time='1 hour ago' />
-                <Messege name='zizi' img='user' gender='female' own={true} time='1 hour ago' />
-                <Messege name='zizi' img='user' gender='female' own={false} time='1 hour ago' />
-                <Messege name='zizi' img='user' gender='female' own={true} time='1 hour ago' />
-                <Messege name='zizi' img='user' gender='female' own={false} time='1 hour ago' />
-                <Messege name='zizi' img='user' gender='female' own={true} time='1 hour ago' />
-                <Messege name='zizi' img='user' gender='female' own={false} time='1 hour ago' />
-                <Messege name='zizi' img='user' gender='female' own={true} time='1 hour ago' />
-                <Messege name='zizi' img='user' gender='female' own={false} time='1 hour ago' />
-                <Messege name='zizi' img='user' gender='female' own={true} time='1 hour ago' />
-                <Messege name='zizi' img='user' gender='female' own={false} time='1 hour ago' />
-                <Messege name='zizi' img='user' gender='female' own={true} time='1 hour ago' />
-                <Messege name='zizi' img='user' gender='female' own={false} time='1 hour ago' />
-              </div>
+  if (listChats === null || listChats === undefined) {
+    console.log('Not Load')
+  } else {
+    return (
+      <div className='support'>
+        <div className="chatMenu">
+          <div className="chatMenuWrapper">
+            <input type="search" className='chatMenuSearchBox' placeholder='Search User' onChange={searchUser} />
+            <div className="chatMenuBox">
+              {listChats?.map((chat, index) => (
+                <div key={index}>
+                  <Conversation data={chat} click={showChat} />
+                </div>
+              ))}
             </div>
           </div>
-          <div className="chatBoxTextarea">
-            <textarea placeholder='write somthing...' value={newMessage} className="chatMessageInput" onChange={(e) => sendNewMessage(e)}></textarea>
-            <ButtonActionBlue title={'Send'} className={'chatSubmitButton'} handler={submitHandler} />
-          </div>
         </div>
+        {
+          idChat.status ?
+            <Chatroom id={idChat.userId} data={idChat} /> : ''
+        }
       </div>
-      <div className="chatDetials col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-3">
-        <div className="chatDetialsWrapper">
-          <DetailAccount />
-        </div>
-      </div>
-    </div>
-  );
+    );
+  }
 }
+
 
 export default Index;
