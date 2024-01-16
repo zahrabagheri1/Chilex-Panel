@@ -34,7 +34,7 @@ function Tab(props) {
         setParentId(item.id)
         setChild(!child)
         setClick(!click)
-        // navigate(item.link)
+        navigate(item.link)
 
         // if (e.target.id == item.id && item.children === null) {
         //     if (e.target.id === 7) {

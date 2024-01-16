@@ -335,42 +335,6 @@ function Index() {
                                 </div>
                             </div>
                             :
-
-
-                            key === 'activityIntervalTime' ?
-                                <div className='timeBox col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-                                    <div className="titleTime">{key}</div>
-                                    <div className="timeBody row">
-                                        {
-                                            Object.entries(value).map(([key,value]) => (
-                                                console.log('key')
-
-                                                // <div className="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                                //     <Input inputclassname={editAble === false ? 'disabled' : ''} readOnly={editAble ? false : true} name={keyTime} value={valueTime} type={'number'} title={'day'} changeInputValue={inputChange} />
-                                                // </div>
-                                            ))
-                                        }
-                                    </div>
-                                </div>
-
-                                :
-                                null
-                    ))
-                )}
-
-                                                <div key={index} className="titleB col-xl-3 col-lg-2 col-md-2 col-ms-6 col-xs-6">
-                                                    <div className='header-title' >{key}</div>
-                                                    <div className='data-title'>{value}</div>
-                                                </div>
-
-                                        ))
-
-                                    ))}
-                                </div>
-                            </div>
-                            :
-
-
                             key === 'activityIntervalTime' ?
                                 <div key={index} className='timeBox col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12'>
                                     <div className="titleTime">{key}</div>
@@ -395,9 +359,10 @@ function Index() {
 
                                 :
                                 null
-                    ))}
-                </div>
-            }
+                    )))
+                }
+
+            </div>
         </div>
     );
 }
