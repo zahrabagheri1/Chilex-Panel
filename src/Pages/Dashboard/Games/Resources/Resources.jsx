@@ -158,13 +158,13 @@ function Resources() {
 
                     {
                         openResource === 'requirment' ?
-                            <ModalRequirment onchange={getResource} canceladd={closeModal} settingId={id} />
+                            <ModalRequirment onchange={getResource} canceladd={closeModal} settingId={id}/>
                             :
                             openResource === 'entry' ?
-                                <ModalEntries onchange={getResource} canceladd={closeModal} settingId={id} />
+                                <ModalEntries onchange={getResource} canceladd={closeModal} settingId={id}/>
                                 :
                                 openResource === 'prize' ?
-                                    <ModalPrizes onchange={getResource} canceladd={closeModal} settingId={id} />
+                                    <ModalPrizes onchange={getResource} canceladd={closeModal} settingId={id}/>
                                     :
                                     ''
                     }
