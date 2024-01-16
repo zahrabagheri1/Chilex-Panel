@@ -74,7 +74,9 @@ function Resources() {
                 }
             )
             .catch(
-                err => console.log(err)
+                err => {
+
+                }
             )
     }
 
@@ -103,9 +105,11 @@ function Resources() {
                                 </div>
                             </div>
                             {
-                                data.requirements.map((item) => (
+                                data.requirements.map((item, index) => (
                                     // console.log('itemmmm : ', item, deleteRequirement(29,'requirement'))
-                                    <ResourceBox data={item} type={'requirements'} onchange={deleteRequirement} />
+                                    <div key={index}>
+                                        <ResourceBox data={item} type={'requirements'} onchange={deleteRequirement} />
+                                    </div>
                                 ))
                             }
                         </div>
@@ -121,8 +125,10 @@ function Resources() {
                             </div>
 
                             {
-                                data.entries.map((item) => (
-                                    <ResourceBox data={item} type={'entries'} onchange={deleteRequirement} />
+                                data.entries.map((item, index) => (
+                                    <div key={index}>
+                                        <ResourceBox data={item} type={'entries'} onchange={deleteRequirement} />
+                                    </div>
                                 ))
                             }
 
@@ -140,8 +146,10 @@ function Resources() {
                                 </div>
                             </div>
                             {
-                                data.prizes.map((item) => (
-                                    <ResourceBox data={item} type={'prizes'} onchange={getResource} />
+                                data.prizes.map((item, index) => (
+                                    <div key={index}>
+                                        <ResourceBox data={item} type={'prizes'} onchange={deleteRequirement} />
+                                    </div>
                                 ))
                             }
 
@@ -150,13 +158,13 @@ function Resources() {
 
                     {
                         openResource === 'requirment' ?
-                            <ModalRequirment onchange={getResource} canceladd={closeModal} settingId={id}/>
+                            <ModalRequirment onchange={getResource} canceladd={closeModal} settingId={id} />
                             :
                             openResource === 'entry' ?
-                                <ModalEntries onchange={getResource} canceladd={closeModal} settingId={id}/>
+                                <ModalEntries onchange={getResource} canceladd={closeModal} settingId={id} />
                                 :
                                 openResource === 'prize' ?
-                                    <ModalPrizes onchange={getResource} canceladd={closeModal} settingId={id}/>
+                                    <ModalPrizes onchange={getResource} canceladd={closeModal} settingId={id} />
                                     :
                                     ''
                     }

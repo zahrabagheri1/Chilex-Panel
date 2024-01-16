@@ -36,8 +36,7 @@
         gap: 10px;
 
 
-        .tab,
-        .tabHaveChild {
+        .tab {
             position: relative;
             display: flex;
             align-items: center;
@@ -58,23 +57,61 @@
 
 
 
-        }
+            &.tabDontHaveChild {
 
-        .tab {
-
-            &:hover,
-            &.active {
-                padding: 10px 10px;
-                background-color: $lighterGray;
-                border-radius: 10px;
-                font-weight: 700;
-                color: $fontColor;
-
-                .icon {
+                &:hover,
+                &.active {
+                    padding: 10px 10px;
+                    background-color: $lighterGray;
+                    border-radius: 10px;
+                    font-weight: 700;
                     color: $fontColor;
+
+                    .icon {
+                        color: $fontColor;
+                    }
                 }
             }
+
+
+            &.tabHaveChild {
+
+                &:hover,
+                &.active {
+                    font-weight: 700;
+                    color: $fontColor;
+
+                    .icon {
+                        color: $fontColor;
+                    }
+                }
+
+                .dropdownicon {
+                    font-size: 16px;
+                    font-weight: 900;
+                }
+
+                .icon {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: $font-fluid;
+                    color: $fontColorlight;
+                }
+
+                .tabText {
+                    font-size: $font-md;
+                }
+
+                .dropdownicon {
+                    &.active {
+                        transform: rotate(180deg);
+                    }
+                }
+
+            }
         }
+
 
         .tabIconText {
             display: flex;
@@ -93,43 +130,6 @@
             .tabText {
                 font-size: $font-md;
             }
-        }
-
-
-        .tabHaveChild {
-
-            &:hover,
-            &.active {
-                font-weight: 700;
-                color: $fontColor;
-
-                .icon {
-                    color: $fontColor;
-                }
-            }
-
-            .dropdownicon {
-
-            }
-
-            .icon {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: $font-fluid;
-                color: $fontColorlight;
-            }
-
-            .tabText {
-                font-size: $font-md;
-            }
-
-            .dropdownicon {
-                &.active {
-                    transform: rotate(180deg);
-                }
-            }
-
         }
 
 
@@ -161,8 +161,8 @@
                 &:visited,
                 &:hover,
                 &:focus,
-                &.active {   
-                     text-decoration: none;
+                &.active {
+                    text-decoration: none;
                     color: $fontColorlight;
                     background-color: $lighterGray;
                     color: $fontColor;

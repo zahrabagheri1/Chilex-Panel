@@ -30,20 +30,29 @@ function Tab(props) {
 
 
     const clickHandler = (e, item) => {
-        if (e.target.id == item.id && item.children === null) {
-            if (e.target.id === 7) {
-                // document.cookie = "accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
-                removeCookie('accessToken', { expires: 'Thu, 01 Jan 1970 00:00:00 UTC', path: '/' })
-                navigate(item.link)
-            } else {
-                navigate(item.link)
-                setClick(true)
-            }
-        } else {
-            navigate(item.link)
-            setClick(true)
-            setChild(true)
-        }
+        console.log(item)
+        setParentId(item.id)
+        setChild(!child)
+        setClick(!click)
+        // navigate(item.link)
+
+        // if (e.target.id == item.id && item.children === null) {
+        //     if (e.target.id === 7) {
+        //         // document.cookie = "accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+        //         removeCookie('accessToken', { expires: 'Thu, 01 Jan 1970 00:00:00 UTC', path: '/' })
+        //         navigate(item.link)
+        //         setParentId(item.id)
+        //     } else {
+        //         navigate(item.link)
+        //         setClick(true)
+        //         setParentId(item.id)
+        //     }
+        // } else {
+        //     navigate(item.link)
+        //     setParentId(item.id)
+        //     setClick(true)
+        //     setChild(true)
+        // }
     }
 
     const clickChildHandler = (id, link) => {
@@ -54,7 +63,10 @@ function Tab(props) {
 
     return (
         <>
-            <div className={props.data.children === null ? ('tab'+ (props.id === parentId ? 'active' : '')) :'tabHaveChild' } id={props.id} onClick={(e) => clickHandler(e, props.data)}>
+            {/* <div className={props.data.children === null ? 'tab' + (props.id === parentId ? 'active' : '') :'tabHaveChild' } onClick={(e) => clickHandler(e, props.data)}> */}
+
+            <div className={`tab ${props.data.children === null ? `tabDontHaveChild ${props.id === parentId ? 'active' : ''}` : 'tabHaveChild'}`} id={props.id} onClick={(e) => clickHandler(e, props.data)}>
+
                 <div className="tabIconText">
                     <div className='icon'>{icons[props.data.icon]}</div>
                     <div className='tabText'>{props.data.name}</div>
@@ -64,15 +76,17 @@ function Tab(props) {
                 }
             </div>
 
-            <div className={child === true ? 'activechild' : 'child'}>
-                {props.data.children?.map((childItem, key) => (
-                    <div key={key} className={`childItem ${childItem.id === childId ? 'active' : ''}`} id={childItem.id} onClick={() => clickChildHandler(childItem.id, childItem.link)}>
-                        <div className={child === true ? '' : 'icon'}><GoDotFill /></div>
-                        <div className=''>{childItem.name}</div>
-                    </div>
-                ))
-                }
-            </div>
+            {props.data.children === null ? '' :
+                <div className={child === true ? 'activechild' : 'child'}>
+                    {props.data.children?.map((childItem, key) => (
+                        <div key={key} className={`childItem ${childItem.id === childId ? 'active' : ''}`} id={childItem.id} onClick={() => clickChildHandler(childItem.id, childItem.link)}>
+                            <div className={child === true ? '' : 'icon'}><GoDotFill /></div>
+                            <div className=''>{childItem.name}</div>
+                        </div>
+                    ))
+                    }
+                </div>
+            }
         </>
     );
 }
