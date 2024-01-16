@@ -5,26 +5,35 @@
     position: relative;
     display: flex;
     flex-direction: row;
-    justify-content: end;
+    justify-content: space-between;
     align-items: center;
-    width: 100%;
+    width: 95%;
     gap: 10px;
     height: 10vh;
-    .imgUser {
-        cursor: pointer;
-        margin: 0 30px 0 0;
-        width: 50px;
-    }
+    margin: 5px 20px;
+    
+    .usernameBox {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
 
-    .username {
-        font-weight: 600;
-        &:link,
-        &:visited,
-        &:hover,
-        &:active {
-            text-decoration: none;
-            color: $fontColorlight;
+        .imgUser {
+            cursor: pointer;
+            width: 50px;
         }
-    }
 
+        .username {
+            font-weight: 600;
+
+            &:link,
+            &:visited,
+            &:hover,
+            &:active {
+                text-decoration: none;
+                color: $fontColorlight;
+            }
+        }
+
+    }
 }

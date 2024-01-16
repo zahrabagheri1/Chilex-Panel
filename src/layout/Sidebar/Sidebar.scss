@@ -9,15 +9,15 @@
     position: fixed;
     background: $Gray;
     top: 0;
-    z-index: 10;
+    // z-index: 10;
     overflow: hidden;
     transition: width .3s ease;
     cursor: pointer;
     box-shadow: 4px 7px 10px rgba(0, 0, 0, .4);
-    padding-left: 10px;
+    padding-left: 5px;
 
-    &:hover {
-        width: 210px;
+    &.active {
+        width: 150px;
     }
 
     .logo-dash {
@@ -35,17 +35,19 @@
         flex-direction: column;
         gap: 10px;
 
+
         .tab {
             position: relative;
             display: flex;
             align-items: center;
             flex-direction: row;
-            gap: 16px;
-            cursor: pointer;
-            padding: 10px;
+            justify-content: space-between;
             transition: all .3s ease;
             color: $fontColorlight;
             font-weight: 700;
+            // font-size: ;
+            cursor: pointer;
+            padding: 10px;
 
             &:link,
             &:visited,
@@ -53,18 +55,69 @@
                 text-decoration: none;
             }
 
-            &:hover,
-            &.active {
-                padding: 10px 10px;
-                background-color: $lighterGray;
-                border-radius: 10px;
-                font-weight: 600;
-                color: $fontColor;
 
-                .icon {
+
+            &.tabDontHaveChild {
+
+                &:hover,
+                &.active {
+                    padding: 10px 10px;
+                    background-color: $lighterGray;
+                    border-radius: 10px;
+                    font-weight: 700;
                     color: $fontColor;
+
+                    .icon {
+                        color: $fontColor;
+                    }
                 }
             }
+
+
+            &.tabHaveChild {
+
+                &:hover,
+                &.active {
+                    font-weight: 700;
+                    color: $fontColor;
+
+                    .icon {
+                        color: $fontColor;
+                    }
+                }
+
+                .dropdownicon {
+                    font-size: 16px;
+                    font-weight: 900;
+                }
+
+                .icon {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: $font-fluid;
+                    color: $fontColorlight;
+                }
+
+                .tabText {
+                    font-size: $font-md;
+                }
+
+                .dropdownicon {
+                    &.active {
+                        transform: rotate(180deg);
+                    }
+                }
+
+            }
+        }
+
+
+        .tabIconText {
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            gap: 16px;
 
             .icon {
                 display: flex;
@@ -77,8 +130,8 @@
             .tabText {
                 font-size: $font-md;
             }
-
         }
+
 
         .child {
             display: none;
@@ -88,8 +141,7 @@
         .activechild {
             display: flex;
             position: relative;
-            width: calc(100% - 20px);
-            left: 40px;
+            width: calc(100%);
             color: $fontColorlight;
             flex-direction: column;
             gap: 10px;
@@ -101,24 +153,20 @@
                 flex-direction: row;
                 gap: 5px;
                 cursor: pointer;
-                padding: 10px 10px;
+                padding: 10px;
                 font-weight: 550;
                 font-size: $font-md;
 
                 &:link,
                 &:visited,
-                &:hover {
-                    text-decoration: none;
-                    color: $fontColorlight;
-                }
-
                 &:hover,
                 &:focus,
                 &.active {
+                    text-decoration: none;
+                    color: $fontColorlight;
                     background-color: $lighterGray;
-                    width: calc(100% - 40px);
                     color: $fontColor;
-                    border-radius: 10px ;
+                    border-radius: 10px;
                 }
             }
         }

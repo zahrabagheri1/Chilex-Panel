@@ -9,7 +9,7 @@ function Index() {
   return (
     <div className='dashbord'>
       <Sidebar />
-      <div className='layout1'>
+      <div className='layout1 active'>
         <Navigation />
         <div className='outlet'><Outlet /></div>
       </div>

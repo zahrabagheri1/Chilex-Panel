@@ -2,8 +2,8 @@
 
 .showData {
     .emptyTable {
-        min-height: calc(100vh - 40vh);
-        max-height: calc(100vh - 60vh);
+        height: calc(100vh - 50vh);
+        // min-height: calc(100vh - 50vh);
         width: calc(100% - 4px);
         background-color: $Gray;
         border-radius: 16px;
