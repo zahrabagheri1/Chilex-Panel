@@ -4,20 +4,23 @@ export const sideBarMenu = [
         name: 'Dashboard',
         icon: 'HiComputerDesktop',
         link: '/dashboard',
-        children: null
+        children: null,
+        logout: false
     },
     {
         id: 1,
         name: 'Transaction',
         icon: 'HiCurrencyDollar',
         link: 'transaction',
-        children: null
+        children: null,
+        logout: false
     },
     {
         id: 2,
         name: 'Users',
         icon: 'HiMiniUser',
         link: null,
+        logout: false,
         children: [
             {
                 id: 0,
@@ -42,6 +45,7 @@ export const sideBarMenu = [
         icon: 'HiMiniSwatch',
         link: null,
         dropdown: '',
+        logout: false,
         children: [
             {
                 id: 0,
@@ -60,28 +64,32 @@ export const sideBarMenu = [
         name: 'Shop History',
         icon: 'HiMiniShoppingCart',
         link: 'shopping-history',
-        children: null
+        children: null,
+        logout: false
     },
     {
         id: 5,
         name: 'Games',
         icon: 'HiRocketLaunch',
         link: 'games',
-        children: null
+        children: null,
+        logout: false
     },
     {
         id: 6,
         name: 'Support',
         icon: 'HiMiniCreditCard',
         link: 'support',
-        children: null
+        children: null,
+        logout: false
     },
     {
         id: 7,
         name: 'LogOut',
         icon: 'HiOutlineArrowLeftOnRectangle',
         link: '/',
-        children: null
+        children: null,
+        logout: true
     },
 
 ]
