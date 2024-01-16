@@ -40,13 +40,14 @@ function Index() {
         { id: 2, name: 'Rial' },
     ]
 
-    const priceStatus = [
-        { id: 0, name: 'Active', status: true },
-        { id: 1, name: 'Deactive', status: false },
-    ]
+    const activityIntervalTime = { day: null, hour: null, minute: null }
 
     const inputChange = (e) => {
         setTimeList((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+    }
+
+    const sendActivityInteralTime = (timeList) => {
+        setUpdateData((prev) => ({ ...prev, ['activityIntervalTime']: timeList }))
     }
 
     const changeValueInput = (e) => {
@@ -57,6 +58,7 @@ function Index() {
     const editData = () => {
         setEditAble(!editAble)
     }
+
     const editDataCancel = () => {
         setEditAble(!editAble)
     }
@@ -99,9 +101,9 @@ function Index() {
                     err => {
                         console.log(err)
 
-                        setShowAlert({ status: true, msg: err.message, success: false })
+                        setShowAlert({ status: true, msg: err.response.data.message, success: false })
                         setTimeout(() => {
-                            setShowAlert({ status: false, msg: err.message })
+                            setShowAlert({ status: false, msg: err.response.data.message })
 
                         }, 3000)
                     }
@@ -112,9 +114,9 @@ function Index() {
 
 
     const switchHandler = (boolean, id) => {
-        console.log('dgdfgdfbdfb', boolean, id)
+        console.log('first', boolean, id)
         axios.patch(`/admin-stuff/change-bundle-status/${id}`, {
-            status: boolean ? 0 : 1,
+            status: boolean === true ? 0 : 1,
         },
             {
                 headers: {
@@ -124,13 +126,14 @@ function Index() {
             })
             .then(
                 res => {
-                    console.log(res)
+                    console.log(res.data)
                     setShowAlert({ status: true, msg: res.data.msg, success: true })
                     setTimeout(() => {
                         setShowAlert({ status: false, msg: res.data.msg })
                     }, 3000)
                     getData()
                     setEditAble(false)
+                    console.log('second', boolean, id)
                 }
             )
             .catch(
@@ -146,7 +149,6 @@ function Index() {
     }
 
     const switchHandlerPrice = (boolean, id) => {
-
         axios.patch(`/admin-stuff/change-price-status/${id}`, {
             status: boolean === true ? 0 : 1,
         },
@@ -158,12 +160,12 @@ function Index() {
             })
             .then(
                 res => {
-                    console.log(res)
+                    console.log(res.data)
                     setShowAlert({ status: true, msg: res.data.msg, success: true })
                     setTimeout(() => {
                         setShowAlert({ status: false, msg: res.data.msg })
                     }, 3000)
-                    // getData()
+                    getData()
                     setEditAble(false)
                 }
             )
@@ -178,10 +180,6 @@ function Index() {
                 }
             )
         setEditAble(false)
-    };
-    const sendActivityInteralTime = (timeList) => {
-        setUpdateData((prev) => ({ ...prev, ['activityIntervalTime']: timeList }))
-
     }
 
     const hundelBack = () => {
@@ -212,7 +210,6 @@ function Index() {
     }
 
     console.log(detail)
-
     return (
         <div className='bundleDetail'>
             {showAlert.status === true ?
@@ -361,7 +358,46 @@ function Index() {
                     ))
                 )}
 
-            </div>
+                                                <div key={index} className="titleB col-xl-3 col-lg-2 col-md-2 col-ms-6 col-xs-6">
+                                                    <div className='header-title' >{key}</div>
+                                                    <div className='data-title'>{value}</div>
+                                                </div>
+
+                                        ))
+
+                                    ))}
+                                </div>
+                            </div>
+                            :
+
+
+                            key === 'activityIntervalTime' ?
+                                <div key={index} className='timeBox col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+                                    <div className="titleTime">{key}</div>
+                                    <div className="timeBody row">
+                                        {value === undefined || value === null ?
+                                            Object.entries(activityIntervalTime).map(([keyTime, valueTime], index) => (
+                                                <div key={index} className="col-xl-4 col-lg-2 col-md-2 col-sm-3 col-xs-12">
+                                                    <Input inputclassname={editAble === false ? 'disabled' : ''} readOnly={editAble ? false : true} name={keyTime} value={'null'} type={'number'} title={keyTime} changeInputValue={sendActivityInteralTime} />
+                                                </div>
+                                            ))
+                                            :
+                                            Object.entries(value).map(([keyTime, valueTime], index) => (
+
+                                                // console.log(value)
+                                                <div key={index} className="col-xl-4 col-lg-2 col-md-2 col-sm-3 col-xs-12">
+                                                    <Input inputclassname={editAble === false ? 'disabled' : ''} readOnly={editAble ? false : true} name={keyTime} value={valueTime} type={'number'} title={keyTime} changeInputValue={inputChange} />
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
+                                </div>
+
+                                :
+                                null
+                    ))}
+                </div>
+            }
         </div>
     );
 }

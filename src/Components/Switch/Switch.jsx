@@ -16,7 +16,7 @@ function Switch(props) {
 
 
   const changeSwitchHandler = () => {
-    // console.log(props.defaultChecked, !value, props.id)
+    console.log(props.defaultChecked, !value, props.id)
     setValue(!value);
     props.onChange(!value, props.id)
   }
