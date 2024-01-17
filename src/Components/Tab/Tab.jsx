@@ -63,10 +63,7 @@ function Tab(props) {
 
     return (
         <>
-            {/* <div className={props.data.children === null ? 'tab' + (props.id === parentId ? 'active' : '') :'tabHaveChild' } onClick={(e) => clickHandler(e, props.data)}> */}
-
             <div className={`tab ${props.data.children === null ? `tabDontHaveChild ${props.id === parentId ? 'active' : ''}` : 'tabHaveChild'}`} id={props.id} onClick={(e) => clickHandler(e, props.data)}>
-
                 <div className="tabIconText">
                     <div className='icon'>{icons[props.data.icon]}</div>
                     <div className='tabText'>{props.data.name}</div>

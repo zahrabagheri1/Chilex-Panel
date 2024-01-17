@@ -10,6 +10,7 @@ import { LoadingContext } from '../../../../Loading/LoadingContext';
 import { LoginContext } from '../../../../Login/LoginContext';
 import DatePikerFarsi from '../../../../../Components/DatePikerFarsi/DatePikerFarsi';
 import Alert from '../../../../../layout/Alert/Alert';
+import Time from '../../../../../layout/Time/Time';
 
 function Index() {
     const [detail, setDetail] = useState({});
@@ -261,7 +262,7 @@ function Index() {
                                             :
 
                                             <Switch
-                                                id={index}
+                                                id={id}
                                                 title={key}
                                                 defaultChecked={value === 0 ? true : false}
                                                 disabled={editAble === false ? true : false}
@@ -295,7 +296,7 @@ function Index() {
                             <div key={index} className="priceBox col-xl-12 col-lg-12 col-md-12 col-ms-12 col-xs-12">
                                 <div className='titlePrice'>{key}</div>
                                 <div className="priceBody row">
-                                    {value.map((item, i) => (
+                                    {value.map((item, index) => (
                                         Object.entries(item).map(([key, value], index) => (
                                             key === 'priceType' || key === 'priceStatus' ?
                                                 <div className="col-xl-3 col-lg-3 col-md-4 col-ms-6 col-xs-6" key={index}>
@@ -313,7 +314,7 @@ function Index() {
                                                             :
                                                             <div key={index} className="col-xl-3 col-lg-3 col-md-4 col-ms-6 col-xs-6">
                                                                 <Switch
-                                                                    id={index}
+                                                                    id={item.id}
                                                                     title={key}
                                                                     defaultChecked={value === 0 ? true : false}
                                                                     disabled={editAble === false ? true : false}
@@ -323,12 +324,10 @@ function Index() {
                                                     }
                                                 </div>
                                                 :
-
                                                 <div key={index} className="titleB col-xl-3 col-lg-3 col-md-4 col-ms-6 col-xs-6">
                                                     <div className='header-title' >{key}</div>
                                                     <div className='data-title'>{value}</div>
                                                 </div>
-
                                         ))
 
                                     ))}
@@ -336,27 +335,30 @@ function Index() {
                             </div>
                             :
                             key === 'activityIntervalTime' ?
-                                <div key={index} className='timeBox col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-                                    <div className="titleTime">{key}</div>
-                                    <div className="timeBody row">
-                                        {value === undefined || value === null ?
-                                            Object.entries(activityIntervalTime).map(([keyTime, valueTime], index) => (
-                                                <div key={index} className="col-xl-4 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                                                    <Input inputclassname={editAble === false ? 'disabled' : ''} readOnly={editAble ? false : true} name={keyTime} value={'null'} type={'number'} title={keyTime} changeInputValue={sendActivityInteralTime} />
-                                                </div>
-                                            ))
-                                            :
-                                            Object.entries(value).map(([keyTime, valueTime], index) => (
+                                // <div key={index} className='timeBox col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+                                //     <div className="titleTime">{key}</div>
+                                //     <div className="timeBody row">
+                                //         {value === undefined || value === null ?
+                                //             Object.entries(activityIntervalTime).map(([keyTime, valueTime], index) => (
+                                //                 <div key={index} className="col-xl-4 col-lg-2 col-md-2 col-sm-3 col-xs-12">
+                                //                     <Input inputclassname={editAble === false ? 'disabled' : ''} readOnly={editAble ? false : true} name={keyTime} value={'null'} type={'number'} title={keyTime} changeInputValue={sendActivityInteralTime} />
+                                //                 </div>
+                                //             ))
+                                //             :
+                                //             Object.entries(value).map(([keyTime, valueTime], index) => (
 
-                                                // console.log(value)
-                                                <div key={index} className="col-xl-4 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                                                    <Input inputclassname={editAble === false ? 'disabled' : ''} readOnly={editAble ? false : true} name={keyTime} value={valueTime} type={'number'} title={keyTime} changeInputValue={inputChange} />
-                                                </div>
-                                            ))
-                                        }
-                                    </div>
+                                //                 // console.log(value)
+                                //                 <div key={index} className="col-xl-4 col-lg-2 col-md-2 col-sm-3 col-xs-12">
+                                //                     <Input inputclassname={editAble === false ? 'disabled' : ''} readOnly={editAble ? false : true} name={keyTime} value={valueTime} type={'number'} title={keyTime} changeInputValue={inputChange} />
+                                //                 </div>
+                                //             ))
+                                //         }
+                                //     </div>
+                                // </div>
+
+                                <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                      <Time important={true} sendTime={sendActivityInteralTime} />
                                 </div>
-
                                 :
                                 null
                     )))

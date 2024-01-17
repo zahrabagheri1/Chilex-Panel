@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, RouterProvider, Routes, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Login from './Pages/Login/Index';
 import Dashboard from './Pages/Dashboard/Index';
 import Admin from './Pages/Dashboard/Admin/Index';
@@ -22,7 +22,7 @@ import Charts from './Pages/Dashboard/Charts/Charts';
 import BanUserList from './Pages/Dashboard/Users/Banuser/List/Index';
 import BanUserDetail from './Pages/Dashboard/Users/Banuser/Detail/Detail';
 import ReportsList from './Pages/Dashboard/Users/Reports/List/List';
-import { CookiesProvider, useCookies } from "react-cookie";
+import { useCookies } from "react-cookie";
 import './App.scss';
 import LoadingProvider from './Pages/Loading/LoadingProvider';
 import LoginProvider from './Pages/Login/LoginProvider';

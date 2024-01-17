@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Input from '../../Components/Input/Input';
-import Button from '../../Components/Button/Button';
-import { HiPlus } from "react-icons/hi2";
 import './Time.scss';
 
 function Time(props) {

@@ -10,6 +10,7 @@ const parts = value.split(`; ${'accessToken'}=`);
 // if (parts.length === 2) return parts.pop().split(';').shift();
 
 console.log('parts :   ' , parts[1])
+
 export const socket = io('/', {
     auth: {
         token: parts[1],

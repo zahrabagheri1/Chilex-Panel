@@ -80,12 +80,12 @@ function ModalAddProducts(props) {
 
   const sendPriceAmute = (priceList) => {
     addElement.prices.push(priceList)
-    console.log(addElement)
   }
+  
+  console.log(addElement.prices)
 
   const sendActivityInteralTime = (timeList) => {
     setAddElement((prev) => ({ ...prev, ['activityIntervalTime']: timeList }))
-
   }
 
   return (
