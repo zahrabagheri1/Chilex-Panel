@@ -7,6 +7,8 @@ import { LoginContext } from '../../../../Login/LoginContext';
 import { HiCheck, HiChevronLeft, HiMiniXMark, HiPencilSquare } from 'react-icons/hi2';
 import './Detail.scss'
 import Alert from '../../../../../layout/Alert/Alert';
+import moment from 'moment-jalaali';
+import Input from '../../../../../Components/Input/Input';
 
 function Detail() {
   const [users, setUsers] = useState()
@@ -85,9 +87,9 @@ function Detail() {
       .catch(
         err => {
           console.log(err)
-          setShowAlert({ status: true, msg: res.message, success: true })
+          setShowAlert({ status: true, msg: err.message, success: true })
           setTimeout(() => {
-            setShowAlert({ status: false, msg: res.message })
+            setShowAlert({ status: false, msg: err.message })
           }, 3000)
         }
       )

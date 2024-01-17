@@ -76,7 +76,7 @@ function ModalEntries(props) {
 
         <div className="row">
           <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <Input type={'number'} inputclassname={'disabled'} name={'settingId'} value={addEntry.settingId} title={'settingId'} readOnly={true} changeInputValue={() => changeValueInput(settingId)} />
+            <Input type={'number'} inputclassname={'disabled'} name={'settingId'} value={addEntry.settingId} title={'settingId'} readOnly={true} changeInputValue={(e) => changeValueInput(e)} />
           </div>
           <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-6">
             <Input type={'number'} important={true} name={'amount'} title={'amount'} value={''} readOnly={false} changeInputValue={changeValueInput} />
