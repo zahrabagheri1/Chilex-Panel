@@ -25,6 +25,9 @@ function Index() {
     const [showAlert, setShowAlert] = useState({
         status: false, msg: ''
     })
+
+    console.log(updateData)
+
     const [timeList, setTimeList] = useState({
         day: null,
         hour: null,
@@ -34,7 +37,6 @@ function Index() {
         { id: 0, name: 'Gem bundle' },
         { id: 1, name: 'Coin  bundle' },
     ]
-
     const priceType = [
         { id: 0, name: 'Gem' },
         { id: 1, name: 'Coin' },
@@ -49,6 +51,7 @@ function Index() {
 
     const sendActivityInteralTime = (timeList) => {
         setUpdateData((prev) => ({ ...prev, ['activityIntervalTime']: timeList }))
+        console.log('list time sendd',timeList)
     }
 
     const changeValueInput = (e) => {
@@ -88,7 +91,6 @@ function Index() {
                 })
                 .then(
                     res => {
-                        console.log(res)
                         setShowAlert({ status: true, msg: res.message, success: true })
                         setTimeout(() => {
                             setShowAlert({ status: false, msg: res.message })
@@ -100,8 +102,6 @@ function Index() {
                 )
                 .catch(
                     err => {
-                        console.log(err)
-
                         setShowAlert({ status: true, msg: err.response.data.message, success: false })
                         setTimeout(() => {
                             setShowAlert({ status: false, msg: err.response.data.message })
@@ -113,9 +113,7 @@ function Index() {
             setEditAble(false)
     }
 
-
     const switchHandler = (boolean, id) => {
-        console.log('first', boolean, id)
         axios.patch(`/admin-stuff/change-bundle-status/${id}`, {
             status: boolean === true ? 0 : 1,
         },
@@ -127,19 +125,16 @@ function Index() {
             })
             .then(
                 res => {
-                    console.log(res.data)
                     setShowAlert({ status: true, msg: res.data.msg, success: true })
                     setTimeout(() => {
                         setShowAlert({ status: false, msg: res.data.msg })
                     }, 3000)
                     getData()
                     setEditAble(false)
-                    console.log('second', boolean, id)
                 }
             )
             .catch(
                 err => {
-                    console.log(err)
                     setShowAlert({ status: true, msg: err.message, success: false })
                     setTimeout(() => {
                         setShowAlert({ status: false, msg: err.message })
@@ -161,7 +156,6 @@ function Index() {
             })
             .then(
                 res => {
-                    console.log(res.data)
                     setShowAlert({ status: true, msg: res.data.msg, success: true })
                     setTimeout(() => {
                         setShowAlert({ status: false, msg: res.data.msg })
@@ -172,7 +166,6 @@ function Index() {
             )
             .catch(
                 err => {
-                    console.log(err)
                     setShowAlert({ status: true, msg: err.message, success: false })
                     setTimeout(() => {
                         setShowAlert({ status: false, msg: err.message })
@@ -210,7 +203,6 @@ function Index() {
             })
     }
 
-    console.log(detail)
     return (
         <div className='bundleDetail'>
             {showAlert.status === true ?
@@ -335,29 +327,8 @@ function Index() {
                             </div>
                             :
                             key === 'activityIntervalTime' ?
-                                // <div key={index} className='timeBox col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-                                //     <div className="titleTime">{key}</div>
-                                //     <div className="timeBody row">
-                                //         {value === undefined || value === null ?
-                                //             Object.entries(activityIntervalTime).map(([keyTime, valueTime], index) => (
-                                //                 <div key={index} className="col-xl-4 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                                //                     <Input inputclassname={editAble === false ? 'disabled' : ''} readOnly={editAble ? false : true} name={keyTime} value={'null'} type={'number'} title={keyTime} changeInputValue={sendActivityInteralTime} />
-                                //                 </div>
-                                //             ))
-                                //             :
-                                //             Object.entries(value).map(([keyTime, valueTime], index) => (
-
-                                //                 // console.log(value)
-                                //                 <div key={index} className="col-xl-4 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                                //                     <Input inputclassname={editAble === false ? 'disabled' : ''} readOnly={editAble ? false : true} name={keyTime} value={valueTime} type={'number'} title={keyTime} changeInputValue={inputChange} />
-                                //                 </div>
-                                //             ))
-                                //         }
-                                //     </div>
-                                // </div>
-
                                 <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                      <Time important={true} sendTime={sendActivityInteralTime} />
+                                    <Time active={editAble} value={value} important={false} sendTime={sendActivityInteralTime} />
                                 </div>
                                 :
                                 null
@@ -370,3 +341,26 @@ function Index() {
 }
 
 export default Index;
+
+
+
+
+// <div key={index} className='timeBox col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+//     <div className="titleTime">{key}</div>
+//     <div className="timeBody row">
+//         {value === undefined || value === null ?
+//             Object.entries(activityIntervalTime).map(([keyTime, valueTime], index) => (
+//                 <div key={index} className="col-xl-4 col-lg-2 col-md-2 col-sm-3 col-xs-12">
+//                     <Input inputclassname={editAble === false ? 'disabled' : ''} readOnly={editAble ? false : true} name={keyTime} value={'null'} type={'number'} title={keyTime} changeInputValue={sendActivityInteralTime} />
+//                 </div>
+//             ))
+//             :
+//             Object.entries(value).map(([keyTime, valueTime], index) => (
+
+//                 <div key={index} className="col-xl-4 col-lg-2 col-md-2 col-sm-3 col-xs-12">
+//                     <Input inputclassname={editAble === false ? 'disabled' : ''} readOnly={editAble ? false : true} name={keyTime} value={valueTime} type={'number'} title={keyTime} changeInputValue={inputChange} />
+//                 </div>
+//             ))
+//         }
+//     </div>
+// </div>

@@ -4,14 +4,17 @@ import './Time.scss';
 
 function Time(props) {
     const [timeList, setTimeList] = useState({
-        day: null,
-        hour: null,
-        minute: null
+        day: props.value?.day || null,
+        hour: props.value?.hour || null,
+        minute: props.value?.minute || null
     })
 
     const inputChange = (e) => {
         setTimeList((prev) => ({ ...prev, [e.target.name]: e.target.value }))
     }
+
+    console.log(props.value, timeList)
+
     useEffect(() => {
         props.sendTime(timeList)
     }, [timeList])
@@ -30,13 +33,13 @@ function Time(props) {
 
             <div className='row col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-8'>
                 <div className="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                    <Input name={'day'} type={'number'} title={'day'} changeInputValue={inputChange} />
+                    <Input inputclassname={props.active === false ? 'disabled' : ''}  value={props.value?.day}  readOnly={props.active ? false : true} name={'day'} type={'number'} title={'day'} changeInputValue={inputChange} />
                 </div>
                 <div className="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                    <Input name={'hour'} type={'number'} title={'hour'} changeInputValue={inputChange} />
+                    <Input inputclassname={props.active === false ? 'disabled' : ''} value={props.value?.hour} readOnly={props.active ? false : true} name={'hour'} type={'number'} title={'hour'} changeInputValue={inputChange} />
                 </div>
                 <div className="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                    <Input name={'minute'} type={'number'} title={'minute'} changeInputValue={inputChange} />
+                    <Input inputclassname={props.active === false ? 'disabled' : ''} value={props.value?.minute} readOnly={props.active ? false : true} name={'minute'} type={'number'} title={'minute'} changeInputValue={inputChange} />
                 </div>
             </div>
 

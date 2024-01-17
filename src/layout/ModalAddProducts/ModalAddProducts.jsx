@@ -21,10 +21,12 @@ function ModalAddProducts(props) {
   const [showAlert, setShowAlert] = useState({
     status: false, msg: ''
   })
+
   const [addElement, setAddElement] = useState({
     prices:  [],
     stuffType: props.type === 'bundle' ? null : 2,
   })
+
   const [cookies] = useCookies(['accessToken']);
 
   const handlerClose = (e) => {
@@ -82,7 +84,7 @@ function ModalAddProducts(props) {
     addElement.prices.push(priceList)
   }
   
-  console.log(addElement.prices)
+  console.log(addElement.activityIntervalTime)
 
   const sendActivityInteralTime = (timeList) => {
     setAddElement((prev) => ({ ...prev, ['activityIntervalTime']: timeList }))
@@ -214,7 +216,7 @@ function ModalAddProducts(props) {
           {
             props.type === 'bundle' ?
               <div className='modalBoxs col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-                <Time important={true} sendTime={sendActivityInteralTime} />
+                <Time active={true} important={true} sendTime={sendActivityInteralTime} />
               </div>
               : ''
           }
