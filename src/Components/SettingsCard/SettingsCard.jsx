@@ -137,13 +137,13 @@ function SettingsCard(props) {
                                             <Switch id={index} title={key} defaultChecked={value} disabled={edit === false ? true : false} onChange={switchHandlerPrice} />
                                             :
                                             item.status === false ?
-                                                // item.name === 'updatedAt' || item.name === 'createdAt' ?
-                                                //     <div className='titleB'>
-                                                //         <div className='header-title'>{key}</div>
-                                                //         <div className='data-title'>{moment(value, 'YYYY/MM/DD').format('jYYYY/jM/jD')}</div>
-                                                //     </div>
+                                                item.name === 'updatedAt' || item.name === 'createdAt' ?
+                                                    <div className='titleB'>
+                                                        <div className='header-title'>{key}</div>
+                                                        <div className='data-title'>{moment(value, 'YYYY/MM/DD').format('jYYYY/jM/jD')}</div>
+                                                    </div>
 
-                                                //     :
+                                                    :
                                                 < Input type={typeof value === 'number' ? 'number' : 'text'} inputclassname={'disabled'} name={key} value={value} title={key} readOnly={true} />
                                                 :
                                                 item.select === false ?
