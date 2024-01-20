@@ -9,6 +9,7 @@ import './Detail.scss'
 import Alert from '../../../../../layout/Alert/Alert';
 import moment from 'moment-jalaali';
 import Input from '../../../../../Components/Input/Input';
+import API_URL from '../../../../../API_URL';
 
 function Detail() {
   const [users, setUsers] = useState()
@@ -38,7 +39,7 @@ function Detail() {
 
   const detailUser = () => {
     setLoading(!loading)
-    axios.get(`${id}`,
+    axios.get(API_URL + `${id}`,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -60,7 +61,7 @@ function Detail() {
   }
 
   const sendData = () => {
-    axios.patch(`/admin/users/${id}`,
+    axios.patch(API_URL + `/admin/users/${id}`,
       {
         name: updateUsesr.name === null || updateUsesr.name === undefined ? users.name : updateUsesr.name,
         email: updateUsesr.email === null || updateUsesr.email === undefined ? users.email : updateUsesr.email,

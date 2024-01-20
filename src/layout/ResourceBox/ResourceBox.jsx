@@ -7,6 +7,7 @@ import axios from 'axios';
 import Alert from '../Alert/Alert';
 import './ResourceBox.scss';
 import { useCookies } from 'react-cookie';
+import API_URL from '../../API_URL';
 
 function ResourceBox(props) {
     const [cookies] = useCookies(['accessToken']);
@@ -34,7 +35,7 @@ function ResourceBox(props) {
     }
 
     const deleteEntry = (id) => {
-        axios.delete(`/games/setting/entry/${id}`,
+        axios.delete(API_URL + `/games/setting/entry/${id}`,
         {
             headers: {
                 'Content-Type': 'application/json',
@@ -59,7 +60,7 @@ function ResourceBox(props) {
     }
 
     const editResource = (id, requirement) => {
-        axios.patch(`/games/setting/requirement/${id}`, {
+        axios.patch(API_URL + `/games/setting/requirement/${id}`, {
             type: addRequirment.type === null || addRequirment.type === undefined ? requirement.type : addRequirment.type,
             min: addRequirment.min === null || addRequirment.min === undefined ? requirement.min : addRequirment.min,
             max: addRequirment.max === null || addRequirment.max === undefined ? requirement.max : addRequirment.max
@@ -89,7 +90,7 @@ function ResourceBox(props) {
     }
 
     const editEntry = (id, requirement) => {
-        axios.patch(`/games/setting/entry/${id}`, {
+        axios.patch(API_URL + `/games/setting/entry/${id}`, {
             amount: addRequirment.amount === null || addRequirment.amount === undefined ? requirement.amount : addRequirment.amount,
             type: addRequirment.type === null || addRequirment.type === undefined ? requirement.type : addRequirment.type
         },
@@ -116,8 +117,8 @@ function ResourceBox(props) {
             )
     }
     const editPrize = (id, requirement) => {
-        console.log(requirement.type)
-        axios.patch(`/games/setting/prize/${id}`, {
+        // console.log(requirement.type)
+        axios.patch(API_URL + `/games/setting/prize/${id}`, {
             amount: addRequirment.amount === null || addRequirment.amount === undefined ? requirement.amount : addRequirment.amount,
             type: addRequirment.type === null || addRequirment.type === undefined ? requirement.type : addRequirment.type
         },

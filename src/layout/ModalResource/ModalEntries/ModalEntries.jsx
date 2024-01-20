@@ -7,6 +7,7 @@ import ButtonActionBlue from '../../../Components/ButtonActionBlue/ButtonActionB
 import Alert from '../../Alert/Alert';
 import ButtonActionGray from '../../../Components/ButtonActionGray/ButtonActionGray';
 import { useCookies } from 'react-cookie';
+import API_URL from '../../../API_URL';
 
 function ModalEntries(props) {
   const [value, setValue] = useState()
@@ -34,7 +35,7 @@ function ModalEntries(props) {
   }
 
   const sendData = () => {
-    axios.post(`/games/setting/entry`, addEntry,
+    axios.post(API_URL +`/games/setting/entry`, addEntry,
     {
       headers: {
         'Content-Type': 'application/json',

@@ -10,6 +10,7 @@ import ResourceBox from '../../../../layout/ResourceBox/ResourceBox';
 import { useCookies } from 'react-cookie';
 import { LoadingContext } from '../../../Loading/LoadingContext';
 import { LoginContext } from '../../../Login/LoginContext';
+import API_URL from '../../../../API_URL';
 
 function Resources() {
     const [data, setData] = useState()
@@ -21,7 +22,7 @@ function Resources() {
     const navigate = useNavigate()
     const getResource = () => {
         setLoading(!loading)
-        axios.get(`/games/setting/resources/${id}`,
+        axios.get(API_URL + `/games/setting/resources/${id}`,
             {
                 headers: {
                     'Content-Type': 'application/json',
@@ -61,7 +62,7 @@ function Resources() {
     }
     const deleteRequirement = (id, type) => {
         console.log(id, type)
-        axios.delete(`/games/setting/${type}/${id}`,
+        axios.delete(API_URL + `/games/setting/${type}/${id}`,
             {
                 headers: {
                     'Content-Type': 'application/json',

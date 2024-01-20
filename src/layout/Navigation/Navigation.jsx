@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 function Navigation() {
   const locale = 'en';
-  const [today, setDate] = useState(new Date()); 
+  const [today, setDate] = useState(new Date());
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -26,10 +26,9 @@ function Navigation() {
 
   return (
     <div className='navigation'>
-      <div className="timeZone">{ date + wish + time}</div>
-
+      <div className="timeZone">{date + wish + time}</div>
       <div className="usernameBox">
-        <Link to={'admin'} className='username'> Admin1, Wellcome</Link>
+        <div className='username'> Admin1, Wellcome</div>
         <img className='imgUser' src={adminImg} />
       </div>
 

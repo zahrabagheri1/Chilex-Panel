@@ -7,7 +7,7 @@ import ButtonActionBlue from '../../../Components/ButtonActionBlue/ButtonActionB
 import Alert from '../../Alert/Alert';
 import ButtonActionGray from '../../../Components/ButtonActionGray/ButtonActionGray';
 import { useCookies } from 'react-cookie';
-
+import API_URL from '../../../API_URL';
 
 function ModalRequirment(props) {
   const [value, setValue] = useState()
@@ -34,7 +34,7 @@ function ModalRequirment(props) {
   }
 
   const sendData = () => {
-    axios.post(`/games/setting/requirement`, addRequirment,
+    axios.post(API_URL + `/games/setting/requirement`, addRequirment,
       {
         headers: {
           'Content-Type': 'application/json',

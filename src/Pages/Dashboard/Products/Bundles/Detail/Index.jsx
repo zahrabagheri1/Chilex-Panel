@@ -11,6 +11,7 @@ import { LoginContext } from '../../../../Login/LoginContext';
 import DatePikerFarsi from '../../../../../Components/DatePikerFarsi/DatePikerFarsi';
 import Alert from '../../../../../layout/Alert/Alert';
 import Time from '../../../../../layout/Time/Time';
+import API_URL from '../../../../../API_URL';
 
 function Index() {
     const [detail, setDetail] = useState({});
@@ -74,7 +75,7 @@ function Index() {
 
     const sendData = () => {
         edit ?
-            axios.patch(`/admin-stuff/update-bundle/${id}`,
+            axios.patch(API_URL + `/admin-stuff/update-bundle/${id}`,
                 {
                     name: updateData.name === null || updateData.name === undefined ? detail.name : updateData.name,
                     expireTime: updateData.expireTime === null || updateData.expireTime === undefined ? detail.expireTime : updateData.expireTime,
@@ -114,7 +115,7 @@ function Index() {
     }
 
     const switchHandler = (boolean, id) => {
-        axios.patch(`/admin-stuff/change-bundle-status/${id}`, {
+        axios.patch(API_URL + `/admin-stuff/change-bundle-status/${id}`, {
             status: boolean === true ? 0 : 1,
         },
             {
@@ -145,7 +146,7 @@ function Index() {
     }
 
     const switchHandlerPrice = (boolean, id) => {
-        axios.patch(`/admin-stuff/change-price-status/${id}`, {
+        axios.patch(API_URL + `/admin-stuff/change-price-status/${id}`, {
             status: boolean === true ? 0 : 1,
         },
             {
@@ -187,7 +188,7 @@ function Index() {
 
     const getData = () => {
         setLoading(!loading)
-        axios.get(`/admin-stuff/get-bundle/${id}`,
+        axios.get(API_URL + `/admin-stuff/get-bundle/${id}`,
             {
                 headers: {
                     'Content-Type': 'application/json',

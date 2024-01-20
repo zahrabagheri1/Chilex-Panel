@@ -11,7 +11,7 @@ import Alert from '../../layout/Alert/Alert';
 import ButtonActionGray from '../ButtonActionGray/ButtonActionGray';
 import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
-
+import API_URL from '../../API_URL';
 
 const props = {
     id: '1',
@@ -54,7 +54,7 @@ function SettingsCard(props) {
     })
 
     const sendData = () => {
-        axios.patch(`/games/setting/${data.id}`, {
+        axios.patch(API_URL + `/games/setting/${data.id}`, {
             name: updatedata.name === null || updatedata.name === undefined ? data.name : updatedata.name,
             active: updatedata.active === null || updatedata.active === undefined ? data.active : updatedata.active,
             game: updatedata.game === null || updatedata.game === undefined ? data.game : updatedata.game,
