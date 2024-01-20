@@ -23,16 +23,9 @@ function Index() {
     const { loading, setLoading } = useContext(LoadingContext);
     const { goToLoginPage } = useContext(LoginContext);
     const [showAlert, setShowAlert] = useState({
-        status: false, msg: ''
+        status: false, msg: '', status: false
     })
 
-    console.log(updateData)
-
-    const [timeList, setTimeList] = useState({
-        day: null,
-        hour: null,
-        minute: null
-    })
     const type = [
         { id: 0, name: 'Gem bundle' },
         { id: 1, name: 'Coin  bundle' },
@@ -43,15 +36,9 @@ function Index() {
         { id: 2, name: 'Rial' },
     ]
 
-    const activityIntervalTime = { day: null, hour: null, minute: null }
-
-    const inputChange = (e) => {
-        setTimeList((prev) => ({ ...prev, [e.target.name]: e.target.value }))
-    }
-
     const sendActivityInteralTime = (timeList) => {
         setUpdateData((prev) => ({ ...prev, ['activityIntervalTime']: timeList }))
-        console.log('list time sendd',timeList)
+        setEdit(true)
     }
 
     const changeValueInput = (e) => {
@@ -81,7 +68,7 @@ function Index() {
                     imageId: updateData.imageId === null || updateData.imageId === undefined ? detail.imageId : updateData.imageId,
                     sku: updateData.sku === null || updateData.sku === undefined ? detail.sku : updateData.sku,
                     amount: updateData.amount === null || updateData.amount === undefined ? detail.amount : parseInt(updateData.amount),
-                    activityIntervalTime: updateData.activityIntervalTime === null || updateData.activityIntervalTime === undefined ? detail.activityIntervalTime : {}
+                    activityIntervalTime: updateData.activityIntervalTime === null || updateData.activityIntervalTime === undefined ? detail.activityIntervalTime : updateData.activityIntervalTime
                 },
                 {
                     headers: {
@@ -91,9 +78,12 @@ function Index() {
                 })
                 .then(
                     res => {
+                        console.log(updateData.activityIntervalTime)
+                        console.log("activityIntervalTime", res)
+
                         setShowAlert({ status: true, msg: res.message, success: true })
                         setTimeout(() => {
-                            setShowAlert({ status: false, msg: res.message })
+                            setShowAlert({ status: false, msg: res.message, success: true })
                         }, 3000)
                         getData()
                         setEditAble(false)
@@ -104,7 +94,7 @@ function Index() {
                     err => {
                         setShowAlert({ status: true, msg: err.response.data.message, success: false })
                         setTimeout(() => {
-                            setShowAlert({ status: false, msg: err.response.data.message })
+                            setShowAlert({ status: false, msg: err.response.data.message, success: false })
 
                         }, 3000)
                     }
@@ -341,26 +331,3 @@ function Index() {
 }
 
 export default Index;
-
-
-
-
-// <div key={index} className='timeBox col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-//     <div className="titleTime">{key}</div>
-//     <div className="timeBody row">
-//         {value === undefined || value === null ?
-//             Object.entries(activityIntervalTime).map(([keyTime, valueTime], index) => (
-//                 <div key={index} className="col-xl-4 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-//                     <Input inputclassname={editAble === false ? 'disabled' : ''} readOnly={editAble ? false : true} name={keyTime} value={'null'} type={'number'} title={keyTime} changeInputValue={sendActivityInteralTime} />
-//                 </div>
-//             ))
-//             :
-//             Object.entries(value).map(([keyTime, valueTime], index) => (
-
-//                 <div key={index} className="col-xl-4 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-//                     <Input inputclassname={editAble === false ? 'disabled' : ''} readOnly={editAble ? false : true} name={keyTime} value={valueTime} type={'number'} title={keyTime} changeInputValue={inputChange} />
-//                 </div>
-//             ))
-//         }
-//     </div>
-// </div>

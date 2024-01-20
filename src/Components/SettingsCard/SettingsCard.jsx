@@ -70,7 +70,6 @@ function SettingsCard(props) {
         }).then(
             res => {
                 props.getData()
-                console.log(res)
                 setShowAlert({ status: true, msg: res.statusText + '!  edit is successful', success: true })
                 setTimeout(() => {
                     setShowAlert({ status: false, success: true })
@@ -80,7 +79,6 @@ function SettingsCard(props) {
             }
         ).catch(
             err => {
-                console.log(err);
                 setShowAlert({ status: true, msg: err.statusText + 'name is same', success: false })
                 setTimeout(() => {
                     setShowAlert({ status: false, success: true })

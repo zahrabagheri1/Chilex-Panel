@@ -13,7 +13,7 @@ function Time(props) {
         setTimeList((prev) => ({ ...prev, [e.target.name]: e.target.value }))
     }
 
-    console.log(props.value, timeList)
+    // console.log(props.value, timeList)
 
     useEffect(() => {
         props.sendTime(timeList)

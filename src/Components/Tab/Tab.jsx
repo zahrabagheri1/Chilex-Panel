@@ -30,7 +30,6 @@ function Tab(props) {
 
 
     const clickHandler = (e, item) => {
-        console.log(item)
         setParentId(item.id)
         setChild(!child)
         setClick(!click)

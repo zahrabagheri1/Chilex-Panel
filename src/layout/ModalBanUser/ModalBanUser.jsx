@@ -61,7 +61,6 @@ function ModalBanUser(props) {
             )
             .catch(
                 err => {
-                    console.log(err)
                     setShowAlert({ status: true, msg: err.message + ".   Filling the blank", success: false })
                     setTimeout(() => {
                         setShowAlert({ status: false })
