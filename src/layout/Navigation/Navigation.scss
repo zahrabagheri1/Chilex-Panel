@@ -11,7 +11,15 @@
     gap: 10px;
     height: 10vh;
     margin: 5px 20px;
+    cursor: default;
+
     
+    .timeZone,
+    .username {
+        font-size: 18px;
+        color: $fontColor;
+    }
+
     .usernameBox {
         display: flex;
         flex-direction: row;
@@ -19,21 +27,9 @@
         gap: 10px;
 
         .imgUser {
-            cursor: pointer;
-            width: 50px;
+            width: 46px;
+            height: 46px;
             border-radius: 50%;
-        }
-
-        .username {
-            font-weight: 600;
-
-            &:link,
-            &:visited,
-            &:hover,
-            &:active {
-                text-decoration: none;
-                color: $fontColorlight;
-            }
         }
 
     }

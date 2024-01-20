@@ -70,7 +70,11 @@ function Index() {
         </div>
         {
           idChat.status ?
-            <Chatroom id={idChat.userId} data={idChat} /> : ''
+            <Chatroom id={idChat.userId} data={idChat} /> 
+            :
+            <div className="">
+              Click on One of the Users
+            </div> 
         }
       </div>
     );

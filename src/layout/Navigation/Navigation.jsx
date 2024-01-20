@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Navigation.scss';
 import adminImg from '../../Assets/image/admin.jpg';
-import { Link } from 'react-router-dom';
 
 function Navigation() {
   const locale = 'en';
@@ -29,7 +28,7 @@ function Navigation() {
       <div className="timeZone">{ date + wish + time}</div>
 
       <div className="usernameBox">
-        <Link to={'admin'} className='username'> Admin1, Wellcome</Link>
+        <div className='username'> Admin1, Wellcome</div>
         <img className='imgUser' src={adminImg} />
       </div>
 

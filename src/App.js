@@ -1,7 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import Login from './Pages/Login/Index';
 import Dashboard from './Pages/Dashboard/Index';
-import Admin from './Pages/Dashboard/Admin/Index';
 import AlluserList from './Pages/Dashboard/Users/Alluser/List/Index';
 import AlluserDetail from './Pages/Dashboard/Users/Alluser/Detail/Detail';
 import Support from './Pages/Dashboard/Support/Index';
@@ -43,7 +42,6 @@ function App() {
               <Route index element={<Login />} />
               <Route path='dashboard' element={<Dashboard />}>
                 <Route index element={<Charts />} />
-                <Route path='admin' element={<Admin />} />
                 <Route path='bundles' element={<BundleList />} />
                 <Route path='bundles/:id' element={<BundleDetail />} />
                 <Route path='items' element={<ItemList />} />
