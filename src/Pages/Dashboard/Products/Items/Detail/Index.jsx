@@ -12,6 +12,33 @@ import { LoginContext } from '../../../../Login/LoginContext';
 import Alert from '../../../../../layout/Alert/Alert';
 import DatePikerFarsi from '../../../../../Components/DatePikerFarsi/DatePikerFarsi';
 
+
+const detail = {
+    id: 6,
+    name: "char2",
+    status: 0,
+    imageId: null,
+    sku: "char2",
+    expireTime: null,
+    tier: 0,
+    category: 2,
+    gameItemType: null,
+    emoteItemType: null,
+    characterItemType: 4,
+    gameId: null,
+    datasetId: "char2",
+    datasetGroup: "item",
+    gameName: null,
+    prices: [
+        {
+            id: 16,
+            amount: 50,
+            priceType: 1,
+            priceStatus: 0
+        }
+    ]
+}
+
 function Index() {
     const [detail, setDetail] = useState({});
     const [editAble, setEditAble] = useState(false)
@@ -82,9 +109,7 @@ function Index() {
             ],
         }
     ]
-    const types = [{ id: 0, name: 'Gem bundle' }, { id: 1, name: 'Coin  bundle' }]
     const priceTypes = [{ id: 0, name: 'Gem' }, { id: 1, name: 'Coin' }, { id: 2, name: 'Rial' }]
-    const priceStatus = [{ id: 0, name: 'Active', status: true }, { id: 1, name: 'Deactive', status: false }]
 
     const updateInputData = (e) => {
         if (e.target.type === 'number') {
@@ -152,6 +177,7 @@ function Index() {
 
             : setEditAble(false)
     }
+
     const switchHandler = (boolean, id) => {
         console.log("boolean,id", boolean, id);
         axios.patch(`/admin-stuff/change-item-status/${id}`, {
@@ -245,28 +271,16 @@ function Index() {
     const editData = () => {
         setEditAble(!editAble)
     }
+
     const editDataCancel = () => {
         setEditAble(!editAble)
     }
-    console.log(detail)
+
     const hundelBack = () => {
         navigate(-1)
     }
     return (
         <div className='itemDetail'>
-            {/* <div className="itembtns">
-                <div className="btnEdit">
-                    <div className='edited' onClick={editData}><HiPencilSquare /></div>
-                    <div className={editAble === true ? 'ableupdate' : 'disableupdate'} onClick={sendData}><HiCheck /></div>
-                </div>
-                <div className="addPrice">
-                    <div className="">
-
-                    </div>
-                </div>
-            </div> */}
-
-
             {showAlert.status === true ?
                 <Alert message={showAlert.msg} success={showAlert.success} />
                 :
@@ -296,6 +310,7 @@ function Index() {
 
                 </div>
             </div>
+
             <div className='boxOfDetail row'>
                 {detail === null || detail === undefined ? '' : (
                     Object.entries(detail).map(([key, value], index) => (
@@ -340,45 +355,52 @@ function Index() {
                                 </div>
                             </div>
                             :
+                            // <div key={index} className=" itembundle col-xl-3 col-lg-2 col-md-4 col-ms-6 col-xs-6">
+                            //     {
+                            //         key === 'id' || key === 'status' || key === 'gameId' ?
+                            //             key === 'id' || key === 'gameId' ?
+                            //                 <div className="titleB ">
+                            //                     <div className='header-title'>{key}</div>
+                            //                     <div className='data-title'>{value}</div>
+                            //                 </div>
+                            //                 :
+
+                            //                 <Switch
+                            //                     id={id}
+                            //                     title={key}
+                            //                     defaultChecked={value === 0 ? true : false}
+                            //                     disabled={editAble === false ? true : false}
+                            //                     onChange={switchHandler}
+                            //                 />
+
+                            //             :
+                            //             key === 'sku' || key === 'name' || key === 'imageId' || key === 'datasetGroup' || key === 'datasetId' ?
+                            //                 <Input inputclassname={editAble === false ? 'active' : ''} name={key} title={key} value={value} type={key === 'amount' ? 'number' : 'text'} readOnly={editAble === true ? false : true} changeInputValue={updateInputData} />
+                            //                 :
+                            //                 key === 'expireTime' ?
+                            //                     <DatePikerFarsi disable={'disabled'} value={value} readOnly={editAble ? false : true} title={key} handlerChangeDate={updateDataPiker} />
+
+                            //                     :
+                            //                     items.map(item => (
+                            //                         item.name === key ?
+
+                            //                             // key === 'category' || value === 'game'?
+
+                            //                             < SelectOption readOnly={editAble === true ? false : true} disable={''} name={key} value={value} defaultValue={value} type={'name'} changeOptinValue={updateOptionData}
+                            //                                 data={item.data}
+                            //                             />
+                            //                             : ''
+                            //                     ))
+
+                            //     }
+                            // </div>
                             <div key={index} className=" itembundle col-xl-3 col-lg-2 col-md-4 col-ms-6 col-xs-6">
-                                {
-                                    key === 'id' || key === 'status' || key === 'gameId' ?
-                                        key === 'id' || key === 'gameId' ?
-                                            <div className="titleB ">
-                                                <div className='header-title'>{key}</div>
-                                                <div className='data-title'>{value}</div>
-                                            </div>
-                                            :
-
-                                            <Switch
-                                                id={id}
-                                                title={key}
-                                                defaultChecked={value === 0 ? true : false}
-                                                disabled={editAble === false ? true : false}
-                                                onChange={switchHandler}
-                                            />
-
-                                        :
-                                        key === 'sku' || key === 'name' || key === 'imageId' || key === 'datasetGroup' || key === 'datasetId' ?
-                                            <Input inputclassname={editAble === false ? 'active' : ''} name={key} title={key} value={value} type={key === 'amount' ? 'number' : 'text'} readOnly={editAble === true ? false : true} changeInputValue={updateInputData} />
-                                            :
-                                            key === 'expireTime' ?
-                                                <DatePikerFarsi disable={'disabled'} value={value} readOnly={editAble ? false : true} title={key} handlerChangeDate={updateDataPiker} />
-
-                                                :
-                                                items.map(item => (
-                                                    item.name === key ?
-
-                                                        // key === 'category' || value === 'game'?
-
-                                                        < SelectOption readOnly={editAble === true ? false : true} disable={''} name={key} value={value} defaultValue={value} type={'name'} changeOptinValue={updateOptionData}
-                                                            data={item.data}
-                                                        />
-                                                        : ''
-                                                ))
-
-                                }
+                                <div className="titleB ">
+                                    <div className='header-title'>{key}</div>
+                                    <div className='data-title'>{value}</div>
+                                </div>
                             </div>
+
                     ))
                 )}
 
