@@ -11,7 +11,7 @@ import { LoadingContext } from '../../../../Loading/LoadingContext';
 import { LoginContext } from '../../../../Login/LoginContext';
 import Alert from '../../../../../layout/Alert/Alert';
 import DatePikerFarsi from '../../../../../Components/DatePikerFarsi/DatePikerFarsi';
-import API_URL from '../../../../../API_URL';
+import { API_URL } from '../../../../../API_URL';
 
 function Index() {
     const [detail, setDetail] = useState({});

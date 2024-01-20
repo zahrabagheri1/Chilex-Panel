@@ -11,7 +11,7 @@ import Alert from '../../layout/Alert/Alert';
 import ButtonActionGray from '../ButtonActionGray/ButtonActionGray';
 import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
-import API_URL from '../../API_URL';
+import { API_URL } from '../../API_URL';
 
 const props = {
     id: '1',
@@ -43,9 +43,9 @@ const editable = [
 ]
 
 function SettingsCard(props) {
-    
+
     const data = props.data;
-    const navigate =useNavigate()
+    const navigate = useNavigate()
     const [edit, setEdit] = useState(false)
     const [updatedata, setUpdateData] = useState({})
     const [cookies] = useCookies(['accessToken']);
@@ -62,33 +62,33 @@ function SettingsCard(props) {
             description: updatedata.description === null || updatedata.description === undefined ? data.description : updatedata.description,
             botLevel: updatedata.botLevel === null || updatedata.botLevel === undefined ? data.botLevel : updatedata.botLevel
         },
-        {
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: 'Bearer ' + cookies.accessToken
-            }
-        }).then(
-            res => {
-                props.getData()
-                console.log(res)
-                setShowAlert({ status: true, msg: res.statusText + '!  edit is successful', success: true })
-                setTimeout(() => {
-                    setShowAlert({ status: false, success: true })
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + cookies.accessToken
+                }
+            }).then(
+                res => {
+                    props.getData()
+                    console.log(res)
+                    setShowAlert({ status: true, msg: res.statusText + '!  edit is successful', success: true })
+                    setTimeout(() => {
+                        setShowAlert({ status: false, success: true })
 
-                }, 3000)
-                setEdit(false)
-            }
-        ).catch(
-            err => {
-                console.log(err);
-                setShowAlert({ status: true, msg: err.statusText + 'name is same', success: false })
-                setTimeout(() => {
-                    setShowAlert({ status: false, success: true })
+                    }, 3000)
+                    setEdit(false)
+                }
+            ).catch(
+                err => {
+                    console.log(err);
+                    setShowAlert({ status: true, msg: err.statusText + 'name is same', success: false })
+                    setTimeout(() => {
+                        setShowAlert({ status: false, success: true })
 
-                }, 3000)
+                    }, 3000)
 
-            }
-        )
+                }
+            )
     }
 
     const goToResources = () => {
@@ -175,7 +175,7 @@ function SettingsCard(props) {
                             <div className='update'><ButtonActionBlue title={'Edit'} handler={() => setEdit(true)} /></div>
                         </div>
                         <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                            <div className='update'><ButtonActionGray title={'resources'} handler={()=> goToResources()} /></div>
+                            <div className='update'><ButtonActionGray title={'resources'} handler={() => goToResources()} /></div>
                         </div>
                     </div>
                     :

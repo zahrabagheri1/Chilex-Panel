@@ -7,7 +7,7 @@ import ButtonActionBlue from '../../../Components/ButtonActionBlue/ButtonActionB
 import Alert from '../../Alert/Alert';
 import ButtonActionGray from '../../../Components/ButtonActionGray/ButtonActionGray';
 import { useCookies } from 'react-cookie';
-import API_URL from '../../../API_URL';
+import { API_URL }  from '../../../API_URL';
 
 function ModalRequirment(props) {
   const [value, setValue] = useState()

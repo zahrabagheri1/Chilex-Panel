@@ -8,7 +8,7 @@ import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { LoadingContext } from '../../../Loading/LoadingContext';
 import { LoginContext } from '../../../Login/LoginContext';
-import API_URL from '../../../../API_URL';
+import { API_URL }  from '../../../../API_URL';
 
 const props = {
   gameName: 'backgammon'

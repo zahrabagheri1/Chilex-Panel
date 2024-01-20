@@ -9,7 +9,7 @@ import { useCookies } from 'react-cookie';
 import { LoadingContext } from '../../../Loading/LoadingContext';
 import { LoginContext } from '../../../Login/LoginContext';
 import moment from 'moment-jalaali';
-import API_URL from '../../../../API_URL';
+import { API_URL } from '../../../../API_URL';
 
 function Index() {
     const [transaction, setTransaction] = useState({});

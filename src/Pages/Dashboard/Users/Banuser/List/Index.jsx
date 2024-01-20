@@ -11,7 +11,7 @@ import { useCookies } from 'react-cookie';
 import { LoadingContext } from '../../../../Loading/LoadingContext';
 import { LoginContext } from '../../../../Login/LoginContext';
 import { HiOutlineTrash } from 'react-icons/hi2';
-import API_URL from '../../../../../API_URL';
+import { API_URL } from '../../../../../API_URL';
 
 function Index() {
     const [banuserList, setBanuserList] = useState(null)

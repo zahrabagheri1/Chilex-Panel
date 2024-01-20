@@ -11,7 +11,7 @@ import { LoginContext } from '../../../../Login/LoginContext';
 import DatePikerFarsi from '../../../../../Components/DatePikerFarsi/DatePikerFarsi';
 import Alert from '../../../../../layout/Alert/Alert';
 import Time from '../../../../../layout/Time/Time';
-import API_URL from '../../../../../API_URL';
+import { API_URL } from '../../../../../API_URL';
 
 function Index() {
     const [detail, setDetail] = useState({});
@@ -52,7 +52,7 @@ function Index() {
 
     const sendActivityInteralTime = (timeList) => {
         setUpdateData((prev) => ({ ...prev, ['activityIntervalTime']: timeList }))
-        console.log('list time sendd',timeList)
+        console.log('list time sendd', timeList)
     }
 
     const changeValueInput = (e) => {

@@ -12,7 +12,7 @@ import ModalBanUser from '../../../../../layout/ModalBanUser/ModalBanUser';
 import { useCookies } from 'react-cookie';
 import { LoadingContext } from '../../../../Loading/LoadingContext';
 import DatePikerFarsi from '../../../../../Components/DatePikerFarsi/DatePikerFarsi';
-import API_URL from '../../../../../API_URL';
+import { API_URL } from '../../../../../API_URL';
 
 function Index() {
   const dateNow = Date.now();

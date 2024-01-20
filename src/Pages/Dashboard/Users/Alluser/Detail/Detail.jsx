@@ -9,7 +9,7 @@ import './Detail.scss'
 import Alert from '../../../../../layout/Alert/Alert';
 import moment from 'moment-jalaali';
 import Input from '../../../../../Components/Input/Input';
-import API_URL from '../../../../../API_URL';
+import { API_URL } from '../../../../../API_URL';
 
 function Detail() {
   const [users, setUsers] = useState()

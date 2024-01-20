@@ -6,7 +6,7 @@ import moment from 'moment-jalaali';
 import axios from 'axios';
 import { LoadingContext } from '../../Loading/LoadingContext';
 import { LoginContext } from '../../Login/LoginContext';
-import API_URL from '../../../API_URL';
+import { API_URL } from '../../../API_URL';
 
 function Charts() {
     var dataChart = [];

@@ -7,7 +7,7 @@ import ButtonActionBlue from '../../Components/ButtonActionBlue/ButtonActionBlue
 import ButtonActionGray from '../../Components/ButtonActionGray/ButtonActionGray';
 import Alert from '../Alert/Alert';
 import { useCookies } from 'react-cookie';
-import API_URL from '../../API_URL';
+import { API_URL } from '../../API_URL';
 
 function ModalSetting(props) {
   const [cookies] = useCookies(['accessToken']);

@@ -7,7 +7,7 @@ import ButtonActionBlue from '../../Components/ButtonActionBlue/ButtonActionBlue
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
 import Alert from '../Alert/Alert';
-import API_URL from '../../API_URL';
+import { API_URL } from '../../API_URL';
 
 const props = {
     modalTitle: '',
@@ -42,7 +42,7 @@ function ModalBanUser(props) {
     }
 
     const banUser = () => {
-        axios.post(API_URL +`/admin-ban/ban`, banuser,
+        axios.post(API_URL + `/admin-ban/ban`, banuser,
             {
                 headers: {
                     'Content-Type': 'application/json',
