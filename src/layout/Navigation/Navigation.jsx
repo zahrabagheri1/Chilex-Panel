@@ -4,7 +4,7 @@ import adminImg from '../../Assets/image/admin.jpg';
 
 function Navigation() {
   const locale = 'en';
-  const [today, setDate] = useState(new Date()); 
+  const [today, setDate] = useState(new Date());
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -25,8 +25,7 @@ function Navigation() {
 
   return (
     <div className='navigation'>
-      <div className="timeZone">{ date + wish + time}</div>
-
+      <div className="timeZone">{date + wish + time}</div>
       <div className="usernameBox">
         <div className='username'> Admin1, Wellcome</div>
         <img className='imgUser' src={adminImg} />

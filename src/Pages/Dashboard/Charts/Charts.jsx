@@ -6,6 +6,7 @@ import moment from 'moment-jalaali';
 import axios from 'axios';
 import { LoadingContext } from '../../Loading/LoadingContext';
 import { LoginContext } from '../../Login/LoginContext';
+import { API_URL } from '../../../API_URL';
 
 function Charts() {
     var dataChart = [];
@@ -31,7 +32,7 @@ function Charts() {
     //admin-transaction/chart?statuses%5B%5D=5&gatewayTypes%5B%5D=1&type=1&startDate=2023-11-24&endtDate=2023-11-27
     const getChart = () => {
         setLoading(!loading)
-        axios.get(`/admin-transaction/chart?${filter.statuses === null || filter.statuses === undefined ? '' : ('statuses[]=' + filter.statuses + '&')}${filter.gatewayTypes === null || filter.gatewayTypes === undefined ? '' : ('gatewayTypes[]=' + filter.gatewayTypes + '&')}${'type=' + filter.type + '&'}${'startDate=' + filter.startDate + '&'}${'endtDate=' + filter.endtDate}`,
+        axios.get(API_URL + `/admin-transaction/chart?${filter.statuses === null || filter.statuses === undefined ? '' : ('statuses[]=' + filter.statuses + '&')}${filter.gatewayTypes === null || filter.gatewayTypes === undefined ? '' : ('gatewayTypes[]=' + filter.gatewayTypes + '&')}${'type=' + filter.type + '&'}${'startDate=' + filter.startDate + '&'}${'endtDate=' + filter.endtDate}`,
             {
                 headers: {
                     'Content-Type': 'application/json',

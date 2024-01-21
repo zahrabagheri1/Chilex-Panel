@@ -8,6 +8,7 @@ import moment from 'moment-jalaali';
 import { useCookies } from 'react-cookie';
 import { LoadingContext } from '../../../Loading/LoadingContext';
 import { LoginContext } from '../../../Login/LoginContext';
+import { API_URL } from '../../../../API_URL';
 
 function Index() {
     const [history, setHistory] = useState({});
@@ -21,7 +22,7 @@ function Index() {
 
     const historyGet = () => {
         setLoading(!loading)
-        axios.get(`/shopping-history/get-shoppingHistory/${id}`,
+        axios.get(API_URL + `/shopping-history/get-shoppingHistory/${id}`,
             {
                 headers: {
                     'Content-Type': 'application/json',
