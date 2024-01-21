@@ -8,6 +8,8 @@ import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { LoadingContext } from '../../../Loading/LoadingContext';
 import { LoginContext } from '../../../Login/LoginContext';
+import { API_URL }  from '../../../../API_URL';
+
 const props = {
   gameName: 'backgammon'
 }
@@ -27,7 +29,7 @@ function Settings() {
 
   const getSettings = () => {
     setLoading(!loading)
-    axios.get(`/games/settings/${id}`,
+    axios.get(API_URL + `/games/settings/${id}`,
       {
         headers: {
           'Content-Type': 'application/json',
