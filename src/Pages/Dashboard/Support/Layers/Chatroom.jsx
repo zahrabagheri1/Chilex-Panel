@@ -110,9 +110,10 @@ function Chatroom(props) {
                     <div ref={scrollEnd} className="chatboxbody">
                         <button className="readmoremessages" onClick={ReadMoreMessages}>
                             <div className="textlineright"></div>
-                            <div className="readmore"> read more messages</div>
+                            <div className="readmore">read more messages</div>
                             <div className="textlinelift"></div>
                         </button>
+
                         {chat?.map((msg, index) => (
                             <div key={index}>
                                 <Messege message={msg.message} name={chat?.userName} receiverId={msg?.receiverId} own={msg?.senderId} time={msg?.date} />

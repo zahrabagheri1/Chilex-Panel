@@ -9,7 +9,7 @@ const value = `; ${document.cookie}`;
 const parts = value.split(`; ${'accessToken'}=`);
 // if (parts.length === 2) return parts.pop().split(';').shift();
 
-console.log('parts :   ' , parts[1])
+// console.log('parts :   ' , parts[1])
 
 export const socket = io('/', {
     auth: {

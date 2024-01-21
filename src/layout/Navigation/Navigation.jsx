@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Navigation.scss';
 import adminImg from '../../Assets/image/admin.jpg';
-import { Link } from 'react-router-dom';
 
 function Navigation() {
   const locale = 'en';

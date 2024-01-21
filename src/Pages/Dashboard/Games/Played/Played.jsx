@@ -49,6 +49,7 @@ function Played() {
             })
             .then(
                 res => {
+                    console.log(res.data.data)
                     setData(res.data.data)
                     setLoading(loading)
                 }

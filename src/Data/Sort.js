@@ -79,6 +79,7 @@ export const sortGamePlayed = [
     { name: 'settingId', status: true },
     { name: 'game', status: true },
     { name: 'processId', status: true },
+    { name: 'creatorId', status: true },
     { name: 'finished', status: true },
     { name: 'createdAt', status: true },
     { name: 'updatedAt', status: true }

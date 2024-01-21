@@ -62,28 +62,26 @@ function SettingsCard(props) {
             description: updatedata.description === null || updatedata.description === undefined ? data.description : updatedata.description,
             botLevel: updatedata.botLevel === null || updatedata.botLevel === undefined ? data.botLevel : updatedata.botLevel
         },
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: 'Bearer ' + cookies.accessToken
-                }
-            }).then(
-                res => {
-                    props.getData()
-                    console.log(res)
-                    setShowAlert({ status: true, msg: res.statusText + '!  edit is successful', success: true })
-                    setTimeout(() => {
-                        setShowAlert({ status: false, success: true })
+        {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + cookies.accessToken
+            }
+        }).then(
+            res => {
+                props.getData()
+                setShowAlert({ status: true, msg: res.statusText + '!  edit is successful', success: true })
+                setTimeout(() => {
+                    setShowAlert({ status: false, success: true })
 
-                    }, 3000)
-                    setEdit(false)
-                }
-            ).catch(
-                err => {
-                    console.log(err);
-                    setShowAlert({ status: true, msg: err.statusText + 'name is same', success: false })
-                    setTimeout(() => {
-                        setShowAlert({ status: false, success: true })
+                }, 3000)
+                setEdit(false)
+            }
+        ).catch(
+            err => {
+                setShowAlert({ status: true, msg: err.statusText + 'name is same', success: false })
+                setTimeout(() => {
+                    setShowAlert({ status: false, success: true })
 
                     }, 3000)
 
@@ -137,13 +135,13 @@ function SettingsCard(props) {
                                             <Switch id={index} title={key} defaultChecked={value} disabled={edit === false ? true : false} onChange={switchHandlerPrice} />
                                             :
                                             item.status === false ?
-                                                // item.name === 'updatedAt' || item.name === 'createdAt' ?
-                                                //     <div className='titleB'>
-                                                //         <div className='header-title'>{key}</div>
-                                                //         <div className='data-title'>{moment(value, 'YYYY/MM/DD').format('jYYYY/jM/jD')}</div>
-                                                //     </div>
+                                                item.name === 'updatedAt' || item.name === 'createdAt' ?
+                                                    <div className='titleB'>
+                                                        <div className='header-title'>{key}</div>
+                                                        <div className='data-title'>{moment(value, 'YYYY/MM/DD').format('jYYYY/jM/jD')}</div>
+                                                    </div>
 
-                                                //     :
+                                                    :
                                                 < Input type={typeof value === 'number' ? 'number' : 'text'} inputclassname={'disabled'} name={key} value={value} title={key} readOnly={true} />
                                                 :
                                                 item.select === false ?

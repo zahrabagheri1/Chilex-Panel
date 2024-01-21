@@ -8,6 +8,8 @@
     z-index: 99;
     width: 100%;
     height: 100vh;
+    cursor: default;
+    user-select: none;
 
     .alert {
         position: fixed;

@@ -14,21 +14,19 @@ import DatePikerFarsi from '../../Components/DatePikerFarsi/DatePikerFarsi';
 import moment from 'moment-jalaali';
 
 function ModalAddProducts(props) {
-
-  // props => modalTitle , data
   const [addBandel, setBandel] = useState();
   const [stuffType, setStuffType] = useState();
+
   const [showAlert, setShowAlert] = useState({
-    status: false, msg: ''
+    status: false, msg: '', success: false
   })
 
   const [addElement, setAddElement] = useState({
-    prices:  [],
+    prices: [],
     stuffType: props.type === 'bundle' ? null : 2,
   })
 
   const [cookies] = useCookies(['accessToken']);
-
   const handlerClose = (e) => {
     props.handlerClose()
   }
@@ -44,20 +42,18 @@ function ModalAddProducts(props) {
       .then(
         res => {
           setBandel(res.data.data)
-          setShowAlert({ status: true, msg: res.message, success: false })
+          setShowAlert({ status: true, msg: res.statusText, success: true })
           setTimeout(() => {
-            setShowAlert({ status: false, msg: res.message })
+            setShowAlert({ status: false, msg: res.statusText , success: true })
 
           }, 3000)
         }
       )
       .catch(
         err => {
-          console.log(err.message)
-
-          setShowAlert({ status: true, msg: err.message, success: false })
+          setShowAlert({ status: true, msg: err.response.data.message, success: false })
           setTimeout(() => {
-            setShowAlert({ status: false, msg: err.message })
+            setShowAlert({ status: false, msg: err.response.data.message, success: false })
 
           }, 3000)
         }
@@ -83,8 +79,8 @@ function ModalAddProducts(props) {
   const sendPriceAmute = (priceList) => {
     addElement.prices.push(priceList)
   }
-  
-  console.log(addElement.activityIntervalTime)
+
+  // console.log(addElement.activityIntervalTime)
 
   const sendActivityInteralTime = (timeList) => {
     setAddElement((prev) => ({ ...prev, ['activityIntervalTime']: timeList }))
@@ -93,7 +89,7 @@ function ModalAddProducts(props) {
   return (
     <div className='modal'>
       {showAlert.status === true ?
-        <Alert message={showAlert.msg} />
+        <Alert message={showAlert.msg} success={showAlert.success} />
         :
         ''
       }
@@ -210,7 +206,7 @@ function ModalAddProducts(props) {
           </div>
 
           <div className='modalBoxs col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-            <Prices important={true} stuffType={addElement.stuffType}  sendPrice={sendPriceAmute} />
+            <Prices important={true} stuffType={addElement.stuffType} sendPrice={sendPriceAmute} />
           </div>
 
           {
