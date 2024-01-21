@@ -24,10 +24,15 @@ function Index() {
     const [filter, setFilter] = useState({
         sku: null,
         itemStatus: null,
+        itemGameId: null,
+        itemCategories: null,
+        characterItemTypes: null,
+        gameItemTypes: null,
         priceStatus: null,
         limit: null,
         offset: null,
-        orderBy: null,
+        sortBy: 2,
+        orderBy: 1,
     })
 
     // ${parameters.from === null ||  parameters.from === undefined? "" : "&RegisterDate.min=" + parameters.from}
@@ -93,11 +98,12 @@ function Index() {
             <div className='top'>
                 <div className='filter'>
                     <div className="row">
-
+                        {/* Sku */}
                         <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
                             <Input value={filter.sku} type={'text'} title={"sku"} placeholder={'sku'} name={'sku'} changeInputValue={updateInputData} />
                         </div>
 
+                        {/* Item status */}
                         <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
                             <SelectOption readOnly={false} value={filter.itemStatus} name={'itemStatus'} defaultValue={'itemStatus'} type={'status'} changeOptinValue={updateOptionData}
                                 data={[
@@ -105,9 +111,9 @@ function Index() {
                                     { id: 1, status: 'Deactive' },
                                 ]}
                             />
-
                         </div>
 
+                        {/* Item Game Id */}
                         <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
                             <SelectOption readOnly={false} value={filter.itemGameId} name={'itemGameId'} defaultValue={'itemGameId'} type={'status'} changeOptinValue={updateOptionData}
                                 data={[
@@ -120,8 +126,9 @@ function Index() {
                             />
                         </div>
 
+                        {/* characterItemTypes */}
                         <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                            <SelectOption readOnly={false} value={filter.itemTypes} name={'itemTypes'} defaultValue={'itemTypes'} type={'status'} changeOptinValue={updateOptionData}
+                            <SelectOption readOnly={false} value={filter.characterItemTypes} name={'characterItemTypes'} defaultValue={'characterItemTypes'} type={'status'} changeOptinValue={updateOptionData}
                                 data={[
                                     { id: 0, status: 'CLOTHES' },
                                     { id: 1, status: 'FACE' },
@@ -131,16 +138,24 @@ function Index() {
                                     { id: 5, status: 'EYEBROWS' },
                                     { id: 6, status: 'GLASESS' },
                                     { id: 7, status: 'MASK' },
-                                    { id: 8, status: 'HAT' },
-                                    { id: 9, status: 'DICE_SKIN' },
-                                    { id: 10, status: 'CARD_SKIN ' },
-                                    { id: 11, status: 'FLAG_SKIN' },
-                                    { id: 12, status: 'FORMATION' }
+                                    { id: 8, status: 'HAT' }
                                 ]}
                             />
-
                         </div>
 
+                        {/* gameItemTypes */}
+                        <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                            <SelectOption readOnly={false} value={filter.gameItemTypes} name={'gameItemTypes'} defaultValue={'gameItemTypes'} type={'status'} changeOptinValue={updateOptionData}
+                                data={[
+                                    { id: 0, status: 'DICE_SKIN' },
+                                    { id: 1, status: 'CARD_SKIN ' },
+                                    { id: 2, status: 'FLAG_SKIN' },
+                                    { id: 3, status: 'FORMATION' }
+                                ]}
+                            />
+                        </div>
+
+                        {/* Item Categories */}
                         <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
                             <SelectOption readOnly={false} value={filter.itemCategories} name={'itemCategories'} defaultValue={'itemCategories'} type={'status'} changeOptinValue={updateOptionData}
                                 data={[
@@ -149,9 +164,9 @@ function Index() {
                                     { id: 2, status: 'CHARACTER' },
                                 ]}
                             />
-
                         </div>
 
+                        {/* priceStatus */}
                         <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
                             <SelectOption readOnly={false} value={filter.priceStatus} name={'priceStatus'} defaultValue={'priceStatus'} type={'status'} changeOptinValue={updateOptionData}
                                 data={[
@@ -169,21 +184,22 @@ function Index() {
                         <Input value={filter.offset} type={'text'} title={"offset"} placeholder={'offset'} name={'offset'} changeInputValue={updateInputData} />
                     </div> */}
 
+                        {/* Sort By */}
                         <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                            <SelectOption readOnly={false} value={filter.sortBy} name={'sortBy'} defaultValue={'createdAt'} type={'status'} changeOptinValue={updateOptionData}
+                            <SelectOption readOnly={false} value={filter.sortBy} name={'sortBy'} defaultValue={'id'} type={'status'} changeOptinValue={updateOptionData}
                                 data={[
                                     { id: 0, status: 'createdAt' },
                                     { id: 1, status: 'updatedAt' },
-                                    { id: 2, status: 'amount' },
-                                    { id: 3, status: 'id' },
-                                    { id: 4, status: 'name' },
-                                    { id: 5, status: 'status' },
+                                    { id: 2, status: 'id' },
+                                    { id: 3, status: 'name' },
+                                    { id: 4, status: 'status' }
                                 ]}
                             />
                         </div>
 
+                        {/* Order By */}
                         <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                            <SelectOption readOnly={false} value={filter.orderBy} name={'orderBy'} defaultValue={'orderBy'} type={'status'} changeOptinValue={updateOptionData}
+                            <SelectOption readOnly={false} value={filter.orderBy} name={'orderBy'} defaultValue={'ASC'} type={'status'} changeOptinValue={updateOptionData}
                                 data={[
                                     { id: 0, status: 'DESC' },
                                     { id: 1, status: 'ASC' },
