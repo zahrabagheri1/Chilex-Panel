@@ -27,7 +27,7 @@ function Index() {
 
   const gameIAP = () => {
     setLoading(!loading)
-    axios.get(API_URL + '/games',
+    axios.get(`${API_URL === undefined ? '' : API_URL}/games`,
       {
         headers: {
           'Content-Type': 'application/json',

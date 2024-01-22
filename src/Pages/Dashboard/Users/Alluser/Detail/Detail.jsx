@@ -39,7 +39,7 @@ function Detail() {
 
   const detailUser = () => {
     setLoading(!loading)
-    axios.get(API_URL + `${id}`,
+    axios.get(`${API_URL === undefined ? '' : API_URL}${id}`,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -61,7 +61,7 @@ function Detail() {
   }
 
   const sendData = () => {
-    axios.patch(API_URL + `/admin/users/${id}`,
+    axios.patch(`${API_URL === undefined ? '' : API_URL}/admin/users/${id}`,
       {
         name: updateUsesr.name === null || updateUsesr.name === undefined ? users.name : updateUsesr.name,
         email: updateUsesr.email === null || updateUsesr.email === undefined ? users.email : updateUsesr.email,

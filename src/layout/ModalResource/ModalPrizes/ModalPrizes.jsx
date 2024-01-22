@@ -38,7 +38,7 @@ function ModalPrizes(props) {
   console.log(addPrize)
 
   const sendData = () => {
-    axios.post(API_URL + `/games/setting/prize`, addPrize,
+    axios.post(`${API_URL === undefined ? '' : API_URL}/games/setting/prize`, addPrize,
       {
         headers: {
           'Content-Type': 'application/json',

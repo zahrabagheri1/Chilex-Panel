@@ -22,7 +22,7 @@ function Index() {
 
     const historyGet = () => {
         setLoading(!loading)
-        axios.get(API_URL + `/shopping-history/get-shoppingHistory/${id}`,
+        axios.get(`${API_URL === undefined ? '' : API_URL}/shopping-history/get-shoppingHistory/${id}`,
             {
                 headers: {
                     'Content-Type': 'application/json',

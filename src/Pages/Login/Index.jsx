@@ -72,7 +72,7 @@ function Index() {
 
   const submitData = () => {
     // axios.defaults.withCredentials = true;
-    axios.post(API_URL + `/auth/admin/login`, {
+    axios.post(`${API_URL === undefined ? '' : API_URL}/auth/admin/login`, {
       username: user.username,
       password: user.password
     }).then(

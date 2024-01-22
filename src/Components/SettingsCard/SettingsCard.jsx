@@ -54,7 +54,7 @@ function SettingsCard(props) {
     })
 
     const sendData = () => {
-        axios.patch(API_URL + `/games/setting/${data.id}`, {
+        axios.patch(`${API_URL === undefined ? '' : API_URL}/games/setting/${data.id}`, {
             name: updatedata.name === null || updatedata.name === undefined ? data.name : updatedata.name,
             active: updatedata.active === null || updatedata.active === undefined ? data.active : updatedata.active,
             game: updatedata.game === null || updatedata.game === undefined ? data.game : updatedata.game,

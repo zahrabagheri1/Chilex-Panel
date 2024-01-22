@@ -21,7 +21,7 @@ function Index() {
 
     const transactionGet = () => {
         setLoading(!loading)
-        axios.get(API_URL + `/admin-transaction/get-transaction/${id}`,
+        axios.get(`${API_URL === undefined ? '' : API_URL}/admin-transaction/get-transaction/${id}`,
             {
                 headers: {
                     'Content-Type': 'application/json',

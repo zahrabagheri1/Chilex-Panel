@@ -29,7 +29,7 @@ function Settings() {
 
   const getSettings = () => {
     setLoading(!loading)
-    axios.get(API_URL + `/games/settings/${id}`,
+    axios.get(`${API_URL === undefined ? '' : API_URL}/games/settings/${id}`,
       {
         headers: {
           'Content-Type': 'application/json',

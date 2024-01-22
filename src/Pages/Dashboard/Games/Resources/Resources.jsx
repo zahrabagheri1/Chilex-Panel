@@ -22,7 +22,7 @@ function Resources() {
     const navigate = useNavigate()
     const getResource = () => {
         setLoading(!loading)
-        axios.get(API_URL + `/games/setting/resources/${id}`,
+        axios.get(`${API_URL === undefined ? '' : API_URL}/games/setting/resources/${id}`,
             {
                 headers: {
                     'Content-Type': 'application/json',
@@ -62,7 +62,7 @@ function Resources() {
     }
     const deleteRequirement = (id, type) => {
         console.log(id, type)
-        axios.delete(API_URL + `/games/setting/${type}/${id}`,
+        axios.delete(`${API_URL === undefined ? '' : API_URL}/games/setting/${type}/${id}`,
             {
                 headers: {
                     'Content-Type': 'application/json',

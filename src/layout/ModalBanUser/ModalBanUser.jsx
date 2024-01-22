@@ -42,7 +42,7 @@ function ModalBanUser(props) {
     }
 
     const banUser = () => {
-        axios.post(API_URL + `/admin-ban/ban`, banuser,
+        axios.post(`${API_URL === undefined ? '' : API_URL}/admin-ban/ban`, banuser,
             {
                 headers: {
                     'Content-Type': 'application/json',

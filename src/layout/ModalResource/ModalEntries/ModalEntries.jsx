@@ -35,7 +35,7 @@ function ModalEntries(props) {
   }
 
   const sendData = () => {
-    axios.post(API_URL +`/games/setting/entry`, addEntry,
+    axios.post(`${API_URL === undefined ? '' : API_URL}/games/setting/entry`, addEntry,
     {
       headers: {
         'Content-Type': 'application/json',

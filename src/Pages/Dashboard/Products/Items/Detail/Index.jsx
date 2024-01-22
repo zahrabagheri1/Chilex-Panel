@@ -223,7 +223,7 @@ function Index() {
     const sendData = () => {
         // setEditAble(false)
         edit === true ?
-            axios.patch(API_URL + `/admin-stuff/update-item/${id}`,
+            axios.patch(`${API_URL === undefined ? '' : API_URL}/admin-stuff/update-item/${id}`,
                 {
                     name: updateData.name === null || updateData.name === undefined ? detail.name : updateData.name,
                     expireTime: updateData.expireTime === null || updateData.expireTime === undefined ? detail.expireTime : updateData.expireTime,
@@ -267,7 +267,7 @@ function Index() {
     }
 
     const switchHandler = (boolean, id) => {
-        axios.patch(API_URL + `/admin-stuff/change-item-status/${id}`, {
+        axios.patch(`${API_URL === undefined ? '' : API_URL}/admin-stuff/change-item-status/${id}`, {
             status: boolean === true ? 0 : 1,
         },
             {
@@ -298,7 +298,7 @@ function Index() {
 
     const switchHandlerPrice = (boolean, id) => {
         // console.log("boolean,id", boolean, id);
-        axios.patch(API_URL + `/admin-stuff/change-price-status/${id}`, {
+        axios.patch(`${API_URL === undefined ? '' : API_URL}/admin-stuff/change-price-status/${id}`, {
             status: boolean === true ? 0 : 1,
         },
             {
@@ -337,7 +337,7 @@ function Index() {
 
     const getData = () => {
         setLoading(!loading)
-        axios.get(API_URL + `/admin-stuff/get-item/${id}`,
+        axios.get(`${API_URL === undefined ? '' : API_URL}/admin-stuff/get-item/${id}`,
             {
                 headers: {
                     'Content-Type': 'application/json',

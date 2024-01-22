@@ -29,10 +29,12 @@ function Charts() {
         getChart()
     }, [filter])
 
+    console.log(API_URL)
+
     //admin-transaction/chart?statuses%5B%5D=5&gatewayTypes%5B%5D=1&type=1&startDate=2023-11-24&endtDate=2023-11-27
     const getChart = () => {
         setLoading(!loading)
-        axios.get(API_URL + `/admin-transaction/chart?${filter.statuses === null || filter.statuses === undefined ? '' : ('statuses[]=' + filter.statuses + '&')}${filter.gatewayTypes === null || filter.gatewayTypes === undefined ? '' : ('gatewayTypes[]=' + filter.gatewayTypes + '&')}${'type=' + filter.type + '&'}${'startDate=' + filter.startDate + '&'}${'endtDate=' + filter.endtDate}`,
+        axios.get(`${API_URL === undefined ? '' : API_URL}/admin-transaction/chart?${filter.statuses === null || filter.statuses === undefined ? '' : ('statuses[]=' + filter.statuses + '&')}${filter.gatewayTypes === null || filter.gatewayTypes === undefined ? '' : ('gatewayTypes[]=' + filter.gatewayTypes + '&')}${'type=' + filter.type + '&'}${'startDate=' + filter.startDate + '&'}${'endtDate=' + filter.endtDate}`,
             {
                 headers: {
                     'Content-Type': 'application/json',
@@ -182,7 +184,7 @@ function Charts() {
     };
 
 
-    
+
     return (
         dataChart == [] || dataChart == {} || dataChart === undefined || dataChart === null ? '' :
             <div className='charts row'>

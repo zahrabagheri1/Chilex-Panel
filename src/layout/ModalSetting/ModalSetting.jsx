@@ -12,13 +12,13 @@ import { API_URL } from '../../API_URL';
 function ModalSetting(props) {
   const [cookies] = useCookies(['accessToken']);
   const [addSetting, setAddSetting] = useState({ game: props.gameName})
-  const [error, setError] = useState()
   const [showAlert, setShowAlert] = useState({
     status: false, msg: '', success: null
   })
 
+
   const handlerSubmit = () => (
-    axios.post(API_URL + `/games/setting`, addSetting,
+    axios.post(`${API_URL === undefined ? '' : API_URL}/games/setting`, addSetting,
       {
         headers: {
           'Content-Type': 'application/json',
