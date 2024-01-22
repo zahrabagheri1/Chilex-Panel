@@ -63,9 +63,8 @@ function Prices(props) {
                                         <SelectOption classnameBox={'control'} readOnly={false} name={'type'} defaultValue={'Price'} type={'status'}
                                             changeOptinValue={selectChange}
                                             data={[
-                                                { id: 1, status: 'Coin' },
                                                 { id: 2, status: 'Tonam' },
-                                                { id: 3, status: 'Free' },
+                                                { id: 3, status: 'Free' }
                                             ]}
                                         />
                                         : ''
