@@ -12,7 +12,6 @@ function Charts() {
     var dataChart = [];
     const dateNow = Date.now();
     const [cookies] = useCookies(['accessToken']);
-    const [data, setData] = useState({});
     const [transactionData, setTransactionData] = useState({});
     const { loading, setLoading } = useContext(LoadingContext)
     const { goToLoginPage } = useContext(LoginContext);
