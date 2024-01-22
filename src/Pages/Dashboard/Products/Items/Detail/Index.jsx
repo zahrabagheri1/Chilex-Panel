@@ -40,7 +40,7 @@ const detail = {
 }
 
 function Index() {
-    const [detail, setDetail] = useState({});
+    const [ddetail, setDetail] = useState({});
     const [editAble, setEditAble] = useState(false)
     const [edit, setEdit] = useState(false)
     const { loading, setLoading } = useContext(LoadingContext);
@@ -54,6 +54,37 @@ function Index() {
     })
     const items = [
         {
+            name: 'id',
+            data: null,
+            type: 'input',
+
+        },
+        {
+            name: 'name',
+            data: null,
+            type: 'input'
+        },
+        {
+            name: 'status',
+            data: null,
+            type: 'switch'
+        },
+        {
+            name: 'imageId',
+            data: null,
+            type: 'input'
+        },
+        {
+            name: 'sku',
+            data: null,
+            type: 'input'
+        },
+        {
+            name: 'expireTime',
+            data: null,
+            type: 'datepiker'
+        },
+        {
             name: 'tier',
             data: [
                 { id: 0, name: 'DEFAULT' },
@@ -62,8 +93,18 @@ function Index() {
                 { id: 3, name: 'EPIC' },
                 { id: 4, name: 'LEGENDARY' },
             ],
-        }
-        ,
+            type: 'selectOpsion'
+        },
+        {
+            name: 'category',
+            data: [
+                { id: 0, name: 'ELSE' },
+                { id: 1, name: 'GAME' },
+                { id: 2, name: 'CHARACTER' },
+                { id: 3, name: 'Emot' },
+            ],
+            type: 'selectOpsion'
+        },
         {
             name: 'gameItemType',
             data: [
@@ -72,6 +113,7 @@ function Index() {
                 { id: 2, name: 'FLAG_SKIN' },
                 { id: 3, name: 'FORMATION' }
             ],
+            type: 'selectOpsion'
         },
         {
             name: 'characterItemType',
@@ -86,28 +128,57 @@ function Index() {
                 { id: 7, name: 'MASK' },
                 { id: 8, name: 'HAT' }
             ],
+            type: 'selectOpsion'
         },
         {
-            name: 'category',
+            name: 'gameId',
             data: [
-                { id: 0, name: 'ELSE' },
-                { id: 1, name: 'GAME' },
-                { id: 2, name: 'CHARACTER' },
-                { id: 3, name: 'Emot' },
+                { id: 0, status: 'Ludo' },
+                { id: 1, status: 'Uno' },
+                { id: 2, status: 'Backgammon ' },
+                { id: 3, status: 'Soccer' },
+                { id: 4, status: 'Yadzy' }
             ],
-        }
-        ,
-
+            type: 'selectOpsion'
+        },
         {
-            name: 'gameName',
-            data: [
-                { id: 0, name: 'DEFAULT' },
-                { id: 1, name: 'COMMON' },
-                { id: 2, name: 'RARE' },
-                { id: 3, name: 'EPIC' },
-                { id: 4, name: 'LEGENDARY' }
-            ],
-        }
+            name: 'datasetId',
+            data: null,
+            type: 'input'
+        },
+        {
+            name: 'datasetGroup',
+            data: null,
+            type: 'input'
+        },
+        {
+            name: 'prices',
+            data: null,
+            type: 'input',
+            child: [
+                {
+                    name: 'id',
+                    data: null,
+                    type: 'input'
+                },
+                {
+                    name: 'amount',
+                    data: null,
+                    type: 'input'
+                },
+                {
+                    name: 'priceType',
+                    data: null,
+                    type: 'input'
+                },
+                {
+                    name: 'priceStatus',
+                    data: null,
+                    type: 'switch'
+                },
+
+            ]
+        },
     ]
     const priceTypes = [{ id: 0, name: 'Gem' }, { id: 1, name: 'Coin' }, { id: 2, name: 'Rial' }]
 
@@ -321,7 +392,7 @@ function Index() {
                                     {value.map((item, i) => (
                                         Object.entries(item).map(([key, value], index) => (
                                             key === 'priceType' || key === 'priceStatus' ?
-                                                <div className="col-xl-3 col-lg-2 col-md-2 col-ms-6 col-xs-6" key={index}>
+                                                <div key={index} className="col-xl-3 col-lg-2 col-md-2 col-ms-6 col-xs-6">
                                                     {
                                                         key === 'priceType' ?
                                                             priceTypes.map(price => (
@@ -346,7 +417,7 @@ function Index() {
                                                     }
                                                 </div>
                                                 :
-                                                <div className="titleB col-xl-3 col-lg-2 col-md-2 col-ms-6 col-xs-6">
+                                                <div key={index} className="titleB col-xl-3 col-lg-2 col-md-2 col-ms-6 col-xs-6">
                                                     <div className='header-title'>{key}</div>
                                                     <div className='data-title'>{value}</div>
                                                 </div>
@@ -390,16 +461,19 @@ function Index() {
                             //                                 data={item.data}
                             //                             />
                             //                             : ''
-                            //                     ))
 
+                            //                     ))
                             //     }
                             // </div>
-                            <div key={index} className=" itembundle col-xl-3 col-lg-2 col-md-4 col-ms-6 col-xs-6">
-                                <div className="titleB ">
-                                    <div className='header-title'>{key}</div>
-                                    <div className='data-title'>{value}</div>
-                                </div>
-                            </div>
+
+                            items.map(item => (
+                                item.name === key ?
+                                    <div key={index} className=" itembundle col-xl-3 col-lg-2 col-md-4 col-ms-6 col-xs-6">
+                                        <Input inputclassname={editAble === false ? 'active' : ''} name={key} title={item.name} value={value} type={key === 'amount' ? 'number' : 'text'} readOnly={editAble === true ? false : true} changeInputValue={updateInputData} />
+                                    </div>
+                                    : ''
+                            ))
+
 
                     ))
                 )}

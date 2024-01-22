@@ -205,13 +205,17 @@ function ModalAddProducts(props) {
           </div>
 
           {/* emoteItemType */}
-          <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
-            <SelectOption readOnly={false} name={'emoteItemType'} defaultValue={'emoteItemType'} type={'status'} changeOptinValue={addOptionData}
-              data={[
-                { id: 0, status: 'Aninations' },
-              ]}
-            />
-          </div>
+          {
+            props.type === 'item' ?
+              <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                <SelectOption readOnly={false} name={'emoteItemType'} defaultValue={'emoteItemType'} type={'status'} changeOptinValue={addOptionData}
+                  data={[
+                    { id: 0, status: 'Aninations' },
+                  ]}
+                />
+              </div>
+              : ''
+          }
 
           {/* DatasetId */}
           <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
