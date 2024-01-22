@@ -58,32 +58,37 @@ function Index() {
             name: 'id',
             data: null,
             type: 'input',
-
+            edit: false
         },
         {
             name: 'name',
             data: null,
-            type: 'input'
+            type: 'input',
+            edit: true
         },
         {
             name: 'status',
             data: null,
-            type: 'switch'
+            type: 'switch',
+            edit: true
         },
         {
             name: 'imageId',
             data: null,
-            type: 'input'
+            type: 'input',
+            edit: true
         },
         {
             name: 'sku',
             data: null,
-            type: 'input'
+            type: 'input',
+            edit: true
         },
         {
             name: 'expireTime',
             data: null,
-            type: 'datepiker'
+            type: 'datepiker',
+            edit: true
         },
         {
             name: 'tier',
@@ -94,7 +99,8 @@ function Index() {
                 { id: 3, name: 'EPIC' },
                 { id: 4, name: 'LEGENDARY' },
             ],
-            type: 'selectOpsion'
+            type: 'selectOpsion',
+            edit: true
         },
         {
             name: 'category',
@@ -104,7 +110,8 @@ function Index() {
                 { id: 2, name: 'CHARACTER' },
                 { id: 3, name: 'Emot' },
             ],
-            type: 'selectOpsion'
+            type: 'selectOpsion',
+            edit: true
         },
         {
             name: 'gameItemType',
@@ -114,7 +121,8 @@ function Index() {
                 { id: 2, name: 'FLAG_SKIN' },
                 { id: 3, name: 'FORMATION' }
             ],
-            type: 'selectOpsion'
+            type: 'selectOpsion',
+            edit: true
         },
         {
             name: 'characterItemType',
@@ -129,7 +137,8 @@ function Index() {
                 { id: 7, name: 'MASK' },
                 { id: 8, name: 'HAT' }
             ],
-            type: 'selectOpsion'
+            type: 'selectOpsion',
+            edit: true
         },
         {
             name: 'gameId',
@@ -140,17 +149,20 @@ function Index() {
                 { id: 3, status: 'Soccer' },
                 { id: 4, status: 'Yadzy' }
             ],
-            type: 'selectOpsion'
+            type: 'selectOpsion',
+            edit: true
         },
         {
             name: 'datasetId',
             data: null,
-            type: 'input'
+            type: 'input',
+            edit: true
         },
         {
             name: 'datasetGroup',
             data: null,
-            type: 'input'
+            type: 'input',
+            edit: true
         },
         {
             name: 'prices',
@@ -160,22 +172,26 @@ function Index() {
                 {
                     name: 'id',
                     data: null,
-                    type: 'input'
+                    type: 'input',
+                    edit: true
                 },
                 {
                     name: 'amount',
                     data: null,
-                    type: 'input'
+                    type: 'input',
+                    edit: true
                 },
                 {
                     name: 'priceType',
                     data: null,
-                    type: 'input'
+                    type: 'input',
+                    edit: true
                 },
                 {
                     name: 'priceStatus',
                     data: null,
-                    type: 'switch'
+                    type: 'switch',
+                    edit: true
                 },
 
             ]
@@ -424,51 +440,33 @@ function Index() {
                                 </div>
                             </div>
                             :
-                            // <div key={index} className=" itembundle col-xl-3 col-lg-2 col-md-4 col-ms-6 col-xs-6">
-                            //     {
-                            //         key === 'id' || key === 'status' || key === 'gameId' ?
-                            //             key === 'id' || key === 'gameId' ?
-                            //                 <div className="titleB ">
-                            //                     <div className='header-title'>{key}</div>
-                            //                     <div className='data-title'>{value}</div>
-                            //                 </div>
-                            //                 :
-
-                            //                 <Switch
-                            //                     id={id}
-                            //                     title={key}
-                            //                     defaultChecked={value === 0 ? true : false}
-                            //                     disabled={editAble === false ? true : false}
-                            //                     onChange={switchHandler}
-                            //                 />
-
-                            //             :
-                            //             key === 'sku' || key === 'name' || key === 'imageId' || key === 'datasetGroup' || key === 'datasetId' ?
-                            //                 <Input inputclassname={editAble === false ? 'active' : ''} name={key} title={key} value={value} type={key === 'amount' ? 'number' : 'text'} readOnly={editAble === true ? false : true} changeInputValue={updateInputData} />
-                            //                 :
-                            //                 key === 'expireTime' ?
-                            //                     <DatePikerFarsi disable={'disabled'} value={value} readOnly={editAble ? false : true} title={key} handlerChangeDate={updateDataPiker} />
-
-                            //                     :
-                            //                     items.map(item => (
-                            //                         item.name === key ?
-
-                            //                             // key === 'category' || value === 'game'?
-
-                            //                             < SelectOption readOnly={editAble === true ? false : true} disable={''} name={key} value={value} defaultValue={value} type={'name'} changeOptinValue={updateOptionData}
-                            //                                 data={item.data}
-                            //                             />
-                            //                             : ''
-
-                            //                     ))
-                            //     }
-                            // </div>
 
                             items.map(item => (
                                 item.name === key ?
-                                    <div key={index} className=" itembundle col-xl-3 col-lg-2 col-md-4 col-ms-6 col-xs-6">
-                                        <Input inputclassname={editAble === false ? 'active' : ''} name={key} title={item.name} value={value} type={key === 'amount' ? 'number' : 'text'} readOnly={editAble === true ? false : true} changeInputValue={updateInputData} />
-                                    </div>
+                                    item.edit === false ?
+                                        <div key={index} className=" itembundle col-xl-2 col-lg-2 col-md-2 col-ms-6 col-xs-6">
+                                            <div className="titleB ">
+                                                <div className='header-title'>{key}</div>
+                                                <div className='data-title'>{value}</div>
+                                            </div>
+                                        </div>
+                                        :
+                                        item.type === 'input' ?
+                                            <div key={index} className=" itembundle col-xl-2 col-lg-2 col-md-2 col-ms-6 col-xs-6">
+                                                <Input inputclassname={editAble === false ? 'active' : ''} name={key} title={item.name} value={value} type={key === 'amount' ? 'number' : 'text'} readOnly={editAble === true ? false : true} changeInputValue={updateInputData} />
+                                            </div>
+                                            : item.type === 'switch' ?
+                                                <div key={index} className=" itembundle col-xl-2 col-lg-2 col-md-2 col-ms-6 col-xs-6">
+                                                    <Switch id={id} title={key} defaultChecked={value === 0 ? true : false} disabled={editAble === false ? true : false} onChange={switchHandler} />
+                                                </div>
+                                                : item.type === 'selectOpsion' ?
+                                                    <div key={index} className=" itembundle col-xl-2 col-lg-2 col-md-2 col-ms-6 col-xs-6">
+                                                        < SelectOption readOnly={editAble === true ? false : true} disable={''} name={key} value={value} defaultValue={value} type={'name'} changeOptinValue={updateOptionData}
+                                                            data={item.data}
+                                                        />
+                                                    </div>
+
+                                                    : ''
                                     : ''
                             ))
 

@@ -147,73 +147,71 @@ function ModalAddProducts(props) {
             <DatePikerFarsi inputClass={'controlinput'} value={moment(Date.now()).format('jYYYY/jM/jD')} title={'expireTime'} handlerChangeDate={addDataPiker} />
           </div>
 
-          {/* Category */}
-          <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
-            <SelectOption readOnly={false} important={true} name={'category'} defaultValue={'category'} type={'status'} changeOptinValue={addOptionData}
-              data={[
-                { id: 0, status: 'ELSE' },
-                { id: 1, status: 'GAME' },
-                { id: 2, status: 'CHARACTER' }
-              ]}
-            />
-          </div>
-
-          {/* characterItemType */}
-          <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
-            <SelectOption readOnly={false} name={'characterItemType'} defaultValue={'characterItemType'} type={'status'} changeOptinValue={addOptionData} disable={addElement.category === 2 ? false : true}
-              data={[
-                { id: 0, status: 'CLOTHES' },
-                { id: 1, status: 'FACE' },
-                { id: 2, status: 'HAIR' },
-                { id: 3, status: 'BEARD' },
-                { id: 4, status: 'EYE' },
-                { id: 5, status: 'EYEBROWS' },
-                { id: 6, status: 'GLASESS' },
-                { id: 7, status: 'MASK' },
-                { id: 8, status: 'HAT' },
-                { id: 9, status: 'DICE SKIN' },
-                { id: 10, status: 'CARD SKIN' },
-                { id: 11, status: 'FLAG SKIN' },
-                { id: 12, status: 'FORMATION' }
-              ]}
-            />
-          </div>
-
-          {/* GameId */}
-          <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
-            <SelectOption readOnly={false} name={'gameId'} defaultValue={'Game'} type={'status'} changeOptinValue={addOptionData} disable={addElement.category === 1 ? false : true}
-              data={[
-                { id: 0, status: 'Ludo' },
-                { id: 1, status: 'Uno' },
-                { id: 2, status: 'Backgammon ' },
-                { id: 3, status: 'Soccer' },
-                { id: 4, status: 'Yadzy' },
-              ]}
-            />
-          </div>
-
-          {/* gameItemType */}
-          <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
-            <SelectOption readOnly={false} name={'gameItemType'} defaultValue={'gameItemType'} type={'status'} changeOptinValue={addOptionData} disable={addElement.category === 1 ? false : true}
-              data={[
-                { id: 0, status: 'DICE SKIN' },
-                { id: 1, status: 'CARD SKIN' },
-                { id: 2, status: 'FLAG SKIN' },
-                { id: 3, status: 'FORMATION' }
-              ]}
-            />
-          </div>
-
           {/* emoteItemType */}
           {
             props.type === 'item' ?
-              <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
-                <SelectOption readOnly={false} name={'emoteItemType'} defaultValue={'emoteItemType'} type={'status'} changeOptinValue={addOptionData}
-                  data={[
-                    { id: 0, status: 'Aninations' },
-                  ]}
-                />
-              </div>
+              // emoteItemType 
+              <>
+                <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                  <SelectOption readOnly={false} name={'emoteItemType'} defaultValue={'emoteItemType'} type={'status'} changeOptinValue={addOptionData}
+                    data={[
+                      { id: 0, status: 'Aninations' },
+                    ]}
+                  />
+                </div>
+                {/* Category */}
+                <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                  <SelectOption readOnly={false} important={true} name={'category'} defaultValue={'category'} type={'status'} changeOptinValue={addOptionData}
+                    data={[
+                      { id: 0, status: 'ELSE' },
+                      { id: 1, status: 'GAME' },
+                      { id: 2, status: 'CHARACTER' }
+                    ]}
+                  />
+                </div>
+
+                {/* characterItemType */}
+                <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                  <SelectOption readOnly={false} name={'characterItemType'} defaultValue={'characterItemType'} type={'status'} changeOptinValue={addOptionData} disable={addElement.category === 2 ? false : true}
+                    data={[
+                      { id: 0, status: 'CLOTHES' },
+                      { id: 1, status: 'FACE' },
+                      { id: 2, status: 'HAIR' },
+                      { id: 3, status: 'BEARD' },
+                      { id: 4, status: 'EYE' },
+                      { id: 5, status: 'EYEBROWS' },
+                      { id: 6, status: 'GLASESS' },
+                      { id: 7, status: 'MASK' },
+                      { id: 8, status: 'HAT' }
+                    ]}
+                  />
+                </div>
+
+                {/* GameId */}
+                <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                  <SelectOption readOnly={false} name={'gameId'} defaultValue={'Game'} type={'status'} changeOptinValue={addOptionData} disable={addElement.category === 1 ? false : true}
+                    data={[
+                      { id: 0, status: 'Ludo' },
+                      { id: 1, status: 'Uno' },
+                      { id: 2, status: 'Backgammon ' },
+                      { id: 3, status: 'Soccer' },
+                      { id: 4, status: 'Yadzy' },
+                    ]}
+                  />
+                </div>
+
+                {/* gameItemType */}
+                <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                  <SelectOption readOnly={false} name={'gameItemType'} defaultValue={'gameItemType'} type={'status'} changeOptinValue={addOptionData} disable={addElement.category === 1 ? false : true}
+                    data={[
+                      { id: 0, status: 'DICE SKIN' },
+                      { id: 1, status: 'CARD SKIN' },
+                      { id: 2, status: 'FLAG SKIN' },
+                      { id: 3, status: 'FORMATION' }
+                    ]}
+                  />
+                </div>
+              </>
               : ''
           }
 
