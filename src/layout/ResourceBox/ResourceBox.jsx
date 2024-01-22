@@ -7,6 +7,7 @@ import axios from 'axios';
 import Alert from '../Alert/Alert';
 import './ResourceBox.scss';
 import { useCookies } from 'react-cookie';
+import { API_URL } from '../../API_URL';
 
 function ResourceBox(props) {
     const [cookies] = useCookies(['accessToken']);
@@ -24,27 +25,27 @@ function ResourceBox(props) {
     ]
 
     const deleteRequirement = (id) => {
-        props.onchange(id,'requirement')
-        console.log(id,'requirement')
+        props.onchange(id, 'requirement')
+        console.log(id, 'requirement')
     }
 
     const detelePrize = (id) => {
-        console.log(id,'prize')
-        props.onchange(id,'prize')
+        console.log(id, 'prize')
+        props.onchange(id, 'prize')
     }
 
     const deleteEntry = (id) => {
-        axios.delete(`/games/setting/entry/${id}`,
-        {
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: 'Bearer ' + cookies.accessToken
-            }
-        })
+        axios.delete(API_URL + `/games/setting/entry/${id}`,
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + cookies.accessToken
+                }
+            })
             .then(
                 res => {
                     // show alert that  deleted successfully
-                    setShowAlert({ status: true, msg: `Data by id: ${id} was delete successfully` })    
+                    setShowAlert({ status: true, msg: `Data by id: ${id} was delete successfully` })
                     setTimeout(() => {
                         setShowAlert({ status: false })
                     }, 2000)
@@ -59,18 +60,18 @@ function ResourceBox(props) {
     }
 
     const editResource = (id, requirement) => {
-        axios.patch(`/games/setting/requirement/${id}`, {
+        axios.patch(API_URL + `/games/setting/requirement/${id}`, {
             type: addRequirment.type === null || addRequirment.type === undefined ? requirement.type : addRequirment.type,
             min: addRequirment.min === null || addRequirment.min === undefined ? requirement.min : addRequirment.min,
             max: addRequirment.max === null || addRequirment.max === undefined ? requirement.max : addRequirment.max
 
         },
-        {
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: 'Bearer ' + cookies.accessToken
-            }
-        })
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + cookies.accessToken
+                }
+            })
             .then(
                 res => {
                     if (res.status < 300 && res.status >= 200) {
@@ -89,16 +90,16 @@ function ResourceBox(props) {
     }
 
     const editEntry = (id, requirement) => {
-        axios.patch(`/games/setting/entry/${id}`, {
+        axios.patch(API_URL + `/games/setting/entry/${id}`, {
             amount: addRequirment.amount === null || addRequirment.amount === undefined ? requirement.amount : addRequirment.amount,
             type: addRequirment.type === null || addRequirment.type === undefined ? requirement.type : addRequirment.type
         },
-        {
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: 'Bearer ' + cookies.accessToken
-            }
-        })
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + cookies.accessToken
+                }
+            })
             .then(
                 res => {
                     setShowAlert({ status: true, msg: res.statusText, success: true })
@@ -116,17 +117,17 @@ function ResourceBox(props) {
             )
     }
     const editPrize = (id, requirement) => {
-        console.log(requirement.type)
-        axios.patch(`/games/setting/prize/${id}`, {
+        // console.log(requirement.type)
+        axios.patch(API_URL + `/games/setting/prize/${id}`, {
             amount: addRequirment.amount === null || addRequirment.amount === undefined ? requirement.amount : addRequirment.amount,
             type: addRequirment.type === null || addRequirment.type === undefined ? requirement.type : addRequirment.type
         },
-        {
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: 'Bearer ' + cookies.accessToken
-            }
-        })
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + cookies.accessToken
+                }
+            })
             .then(
                 res => {
                     setShowAlert({ status: true, msg: res.statusText, success: true })

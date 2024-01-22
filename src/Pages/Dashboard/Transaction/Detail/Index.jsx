@@ -9,6 +9,7 @@ import { useCookies } from 'react-cookie';
 import { LoadingContext } from '../../../Loading/LoadingContext';
 import { LoginContext } from '../../../Login/LoginContext';
 import moment from 'moment-jalaali';
+import { API_URL } from '../../../../API_URL';
 
 function Index() {
     const [transaction, setTransaction] = useState({});
@@ -20,7 +21,7 @@ function Index() {
 
     const transactionGet = () => {
         setLoading(!loading)
-        axios.get(`/admin-transaction/get-transaction/${id}`,
+        axios.get(API_URL + `/admin-transaction/get-transaction/${id}`,
             {
                 headers: {
                     'Content-Type': 'application/json',

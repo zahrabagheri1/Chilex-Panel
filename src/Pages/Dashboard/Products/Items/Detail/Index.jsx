@@ -11,6 +11,7 @@ import { LoadingContext } from '../../../../Loading/LoadingContext';
 import { LoginContext } from '../../../../Login/LoginContext';
 import Alert from '../../../../../layout/Alert/Alert';
 import DatePikerFarsi from '../../../../../Components/DatePikerFarsi/DatePikerFarsi';
+import { API_URL } from '../../../../../API_URL';
 
 
 const detail = {
@@ -206,7 +207,7 @@ function Index() {
     const sendData = () => {
         // setEditAble(false)
         edit === true ?
-            axios.patch(`/admin-stuff/update-item/${id}`,
+            axios.patch(API_URL + `/admin-stuff/update-item/${id}`,
                 {
                     name: updateData.name === null || updateData.name === undefined ? detail.name : updateData.name,
                     expireTime: updateData.expireTime === null || updateData.expireTime === undefined ? detail.expireTime : updateData.expireTime,
@@ -226,7 +227,7 @@ function Index() {
                 })
                 .then(
                     res => {
-                        console.log(res)
+                        // console.log(res)
                         setShowAlert({ status: true, msg: 'Done', success: true })
                         setTimeout(() => {
                             setShowAlert({ status: false, msg: 'Done' })
@@ -238,7 +239,7 @@ function Index() {
                 )
                 .catch(
                     err => {
-                        console.log(err)
+                        // console.log(err)
                         setShowAlert({ status: true, msg: err.response.data.message, success: false })
                         setTimeout(() => {
                             setShowAlert({ status: false, msg: err.response.data.message, success: false })
@@ -250,8 +251,7 @@ function Index() {
     }
 
     const switchHandler = (boolean, id) => {
-        console.log("boolean,id", boolean, id);
-        axios.patch(`/admin-stuff/change-item-status/${id}`, {
+        axios.patch(API_URL + `/admin-stuff/change-item-status/${id}`, {
             status: boolean === true ? 0 : 1,
         },
             {
@@ -262,7 +262,6 @@ function Index() {
             })
             .then(
                 res => {
-                    console.log(res)
                     setShowAlert({ status: true, msg: res.message, success: true })
                     setTimeout(() => {
                         setShowAlert({ status: false, msg: res.message })
@@ -273,7 +272,6 @@ function Index() {
             )
             .catch(
                 err => {
-                    console.log(err)
                     setShowAlert({ status: true, msg: err.response.data.message, success: false })
                     setTimeout(() => {
                         setShowAlert({ status: false, msg: err.response.data.message, success: false })
@@ -283,8 +281,8 @@ function Index() {
     }
 
     const switchHandlerPrice = (boolean, id) => {
-        console.log("boolean,id", boolean, id);
-        axios.patch(`/admin-stuff/change-price-status/${id}`, {
+        // console.log("boolean,id", boolean, id);
+        axios.patch(API_URL + `/admin-stuff/change-price-status/${id}`, {
             status: boolean === true ? 0 : 1,
         },
             {
@@ -323,7 +321,7 @@ function Index() {
 
     const getData = () => {
         setLoading(!loading)
-        axios.get(`/admin-stuff/get-item/${id}`,
+        axios.get(API_URL + `/admin-stuff/get-item/${id}`,
             {
                 headers: {
                     'Content-Type': 'application/json',

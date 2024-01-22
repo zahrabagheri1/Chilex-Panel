@@ -7,7 +7,7 @@ import Button from '../../../../Components/Button/Button';
 import { useCookies } from 'react-cookie';
 import { LoadingContext } from '../../../Loading/LoadingContext';
 import { LoginContext } from '../../../Login/LoginContext';
-
+import { API_URL } from '../../../../API_URL';
 
 function Index() {
   const [games, setGames] = useState()
@@ -27,7 +27,7 @@ function Index() {
 
   const gameIAP = () => {
     setLoading(!loading)
-    axios.get('/games',
+    axios.get(API_URL + '/games',
       {
         headers: {
           'Content-Type': 'application/json',
