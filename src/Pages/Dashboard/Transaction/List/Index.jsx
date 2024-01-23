@@ -44,7 +44,7 @@ function Index() {
         userId: null
     })
 
-    //admin-transaction/all?statuses%5B%5D=0&gatewayTypes%5B%5D=0&limit=0&offset=0&sortBy=0&orderBy=0&userId=0
+    //admin-transaction/all?all?statuses%5B%5D=0&gatewayTypes%5B%5D=0&limit=0&offset=0&sortBy=0&orderBy=0&userId=0
     useEffect(() => {
         goToLoginPage(cookies.accessToken);
         reqFilterTransaction()
@@ -52,7 +52,7 @@ function Index() {
 
     const reqFilterTransaction = () => {
         setLoading(!loading)
-        axios.get(`${API_URL === undefined ? '' : API_URL}/admin-transaction/all?${filters.statuses === null || filters.statuses === undefined ? '' : 'statuses[]=' + filters.statuses + '&'}${filters.gatewayTypes === null || filters.gatewayTypes === undefined ? '' : 'gatewayTypes[]=' + filters.gatewayTypes + '&'}${filters.limit === null || filters.limit === undefined ? '' : 'limit=' + filters.limit + '&'}${filters.offset === null || filters.offset === undefined ? '' : 'offset=' + filters.offset + '&'}${filters.sortBy === null || filters.sortBy === undefined ? '' : 'sortBy=' + filters.sortBy + '&'}${filters.orderBy === null || filters.orderBy === undefined ? '' : 'orderBy=' + filters.orderBy + '&'}`,
+        axios.get(`${API_URL === undefined ? '' : API_URL}/admin-transaction/all?${filters.statuses === null || filters.statuses === undefined ? '' : 'statuses[]=' + filters.statuses + '&'}${filters.gatewayTypes === null || filters.gatewayTypes === undefined ? '' : 'gatewayTypes[]=' + filters.gatewayTypes + '&'}${filters.limit === null || filters.limit === undefined ? '' : 'limit=' + filters.limit + '&'}${filters.offset === null || filters.offset === undefined ? '' : 'offset=' + filters.offset + '&'}${filters.sortBy === null || filters.sortBy === undefined ? '' : 'sortBy=' + filters.sortBy + '&'}${filters.userId === null || filters.userId === undefined ? '' : 'userId=' + filters.userId}`,
             {
                 headers: {
                     'Content-Type': 'application/json',
@@ -105,7 +105,7 @@ function Index() {
                                 { id: 2, status: 'False check result' },
                                 { id: 3, status: 'Failed' },
                                 { id: 4, status: 'Successful' },
-                                { id: 5, status: 'Refunded' },
+                                { id: 5, status: 'Refunded' }
                             ]}
                         />
                     </div>
@@ -113,7 +113,7 @@ function Index() {
                         <SelectOption readOnly={false} value={filters.gatewayTypes} name={'gatewayTypes'} defaultValue={'gatewayTypes'} type={'status'} changeOptinValue={updateOptionData}
                             data={[
                                 { id: 0, status: 'Pasargad' },
-                                { id: 1, status: 'Cafe Bazar' },
+                                { id: 1, status: 'Cafe Bazar' }
                             ]}
                         />
                     </div>
@@ -132,8 +132,8 @@ function Index() {
                                 { id: 1, status: 'updatedAt' },
                                 { id: 2, status: 'amount' },
                                 { id: 3, status: 'id' },
-                                { id: 4, status: 'name' },
-                                { id: 5, status: 'status' },
+                                { id: 4, status: 'userName' },
+                                { id: 5, status: 'status' }
                             ]}
                         />
                     </div>
