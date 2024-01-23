@@ -260,8 +260,6 @@ function Index() {
                                             key === 'expireTime' ?
                                                 <DatePikerFarsi disable={'disabled'} value={value} readOnly={editAble ? false : true} title={key} handlerChangeDate={updateDataPiker} />
                                                 :
-
-
                                                 <Input inputclassname={editAble === false ? 'disabled' : ''} name={key} title={key} value={value} type={key === 'amount' ? 'number' : 'text'} readOnly={editAble ? false : true} changeInputValue={changeValueInput} />
 
                                 }

@@ -460,8 +460,11 @@ function Index() {
                                                             data={item.data}
                                                         />
                                                     </div>
-
-                                                    : ''
+                                                    : item.type === 'datepiker' ?
+                                                        <div key={index} className=" itembundle col-xl-2 col-lg-2 col-md-2 col-ms-6 col-xs-6">
+                                                            <DatePikerFarsi disable={'disabled'} value={value} readOnly={editAble ? false : true} title={key} handlerChangeDate={updateDataPiker} />
+                                                        </div>
+                                                        : ''
                                     : ''
                             ))
 
