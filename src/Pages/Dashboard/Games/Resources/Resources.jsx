@@ -10,7 +10,7 @@ import ResourceBox from '../../../../layout/ResourceBox/ResourceBox';
 import { useCookies } from 'react-cookie';
 import { LoadingContext } from '../../../Loading/LoadingContext';
 import { LoginContext } from '../../../Login/LoginContext';
-import { API_URL }  from '../../../../API_URL';
+import { API_URL } from '../../../../API_URL';
 
 function Resources() {
     const [data, setData] = useState()
@@ -156,13 +156,13 @@ function Resources() {
 
                     {
                         openResource === 'requirment' ?
-                            <ModalRequirment onchange={getResource} canceladd={closeModal} settingId={id}/>
+                            <ModalRequirment onchange={getResource} canceladd={closeModal} settingId={id} />
                             :
                             openResource === 'entry' ?
-                                <ModalEntries onchange={getResource} canceladd={closeModal} settingId={id}/>
+                                <ModalEntries onchange={getResource} canceladd={closeModal} settingId={id} />
                                 :
                                 openResource === 'prize' ?
-                                    <ModalPrizes onchange={getResource} canceladd={closeModal} settingId={id}/>
+                                    <ModalPrizes onchange={getResource} canceladd={closeModal} settingId={id} />
                                     :
                                     ''
                     }

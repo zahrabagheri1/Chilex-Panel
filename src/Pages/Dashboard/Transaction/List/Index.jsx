@@ -12,13 +12,26 @@ import { useCookies } from 'react-cookie';
 import { LoadingContext } from '../../../Loading/LoadingContext';
 import { LoginContext } from '../../../Login/LoginContext';
 import { HiOutlineTrash } from 'react-icons/hi2';
-import { API_URL }  from '../../../../API_URL';
+import { API_URL } from '../../../../API_URL';
+
+const transaction = [
+    {
+        id: 3,
+        status: 0,
+        amount: 1000,
+        maskedCardNumber: null,
+        hashedCardNumber: null,
+        shaparakRefNumber: null,
+        createdAt: "2024-01-23T07:16:00.691Z",
+        updatedAt: "2024-01-23T07:16:00.691Z",
+        userName: "tofigh"
+    }
+]
 
 function Index() {
-    const [transaction, setTransaction] = useState(null);
+    const [transactionn, setTransaction] = useState(null);
     const { loading, setLoading } = useContext(LoadingContext);
     const { goToLoginPage } = useContext(LoginContext);
-    const [value, setValue] = useState();
     const navigate = useNavigate()
     const [cookies] = useCookies(['accessToken']);
     const [filters, setFilters] = useState({
@@ -31,9 +44,7 @@ function Index() {
         userId: null
     })
 
-    // ${parameters.from === null ||  parameters.from === undefined? "" : "&RegisterDate.min=" + parameters.from}
     //admin-transaction/all?statuses%5B%5D=0&gatewayTypes%5B%5D=0&limit=0&offset=0&sortBy=0&orderBy=0&userId=0
-
     useEffect(() => {
         goToLoginPage(cookies.accessToken);
         reqFilterTransaction()
