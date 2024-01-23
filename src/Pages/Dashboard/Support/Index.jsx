@@ -9,6 +9,7 @@ import Chatroom from './Layers/Chatroom';
 function Index() {
   const [listChats, setListChats] = useState()
   const [idChat, setIdChat] = useState({ status: false, userId: null, image: null, username: null })
+  const [userId, setUserId] = useState(0)
   // const [isConnected, setIsConnected] = useState(socket.connected);
   // const [emptyChat, setEmptyChat] = useState(false)
   // const [newMessage, setNewMessage] = useState('')
@@ -37,17 +38,22 @@ function Index() {
       console.table('Connected')
       GetResiveAllChats()
     })
+
     socket.on("disconnect", () => {
       console.table('Disconnected')
     })
+    console.log("USEEFFECT CALLED")
+
   }, [])
 
   function GetResiveAllChats() {
     socket.emit('adminMessage', 'get-all-support-chats', (response) => { setListChats(response) });
   }
+
   // console.log('list : ' + JSON.stringify(listChats))
   const showChat = (id, img, username) => {
     console.log('show chat : ' + id)
+    setUserId(+ id)
     setIdChat({ status: true, userId: id, image: img, username: username })
   }
 

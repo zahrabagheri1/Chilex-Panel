@@ -10,16 +10,31 @@ import user from '../../../../Assets/image/user.jpg';
 
 function Chatroom(props) {
     const inputMsg = useRef()
-    const [chat, setChats] = useState()
+    const [chat, setChats] = useState([])
     const scrollEnd = useRef(null)
     const [limit, setLimit] = useState(0)
     const [saveMessages, setSaveMessage] = useState([])
+    const [userId, setUserId] = useState(0)
 
+    socket.off("chat")
+    socket.on("chat", (data) => {
+        if (data.senderId == userId) {
+            let temp = JSON.parse(JSON.stringify(chat))
+            temp.reverse()
+            temp.push(data)
+            temp.reverse()
+            setChats(temp)
+        }
+    })
     useEffect(() => {
         ResiveChts(props.id, limit)
-        scrollEnd.current.addEventListener('scroll', handleScroll);
+        console.log("Limit in UseEffect", limit)
+        setLimit(0)
+        if (scrollEnd.current) {
+            scrollEnd.current.addEventListener('scroll', handleScroll);
+        }
         return () => {
-            scrollEnd.current.removeEventListener('scroll', handleScroll);
+            // scrollEnd.current.removeEventListener('scroll', handleScroll);
         };
     }, [props.id])
 
@@ -35,7 +50,6 @@ function Chatroom(props) {
                 // setLimit(counter + 15)
                 // console.log('limit  :', limit)
                 // ResiveChts(props.id, limit)
-
             }
         }
 
@@ -59,39 +73,57 @@ function Chatroom(props) {
     };
 
     const ResiveChts = (id, counter) => {
-        const data = { anotherPersonId: id, limit: 15, offset: counter }
+        const data = { anotherPersonId: id, limit: counter, offset: 0 }
+
         socket.emit('adminMessage', 'get-a-support-chat', data, (response) => {
-            setChats(response.chatBoxes)
-            handleScroll(counter + 15)
-            setLimit(counter + 15)
+            if (userId != props.id) {
+                data.offset = 0;
+                setLimit(0)
+                setUserId(response.receiverId)
+                setChats(response.chatBoxes)
+            } else {
+                setUserId(response.receiverId)
+                setChats(response.chatBoxes)
+                handleScroll(counter + 15)
+                setLimit(counter + 15)
+            }
         });
+      
     }
 
-    console.log("Saved :  ", saveMessages)
-    console.log('Chat : ', chat)
-
-    const ReadMoreMessages = (data) => {
-        setLimit(limit + 15)
+    const ReadMoreMessages = () => {
+        // setLimit(limit + 15)
         ResiveChts(props.id, limit)
-        saveMessages.push()
-        chat.map((SaveChat) => { saveMessages.push(SaveChat) })
+        // saveMessages.push()
+        // chat.map((SaveChat) => { saveMessages.push(SaveChat) })
     }
 
     // const sendNewMessage = (e) => {
-    //     // console.log(e.target.value, inputMsg.current.value)
+      // console.log(e.target.value, inputMsg.current.value)
     // }
 
-    const SendMessage = (e) => {
+    const SendMessage = () => {
         socket.emit('adminMessage', 'chat', {
             message: inputMsg.current.value,
             anotherPersonId: props.id,
             messageType: 0
         }, (response) => {
-            // console.log('response:', response)   
-            ResiveChts(props.id, limit)
+            ResiveChts(props.id, 0)
             inputMsg.current.value = ''
         });
     }
+
+
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault()
+            SendMessage()
+        }
+    }
+
+
+    console.log(limit)
+    // console.log(chat.length)
 
     return (
         <div className="chatBox">
@@ -108,11 +140,15 @@ function Chatroom(props) {
                     </div>
 
                     <div ref={scrollEnd} className="chatboxbody">
-                        <button className="readmoremessages" onClick={ReadMoreMessages}>
-                            <div className="textlineright"></div>
-                            <div className="readmore">read more messages</div>
-                            <div className="textlinelift"></div>
-                        </button>
+                        {
+                            limit > 15 ?
+                                <button className="readmoremessages" onClick={ReadMoreMessages}>
+                                    <div className="textlineright"></div>
+                                    <div className="readmore">read more messages</div>
+                                    <div className="textlinelift"></div>
+                                </button>
+                                : ''
+                        }
 
                         {chat?.map((msg, index) => (
                             <div key={index}>
@@ -138,6 +174,7 @@ function Chatroom(props) {
                             className="chatMessageInput"
                             placeholder='write somthing...'
                             ref={inputMsg}
+                            onKeyDown={handleKeyPress}
                         >
                         </textarea>
 
