@@ -100,7 +100,6 @@ function Index() {
       .then(
         res => {
           setUserList(res.data.data)
-          // console.log(res.data.data[0])
           setLoading(loading)
         }
       )

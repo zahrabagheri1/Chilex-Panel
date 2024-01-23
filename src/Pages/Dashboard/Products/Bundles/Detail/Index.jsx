@@ -79,9 +79,6 @@ function Index() {
                 })
                 .then(
                     res => {
-                        console.log(updateData.activityIntervalTime)
-                        console.log("activityIntervalTime", res)
-
                         setShowAlert({ status: true, msg: res.message, success: true })
                         setTimeout(() => {
                             setShowAlert({ status: false, msg: res.message, success: true })

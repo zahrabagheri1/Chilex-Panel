@@ -55,7 +55,6 @@ function Tab(props) {
     }
 
     const clickChildHandler = (id, link) => {
-        // console.log(link, id)
         navigate(link)
         setChildId(id)
     }

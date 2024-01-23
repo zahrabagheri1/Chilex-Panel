@@ -10,7 +10,6 @@ import { useCookies } from 'react-cookie';
 import { API_URL } from '../../../API_URL';
 
 function ModalEntries(props) {
-  const [value, setValue] = useState()
   const [cookies] = useCookies(['accessToken']);
   const [addEntry, setAddEntry] = useState({
     settingId: parseInt(props.settingId)
@@ -56,7 +55,7 @@ function ModalEntries(props) {
         }
       ).catch(
         err => {
-          console.log(err)
+
         }
       )
   }

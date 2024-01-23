@@ -28,7 +28,6 @@ function Charts() {
         getChart()
     }, [filter])
 
-    console.log(API_URL)
 
     //admin-transaction/chart?statuses%5B%5D=5&gatewayTypes%5B%5D=1&type=1&startDate=2023-11-24&endtDate=2023-11-27
     const getChart = () => {
@@ -49,8 +48,6 @@ function Charts() {
                     dataChart.push(makeObj);
                 })
                 setTransactionData(dataChart)
-                // console.log(dataChart)
-                // console.log(res.data.data)
                 setLoading(loading)
             })
             .catch(

@@ -35,7 +35,6 @@ function ModalPrizes(props) {
     setAddPrize(prev => ({ ...prev, [name]: parseInt(id) }))
   }
 
-  console.log(addPrize)
 
   const sendData = () => {
     axios.post(`${API_URL === undefined ? '' : API_URL}/games/setting/prize`, addPrize,

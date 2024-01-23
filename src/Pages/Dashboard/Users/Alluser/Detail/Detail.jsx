@@ -48,9 +48,7 @@ function Detail() {
       })
       .then(
         res => {
-          console.log(res)
           setUsers(res.data.data)
-
         }
       )
       .catch(
@@ -78,7 +76,6 @@ function Detail() {
         }
       }).then(
         res => {
-          console.log(res)
           setShowAlert({ status: true, msg: res.message, success: true })
           setTimeout(() => {
             setShowAlert({ status: false, msg: res.message })
@@ -87,7 +84,6 @@ function Detail() {
       )
       .catch(
         err => {
-          console.log(err)
           setShowAlert({ status: true, msg: err.message, success: true })
           setTimeout(() => {
             setShowAlert({ status: false, msg: err.message })

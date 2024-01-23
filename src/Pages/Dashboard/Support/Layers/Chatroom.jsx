@@ -33,7 +33,7 @@ function Chatroom(props) {
         } else {
             if (scrollEnd.current.scrollTop === 0) {
                 // setLimit(counter + 15)
-                console.log('limit  :', limit)
+                // console.log('limit  :', limit)
                 // ResiveChts(props.id, limit)
 
             }

@@ -42,7 +42,6 @@ function ModalRequirment(props) {
       }
     }).then(
       res => {
-        console.log(res)
         // show alert that new setting requirement creatting.
         setShowAlert({ status: true, msg: 'Created Entry succesful', success: true })
         setTimeout(() => {
@@ -55,7 +54,6 @@ function ModalRequirment(props) {
       }
     ).catch(
       err => {
-        console.log(err)
         if (err.status === 400) {
           setShowAlert({ status: true, msg: 'err.response.data.message[0]', success: false })
           setTimeout(() => {

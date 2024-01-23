@@ -27,11 +27,9 @@ function ResourceBox(props) {
 
     const deleteRequirement = (id) => {
         props.onchange(id, 'requirement')
-        console.log(id, 'requirement')
     }
 
     const detelePrize = (id) => {
-        console.log(id, 'prize')
         props.onchange(id, 'prize')
     }
 
@@ -118,7 +116,6 @@ function ResourceBox(props) {
             )
     }
     const editPrize = (id, requirement) => {
-        // console.log(requirement.type)
         axios.patch(`${API_URL === undefined ? '' : API_URL}/games/setting/prize/${id}`, {
             amount: addRequirment.amount === null || addRequirment.amount === undefined ? requirement.amount : addRequirment.amount,
             type: addRequirment.type === null || addRequirment.type === undefined ? requirement.type : addRequirment.type

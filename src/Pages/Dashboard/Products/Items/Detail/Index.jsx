@@ -243,7 +243,6 @@ function Index() {
                 })
                 .then(
                     res => {
-                        // console.log(res)
                         setShowAlert({ status: true, msg: 'Done', success: true })
                         setTimeout(() => {
                             setShowAlert({ status: false, msg: 'Done' })
@@ -255,7 +254,6 @@ function Index() {
                 )
                 .catch(
                     err => {
-                        // console.log(err)
                         setShowAlert({ status: true, msg: err.response.data.message, success: false })
                         setTimeout(() => {
                             setShowAlert({ status: false, msg: err.response.data.message, success: false })
@@ -297,7 +295,6 @@ function Index() {
     }
 
     const switchHandlerPrice = (boolean, id) => {
-        // console.log("boolean,id", boolean, id);
         axios.patch(`${API_URL === undefined ? '' : API_URL}/admin-stuff/change-price-status/${id}`, {
             status: boolean === true ? 0 : 1,
         },
@@ -309,7 +306,6 @@ function Index() {
             })
             .then(
                 res => {
-                    console.log(res)
                     setShowAlert({ status: true, msg: "Done", success: true })
                     setTimeout(() => {
                         setShowAlert({ status: false, msg: 'Done' })
@@ -320,7 +316,6 @@ function Index() {
             )
             .catch(
                 err => {
-                    console.log(err)
                     setShowAlert({ status: true, msg: err.response.data.message, success: true })
                     setTimeout(() => {
                         setShowAlert({ status: false, msg: err.response.data.message })

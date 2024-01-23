@@ -32,7 +32,6 @@ function Resources() {
             .then(
                 res => {
                     setData(res.data)
-                    // console.log(res.data)
                     setLoading(loading)
                 }
             )
@@ -61,7 +60,6 @@ function Resources() {
         getResource()
     }
     const deleteRequirement = (id, type) => {
-        console.log(id, type)
         axios.delete(`${API_URL === undefined ? '' : API_URL}/games/setting/${type}/${id}`,
             {
                 headers: {
@@ -76,7 +74,7 @@ function Resources() {
             )
             .catch(
                 err => {
-
+                    console.log(err)
                 }
             )
     }
@@ -107,7 +105,6 @@ function Resources() {
                             </div>
                             {
                                 data.requirements.map((item, index) => (
-                                    // console.log('itemmmm : ', item, deleteRequirement(29,'requirement'))
                                     <div key={index}>
                                         <ResourceBox data={item} type={'requirements'} onchange={deleteRequirement} />
                                     </div>
