@@ -3,17 +3,14 @@ import './AlrtConnetion.scss'
 import { FiWifi, FiWifiOff } from "react-icons/fi";
 
 function AlrtConnetion(props) {
+  console.log(props)
   return (
     <div className='disconnected'>
       <div class="disconnectedWallpaper offline">
         <div class="content">
           <div class="icon">
             {
-              props.status ?
-                <FiWifi />
-                :
-                <FiWifiOff />
-
+              props.status ? <FiWifi /> : <FiWifiOff />
             }
           </div>
           {

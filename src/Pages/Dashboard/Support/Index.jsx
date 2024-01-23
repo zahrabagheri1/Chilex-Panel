@@ -5,11 +5,13 @@ import { useEffect } from 'react';
 import { socket, getCookie } from '../../../Socket';
 import { useCookies } from 'react-cookie';
 import Chatroom from './Layers/Chatroom';
+import AlrtConnetion from '../../../layout/AlrtConnetion/AlrtConnetion';
 
 function Index() {
   const [listChats, setListChats] = useState()
   const [idChat, setIdChat] = useState({ status: false, userId: null, image: null, username: null })
   const [userId, setUserId] = useState(0)
+  const [connect, setConnect] = useState()
   // const [isConnected, setIsConnected] = useState(socket.connected);
   // const [emptyChat, setEmptyChat] = useState(false)
   // const [newMessage, setNewMessage] = useState('')
@@ -36,13 +38,15 @@ function Index() {
 
     socket.on("connect", () => {
       console.table('Connected')
+      setConnect(true)
       GetResiveAllChats()
     })
 
     socket.on("disconnect", () => {
       console.table('Disconnected')
+      setConnect(false)
     })
-    console.log("USEEFFECT CALLED")
+    // console.log("USEEFFECT CALLED")
 
   }, [])
 
@@ -52,7 +56,7 @@ function Index() {
 
   // console.log('list : ' + JSON.stringify(listChats))
   const showChat = (id, img, username) => {
-    console.log('show chat : ' + id)
+    // console.log('show chat : ' + id)
     setUserId(+ id)
     setIdChat({ status: true, userId: id, image: img, username: username })
   }
@@ -62,6 +66,7 @@ function Index() {
   } else {
     return (
       <div className='support'>
+        <AlrtConnetion status={connect} />
         <div className="chatMenu">
           <div className="chatMenuWrapper">
             <input type="search" className='chatMenuSearchBox' placeholder='Search User' onChange={searchUser} />

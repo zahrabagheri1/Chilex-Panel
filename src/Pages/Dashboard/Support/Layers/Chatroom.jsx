@@ -79,16 +79,17 @@ function Chatroom(props) {
             if (userId != props.id) {
                 data.offset = 0;
                 setLimit(0)
-                setUserId(response.receiverId)
-                setChats(response.chatBoxes)
-            } else {
-                setUserId(response.receiverId)
-                setChats(response.chatBoxes)
-                handleScroll(counter + 15)
-                setLimit(counter + 15)
+                // setUserId(response.receiverId)
+                // setChats(response.chatBoxes)
             }
+            // else {
+            setUserId(response.receiverId)
+            setChats(response.chatBoxes)
+            handleScroll(counter + 15)
+            setLimit(counter + 15)
+            // }
         });
-      
+
     }
 
     const ReadMoreMessages = () => {
@@ -99,7 +100,7 @@ function Chatroom(props) {
     }
 
     // const sendNewMessage = (e) => {
-      // console.log(e.target.value, inputMsg.current.value)
+    // console.log(e.target.value, inputMsg.current.value)
     // }
 
     const SendMessage = () => {
