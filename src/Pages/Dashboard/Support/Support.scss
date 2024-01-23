@@ -146,7 +146,6 @@
                             }
                         }
 
-
                         .threeline {
                             font-size: 22px;
                             cursor: pointer;
@@ -154,8 +153,6 @@
                     }
 
                 }
-
-
 
                 .chatboxbody {
                     height: calc(100vh - 265px);
@@ -316,6 +313,25 @@
                     }
                 }
             }
+        }
+    }
+
+    .clearChatRoom{
+        width: 100%;
+        font-size: 26px;
+        display: flex;
+        // justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 10%;
+        // position: relative;
+        user-select: none;
+
+        .clearChatRoomtext{
+            color: #868686;
+        }
+        .clearChatRoomsubtext{
+            color: #555;
         }
     }
 }
