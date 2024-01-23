@@ -21,9 +21,9 @@ function List() {
     const [filter, setFilter] = useState({
         limit: null,
         offset: null,
-        types: null,
+        types: [],
         userId: null,
-        sortBy: 3,
+        sortBy: 2,
         orderBy: 1,
     })
 
@@ -72,7 +72,7 @@ function List() {
         setFilter({
             limit: null,
             offset: null,
-            types: null,
+            types: [],
             userId: null,
             sortBy: 3,
             orderBy: 1,
@@ -86,7 +86,14 @@ function List() {
                 <div className="row">
 
                     <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
-                        <Input value={value} type={'text'} title={"types"} placeholder={'types'} changeInputValue={updateInputData} />
+                        <SelectOption readOnly={false} value={value} name={'types'} defaultValue={'types'} type={'status'} changeOptinValue={updateOptionData}
+                            data={[
+                                { id: 0, status: 'PLAYER NAME OFFENSIVE' },
+                                { id: 1, status: 'INACTIVE' },
+                                { id: 2, status: 'CHEATING' },
+                                { id: 3, status: 'VOICE CHAT OFFENSIVE' }
+                            ]}
+                        />
                     </div>
 
                     <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
@@ -99,8 +106,8 @@ function List() {
                                 { id: 0, status: 'createdAt' },
                                 { id: 1, status: 'updatedAt' },
                                 { id: 2, status: 'id' },
-                                { id: 3, status: 'type' },
-                                { id: 4, status: 'userId' }
+                                { id: 3, status: 'reportedId' },
+                                { id: 4, status: 'reporterId' }
                             ]}
                         />
                     </div>
