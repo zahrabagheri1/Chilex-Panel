@@ -11,7 +11,7 @@ function Index() {
   const [listChats, setListChats] = useState()
   const [idChat, setIdChat] = useState({ status: false, userId: null, image: null, username: null })
   const [userId, setUserId] = useState(0)
-  const [connect, setConnect] = useState()
+  const [connect, setConnect] = useState(null)
   // const [isConnected, setIsConnected] = useState(socket.connected);
   // const [emptyChat, setEmptyChat] = useState(false)
   // const [newMessage, setNewMessage] = useState('')
@@ -39,6 +39,9 @@ function Index() {
     socket.on("connect", () => {
       console.table('Connected')
       setConnect(true)
+      setTimeout(() => {
+        setConnect(null)
+      },3000)
       GetResiveAllChats()
     })
 
@@ -66,7 +69,10 @@ function Index() {
   } else {
     return (
       <div className='support'>
-        <AlrtConnetion status={connect} />
+        {
+          connect === null ? '' :
+            <AlrtConnetion status={connect} />
+        }
         <div className="chatMenu">
           <div className="chatMenuWrapper">
             <input type="search" className='chatMenuSearchBox' placeholder='Search User' onChange={searchUser} />
@@ -81,7 +87,7 @@ function Index() {
         </div>
         {
           idChat.status ?
-            <Chatroom id={idChat.userId} data={idChat} />
+            <Chatroom id={idChat.userId} data={idChat} limit={0}/>
             :
             <div className="clearChatRoom">
               <div className="clearChatRoomtext">

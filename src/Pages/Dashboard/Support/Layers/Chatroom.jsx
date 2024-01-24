@@ -12,7 +12,7 @@ function Chatroom(props) {
     const inputMsg = useRef()
     const [chat, setChats] = useState([])
     const scrollEnd = useRef(null)
-    const [limit, setLimit] = useState(0)
+    const [limit, setLimit] = useState(15)
     const [saveMessages, setSaveMessage] = useState([])
     const [userId, setUserId] = useState(0)
 
@@ -26,10 +26,21 @@ function Chatroom(props) {
             setChats(temp)
         }
     })
+
+    // useEffect(() => {
+    //     scrollToBottom();
+    //   }, []);
+    
+    //   const scrollToBottom = () => {
+    //     if (chatRef.current) {
+    //       chatRef.current.scrollIntoView({ behavior: 'smooth' });
+    //     }
+    //   };
+
     useEffect(() => {
         ResiveChts(props.id, limit)
         console.log("Limit in UseEffect", limit)
-        setLimit(0)
+        setLimit(15)
         if (scrollEnd.current) {
             scrollEnd.current.addEventListener('scroll', handleScroll);
         }
@@ -43,7 +54,7 @@ function Chatroom(props) {
     const handleScroll = (counter) => {
         if (counter === 0) {
             if (scrollEnd.current.scrollTop === 0) {
-                scrollEnd.current.scrollTop = scrollEnd.current.scrollHeight
+                scrollEnd.current.scrollTop = scrollEnd.current.scrollHeight;
             }
         } else {
             if (scrollEnd.current.scrollTop === 0) {
