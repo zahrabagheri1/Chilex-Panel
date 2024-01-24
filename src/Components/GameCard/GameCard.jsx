@@ -19,7 +19,8 @@ const props = {
 }
 
 function GameCard(props) {
-  const [activity, setActivity] = useState(props.activity)
+  const [activity, setActivity] = useState(props.data.active)
+  const [popUp, setPopUP] = useState()
 
   const gameImgs = {
     backgammon: backgammon,
@@ -29,51 +30,60 @@ function GameCard(props) {
     yatzy: yatzy
   }
 
-
   const changeActivity = (value) => {
     setActivity(value)
     props.diactivefun(value)
   }
 
   const showGameDetail = () => {
-    console.log(props.name)
     if (activity === true) {
-      props.showGame(props.name)
+      setPopUP(!popUp)
     }
   }
 
+  const openPlayed = () => {
+    props.palyedhandler(props.data.name)
+  }
+  const openSetting = () => {
+    props.settinghandler(props.data.name)
+  }
   return (
-    <div className={'gameCard'}>
+    <div className={'gameCard'} id={props.data.id}>
       <div className="cardimgZoom">
-        <img className='cardimg' src={gameImgs[props.name]} alt={props.name} />
+        <img className='cardimg' src={gameImgs[props.data.name]} alt={props.data.name} />
       </div>
 
       <div className="carddetails">
         <div className='titleAndMenuGame'>
-          <div className="imgname">{props.name}</div>
-          <BiDotsVertical className='imgIcon' onClick={showGameDetail}/>
-
-          <div className="menuGame">
-            <div className="menuGameSetting"></div>
-            <div className="menuGameLine"></div>
-            <div className="menuGamePlayed"></div>
-          </div>
+          <div className="imgname">{props.data.name}</div>
+          <BiDotsVertical className='imgIcon' onClick={showGameDetail} />
+          {
+            popUp ?
+              <div className="menuGame">
+                <div className="menuGameBody">
+                  <div className="menuGameSetting" onClick={() => openSetting()}>Settings</div>
+                  <div className="menuGameLine"></div>
+                  <div className="menuGamePlayed" onClick={() => openPlayed()}>Played</div>
+                </div>
+              </div>
+              : ''
+          }
         </div>
 
         <div className="activeGameBox">
           <div className="activeGameTitle">activity:</div>
-          <Switch disabledDiv={true} defaultChecked={props.activity} onChange={changeActivity} />
+          <Switch disabledDiv={true} defaultChecked={props.data.active} onChange={changeActivity} />
         </div>
 
         <div className="createdATUpdatedAT">
           <div className="createdAtGame">
             <div className="createdAtGameTitle">createdAt:</div>
-            <div className='createdAtGameText'>{moment(props.creaty, 'YYYY/MM/DD').format('jYYYY/jM/jD')}</div>
+            <div className='createdAtGameText'>{moment(props.data.createdAt, 'YYYY/MM/DD').format('jYYYY/jM/jD')}</div>
           </div>
           <div className='createdATUpdatedATLine'></div>
           <div className="updatedAtGame">
             <div className="updatedAtGameTitle">updatedAt:</div>
-            <div className='updatedAtGameText'>{moment(props.updated, 'YYYY/MM/DD').format('jYYYY/jM/jD')}</div>
+            <div className='updatedAtGameText'>{moment(props.data.updatedAt, 'YYYY/MM/DD').format('jYYYY/jM/jD')}</div>
           </div>
         </div>
       </div>
