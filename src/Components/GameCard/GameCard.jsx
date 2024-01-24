@@ -6,6 +6,7 @@ import ludo from '../../Assets/image/ludo.png';
 import uno from '../../Assets/image/uno.png';
 import soccer from '../../Assets/image/soccer.png';
 import Switch from '../Switch/Switch';
+import { BiDotsVertical } from "react-icons/bi";
 import { useNavigate } from 'react-router-dom'
 import moment from 'moment-jalaali';
 
@@ -34,43 +35,45 @@ function GameCard(props) {
     props.diactivefun(value)
   }
 
-  
-  const showGameDetail = (e) => {
-    if(activity === true ){
-      props.showGame(e.target.name)
+  const showGameDetail = () => {
+    console.log(props.name)
+    if (activity === true) {
+      props.showGame(props.name)
     }
   }
 
   return (
-    <div className={`gameCard ${activity === true ? '' : 'diactivity'}`}>
-      <div className={`dot ${activity === true ? 'activity' : ''}`}></div>
+    <div className={'gameCard'}>
       <div className="cardimgZoom">
-        <img className='cardimg' src={gameImgs[props.name]} name={props.name}  alt={props.name}  onClick={showGameDetail}/>
+        <img className='cardimg' src={gameImgs[props.name]} alt={props.name} />
       </div>
 
-      {/* <img className='cardimg' src={ludo} alt={props.name} /> */}
-
       <div className="carddetails">
-        <div className="imgname">
-          {props.name}
+        <div className='titleAndMenuGame'>
+          <div className="imgname">{props.name}</div>
+          <BiDotsVertical className='imgIcon' onClick={showGameDetail}/>
+
+          <div className="menuGame">
+            <div className="menuGameSetting"></div>
+            <div className="menuGameLine"></div>
+            <div className="menuGamePlayed"></div>
+          </div>
         </div>
 
-        <div className="subimgtext">
-          <div className="subimgtextItem">
-            <div className="subtitelimg">activity:</div>
-            {/* <div className='subtext'>{props.activity === true ? 'active' : 'diactive'}</div> */}
-            <div className='subtext'>
-              <Switch disabledDiv={true} defaultChecked={props.activity} onChange={changeActivity} />
-            </div>
-          </div>
-          <div className="subimgtextItem">
-            <div className="subtitelimg">createdAt:</div>
-            <div className='subtext'>{moment(props.creaty, 'YYYY/MM/DD').format('jYYYY/jM/jD')}</div>
-          </div>
+        <div className="activeGameBox">
+          <div className="activeGameTitle">activity:</div>
+          <Switch disabledDiv={true} defaultChecked={props.activity} onChange={changeActivity} />
+        </div>
 
-          <div className="subimgtextItem">
-            <div className="subtitelimg">updatedAt:</div>
-            <div className='subtext'>{moment(props.updated, 'YYYY/MM/DD').format('jYYYY/jM/jD')}</div>
+        <div className="createdATUpdatedAT">
+          <div className="createdAtGame">
+            <div className="createdAtGameTitle">createdAt:</div>
+            <div className='createdAtGameText'>{moment(props.creaty, 'YYYY/MM/DD').format('jYYYY/jM/jD')}</div>
+          </div>
+          <div className='createdATUpdatedATLine'></div>
+          <div className="updatedAtGame">
+            <div className="updatedAtGameTitle">updatedAt:</div>
+            <div className='updatedAtGameText'>{moment(props.updated, 'YYYY/MM/DD').format('jYYYY/jM/jD')}</div>
           </div>
         </div>
       </div>
