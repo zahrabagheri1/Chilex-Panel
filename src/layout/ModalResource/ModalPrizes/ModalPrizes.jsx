@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './ModalPrizes.scss';
 import axios from 'axios';
 import Input from '../../../Components/Input/Input';
@@ -10,12 +10,11 @@ import { useCookies } from 'react-cookie';
 import { API_URL }  from '../../../API_URL';
 
 function ModalPrizes(props) {
-  const [value, setValue] = useState()
   const [addPrize, setAddPrize] = useState({
-    settingId: parseInt(props.settingId)
+    settingId: parseInt(props.settingId),
+    type: 1
   })
   const [cookies] = useCookies(['accessToken']);
-
   const [showAlert, setShowAlert] = useState({
     status: false, msg: '', success: null
   })
@@ -58,23 +57,13 @@ function ModalPrizes(props) {
         }
       ).catch(
         err => {
-          if (err.status === 400) {
-            setShowAlert({ status: true, msg: 'Created Prize succesful', success: true })
-            setTimeout(() => {
-              setShowAlert({ status: false })
-              setTimeout(() => {
-                props.canceladd()
-              }, 0)
-            }, 2000)
-          }
-
+          setShowAlert({ status: true, msg: err.response.data.message, success: false })
+          setTimeout(() => {
+            setShowAlert({ status: false })
+          }, 2000)
         }
       )
   }
-
-  useEffect(() => {
-    sendData()
-  }, [])
 
   return (
     <div className='modalPrizes'>
@@ -91,13 +80,13 @@ function ModalPrizes(props) {
             <Input type={'number'} inputclassname={'disabled'} name={'settingId'} value={addPrize.settingId} title={'settingId'} readOnly={true} changeInputValue={changeValueInput} />
           </div>
           <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <Input type={'number'} name={'amount'} important={true} value={value} title={'amount'} readOnly={false} changeInputValue={changeValueInput} />
+            <Input type={'number'} name={'amount'} important={true}  title={'amount'} readOnly={false} changeInputValue={changeValueInput} />
           </div>
           <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-6">
             <SelectOption name={'type'} important={true} readOnly={false} defaultValue={'type'} type={'name'} data={resourceType} changeOptinValue={updateOptionData} />
           </div>
           <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <Input type={'number'} important={true} name={'rank'} value={value} title={'rank'} readOnly={false} changeInputValue={changeValueInput} />
+            <Input type={'number'} important={true} name={'rank'}  title={'rank'} readOnly={false} changeInputValue={changeValueInput} />
           </div>
         </div>
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useState } from 'react';
 import './ModalRequirment.scss';
 import axios from 'axios';
 import Input from '../../../Components/Input/Input';
@@ -13,7 +13,8 @@ function ModalRequirment(props) {
   const [value, setValue] = useState()
   const [cookies] = useCookies(['accessToken']);
   const [addRequirment, setAddRequirment] = useState({
-    settingId: parseInt(props.settingId)
+    settingId: parseInt(props.settingId),
+    type: 1
   })
   const [showAlert, setShowAlert] = useState({
     status: false, msg: '', success: null
@@ -54,13 +55,12 @@ function ModalRequirment(props) {
       }
     ).catch(
       err => {
-        if (err.status === 400) {
-          setShowAlert({ status: true, msg: 'err.response.data.message[0]', success: false })
+          setShowAlert({ status: true, msg: err.response.data.message, success: false })
           setTimeout(() => {
             setShowAlert({ status: false })
           }, 2000)
         }
-      }
+      
     )
   }
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './ModalEntries.scss';
 import axios from 'axios';
 import Input from '../../../Components/Input/Input';
@@ -12,7 +12,8 @@ import { API_URL } from '../../../API_URL';
 function ModalEntries(props) {
   const [cookies] = useCookies(['accessToken']);
   const [addEntry, setAddEntry] = useState({
-    settingId: parseInt(props.settingId)
+    settingId: parseInt(props.settingId),
+    type: 1
   })
   const [showAlert, setShowAlert] = useState({
     status: false, msg: '', success: null
@@ -55,14 +56,13 @@ function ModalEntries(props) {
         }
       ).catch(
         err => {
-
+          setShowAlert({ status: true, msg: err.response.data.message, success: false })
+          setTimeout(() => {
+            setShowAlert({ status: false })
+          }, 2000)
         }
       )
   }
-
-  useEffect(() => {
-    sendData()
-  }, [])
 
   return (
     <div className='modalEntries'>
@@ -82,7 +82,7 @@ function ModalEntries(props) {
             <Input type={'number'} important={true} name={'amount'} title={'amount'} value={''} readOnly={false} changeInputValue={changeValueInput} />
           </div>
           <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <SelectOption name={'type'} important={true} readOnly={false} defaultValue={'type'} type={'name'} data={resourceType} changeOptinValue={updateOptionData} />
+            <SelectOption name={'type'} important={true} readOnly={false} defaultValue={'type'} value={1} type={'name'} data={resourceType} changeOptinValue={updateOptionData} />
           </div>
         </div>
 
