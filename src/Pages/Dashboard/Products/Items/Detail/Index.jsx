@@ -331,7 +331,7 @@ function Index() {
     }, [])
 
     const getData = () => {
-        setLoading(!loading)
+        setLoading(true)
         axios.get(`${API_URL === undefined ? '' : API_URL}/admin-stuff/get-item/${id}`,
             {
                 headers: {
@@ -341,7 +341,7 @@ function Index() {
             })
             .then(res => {
                 setDetail(res.data)
-                setLoading(loading)
+                setLoading(false)
             })
             .catch(err => {
                 console.log(err)

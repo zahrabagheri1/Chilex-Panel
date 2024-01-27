@@ -51,7 +51,7 @@ function Index() {
     }, [filters])
 
     const reqFilterTransaction = () => {
-        setLoading(!loading)
+        setLoading(true)
         axios.get(`${API_URL === undefined ? '' : API_URL}/admin-transaction/all?${filters.statuses === null || filters.statuses === undefined ? '' : 'statuses[]=' + filters.statuses + '&'}${filters.gatewayTypes === null || filters.gatewayTypes === undefined ? '' : 'gatewayTypes[]=' + filters.gatewayTypes + '&'}${filters.limit === null || filters.limit === undefined ? '' : 'limit=' + filters.limit + '&'}${filters.offset === null || filters.offset === undefined ? '' : 'offset=' + filters.offset + '&'}${filters.sortBy === null || filters.sortBy === undefined ? '' : 'sortBy=' + filters.sortBy + '&'}${filters.userId === null || filters.userId === undefined ? '' : 'userId=' + filters.userId}`,
             {
                 headers: {
@@ -62,7 +62,7 @@ function Index() {
             .then(
                 res => {
                     setTransaction(res.data.data);
-                    setLoading(loading)
+                    setLoading(false)
                 }
             )
             .catch(

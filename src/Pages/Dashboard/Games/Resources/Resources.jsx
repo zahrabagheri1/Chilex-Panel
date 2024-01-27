@@ -21,7 +21,7 @@ function Resources() {
     const { id } = useParams()
     const navigate = useNavigate()
     const getResource = () => {
-        setLoading(!loading)
+        setLoading(true)
         axios.get(`${API_URL === undefined ? '' : API_URL}/games/setting/resources/${id}`,
             {
                 headers: {
@@ -32,7 +32,7 @@ function Resources() {
             .then(
                 res => {
                     setData(res.data)
-                    setLoading(loading)
+                    setLoading(false)
                 }
             )
             .catch(

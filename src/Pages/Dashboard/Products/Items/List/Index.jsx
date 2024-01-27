@@ -45,7 +45,7 @@ function Index() {
     }, [filter])
 
     const reqFilterItem = () => {
-        setLoading(!loading)
+        setLoading(true)
         axios.get(`${API_URL === undefined ? '' : API_URL}/admin-stuff/items-all?${filter.sku === null || filter.sku === undefined ? '' : "sku=" + filter.sku + '&'}${filter.itemStatus === null || filter.itemStatus === undefined ? '' : "itemStatus=" + filter.itemStatus + '&'}${filter.itemGameId === null || filter.itemGameId === undefined ? '' : "itemGameId=" + filter.itemGameId + '&'}${filter.priceStatus === null || filter.priceStatus === undefined ? '' : "priceStatus=" + filter.priceStatus + '&'}${filter.limit === null || filter.limit === undefined ? '' : "limit=" + filter.limit + '&'}${filter.offset === null || filter.offset === undefined ? '' : "offset=" + filter.offset + '&'}${filter.sortBy === null || filter.sortBy === undefined ? '' : "sortBy=" + filter.sortBy + '&'}${filter.orderBy === null || filter.orderBy === undefined ? '' : "orderBy=" + filter.orderBy}`,
             {
                 headers: {
@@ -56,7 +56,7 @@ function Index() {
             .then(
                 res => {
                     setItems(res.data.data)
-                    setLoading(loading)
+                    setLoading(false)
                 }
             ).catch(
                 err => console.log(err)

@@ -147,7 +147,7 @@ function Index() {
         <div className='password'>
           <Input type={"password"} inputclassname='loginInput' inputRef={passwordRef} placeholder={"type your password"} required={true} name={'password'} title={"PassWord:"} icon={'HiLockClosed'} changeInputValue={changeValueInput} onKeyDown={handleKeyPress} />
         </div>
-        <Button title="Login" path='/dashboard' className='loginbtn' handler={submitData} />
+        <Button title="Login" path='/dashboard' className='loginbtn' btnhandler={submitData} />
       </div>
     </div>
   );
