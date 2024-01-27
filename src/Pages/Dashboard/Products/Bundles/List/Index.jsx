@@ -42,10 +42,8 @@ function Index() {
             setResetFlag(false);
         }else{
             reqFilterBundle()
-
         }
     }, [resetFlag])
-
 
     const reqFilterBundle = () => {
         setLoading(true)
@@ -66,6 +64,7 @@ function Index() {
                 err => console.log(err)
             )
     }
+
 
     const resetFillters = () => {
         setFilters({
