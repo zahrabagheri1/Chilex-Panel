@@ -6,7 +6,7 @@ import { HiOutlineTrash, HiPlus } from "react-icons/hi2";
 import axios from 'axios';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import ModalAddProducts from '../../../../../layout/ModalAddProducts/ModalAddProducts';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Input from '../../../../../Components/Input/Input';
 import SelectOption from '../../../../../Components/SelectOption/SelectOption';
 import { useCookies } from 'react-cookie';

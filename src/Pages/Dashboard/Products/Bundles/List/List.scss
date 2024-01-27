@@ -28,8 +28,15 @@
             border: 2px solid $lightGray;
             align-items: center;
             gap: 10px;
-            // display: flex;
-            // flex-direction: row;
+            
+            .filterBtnBox{
+                display: flex;
+                align-items: flex-end;
+                .filterBtn{
+                    height: 32px;
+                }
+                
+            }
         }
 
         .resetFillters{

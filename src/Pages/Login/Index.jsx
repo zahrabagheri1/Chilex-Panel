@@ -3,7 +3,6 @@ import './Login.scss';
 import Input from '../../Components/Input/Input';
 import Button from '../../Components/Button/Button';
 import userPhoto from '../../Assets/image/photoUser-removebg-preview.png';
-import { Value } from 'sass';
 import axios from 'axios';
 import Alert from '../../layout/Alert/Alert';
 import { useNavigate } from 'react-router-dom';
@@ -49,7 +48,7 @@ function Index() {
         y: Math.random() * 12
       };
 
-      let anim = el.animate(
+      el.animate(
         [
           { transform: "translate(0, 0)" },
           { transform: `translate(${to.x}em, ${to.y}em)` }

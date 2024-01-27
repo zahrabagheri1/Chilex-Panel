@@ -12,12 +12,14 @@ import { LoadingContext } from '../../../../Loading/LoadingContext';
 import { LoginContext } from '../../../../Login/LoginContext';
 import { HiOutlineTrash } from 'react-icons/hi2';
 import { API_URL } from '../../../../../API_URL';
+import Button from '../../../../../Components/Button/Button';
 
 function Index() {
     const [banuserList, setBanuserList] = useState(null)
     const [cookies] = useCookies(['accessToken']);
     const { loading, setLoading } = useContext(LoadingContext);
     const { goToLoginPage } = useContext(LoginContext);
+    const [resetFlag, setResetFlag] = useState(false);
     const [filter, setFilter] = useState({
         limit: null,
         offset: null,
@@ -31,8 +33,14 @@ function Index() {
 
     useEffect(() => {
         goToLoginPage(cookies.accessToken);
-        listOfBanUsers()
-    }, [filter])
+        if (resetFlag) {
+           listOfBanUsers()
+            setResetFlag(false)
+        }else{
+           listOfBanUsers()
+        }
+    }, [resetFlag])
+
 
     //admin-ban/get-all?limit=1&offset=1&type=1&userId=1&sortBy=0&orderBy=0
     const listOfBanUsers = () => {
@@ -65,8 +73,12 @@ function Index() {
             sortBy: 3,
             orderBy: 1,
         })
+        setResetFlag(true);
     }
 
+    const filterhandler = () => {
+       listOfBanUsers()
+    }
 
     const updateOptionData = (name, id) => {
         setFilter((prev) => ({ ...prev, [name]: id }))
@@ -112,6 +124,10 @@ function Index() {
                             ]}
                         />
                     </div>
+
+                    <div className="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-xs-12">
+                            <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
+                        </div>
                 </div>
 
                 <div className="resetFillters" onClick={resetFillters}>

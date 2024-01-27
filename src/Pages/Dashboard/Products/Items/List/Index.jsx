@@ -13,6 +13,7 @@ import { useCookies } from 'react-cookie';
 import { LoadingContext } from '../../../../Loading/LoadingContext';
 import { LoginContext } from '../../../../Login/LoginContext';
 import { API_URL } from '../../../../../API_URL';
+import Button from '../../../../../Components/Button/Button';
 
 function Index() {
     const [items, setItems] = useState(null);
@@ -21,6 +22,7 @@ function Index() {
     const [cookies] = useCookies(['accessToken']);
     const { loading, setLoading } = useContext(LoadingContext)
     const { goToLoginPage } = useContext(LoginContext);
+    const [resetFlag, setResetFlag] = useState(false);
     const navigate = useNavigate()
     const [filter, setFilter] = useState({
         sku: null,
@@ -41,8 +43,14 @@ function Index() {
 
     useEffect(() => {
         goToLoginPage(cookies.accessToken);
-        reqFilterItem()
-    }, [filter])
+        if (resetFlag) {
+           reqFilterItem();
+            setResetFlag(false);
+        } else {
+           reqFilterItem()
+        }
+    }, [resetFlag])
+
 
     const reqFilterItem = () => {
         setLoading(true)
@@ -92,6 +100,11 @@ function Index() {
             offset: null,
             orderBy: null,
         })
+        setResetFlag(true);
+    }
+
+    const filterhandler = () => {
+       reqFilterItem()
     }
 
     return (
@@ -206,6 +219,10 @@ function Index() {
                                     { id: 1, status: 'ASC' },
                                 ]}
                             />
+                        </div>
+
+                        <div className="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-xs-12">
+                            <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
                         </div>
                     </div>
 

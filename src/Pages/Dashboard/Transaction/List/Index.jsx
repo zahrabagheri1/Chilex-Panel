@@ -13,6 +13,7 @@ import { LoadingContext } from '../../../Loading/LoadingContext';
 import { LoginContext } from '../../../Login/LoginContext';
 import { HiOutlineTrash } from 'react-icons/hi2';
 import { API_URL } from '../../../../API_URL';
+import Button from '../../../../Components/Button/Button';
 
 const transaction = [
     {
@@ -29,11 +30,12 @@ const transaction = [
 ]
 
 function Index() {
-    const [transactionn, setTransaction] = useState(null);
-    const { loading, setLoading } = useContext(LoadingContext);
+    const [transaction, setTransaction] = useState(null);
+    const { setLoading } = useContext(LoadingContext);
     const { goToLoginPage } = useContext(LoginContext);
     const navigate = useNavigate()
     const [cookies] = useCookies(['accessToken']);
+    const [resetFlag, setResetFlag] = useState(false);
     const [filters, setFilters] = useState({
         statuses: null,
         gatewayTypes: null,
@@ -47,8 +49,14 @@ function Index() {
     //admin-transaction/all?all?statuses%5B%5D=0&gatewayTypes%5B%5D=0&limit=0&offset=0&sortBy=0&orderBy=0&userId=0
     useEffect(() => {
         goToLoginPage(cookies.accessToken);
-        reqFilterTransaction()
-    }, [filters])
+
+        if (resetFlag) {
+            reqFilterTransaction()
+            setResetFlag(false);
+        } else {
+            reqFilterTransaction()
+        }
+    }, [resetFlag])
 
     const reqFilterTransaction = () => {
         setLoading(true)
@@ -91,8 +99,11 @@ function Index() {
             sortBy: 3,
             orderBy: 1,
         })
+        setResetFlag(true);
     }
-
+    const filterhandler = () => {
+        reqFilterTransaction()
+    }
     return (
         <div className='transactionList'>
             <div className='filter'>
@@ -148,6 +159,10 @@ function Index() {
 
                     <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-6">
                         <Input value={filters.userId} type={'text'} title={"userId"} name={"userId"} placeholder={'userId'} changeInputValue={updateInputData} />
+                    </div>
+
+                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                        <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
                     </div>
                 </div>
 

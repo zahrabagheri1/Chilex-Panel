@@ -1,13 +1,9 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import SelectOption from '../../Components/SelectOption/SelectOption';
 import Input from '../../Components/Input/Input';
 import Button from '../../Components/Button/Button';
 import { HiPlus, HiCheck } from "react-icons/hi2";
 import './Prices.scss';
-
-
-
-
 
 function Prices(props) {
     const [prices, setPrices] = useState(1)
