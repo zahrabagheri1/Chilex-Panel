@@ -60,21 +60,19 @@ function Resources() {
         getResource()
     }
 
- 
-    
+
+
     const deleteRequirement = (id, type) => {
         axios.delete(`${API_URL === undefined ? '' : API_URL}/games/setting/${type}/${id}`,
-        {
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: 'Bearer ' + cookies.accessToken
-            }
-        })
-        .then(
-            res => {
-                    // const updatedItems = ;
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + cookies.accessToken
+                }
+            })
+            .then(
+                res => {
                     getResource()
-                    // setData(data.filter((item) => item.id !== id))
                 }
             )
             .catch(
