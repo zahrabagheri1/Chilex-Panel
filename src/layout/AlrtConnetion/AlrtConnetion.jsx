@@ -17,12 +17,10 @@ function AlrtConnetion(props) {
             props.status ?
               <div className="details">
                 <span>You're online now</span>
-                <p>Hurray! Internet is connected.</p>
               </div>
               :
               <div className="details">
                 <span>You're Offline</span>
-                <p>Sorry! Internet is disconnected.</p>
               </div>
           }
 

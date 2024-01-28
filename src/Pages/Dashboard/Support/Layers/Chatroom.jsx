@@ -1,5 +1,5 @@
 
-import React, { useContext, useRef } from "react";
+import React, { useContext, useId, useRef } from "react";
 import { useState } from "react";
 import { useMemo } from "react";
 import { useEffect } from "react";
@@ -31,41 +31,37 @@ function Chatroom(props) {
         }
     })
 
+    console.log(chat.length)
+    console.log(limit)
     // useEffect(() => {
     //     scrollToBottom();
     //   }, []);
-    
+
     //   const scrollToBottom = () => {
     //     if (chatRef.current) {
     //       chatRef.current.scrollIntoView({ behavior: 'smooth' });
     //     }
     //   };
 
-    // useEffect(() => {
-    //     ResiveChts(props.id, limit)
-    //     console.log("Limit in UseEffect", limit)
-    //     setLimit(15)
-    //     if (scrollEnd.current) {
-    //         scrollEnd.current.addEventListener('scroll', handleScroll);
-    //     }
-    //     return () => {
-    //         // scrollEnd.current.removeEventListener('scroll', handleScroll);
-    //     };
-    // }, [props.id])
-
     useEffect(() => {
         ResiveChts(props.id, limit);
-        console.log("Limit in UseEffect", limit);
-        if (scrollEnd.current) {
-          scrollEnd.current.addEventListener('scroll', handleScroll);
-        }
-      
+
+        scrollEnd.current.addEventListener('scroll', handleScroll);
         return () => {
-          if (scrollEnd.current) {
             scrollEnd.current.removeEventListener('scroll', handleScroll);
-          }
         };
-      }, [props.id, limit]);
+
+        // console.log("Limit in UseEffect", limit);
+        // if (scrollEnd.current) {
+        //   scrollEnd.current.addEventListener('scroll', handleScroll);
+        // }
+
+        // return () => {
+        //   if (scrollEnd.current) {
+        //     scrollEnd.current.removeEventListener('scroll', handleScroll);
+        //   }
+        // };
+    }, [props.id]);
 
     // const saveMessages = useMemo(() => ({ chat, setChats }), [])
 
@@ -73,11 +69,13 @@ function Chatroom(props) {
         if (counter === 0) {
             if (scrollEnd.current.scrollTop === 0) {
                 scrollEnd.current.scrollTop = scrollEnd.current.scrollHeight;
+                console.log('limit xaz :', limit)
             }
         } else {
             if (scrollEnd.current.scrollTop === 0) {
+                // scrollEnd.current.scrollTop = scrollEnd.current.scrollHeight;
+                console.log('limit zax  :', limit)
                 // setLimit(counter + 15)
-                // console.log('limit  :', limit)
                 // ResiveChts(props.id, limit)
             }
         }
@@ -102,32 +100,23 @@ function Chatroom(props) {
     };
 
     const ResiveChts = (id, counter) => {
-        if (loading) {
-          return;
-        }
-      
-        setLoading(true);
-      
         const data = { anotherPersonId: id, limit: counter, offset: 0 };
-      
         socket.emit('adminMessage', 'get-a-support-chat', data, (response) => {
-          setLoading(false);
-      
-          if (id !== props.id) {
-            data.offset = 0;
-            setLimit(0);
-          } else {
-            // setLimit(prevLimit => prevLimit === counter ? prevLimit + 15 : prevLimit);
-          }
-      
-          setChats(response.chatBoxes);
-          handleScroll(counter);
+            if (useId !== props.id) {
+                data.offset = 0;
+                setLimit(0);
+            } else {
+                // setLimit(prevLimit => prevLimit === counter ? prevLimit + 15 : prevLimit);
+            }
+            console.log('conterrrrrrrrrr', counter)
+            handleScroll(counter);
+            setChats(response.chatBoxes);
         });
-      };
+    };
 
     const ReadMoreMessages = () => {
         // setLimit(limit + 15)
-        ResiveChts(props.id, limit)
+        ResiveChts(props.id, limit + 15)
         // saveMessages.push()
         // chat.map((SaveChat) => { saveMessages.push(SaveChat) })
     }
@@ -171,7 +160,7 @@ function Chatroom(props) {
 
                     <div ref={scrollEnd} className="chatboxbody">
                         {
-                            limit > 15 ?
+                            chat.length >= 15 ?
                                 <button className="readmoremessages" onClick={ReadMoreMessages}>
                                     <div className="textlineright"></div>
                                     <div className="readmore">read more messages</div>
