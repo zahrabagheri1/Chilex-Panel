@@ -12,6 +12,7 @@ function Index() {
   const [idChat, setIdChat] = useState({ status: false, userId: null, image: null, username: null })
   const [userId, setUserId] = useState(0)
   const [connect, setConnect] = useState(null)
+
   // const [isConnected, setIsConnected] = useState(socket.connected);
   // const [emptyChat, setEmptyChat] = useState(false)
   // const [newMessage, setNewMessage] = useState('')
@@ -32,26 +33,47 @@ function Index() {
     console.log('searchUser')
   }
 
+  // useEffect(() => {
+  //   socket.connect()
+  //   GetResiveAllChats()
+
+  //   socket.on("connect", () => {
+  //     console.table('Connected')
+  //     setConnect(true)
+  //     setTimeout(() => {
+  //       setConnect(null)
+  //     },3000)
+  //     GetResiveAllChats()
+  //   })
+
+  //   socket.on("disconnect", () => {
+  //     console.table('Disconnected')
+  //     setConnect(false)
+  //   })
+  //   // console.log("USEEFFECT CALLED")
+
+  // }, [])
+
   useEffect(() => {
-    socket.connect()
-    GetResiveAllChats()
-
+    socket.connect();
+    GetResiveAllChats();
+  
     socket.on("connect", () => {
-      console.table('Connected')
-      setConnect(true)
+      console.table('Connected');
+      setConnect(true);
       setTimeout(() => {
-        setConnect(null)
-      },3000)
-      GetResiveAllChats()
-    })
-
+        setConnect(null);
+      }, 3000);
+      GetResiveAllChats();
+    });
+  
     socket.on("disconnect", () => {
-      console.table('Disconnected')
-      setConnect(false)
-    })
-    // console.log("USEEFFECT CALLED")
+      console.table('Disconnected');
+      setConnect(false);
+    });
+  
+  }, []);
 
-  }, [])
 
   function GetResiveAllChats() {
     socket.emit('adminMessage', 'get-all-support-chats', (response) => { setListChats(response) });
@@ -105,3 +127,8 @@ function Index() {
 
 
 export default Index;
+
+
+
+
+
