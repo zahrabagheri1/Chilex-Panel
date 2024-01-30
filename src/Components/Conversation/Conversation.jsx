@@ -6,9 +6,7 @@ import { useEffect } from 'react';
 
 function Conversation(props) {
 
-  useEffect(() => {
-    // console.log('Conversation : ' + props.data)
-  })
+  // console.log('Conversation : ' , props.data)
   const OpenChat = (id, img, username) => {
     // console.log('OpenChat : ' + id, img, username)
     props.click(id, img, username)

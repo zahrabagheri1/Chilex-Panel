@@ -3,7 +3,6 @@ import './Login.scss';
 import Input from '../../Components/Input/Input';
 import Button from '../../Components/Button/Button';
 import userPhoto from '../../Assets/image/photoUser-removebg-preview.png';
-import { Value } from 'sass';
 import axios from 'axios';
 import Alert from '../../layout/Alert/Alert';
 import { useNavigate } from 'react-router-dom';
@@ -49,7 +48,7 @@ function Index() {
         y: Math.random() * 12
       };
 
-      let anim = el.animate(
+      el.animate(
         [
           { transform: "translate(0, 0)" },
           { transform: `translate(${to.x}em, ${to.y}em)` }
@@ -72,7 +71,7 @@ function Index() {
 
   const submitData = () => {
     // axios.defaults.withCredentials = true;
-    axios.post(API_URL + `/auth/admin/login`, {
+    axios.post(`${API_URL === undefined ? '' : API_URL}/auth/admin/login`, {
       username: user.username,
       password: user.password
     }).then(
@@ -147,7 +146,7 @@ function Index() {
         <div className='password'>
           <Input type={"password"} inputclassname='loginInput' inputRef={passwordRef} placeholder={"type your password"} required={true} name={'password'} title={"PassWord:"} icon={'HiLockClosed'} changeInputValue={changeValueInput} onKeyDown={handleKeyPress} />
         </div>
-        <Button title="Login" path='/dashboard' className='loginbtn' handler={submitData} />
+        <Button title="Login" path='/dashboard' className='loginbtn' btnhandler={submitData} />
       </div>
     </div>
   );

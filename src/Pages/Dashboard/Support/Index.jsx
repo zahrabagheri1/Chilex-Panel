@@ -1,14 +1,22 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './Support.scss';
 import Conversation from '../../../Components/Conversation/Conversation';
 import { useEffect } from 'react';
 import { socket, getCookie } from '../../../Socket';
 import { useCookies } from 'react-cookie';
 import Chatroom from './Layers/Chatroom';
+import AlrtConnetion from '../../../layout/AlrtConnetion/AlrtConnetion';
+import { LoadingContext } from '../../Loading/LoadingContext';
+import { LoginContext } from '../../Login/LoginContext';
 
 function Index() {
   const [listChats, setListChats] = useState()
   const [idChat, setIdChat] = useState({ status: false, userId: null, image: null, username: null })
+  const [userId, setUserId] = useState(0)
+  const [connect, setConnect] = useState(null)
+  const { loading, setLoading } = useContext(LoadingContext);
+  const { goToLoginPage } = useContext(LoginContext);
+
   // const [isConnected, setIsConnected] = useState(socket.connected);
   // const [emptyChat, setEmptyChat] = useState(false)
   // const [newMessage, setNewMessage] = useState('')
@@ -30,24 +38,39 @@ function Index() {
   }
 
   useEffect(() => {
-    socket.connect()
-    GetResiveAllChats()
-
+    socket.connect();
+    GetResiveAllChats();
+  
     socket.on("connect", () => {
-      console.table('Connected')
-      GetResiveAllChats()
-    })
+      console.table('Connected');
+      setConnect(true);
+      setTimeout(() => {
+        setConnect(null);
+      }, 3000);
+      GetResiveAllChats();
+    });
+  
     socket.on("disconnect", () => {
-      console.table('Disconnected')
-    })
-  }, [])
+      console.table('Disconnected');
+      setConnect(false);
+    });
+  
+  }, []);
+
 
   function GetResiveAllChats() {
-    socket.emit('adminMessage', 'get-all-support-chats', (response) => { setListChats(response) });
+    setLoading(true);
+      
+    socket.emit('adminMessage', 'get-all-support-chats', (response) => { 
+      setLoading(false);
+      setListChats(response)
+     });
   }
+
   // console.log('list : ' + JSON.stringify(listChats))
   const showChat = (id, img, username) => {
     console.log('show chat : ' + id)
+    setUserId(id)
     setIdChat({ status: true, userId: id, image: img, username: username })
   }
 
@@ -56,6 +79,10 @@ function Index() {
   } else {
     return (
       <div className='support'>
+        {
+          connect === null ? '' :
+            <AlrtConnetion status={connect} />
+        }
         <div className="chatMenu">
           <div className="chatMenuWrapper">
             <input type="search" className='chatMenuSearchBox' placeholder='Search User' onChange={searchUser} />
@@ -70,11 +97,16 @@ function Index() {
         </div>
         {
           idChat.status ?
-            <Chatroom id={idChat.userId} data={idChat} /> 
+            <Chatroom id={idChat.userId} data={idChat} limit={0}/>
             :
-            <div className="">
-              Click on One of the Users
-            </div> 
+            <div className="clearChatRoom">
+              <div className="clearChatRoomtext">
+                Click on One of the Users
+              </div>
+              <div className="clearChatRoomsubtext">
+                they waiting you to answer them!
+              </div>
+            </div>
         }
       </div>
     );
@@ -83,3 +115,8 @@ function Index() {
 
 
 export default Index;
+
+
+
+
+

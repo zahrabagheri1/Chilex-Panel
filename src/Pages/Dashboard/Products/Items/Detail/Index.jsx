@@ -223,7 +223,7 @@ function Index() {
     const sendData = () => {
         // setEditAble(false)
         edit === true ?
-            axios.patch(API_URL + `/admin-stuff/update-item/${id}`,
+            axios.patch(`${API_URL === undefined ? '' : API_URL}/admin-stuff/update-item/${id}`,
                 {
                     name: updateData.name === null || updateData.name === undefined ? detail.name : updateData.name,
                     expireTime: updateData.expireTime === null || updateData.expireTime === undefined ? detail.expireTime : updateData.expireTime,
@@ -243,7 +243,6 @@ function Index() {
                 })
                 .then(
                     res => {
-                        // console.log(res)
                         setShowAlert({ status: true, msg: 'Done', success: true })
                         setTimeout(() => {
                             setShowAlert({ status: false, msg: 'Done' })
@@ -255,7 +254,6 @@ function Index() {
                 )
                 .catch(
                     err => {
-                        // console.log(err)
                         setShowAlert({ status: true, msg: err.response.data.message, success: false })
                         setTimeout(() => {
                             setShowAlert({ status: false, msg: err.response.data.message, success: false })
@@ -267,7 +265,7 @@ function Index() {
     }
 
     const switchHandler = (boolean, id) => {
-        axios.patch(API_URL + `/admin-stuff/change-item-status/${id}`, {
+        axios.patch(`${API_URL === undefined ? '' : API_URL}/admin-stuff/change-item-status/${id}`, {
             status: boolean === true ? 0 : 1,
         },
             {
@@ -297,8 +295,7 @@ function Index() {
     }
 
     const switchHandlerPrice = (boolean, id) => {
-        // console.log("boolean,id", boolean, id);
-        axios.patch(API_URL + `/admin-stuff/change-price-status/${id}`, {
+        axios.patch(`${API_URL === undefined ? '' : API_URL}/admin-stuff/change-price-status/${id}`, {
             status: boolean === true ? 0 : 1,
         },
             {
@@ -309,7 +306,6 @@ function Index() {
             })
             .then(
                 res => {
-                    console.log(res)
                     setShowAlert({ status: true, msg: "Done", success: true })
                     setTimeout(() => {
                         setShowAlert({ status: false, msg: 'Done' })
@@ -320,7 +316,6 @@ function Index() {
             )
             .catch(
                 err => {
-                    console.log(err)
                     setShowAlert({ status: true, msg: err.response.data.message, success: true })
                     setTimeout(() => {
                         setShowAlert({ status: false, msg: err.response.data.message })
@@ -336,8 +331,8 @@ function Index() {
     }, [])
 
     const getData = () => {
-        setLoading(!loading)
-        axios.get(API_URL + `/admin-stuff/get-item/${id}`,
+        setLoading(true)
+        axios.get(`${API_URL === undefined ? '' : API_URL}/admin-stuff/get-item/${id}`,
             {
                 headers: {
                     'Content-Type': 'application/json',
@@ -346,7 +341,7 @@ function Index() {
             })
             .then(res => {
                 setDetail(res.data)
-                setLoading(loading)
+                setLoading(false)
             })
             .catch(err => {
                 console.log(err)
@@ -465,8 +460,11 @@ function Index() {
                                                             data={item.data}
                                                         />
                                                     </div>
-
-                                                    : ''
+                                                    : item.type === 'datepiker' ?
+                                                        <div key={index} className=" itembundle col-xl-2 col-lg-2 col-md-2 col-ms-6 col-xs-6">
+                                                            <DatePikerFarsi disable={'disabled'} value={value} readOnly={editAble ? false : true} title={key} handlerChangeDate={updateDataPiker} />
+                                                        </div>
+                                                        : ''
                                     : ''
                             ))
 

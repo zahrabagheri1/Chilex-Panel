@@ -1,5 +1,5 @@
 
-import React, { useRef } from "react";
+import React, { useContext, useId, useRef } from "react";
 import { useState } from "react";
 import { useMemo } from "react";
 import { useEffect } from "react";
@@ -7,35 +7,76 @@ import ButtonActionBlue from "../../../../Components/ButtonActionBlue/ButtonActi
 import Messege from '../../../../Components/Messege/Messege';
 import { socket } from "../../../../Socket";
 import user from '../../../../Assets/image/user.jpg';
+import { LoadingContext } from "../../../Loading/LoadingContext";
+import { LoginContext } from "../../../Login/LoginContext";
 
 function Chatroom(props) {
     const inputMsg = useRef()
-    const [chat, setChats] = useState()
+    const [chat, setChats] = useState([])
     const scrollEnd = useRef(null)
-    const [limit, setLimit] = useState(0)
+    const [limit, setLimit] = useState(15)
     const [saveMessages, setSaveMessage] = useState([])
+    const [userId, setUserId] = useState(0)
+    const { loading, setLoading } = useContext(LoadingContext);
+    const { goToLoginPage } = useContext(LoginContext);
+
+    socket.off("chat")
+    socket.on("chat", (data) => {
+        if (data.senderId == userId) {
+            let temp = JSON.parse(JSON.stringify(chat))
+            temp.reverse()
+            temp.push(data)
+            temp.reverse()
+            setChats(temp)
+        }
+    })
+
+    console.log(chat.length)
+    console.log(limit)
+    // useEffect(() => {
+    //     scrollToBottom();
+    //   }, []);
+
+    //   const scrollToBottom = () => {
+    //     if (chatRef.current) {
+    //       chatRef.current.scrollIntoView({ behavior: 'smooth' });
+    //     }
+    //   };
 
     useEffect(() => {
-        ResiveChts(props.id, limit)
+        ResiveChts(props.id, limit);
+
         scrollEnd.current.addEventListener('scroll', handleScroll);
         return () => {
             scrollEnd.current.removeEventListener('scroll', handleScroll);
         };
-    }, [props.id])
+
+        // console.log("Limit in UseEffect", limit);
+        // if (scrollEnd.current) {
+        //   scrollEnd.current.addEventListener('scroll', handleScroll);
+        // }
+
+        // return () => {
+        //   if (scrollEnd.current) {
+        //     scrollEnd.current.removeEventListener('scroll', handleScroll);
+        //   }
+        // };
+    }, [props.id]);
 
     // const saveMessages = useMemo(() => ({ chat, setChats }), [])
 
     const handleScroll = (counter) => {
         if (counter === 0) {
             if (scrollEnd.current.scrollTop === 0) {
-                scrollEnd.current.scrollTop = scrollEnd.current.scrollHeight
+                scrollEnd.current.scrollTop = scrollEnd.current.scrollHeight;
+                console.log('limit xaz :', limit)
             }
         } else {
             if (scrollEnd.current.scrollTop === 0) {
+                // scrollEnd.current.scrollTop = scrollEnd.current.scrollHeight;
+                console.log('limit zax  :', limit)
                 // setLimit(counter + 15)
-                console.log('limit  :', limit)
                 // ResiveChts(props.id, limit)
-
             }
         }
 
@@ -59,38 +100,48 @@ function Chatroom(props) {
     };
 
     const ResiveChts = (id, counter) => {
-        const data = { anotherPersonId: id, limit: 15, offset: counter }
+        const data = { anotherPersonId: id, limit: counter, offset: 0 };
         socket.emit('adminMessage', 'get-a-support-chat', data, (response) => {
-            setChats(response.chatBoxes)
-            handleScroll(counter + 15)
-            setLimit(counter + 15)
+            if (useId !== props.id) {
+                data.offset = 0;
+                setLimit(0);
+            } else {
+                // setLimit(prevLimit => prevLimit === counter ? prevLimit + 15 : prevLimit);
+            }
+            console.log('conterrrrrrrrrr', counter)
+            handleScroll(counter);
+            setChats(response.chatBoxes);
         });
-    }
+    };
 
-    console.log("Saved :  ", saveMessages)
-    console.log('Chat : ', chat)
-
-    const ReadMoreMessages = (data) => {
-        setLimit(limit + 15)
-        ResiveChts(props.id, limit)
-        saveMessages.push()
-        chat.map((SaveChat) => { saveMessages.push(SaveChat) })
+    const ReadMoreMessages = () => {
+        // setLimit(limit + 15)
+        ResiveChts(props.id, limit + 15)
+        // saveMessages.push()
+        // chat.map((SaveChat) => { saveMessages.push(SaveChat) })
     }
 
     // const sendNewMessage = (e) => {
-    //     // console.log(e.target.value, inputMsg.current.value)
+    // console.log(e.target.value, inputMsg.current.value)
     // }
 
-    const SendMessage = (e) => {
+    const SendMessage = () => {
         socket.emit('adminMessage', 'chat', {
             message: inputMsg.current.value,
             anotherPersonId: props.id,
             messageType: 0
         }, (response) => {
-            // console.log('response:', response)   
-            ResiveChts(props.id, limit)
+            ResiveChts(props.id, 0)
             inputMsg.current.value = ''
         });
+    }
+
+
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault()
+            SendMessage()
+        }
     }
 
     return (
@@ -108,11 +159,15 @@ function Chatroom(props) {
                     </div>
 
                     <div ref={scrollEnd} className="chatboxbody">
-                        <button className="readmoremessages" onClick={ReadMoreMessages}>
-                            <div className="textlineright"></div>
-                            <div className="readmore">read more messages</div>
-                            <div className="textlinelift"></div>
-                        </button>
+                        {
+                            chat.length >= 15 ?
+                                <button className="readmoremessages" onClick={ReadMoreMessages}>
+                                    <div className="textlineright"></div>
+                                    <div className="readmore">read more messages</div>
+                                    <div className="textlinelift"></div>
+                                </button>
+                                : ''
+                        }
 
                         {chat?.map((msg, index) => (
                             <div key={index}>
@@ -138,6 +193,7 @@ function Chatroom(props) {
                             className="chatMessageInput"
                             placeholder='write somthing...'
                             ref={inputMsg}
+                            onKeyDown={handleKeyPress}
                         >
                         </textarea>
 

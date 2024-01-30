@@ -10,7 +10,7 @@ import ResourceBox from '../../../../layout/ResourceBox/ResourceBox';
 import { useCookies } from 'react-cookie';
 import { LoadingContext } from '../../../Loading/LoadingContext';
 import { LoginContext } from '../../../Login/LoginContext';
-import { API_URL }  from '../../../../API_URL';
+import { API_URL } from '../../../../API_URL';
 
 function Resources() {
     const [data, setData] = useState()
@@ -21,8 +21,8 @@ function Resources() {
     const { id } = useParams()
     const navigate = useNavigate()
     const getResource = () => {
-        setLoading(!loading)
-        axios.get(API_URL + `/games/setting/resources/${id}`,
+        setLoading(true)
+        axios.get(`${API_URL === undefined ? '' : API_URL}/games/setting/resources/${id}`,
             {
                 headers: {
                     'Content-Type': 'application/json',
@@ -32,8 +32,7 @@ function Resources() {
             .then(
                 res => {
                     setData(res.data)
-                    // console.log(res.data)
-                    setLoading(loading)
+                    setLoading(false)
                 }
             )
             .catch(
@@ -60,9 +59,11 @@ function Resources() {
         setOpenResource(false)
         getResource()
     }
+
+
+
     const deleteRequirement = (id, type) => {
-        console.log(id, type)
-        axios.delete(API_URL + `/games/setting/${type}/${id}`,
+        axios.delete(`${API_URL === undefined ? '' : API_URL}/games/setting/${type}/${id}`,
             {
                 headers: {
                     'Content-Type': 'application/json',
@@ -76,7 +77,7 @@ function Resources() {
             )
             .catch(
                 err => {
-
+                    console.log(err)
                 }
             )
     }
@@ -107,7 +108,6 @@ function Resources() {
                             </div>
                             {
                                 data.requirements.map((item, index) => (
-                                    // console.log('itemmmm : ', item, deleteRequirement(29,'requirement'))
                                     <div key={index}>
                                         <ResourceBox data={item} type={'requirements'} onchange={deleteRequirement} />
                                     </div>
@@ -159,13 +159,13 @@ function Resources() {
 
                     {
                         openResource === 'requirment' ?
-                            <ModalRequirment onchange={getResource} canceladd={closeModal} settingId={id}/>
+                            <ModalRequirment onchange={getResource} canceladd={closeModal} settingId={id} />
                             :
                             openResource === 'entry' ?
-                                <ModalEntries onchange={getResource} canceladd={closeModal} settingId={id}/>
+                                <ModalEntries onchange={getResource} canceladd={closeModal} settingId={id} />
                                 :
                                 openResource === 'prize' ?
-                                    <ModalPrizes onchange={getResource} canceladd={closeModal} settingId={id}/>
+                                    <ModalPrizes onchange={getResource} canceladd={closeModal} settingId={id} />
                                     :
                                     ''
                     }

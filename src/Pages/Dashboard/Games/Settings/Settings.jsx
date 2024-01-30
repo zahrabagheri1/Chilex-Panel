@@ -28,8 +28,8 @@ function Settings() {
   }, [])
 
   const getSettings = () => {
-    setLoading(!loading)
-    axios.get(API_URL + `/games/settings/${id}`,
+    setLoading(true)
+    axios.get(`${API_URL === undefined ? '' : API_URL}/games/settings/${id}`,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -40,7 +40,7 @@ function Settings() {
       .then(
         res => {
           setData(res.data.data)
-          setLoading(loading)
+          setLoading(false)
         }
       ).catch(
         err => {

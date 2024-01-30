@@ -20,8 +20,8 @@ function Index() {
     const navigate = useNavigate()
 
     const transactionGet = () => {
-        setLoading(!loading)
-        axios.get(API_URL + `/admin-transaction/get-transaction/${id}`,
+        setLoading(true)
+        axios.get(`${API_URL === undefined ? '' : API_URL}/admin-transaction/get-transaction/${id}`,
             {
                 headers: {
                     'Content-Type': 'application/json',
@@ -31,7 +31,7 @@ function Index() {
             .then(
                 res => {
                     setTransaction(res.data)
-                    setLoading(loading)
+                    setLoading(false)
                 }
             )
             .catch(

@@ -1,13 +1,9 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import SelectOption from '../../Components/SelectOption/SelectOption';
 import Input from '../../Components/Input/Input';
 import Button from '../../Components/Button/Button';
 import { HiPlus, HiCheck } from "react-icons/hi2";
 import './Prices.scss';
-
-
-
-
 
 function Prices(props) {
     const [prices, setPrices] = useState(1)
@@ -112,7 +108,7 @@ function Prices(props) {
                                     changeInputValue={inputChange} />
                             </div>
                             <div className="checkPriceItemBox col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                <Button title={<HiCheck />} className={'checkPriceItembtn'} classnameBtn={'checkPriceItem'} disabled={buttonClickedRef.current} handler={checkPrices} />
+                                <Button title={<HiCheck />} className={'checkPriceItembtn'} classnameBtn={'checkPriceItem'} disabled={buttonClickedRef.current} btnhandler={checkPrices} />
                             </div>
                         </div>
                     ))
@@ -120,7 +116,7 @@ function Prices(props) {
             </div>
 
             <div className='addPriceBox col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-3'>
-                <Button classnameBtn={'addPriceItem'} title={<HiPlus />} disabled={false} handler={addPrices} />
+                <Button classnameBtn={'addPriceItem'} title={<HiPlus />} disabled={false} btnhandler={addPrices} />
             </div>
         </div>
     );

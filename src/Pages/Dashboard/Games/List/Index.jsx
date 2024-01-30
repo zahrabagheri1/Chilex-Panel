@@ -26,8 +26,8 @@ function Index() {
   }, [])
 
   const gameIAP = () => {
-    setLoading(!loading)
-    axios.get(API_URL + '/games',
+    setLoading(true)
+    axios.get(`${API_URL === undefined ? '' : API_URL}/games`,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ function Index() {
       .then(
         res => {
           setGames(res.data.data)
-          setLoading(loading)
+          setLoading(false)
         }
       )
       .catch(
@@ -85,8 +85,8 @@ function Index() {
         <div className="modalGameBox">
           <div className="modalGameTitle">{name}</div>
           <div className="btnGameBox">
-            <Button title='Settings' className='settingTitle' classnameBtn='settingBtn' handler={() => gameSetting(name)} />
-            <Button title='Played' className='playedTitle' classnameBtn='playedBtn' handler={() => gamePlayed(name)} />
+            <Button title='Settings' className='settingTitle' classnameBtn='settingBtn' btnhandler={() => gameSetting(name)} />
+            <Button title='Played' className='playedTitle' classnameBtn='playedBtn' btnhandler={() => gamePlayed(name)} />
           </div>
         </div>
       </div>

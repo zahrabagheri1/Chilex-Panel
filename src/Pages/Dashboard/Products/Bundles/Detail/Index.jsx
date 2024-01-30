@@ -62,7 +62,7 @@ function Index() {
 
     const sendData = () => {
         edit ?
-            axios.patch(API_URL + `/admin-stuff/update-bundle/${id}`,
+            axios.patch(`${API_URL === undefined ? '' : API_URL}/admin-stuff/update-bundle/${id}`,
                 {
                     name: updateData.name === null || updateData.name === undefined ? detail.name : updateData.name,
                     expireTime: updateData.expireTime === null || updateData.expireTime === undefined ? detail.expireTime : updateData.expireTime,
@@ -79,9 +79,6 @@ function Index() {
                 })
                 .then(
                     res => {
-                        console.log(updateData.activityIntervalTime)
-                        console.log("activityIntervalTime", res)
-
                         setShowAlert({ status: true, msg: res.message, success: true })
                         setTimeout(() => {
                             setShowAlert({ status: false, msg: res.message, success: true })
@@ -105,7 +102,7 @@ function Index() {
     }
 
     const switchHandler = (boolean, id) => {
-        axios.patch(API_URL + `/admin-stuff/change-bundle-status/${id}`, {
+        axios.patch(`${API_URL === undefined ? '' : API_URL}/admin-stuff/change-bundle-status/${id}`, {
             status: boolean === true ? 0 : 1,
         },
             {
@@ -136,7 +133,7 @@ function Index() {
     }
 
     const switchHandlerPrice = (boolean, id) => {
-        axios.patch(API_URL + `/admin-stuff/change-price-status/${id}`, {
+        axios.patch(`${API_URL === undefined ? '' : API_URL}/admin-stuff/change-price-status/${id}`, {
             status: boolean === true ? 0 : 1,
         },
             {
@@ -177,8 +174,8 @@ function Index() {
     }, [])
 
     const getData = () => {
-        setLoading(!loading)
-        axios.get(API_URL + `/admin-stuff/get-bundle/${id}`,
+        setLoading(true)
+        axios.get(`${API_URL === undefined ? '' : API_URL}/admin-stuff/get-bundle/${id}`,
             {
                 headers: {
                     'Content-Type': 'application/json',
@@ -187,7 +184,7 @@ function Index() {
             })
             .then(res => {
                 setDetail(res.data)
-                setLoading(loading)
+                setLoading(false)
             })
             .catch(err => {
                 console.log(err)
@@ -263,8 +260,6 @@ function Index() {
                                             key === 'expireTime' ?
                                                 <DatePikerFarsi disable={'disabled'} value={value} readOnly={editAble ? false : true} title={key} handlerChangeDate={updateDataPiker} />
                                                 :
-
-
                                                 <Input inputclassname={editAble === false ? 'disabled' : ''} name={key} title={key} value={value} type={key === 'amount' ? 'number' : 'text'} readOnly={editAble ? false : true} changeInputValue={changeValueInput} />
 
                                 }

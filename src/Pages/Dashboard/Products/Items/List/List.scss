@@ -1,5 +1,6 @@
 @import '../../../../../Assets/scss/mixin';
 @import '../../../../../Assets/scss/variable';
+
 .itemList {
     display: flex;
     flex-direction: column;
@@ -7,6 +8,7 @@
     gap: 20px;
     width: 95%;
     margin: auto;
+
     .top {
         position: relative;
         display: flex;
@@ -27,9 +29,19 @@
             border: 2px solid $lightGray;
             align-items: center;
             gap: 10px;
+
+            .filterBtnBox {
+                display: flex;
+                align-items: flex-end;
+
+                .filterBtn {
+                    height: 32px;
+                }
+
+            }
         }
 
-        .resetFillters{
+        .resetFillters {
             position: absolute;
             top: 10px;
             right: 15px;

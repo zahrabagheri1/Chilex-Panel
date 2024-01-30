@@ -5,7 +5,6 @@ import ButtonActionBlue from '../../Components/ButtonActionBlue/ButtonActionBlue
 import Switch from '../Switch/Switch';
 import SelectOption from '../SelectOption/SelectOption';
 import axios from 'axios';
-import Button from '../Button/Button';
 import moment from 'moment-jalaali';
 import Alert from '../../layout/Alert/Alert';
 import ButtonActionGray from '../ButtonActionGray/ButtonActionGray';
@@ -54,7 +53,7 @@ function SettingsCard(props) {
     })
 
     const sendData = () => {
-        axios.patch(API_URL + `/games/setting/${data.id}`, {
+        axios.patch(`${API_URL === undefined ? '' : API_URL}/games/setting/${data.id}`, {
             name: updatedata.name === null || updatedata.name === undefined ? data.name : updatedata.name,
             active: updatedata.active === null || updatedata.active === undefined ? data.active : updatedata.active,
             game: updatedata.game === null || updatedata.game === undefined ? data.game : updatedata.game,

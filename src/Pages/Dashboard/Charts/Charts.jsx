@@ -12,7 +12,6 @@ function Charts() {
     var dataChart = [];
     const dateNow = Date.now();
     const [cookies] = useCookies(['accessToken']);
-    const [data, setData] = useState({});
     const [transactionData, setTransactionData] = useState({});
     const { loading, setLoading } = useContext(LoadingContext)
     const { goToLoginPage } = useContext(LoginContext);
@@ -29,10 +28,11 @@ function Charts() {
         getChart()
     }, [filter])
 
+
     //admin-transaction/chart?statuses%5B%5D=5&gatewayTypes%5B%5D=1&type=1&startDate=2023-11-24&endtDate=2023-11-27
     const getChart = () => {
-        setLoading(!loading)
-        axios.get(API_URL + `/admin-transaction/chart?${filter.statuses === null || filter.statuses === undefined ? '' : ('statuses[]=' + filter.statuses + '&')}${filter.gatewayTypes === null || filter.gatewayTypes === undefined ? '' : ('gatewayTypes[]=' + filter.gatewayTypes + '&')}${'type=' + filter.type + '&'}${'startDate=' + filter.startDate + '&'}${'endtDate=' + filter.endtDate}`,
+        setLoading(true)
+        axios.get(`${API_URL === undefined ? '' : API_URL}/admin-transaction/chart?${filter.statuses === null || filter.statuses === undefined ? '' : ('statuses[]=' + filter.statuses + '&')}${filter.gatewayTypes === null || filter.gatewayTypes === undefined ? '' : ('gatewayTypes[]=' + filter.gatewayTypes + '&')}${'type=' + filter.type + '&'}${'startDate=' + filter.startDate + '&'}${'endtDate=' + filter.endtDate}`,
             {
                 headers: {
                     'Content-Type': 'application/json',
@@ -48,9 +48,7 @@ function Charts() {
                     dataChart.push(makeObj);
                 })
                 setTransactionData(dataChart)
-                // console.log(dataChart)
-                // console.log(res.data.data)
-                setLoading(loading)
+                setLoading(false)
             })
             .catch(
                 err => {
@@ -182,7 +180,7 @@ function Charts() {
     };
 
 
-    
+
     return (
         dataChart == [] || dataChart == {} || dataChart === undefined || dataChart === null ? '' :
             <div className='charts row'>

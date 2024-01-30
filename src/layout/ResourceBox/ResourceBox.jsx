@@ -8,6 +8,7 @@ import Alert from '../Alert/Alert';
 import './ResourceBox.scss';
 import { useCookies } from 'react-cookie';
 import { API_URL } from '../../API_URL';
+import moment from 'moment';
 
 function ResourceBox(props) {
     const [cookies] = useCookies(['accessToken']);
@@ -24,47 +25,11 @@ function ResourceBox(props) {
         { id: 3, name: 'XP' }
     ]
 
-    const deleteRequirement = (id) => {
-        props.onchange(id, 'requirement')
-        console.log(id, 'requirement')
-    }
-
-    const detelePrize = (id) => {
-        console.log(id, 'prize')
-        props.onchange(id, 'prize')
-    }
-
-    const deleteEntry = (id) => {
-        axios.delete(API_URL + `/games/setting/entry/${id}`,
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: 'Bearer ' + cookies.accessToken
-                }
-            })
-            .then(
-                res => {
-                    // show alert that  deleted successfully
-                    setShowAlert({ status: true, msg: `Data by id: ${id} was delete successfully` })
-                    setTimeout(() => {
-                        setShowAlert({ status: false })
-                    }, 2000)
-
-                    props.onchange()
-                }
-            )
-            .catch(
-                err => console.log(err)
-            )
-
-    }
-
     const editResource = (id, requirement) => {
-        axios.patch(API_URL + `/games/setting/requirement/${id}`, {
+        axios.patch(`${API_URL === undefined ? '' : API_URL}/games/setting/requirement/${id}`, {
             type: addRequirment.type === null || addRequirment.type === undefined ? requirement.type : addRequirment.type,
             min: addRequirment.min === null || addRequirment.min === undefined ? requirement.min : addRequirment.min,
             max: addRequirment.max === null || addRequirment.max === undefined ? requirement.max : addRequirment.max
-
         },
             {
                 headers: {
@@ -74,23 +39,27 @@ function ResourceBox(props) {
             })
             .then(
                 res => {
-                    if (res.status < 300 && res.status >= 200) {
-                        setShowAlert({ status: true, msg: res.statusText, success: true })
-                        setTimeout(() => {
-                            setShowAlert({ status: false })
-                        }, 2000)
-                    }
+
+                    setShowAlert({ status: true, msg: res.statusText, success: true })
+                    setTimeout(() => {
+                        setShowAlert({ status: false })
+                    }, 2000)
                     props.onchange()
                     setEdit(false)
                 }
             )
             .catch(
-                err => console.log(err)
+                err => {
+                    setShowAlert({ status: true, msg: err.response.data.message, success: false })
+                    setTimeout(() => {
+                        setShowAlert({ status: false })
+                    }, 2000)
+                }
             )
     }
 
     const editEntry = (id, requirement) => {
-        axios.patch(API_URL + `/games/setting/entry/${id}`, {
+        axios.patch(`${API_URL === undefined ? '' : API_URL}/games/setting/entry/${id}`, {
             amount: addRequirment.amount === null || addRequirment.amount === undefined ? requirement.amount : addRequirment.amount,
             type: addRequirment.type === null || addRequirment.type === undefined ? requirement.type : addRequirment.type
         },
@@ -117,8 +86,7 @@ function ResourceBox(props) {
             )
     }
     const editPrize = (id, requirement) => {
-        // console.log(requirement.type)
-        axios.patch(API_URL + `/games/setting/prize/${id}`, {
+        axios.patch(`${API_URL === undefined ? '' : API_URL}/games/setting/prize/${id}`, {
             amount: addRequirment.amount === null || addRequirment.amount === undefined ? requirement.amount : addRequirment.amount,
             type: addRequirment.type === null || addRequirment.type === undefined ? requirement.type : addRequirment.type
         },
@@ -158,11 +126,11 @@ function ResourceBox(props) {
 
     const deleteData = (id, type) => {
         if (type === 'requirements') {
-            deleteRequirement(id)
+            props.onchange(id, 'requirement')
         } else if (type === 'entries') {
-            deleteEntry(id)
+            props.onchange(id, 'entry')
         } else {
-            detelePrize(id)
+            props.onchange(id, 'prize')
         }
     }
 
@@ -189,7 +157,10 @@ function ResourceBox(props) {
                                 <SelectOption name={key} readOnly={edit === false ? true : false} defaultValue={key} value={value} type={'name'} data={resourceType} changeOptinValue={updateOptionData} />
                                 :
                                 key === 'createdAt' || key === 'updatedAt' || key === 'id' || key === 'rank' ?
-                                    <Input type={typeof value === 'number' ? 'number' : 'text'} inputclassname={'disabled'} name={key} value={value} title={key} readOnly={true} changeInputValue={changeValueInput} />
+                                    key === 'createdAt' || key === 'updatedAt' ?
+                                        <div className='subtext'>{moment(value, 'jYYYY/jM/jD').format('YYYY/MM/DD')}</div>
+                                        :
+                                        <Input type={typeof value === 'number' ? 'number' : 'text'} inputclassname={'disabled'} name={key} value={value} title={key} readOnly={true} changeInputValue={changeValueInput} />
                                     :
                                     <Input type={typeof value === 'number' ? 'number' : 'text'} inputclassname={edit === false ? 'disabled' : ''} name={key} value={value} title={key} readOnly={edit === true ? false : true} changeInputValue={changeValueInput} />
 

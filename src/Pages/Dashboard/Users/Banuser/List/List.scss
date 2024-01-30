@@ -1,16 +1,15 @@
-
 @import '../../../../../Assets/scss/mixin';
 @import '../../../../../Assets/scss/variable';
 
-.banUserlist{
+.banUserlist {
     width: 95%;
     margin: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     gap: 20px;
-    
-    .filterBanUser{
+
+    .filterBanUser {
         z-index: 1;
         position: relative;
         padding: 20px 30px;
@@ -22,9 +21,19 @@
         border: 2px solid $lightGray;
         align-items: center;
         gap: 10px;
+
+        .filterBtnBox {
+            display: flex;
+            align-items: flex-end;
+
+            .filterBtn {
+                height: 32px;
+            }
+
+        }
     }
-    
-    .resetFillters{
+
+    .resetFillters {
         position: absolute;
         top: 10px;
         right: 15px;
