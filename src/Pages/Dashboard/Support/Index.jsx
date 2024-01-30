@@ -2,19 +2,15 @@ import React, { useContext, useState } from 'react';
 import './Support.scss';
 import Conversation from '../../../Components/Conversation/Conversation';
 import { useEffect } from 'react';
-import { socket, getCookie } from '../../../Socket';
-import { useCookies } from 'react-cookie';
+import { socket } from '../../../Socket';
 import Chatroom from './Layers/Chatroom';
-import AlrtConnetion from '../../../layout/AlrtConnetion/AlrtConnetion';
 import { LoadingContext } from '../../Loading/LoadingContext';
 import { LoginContext } from '../../Login/LoginContext';
 
 function Index() {
   const [listChats, setListChats] = useState()
   const [idChat, setIdChat] = useState({ status: false, userId: null, image: null, username: null })
-  const [userId, setUserId] = useState(0)
-  const [connect, setConnect] = useState(null)
-  const { loading, setLoading } = useContext(LoadingContext);
+  const { setLoading } = useContext(LoadingContext);
   const { goToLoginPage } = useContext(LoginContext);
 
   // const [isConnected, setIsConnected] = useState(socket.connected);
@@ -43,16 +39,11 @@ function Index() {
   
     socket.on("connect", () => {
       console.table('Connected');
-      setConnect(true);
-      setTimeout(() => {
-        setConnect(null);
-      }, 3000);
       GetResiveAllChats();
     });
   
     socket.on("disconnect", () => {
       console.table('Disconnected');
-      setConnect(false);
     });
   
   }, []);
@@ -67,10 +58,7 @@ function Index() {
      });
   }
 
-  // console.log('list : ' + JSON.stringify(listChats))
   const showChat = (id, img, username) => {
-    console.log('show chat : ' + id)
-    setUserId(id)
     setIdChat({ status: true, userId: id, image: img, username: username })
   }
 
@@ -79,10 +67,6 @@ function Index() {
   } else {
     return (
       <div className='support'>
-        {
-          connect === null ? '' :
-            <AlrtConnetion status={connect} />
-        }
         <div className="chatMenu">
           <div className="chatMenuWrapper">
             <input type="search" className='chatMenuSearchBox' placeholder='Search User' onChange={searchUser} />
@@ -97,7 +81,7 @@ function Index() {
         </div>
         {
           idChat.status ?
-            <Chatroom id={idChat.userId} data={idChat} limit={0}/>
+            <Chatroom id={idChat.userId} data={idChat} limit={15}/>
             :
             <div className="clearChatRoom">
               <div className="clearChatRoomtext">

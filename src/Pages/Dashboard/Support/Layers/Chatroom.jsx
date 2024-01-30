@@ -1,44 +1,41 @@
 
-import React, { useContext, useId, useRef } from "react";
+import React, {  useRef } from "react";
 import { useState } from "react";
-import { useMemo } from "react";
 import { useEffect } from "react";
 import ButtonActionBlue from "../../../../Components/ButtonActionBlue/ButtonActionBlue";
 import Messege from '../../../../Components/Messege/Messege';
 import { socket } from "../../../../Socket";
 import user from '../../../../Assets/image/user.jpg';
-import { LoadingContext } from "../../../Loading/LoadingContext";
-import { LoginContext } from "../../../Login/LoginContext";
 
 function Chatroom(props) {
     const inputMsg = useRef()
     const [chat, setChats] = useState([])
     const scrollEnd = useRef(null)
-    const [limit, setLimit] = useState(15)
+    const [limit, setLimit] = useState(props.limit)
     const [saveMessages, setSaveMessage] = useState([])
-    const [userId, setUserId] = useState()
-    const { loading, setLoading } = useContext(LoadingContext);
-    const { goToLoginPage } = useContext(LoginContext);
+    const [userId, setUserId] = useState(null)
 
-    
-    console.log(chat.length)
-    console.log(limit)
-    
+    socket.off("chat")
+    socket.on("chat", (data) => {
+        if (data.senderId == userId) {
+            let temp = JSON.parse(JSON.stringify(chat))
+            temp.reverse()
+            temp.push(data)
+            temp.reverse()
+            setChats(temp)
+        }
+    })
+
     useEffect(() => {
         ResiveChts(props.id, limit);
-        scrollEnd.current.addEventListener('scroll', handleScroll);
-        socket.off("chat")
-        socket.on("chat", (data) => {
-            if (data.senderId == userId) {
-                let temp = JSON.parse(JSON.stringify(chat))
-                temp.reverse()
-                temp.push(data)
-                temp.reverse()
-                setChats(temp)
-            }
-        })
+        setUserId(props.id)
+        if (scrollEnd.current) {
+          scrollEnd.current.addEventListener('scroll', handleScroll);
+        }
         return () => {
-            // scrollEnd.current.removeEventListener('scroll', handleScroll);
+            if (scrollEnd.current) {
+                scrollEnd.current.removeEventListener('scroll', handleScroll);
+            }
         };
     }, [props.id, limit]);
 
@@ -51,33 +48,46 @@ function Chatroom(props) {
         } else {
             if (scrollEnd.current.scrollTop === 0) {
                 // setLimit(counter + 15)
-                console.log('limit  :', limit)
+                // console.log('limit  :', limit)
                 // ResiveChts(props.id, limit)
-
             }
         }
+
+        //     console.log('handleScroll : ',scrollEnd.current.scrollHeight)
+        //     if (counterChats === 20) {
+        //         return ''
+        //     } else {
+        //         if (scrollEnd.current.scrollTop === 0) {
+        //             setCounterChats(counterChats + 20)
+        //             ResiveChts(props.id)
+        //             // scrollEnd.current.scrollTop = scrollEnd.current.scrollHeight
+        //             // console.log('counter sended :' , counterChats)
+        //         } else if (scrollEnd.current.scrollTop === scrollEnd.current.scrollHeight) {
+        //             setCounterChats(counterChats - 20)
+        //             ResiveChts(props.id)    
+        //         } else {
+        //             console.log(counterChats, scrollEnd.current.scrollTop)
+        //         }
+        //     }
 
     };
 
     const ResiveChts = (id, counter) => {
-        const data = { anotherPersonId: id, limit: counter, offset: 0 };
+        const data = { anotherPersonId: id, limit: counter, offset: 0 }
         socket.emit('adminMessage', 'get-a-support-chat', data, (response) => {
-            if (useId !== props.id) {
-                data.offset = 0;
-                setLimit(0);
-            }
-            console.log('conterrrrrrrrrr', counter)
-            console.log('userID', userId)
-            handleScroll(counter);
+            if (userId !== props.id) {
+                setLimit(15);
+            } 
             setChats(response.chatBoxes);
+            handleScroll(counter);
         });
     };
 
     const ReadMoreMessages = () => {
-        setLimit(limit + 15)
-        ResiveChts(props.id, limit)
-        // saveMessages.push()
-        // chat.map((SaveChat) => { saveMessages.push(SaveChat) })
+        if (chat.length >= limit) {
+            setLimit(limit + 15)
+            ResiveChts(props.id, limit)
+        }
     }
 
     const SendMessage = () => {
@@ -114,7 +124,7 @@ function Chatroom(props) {
 
                     <div ref={scrollEnd} className="chatboxbody">
                         {
-                            chat.length - 1 > limit ?
+                            chat.length >= limit ?
                                 <button className="readmoremessages" onClick={ReadMoreMessages}>
                                     <div className="textlineright"></div>
                                     <div className="readmore">read more messages</div>

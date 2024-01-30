@@ -2,12 +2,9 @@
 @import '../../../Assets/scss/variable';
 
 .support {
-    // width: 95%;
-    // margin: auto;
     width: 100%;
     margin: auto;
     height: calc(90vh - 10px);
-    // background-color: rgb(84, 84, 84);
     display: flex;
     flex-direction: row;
 
@@ -317,7 +314,7 @@
     }
 
     .clearChatRoom{
-        width: 100%;
+        width: calc(100% - 200px);
         font-size: 26px;
         display: flex;
         // justify-content: center;
