@@ -1,9 +1,8 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import GameCard from '../../../../Components/GameCard/GameCard';
 import './List.scss';
 import axios from 'axios';
-import { Link, useHistory, useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import Button from '../../../../Components/Button/Button';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { LoadingContext } from '../../../Loading/LoadingContext';
 import { LoginContext } from '../../../Login/LoginContext';
@@ -11,8 +10,6 @@ import { API_URL } from '../../../../API_URL';
 
 function Index() {
   const [games, setGames] = useState()
-  const [modal, setModal] = useState(false)
-  const [name, setName] = useState()
   const [cookies] = useCookies(['accessToken']);
   const [active, setActive] = useState()
   const navigate = useNavigate();
@@ -48,48 +45,27 @@ function Index() {
       )
   }
 
-  const showGameItems = (name) => {
-    setName(name)
-    setModal(true)
-  }
-
   const diactiveCard = (value) => {
     setActive(value)
   }
 
-  const gameSetting = () => {
+  const gameSetting = (name) => {
     navigate(`settings/${name}`)
   }
 
-  const gamePlayed = () => {
+  const gamePlayed = (name) => {
     navigate(`played/${name}`)
-
-  }
-
-  const mouseOut = () => {
-    setModal(false)
   }
 
   return (
     <div className='gameList row'>
       {
         games?.map((game, index) => (
-          <div key={index} className="col-xl-3 col-lg-4 col-md-4 col-ms-6 col-xs-6">
-            <GameCard id={game.id} name={game.name} activity={game.active}
-              creaty={game.createdAt} updated={game.updatedAt}
-              showGame={showGameItems} diactivefun={diactiveCard} />
+          <div key={index} className="col-xl-3 col-lg-4 col-md-6 col-ms-12 col-xs-12">
+            <GameCard data={game} diactivefun={diactiveCard} settinghandler={gameSetting} palyedhandler={gamePlayed} />
           </div>
         ))
       }
-      <div className={`modalGame ${modal ? 'active' : ''}`} onClick={mouseOut}>
-        <div className="modalGameBox">
-          <div className="modalGameTitle">{name}</div>
-          <div className="btnGameBox">
-            <Button title='Settings' className='settingTitle' classnameBtn='settingBtn' btnhandler={() => gameSetting(name)} />
-            <Button title='Played' className='playedTitle' classnameBtn='playedBtn' btnhandler={() => gamePlayed(name)} />
-          </div>
-        </div>
-      </div>
     </div>
   );
 }
