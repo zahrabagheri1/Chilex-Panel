@@ -33,70 +33,22 @@ function Chatroom(props) {
 
     console.log(chat.length)
     console.log(limit)
-    // useEffect(() => {
-    //     scrollToBottom();
-    //   }, []);
-
-    //   const scrollToBottom = () => {
-    //     if (chatRef.current) {
-    //       chatRef.current.scrollIntoView({ behavior: 'smooth' });
-    //     }
-    //   };
 
     useEffect(() => {
         ResiveChts(props.id, limit);
-
         scrollEnd.current.addEventListener('scroll', handleScroll);
         return () => {
-            scrollEnd.current.removeEventListener('scroll', handleScroll);
+            // scrollEnd.current.removeEventListener('scroll', handleScroll);
         };
-
-        // console.log("Limit in UseEffect", limit);
-        // if (scrollEnd.current) {
-        //   scrollEnd.current.addEventListener('scroll', handleScroll);
-        // }
-
-        // return () => {
-        //   if (scrollEnd.current) {
-        //     scrollEnd.current.removeEventListener('scroll', handleScroll);
-        //   }
-        // };
-    }, [props.id]);
-
-    // const saveMessages = useMemo(() => ({ chat, setChats }), [])
+    }, [props.id, limit ]);
 
     const handleScroll = (counter) => {
-        if (counter === 0) {
+        if (counter === 15) {
             if (scrollEnd.current.scrollTop === 0) {
                 scrollEnd.current.scrollTop = scrollEnd.current.scrollHeight;
                 console.log('limit xaz :', limit)
             }
-        } else {
-            if (scrollEnd.current.scrollTop === 0) {
-                // scrollEnd.current.scrollTop = scrollEnd.current.scrollHeight;
-                console.log('limit zax  :', limit)
-                // setLimit(counter + 15)
-                // ResiveChts(props.id, limit)
-            }
         }
-
-        //     console.log('handleScroll : ',scrollEnd.current.scrollHeight)
-        //     if (counterChats === 20) {
-        //         return ''
-        //     } else {
-        //         if (scrollEnd.current.scrollTop === 0) {
-        //             setCounterChats(counterChats + 20)
-        //             ResiveChts(props.id)
-        //             // scrollEnd.current.scrollTop = scrollEnd.current.scrollHeight
-        //             // console.log('counter sended :' , counterChats)
-        //         } else if (scrollEnd.current.scrollTop === scrollEnd.current.scrollHeight) {
-        //             setCounterChats(counterChats - 20)
-        //             ResiveChts(props.id)    
-        //         } else {
-        //             console.log(counterChats, scrollEnd.current.scrollTop)
-        //         }
-        //     }
-
     };
 
     const ResiveChts = (id, counter) => {
@@ -105,8 +57,6 @@ function Chatroom(props) {
             if (useId !== props.id) {
                 data.offset = 0;
                 setLimit(0);
-            } else {
-                // setLimit(prevLimit => prevLimit === counter ? prevLimit + 15 : prevLimit);
             }
             console.log('conterrrrrrrrrr', counter)
             handleScroll(counter);
@@ -115,15 +65,11 @@ function Chatroom(props) {
     };
 
     const ReadMoreMessages = () => {
-        // setLimit(limit + 15)
-        ResiveChts(props.id, limit + 15)
+        setLimit(limit + 15)
+        ResiveChts(props.id, limit)
         // saveMessages.push()
         // chat.map((SaveChat) => { saveMessages.push(SaveChat) })
     }
-
-    // const sendNewMessage = (e) => {
-    // console.log(e.target.value, inputMsg.current.value)
-    // }
 
     const SendMessage = () => {
         socket.emit('adminMessage', 'chat', {
@@ -135,7 +81,6 @@ function Chatroom(props) {
             inputMsg.current.value = ''
         });
     }
-
 
     const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
@@ -160,7 +105,7 @@ function Chatroom(props) {
 
                     <div ref={scrollEnd} className="chatboxbody">
                         {
-                            chat.length >= 15 ?
+                            chat.length - 1 > limit ?
                                 <button className="readmoremessages" onClick={ReadMoreMessages}>
                                     <div className="textlineright"></div>
                                     <div className="readmore">read more messages</div>
