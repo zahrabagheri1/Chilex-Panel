@@ -2,56 +2,16 @@ import React, { useState } from 'react';
 import './Support.scss';
 import Conversation from '../../../Components/Conversation/Conversation';
 import { useEffect } from 'react';
-import { socket, getCookie } from '../../../Socket';
-import { useCookies } from 'react-cookie';
+import { socket } from '../../../Socket';
 import Chatroom from './Layers/Chatroom';
-import AlrtConnetion from '../../../layout/AlrtConnetion/AlrtConnetion';
 
 function Index() {
   const [listChats, setListChats] = useState()
   const [idChat, setIdChat] = useState({ status: false, userId: null, image: null, username: null })
-  const [userId, setUserId] = useState(0)
-
-  // const [isConnected, setIsConnected] = useState(socket.connected);
-  // const [emptyChat, setEmptyChat] = useState(false)
-  // const [newMessage, setNewMessage] = useState('')
-  // const [dataAccount, setDataAccount] = useState({
-  //   pv: null,
-  //   img: null,
-  //   name: null,
-  //   status: null,
-  //   lastseen: null,
-  //   chat: null
-  // })
-  // const [cookies, setCookie] = useCookies(["accessToken"]);
-  // const gotopvuser = (key, value) => {
-  //   setDataAccount(prev => ({ ...prev, [key]: value }))
-  // }
 
   const searchUser = (e) => {
     console.log('searchUser')
   }
-
-  // useEffect(() => {
-  //   socket.connect()
-  //   GetResiveAllChats()
-
-  //   socket.on("connect", () => {
-  //     console.table('Connected')
-  //     setConnect(true)
-  //     setTimeout(() => {
-  //       setConnect(null)
-  //     },3000)
-  //     GetResiveAllChats()
-  //   })
-
-  //   socket.on("disconnect", () => {
-  //     console.table('Disconnected')
-  //     setConnect(false)
-  //   })
-  //   // console.log("USEEFFECT CALLED")
-
-  // }, [])
 
   useEffect(() => {
     socket.connect();
@@ -73,10 +33,7 @@ function Index() {
     socket.emit('adminMessage', 'get-all-support-chats', (response) => { setListChats(response) });
   }
 
-  // console.log('list : ' + JSON.stringify(listChats))
   const showChat = (id, img, username) => {
-    // console.log('show chat : ' + id)
-    setUserId(+ id)
     setIdChat({ status: true, userId: id, image: img, username: username })
   }
 
@@ -99,7 +56,7 @@ function Index() {
         </div>
         {
           idChat.status ?
-            <Chatroom id={idChat.userId} data={idChat} limit={0}/>
+            <Chatroom id={idChat.userId} data={idChat} limit={15}/>
             :
             <div className="clearChatRoom">
               <div className="clearChatRoomtext">

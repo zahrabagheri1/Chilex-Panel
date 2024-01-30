@@ -1,16 +1,10 @@
+import React from 'react';
 import './Conversation.scss';
-import React, { useState } from 'react';
 import user from '../../Assets/image/user.jpg';
-import { useEffect } from 'react';
-
 
 function Conversation(props) {
 
-  useEffect(() => {
-    // console.log('Conversation : ' + props.data)
-  })
   const OpenChat = (id, img, username) => {
-    // console.log('OpenChat : ' + id, img, username)
     props.click(id, img, username)
   }
 
