@@ -16,39 +16,47 @@ function Chatroom(props) {
     const scrollEnd = useRef(null)
     const [limit, setLimit] = useState(15)
     const [saveMessages, setSaveMessage] = useState([])
-    const [userId, setUserId] = useState(0)
+    const [userId, setUserId] = useState()
     const { loading, setLoading } = useContext(LoadingContext);
     const { goToLoginPage } = useContext(LoginContext);
 
-    socket.off("chat")
-    socket.on("chat", (data) => {
-        if (data.senderId == userId) {
-            let temp = JSON.parse(JSON.stringify(chat))
-            temp.reverse()
-            temp.push(data)
-            temp.reverse()
-            setChats(temp)
-        }
-    })
-
+    
     console.log(chat.length)
     console.log(limit)
-
+    
     useEffect(() => {
         ResiveChts(props.id, limit);
         scrollEnd.current.addEventListener('scroll', handleScroll);
+        socket.off("chat")
+        socket.on("chat", (data) => {
+            if (data.senderId == userId) {
+                let temp = JSON.parse(JSON.stringify(chat))
+                temp.reverse()
+                temp.push(data)
+                temp.reverse()
+                setChats(temp)
+            }
+        })
         return () => {
             // scrollEnd.current.removeEventListener('scroll', handleScroll);
         };
-    }, [props.id, limit ]);
+    }, [props.id, limit]);
 
     const handleScroll = (counter) => {
         if (counter === 15) {
             if (scrollEnd.current.scrollTop === 0) {
-                scrollEnd.current.scrollTop = scrollEnd.current.scrollHeight;
+                scrollEnd.current.scrollTop = scrollEnd.current.scrollHeight
                 console.log('limit xaz :', limit)
             }
+        } else {
+            if (scrollEnd.current.scrollTop === 0) {
+                // setLimit(counter + 15)
+                console.log('limit  :', limit)
+                // ResiveChts(props.id, limit)
+
+            }
         }
+
     };
 
     const ResiveChts = (id, counter) => {
@@ -59,6 +67,7 @@ function Chatroom(props) {
                 setLimit(0);
             }
             console.log('conterrrrrrrrrr', counter)
+            console.log('userID', userId)
             handleScroll(counter);
             setChats(response.chatBoxes);
         });
