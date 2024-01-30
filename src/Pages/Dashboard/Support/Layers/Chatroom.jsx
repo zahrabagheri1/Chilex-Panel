@@ -7,8 +7,6 @@ import ButtonActionBlue from "../../../../Components/ButtonActionBlue/ButtonActi
 import Messege from '../../../../Components/Messege/Messege';
 import { socket } from "../../../../Socket";
 import user from '../../../../Assets/image/user.jpg';
-import { LoadingContext } from "../../../Loading/LoadingContext";
-import { LoginContext } from "../../../Login/LoginContext";
 
 function Chatroom(props) {
     const inputMsg = useRef()
@@ -17,8 +15,6 @@ function Chatroom(props) {
     const [limit, setLimit] = useState(15)
     const [saveMessages, setSaveMessage] = useState([])
     const [userId, setUserId] = useState(0)
-    const { loading, setLoading } = useContext(LoadingContext);
-    const { goToLoginPage } = useContext(LoginContext);
 
     socket.off("chat")
     socket.on("chat", (data) => {
@@ -70,7 +66,7 @@ function Chatroom(props) {
     // const saveMessages = useMemo(() => ({ chat, setChats }), [])
 
     const handleScroll = (counter) => {
-        if (counter === 0) {
+        if (counter === 15) {
             if (scrollEnd.current.scrollTop === 0) {
                 scrollEnd.current.scrollTop = scrollEnd.current.scrollHeight;
             }
@@ -102,17 +98,8 @@ function Chatroom(props) {
     };
 
     const ResiveChts = (id, counter) => {
-        if (loading) {
-          return;
-        }
-      
-        setLoading(true);
-      
-        const data = { anotherPersonId: id, limit: counter, offset: 0 };
-      
+        const data = { anotherPersonId: id, limit: counter, offset: 0 }
         socket.emit('adminMessage', 'get-a-support-chat', data, (response) => {
-          setLoading(false);
-      
           if (id !== props.id) {
             data.offset = 0;
             setLimit(0);
@@ -171,7 +158,7 @@ function Chatroom(props) {
 
                     <div ref={scrollEnd} className="chatboxbody">
                         {
-                            limit > 15 ?
+                            limit >= 15 ?
                                 <button className="readmoremessages" onClick={ReadMoreMessages}>
                                     <div className="textlineright"></div>
                                     <div className="readmore">read more messages</div>
