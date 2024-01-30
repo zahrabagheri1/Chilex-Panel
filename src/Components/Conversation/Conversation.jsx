@@ -3,7 +3,6 @@ import './Conversation.scss';
 import user from '../../Assets/image/user.jpg';
 
 function Conversation(props) {
-
   const OpenChat = (id, img, username) => {
     props.click(id, img, username)
   }

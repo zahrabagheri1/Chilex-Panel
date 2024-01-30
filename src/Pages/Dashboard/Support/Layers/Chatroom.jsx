@@ -26,14 +26,12 @@ function Chatroom(props) {
         }
     })
 
-    console.log(props)
     useEffect(() => {
         ResiveChts(props.id, limit);
-        console.log("Limit in UseEffect", limit);
-        if (scrollEnd.current) {
-            scrollEnd.current.addEventListener('scroll', handleScroll);
-        }
         setUserId(props.id)
+        if (scrollEnd.current) {
+          scrollEnd.current.addEventListener('scroll', handleScroll);
+        }
         return () => {
             if (scrollEnd.current) {
                 scrollEnd.current.removeEventListener('scroll', handleScroll);
@@ -44,9 +42,34 @@ function Chatroom(props) {
     const handleScroll = (counter) => {
         if (counter === 15) {
             if (scrollEnd.current.scrollTop === 0) {
-                scrollEnd.current.scrollTop = scrollEnd.current.scrollHeight;
+                scrollEnd.current.scrollTop = scrollEnd.current.scrollHeight
+                console.log('limit xaz :', limit)
+            }
+        } else {
+            if (scrollEnd.current.scrollTop === 0) {
+                // setLimit(counter + 15)
+                // console.log('limit  :', limit)
+                // ResiveChts(props.id, limit)
             }
         }
+
+        //     console.log('handleScroll : ',scrollEnd.current.scrollHeight)
+        //     if (counterChats === 20) {
+        //         return ''
+        //     } else {
+        //         if (scrollEnd.current.scrollTop === 0) {
+        //             setCounterChats(counterChats + 20)
+        //             ResiveChts(props.id)
+        //             // scrollEnd.current.scrollTop = scrollEnd.current.scrollHeight
+        //             // console.log('counter sended :' , counterChats)
+        //         } else if (scrollEnd.current.scrollTop === scrollEnd.current.scrollHeight) {
+        //             setCounterChats(counterChats - 20)
+        //             ResiveChts(props.id)    
+        //         } else {
+        //             console.log(counterChats, scrollEnd.current.scrollTop)
+        //         }
+        //     }
+
     };
 
     const ResiveChts = (id, counter) => {
