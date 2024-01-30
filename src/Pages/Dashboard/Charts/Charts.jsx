@@ -31,7 +31,7 @@ function Charts() {
 
     //admin-transaction/chart?statuses%5B%5D=5&gatewayTypes%5B%5D=1&type=1&startDate=2023-11-24&endtDate=2023-11-27
     const getChart = () => {
-        setLoading(!loading)
+        setLoading(true)
         axios.get(`${API_URL === undefined ? '' : API_URL}/admin-transaction/chart?${filter.statuses === null || filter.statuses === undefined ? '' : ('statuses[]=' + filter.statuses + '&')}${filter.gatewayTypes === null || filter.gatewayTypes === undefined ? '' : ('gatewayTypes[]=' + filter.gatewayTypes + '&')}${'type=' + filter.type + '&'}${'startDate=' + filter.startDate + '&'}${'endtDate=' + filter.endtDate}`,
             {
                 headers: {
@@ -48,7 +48,7 @@ function Charts() {
                     dataChart.push(makeObj);
                 })
                 setTransactionData(dataChart)
-                setLoading(loading)
+                setLoading(false)
             })
             .catch(
                 err => {

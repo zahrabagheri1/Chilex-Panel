@@ -18,6 +18,15 @@
         border: 2px solid $lightGray;
         position: relative;
         z-index: 1;
+
+        .filterBtnBox{
+            display: flex;
+            align-items: flex-end;
+            .filterBtn{
+                height: 32px;
+            }
+            
+        }
     }
 
     .resetFillters{

@@ -5,7 +5,6 @@ import ButtonActionBlue from '../../Components/ButtonActionBlue/ButtonActionBlue
 import Switch from '../Switch/Switch';
 import SelectOption from '../SelectOption/SelectOption';
 import axios from 'axios';
-import Button from '../Button/Button';
 import moment from 'moment-jalaali';
 import Alert from '../../layout/Alert/Alert';
 import ButtonActionGray from '../ButtonActionGray/ButtonActionGray';

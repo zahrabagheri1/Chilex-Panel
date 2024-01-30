@@ -28,7 +28,7 @@ function Settings() {
   }, [])
 
   const getSettings = () => {
-    setLoading(!loading)
+    setLoading(true)
     axios.get(`${API_URL === undefined ? '' : API_URL}/games/settings/${id}`,
       {
         headers: {
@@ -40,7 +40,7 @@ function Settings() {
       .then(
         res => {
           setData(res.data.data)
-          setLoading(loading)
+          setLoading(false)
         }
       ).catch(
         err => {

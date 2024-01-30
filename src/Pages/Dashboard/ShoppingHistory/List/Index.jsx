@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { HiOutlineTrash, HiPlus } from "react-icons/hi2";
+import { HiOutlineTrash } from "react-icons/hi2";
 import Table from '../../../../layout/Table/Table';
 import { sortHistory } from '../../../../Data/Sort';
 import ScrollContainer from 'react-indiana-drag-scroll';
@@ -12,258 +12,16 @@ import { useCookies } from 'react-cookie';
 import { LoadingContext } from '../../../Loading/LoadingContext';
 import { LoginContext } from '../../../Login/LoginContext';
 import { API_URL } from '../../../../API_URL';
+import Button from '../../../../Components/Button/Button';
 
-
-
-const history = [
-    {
-        id: 7,
-        type: 1,
-        amount: 10,
-        referenceType: 5,
-        referenceId: 1,
-        userId: 201,
-        createdAt: "2024-01-22T08:36:02.914Z",
-        username: "tofigh",
-        transactionAmount: null,
-        gatewayType: 2
-    },
-    {
-        id: 35,
-        type: 1,
-        amount: 10,
-        referenceType: 3,
-        referenceId: 1,
-        userId: 206,
-        createdAt: "2024-01-22T12:47:46.823Z",
-        username: "9a8d68_dixo",
-        transactionAmount: null,
-        gatewayType: 2
-    },
-    {
-        id: 34,
-        type: 1,
-        amount: -10,
-        referenceType: 3,
-        referenceId: 1,
-        userId: 206,
-        createdAt: "2024-01-22T12:47:44.186Z",
-        username: "9a8d68_dixo",
-        transactionAmount: null,
-        gatewayType: 2
-    },
-    {
-        id: 9,
-        type: 1,
-        amount: 30,
-        referenceType: 7,
-        referenceId: 3,
-        userId: 201,
-        createdAt: "2024-01-22T08:36:06.534Z",
-        username: "tofigh",
-        transactionAmount: null,
-        gatewayType: 2
-    },
-    {
-        id: 11,
-        type: 1,
-        amount: 400,
-        referenceType: 0,
-        referenceId: 7,
-        userId: 201,
-        createdAt: "2024-01-22T08:36:11.652Z",
-        username: "tofigh",
-        transactionAmount: null,
-        gatewayType: 2
-    },
-    {
-        id: 10,
-        type: 0,
-        amount: -50,
-        referenceType: 0,
-        referenceId: 7,
-        userId: 201,
-        createdAt: "2024-01-22T08:36:11.644Z",
-        username: "tofigh",
-        transactionAmount: null,
-        gatewayType: 2
-    },
-    {
-        id: 8,
-        type: 1,
-        amount: 30,
-        referenceType: 6,
-        referenceId: 8,
-        userId: 201,
-        createdAt: "2024-01-22T08:36:05.430Z",
-        username: "tofigh",
-        transactionAmount: null,
-        gatewayType: 2
-    },
-    {
-        id: 22,
-        type: 1,
-        amount: 25,
-        referenceType: 0,
-        referenceId: 10,
-        userId: 206,
-        createdAt: "2024-01-22T11:11:37.616Z",
-        username: "9a8d68_dixo",
-        transactionAmount: null,
-        gatewayType: 2
-    },
-    {
-        id: 21,
-        type: 1,
-        amount: 25,
-        referenceType: 0,
-        referenceId: 10,
-        userId: 206,
-        createdAt: "2024-01-22T11:11:27.101Z",
-        username: "9a8d68_dixo",
-        transactionAmount: null,
-        gatewayType: 2
-    },
-    {
-        id: 23,
-        type: 1,
-        amount: 25,
-        referenceType: 0,
-        referenceId: 10,
-        userId: 206,
-        createdAt: "2024-01-22T11:14:23.228Z",
-        username: "9a8d68_dixo",
-        transactionAmount: null,
-        gatewayType: 2
-    },
-    {
-        id: 20,
-        type: 1,
-        amount: 25,
-        referenceType: 0,
-        referenceId: 10,
-        userId: 206,
-        createdAt: "2024-01-22T10:55:30.355Z",
-        username: "9a8d68_dixo",
-        transactionAmount: null,
-        gatewayType: 2
-    },
-    {
-        id: 24,
-        type: 1,
-        amount: 25,
-        referenceType: 0,
-        referenceId: 10,
-        userId: 206,
-        createdAt: "2024-01-22T11:14:35.199Z",
-        username: "9a8d68_dixo",
-        transactionAmount: null,
-        gatewayType: 2
-    },
-    {
-        id: 26,
-        type: 1,
-        amount: 25,
-        referenceType: 0,
-        referenceId: 10,
-        userId: 206,
-        createdAt: "2024-01-22T11:14:47.173Z",
-        username: "9a8d68_dixo",
-        transactionAmount: null,
-        gatewayType: 2
-    },
-    {
-        id: 1,
-        type: 1,
-        amount: 25,
-        referenceType: 0,
-        referenceId: 10,
-        userId: 204,
-        createdAt: "2024-01-22T07:58:01.237Z",
-        username: "055061_dixo",
-        transactionAmount: null,
-        gatewayType: 2
-    },
-    {
-        id: 27,
-        type: 1,
-        amount: 25,
-        referenceType: 0,
-        referenceId: 10,
-        userId: 206,
-        createdAt: "2024-01-22T11:15:03.297Z",
-        username: "9a8d68_dixo",
-        transactionAmount: null,
-        gatewayType: 2
-    },
-    {
-        id: 29,
-        type: 1,
-        amount: 25,
-        referenceType: 0,
-        referenceId: 10,
-        userId: 206,
-        createdAt: "2024-01-22T12:32:48.219Z",
-        username: "9a8d68_dixo",
-        transactionAmount: null,
-        gatewayType: 2
-    },
-    {
-        id: 31,
-        type: 1,
-        amount: 25,
-        referenceType: 0,
-        referenceId: 10,
-        userId: 206,
-        createdAt: "2024-01-22T12:46:24.365Z",
-        username: "9a8d68_dixo",
-        transactionAmount: null,
-        gatewayType: 2
-    },
-    {
-        id: 19,
-        type: 1,
-        amount: 25,
-        referenceType: 0,
-        referenceId: 10,
-        userId: 206,
-        createdAt: "2024-01-22T10:51:21.326Z",
-        username: "9a8d68_dixo",
-        transactionAmount: null,
-        gatewayType: 2
-    },
-    {
-        id: 18,
-        type: 1,
-        amount: 25,
-        referenceType: 0,
-        referenceId: 10,
-        userId: 206,
-        createdAt: "2024-01-22T10:51:06.039Z",
-        username: "9a8d68_dixo",
-        transactionAmount: null,
-        gatewayType: 2
-    },
-    {
-        id: 3,
-        type: 1,
-        amount: 25,
-        referenceType: 0,
-        referenceId: 10,
-        userId: 204,
-        createdAt: "2024-01-22T08:16:05.402Z",
-        username: "055061_dixo",
-        transactionAmount: null,
-        gatewayType: 2
-    }
-]
 
 function Index() {
     const [history, setHistory] = useState(null);
-    const { loading, setLoading } = useContext(LoadingContext)
+    const {setLoading } = useContext(LoadingContext)
     const navigate = useNavigate();
     const [cookies] = useCookies(['accessToken']);
     const { goToLoginPage } = useContext(LoginContext);
+    const [resetFlag, setResetFlag] = useState(false);
     const [filters, setFilters] = useState({
         userId: null,
         gatewayTypes: null,
@@ -275,16 +33,21 @@ function Index() {
         offset: null,
         limit: null,
     })
-    console.log(history)
 
     //shopping-history/all?userId=2&gatewayTypes%5B%5D=2&minAmount=2&maxAmount=2&type=2&referenceType=2&sortBy=2&orderBy=2&offset=2&limit=2
     useEffect(() => {
         goToLoginPage(cookies.accessToken);
-        reqFilterShopHistory()
-    }, [filters])
+        if (resetFlag) {
+            reqFilterShopHistory()
+            setResetFlag(false);
+        }else{
+            reqFilterShopHistory()
+        }
+    }, [resetFlag])
+
 
     const reqFilterShopHistory = () => {
-        setLoading(!loading)
+        setLoading(true)
         axios.get(`${API_URL === undefined ? '' : API_URL}/shopping-history/all?${filters.userId === null || filters.userId === undefined ? '' : 'userId=' + filters.userId + '&'}${filters.gatewayTypes === null || filters.gatewayTypes === undefined ? '' : 'gatewayTypes[]=' + filters.gatewayTypes + '&'}${filters.minAmount === null || filters.minAmount === undefined ? '' : 'minAmount=' + filters.minAmount + '&'}${filters.maxAmount === null || filters.maxAmount === undefined ? '' : 'maxAmount=' + filters.maxAmount + '&'}${filters.type === null || filters.type === undefined ? '' : 'type=' + filters.type + '&'}${filters.referenceType === null || filters.referenceType === undefined ? '' : 'referenceType=' + filters.referenceType + '&'}${filters.sortBy === null || filters.sortBy === undefined ? '' : 'sortBy=' + filters.sortBy + '&'}${filters.orderBy === null || filters.orderBy === undefined ? '' : 'orderBy=' + filters.orderBy + '&'}${filters.offset === null || filters.offset === undefined ? '' : 'offset=' + filters.offset + '&'}${filters.limit === null || filters.limit === undefined ? '' : 'limit=' + filters.limit}`,
             {
                 headers: {
@@ -295,7 +58,7 @@ function Index() {
             .then(
                 res => {
                     setHistory(res.data.data)
-                    setLoading(loading)
+                    setLoading(false)
                 }
             )
             .catch(
@@ -326,8 +89,13 @@ function Index() {
             offset: null,
             limit: null,
         })
+        setResetFlag(true);
     }
 
+    
+    const filterhandler = () => {
+        reqFilterShopHistory()
+    }
     return (
         <div className='shoppingHistoryList'>
             <div className='filter'>
@@ -389,11 +157,16 @@ function Index() {
                             ]}
                         />
                     </div>
-                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
+
+                    {/* <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
                         <Input value={filters.limit} name={'limit'} type={'text'} title={"limit"} placeholder={'limit'} changeInputValue={updateInputData} />
                     </div>
                     <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
                         <Input value={filters.offset} name={'offset'} type={'text'} title={"offset"} placeholder={'offset'} changeInputValue={updateInputData} />
+                    </div> */}
+
+                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
+                        <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
                     </div>
                 </div>
                 <div className="resetFillters" onClick={resetFillters}>

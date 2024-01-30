@@ -1,5 +1,5 @@
 
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 import { useState } from "react";
 import { useMemo } from "react";
 import { useEffect } from "react";
@@ -7,6 +7,8 @@ import ButtonActionBlue from "../../../../Components/ButtonActionBlue/ButtonActi
 import Messege from '../../../../Components/Messege/Messege';
 import { socket } from "../../../../Socket";
 import user from '../../../../Assets/image/user.jpg';
+import { LoadingContext } from "../../../Loading/LoadingContext";
+import { LoginContext } from "../../../Login/LoginContext";
 
 function Chatroom(props) {
     const inputMsg = useRef()
@@ -15,6 +17,8 @@ function Chatroom(props) {
     const [limit, setLimit] = useState(15)
     const [saveMessages, setSaveMessage] = useState([])
     const [userId, setUserId] = useState(0)
+    const { loading, setLoading } = useContext(LoadingContext);
+    const { goToLoginPage } = useContext(LoginContext);
 
     socket.off("chat")
     socket.on("chat", (data) => {
@@ -37,17 +41,31 @@ function Chatroom(props) {
     //     }
     //   };
 
+    // useEffect(() => {
+    //     ResiveChts(props.id, limit)
+    //     console.log("Limit in UseEffect", limit)
+    //     setLimit(15)
+    //     if (scrollEnd.current) {
+    //         scrollEnd.current.addEventListener('scroll', handleScroll);
+    //     }
+    //     return () => {
+    //         // scrollEnd.current.removeEventListener('scroll', handleScroll);
+    //     };
+    // }, [props.id])
+
     useEffect(() => {
-        ResiveChts(props.id, limit)
-        console.log("Limit in UseEffect", limit)
-        setLimit(15)
+        ResiveChts(props.id, limit);
+        console.log("Limit in UseEffect", limit);
         if (scrollEnd.current) {
-            scrollEnd.current.addEventListener('scroll', handleScroll);
+          scrollEnd.current.addEventListener('scroll', handleScroll);
         }
+      
         return () => {
-            // scrollEnd.current.removeEventListener('scroll', handleScroll);
+          if (scrollEnd.current) {
+            scrollEnd.current.removeEventListener('scroll', handleScroll);
+          }
         };
-    }, [props.id])
+      }, [props.id, limit]);
 
     // const saveMessages = useMemo(() => ({ chat, setChats }), [])
 
@@ -84,24 +102,28 @@ function Chatroom(props) {
     };
 
     const ResiveChts = (id, counter) => {
-        const data = { anotherPersonId: id, limit: counter, offset: 0 }
-
+        if (loading) {
+          return;
+        }
+      
+        setLoading(true);
+      
+        const data = { anotherPersonId: id, limit: counter, offset: 0 };
+      
         socket.emit('adminMessage', 'get-a-support-chat', data, (response) => {
-            if (userId != props.id) {
-                data.offset = 0;
-                setLimit(0)
-                // setUserId(response.receiverId)
-                // setChats(response.chatBoxes)
-            }
-            // else {
-            setUserId(response.receiverId)
-            setChats(response.chatBoxes)
-            handleScroll(counter + 15)
-            setLimit(counter + 15)
-            // }
+          setLoading(false);
+      
+          if (id !== props.id) {
+            data.offset = 0;
+            setLimit(0);
+          } else {
+            // setLimit(prevLimit => prevLimit === counter ? prevLimit + 15 : prevLimit);
+          }
+      
+          setChats(response.chatBoxes);
+          handleScroll(counter);
         });
-
-    }
+      };
 
     const ReadMoreMessages = () => {
         // setLimit(limit + 15)
@@ -132,10 +154,6 @@ function Chatroom(props) {
             SendMessage()
         }
     }
-
-
-    console.log(limit)
-    // console.log(chat.length)
 
     return (
         <div className="chatBox">

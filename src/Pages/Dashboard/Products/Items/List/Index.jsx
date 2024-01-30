@@ -13,6 +13,7 @@ import { useCookies } from 'react-cookie';
 import { LoadingContext } from '../../../../Loading/LoadingContext';
 import { LoginContext } from '../../../../Login/LoginContext';
 import { API_URL } from '../../../../../API_URL';
+import Button from '../../../../../Components/Button/Button';
 
 function Index() {
     const [items, setItems] = useState(null);
@@ -21,6 +22,7 @@ function Index() {
     const [cookies] = useCookies(['accessToken']);
     const { loading, setLoading } = useContext(LoadingContext)
     const { goToLoginPage } = useContext(LoginContext);
+    const [resetFlag, setResetFlag] = useState(false);
     const navigate = useNavigate()
     const [filter, setFilter] = useState({
         sku: null,
@@ -41,11 +43,17 @@ function Index() {
 
     useEffect(() => {
         goToLoginPage(cookies.accessToken);
-        reqFilterItem()
-    }, [filter])
+        if (resetFlag) {
+           reqFilterItem();
+            setResetFlag(false);
+        } else {
+           reqFilterItem()
+        }
+    }, [resetFlag])
+
 
     const reqFilterItem = () => {
-        setLoading(!loading)
+        setLoading(true)
         axios.get(`${API_URL === undefined ? '' : API_URL}/admin-stuff/items-all?${filter.sku === null || filter.sku === undefined ? '' : "sku=" + filter.sku + '&'}${filter.itemStatus === null || filter.itemStatus === undefined ? '' : "itemStatus=" + filter.itemStatus + '&'}${filter.itemGameId === null || filter.itemGameId === undefined ? '' : "itemGameId=" + filter.itemGameId + '&'}${filter.priceStatus === null || filter.priceStatus === undefined ? '' : "priceStatus=" + filter.priceStatus + '&'}${filter.limit === null || filter.limit === undefined ? '' : "limit=" + filter.limit + '&'}${filter.offset === null || filter.offset === undefined ? '' : "offset=" + filter.offset + '&'}${filter.sortBy === null || filter.sortBy === undefined ? '' : "sortBy=" + filter.sortBy + '&'}${filter.orderBy === null || filter.orderBy === undefined ? '' : "orderBy=" + filter.orderBy}`,
             {
                 headers: {
@@ -56,7 +64,7 @@ function Index() {
             .then(
                 res => {
                     setItems(res.data.data)
-                    setLoading(loading)
+                    setLoading(false)
                 }
             ).catch(
                 err => console.log(err)
@@ -92,6 +100,11 @@ function Index() {
             offset: null,
             orderBy: null,
         })
+        setResetFlag(true);
+    }
+
+    const filterhandler = () => {
+       reqFilterItem()
     }
 
     return (
@@ -206,6 +219,10 @@ function Index() {
                                     { id: 1, status: 'ASC' },
                                 ]}
                             />
+                        </div>
+
+                        <div className="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-xs-12">
+                            <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
                         </div>
                     </div>
 

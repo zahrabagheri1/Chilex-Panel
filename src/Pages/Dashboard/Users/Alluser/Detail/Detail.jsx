@@ -38,7 +38,7 @@ function Detail() {
   }, [])
 
   const detailUser = () => {
-    setLoading(!loading)
+    setLoading(true)
     axios.get(`${API_URL === undefined ? '' : API_URL}${id}`,
       {
         headers: {

@@ -12,12 +12,14 @@ import { LoadingContext } from '../../../../Loading/LoadingContext';
 import { LoginContext } from '../../../../Login/LoginContext';
 import { HiOutlineTrash } from 'react-icons/hi2';
 import { API_URL } from '../../../../../API_URL';
+import Button from '../../../../../Components/Button/Button';
 
 function List() {
     const [reportuserList, setReportuserList] = useState(null)
     const [cookies] = useCookies(['accessToken'])
     const { loading, setLoading } = useContext(LoadingContext);
     const { goToLoginPage } = useContext(LoginContext);
+    const [resetFlag, setResetFlag] = useState(false);
     const [filter, setFilter] = useState({
         limit: null,
         offset: null,
@@ -32,12 +34,18 @@ function List() {
 
     useEffect(() => {
         goToLoginPage(cookies.accessToken);
-        listOfReportuser()
-    }, [filter])
+
+        if (resetFlag) {
+            listOfReportuser()
+            setResetFlag(false);
+        } else {
+            listOfReportuser()
+        }
+    }, [resetFlag])
 
     //reports/all?limit=1&offset=1&types%5B%5D=1&userId=1&sortBy=1&orderBy=1
     const listOfReportuser = () => {
-        setLoading(!loading)
+        setLoading(true)
         axios.get(`${API_URL === undefined ? '' : API_URL}/reports/all?${filter.limit === undefined || filter.limit === null ? '' : 'limit=' + filter.limit + '&'}${filter.offset === undefined || filter.offset === null ? '' : 'offset=' + filter.offset + '&'}${filter.types === undefined || filter.types === null ? '' : 'types[]=' + filter.types + '&'}${filter.userId === undefined || filter.userId === null ? '' : 'userId=' + filter.userId + '&'}${filter.sortBy === undefined || filter.sortBy === null ? '' : 'sortBy=' + filter.sortBy + '&'}${filter.orderBy === undefined || filter.orderBy === null ? '' : 'orderBy=' + filter.orderBy}`,
             {
                 headers: {
@@ -48,7 +56,7 @@ function List() {
             .then(
                 res => {
                     setReportuserList(res.data.data)
-                    setLoading(loading)
+                    setLoading(false)
                 }
             ).catch(
                 err => {
@@ -77,8 +85,14 @@ function List() {
             sortBy: 3,
             orderBy: 1,
         })
+
+        setResetFlag(true);
     }
 
+
+    const filterhandler = () => {
+        listOfReportuser()
+    }
 
     return (
         <div className='reportUserslist'>
@@ -120,6 +134,11 @@ function List() {
                             ]}
                         />
                     </div>
+
+                    <div className="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-xs-12">
+                        <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
+                    </div>
+
                 </div>
                 <div className="resetFillters" onClick={resetFillters}>
                     <HiOutlineTrash />

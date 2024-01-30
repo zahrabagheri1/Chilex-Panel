@@ -23,7 +23,7 @@ function Index() {
   }, [])
 
   const gameIAP = () => {
-    setLoading(!loading)
+    setLoading(true)
     axios.get(`${API_URL === undefined ? '' : API_URL}/games`,
       {
         headers: {
@@ -35,7 +35,7 @@ function Index() {
       .then(
         res => {
           setGames(res.data.data)
-          setLoading(loading)
+          setLoading(false)
         }
       )
       .catch(

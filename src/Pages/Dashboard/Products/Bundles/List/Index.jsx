@@ -6,22 +6,23 @@ import { HiOutlineTrash, HiPlus } from "react-icons/hi2";
 import axios from 'axios';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import ModalAddProducts from '../../../../../layout/ModalAddProducts/ModalAddProducts';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Input from '../../../../../Components/Input/Input';
 import SelectOption from '../../../../../Components/SelectOption/SelectOption';
 import { useCookies } from 'react-cookie';
 import { LoadingContext } from '../../../../Loading/LoadingContext';
 import { LoginContext } from '../../../../Login/LoginContext';
 import { API_URL } from '../../../../../API_URL';
+import Button from '../../../../../Components/Button/Button';
 
 function Index() {
     const [bundles, setBundles] = useState(null);
     const [modal, setModal] = useState(false);
-    const [value, setValue] = useState()
     const [cookies] = useCookies(['accessToken']);
     const { loading, setLoading } = useContext(LoadingContext);
     const { goToLoginPage } = useContext(LoginContext);
     const navigate = useNavigate();
+    const [resetFlag, setResetFlag] = useState(false);
     const [filters, setFilters] = useState({
         bundleType: null,
         sku: null,
@@ -32,18 +33,20 @@ function Index() {
         sortBy: 3,
         orderBy: 1,
     })
-    const inputFile = useRef(null)
-    // ${parameters.from === null ||  parameters.from === undefined? "" : "&RegisterDate.min=" + parameters.from}
-    //admin-stuff/bundles-all?bundleType=0&sku=zahra&bundleStatus=0&priceStatus=1&limit=2&offset=1&sortBy=3&orderBy=1
 
+    //admin-stuff/bundles-all?bundleType=0&sku=zahra&bundleStatus=0&priceStatus=1&limit=2&offset=1&sortBy=3&orderBy=1
     useEffect(() => {
         goToLoginPage(cookies.accessToken);
-        reqFilterBundle()
-    }, [filters])
-
+        if (resetFlag) {
+            reqFilterBundle();
+            setResetFlag(false);
+        }else{
+            reqFilterBundle()
+        }
+    }, [resetFlag])
 
     const reqFilterBundle = () => {
-        // setLoading(!loading)
+        setLoading(true)
         axios.get(`${API_URL === undefined ? '' : API_URL}/admin-stuff/bundles-all?${filters.bundleType === null || filters.bundleType === undefined ? '' : 'bundleType=' + filters.bundleType + '&'}${filters.sku === null || filters.sku === undefined ? '' : 'sku=' + filters.sku + '&'}${filters.bundleStatus === null || filters.bundleStatus === undefined ? '' : 'bundleStatus=' + filters.bundleStatus + '&'}${filters.priceStatus === null || filters.priceStatus === undefined ? '' : 'priceStatus=' + filters.priceStatus + '&'}${filters.limit === null || filters.limit === undefined ? '' : 'limit=' + filters.limit + '&'}${filters.offset === null || filters.offset === undefined ? '' : 'offset=' + filters.offset + '&'}${filters.sortBy === null || filters.sortBy === undefined ? '' : 'sortBy=' + filters.sortBy + '&'}${filters.orderBy === null || filters.orderBy === undefined ? '' : 'orderBy=' + filters.orderBy}`,
             {
                 headers: {
@@ -54,13 +57,14 @@ function Index() {
             .then(
                 res => {
                     setBundles(res.data.data)
-                    setLoading(loading)
+                    setLoading(false)
                 }
             )
             .catch(
                 err => console.log(err)
             )
     }
+
 
     const resetFillters = () => {
         setFilters({
@@ -73,6 +77,7 @@ function Index() {
             sortBy: 3,
             orderBy: 1,
         })
+        setResetFlag(true);
     }
 
     const showDetailBandle = (id) => {
@@ -94,6 +99,9 @@ function Index() {
         setFilters((prev) => ({ ...prev, [name]: id }))
     }
 
+    const filterhandler = () => {
+        reqFilterBundle()
+    }
     return (
         <div className='bundleList'>
             <div className='top'>
@@ -152,6 +160,10 @@ function Index() {
                                 ]}
                             />
                         </div>
+                        <div className="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-xs-12">
+                            <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
+                        </div>
+
                     </div>
                     <div className="resetFillters" onClick={resetFillters}>
                         <HiOutlineTrash />

@@ -21,7 +21,7 @@ function Index() {
     const navigate = useNavigate()
 
     const historyGet = () => {
-        setLoading(!loading)
+        setLoading(true)
         axios.get(`${API_URL === undefined ? '' : API_URL}/shopping-history/get-shoppingHistory/${id}`,
             {
                 headers: {
@@ -32,7 +32,7 @@ function Index() {
             .then(
                 res => {
                     setHistory(res.data.data)
-                    setLoading(loading)
+                    setLoading(false)
                 }
             )
             .catch(

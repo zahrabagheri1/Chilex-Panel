@@ -13,12 +13,15 @@ import { useCookies } from 'react-cookie';
 import { LoadingContext } from '../../../../Loading/LoadingContext';
 import DatePikerFarsi from '../../../../../Components/DatePikerFarsi/DatePikerFarsi';
 import { API_URL } from '../../../../../API_URL';
+import { LoginContext } from '../../../../Login/LoginContext';
+import Button from '../../../../../Components/Button/Button';
 
 function Index() {
-  const dateNow = Date.now();
   const [userList, setUserList] = useState()
   const [modal, setModal] = useState()
   const { loading, setLoading } = useContext(LoadingContext);
+  const [resetFlag, setResetFlag] = useState(false);
+  const { goToLoginPage } = useContext(LoginContext);
   const [cookies] = useCookies(['accessToken']);
   const [filter, setFilter] = useState({
     name: null,
@@ -38,8 +41,8 @@ function Index() {
     sortBy: 1,
     order: 0
   })
+
   const navigate = useNavigate()
-  const [value, setValue] = useState()
 
   const resetFillters = () => {
     setFilter({
@@ -60,8 +63,12 @@ function Index() {
       sortBy: 1,
       order: 0
     })
+    setResetFlag(true);
   }
 
+  const filterhandler = () => {
+    banUser()
+  }
 
   const updateOptionData = (name, id) => {
     setFilter((prev) => ({ ...prev, [name]: id }))
@@ -84,12 +91,18 @@ function Index() {
   }
 
   useEffect(() => {
-    banUser()
-  }, [filter])
+    goToLoginPage(cookies.accessToken);
+    if (resetFlag) {
+      banUser();
+      setResetFlag(false);
+    } else {
+      banUser()
+    }
+  }, [resetFlag])
 
   ///users?name=0&email=0&phone=0&ban=false&createdAt=0&createdAtType=1&register=0&inviteBy=0&lastOnline=0&limit=20&online=2&unfinishedGame=0&page=1&sortBy=1&order=1
   const banUser = () => {
-    setLoading(!loading)
+    setLoading(true)
     axios.get(`${API_URL === undefined ? '' : API_URL}/admin/users?${filter.name === undefined || filter.name === null ? '' : 'name=' + filter.name + '&'}${filter.email === undefined || filter.email === null ? '' : 'email=' + filter.email + '&'}${filter.phone === undefined || filter.phone === null ? '' : 'phone=' + filter.phone + '&'}${filter.ban === undefined || filter.ban === null ? '' : 'ban=' + filter.ban + '&'}${filter.createdAt === undefined || filter.createdAt === null ? '' : 'createdAt=' + filter.createdAt + '&'}${filter.createdAtType === undefined || filter.createdAtType === null ? '' : 'createdAtType=' + filter.createdAtType + '&'}${filter.register === undefined || filter.register === null ? '' : 'register=' + filter.register + '&'}${filter.inviteBy === undefined || filter.inviteBy === null ? '' : 'inviteBy=' + filter.inviteBy + '&'}${filter.lastOnline === undefined || filter.lastOnline === null ? '' : 'lastOnline=' + filter.lastOnline + '&'}${filter.limit === undefined || filter.limit === null ? '' : 'limit=' + filter.limit + '&'}${filter.online === undefined || filter.online === null ? '' : 'online=' + filter.online + '&'}${filter.unfinishedGame === undefined || filter.unfinishedGame === null ? '' : 'unfinishedGame=' + filter.unfinishedGame + '&'}${filter.page === undefined || filter.page === null ? '' : 'page=' + filter.page + '&'}${filter.sortBy === undefined || filter.sortBy === null ? '' : 'sortBy=' + filter.sortBy + '&'}${filter.order === undefined || filter.order === null ? '' : 'order=' + filter.order}`,
       {
         headers: {
@@ -100,7 +113,7 @@ function Index() {
       .then(
         res => {
           setUserList(res.data.data)
-          setLoading(loading)
+          setLoading(false)
         }
       )
       .catch(
@@ -219,6 +232,10 @@ function Index() {
                   { id: 1, status: 'DESC' },
                 ]}
               />
+            </div>
+
+            <div className="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-xs-12">
+              <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
             </div>
           </div>
           <div className="resetFillters" onClick={resetFillters}>
