@@ -61,7 +61,7 @@ function Index() {
     <div className='gameList row'>
       {
         games?.map((game, index) => (
-          <div key={index} className="col-xl-3 col-lg-4 col-md-6 col-ms-12 col-xs-12">
+          <div key={index} className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
             <GameCard data={game} diactivefun={diactiveCard} settinghandler={gameSetting} palyedhandler={gamePlayed} />
           </div>
         ))

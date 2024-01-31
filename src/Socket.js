@@ -12,16 +12,21 @@ const parts = value.split(`; ${'accessToken'}=`);
 // console.log('parts :   ' , parts[1])
 
 export const socket = io('/', {
-    autoConnect:false,
+    autoConnect: false,
     auth: {
         token: parts[1],
         version: "1.1",
-    }
+    },
+    path: '/socket.io',
+    transports: ['polling', 'websocket'],
+    secure: true,
 });
 
-export function connectSocketWithToken(token){
+
+
+export function connectSocketWithToken(token) {
     socket.auth.token = token
-    if(!socket.active){
+    if (!socket.active) {
         socket.connect()
     }
 }

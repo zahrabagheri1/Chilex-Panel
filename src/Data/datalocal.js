@@ -3,7 +3,7 @@ export const sideBarMenu = [
         id: 0,
         name: 'Dashboard',
         icon: 'HiComputerDesktop',
-        link: '/dashboard',
+        path: '/dashboard',
         children: null,
         logout: false
     },
@@ -11,7 +11,7 @@ export const sideBarMenu = [
         id: 1,
         name: 'Transaction',
         icon: 'HiCurrencyDollar',
-        link: 'transaction',
+        path: 'transaction',
         children: null,
         logout: false
     },
@@ -19,23 +19,23 @@ export const sideBarMenu = [
         id: 2,
         name: 'Users',
         icon: 'HiMiniUser',
-        link: null,
+        path: null,
         logout: false,
         children: [
             {
                 id: 0,
                 name: 'Alluser',
-                link: 'alluser',
+                path: 'alluser',
             }, 
             {
                 id: 1,
                 name: 'Banuser',
-                link: 'banuser',
+                path: 'banuser',
             }, 
             {
                 id: 2,
                 name: 'Reports',
-                link: 'reports',
+                path: 'reports',
             }
         ]
     },
@@ -43,19 +43,19 @@ export const sideBarMenu = [
         id: 3,
         name: 'Products',
         icon: 'HiMiniSwatch',
-        link: null,
+        path: null,
         dropdown: '',
         logout: false,
         children: [
             {
                 id: 0,
                 name: 'Bundles',
-                link: 'bundles',
+                path: 'bundles',
             }, 
             {
                 id: 1,
                 name: 'Items',
-                link: 'items',
+                path: 'items',
             }
         ]
     },
@@ -63,7 +63,7 @@ export const sideBarMenu = [
         id: 4,
         name: 'Shop History',
         icon: 'HiMiniShoppingCart',
-        link: 'shopping-history',
+        path: 'shopping-history',
         children: null,
         logout: false
     },
@@ -71,7 +71,7 @@ export const sideBarMenu = [
         id: 5,
         name: 'Games',
         icon: 'HiRocketLaunch',
-        link: 'games',
+        path: 'games',
         children: null,
         logout: false
     },
@@ -79,7 +79,7 @@ export const sideBarMenu = [
         id: 6,
         name: 'Support',
         icon: 'HiMiniCreditCard',
-        link: 'support',
+        path: 'support',
         children: null,
         logout: false
     },
@@ -87,33 +87,10 @@ export const sideBarMenu = [
         id: 7,
         name: 'LogOut',
         icon: 'HiOutlineArrowLeftOnRectangle',
-        link: '/',
+        path: '/',
         children: null,
         logout: true
     },
 
 ]
 
-export const admin = [
-    {
-        fullname: 'Leanne Graham',
-        fristname: 'Leanne',
-        lastname: 'Graham',
-        username: 'Bret',
-        email: 'Sincere@april.biz',
-        phone: '1-770-736-8031 x56442',
-        website: 'hildegard.org',
-        address: {
-            country: 'Canada',
-            city: 'Gwenborough',
-            street: 'Kulas Light',
-            suite: 'Apt. 556',
-            zipcode: '92998-3874',
-        },
-        company: {
-            name: "Romaguera-Crona",
-            catchPhrase: "Multi-layered client-server neural-net",
-            bs: "harness real-time e-markets"
-        }
-    }
-]

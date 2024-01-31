@@ -1,9 +1,9 @@
 @import '../../../../Assets/scss/variable';
+@import '../../../../Assets/scss/mixin';
 
 .gameList {
-    width: 90%;
+    width: 95%;
     margin: auto;
-    // grid-gap: 50px !important;
 
     .modalGame {
         width: 100%;
