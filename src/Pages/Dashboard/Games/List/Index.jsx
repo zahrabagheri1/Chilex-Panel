@@ -13,8 +13,8 @@ function Index() {
   const [cookies] = useCookies(['accessToken']);
   const [active, setActive] = useState()
   const navigate = useNavigate();
-  const { id } = useSearchParams()
-  const { loading, setLoading } = useContext(LoadingContext);
+  // const { id } = useSearchParams()
+  const { setLoading } = useContext(LoadingContext);
   const { goToLoginPage } = useContext(LoginContext);
 
   useEffect(() => {

@@ -7,16 +7,15 @@ import uno from '../../Assets/image/uno.png';
 import soccer from '../../Assets/image/soccer.png';
 import Switch from '../Switch/Switch';
 import { BiDotsVertical } from "react-icons/bi";
-import { useNavigate } from 'react-router-dom'
 import moment from 'moment-jalaali';
 
-const props = {
-  id: 1,
-  name: "backgammon",
-  activity: false,
-  creaty: "2023-11-09T07:30:08.506Z",
-  updated: "2023-11-09T07:30:08.506Z"
-}
+// const props = {
+//   id: 1,
+//   name: "backgammon",
+//   activity: false,
+//   creaty: "2023-11-09T07:30:08.506Z",
+//   updated: "2023-11-09T07:30:08.506Z"
+// }
 
 function GameCard(props) {
   const [activity, setActivity] = useState(props.data.active)
@@ -72,7 +71,7 @@ function GameCard(props) {
 
         <div className="activeGameBox">
           <div className="activeGameTitle">activity:</div>
-          <Switch disabledDiv={true} defaultChecked={props.data.active} onChange={changeActivity} />
+          <Switch disabledDiv={true} disabled={false} defaultChecked={props.data.active} onChange={changeActivity} />
         </div>
 
         <div className="createdATUpdatedAT">
