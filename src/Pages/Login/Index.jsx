@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { Cookies, useCookies } from 'react-cookie';
 import { LoadingContext } from '../Loading/LoadingContext';
 import {API_URL} from '../../API_URL';
-
+import {connectSocketWithToken} from '../../Socket'
 function Index() {
   const navigate = useNavigate()
   const usernameRef = useRef(null)
@@ -78,6 +78,7 @@ function Index() {
       res => {
         setCookie('accessToken', res.data.accessToken)
         navigate('/dashboard');
+        connectSocketWithToken(res.data.accessToken)
       }
     ).catch(
       err => {

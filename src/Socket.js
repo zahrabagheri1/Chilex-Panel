@@ -12,8 +12,16 @@ const parts = value.split(`; ${'accessToken'}=`);
 // console.log('parts :   ' , parts[1])
 
 export const socket = io('/', {
+    autoConnect:false,
     auth: {
         token: parts[1],
-        version: "1.1"
+        version: "1.1",
     }
 });
+
+export function connectSocketWithToken(token){
+    socket.auth.token = token
+    if(!socket.active){
+        socket.connect()
+    }
+}
