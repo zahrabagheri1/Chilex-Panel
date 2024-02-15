@@ -94,23 +94,23 @@ function Played() {
             <div className="filter">
                 <div className="row">
 
-                    <div className='col-xl-2 col-lg-2 col-md-4 col-sm-6 col-xs-12'>
+                    <div className='col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12'>
                         <DatePikerFarsi value={'1402/02/02'} title={'startDate'} handlerChangeDate={updateDataPiker} />
                     </div>
 
-                    <div className="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-xs-12">
+                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
                         <DatePikerFarsi value={'1402/02/02'} title={'endDate'} handlerChangeDate={updateDataPiker} />
                     </div>
 
-                    {/* <div className="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-xs-12">
+                    {/* <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
                         <Input name={'limit'} type={'number'} title={"limit"} placeholder={'limit'} changeInputValue={updateInputData} />
                     </div>
 
-                    <div className="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-xs-12">
+                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
                         <Input name={'offset'} type={'number'} title={"offset"} placeholder={'offset'} changeInputValue={updateInputData} />
                     </div> */}
 
-                    <div className="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-xs-12">
+                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
                         <SelectOption readOnly={false} name={'orderBy'} defaultValue={'ASC'} type={'status'} changeOptinValue={updateOptionData}
                             data={[
                                 { id: 0, status: 'DESC' },
@@ -119,7 +119,7 @@ function Played() {
                         />
                     </div>
 
-                    <div className="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-xs-12">
+                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
                         <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
                     </div>
 

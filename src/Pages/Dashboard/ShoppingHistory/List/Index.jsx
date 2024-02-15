@@ -28,7 +28,7 @@ function Index() {
         minAmount: null,
         type: null,
         referenceType: null,
-        sortBy: 3,
+        sortBy: 4,
         orderBy: 1,
         offset: null,
         limit: null,
@@ -127,14 +127,14 @@ function Index() {
                         <Input value={filters.minAmount} name={'minAmount'} type={'text'} title={"minAmount"} placeholder={'minAmount'} changeInputValue={updateInputData} />
                     </div>
                     <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <SelectOption value={filters.sortBy} name={'sortBy'} defaultValue={'id'} type={'status'} readOnly={false} changeOptinValue={updateOptionData}
+                        <SelectOption value={filters.sortBy} name={'sortBy'} defaultValue={'userId'} type={'status'} readOnly={false} changeOptinValue={updateOptionData}
                             data={[
                                 { id: 0, status: 'createdAt' },
-                                { id: 1, status: 'updatedAt' },
+                                { id: 1, status: 'referenceType' },
                                 { id: 2, status: 'amount' },
-                                { id: 3, status: 'id' },
-                                { id: 4, status: 'name' },
-                                { id: 5, status: 'status' },
+                                { id: 3, status: 'referenceId' },
+                                { id: 4, status: 'userId' },
+                                { id: 5, status: 'name' },
                             ]}
                         />
                     </div>
@@ -144,7 +144,7 @@ function Index() {
                                 { id: 0, status: 'bundle' },
                                 { id: 1, status: 'item' },
                                 { id: 1, status: 'transaction' },
-                                { id: 1, status: 'setting' },
+                                { id: 1, status: 'setting' }
                             ]}
                         />
                     </div>

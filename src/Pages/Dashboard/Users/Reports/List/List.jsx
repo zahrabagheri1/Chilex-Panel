@@ -99,7 +99,7 @@ function List() {
             <div className="filterReportUser">
                 <div className="row">
 
-                    <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
                         <SelectOption readOnly={false} value={value} name={'types'} defaultValue={'types'} type={'status'} changeOptinValue={updateOptionData}
                             data={[
                                 { id: 0, status: 'PLAYER NAME OFFENSIVE' },
@@ -110,11 +110,11 @@ function List() {
                         />
                     </div>
 
-                    <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
                         <Input value={value} type={'text'} title={"userId"} placeholder={'userId'} changeInputValue={updateInputData} />
                     </div>
 
-                    <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
                         <SelectOption readOnly={false} value={value} name={'sortBy'} defaultValue={'id'} type={'status'} changeOptinValue={updateOptionData}
                             data={[
                                 { id: 0, status: 'createdAt' },
@@ -126,7 +126,7 @@ function List() {
                         />
                     </div>
 
-                    <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
                         <SelectOption readOnly={false} value={value} name={'orderBy'} defaultValue={'ASC'} type={'status'} changeOptinValue={updateOptionData}
                             data={[
                                 { id: 0, status: 'DESC' },
@@ -135,7 +135,7 @@ function List() {
                         />
                     </div>
 
-                    <div className="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-xs-12">
+                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
                         <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
                     </div>
 

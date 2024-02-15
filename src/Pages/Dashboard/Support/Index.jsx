@@ -2,10 +2,11 @@ import React, { useContext, useState } from 'react';
 import './Support.scss';
 import Conversation from '../../../Components/Conversation/Conversation';
 import { useEffect } from 'react';
-import { socket } from '../../../Socket';
+import { connectSocketWithToken, socket } from '../../../Socket';
 import Chatroom from './Layers/Chatroom';
 import { LoadingContext } from '../../Loading/LoadingContext';
 import { LoginContext } from '../../Login/LoginContext';
+import { useCookies } from 'react-cookie';
 
 function Index() {
   const [listChats, setListChats] = useState()
@@ -28,34 +29,38 @@ function Index() {
   // const gotopvuser = (key, value) => {
   //   setDataAccount(prev => ({ ...prev, [key]: value }))
   // }
-
+  const [cookie] = useCookies(['accessToken']);
   const searchUser = (e) => {
     console.log('searchUser')
   }
 
   useEffect(() => {
-    socket.connect();
-    GetResiveAllChats();
-  
+    // console.log(" USE EFF",cookie.accessToken)
+
     socket.on("connect", () => {
-      console.table('Connected');
+      console.table('Connected in support');
       GetResiveAllChats();
     });
-  
+
+    if(!socket.active)
+      connectSocketWithToken(cookie.accessToken)
+    GetResiveAllChats();
+
     socket.on("disconnect", () => {
       console.table('Disconnected');
     });
-  
+
   }, []);
 
-
+  // console.log(listChats)
   function GetResiveAllChats() {
     setLoading(true);
-      
-    socket.emit('adminMessage', 'get-all-support-chats', (response) => { 
+    // console.log("EMIT GET ALL SUPPORT CHATS",socket)
+    socket.emit('adminMessage', 'get-all-support-chats', (response) => {
+      // console.log("res",response)
       setLoading(false);
       setListChats(response)
-     });
+    });
   }
 
   const showChat = (id, img, username) => {
@@ -81,7 +86,7 @@ function Index() {
         </div>
         {
           idChat.status ?
-            <Chatroom id={idChat.userId} data={idChat} limit={15}/>
+            <Chatroom id={idChat.userId} data={idChat} limit={15} />
             :
             <div className="clearChatRoom">
               <div className="clearChatRoomtext">

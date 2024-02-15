@@ -23,10 +23,13 @@ export const socket = io('/', {
 });
 
 
-
+socket.on("disconnect",(r)=>{
+    console.log("Disconnect",r)
+})
 export function connectSocketWithToken(token) {
     socket.auth.token = token
     if (!socket.active) {
+        // console.log('cc',token)
         socket.connect()
     }
 }

@@ -160,7 +160,7 @@ function Index() {
                                 ]}
                             />
                         </div>
-                        <div className="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-xs-12">
+                        <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
                             <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
                         </div>
 

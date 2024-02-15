@@ -96,15 +96,15 @@ function Index() {
         <div className='banUserlist'>
             <div className="filterBanUser">
                 <div className="row">
-                    <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
                         <Input value={value} type={'text'} title={"type"} placeholder={'type'} changeInputValue={updateInputData} />
                     </div>
 
-                    <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
                         <Input value={value} type={'text'} title={"userId"} placeholder={'userId'} changeInputValue={updateInputData} />
                     </div>
 
-                    <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
                         <SelectOption readOnly={false} value={value} name={'sortBy'} defaultValue={'id'} type={'status'} changeOptinValue={updateOptionData}
                             data={[
                                 { id: 0, status: 'createdAt' },
@@ -116,7 +116,7 @@ function Index() {
                         />
                     </div>
 
-                    <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
                         <SelectOption readOnly={false} value={value} name={'orderBy'} defaultValue={'id'} type={'status'} changeOptinValue={updateOptionData}
                             data={[
                                 { id: 0, status: 'DESC' },
@@ -125,7 +125,7 @@ function Index() {
                         />
                     </div>
 
-                    <div className="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-xs-12">
+                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
                             <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
                         </div>
                 </div>

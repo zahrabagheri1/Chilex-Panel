@@ -108,7 +108,7 @@ function Index() {
         <div className='transactionList'>
             <div className='filter'>
                 <div className="row">
-                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
                         <SelectOption readOnly={false} value={filters.statuses} name={'statuses'} defaultValue={'statuses'} type={'status'} changeOptinValue={updateOptionData}
                             data={[
                                 { id: 0, status: 'Pending ENDING' },
@@ -120,7 +120,7 @@ function Index() {
                             ]}
                         />
                     </div>
-                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
                         <SelectOption readOnly={false} value={filters.gatewayTypes} name={'gatewayTypes'} defaultValue={'gatewayTypes'} type={'status'} changeOptinValue={updateOptionData}
                             data={[
                                 { id: 0, status: 'Pasargad' },
@@ -129,14 +129,14 @@ function Index() {
                         />
                     </div>
 
-                    {/* <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                    {/* <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
                     <Input value={filters.limit} type={'text'} title={"limit"} placeholder={'limit'} changeInputValue={updateInputData} />
                 </div>
-                <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
                     <Input value={filters.offset} type={'text'} title={"offset"} placeholder={'offset'} changeInputValue={updateInputData} />
                 </div> */}
 
-                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
                         <SelectOption readOnly={false} value={filters.sortBy} name={'sortBy'} defaultValue={'id'} type={'status'} changeOptinValue={updateOptionData}
                             data={[
                                 { id: 0, status: 'createdAt' },
@@ -148,7 +148,7 @@ function Index() {
                             ]}
                         />
                     </div>
-                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
                         <SelectOption readOnly={false} value={filters.orderBy} name={'orderBy'} defaultValue={'ASC'} type={'status'} changeOptinValue={updateOptionData}
                             data={[
                                 { id: 0, status: 'DESC' },
@@ -157,11 +157,11 @@ function Index() {
                         />
                     </div>
 
-                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
                         <Input value={filters.userId} type={'text'} title={"userId"} name={"userId"} placeholder={'userId'} changeInputValue={updateInputData} />
                     </div>
 
-                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
                         <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
                     </div>
                 </div>

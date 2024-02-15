@@ -130,19 +130,19 @@ function Index() {
 
           <div className="row">
 
-            <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+            <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
               <Input type={'text'} title={"name"} placeholder={'name'} name={'name'} changeInputValue={updateInputData} />
             </div>
 
-            <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+            <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
               <Input type={'text'} title={"email"} placeholder={'email'} name={'email'} changeInputValue={updateInputData} />
             </div>
 
-            <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+            <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
               <Input type={'text'} title={"phone"} placeholder={'phone'} name={'phone'} changeInputValue={updateInputData} />
             </div>
 
-            <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+            <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
               <SelectOption readOnly={false} name={'ban'} defaultValue={'all users'} type={'status'} changeOptinValue={updateOptionData}
                 data={[
                   { id: 0, status: 'all users' },
@@ -151,11 +151,11 @@ function Index() {
               />
             </div>
 
-            <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+            <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
               <DatePikerFarsi value={Date.now()} title={'createdAt'} handlerChangeDate={updateDataPiker} />
             </div>
 
-            <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+            <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
               <SelectOption readOnly={false} name={'register'} defaultValue={'all'} type={'status'} changeOptinValue={updateOptionData}
                 data={[
                   { id: 0, status: 'all' },
@@ -168,7 +168,7 @@ function Index() {
 
             {/* createdAtType */}
 
-            <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+            <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
               <SelectOption readOnly={false} name={'register'} defaultValue={'all'} type={'status'} changeOptinValue={updateOptionData}
                 data={[
                   { id: 0, status: 'all' },
@@ -185,7 +185,7 @@ function Index() {
 
             {/* limit */}
 
-            <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+            <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
               <SelectOption readOnly={false} name={'online'} defaultValue={'offline and online users'} type={'status'} changeOptinValue={updateOptionData}
                 data={[
                   { id: 0, status: 'offline users' },
@@ -195,7 +195,7 @@ function Index() {
               />
             </div>
 
-            <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+            <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
               <SelectOption readOnly={false} name={'unfinishedGame'} defaultValue={'all users'} type={'status'} changeOptinValue={updateOptionData}
                 data={[
                   { id: 0, status: 'all users' },
@@ -214,7 +214,7 @@ function Index() {
               />
             </div>
 
-            <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+            <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
               <SelectOption readOnly={false} name={'sortBy'} defaultValue={'createdat'} type={'status'} changeOptinValue={updateOptionData}
                 data={[
                   { id: 0, status: 'bot' },
@@ -225,7 +225,7 @@ function Index() {
               />
             </div>
 
-            <div className="col-xl-1 col-lg-2 col-md-3 col-sm-6 col-xs-12">
+            <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
               <SelectOption readOnly={false} name={'order'} defaultValue={'ASC'} type={'status'} changeOptinValue={updateOptionData}
                 data={[
                   { id: 0, status: 'ASC' },
@@ -234,7 +234,7 @@ function Index() {
               />
             </div>
 
-            <div className="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-xs-12">
+            <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
               <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
             </div>
           </div>
