@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import Table from '../../../../../layout/Table/Table';
 import axios from 'axios';
-import { sortBanUsers } from '../../../../../Data/Sort';
+import { sortReportUsers } from '../../../../../Data/Sort';
 import { useNavigate } from 'react-router-dom';
 import './Reports.scss';
 import Input from '../../../../../Components/Input/Input';
@@ -146,7 +146,7 @@ function List() {
             </div>
 
             <ScrollContainer>
-                <Table data={reportuserList} sort={sortBanUsers} action={true} showDetail={showDetailBanUser} />
+                <Table data={reportuserList} sort={sortReportUsers} action={true} showDetail={showDetailBanUser} />
             </ScrollContainer>
         </div>
     );

@@ -9,7 +9,7 @@ import { LoginContext } from '../../Login/LoginContext';
 import { useCookies } from 'react-cookie';
 
 function Index() {
-  const [listChats, setListChats] = useState()
+  const [listChats, setListChats] = useState(null)
   const [idChat, setIdChat] = useState({ status: false, userId: null, image: null, username: null })
   const { setLoading } = useContext(LoadingContext);
   const { goToLoginPage } = useContext(LoginContext);

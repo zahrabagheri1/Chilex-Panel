@@ -1,1 +1,1 @@
- exports.API_URL = 'http://dixo.diacostudios.com';
+//  exports.API_URL = 'http://chilexdev.diacostudios.com';

@@ -31,7 +31,7 @@ function Index() {
         sortBy: 4,
         orderBy: 1,
         offset: null,
-        limit: null,
+        limit: 1000,
     })
 
     //shopping-history/all?userId=2&gatewayTypes%5B%5D=2&minAmount=2&maxAmount=2&type=2&referenceType=2&sortBy=2&orderBy=2&offset=2&limit=2
