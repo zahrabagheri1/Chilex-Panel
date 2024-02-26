@@ -7,8 +7,10 @@ export const adminTransaction = [
     { name: 'shaparakRefNumber', status: true, list: false, date: false },
     { name: 'createdAt', status: true, list: false, date: true },
     { name: 'updatedAt', status: true, list: false, date: true },
+    { name: 'userId', status: true, list: false, date: true },
     { name: 'userName', status: true, list: false, date: false }
 ]
+
 
 export const sortBundles = [
     { name: 'amount', status: true, list: false, date: false },
@@ -128,7 +130,7 @@ export const sortUserList = [
     { name: 'cup', status: true, list: false, date: false },
     { name: 'gem', status: true, list: false, date: false },
     { name: 'coin', status: true, list: false, date: false },
-    { name: 'unfinishedGames', status: true, list: false, date: false },
+    { name: 'unfinishedGame', status: true, list: false, date: false },
     { name: 'ban', status: true, list: ['everything' , 'chating'], date: false },
 ]
 

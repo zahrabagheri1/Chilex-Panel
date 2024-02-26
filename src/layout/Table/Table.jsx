@@ -45,18 +45,22 @@ function Table(props) {
                                             Object.entries(item).map(([key, value]) => (
                                                 props.sort.map((name, index) => (
                                                     name.name === key ?
-                                                        // value === null ?
-                                                        //     <td className="tdbody" key={index}>null</td>
-                                                        //     :
-                                                        //     name.list ?
-                                                        //         name.list.map((ele, index) => (
-                                                        //             value === name.list.indexOf(ele) ?
-                                                        //                 <td key={index} className='tdbody'>{ele}</td> : null
-                                                        //         ))
-                                                        //         :
-                                                        //         name.date ?
-                                                        //             moment(value).format('jYYYY/jM/jD')
-                                                        //             :
+                                                        value === null ?
+                                                            key === 'ban' ?
+                                                                <td className="tdbody" key={index}>Not ban</td>
+                                                                :
+                                                                <td className="tdbody" key={index}>null</td>
+                                                            :
+                                                            name.list ?
+                                                                name.list.map((ele, index) => (
+                                                                    // value === index ?
+                                                                        // <td key={index} className='tdbody'>{ele}</td> : null
+                                                                    <td className="tdbody" key={index}>{value}</td>
+                                                                ))
+                                                                :
+                                                                name.date ?
+                                                                    moment(value).format('jYYYY/jM/jD')
+                                                                    :
                                                                     <td className="tdbody" key={index}>{value}</td>
                                                         : null
                                                 ))
