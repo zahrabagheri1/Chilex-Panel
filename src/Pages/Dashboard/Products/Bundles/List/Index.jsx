@@ -34,6 +34,8 @@ function Index() {
         orderBy: 1,
     })
 
+    console.log(sortBundles)
+
     //admin-stuff/bundles-all?bundleType=0&sku=zahra&bundleStatus=0&priceStatus=1&limit=2&offset=1&sortBy=3&orderBy=1
     useEffect(() => {
         goToLoginPage(cookies.accessToken);

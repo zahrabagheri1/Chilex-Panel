@@ -12,7 +12,7 @@ import Input from '../../../../../Components/Input/Input';
 import { API_URL } from '../../../../../API_URL';
 
 function Detail() {
-  const [users, setUsers] = useState()
+  const [user, setUser] = useState()
   const [showAlert, setShowAlert] = useState({ status: false, msg: '' })
   const { loading, setLoading } = useContext(LoadingContext)
   const [cookies] = useCookies(['accessToken']);
@@ -39,7 +39,7 @@ function Detail() {
 
   const detailUser = () => {
     setLoading(true)
-    axios.get(`${API_URL === undefined ? '' : API_URL}${id}`,
+    axios.get(`${API_URL === undefined ? '' : API_URL}/admin/users`,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -48,7 +48,8 @@ function Detail() {
       })
       .then(
         res => {
-          setUsers(res.data.data)
+          // setUser(res.data)
+          console.log(res)
         }
       )
       .catch(
@@ -61,12 +62,12 @@ function Detail() {
   const sendData = () => {
     axios.patch(`${API_URL === undefined ? '' : API_URL}/admin/users/${id}`,
       {
-        name: updateUsesr.name === null || updateUsesr.name === undefined ? users.name : updateUsesr.name,
-        email: updateUsesr.email === null || updateUsesr.email === undefined ? users.email : updateUsesr.email,
-        phone: updateUsesr.phone === null || updateUsesr.phone === undefined ? users.phone : updateUsesr.phone,
-        ban: updateUsesr.ban === null || updateUsesr.ban === undefined ? users.ban : updateUsesr.ban,
-        coin: updateUsesr.coin === null || updateUsesr.coin === undefined ? users.coin : updateUsesr.coin,
-        gem: updateUsesr.gem === null || updateUsesr.gem === undefined ? users.gem : updateUsesr.gem
+        name: updateUsesr.name === null || updateUsesr.name === undefined ? user.name : updateUsesr.name,
+        email: updateUsesr.email === null || updateUsesr.email === undefined ? user.email : updateUsesr.email,
+        phone: updateUsesr.phone === null || updateUsesr.phone === undefined ? user.phone : updateUsesr.phone,
+        ban: updateUsesr.ban === null || updateUsesr.ban === undefined ? user.ban : updateUsesr.ban,
+        coin: updateUsesr.coin === null || updateUsesr.coin === undefined ? user.coin : updateUsesr.coin,
+        gem: updateUsesr.gem === null || updateUsesr.gem === undefined ? user.gem : updateUsesr.gem
 
       },
       {
@@ -109,6 +110,8 @@ function Detail() {
     navigate(-1)
   }
 
+  console.log(user)
+
   return (
     <div className='alluserDetial'>
       {showAlert.status === true ?
@@ -120,7 +123,7 @@ function Detail() {
         <div className='backUser' onClick={hundelBack}>
           <HiChevronLeft />
         </div>
-        <div className="titleUser">Details Of User {id}</div>
+        <div className="titleUser">Details Of {id}</div>
         <div className="btnEdit">
           {editAble ?
             <div className="btnEditCancel">
@@ -140,8 +143,8 @@ function Detail() {
       </div>
       <div className='boxOfDetail row'>
         {
-          users === null || users === undefined ? '' :
-            Object.entries(users).map(([key, value], index) => (
+          user === null || user === undefined ? '' :
+            Object.entries(user).map(([key, value], index) => (
               key === 'updatedAt' || key === 'createdAt' ?
                 <div key={index} className='titleB col-xl-3 col-lg-3 col-md-4 col-ms-6 col-xs-6'>
                   <div className='header-title'>{key}</div>

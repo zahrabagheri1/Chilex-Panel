@@ -8,6 +8,7 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
+
     .backbtn {
         display: flex;
         justify-content: space-between;
@@ -15,11 +16,12 @@
 
         gap: 8px;
 
-        .titleTransaction{
+        .titleTransaction {
             font-size: 36px;
         }
 
-        .backTransaction{
+        .backTransaction,
+        .editTransaction {
             width: 36px;
             height: 36px;
             background: $Gray;
@@ -32,6 +34,13 @@
             color: $iconColor;
             cursor: pointer;
             position: relative;
+        }
+        
+        .btnEdit,
+        .btnEditCancel {
+            display: flex;
+            flex-direction: row;
+            gap: 6px;
         }
     }
 

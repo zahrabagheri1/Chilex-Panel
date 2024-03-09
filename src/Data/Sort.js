@@ -7,10 +7,9 @@ export const adminTransaction = [
     { name: 'shaparakRefNumber', status: true, list: false, date: false },
     { name: 'createdAt', status: true, list: false, date: true },
     { name: 'updatedAt', status: true, list: false, date: true },
-    { name: 'userId', status: true, list: false, date: true },
-    { name: 'userName', status: true, list: false, date: false }
+    { name: 'userName', status: true, list: false, date: false },
+    { name: 'userId', status: true, list: false, date: false }
 ]
-
 
 export const sortBundles = [
     { name: 'amount', status: true, list: false, date: false },
@@ -100,19 +99,25 @@ export const sortGameSettings = [
     { name: 'createdAt', status: true, list: false, date: false },
     { name: 'updatedAt', status: true, list: false, date: false }
 ]
+
 export const sortBanUsers = [
     { name: 'id', status: true, list: false, date: false },
     { name: 'userId', status: true, list: false, date: false },
-    { name: 'type', status: true, list: ['Gem bundle', 'Coin bundle', 'Item', 'Free'], date: false },
+    { name: 'type', status: true, list: [ 'Player name is offensive', 'inactive','chating', 'voice chat is offensive'], date: false },
     { name: 'description', status: true, list: false, date: false },
-    { name: 'createdAt', status: true, list: false, date: false },
+    { name: 'createdAt', status: true, list: false, date: true },
 ]
+
 export const sortReportUsers = [
     { name: 'id', status: true, list: false, date: false },
-    { name: 'userId', status: true, list: false, date: false },
-    { name: 'type', status: true, list: ['Gem bundle', 'Coin bundle', 'Item', 'Free'], date: false },
+    { name: 'createdAt', status: true, list: false, date: true },
+    { name: 'reporterId', status: true, list: false, date: false },
+    { name: 'reporterName', status: true, list: false, date: false },
+    { name: 'reportedId', status: true, list: false, date: false },
+    { name: 'reportedName', status: true, list: false, date: false },
     { name: 'description', status: true, list: false, date: false },
-    { name: 'createdAt', status: true, list: false, date: false },
+    { name: 'type', status: true, list:  [ 'Player name is offensive', 'inactive','chating', 'voice chat is offensive'], date: false },
+    { name: 'reportedType', status: true, list: false, date: false },
 ]
 
 export const sortUserList = [
@@ -132,10 +137,9 @@ export const sortUserList = [
     { name: 'coin', status: true, list: false, date: false },
     { name: 'unfinishedGame', status: true, list: false, date: false },
     { name: 'ban', status: true, list: ['everything' , 'chating'], date: false },
+    { name: 'friendsCount', status: true, list: false, date: false },
+    { name: 'transactionCount', status: true, list: false, date: false },
 ]
-
-export const sortOfOrderList = {
-}
 
 
 // stuffType*	number

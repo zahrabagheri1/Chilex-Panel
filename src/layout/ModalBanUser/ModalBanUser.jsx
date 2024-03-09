@@ -88,8 +88,10 @@ function ModalBanUser(props) {
                     <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12">
                         <SelectOption readOnly={false} name={'type'} defaultValue={'type'} type={'status'} changeOptinValue={updateOptionData}
                             data={[
-                                { id: 0, status: 'EVERYTHING' },
-                                { id: 1, status: 'CHATING' },
+                                { id: 0, status: 'Player name is offensive' },
+                                { id: 1, status: 'inactive' },
+                                { id: 1, status: 'chating' },
+                                { id: 1, status: 'voice chat is offensive' },
                             ]}
                         />
                     </div>

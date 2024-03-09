@@ -218,8 +218,6 @@ function Index() {
                             <HiPencilSquare />
                         </div>
                     }
-
-
                 </div>
             </div>
             <div className='boxOfDetail row'>
