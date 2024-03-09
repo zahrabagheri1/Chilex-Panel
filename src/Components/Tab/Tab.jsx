@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { HiRocketLaunch, HiMiniUser, HiMiniShoppingCart, HiMiniCreditCard, HiMiniArrowDownTray, HiMiniSwatch, HiCurrencyDollar, HiMiniChatBubbleLeftRight, HiOutlineArrowLeftOnRectangle, HiInboxArrowDown, HiComputerDesktop, HiChevronUp } from "react-icons/hi2";
+import { HiRocketLaunch, HiMiniUser, HiMiniShoppingCart, HiMiniCreditCard, HiMiniArrowDownTray, HiMiniSwatch, HiCurrencyDollar, HiMiniChatBubbleLeftRight, HiOutlineArrowLeftOnRectangle, HiInboxArrowDown, HiComputerDesktop, HiChevronUp, HiBell } from "react-icons/hi2";
 import { useNavigate } from 'react-router-dom';
 import { GoDotFill } from "react-icons/go";
 
@@ -18,8 +18,8 @@ function Tab(props) {
         HiMiniChatBubbleLeftRight: <HiMiniChatBubbleLeftRight />,
         HiOutlineArrowLeftOnRectangle: <HiOutlineArrowLeftOnRectangle />,
         HiMiniShoppingCart: <HiMiniShoppingCart />,
-        HiMiniUser: <HiMiniUser />
-
+        HiMiniUser: <HiMiniUser />,
+        HiBell: <HiBell />
     }
 
     const clickHandler = (item) => {

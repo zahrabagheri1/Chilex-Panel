@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Navigation.scss';
-import adminImg from '../../Assets/image/admin.jpg';
+import adminImg from '../../Assets/image/admin.png';
 
 function Navigation() {
   const locale = 'en';

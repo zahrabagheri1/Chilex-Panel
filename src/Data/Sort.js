@@ -141,6 +141,21 @@ export const sortUserList = [
     { name: 'transactionCount', status: true, list: false, date: false },
 ]
 
+export const sortNotification = [
+    { name: 'id', status: true, list: false, date: false },
+    { name: 'title', status: true, list: false, date: false },
+    { name: 'body', status: true, list: false, date: false },
+    { name: 'image', status: true, list: false, date: false },
+    { name: 'userId', status: true, list: false, date: false },
+    { name: 'createdAt', status: true, list: false, date: true },
+]
+
+export const sortDialog = [
+    { name: 'id', status: true, list: false, date: false },
+    { name: 'userId', status: true, list: false, date: false },
+    { name: 'message', status: true, list: false, date: false },
+    { name: 'createdAt', status: true, list: false, date: true },
+]
 
 // stuffType*	number
 //     stuffType =>  gemBundle : 0 , coinBundle : 1 , Item : 2

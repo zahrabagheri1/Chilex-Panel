@@ -77,6 +77,26 @@ export const sideBarMenu = [
     },
     {
         id: 6,
+        name: 'Notifications',
+        icon: 'HiBell',
+        path: null,
+        dropdown: '',
+        logout: false,
+        children: [
+            {
+                id: 0,
+                name: 'Notification',
+                path: 'Notification',
+            }, 
+            {
+                id: 1,
+                name: 'Dialog',
+                path: 'Dialog',
+            }
+        ]
+    },
+    {
+        id: 7,
         name: 'Support',
         icon: 'HiMiniCreditCard',
         path: 'support',
@@ -84,7 +104,7 @@ export const sideBarMenu = [
         logout: false
     },
     {
-        id: 7,
+        id: 8,
         name: 'LogOut',
         icon: 'HiOutlineArrowLeftOnRectangle',
         path: '/',

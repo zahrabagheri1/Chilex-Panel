@@ -20,11 +20,13 @@ import Resources from './Pages/Dashboard/Games/Resources/Resources';
 import Charts from './Pages/Dashboard/Charts/Charts';
 import BanUserList from './Pages/Dashboard/Users/Banuser/List/Index';
 import BanUserDetail from './Pages/Dashboard/Users/Banuser/Detail/Detail';
+import Notification from './Pages/Dashboard/Notifications/Notification/Index';
+import Dialog from './Pages/Dashboard/Notifications/Dialog/Index';
 import ReportsList from './Pages/Dashboard/Users/Reports/List/List';
-import { useCookies } from "react-cookie";
-import './App.scss';
 import LoadingProvider from './Pages/Loading/LoadingProvider';
 import LoginProvider from './Pages/Login/LoginProvider';
+import { useCookies } from "react-cookie";
+import './App.scss';
 
 function App() {
   const [cookies, setCookie] = useCookies(["user"]);
@@ -55,6 +57,8 @@ function App() {
                 <Route path='banuser/:id' element={<BanUserDetail />} />
                 <Route path='shopping-history' element={<SHList />} />
                 <Route path='shopping-history/:id' element={<SHDetail />} />
+                <Route path='Notification' element={<Notification/>}/>
+                <Route path='Dialog' element={<Dialog/>}/>
                 <Route path='support' element={<Support />} />
                 <Route path='games' element={<GameList />} />
                 <Route path='games/played/:id' element={<Played />} />
