@@ -168,6 +168,9 @@ function Index() {
                     <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
                         <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
                     </div>
+                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
+                        <Button title={'Export'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
+                    </div>
                 </div>
                 <div className="resetFillters" onClick={resetFillters}>
                     <HiOutlineTrash />
