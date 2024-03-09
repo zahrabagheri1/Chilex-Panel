@@ -8,15 +8,6 @@ import ButtonActionGray from '../../../../../Components/ButtonActionGray/ButtonA
 import ButtonActionBlue from '../../../../../Components/ButtonActionBlue/ButtonActionBlue';
 import './AddNotification.scss';
 
-const props = {
-    modalTitle: '',
-    type: '',
-    path: '',
-    handlerClose: '',
-    handelerSubmit: '',
-    data: ''
-}
-
 function Index(props) {
     const [notification, setNotification] = useState();
     const [cookies] = useCookies(['accessToken']);

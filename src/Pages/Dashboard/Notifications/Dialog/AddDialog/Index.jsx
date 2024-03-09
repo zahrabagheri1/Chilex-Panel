@@ -8,15 +8,6 @@ import ButtonActionGray from '../../../../../Components/ButtonActionGray/ButtonA
 import ButtonActionBlue from '../../../../../Components/ButtonActionBlue/ButtonActionBlue';
 import './AddDialog.scss';
 
-const props = {
-    modalTitle: '',
-    type: '',
-    path: '',
-    handlerClose: '',
-    handelerSubmit: '',
-    data: ''
-}
-
 function Index(props) {
     const [dialog, setDialog] = useState();
     const [cookies] = useCookies(['accessToken']);
