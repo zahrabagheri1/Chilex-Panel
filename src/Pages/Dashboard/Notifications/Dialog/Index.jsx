@@ -4,6 +4,7 @@ import ScrollContainer from 'react-indiana-drag-scroll'
 import { HiOutlineTrash, HiPlus } from 'react-icons/hi2'
 import Button from '../../../../Components/Button/Button'
 import Input from '../../../../Components/Input/Input'
+import AddDialog from './AddDialog/Index';
 import { LoadingContext } from '../../../Loading/LoadingContext'
 import { LoginContext } from '../../../Login/LoginContext'
 import { useCookies } from 'react-cookie'
@@ -124,7 +125,7 @@ function Index() {
       </ScrollContainer>
 
       {modal === true ?
-        <div></div>
+        <AddDialog canceladd={() => setModal(false)} />
         : ''
       }
     </div>

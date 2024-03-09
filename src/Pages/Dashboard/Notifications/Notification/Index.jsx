@@ -11,6 +11,7 @@ import axios from 'axios';
 import Input from '../../../../Components/Input/Input';
 import Button from '../../../../Components/Button/Button';
 import { HiOutlineTrash, HiPlus } from 'react-icons/hi2';
+import AddNotification from './AddNotification/Index'
 import './Notification.scss';
 
 function Index() {
@@ -124,7 +125,7 @@ function Index() {
             </ScrollContainer>
 
             {modal === true ?
-                <div></div>
+               <AddNotification canceladd={() => setModal(false)} />
                 : ''
             }
         </div>
