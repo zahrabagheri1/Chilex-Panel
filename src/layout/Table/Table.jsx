@@ -45,30 +45,37 @@ function Table(props) {
                                             Object.entries(item).map(([key, value]) => (
                                                 props.sort.map((name, index) => (
                                                     name.name === key ?
-                                                        value === null?
+                                                        value === null ?
                                                             key === 'ban' ?
                                                                 <td className="tdbody" key={index}>Not ban</td>
                                                                 :
                                                                 <td className="tdbody" key={index}>null</td>
                                                             :
-                                                            name.list ?
-                                                                name.list.map((ele, index) => (
-                                                                    value === index ?
-                                                                        <td key={index} className='tdbody'>{ele}</td> : null
-                                                                ))
-                                                                :
-                                                                name.date ?
-                                                                    <td className="tdbody" key={index}>
-                                                                        {moment(value).format('jYYYY/jM/jD')}</td>
+                                                            key === 'finished' ?
+                                                                value === true ?
+                                                                    <td className="tdbody statusActive" key={index}>Finished</td>
                                                                     :
-                                                                    name.data ?
-                                                                        <td className="tdbody" key={index}>{value}</td>
+                                                                    <td className="tdbody statusInactive" key={index}>Not Finished</td>
 
+                                                                :
+                                                                name.list ?
+                                                                    name.list.map((ele, index) => (
+                                                                        value === index ?
+                                                                            <td key={index} className='tdbody'>{ele}</td> : null
+                                                                    ))
+                                                                    :
+                                                                    name.date ?
+                                                                        <td className="tdbody" key={index}>
+                                                                            {moment(value).format('jYYYY/jM/jD')}</td>
                                                                         :
-                                                                        name.child ?
-                                                                            <td className='tdbody'>have child</td>
-                                                                            :
+                                                                        name.data ?
                                                                             <td className="tdbody" key={index}>{value}</td>
+
+                                                                            :
+                                                                            name.child ?
+                                                                                <td className='tdbody'>have child</td>
+                                                                                :
+                                                                                <td className="tdbody" key={index}>{value}</td>
 
                                                         : null
                                                 ))

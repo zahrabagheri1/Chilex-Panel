@@ -1,32 +1,26 @@
 @import "../.../../../../../../Assets/scss/mixin";
 @import "../.../../../../../../Assets/scss/variable";
 
-.alluserDetial {
+.allUserItem {
     width: 95%;
     margin: auto;
     cursor: default;
     display: flex;
     flex-direction: column;
     gap: 8px;
-
-
-
-
-
-
-
     user-select: none;
 
     .addBox {
         display: flex;
         justify-content: space-between;
 
-        .titleUser {
+        .titleUserName {
             font-size: 36px;
+            color: $fontColor;
         }
 
         .backUser,
-        .editUser {
+        .addItem {
             width: 36px;
             height: 36px;
             background: $Gray;
@@ -39,88 +33,6 @@
             color: $iconColor;
             cursor: pointer;
             position: relative;
-        }
-
-        .btnEdit,
-        .btnEditCancel {
-            display: flex;
-            flex-direction: row;
-            gap: 6px;
-        }
-
-    }
-
-    .boxOfDetail {
-        width: calc(100% - 60px);
-        min-height: 68vh;
-        padding: 30px;
-        gap: 40px 20px;
-        background-color: $Gray;
-        border-radius: 16px;
-        border: 1px solid $lightGray;
-
-        .disabled {
-            border: none;
-            outline: none;
-            box-shadow: none;
-            background: transparent;
-            font-size: $font-lg;
-            font-weight: bold;
-            padding-left: 0 !important;
-            user-select: none;
-
-            &:focus,
-            &:focus-visible,
-            &:active,
-            &::after,
-            &:hover {
-                border: none !important;
-                box-shadow: none !important;
-            }
-        }
-
-        .priceBox {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-            border-top: 2px solid $bgColor;
-            padding-top: 20px;
-
-            .titlePrice {
-                font-size: $font-xxl;
-            }
-        }
-
-        .titleB {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-
-            .header-title {
-                font-size: 18px;
-                color: $fontColorlight;
-                font-weight: 700;
-            }
-
-            .data-title {
-                font-size: 18px;
-                color: $fontColor;
-                font-weight: 600;
-            }
-
-            .sub-data {
-                display: flex;
-                flex-direction: row;
-                flex-wrap: wrap;
-                gap: 80px;
-            }
-
-            .listItems {
-                display: flex;
-                flex-direction: row;
-                gap: 12px;
-            }
         }
     }
 

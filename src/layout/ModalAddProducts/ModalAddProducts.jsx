@@ -18,6 +18,7 @@ function ModalAddProducts(props) {
     status: false, msg: '', success: false
   })
 
+  
   const [addElement, setAddElement] = useState({
     prices: [],
     stuffType: props.type === 'bundle' ? null : 2,

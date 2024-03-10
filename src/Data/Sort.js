@@ -75,12 +75,12 @@ export const sortHistory = [
 
 export const sortGamePlayed = [
     { name: 'id', status: true, list: false, date: false },
-    { name: 'matchId', status: true, list: false, date: false },
-    { name: 'matchRank', status: true, list: false, date: false },
-    { name: 'settingId', status: true, list: false, date: false },
+    { name: 'match_id', status: true, list: false, date: false },
+    { name: 'match_rank', status: true, list: false, date: false },
+    { name: 'setting_id', status: true, list: false, date: false },
     { name: 'game', status: true, list: false, date: false },
-    { name: 'creatorId', status: true, list: false, date: false },
-    { name: 'processId', status: true, list: false, date: false },
+    { name: 'creator_id', status: true, list: false, date: false },
+    { name: 'process_id', status: true, list: false, date: false },
     { name: 'finished', status: true, list: false, date: false },
     { name: 'createdAt', status: true, list: false, date: true },
     { name: 'updatedAt', status: true, list: false, date: true }
@@ -116,8 +116,8 @@ export const sortReportUsers = [
     { name: 'reportedId', status: true, list: false, date: false },
     { name: 'reportedName', status: true, list: false, date: false },
     { name: 'description', status: true, list: false, date: false },
-    { name: 'type', status: true, list:  [ 'Player name is offensive', 'inactive','chating', 'voice chat is offensive'], date: false },
-    { name: 'reportedType', status: true, list: false, date: false },
+    { name: 'reportedType', status: true, list: [ "User" , "Group" , "Message"], date: false },
+    { name: 'type', status: true, list: ['Player name is offensive', 'inactive','chating' , 'voice chat is offensive', "0" ], date: false },
 ]
 
 export const sortUserList = [
@@ -156,6 +156,21 @@ export const sortDialog = [
     { name: 'message', status: true, list: false, date: false },
     { name: 'createdAt', status: true, list: false, date: true },
 ]
+
+export const sortUserItems = [
+    { name: 'id', status: true, list: false, date: false },
+    { name: 'name', status: true, list: false, date: false },
+    { name: 'tier', status: true, list: ["Default", "Common", "Rare" , "Epic" , "Legendary"], date: false },
+    { name: 'datasetId', status: true, list: false, date: false },
+    { name: 'datasetGroup', status: true, list: false, date: false },
+    { name: 'gameItemType', status: true, list: ["Dice skin", "Card Skin", "Flag Skin" , "Formation" , "Effect"], date: false },
+    { name: 'emoteItemType', status: true, list: ["Animation"], date: false },
+    { name: 'characterItemType', status: true, list: ["Clothes", "Face", "Hair", "Beard", "Eye", "Eyebrows", "Glasess", "Mask", "Hat"], date: false },
+    { name: 'gameId', status: true, list: false, date: false },
+    { name: 'equip', status: true, list: false, date: false },
+]
+
+
 
 // stuffType*	number
 //     stuffType =>  gemBundle : 0 , coinBundle : 1 , Item : 2
