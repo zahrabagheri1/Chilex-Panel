@@ -2,6 +2,7 @@
 
 .showData {
     padding-bottom: 20px;
+    height: calc(100vh - 50vh);
 
     .emptyTable {
         height: calc(100vh - 50vh);
@@ -16,6 +17,7 @@
     }
 
     .tableBox {
+        height: 100%;
 
         .tableBody {
             border: 2px solid $lightGray;
@@ -35,7 +37,7 @@
                 border-radius: 20px;
                 display: none;
             }
-            
+
             &::-webkit-scrollbar-thumb {
                 background-color: $lighterGray;
                 border-radius: 20px;
@@ -110,6 +112,11 @@
             }
         }
 
+        .tablePagintion {
 
+            .limit{
+                .limitTitle{}
+            }
+        }
     }
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import './Table.scss';
 import moment from 'moment-jalaali';
 import ScrollContainer from 'react-indiana-drag-scroll';
+import SelectOption from '../../Components/SelectOption/SelectOption';
 
 function Table(props) {
 
@@ -93,8 +94,19 @@ function Table(props) {
                                 </table>
                             </div>
                         </ScrollContainer>
+
+
                         <div className="tablePagintion">
-                            <div className="pagintion">gfvgdfgfd</div>
+                            <div className="limit">
+                                <div className="limitTitle">Rows per page:</div>
+                                <SelectOption readOnly={false} name={''} defaultValue={'15'} type={'status'} changeOptinValue={() => { }}
+                                    data={[
+                                        { id: 0, status: '15' },
+                                        { id: 1, status: '20' },
+                                    ]}
+                                />
+                            </div>
+                            <div className="pagintion"></div>
                         </div>
 
                     </div>
