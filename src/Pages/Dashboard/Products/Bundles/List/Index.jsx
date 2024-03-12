@@ -4,7 +4,6 @@ import Table from '../../../../../layout/Table/Table';
 import { sortBundles } from '../../../../../Data/Sort';
 import { HiOutlineTrash, HiPlus } from "react-icons/hi2";
 import axios from 'axios';
-import ScrollContainer from 'react-indiana-drag-scroll';
 import ModalAddProducts from '../../../../../layout/ModalAddProducts/ModalAddProducts';
 import { useNavigate } from 'react-router-dom';
 import Input from '../../../../../Components/Input/Input';
@@ -177,9 +176,7 @@ function Index() {
                 </div>
             </div>
 
-            <ScrollContainer>
                 <Table data={bundles} sort={sortBundles} action={true} showDetail={showDetailBandle} />
-            </ScrollContainer>
 
             {modal === true ?
 

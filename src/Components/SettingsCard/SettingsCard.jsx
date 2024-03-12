@@ -61,26 +61,27 @@ function SettingsCard(props) {
             description: updatedata.description === null || updatedata.description === undefined ? data.description : updatedata.description,
             botLevel: updatedata.botLevel === null || updatedata.botLevel === undefined ? data.botLevel : updatedata.botLevel
         },
-        {
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: 'Bearer ' + cookies.accessToken
-            }
-        }).then(
-            res => {
-                props.getData()
-                setShowAlert({ status: true, msg: res.statusText + '!  edit is successful', success: true })
-                setTimeout(() => {
-                    setShowAlert({ status: false, success: true })
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + cookies.accessToken,
+                    path: "/"
+                }
+            }).then(
+                res => {
+                    props.getData()
+                    setShowAlert({ status: true, msg: res.statusText + '!  edit is successful', success: true })
+                    setTimeout(() => {
+                        setShowAlert({ status: false, success: true })
 
-                }, 3000)
-                setEdit(false)
-            }
-        ).catch(
-            err => {
-                setShowAlert({ status: true, msg: err.statusText + 'name is same', success: false })
-                setTimeout(() => {
-                    setShowAlert({ status: false, success: true })
+                    }, 3000)
+                    setEdit(false)
+                }
+            ).catch(
+                err => {
+                    setShowAlert({ status: true, msg: err.statusText + 'name is same', success: false })
+                    setTimeout(() => {
+                        setShowAlert({ status: false, success: true })
 
                     }, 3000)
 
@@ -141,7 +142,7 @@ function SettingsCard(props) {
                                                     </div>
 
                                                     :
-                                                < Input type={typeof value === 'number' ? 'number' : 'text'} inputclassname={'disabled'} name={key} value={value} title={key} readOnly={true} />
+                                                    < Input type={typeof value === 'number' ? 'number' : 'text'} inputclassname={'disabled'} name={key} value={value} title={key} readOnly={true} />
                                                 :
                                                 item.select === false ?
                                                     < Input type={typeof value === 'number' ? 'number' : 'text'} inputclassname={edit === false ? 'disabled' : ''} name={key} value={value} title={key} readOnly={edit === true ? false : true} changeInputValue={updateInputData} />

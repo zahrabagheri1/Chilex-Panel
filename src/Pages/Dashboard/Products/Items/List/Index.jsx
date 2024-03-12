@@ -5,7 +5,6 @@ import { HiOutlineTrash, HiPlus } from "react-icons/hi2";
 import { sortItems } from '../../../../../Data/Sort';
 import Table from '../../../../../layout/Table/Table';
 import ModalAddProducts from '../../../../../layout/ModalAddProducts/ModalAddProducts';
-import ScrollContainer from 'react-indiana-drag-scroll';
 import { useNavigate, useParams } from 'react-router-dom';
 import Input from '../../../../../Components/Input/Input';
 import SelectOption from '../../../../../Components/SelectOption/SelectOption';
@@ -236,9 +235,7 @@ function Index() {
                 </div>
             </div>
 
-            <ScrollContainer>
                 <Table data={items} sort={sortItems} action={true} showDetail={showDetailItem} />
-            </ScrollContainer>
 
             {modal === true ?
                 <ModalAddProducts

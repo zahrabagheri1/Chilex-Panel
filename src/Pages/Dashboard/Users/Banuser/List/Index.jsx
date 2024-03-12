@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react';
-import ScrollContainer from 'react-indiana-drag-scroll';
 import Table from '../../../../../layout/Table/Table';
 import axios from 'axios';
 import { sortBanUsers } from '../../../../../Data/Sort';
@@ -135,9 +134,7 @@ function Index() {
                 </div>
             </div>
 
-            <ScrollContainer>
                 <Table data={banuserList} sort={sortBanUsers} action={true} showDetail={showDetailBanUser} />
-            </ScrollContainer>
         </div>
     );
 }

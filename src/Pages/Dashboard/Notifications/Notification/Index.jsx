@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { LoginContext } from '../../../Login/LoginContext';
 import { LoadingContext } from '../../../Loading/LoadingContext';
 import Table from '../../../../layout/Table/Table';
-import ScrollContainer from 'react-indiana-drag-scroll';
 import { sortNotification } from '../../../../Data/Sort';
 import { API_URL } from '../../../../API_URL';
 import axios from 'axios';
@@ -120,9 +119,7 @@ function Index() {
                 </div>
             </div>
 
-            <ScrollContainer>
                 <Table data={notifiction} sort={sortNotification} action={true} showDetail={showDetailNotif} />
-            </ScrollContainer>
 
             {modal === true ?
                <AddNotification canceladd={() => setModal(false)} />

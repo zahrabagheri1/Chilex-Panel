@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Table from '../../../../layout/Table/Table'
-import ScrollContainer from 'react-indiana-drag-scroll'
 import { HiOutlineTrash, HiPlus } from 'react-icons/hi2'
 import Button from '../../../../Components/Button/Button'
 import Input from '../../../../Components/Input/Input'
@@ -120,9 +119,7 @@ function Index() {
         </div>
       </div>
 
-      <ScrollContainer>
         <Table data={dialog} sort={sortDialog} action={true} showDetail={showDetailNotif} />
-      </ScrollContainer>
 
       {modal === true ?
         <AddDialog canceladd={() => setModal(false)} />

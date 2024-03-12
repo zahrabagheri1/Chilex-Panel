@@ -9,9 +9,7 @@ import './Detail.scss'
 import Alert from '../../../../../layout/Alert/Alert';
 import { API_URL } from '../../../../../API_URL';
 import Table from '../../../../../layout/Table/Table';
-import ScrollContainer from 'react-indiana-drag-scroll';
 import { sortUserItems } from '../../../../../Data/Sort';
-import ModalItem from '../../../../../layout/ModalItem/ModalItem';
 
 function Detail() {
   const [userItem, setUserItem] = useState()
@@ -80,9 +78,7 @@ function Detail() {
         </div> */}
       </div>
 
-      <ScrollContainer>
         <Table data={userItem} sort={sortUserItems} action={true} showDetail={()=>{}}/>
-      </ScrollContainer>
 
       {/* {openModal === true ? <ModalItem gameName={id} canceladd={() => setOpenModal(false)} /> : null} */}
 

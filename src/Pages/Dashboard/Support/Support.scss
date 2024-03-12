@@ -52,12 +52,20 @@
                 -webkit-appearance: none;
             }
 
-            .chatMenuBox {
-                display: flex;
-                flex-direction: column;
-                overflow-y: scroll;
-                position: relative;
 
+            .chatMenuBox {
+                position: relative;
+                overflow-y: scroll;
+                margin-bottom: 10px;   
+                
+                .conversations {
+                    display: flex;
+                    flex-direction: column;
+                    position: relative;
+                    height: 80vh;
+                }
+
+        
                 &::-webkit-scrollbar {
                     width: 4px;
                     display: none;
@@ -67,17 +75,15 @@
                     background: $darkGray;
                     border-radius: 20px;
                     display: none;
-
                 }
-
+                
                 &::-webkit-scrollbar-thumb {
                     background-color: $lighterGray;
                     border-radius: 20px;
                     border: 2px outset $lighterGray;
                     display: none;
-
                 }
-
+                
                 &::-webkit-scrollbar-thumb:hover {
                     background: #555;
                     display: none;
@@ -161,6 +167,7 @@
                     width: calc(100% - 40px);
                     margin: 10px 20px;
                     z-index: 20;
+
                     &::-webkit-scrollbar {
                         width: 5px;
                     }
@@ -250,6 +257,7 @@
                 width: calc(100% - 12px);
                 padding: 6px;
                 background-color: #171A1B;
+
                 .chatBoxTextarea {
                     display: flex;
                     align-items: center;
@@ -264,6 +272,7 @@
                     border-radius: 50px;
                     padding: 6px;
                     z-index: 21;
+
                     .chatMessageInput {
                         border-radius: 5px;
                         color: $fontColor;
@@ -273,7 +282,7 @@
                         border: none;
                         background: none;
                         padding: 6px;
-                     
+
 
                         &:hover,
                         &:focus,
@@ -310,7 +319,7 @@
         }
     }
 
-    .clearChatRoom{
+    .clearChatRoom {
         width: calc(100% - 200px);
         font-size: 26px;
         display: flex;
@@ -321,10 +330,11 @@
         // position: relative;
         user-select: none;
 
-        .clearChatRoomtext{
+        .clearChatRoomtext {
             color: #868686;
         }
-        .clearChatRoomsubtext{
+
+        .clearChatRoomsubtext {
             color: #555;
         }
     }

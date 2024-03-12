@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Table from '../../../../layout/Table/Table';
 import { adminTransaction } from '../../../../Data/Sort';
-import { ScrollContainer } from 'react-indiana-drag-scroll';
 import 'react-indiana-drag-scroll/dist/style.css';
 import './List.scss';
 import axios from 'axios';
@@ -176,9 +175,7 @@ function Index() {
             </div>
 
 
-            <ScrollContainer>
                 <Table data={transaction} sort={adminTransaction} action={true} showDetail={showDetailTransaction} />
-            </ScrollContainer>
         </div>
     );
 }

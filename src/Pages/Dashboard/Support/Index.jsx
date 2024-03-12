@@ -42,7 +42,7 @@ function Index() {
       GetResiveAllChats();
     });
 
-    if(!socket.active)
+    if (!socket.active)
       connectSocketWithToken(cookie.accessToken)
     GetResiveAllChats();
 
@@ -76,11 +76,13 @@ function Index() {
           <div className="chatMenuWrapper">
             <input type="search" className='chatMenuSearchBox' placeholder='Search User' onChange={searchUser} />
             <div className="chatMenuBox">
-              {listChats?.map((chat, index) => (
-                <div key={index}>
-                  <Conversation data={chat} click={showChat} />
-                </div>
-              ))}
+              <div className="conversations">
+                {listChats?.map((chat, index) => (
+                  <div key={index}>
+                    <Conversation data={chat} click={showChat} />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

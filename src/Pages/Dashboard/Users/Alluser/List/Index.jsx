@@ -34,7 +34,7 @@ function Index() {
     register: null,
     inviteBy: null,
     lastOnline: null,
-    limit: 200,
+    limit: 122,
     online: 2,
     unfinishedGame: null,
     page: 1,
@@ -241,7 +241,7 @@ function Index() {
             <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
               <Button title={'Export'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
             </div>
-            
+
           </div>
           <div className="resetFillters" onClick={resetFillters}>
             <HiOutlineTrash />
@@ -250,9 +250,9 @@ function Index() {
         <div className="banuser" onClick={handelOpenModal}><HiUserMinus /></div>
       </div>
 
-      <ScrollContainer>
-        <Table data={userList} sort={sortUserList} action={true} showDetail={showDetailBanUser} />
-      </ScrollContainer>
+
+      <Table data={userList} sort={sortUserList} action={true} showDetail={showDetailBanUser} />
+
 
 
       {modal === true ?

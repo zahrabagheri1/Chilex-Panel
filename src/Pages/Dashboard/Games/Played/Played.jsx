@@ -1,10 +1,8 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
-import ScrollContainer from 'react-indiana-drag-scroll';
 import Table from '../../../../layout/Table/Table';
 import { sortGamePlayed } from '../../../../Data/Sort';
 import './Played.scss';
-import Input from '../../../../Components/Input/Input';
 import Button from '../../../../Components/Button/Button';
 import SelectOption from '../../../../Components/SelectOption/SelectOption';
 import DatePikerFarsi from '../../../../Components/DatePikerFarsi/DatePikerFarsi';
@@ -131,9 +129,7 @@ function Played() {
                 </div>
             </div>
 
-            <ScrollContainer>
                 <Table data={data} sort={sortGamePlayed} action={true} showDetailStatus={false} />
-            </ScrollContainer>
         </div>
     );
 }

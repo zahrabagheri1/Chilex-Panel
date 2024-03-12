@@ -17,8 +17,7 @@ function Index(props) {
 
     const updateInputData = (e) => {
         if (e.target.name === 'usersIds') {
-            setNotification((prev) => ({ ...prev, [e.target.name]: parseInt(e.target.value) }))
-            // console.log(typeof parseInt(e.target.value))
+            setNotification((prev) => ({ ...prev, [e.target.name]: [parseInt(e.target.value)] }))
         } else {
             setNotification((prev) => ({ ...prev, [e.target.name]: e.target.value }))
         }

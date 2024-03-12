@@ -1,6 +1,7 @@
 import React from 'react';
 import './Table.scss';
 import moment from 'moment-jalaali';
+import ScrollContainer from 'react-indiana-drag-scroll';
 
 function Table(props) {
 
@@ -21,72 +22,82 @@ function Table(props) {
                         WE DON'T HAVE ANY DATA!
                     </div>
                     :
-                    <table className='table'>
-                        <thead className='header'>
-                            <tr className='trhead'>
-                                {Array.isArray(props.sort) ?
-                                    props.sort.map((name, index) => (
-                                        name.status === true ?
-                                            <th className="thhead" key={index} colSpan={name.child ? name.child.length : '1'}>
-                                                {name.name}</th>
-                                            :
-                                            ""
-                                    ))
-                                    : null
-                                }
-
-                            </tr>
-                        </thead>
-                        <tbody className='bodytable'>
-                            {Array.isArray(props.data) ?
-                                props.data?.map((item, index) => (
-                                    <tr className='trbody' key={index} onClick={() => showDetail(item.id)} >
-                                        {
-                                            Object.entries(item).map(([key, value]) => (
+                    <div className="tableBox">
+                        <ScrollContainer>
+                            <div className='tableBody'>
+                                <table className='table'>
+                                    <thead className='header'>
+                                        <tr className='trhead'>
+                                            {Array.isArray(props.sort) ?
                                                 props.sort.map((name, index) => (
-                                                    name.name === key ?
-                                                        value === null ?
-                                                            key === 'ban' ?
-                                                                <td className="tdbody" key={index}>Not ban</td>
-                                                                :
-                                                                <td className="tdbody" key={index}>null</td>
-                                                            :
-                                                            key === 'finished' ?
-                                                                value === true ?
-                                                                    <td className="tdbody statusActive" key={index}>Finished</td>
-                                                                    :
-                                                                    <td className="tdbody statusInactive" key={index}>Not Finished</td>
+                                                    name.status === true ?
+                                                        <th className="thhead" key={index} colSpan={name.child ? name.child.length : '1'}>
+                                                            {name.name}</th>
+                                                        :
+                                                        ""
+                                                ))
+                                                : null
+                                            }
 
-                                                                :
-                                                                name.list ?
-                                                                    name.list.map((ele, index) => (
-                                                                        value === index ?
-                                                                            <td key={index} className='tdbody'>{ele}</td> : null
-                                                                    ))
-                                                                    :
-                                                                    name.date ?
-                                                                        <td className="tdbody" key={index}>
-                                                                            {moment(value).format('jYYYY/jM/jD')}</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody className='tbody'>
+                                        {Array.isArray(props.data) ?
+                                            props.data?.map((item, index) => (
+                                                <tr className='trbody' key={index} onClick={() => showDetail(item.id)} >
+                                                    {
+                                                        Object.entries(item).map(([key, value]) => (
+                                                            props.sort.map((name, index) => (
+                                                                name.name === key ?
+                                                                    value === null ?
+                                                                        key === 'ban' ?
+                                                                            <td className="tdbody" key={index}>Not ban</td>
+                                                                            :
+                                                                            <td className="tdbody" key={index}>null</td>
                                                                         :
-                                                                        name.data ?
-                                                                            <td className="tdbody" key={index}>{value}</td>
+                                                                        key === 'finished' ?
+                                                                            value === true ?
+                                                                                <td className="tdbody statusActive" key={index}>Finished</td>
+                                                                                :
+                                                                                <td className="tdbody statusInactive" key={index}>Not Finished</td>
 
                                                                             :
-                                                                            name.child ?
-                                                                                <td className='tdbody'>have child</td>
+                                                                            name.list ?
+                                                                                name.list.map((ele, index) => (
+                                                                                    value === index ?
+                                                                                        <td key={index} className='tdbody'>{ele}</td> : null
+                                                                                ))
                                                                                 :
-                                                                                <td className="tdbody" key={index}>{value}</td>
+                                                                                name.date ?
+                                                                                    <td className="tdbody" key={index}>
+                                                                                        {moment(value).format('jYYYY/jM/jD')}</td>
+                                                                                    :
+                                                                                    name.data ?
+                                                                                        <td className="tdbody" key={index}>{value}</td>
 
-                                                        : null
-                                                ))
+                                                                                        :
+                                                                                        name.child ?
+                                                                                            <td className='tdbody'>have child</td>
+                                                                                            :
+                                                                                            <td className="tdbody" key={index}>{value}</td>
 
+                                                                    : null
+                                                            ))
+
+                                                        ))
+                                                    }
+                                                </tr>
                                             ))
-                                        }
-                                    </tr>
-                                ))
-                                : null}
-                        </tbody>
-                    </table>
+                                            : null}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </ScrollContainer>
+                        <div className="tablePagintion">
+                            <div className="pagintion">gfvgdfgfd</div>
+                        </div>
+
+                    </div>
             }
         </div>
     );

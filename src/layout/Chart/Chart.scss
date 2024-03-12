@@ -1,4 +1,5 @@
 @import '../../Assets/scss/variable';
+@import '../../Assets/scss/mixin';
 
 .chart-filter-bg {
     width: 100%;
@@ -21,6 +22,9 @@
             border-radius: 6px;
             background-color: $lightGray;
             height: 100%;
+            @include down-768 {
+                // display: none;
+            }
         }
         
         .filter-chart {
@@ -29,6 +33,10 @@
             flex-direction: column;
             justify-content: space-between;
             gap: 20px;
+            
+            @include down-992 {
+                display: none;
+            }
 
         }
     }

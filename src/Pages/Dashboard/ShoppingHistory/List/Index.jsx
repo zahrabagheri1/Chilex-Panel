@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import { HiOutlineTrash } from "react-icons/hi2";
 import Table from '../../../../layout/Table/Table';
 import { sortHistory } from '../../../../Data/Sort';
-import ScrollContainer from 'react-indiana-drag-scroll';
 import './List.scss';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -178,9 +177,7 @@ function Index() {
             </div>
 
 
-            <ScrollContainer>
                 <Table data={history} sort={sortHistory} action={true} showDetail={showDetailHistory} />
-            </ScrollContainer>
 
         </div>
     );
