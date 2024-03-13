@@ -12,7 +12,6 @@ import DatePikerFarsi from '../../../../../Components/DatePikerFarsi/DatePikerFa
 import Alert from '../../../../../layout/Alert/Alert';
 import Time from '../../../../../layout/Time/Time';
 import { API_URL } from '../../../../../API_URL';
-import SelectOption from '../../../../../Components/SelectOption/SelectOption';
 import ModalAddPirce from '../../../../../layout/ModalAddPirce/ModalAddPirce';
 
 function Index() {

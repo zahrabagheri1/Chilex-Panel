@@ -16,11 +16,17 @@ const props = {
 }
 
 
-
 function ModalAddPirce(props) {
-    const [addPrice, setaddPrice] = useState(
+    const [addBundlePrice, setaddBundlePrice] = useState(
         {
             bundleId: parseInt(props.bundleId),
+            amount: null,
+            type: null
+        }
+    );
+    const [addItemPrice, setaddItemPrice] = useState(
+        {
+            itemId: parseInt(props.itemId),
             amount: null,
             type: null
         }
@@ -32,20 +38,54 @@ function ModalAddPirce(props) {
         })
 
     const handleInputData = (e) => {
-        setaddPrice((prev) => ({ ...prev, [e.target.name]: parseInt(e.target.value) }))
-
+        props.bundleId ?
+            setaddBundlePrice((prev) => ({ ...prev, [e.target.name]: parseInt(e.target.value) }))
+            :
+            setaddItemPrice((prev) => ({ ...prev, [e.target.name]: parseInt(e.target.value) }))
     }
 
     const handleOptionData = (name, id) => {
-        setaddPrice((prev) => ({ ...prev, [name]: parseInt(id) }))
+        props.bundleId ?
+            setaddBundlePrice((prev) => ({ ...prev, [name]: parseInt(id) }))
+            :
+            setaddItemPrice((prev) => ({ ...prev, [name]: parseInt(id) }))
     }
 
     const handlerClose = () => {
         props.canceladd()
     }
 
-    const addPrices = () => {
-        axios.post(`${API_URL === undefined ? '' : API_URL}/admin-stuff/bundle/add-price`, addPrice,
+    const addBundlePrices = () => {
+        axios.post(`${API_URL === undefined ? '' : API_URL}/admin-stuff/bundle/add-price`, addBundlePrice,
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + cookies.accessToken
+                }
+            })
+            .then(
+                res => {
+                    setShowAlert({ status: true, msg: res.statusText, success: true })
+                    setTimeout(() => {
+                        setShowAlert({ status: false })
+                        setTimeout(() => {
+                            props.canceladd()
+                        }, 0)
+                    }, 3000)
+                }
+            )
+            .catch(
+                err => {
+                    setShowAlert({ status: true, msg: err.message + ".   Filling the blank", success: false })
+                    setTimeout(() => {
+                        setShowAlert({ status: false })
+
+                    }, 4000)
+                }
+            )
+    }
+    const addItemPrices = () => {
+        axios.post(`${API_URL === undefined ? '' : API_URL}/admin-stuff/item/add-price`, addItemPrice,
             {
                 headers: {
                     'Content-Type': 'application/json',
@@ -84,9 +124,11 @@ function ModalAddPirce(props) {
             <div className="mainaddPrice">
                 <div className="titleaddPrice">Add New Price</div>
                 <div className="row">
-                    <div className="titleB col-xl-4 col-lg-3 col-md-3 col-sm-4 col-xs-12">
-                        <div className='header-title'>bundle Id</div>
-                        <div className='data-title'>{props.bundleId}</div>
+                    <div className="col-xl-4 col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                        <div className="titleB">
+                            <div className='header-title'>{props.bundleId ? "Bundle Id" : "Item Id"}</div>
+                            <div className='data-title'>{props.bundleId ? props.bundleId : props.itemId}</div>
+                        </div>
                     </div>
 
                     <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12">
@@ -108,7 +150,13 @@ function ModalAddPirce(props) {
 
                 <div className="addPricebtn">
                     <ButtonActionGray title={'Cancel'} handler={handlerClose} />
-                    <ButtonActionBlue title={'Add new price'} handler={addPrices} />
+                    {
+                        props.bundleId ?
+                        <ButtonActionBlue title={'Add new price'} handler={addBundlePrices} />
+                        :
+                        <ButtonActionBlue title={'Add new price'} handler={addItemPrices} />
+
+                    }
                 </div>
 
             </div>

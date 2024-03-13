@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import './Detail.scss';
 import Switch from '../../../../../Components/Switch/Switch';
 import Input from '../../../../../Components/Input/Input';
-import { HiPencilSquare, HiCheck, HiChevronLeft, HiMiniXMark } from "react-icons/hi2";
+import { HiPencilSquare, HiCheck, HiChevronLeft, HiMiniXMark, HiPlus } from "react-icons/hi2";
 import SelectOption from '../../../../../Components/SelectOption/SelectOption';
 import { useCookies } from 'react-cookie';
 import { LoadingContext } from '../../../../Loading/LoadingContext';
@@ -12,38 +12,13 @@ import { LoginContext } from '../../../../Login/LoginContext';
 import Alert from '../../../../../layout/Alert/Alert';
 import DatePikerFarsi from '../../../../../Components/DatePikerFarsi/DatePikerFarsi';
 import { API_URL } from '../../../../../API_URL';
-
-
-const detail = {
-    id: 6,
-    name: "char2",
-    status: 0,
-    imageId: null,
-    sku: "char2",
-    expireTime: null,
-    tier: 0,
-    category: 2,
-    gameItemType: null,
-    emoteItemType: null,
-    characterItemType: 4,
-    gameId: null,
-    datasetId: "char2",
-    datasetGroup: "item",
-    gameName: null,
-    prices: [
-        {
-            id: 16,
-            amount: 50,
-            priceType: 1,
-            priceStatus: 0
-        }
-    ]
-}
+import ModalAddPirce from '../../../../../layout/ModalAddPirce/ModalAddPirce';
 
 function Index() {
-    const [ddetail, setDetail] = useState({});
+    const [detail, setDetail] = useState({});
     const [editAble, setEditAble] = useState(false)
     const [edit, setEdit] = useState(false)
+    const [addPrice, setAddPrice] = useState(false)
     const { loading, setLoading } = useContext(LoadingContext);
     const { goToLoginPage } = useContext(LoginContext);
     const { id } = useParams();
@@ -142,6 +117,12 @@ function Index() {
         },
         {
             name: 'gameId',
+            data: null,
+            type: 'input',
+            edit: false
+        },
+        {
+            name: 'gameName',
             data: [
                 { id: 0, status: 'Ludo' },
                 { id: 1, status: 'Uno' },
@@ -348,17 +329,10 @@ function Index() {
             })
     }
 
-    const editData = () => {
-        setEditAble(!editAble)
+    const addPrices = () => {
+        setAddPrice(true)
     }
 
-    const editDataCancel = () => {
-        setEditAble(!editAble)
-    }
-
-    const hundelBack = () => {
-        navigate(-1)
-    }
     return (
         <div className='itemDetail'>
             {showAlert.status === true ?
@@ -367,7 +341,7 @@ function Index() {
                 ''
             }
             <div className="addBox">
-                <div className='backBundle' onClick={hundelBack}>
+                <div className='backBundle' onClick={() => navigate(-1)}>
                     <HiChevronLeft />
                 </div>
                 <div className="titleBundle">Details Of Item {id}</div>
@@ -377,12 +351,12 @@ function Index() {
                             <div className='editBundle' onClick={sendData}>
                                 <HiCheck />
                             </div>
-                            <div className='editBundle' onClick={editDataCancel}>
+                            <div className='editBundle' onClick={() => setEditAble(!editAble)}>
                                 <HiMiniXMark />
                             </div>
                         </div>
                         :
-                        <div className='editBundle' onClick={editData}>
+                        <div className='editBundle' onClick={() => setEditAble(!editAble)}>
                             <HiPencilSquare />
                         </div>
                     }
@@ -433,6 +407,8 @@ function Index() {
                                         ))
                                     ))}
                                 </div>
+                                <div className="addPrice" onClick={addPrices}><HiPlus /></div>
+
                             </div>
                             :
 
@@ -467,12 +443,15 @@ function Index() {
                                                         : ''
                                     : ''
                             ))
-
-
                     ))
                 )}
-
             </div>
+
+            {
+                addPrice ?
+                    <ModalAddPirce itemId={id} canceladd={() => setAddPrice(false)} />
+                    : null
+            }
         </div>
     );
 }

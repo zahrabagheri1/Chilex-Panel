@@ -79,38 +79,56 @@
             padding-top: 20px;
         }
 
-        .titleB {
-            width: 28%;
+        .addPrice {
+            width: 28px;
+            height: 28px;
+            background: $Gray;
+            border-radius: 6px;
+            border: 2px solid $lightGray;
             display: flex;
-            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: $font-xl;
+            color: $iconColor;
+            cursor: pointer;
+            position: absolute;
+            right: 80px;
+        }
+
+    }
+
+    .titleB {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+
+
+
+        .header-title {
+            font-size: $font-xl;
+            color: $fontColorlight;
+            font-weight: 600;
+        }
+
+        .data-title {
+            font-size: 18px;
+            color: $white;
+            font-weight: 600;
+        }
+
+        .sub-data {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 80px;
+        }
+
+        .listItems {
+            display: flex;
+            flex-direction: row;
             gap: 12px;
-
-
-
-            .header-title {
-                font-size: $font-xl;
-                color: $fontColorlight;
-                font-weight: 600;
-            }
-
-            .data-title {
-                font-size: 18px;
-                color: $white;
-                font-weight: 600;
-            }
-
-            .sub-data {
-                display: flex;
-                flex-direction: row;
-                flex-wrap: wrap;
-                gap: 80px;
-            }
-
-            .listItems {
-                display: flex;
-                flex-direction: row;
-                gap: 12px;
-            }
         }
     }
+
 }
