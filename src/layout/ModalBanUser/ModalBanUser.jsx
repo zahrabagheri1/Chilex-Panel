@@ -90,8 +90,8 @@ function ModalBanUser(props) {
                             data={[
                                 { id: 0, status: 'Player name is offensive' },
                                 { id: 1, status: 'inactive' },
-                                { id: 1, status: 'chating' },
-                                { id: 1, status: 'voice chat is offensive' },
+                                { id: 2, status: 'chating' },
+                                { id: 3, status: 'voice chat is offensive' },
                             ]}
                         />
                     </div>

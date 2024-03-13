@@ -48,8 +48,7 @@ export const sortItems = [
     { name: 'status', status: true, list: ['Active', 'Inactive'], date: false },
     { name: 'tier', status: true, list: false, date: false },
     {
-        name: 'prices',
-        status: true, list: ['Active', 'Inactive'], date: false,
+        name: 'prices', status: true, list: false, date: false,
         child: [
             { name: 'id', status: true, list: false, date: false },
             { name: 'amount', status: true, list: false, date: false },
@@ -103,7 +102,7 @@ export const sortGameSettings = [
 export const sortBanUsers = [
     { name: 'id', status: true, list: false, date: false },
     { name: 'userId', status: true, list: false, date: false },
-    { name: 'type', status: true, list: [ 'Player name is offensive', 'inactive','chating', 'voice chat is offensive'], date: false },
+    { name: 'type', status: true, list: ['Player name is offensive', 'inactive', 'chating', 'voice chat is offensive'], date: false },
     { name: 'description', status: true, list: false, date: false },
     { name: 'createdAt', status: true, list: false, date: true },
 ]
@@ -116,8 +115,8 @@ export const sortReportUsers = [
     { name: 'reportedId', status: true, list: false, date: false },
     { name: 'reportedName', status: true, list: false, date: false },
     { name: 'description', status: true, list: false, date: false },
-    { name: 'reportedType', status: true, list: [ "User" , "Group" , "Message"], date: false },
-    { name: 'type', status: true, list: ['Player name is offensive', 'inactive','chating' , 'voice chat is offensive', "0" ], date: false },
+    { name: 'reportedType', status: true, list: ["User", "Group", "Message"], date: false },
+    { name: 'type', status: true, list: ['Player name is offensive', 'inactive', 'chating', 'voice chat is offensive', "0"], date: false },
 ]
 
 export const sortUserList = [
@@ -136,7 +135,7 @@ export const sortUserList = [
     { name: 'gem', status: true, list: false, date: false },
     { name: 'coin', status: true, list: false, date: false },
     { name: 'unfinishedGame', status: true, list: false, date: false },
-    { name: 'ban', status: true, list: ['everything' , 'chating'], date: false },
+    { name: 'ban', status: true, list: ['everything', 'chating'], date: false },
     { name: 'friendsCount', status: true, list: false, date: false },
     { name: 'transactionCount', status: true, list: false, date: false },
 ]
@@ -160,10 +159,10 @@ export const sortDialog = [
 export const sortUserItems = [
     { name: 'id', status: true, list: false, date: false },
     { name: 'name', status: true, list: false, date: false },
-    { name: 'tier', status: true, list: ["Default", "Common", "Rare" , "Epic" , "Legendary"], date: false },
+    { name: 'tier', status: true, list: ["Default", "Common", "Rare", "Epic", "Legendary"], date: false },
     { name: 'datasetId', status: true, list: false, date: false },
     { name: 'datasetGroup', status: true, list: false, date: false },
-    { name: 'gameItemType', status: true, list: ["Dice skin", "Card Skin", "Flag Skin" , "Formation" , "Effect"], date: false },
+    { name: 'gameItemType', status: true, list: ["Dice skin", "Card Skin", "Flag Skin", "Formation", "Effect"], date: false },
     { name: 'emoteItemType', status: true, list: ["Animation"], date: false },
     { name: 'characterItemType', status: true, list: ["Clothes", "Face", "Hair", "Beard", "Eye", "Eyebrows", "Glasess", "Mask", "Hat"], date: false },
     { name: 'gameId', status: true, list: false, date: false },

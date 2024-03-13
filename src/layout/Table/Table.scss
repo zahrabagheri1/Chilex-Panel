@@ -113,10 +113,37 @@
         }
 
         .tablePagintion {
+            padding: 20px 10px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 10px;
 
-            .limit{
-                .limitTitle{}
+            .pagintion {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 10px;
+
+                .previousbtn,
+                .nextbtn,
+                .pagenumber {
+                    width: 28px;
+                    height: 28px;
+                    background: $Gray;
+                    border-radius: 6px;
+                    border: 2px solid $lightGray;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: $font-xl;
+                    color: $iconColor;
+                    cursor: pointer;
+                    position: relative;
+                }
             }
         }
+
     }
 }

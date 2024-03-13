@@ -4,7 +4,7 @@ import axios from 'axios';
 import './Detail.scss';
 import Switch from '../../../../../Components/Switch/Switch';
 import Input from '../../../../../Components/Input/Input';
-import { HiMiniXMark, HiChevronLeft, HiPencilSquare, HiCheck } from "react-icons/hi2";
+import { HiMiniXMark, HiChevronLeft, HiPencilSquare, HiCheck, HiPlus } from "react-icons/hi2";
 import { useCookies } from 'react-cookie';
 import { LoadingContext } from '../../../../Loading/LoadingContext';
 import { LoginContext } from '../../../../Login/LoginContext';
@@ -12,11 +12,14 @@ import DatePikerFarsi from '../../../../../Components/DatePikerFarsi/DatePikerFa
 import Alert from '../../../../../layout/Alert/Alert';
 import Time from '../../../../../layout/Time/Time';
 import { API_URL } from '../../../../../API_URL';
+import SelectOption from '../../../../../Components/SelectOption/SelectOption';
+import ModalAddPirce from '../../../../../layout/ModalAddPirce/ModalAddPirce';
 
 function Index() {
     const [detail, setDetail] = useState({});
     const [editAble, setEditAble] = useState(false)
     const [edit, setEdit] = useState(false)
+    const [addprice, setAddprice] = useState(false)
     const { id } = useParams()
     const navigate = useNavigate()
     const [updateData, setUpdateData] = useState({})
@@ -36,6 +39,10 @@ function Index() {
         { id: 1, name: 'Coin' },
         { id: 2, name: 'Rial' },
     ]
+
+    const addPrices = () => {
+        setAddprice(true)
+    }
 
     const sendActivityInteralTime = (timeList) => {
         setUpdateData((prev) => ({ ...prev, ['activityIntervalTime']: timeList }))
@@ -268,6 +275,18 @@ function Index() {
 
                 {detail === null || detail === undefined ? '' : (
                     Object.entries(detail).map(([key, value], index) => (
+                        key === 'activityIntervalTime' ?
+                            <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <Time active={editAble} value={value} important={false} sendTime={sendActivityInteralTime} />
+                            </div>
+                            :
+                            null
+                    )))
+                }
+
+
+                {detail === null || detail === undefined ? '' : (
+                    Object.entries(detail).map(([key, value], index) => (
                         Array.isArray(value) ?
                             <div key={index} className="priceBox col-xl-12 col-lg-12 col-md-12 col-ms-12 col-xs-12">
                                 <div className='titlePrice'>{key}</div>
@@ -308,18 +327,20 @@ function Index() {
 
                                     ))}
                                 </div>
+                                <div className="addPrice" onClick={addPrices}><HiPlus /></div>
                             </div>
-                            :
-                            key === 'activityIntervalTime' ?
-                                <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <Time active={editAble} value={value} important={false} sendTime={sendActivityInteralTime} />
-                                </div>
-                                :
-                                null
+
+                            : null
                     )))
                 }
 
             </div>
+
+            {
+                addprice ?
+                    <ModalAddPirce bundleId={id} canceladd={() => setAddprice(false)}/>
+                    : null
+            }
         </div>
     );
 }

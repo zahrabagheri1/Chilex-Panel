@@ -20,7 +20,6 @@ function Prices(props) {
     }
 
     const inputChange = (e) => {
-
         setPriceList((prev) => ({ ...prev, [e.target.name]: e.target.value }))
     }
 

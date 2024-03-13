@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react';
-import ScrollContainer from 'react-indiana-drag-scroll';
 import Table from '../../../../../layout/Table/Table';
 import axios from 'axios';
 import { sortUserList } from '../../../../../Data/Sort';

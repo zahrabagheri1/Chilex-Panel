@@ -3,6 +3,7 @@ import './Table.scss';
 import moment from 'moment-jalaali';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import SelectOption from '../../Components/SelectOption/SelectOption';
+import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
 
 function Table(props) {
 
@@ -97,16 +98,16 @@ function Table(props) {
 
 
                         <div className="tablePagintion">
-                            <div className="limit">
-                                <div className="limitTitle">Rows per page:</div>
-                                <SelectOption readOnly={false} name={''} defaultValue={'15'} type={'status'} changeOptinValue={() => { }}
-                                    data={[
-                                        { id: 0, status: '15' },
-                                        { id: 1, status: '20' },
-                                    ]}
-                                />
+                            <div className="pagintion">
+                                <div className="previousbtn"><HiChevronLeft /></div>
+                                <div className="pagenumber">1</div>
+                                <div className="pagenumber">2</div>
+                                <div className="pagenumber">4</div>
+                                <div className="pagenumber">5</div>
+                                <div className="pagenumber">6</div>
+                                <div className="pagenumber">7</div>
+                                <div className="nextbtn"><HiChevronRight /></div>
                             </div>
-                            <div className="pagintion"></div>
                         </div>
 
                     </div>

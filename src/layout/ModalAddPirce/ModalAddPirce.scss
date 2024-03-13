@@ -1,0 +1,33 @@
+@import '../../Assets/scss/variable';
+
+.modaladdPrice{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: $black-90;
+    z-index: 10;
+    border-radius: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .mainaddPrice{
+        width: 400px;
+        max-height: 70%;
+        display: flex;
+        flex-direction: column;
+        gap: 36px;
+        background-color: $Gray;
+        border-radius: 10px;
+        padding: 20px;
+        scrollbar-width: thin;
+    }
+
+    .addPricebtn{
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
+    }
+}

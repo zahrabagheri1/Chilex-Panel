@@ -10,6 +10,37 @@
     gap: 8px;
     user-select: none;
 
+    .titleB {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+
+        .header-title {
+            font-size: 14px;
+            color: $fontColorlight;
+            font-weight: 700;
+        }
+
+        .data-title {
+            font-size: 16px;
+            color: $fontColor;
+            font-weight: 600;
+        }
+
+        .sub-data {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 80px;
+        }
+
+        .listItems {
+            display: flex;
+            flex-direction: row;
+            gap: 12px;
+        }
+    }
+
     .addBox {
         display: flex;
         justify-content: space-between;
@@ -61,6 +92,7 @@
             font-weight: bold;
             padding-left: 0 !important;
             user-select: none;
+
             &:focus,
             &:focus-visible,
             &:active,
@@ -71,7 +103,8 @@
             }
         }
 
-        .priceBox , .timeBox{
+        .priceBox,
+        .timeBox {
             width: 100%;
             display: flex;
             flex-direction: column;
@@ -79,40 +112,31 @@
             border-top: 2px solid $bgColor;
             padding-top: 20px;
 
-            .titlePrice , .titleTime{
+            .titlePrice,
+            .titleTime {
                 font-size: $font-xxl;
             }
         }
 
-        .titleB {
+
+        .addPrice {
+            width: 28px;
+            height: 28px;
+            background: $Gray;
+            border-radius: 6px;
+            border: 2px solid $lightGray;
             display: flex;
-            flex-direction: column;
-            gap: 12px;
-
-            .header-title {
-                font-size: 18px;
-                color: $fontColorlight;
-                font-weight: 700;
-            }
-
-            .data-title {
-                font-size: 18px;
-                color: $fontColor;
-                font-weight: 600;
-            }
-
-            .sub-data {
-                display: flex;
-                flex-direction: row;
-                flex-wrap: wrap;
-                gap: 80px;
-            }
-
-            .listItems {
-                display: flex;
-                flex-direction: row;
-                gap: 12px;
-            }
+            align-items: center;
+            justify-content: center;
+            font-size: $font-xl;
+            color: $iconColor;
+            cursor: pointer;
+            position: absolute;
+            right: 80px;
         }
+
+
     }
+
+
 }
