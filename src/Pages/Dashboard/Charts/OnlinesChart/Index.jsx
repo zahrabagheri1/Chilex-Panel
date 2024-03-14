@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
 import './OnlinesChart.scss'
-import Chart from '../../../../layout/Chart/Chart';
 import axios from 'axios';
 import { API_URL } from '../../../../API_URL';
 import { useCookies } from 'react-cookie';
@@ -60,7 +59,7 @@ function Index() {
   const chartDataOption = {
     series: [
       {
-        name: 'South',
+        name: 'onlineUser',
         data: onlineUser
       },
     ],
