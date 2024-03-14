@@ -35,7 +35,6 @@ function Index() {
     getOnlineChart()
   }, [filter])
 
-  //chilexdev.diacostudios.com/admin/charts/onlines?startDate=%09%202020-02-25&endDate=%09%202020-02-25&type=1
   const getOnlineChart = () => {
     setLoading(true)
     axios.get(`${API_URL === undefined ? '' : API_URL}/admin/charts/onlines?${filter.startDate === null || filter.startDate === undefined ? '' : ('startDate=' + filter.startDate + '&')}${filter.endDate === null || filter.endDate === undefined ? '' : ('endDate=' + filter.endDate + '&')}${filter.type === null || filter.type === undefined ? '' : ('type=' + filter.type)}`,

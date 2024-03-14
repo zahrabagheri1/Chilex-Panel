@@ -2,19 +2,9 @@ import React from 'react';
 import './Charts.scss';
 import OnlinesChart from './OnlinesChart/Index';
 import AllGamesChart from './AllGamesChart/Index';
+import SoccerChart from './SoccerChart/Index';
 
 function Charts() {
-
-    //? GET
-    //? /admin/charts/onlines 
-
-    //? GET
-    //? /admin/charts/allgames
-
-
-    //? GET
-    //? /admin/charts/soccer
-
 
     //? GET
     //? /admin/charts/ludo
@@ -39,6 +29,9 @@ function Charts() {
             </div>
             <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
                 <AllGamesChart />
+            </div>
+            <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                <SoccerChart />
             </div>
         </div>
     );
