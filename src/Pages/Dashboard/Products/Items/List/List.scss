@@ -15,24 +15,22 @@
         flex-direction: row;
         justify-content: space-between;
         gap: 10px;
+        height: auto;
         z-index: 1;
 
         .filter {
-            z-index: 1;
+            display: flex;
             position: relative;
-            padding: 20px 30px;
             flex-direction: row;
             height: auto;
             width: calc(100% - 60px);
-            background: $Gray;
-            border-radius: 6px;
-            border: 2px solid $lightGray;
             align-items: center;
             gap: 10px;
 
             .filterBtnBox {
                 display: flex;
                 align-items: flex-end;
+                width: 100px;
 
                 .filterBtn {
                     height: 32px;
@@ -44,23 +42,27 @@
         .resetFillters {
             position: absolute;
             top: 10px;
-            right: 15px;
+            right: 0px;
             font-size: 18px;
             color: $white;
             cursor: pointer;
         }
 
+        .filerinput {
+            width: 100px;
+        }
+
         .addItem {
-            width: 6vh;
+            width: 100px;
             background: $Gray;
             border-radius: 6px;
             border: 2px solid $lightGray;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: $font-xl;
-            color: $iconColor;
             cursor: pointer;
+            font-size: 14px;
+            color: $iconColor;
         }
     }
 

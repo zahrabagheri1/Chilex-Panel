@@ -33,15 +33,12 @@ function Index() {
         orderBy: 1,
     })
 
-    console.log(sortBundles)
-
-    //admin-stuff/bundles-all?bundleType=0&sku=zahra&bundleStatus=0&priceStatus=1&limit=2&offset=1&sortBy=3&orderBy=1
     useEffect(() => {
         goToLoginPage(cookies.accessToken);
         if (resetFlag) {
             reqFilterBundle();
             setResetFlag(false);
-        }else{
+        } else {
             reqFilterBundle()
         }
     }, [resetFlag])
@@ -66,7 +63,6 @@ function Index() {
             )
     }
 
-
     const resetFillters = () => {
         setFilters({
             bundleType: null,
@@ -88,6 +84,7 @@ function Index() {
     const hundelOpenModal = () => {
         setModal(true)
     }
+
     const handlerCloseModal = () => {
         setModal(false)
     }
@@ -103,67 +100,65 @@ function Index() {
     const filterhandler = () => {
         reqFilterBundle()
     }
+
     return (
         <div className='bundleList'>
             <div className='top'>
                 <div className='filter'>
                     <div className="row">
-                        <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                            <SelectOption readOnly={false} name={'bundleType'} defaultValue={'bundleType'} value={filters.bundleType} type={'status'} changeOptinValue={updateOptionData}
-                                data={[
-                                    { id: 0, status: 'Gem bundle' },
-                                    { id: 1, status: 'Coin bundle' },
-                                ]}
-                            />
-                        </div>
-                        <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                            <Input name={'sku'} type={'text'} title={"sku"} placeholder={'sku'} value={filters.sku} changeInputValue={updateInputData} />
-                        </div>
-                        <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                            <SelectOption readOnly={false} name={'bundleStatus'} defaultValue={'bundleStatus'} value={filters.bundleStatus} type={'status'} changeOptinValue={updateOptionData}
-                                data={[
-                                    { id: 0, status: 'Active' },
-                                    { id: 1, status: 'Deactive' },
-                                ]}
-                            />
-                        </div>
-                        <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                            <SelectOption readOnly={false} name={'priceStatus'} defaultValue={'priceStatus'} value={filters.priceStatus} type={'status'} changeOptinValue={updateOptionData}
-                                data={[
-                                    { id: 0, status: 'Active' },
-                                    { id: 1, status: 'Deactive' },
-                                ]}
-                            />
-                        </div>
-                        {/* <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <Input name={'limit'} type={'number'} title={"limit"} placeholder={'limit'} changeInputValue={updateInputData} />
-                    </div>
-                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <Input name={'offset'} type={'number'} title={"offset"} placeholder={'offset'} changeInputValue={updateInputData} />
-                    </div> */}
-                        <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                            <SelectOption readOnly={false} name={'sortBy'} defaultValue={'id'} type={'status'} changeOptinValue={updateOptionData}
-                                data={[
-                                    { id: 0, status: 'createdAt' },
-                                    { id: 1, status: 'updatedAt' },
-                                    { id: 2, status: 'amount' },
-                                    { id: 3, status: 'id' },
-                                    { id: 4, status: 'name' },
-                                    { id: 5, status: 'status' },
-                                ]}
-                            />
-                        </div>
-                        <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                            <SelectOption readOnly={false} name={'orderBy'} defaultValue={'ASC'} type={'status'} changeOptinValue={updateOptionData}
-                                data={[
-                                    { id: 0, status: 'DESC' },
-                                    { id: 1, status: 'ASC' },
-                                ]}
-                            />
-                        </div>
-                        <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                            <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
-                        </div>
+
+                        <SelectOption classnameBox={'filerinput'} readOnly={false} name={'bundleType'} defaultValue={'bundleType'} value={filters.bundleType} type={'status'} changeOptinValue={updateOptionData}
+                            data={[
+                                { id: 0, status: 'Gem bundle' },
+                                { id: 1, status: 'Coin bundle' },
+                            ]}
+                        />
+
+
+                        <Input classname={'filerinput'} name={'sku'} type={'text'} placeholder={'sku'} value={filters.sku} changeInputValue={updateInputData} />
+
+                        <SelectOption classnameBox={'filerinput'} readOnly={false} name={'bundleStatus'} defaultValue={'bundleStatus'} value={filters.bundleStatus} type={'status'} changeOptinValue={updateOptionData}
+                            data={[
+                                { id: 0, status: 'Active' },
+                                { id: 1, status: 'Deactive' },
+                            ]}
+                        />
+
+                        <SelectOption classnameBox={'filerinput'} readOnly={false} name={'priceStatus'} defaultValue={'priceStatus'} value={filters.priceStatus} type={'status'} changeOptinValue={updateOptionData}
+                            data={[
+                                { id: 0, status: 'Active' },
+                                { id: 1, status: 'Deactive' },
+                            ]}
+                        />
+
+                        <SelectOption classnameBox={'filerinput'} readOnly={false} name={'sortBy'} defaultValue={'id'} type={'status'} changeOptinValue={updateOptionData}
+                            data={[
+                                { id: 0, status: 'createdAt' },
+                                { id: 1, status: 'updatedAt' },
+                                { id: 2, status: 'amount' },
+                                { id: 3, status: 'id' },
+                                { id: 4, status: 'name' },
+                                { id: 5, status: 'status' },
+                            ]}
+                        />
+
+                        <SelectOption classnameBox={'filerinput'} readOnly={false} name={'orderBy'} defaultValue={'ASC'} type={'status'} changeOptinValue={updateOptionData}
+                            data={[
+                                { id: 0, status: 'DESC' },
+                                { id: 1, status: 'ASC' },
+                            ]}
+                        />
+
+                        <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.limit} name={'limit'} defaultValue={'15'} type={'status'} changeOptinValue={updateOptionData}
+                            data={[
+                                { id: 15, status: 15 },
+                                { id: 20, status: 20 },
+                                { id: 25, status: 25 },
+                                { id: 30, status: 30 },
+                            ]}
+                        />
+
+                        <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
 
                     </div>
                     <div className="resetFillters" onClick={resetFillters}>
@@ -173,10 +168,12 @@ function Index() {
 
                 <div className='addBundle' onClick={hundelOpenModal}>
                     <HiPlus className='icon' />
+                    <div>Add Bundle</div>
                 </div>
+
             </div>
 
-                <Table data={bundles} sort={sortBundles} action={true} showDetail={showDetailBandle} />
+            <Table data={bundles} sort={sortBundles} action={true} showDetail={showDetailBandle} />
 
             {modal === true ?
 

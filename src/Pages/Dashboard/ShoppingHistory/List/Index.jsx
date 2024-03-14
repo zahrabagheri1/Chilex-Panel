@@ -30,7 +30,8 @@ function Index() {
         sortBy: 4,
         orderBy: 1,
         offset: null,
-        limit: 1000
+        limit: 1000,
+        exportUserIds: false
     })
 
     useEffect(() => {
@@ -46,7 +47,7 @@ function Index() {
 
     const reqFilterShopHistory = () => {
         setLoading(true)
-        axios.get(`${API_URL === undefined ? '' : API_URL}/shopping-history/all?${filters.userId === null || filters.userId === undefined ? '' : 'userId=' + filters.userId + '&'}${filters.gatewayTypes === null || filters.gatewayTypes === undefined ? '' : 'gatewayTypes[]=' + filters.gatewayTypes + '&'}${filters.minAmount === null || filters.minAmount === undefined ? '' : 'minAmount=' + filters.minAmount + '&'}${filters.maxAmount === null || filters.maxAmount === undefined ? '' : 'maxAmount=' + filters.maxAmount + '&'}${filters.type === null || filters.type === undefined ? '' : 'type=' + filters.type + '&'}${filters.referenceType === null || filters.referenceType === undefined ? '' : 'referenceType=' + filters.referenceType + '&'}${filters.sortBy === null || filters.sortBy === undefined ? '' : 'sortBy=' + filters.sortBy + '&'}${filters.orderBy === null || filters.orderBy === undefined ? '' : 'orderBy=' + filters.orderBy + '&'}${filters.offset === null || filters.offset === undefined ? '' : 'offset=' + filters.offset + '&'}${filters.limit === null || filters.limit === undefined ? '' : 'limit=' + filters.limit}`,
+        axios.get(`${API_URL === undefined ? '' : API_URL}/shopping-history/all?${filters.userId === null || filters.userId === undefined ? '' : 'userId=' + filters.userId + '&'}${filters.gatewayTypes === null || filters.gatewayTypes === undefined ? '' : 'gatewayTypes[]=' + filters.gatewayTypes + '&'}${filters.minAmount === null || filters.minAmount === undefined ? '' : 'minAmount=' + filters.minAmount + '&'}${filters.maxAmount === null || filters.maxAmount === undefined ? '' : 'maxAmount=' + filters.maxAmount + '&'}${filters.type === null || filters.type === undefined ? '' : 'type=' + filters.type + '&'}${filters.referenceType === null || filters.referenceType === undefined ? '' : 'referenceType=' + filters.referenceType + '&'}${filters.sortBy === null || filters.sortBy === undefined ? '' : 'sortBy=' + filters.sortBy + '&'}${filters.orderBy === null || filters.orderBy === undefined ? '' : 'orderBy=' + filters.orderBy + '&'}${filters.offset === null || filters.offset === undefined ? '' : 'offset=' + filters.offset + '&'}${filters.limit === null || filters.limit === undefined ? '' : 'limit=' + filters.limit + '&'}${filters.exportUserIds === null || filters.exportUserIds === undefined ? '' : 'exportUserIds=' + filters.exportUserIds}`,
             {
                 headers: {
                     'Content-Type': 'application/json',
@@ -74,7 +75,7 @@ function Index() {
     const updateOptionData = (name, id) => {
         setFilters((prev) => ({ ...prev, [name]: id }))
     }
-    
+
     const resetFillters = () => {
         setFilters({
             userId: null,
@@ -89,9 +90,13 @@ function Index() {
         })
         setResetFlag(true);
     }
-    
+
     const filterhandler = () => {
         reqFilterShopHistory()
+    }
+    const exportUsers = () => {
+        setFilters((prev) => ({ ...prev, ["exportUserIds"]: true }))
+        setResetFlag(true);
     }
 
     return (
@@ -144,6 +149,10 @@ function Index() {
                     <div className="resetFillters" onClick={resetFillters}>
                         <HiOutlineTrash />
                     </div>
+                </div>
+                <div className='addnotif' onClick={exportUsers}>
+                    <HiMiniArrowUpTray className='icon' />
+                    <div>Export</div>
                 </div>
             </div>
 

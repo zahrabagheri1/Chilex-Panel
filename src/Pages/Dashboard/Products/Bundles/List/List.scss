@@ -7,6 +7,7 @@
     gap: 20px;
     width: 95%;
     margin: auto;
+
     .top {
         position: relative;
         display: flex;
@@ -17,29 +18,26 @@
         z-index: 1;
 
         .filter {
-            z-index: 1;
+            display: flex;
             position: relative;
-            padding: 20px 30px;
             flex-direction: row;
             height: auto;
             width: calc(100% - 60px);
-            background: $Gray;
-            border-radius: 6px;
-            border: 2px solid $lightGray;
             align-items: center;
             gap: 10px;
-            
-            .filterBtnBox{
+
+            .filterBtnBox {
                 display: flex;
                 align-items: flex-end;
-                .filterBtn{
+
+                .filterBtn {
                     height: 32px;
                 }
-                
+
             }
         }
 
-        .resetFillters{
+        .resetFillters {
             position: absolute;
             top: 10px;
             right: 15px;
@@ -47,9 +45,13 @@
             color: $white;
             cursor: pointer;
         }
-        
+
+        .filerinput {
+            width: 100px;
+        }
+
         .addBundle {
-            width: 6vh;
+            width: 100px;
             background: $Gray;
             border-radius: 6px;
             border: 2px solid $lightGray;
@@ -57,7 +59,7 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            font-size: $font-xl;
+            font-size: 14px;
             color: $iconColor;
         }
     }
