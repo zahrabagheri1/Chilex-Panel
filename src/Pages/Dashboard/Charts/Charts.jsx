@@ -3,12 +3,9 @@ import './Charts.scss';
 import OnlinesChart from './OnlinesChart/Index';
 import AllGamesChart from './AllGamesChart/Index';
 import SoccerChart from './SoccerChart/Index';
+import LudoChart from './LudoChart/Index';
 
 function Charts() {
-
-    //? GET
-    //? /admin/charts/ludo
-
 
     //? GET
     //? /admin/charts/yatzy
@@ -32,6 +29,9 @@ function Charts() {
             </div>
             <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
                 <SoccerChart />
+            </div>
+            <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                <LudoChart />
             </div>
         </div>
     );
