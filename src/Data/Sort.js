@@ -1,6 +1,6 @@
 export const adminTransaction = [
     { name: 'id', status: true, list: false, date: false },
-    { name: 'status', status: true, list: ['Active', 'Inactive'], date: false },
+    { name: 'status', status: true, list: ['Pending', 'True check result', 'False check result', 'Failed', 'Successful', 'Refunded'], date: false },
     { name: 'amount', status: true, list: false, date: false },
     { name: 'maskedCardNumber', status: true, list: false, date: false },
     { name: 'hashedCardNumber', status: true, list: false, date: false },
@@ -168,53 +168,3 @@ export const sortUserItems = [
     { name: 'gameId', status: true, list: false, date: false },
     { name: 'equip', status: true, list: false, date: false },
 ]
-
-
-
-// stuffType*	number
-//     stuffType =>  gemBundle : 0 , coinBundle : 1 , Item : 2
-// name*	string
-// sku*	string
-// amount	number
-// image	string
-// prices*	[
-//     prices: { type: enumPriceType, amount: number }[] ,
-//     type => GEM : 0 , COIN : 1 , RIAL : 2
-// string]
-// expireTime	string
-// nullable: true
-// status*	number
-// minimum: 0
-// maximum: 1
-//     status => ACTIVE : 0 , DEACTIVE : 1
-// category*	number
-// minimum: 0
-// maximum: 2
-//     ELSE : 0 , GAME : 1 , CHARACTER : 2
-// gameId	number
-//  	number
-//     DICE_SKIN: 0,
-//     CARD_SKIN: 1,
-//     FLAG_SKIN: 2,
-//     FORMATION: 3
-// characterItemType	number
-//     CLOTHES : 0,
-//     FACE: 1,
-//     HAIR: 2,
-//     BEARD: 3,
-//     EYE: 4,
-//     EYEBROWS: 5,
-//     GLASESS: 6,
-//     MASK: 7,
-//     HAT: 8
-// tier	number
-//     DEFAULT : 0,
-//     COMMON : 1 ,
-//     RARE :2 ,
-//     EPIC : 3,
-//     LEGENDARY : 4,
-// activityIntervalTime	{
-// description:
-//     {day : number , hour : number , minute : number}
-// }
-// }
