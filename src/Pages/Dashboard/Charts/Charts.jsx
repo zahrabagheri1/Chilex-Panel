@@ -5,15 +5,11 @@ import AllGamesChart from './AllGamesChart/Index';
 import SoccerChart from './SoccerChart/Index';
 import LudoChart from './LudoChart/Index';
 import YatzyChart from './YatzyChart/Index';
+import UnoChart from './UnoChart/Index';
 
 function Charts() {
     //? GET
     //? /admin/charts/backgammon
-
-
-    //? GET
-    //? /admin/charts/uno
-
 
     return (
         <div className='charts row'>
@@ -31,6 +27,9 @@ function Charts() {
             </div>
             <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
                 <YatzyChart />
+            </div>
+            <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                <UnoChart />
             </div>
         </div>
     );
