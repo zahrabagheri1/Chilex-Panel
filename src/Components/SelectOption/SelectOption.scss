@@ -64,9 +64,9 @@
             justify-content: center;
             align-items: center;
             border: 1px solid $lightGray;
-            border-radius: 8px;
+            border-radius: 6px;
             text-overflow: ellipsis;
-            background-color: $lightGray;
+            background-color: $Gray;
             color: $fontColorlight;
             font-size: $font-sm;
             transition: .3s;
@@ -99,9 +99,9 @@
             flex-direction: column;
             align-items: center;
             top: 34px;
-            background-color: $lightGray;
+            background-color: $Gray;
             border: 1px solid $Gray;
-            border-radius: 8px;
+            border-radius: 6px;
             z-index: 100;
             margin-top: 5px;
             transform-origin: top;

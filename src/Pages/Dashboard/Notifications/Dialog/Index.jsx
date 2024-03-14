@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom'
 import { sortDialog } from '../../../../Data/Sort'
 import { API_URL } from '../../../../API_URL';
 import axios from 'axios'
+import SelectOption from '../../../../Components/SelectOption/SelectOption'
 
 
 function Index() {
@@ -76,12 +77,12 @@ function Index() {
     setModal(true)
   }
 
-  const handlerCloseModal = () => {
-    setModal(false)
-  }
-
   const updateInputData = (e) => {
     setFilters((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+  }
+
+  const updateOptionData = (name, id) => {
+    setFilters((prev) => ({ ...prev, [name]: id }))
   }
 
   const filterhandler = () => {
@@ -92,23 +93,18 @@ function Index() {
     <div className='notifList'>
       <div className='top'>
         <div className='filter'>
-          <div className="row">
-            <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-              <Input name={'userId'} type={'text'} title={"userId"} placeholder={'userId'} value={filters.userId} changeInputValue={updateInputData} />
-            </div>
+          <Input name={'userId'} classname={'filerinput'} type={'text'} placeholder={'userId'} value={filters.userId} changeInputValue={updateInputData} />
 
-            {/* <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                    <Input name={'limit'} type={'number'} title={"limit"} placeholder={'limit'} changeInputValue={updateInputData} />
-                </div>
-                <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                    <Input name={'page'} type={'number'} title={"page"} placeholder={'page'} changeInputValue={updateInputData} />
-                </div> */}
+          <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.limit} name={'limit'} defaultValue={'15'} type={'status'} changeOptinValue={updateOptionData}
+            data={[
+              { id: 15, status: 15 },
+              { id: 20, status: 20 },
+              { id: 25, status: 25 },
+              { id: 30, status: 30 },
+            ]}
+          />
 
-            <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-              <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
-            </div>
-
-          </div>
+          <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
           <div className="resetFillters" onClick={resetFillters}>
             <HiOutlineTrash />
           </div>
@@ -116,10 +112,11 @@ function Index() {
 
         <div className='addnotif' onClick={hundelOpenModal}>
           <HiPlus className='icon' />
+          <div>Add Dialog</div>
         </div>
       </div>
 
-        <Table data={dialog} sort={sortDialog} action={true} showDetail={showDetailNotif} />
+      <Table data={dialog} sort={sortDialog} action={true} showDetail={showDetailNotif} />
 
       {modal === true ?
         <AddDialog canceladd={() => setModal(false)} />

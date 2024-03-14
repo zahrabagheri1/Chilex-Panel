@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Input.scss';
 import { HiUser, HiOutlineUser, HiMiniMagnifyingGlass, HiOutlineEye, HiLockClosed, HiOutlineEyeSlash, HiMiniEyeSlash, HiMiniEye } from "react-icons/hi2";
-import moment from 'moment-jalaali';
 
 // const props = {
 //   title: 'name',

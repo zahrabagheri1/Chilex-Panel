@@ -46,7 +46,7 @@ function SelectOption(props) {
   return (
     <div className={`optionBox ${props.classnameBox}`}>
       <div className="optionTitleBox">
-        <div className='title'>{props.name}</div>
+        <div className='title'>{props.title}</div>
         {
           props.important === true ?
             <div className="shouldfill"></div>
