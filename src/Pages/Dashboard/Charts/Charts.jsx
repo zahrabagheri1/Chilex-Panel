@@ -4,6 +4,7 @@ import OnlinesChart from './OnlinesChart/Index';
 import AllGamesChart from './AllGamesChart/Index';
 import SoccerChart from './SoccerChart/Index';
 import LudoChart from './LudoChart/Index';
+import YatzyChart from './YatzyChart/Index';
 
 function Charts() {
 
@@ -32,6 +33,9 @@ function Charts() {
             </div>
             <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
                 <LudoChart />
+            </div>
+            <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                <YatzyChart />
             </div>
         </div>
     );
