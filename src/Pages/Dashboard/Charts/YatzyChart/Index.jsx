@@ -111,7 +111,7 @@ function Index() {
     return (
         <div className='chart-filter-bg' >
             <div className="chart-filter-box row">
-                <div className="chart-filter-title col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">yatzy</div>
+                <div className="chart-filter-title col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">Yatzy</div>
                 <div className="chart-box col-xl-9 col-lg-9 col-md-9 col-sm-9 col-xs-9">
                     <ReactApexChart options={chartDataOption.options} series={chartDataOption.series} type="area" />
                 </div>

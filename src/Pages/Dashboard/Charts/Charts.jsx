@@ -7,11 +7,6 @@ import LudoChart from './LudoChart/Index';
 import YatzyChart from './YatzyChart/Index';
 
 function Charts() {
-
-    //? GET
-    //? /admin/charts/yatzy
-
-
     //? GET
     //? /admin/charts/backgammon
 
