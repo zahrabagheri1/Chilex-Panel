@@ -29,13 +29,68 @@ function Chart(props) {
         setFilter((prev) => ({ ...prev, [title]: e }))
     }
 
+    const chartDataOption = {
+        series: [
+            {
+                name: 'South',
+                data: props.chartData
+            },
+        ],
+        options: {
+            chart: {
+                height: 350,
+                type: 'area',
+                id: 'realtime',
+                background: 'none',
+                animations: {
+                    enabled: true,
+                    easing: 'linear',
+                    dynamicAnimation: {
+                        speed: 100
+                    }
+                },
+                toolbar: {
+                    show: false
+                },
+                zoom: {
+                    enabled: true,
+                }
+            },
+            stroke: {
+                curve: 'smooth',
+                width: 2
+            },
+            colors: ['#0C499B'],
+            dataLabels: {
+                enabled: false,
+            },
+            fill: {
+                type: 'solid',
+                opacity: [0.5, 1],
+            },
+            markers: {
+                size: 0
+            },
+            theme: {
+                mode: 'dark',
+                palette: 'palette1',
+                monochrome: {
+                    enabled: true,
+                    color: '#0C499B',
+                    shadeTo: 'dark',
+                    shadeIntensity: 1
+                },
+            }
+        },
+    };
+
     return (
         <div className='chart-filter-bg' >
             {props.chartData === undefined || props.chartData === null ? '' :
                 <div className="chart-filter-box row">
                     <div className="chart-filter-title col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">{props.chartName}</div>
                     <div className="chart-box col-xl-9 col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                        <ReactApexChart options={props.chartData.options} series={props.chartData.series} type="area" height={350} />
+                        <ReactApexChart options={chartDataOption.options} series={chartDataOption.series} type="area" height={350} />
                     </div>
 
                     <div className="filter-chart col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-3">
