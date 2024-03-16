@@ -69,28 +69,18 @@ function Index() {
     setResetFlag(true);
   }
 
-  const showDetailNotif = (id) => {
-    // navigate(`${id}`)
-  }
-
-  const hundelOpenModal = () => {
-    setModal(true)
-  }
-
   const updateInputData = (e) => {
     setFilters((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
-  const updateOptionData = (name, id) => {
-    setFilters((prev) => ({ ...prev, [name]: id }))
+  const offsetTableHandler = (page) => {
+    setFilters((prev) => ({ ...prev, 'offset': page }))
+    setResetFlag(true)
   }
+
   const updateOptionDataForLimit = (name, id) => {
     setFilters((prev) => ({ ...prev, [name]: id, 'offset': 1 }))
     setResetFlag(true)
-}
-
-  const filterhandler = () => {
-    reqDialog()
   }
 
   return (
@@ -110,18 +100,18 @@ function Index() {
           />
 
           <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
-          <div className="resetFillters" onClick={resetFillters}>
+          <div className="resetFillters" onClick={() => reqDialog()}>
             <HiOutlineTrash />
           </div>
         </div>
 
-        <div className='addnotif' onClick={hundelOpenModal}>
+        <div className='addnotif' onClick={() => setModal(true)}>
           <HiPlus className='icon' />
           <div>Add Dialog</div>
         </div>
       </div>
 
-      <Table data={dialogList?.data} sort={sortDialog} action={true} pagintion={dialogList?.total_pages}  showDetailStatus={false} />
+      <Table data={dialogList?.data} sort={sortDialog} action={true} list={dialogList} offsetTable={offsetTableHandler} showDetailStatus={false} />
 
       {modal === true ?
         <AddDialog canceladd={() => setModal(false)} />

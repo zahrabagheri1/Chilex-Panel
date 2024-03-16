@@ -43,8 +43,8 @@ function Table(props) {
                     </div>
                     :
                     <div className="tableBox">
-                        <ScrollContainer>
-                            <div className='tableBody'>
+                        <div className='tableBody'>
+                            <ScrollContainer>
                                 <table className='table'>
                                     <thead className='header'>
                                         <tr className='trhead'>
@@ -140,11 +140,11 @@ function Table(props) {
                                             : null}
                                     </tbody>
                                 </table>
-                            </div>
-                        </ScrollContainer>
+                            </ScrollContainer>
+                        </div>
 
                         {
-                            props.list ?
+                            props.list || props.list?.total_pages > 1 ?
                                 <div className="tablePagintion">
                                     <div className="pagintion">
                                         <div className="previousbtn" onClick={previousPagntion}><HiChevronLeft /></div>
