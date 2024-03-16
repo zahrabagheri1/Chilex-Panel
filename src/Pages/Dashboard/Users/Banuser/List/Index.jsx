@@ -19,6 +19,7 @@ function Index() {
     const { loading, setLoading } = useContext(LoadingContext);
     const { goToLoginPage } = useContext(LoginContext);
     const [resetFlag, setResetFlag] = useState(false);
+    const navigate = useNavigate()
     const [filters, setFilters] = useState({
         limit: 20,
         offset: null,
@@ -27,8 +28,6 @@ function Index() {
         sortBy: 3,
         orderBy: 1,
     })
-    const navigate = useNavigate()
-    const [value, setValue] = useState()
 
     useEffect(() => {
         goToLoginPage(cookies.accessToken);
@@ -92,15 +91,20 @@ function Index() {
         setResetFlag(true)
     }
 
+    const updateOptionDataForLimit = (name, id) => {
+        setFilters((prev) => ({ ...prev, [name]: id, 'offset': 1 }))
+        setResetFlag(true)
+    }
+
     return (
         <div className='banUserlist'>
             <div className="filtersBanUser">
 
-                <Input classname={'filerinput'} value={value} type={'text'} placeholder={'type...'} changeInputValue={updateInputData} />
+                <Input classname={'filerinput'} value={filters.type} type={'text'} placeholder={'type...'} changeInputValue={updateInputData} />
 
-                <Input classname={'filerinput'} value={value} type={'text'} placeholder={'userId...'} changeInputValue={updateInputData} />
+                <Input classname={'filerinput'} value={filters.userId} type={'text'} placeholder={'userId...'} changeInputValue={updateInputData} />
 
-                <SelectOption classnameBox={'filerinput'} readOnly={false} value={value} name={'sortBy'} defaultValue={'sortBy id'} type={'status'} changeOptinValue={updateOptionData}
+                <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.sortBy} name={'sortBy'} defaultValue={'sortBy id'} type={'status'} changeOptinValue={updateOptionData}
                     data={[
                         { id: 0, status: 'createdAt' },
                         { id: 1, status: 'updatedAt' },
@@ -110,15 +114,16 @@ function Index() {
                     ]}
                 />
 
-                <SelectOption classnameBox={'filerinput'} readOnly={false} value={value} name={'orderBy'} defaultValue={'orderBy '} type={'status'} changeOptinValue={updateOptionData}
+                <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.orderBy} name={'orderBy'} defaultValue={'orderBy '} type={'status'} changeOptinValue={updateOptionData}
                     data={[
                         { id: 0, status: 'DESC' },
                         { id: 1, status: 'ASC' },
                     ]}
                 />
 
-                <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.limit} name={'limit'} defaultValue={'20'} type={'status'} changeOptinValue={updateOptionData}
+                <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.limit} name={'limit'} defaultValue={'20'} type={'status'} changeOptinValue={updateOptionDataForLimit}
                     data={[
+                        { id: 20, status: 20 },
                         { id: 30, status: 30 },
                         { id: 40, status: 40 },
                         { id: 50, status: 50 },
