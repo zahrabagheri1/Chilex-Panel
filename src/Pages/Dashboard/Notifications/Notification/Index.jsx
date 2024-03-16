@@ -68,8 +68,10 @@ function Index() {
 
         setResetFlag(true);
     }
-    const hundelOpenModal = () => {
-        setModal(true)
+
+    const offsetTableHandler = (page) => {
+        setFilters((prev) => ({ ...prev, 'offset': page }))
+        setResetFlag(true)
     }
 
     const updateInputData = (e) => {
@@ -104,13 +106,13 @@ function Index() {
                     </div>
                 </div>
 
-                <div className='addnotif' onClick={hundelOpenModal}>
+                <div className='addnotif' onClick={() => setModal(true)}>
                     <HiPlus className='icon' />
                     <div className="">New Notif</div>
                 </div>
             </div>
 
-            <Table data={notifictionList?.data} sort={sortNotification} pagintion={notifictionList?.total_pages} action={true} showDetailStatus={false} />
+            <Table data={notifictionList?.data} sort={sortNotification} list={notifictionList} offsetTable={offsetTableHandler} action={true} showDetailStatus={false} />
 
             {modal === true ?
                 <AddNotification canceladd={() => setModal(false)} />
