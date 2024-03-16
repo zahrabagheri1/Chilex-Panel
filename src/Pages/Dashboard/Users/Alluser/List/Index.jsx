@@ -65,10 +65,6 @@ function Index() {
     setResetFlag(true);
   }
 
-  const filtershandler = () => {
-    banUser()
-  }
-
   const updateOptionData = (name, id) => {
     setFilters((prev) => ({ ...prev, [name]: id }))
   }
@@ -85,8 +81,9 @@ function Index() {
     setFilters((prev) => ({ ...prev, [title]: e }))
   }
 
-  const handelOpenModal = () => {
-    setModal(true)
+  const offsetTableHandler = (page) => {
+    setFilters((prev) => ({ ...prev, 'offset': page }))
+    setResetFlag(true)
   }
 
   useEffect(() => {
@@ -190,8 +187,8 @@ function Index() {
               { id: 60, status: 60 },
             ]}
           />
-          
-          <Button title={'Filters'} className={'filtersBtn'} classnameBtn={'filtersBtnBox'} btnhandler={filtershandler} />
+
+          <Button title={'Filters'} className={'filtersBtn'} classnameBtn={'filtersBtnBox'} btnhandler={() => banUser()} />
 
 
           <div className="resetFillters" onClick={resetFillters}>
@@ -199,19 +196,19 @@ function Index() {
           </div>
         </div>
 
-        <div className="banuser" onClick={handelOpenModal}>
+        <div className="banuser" onClick={() => setModal(true)}>
           <HiMiniArrowUpTray className='icon' />
           <div>Export</div>
         </div>
 
-        <div className="banuser" onClick={handelOpenModal}>
+        <div className="banuser" onClick={() => setModal(true)}>
           <HiUserMinus className='icon' />
           <div>Ban user</div>
         </div>
       </div>
 
 
-      <Table data={userList?.data} sort={sortUserList} action={true} pagintion={userList?.total_pages} showDetail={showDetailBanUser} />
+      <Table data={userList?.data} sort={sortUserList} list={userList} offsetTable={offsetTableHandler} action={true} pagintion={userList?.total_pages} showDetail={showDetailBanUser} />
 
 
 
