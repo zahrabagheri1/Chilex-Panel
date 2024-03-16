@@ -15,7 +15,7 @@ import './Notification.scss';
 import SelectOption from '../../../../Components/SelectOption/SelectOption';
 
 function Index() {
-    const [notifictionList, setNotifictionList] = useState(null);
+    const [notifictionList, setNotifictionList] = useState();
     const [modal, setModal] = useState(false);
     const [cookies] = useCookies(['accessToken']);
     const { loading, setLoading } = useContext(LoadingContext);

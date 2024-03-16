@@ -61,7 +61,7 @@ export const sortItems = [
 
 export const sortHistory = [
     { name: 'id', status: true, list: false, date: false },
-    { name: 'type', status: true, list: ['Gem bundle', 'Coin bundle', 'Item', 'Free'], date: false },
+    { name: 'type', status: true, list: ['Gem bundle', 'Coin bundle', 'Item', 'Free', '4'], date: false },
     { name: 'amount', status: true, list: false, date: false },
     { name: 'referenceType', status: true, list: ['BUNDLE', 'ITEM', 'TRANSACTION', 'GAME_SETTING', 'INVITING_REWARD', 'DailyCollect', 'DailyQuest', 'Chapter', 'Leaderboard'], date: false },
     { name: 'referenceId', status: true, list: false, date: false },

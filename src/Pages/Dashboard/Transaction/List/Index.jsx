@@ -29,7 +29,7 @@ const transaction = [
 ]
 
 function Index() {
-    const [transactionList, setTransactionList] = useState(null);
+    const [transactionList, setTransactionList] = useState();
     const { setLoading } = useContext(LoadingContext);
     const { goToLoginPage } = useContext(LoginContext);
     const navigate = useNavigate()
