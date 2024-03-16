@@ -5,12 +5,10 @@
     height: calc(100vh - 50vh);
 
     .emptyTable {
-        height: calc(100vh - 50vh);
-        // min-height: calc(100vh - 50vh);
+        height: calc(100vh - 40vh);
         width: calc(100% - 4px);
         background-color: $Gray;
         border-radius: 16px;
-        // border: 2px solid $lightGray;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -23,7 +21,7 @@
             border: 2px solid $lightGray;
             border-radius: 6px;
             overflow: auto;
-            max-height: calc(100vh - 40vh);
+            max-height: calc(100vh - 20vh);
             background-color: #111315;
             position: relative;
 

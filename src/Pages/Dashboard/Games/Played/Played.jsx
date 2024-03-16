@@ -12,20 +12,18 @@ import { LoadingContext } from '../../../Loading/LoadingContext';
 import { LoginContext } from '../../../Login/LoginContext';
 import { HiOutlineTrash } from 'react-icons/hi2';
 import { API_URL } from '../../../../API_URL';
-
-const props = {
-    gameName: 'ludo',
-}
+import moment from 'moment-jalaali';
 
 function Played() {
+    const dateNow = Date.now()
     const [data, setData] = useState()
     const [cookies] = useCookies(['accessToken']);
     const { loading, setLoading } = useContext(LoadingContext);
     const { goToLoginPage } = useContext(LoginContext);
     const [filter, setFilter] = useState({
-        startDate: null,
-        endDate: null,
-        limit: null,
+        startDate: moment(dateNow).subtract(1, 'months').format('jYYYY-jM-jD'),
+        endDate: moment(dateNow).format('jYYYY-jM-jD'),
+        limit: 20,
         offset: 1,
         orderBy: 1
     })
@@ -60,11 +58,6 @@ function Played() {
             )
     }
 
-
-    const updateInputData = (e) => {
-        setFilter((prev) => ({ ...prev, [e.target.name]: e.target.value }))
-    }
-
     const updateOptionData = (name, id) => {
         setFilter((prev) => ({ ...prev, [name]: id }))
     }
@@ -77,7 +70,7 @@ function Played() {
         setFilter({
             startDate: null,
             endDate: null,
-            limit: null,
+            limit: 15,
             offset: 1,
             orderBy: 1
         })
@@ -90,46 +83,26 @@ function Played() {
     return (
         <div className='played'>
             <div className="filter">
-                <div className="row">
 
-                    <div className='col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12'>
-                        <DatePikerFarsi value={'1402/02/02'} title={'startDate'} handlerChangeDate={updateDataPiker} />
-                    </div>
+                <DatePikerFarsi classnamedatepicker={'playeddatepiker'} title={'startDate:'} value={filter.startDate} name={'startDate'} handlerChangeDate={updateDataPiker} />
 
-                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <DatePikerFarsi value={'1402/02/02'} title={'endDate'} handlerChangeDate={updateDataPiker} />
-                    </div>
+                <DatePikerFarsi classnamedatepicker={'playeddatepiker'} title={'endDate:'} value={filter.endDate} name={'endDate'} handlerChangeDate={updateDataPiker} />
 
-                    {/* <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <Input name={'limit'} type={'number'} title={"limit"} placeholder={'limit'} changeInputValue={updateInputData} />
-                    </div>
+                <SelectOption classnameBox={'playeddatepiker'} readOnly={false} title={'orderby:'} name={'orderBy'} defaultValue={'ASC'} type={'status'} changeOptinValue={updateOptionData}
+                    data={[
+                        { id: 0, status: 'DESC' },
+                        { id: 1, status: 'ASC' },
+                    ]}
+                />
 
-                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <Input name={'offset'} type={'number'} title={"offset"} placeholder={'offset'} changeInputValue={updateInputData} />
-                    </div> */}
-
-                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <SelectOption readOnly={false} name={'orderBy'} defaultValue={'ASC'} type={'status'} changeOptinValue={updateOptionData}
-                            data={[
-                                { id: 0, status: 'DESC' },
-                                { id: 1, status: 'ASC' },
-                            ]}
-                        />
-                    </div>
-
-                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
-                    </div>
-
-
-                </div>
+                <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
 
                 <div className="resetFillters" onClick={resetFillters}>
                     <HiOutlineTrash />
                 </div>
             </div>
 
-                <Table data={data} sort={sortGamePlayed} action={true} showDetailStatus={false} />
+            <Table data={data} sort={sortGamePlayed} action={true} showDetailStatus={false} />
         </div>
     );
 }

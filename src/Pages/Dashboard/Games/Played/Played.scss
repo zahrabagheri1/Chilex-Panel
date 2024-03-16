@@ -10,25 +10,39 @@
     gap: 20px;
 
     .filter {
+        display: flex;
+        position: relative;
+        flex-direction: row;
         height: auto;
         width: 100%;
-        position: relative;
-        z-index: 1;
+        align-items: flex-end;
+        gap: 20px;
+
+        .playeddatepiker {
+            width: 160px !important;
+            flex-direction: row;
+            align-items: center;
+
+        }
 
         .filerinput {
             width: 100px;
+
         }
 
-        .filterBtnBox {
-            display: flex;
-            align-items: flex-end;
+    }
 
-            .filterBtn {
-                height: 32px;
-            }
+    .filterBtnBox {
+        display: flex;
+        align-items: flex-end;
+        width: 100px;
 
+        .filterBtn {
+            height: 32px;
         }
     }
+
+
 
     .resetFillters {
         position: absolute;

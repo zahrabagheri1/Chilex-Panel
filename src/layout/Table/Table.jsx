@@ -2,7 +2,6 @@ import React from 'react';
 import './Table.scss';
 import moment from 'moment-jalaali';
 import ScrollContainer from 'react-indiana-drag-scroll';
-import SelectOption from '../../Components/SelectOption/SelectOption';
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
 
 function Table(props) {
