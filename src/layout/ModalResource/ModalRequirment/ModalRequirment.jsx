@@ -80,7 +80,7 @@ function ModalRequirment(props) {
             <Input type={'number'} inputclassname={'disabled'} name={'settingId'} value={addRequirment.settingId} title={'settingId'} readOnly={true} changeInputValue={changeValueInput} />
           </div>
           <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <SelectOption name={'type'} important={true} readOnly={false} defaultValue={'type'} value={1} type={'name'} data={resourceType} changeOptinValue={updateOptionData} />
+            <SelectOption name={'type'} title={"type"} important={true} readOnly={false} defaultValue={'type'} value={1} type={'name'} data={resourceType} changeOptinValue={updateOptionData} />
           </div>
           <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-6">
             <Input type={'number'} important={true} name={'min'} value={value} title={'min'} readOnly={false} changeInputValue={changeValueInput} />
