@@ -81,12 +81,9 @@ function Index() {
         navigate(`${id}`)
     }
 
-    const hundelOpenModal = () => {
-        setModal(true)
-    }
-
-    const handlerCloseModal = () => {
-        setModal(false)
+    const offsetTableHandler = (page) => {
+        setFilters((prev) => ({ ...prev, 'offset': page }))
+        setResetFlag(true)
     }
 
     const updateInputData = (e) => {
@@ -95,10 +92,6 @@ function Index() {
 
     const updateOptionData = (name, id) => {
         setFilters((prev) => ({ ...prev, [name]: id }))
-    }
-
-    const filterhandler = () => {
-        reqFilterBundle()
     }
 
     return (
@@ -156,21 +149,21 @@ function Index() {
                         ]}
                     />
 
-                    <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
+                    <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={() => reqFilterBundle()} />
 
                     <div className="resetFillters" onClick={resetFillters}>
                         <HiOutlineTrash />
                     </div>
                 </div>
 
-                <div className='addBundle' onClick={hundelOpenModal}>
+                <div className='addBundle' onClick={() => setModal(true)}>
                     <HiPlus className='icon' />
                     <div>Add Bundle</div>
                 </div>
 
             </div>
 
-            <Table data={bundleList?.data} sort={sortBundles} pagintion={bundleList?.total_pages} action={true} showDetail={showDetailBandle} />
+            <Table data={bundleList?.data} sort={sortBundles} list={bundleList} offsetTable={offsetTableHandler} action={true} showDetail={showDetailBandle} />
 
             {modal === true ?
 
@@ -179,8 +172,8 @@ function Index() {
                     data={bundleList}
                     type={'bundle'}
                     path={'bundles'}
-                    hundelerSubmit={hundelOpenModal}
-                    handlerClose={handlerCloseModal}
+                    hundelerSubmit={() => setModal(true)}
+                    handlerClose={() => setModal(false)}
                 />
 
                 : ''
