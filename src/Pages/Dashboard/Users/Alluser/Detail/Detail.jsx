@@ -39,7 +39,7 @@ function Detail() {
       })
       .then(
         res => {
-          setUserItem(res.data.data)
+          setUserItem(res.data)
           setLoading(false)
         }
       )
@@ -48,12 +48,6 @@ function Detail() {
           console.log(err)
         }
       )
-  }
-
-  // console.log(userItem)
-
-  const hundelOpenModal = () => {
-    setOpenModal(true)
   }
 
   const hundelBack = () => {
@@ -78,7 +72,7 @@ function Detail() {
         </div> */}
       </div>
 
-        <Table data={userItem} sort={sortUserItems} action={true} showDetail={()=>{}}/>
+        <Table data={userItem?.data} sort={sortUserItems} list={userItem} action={true} showDetailStatus={false}/>
 
       {/* {openModal === true ? <ModalItem gameName={id} canceladd={() => setOpenModal(false)} /> : null} */}
 

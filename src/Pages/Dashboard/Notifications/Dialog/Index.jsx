@@ -116,7 +116,7 @@ function Index() {
         </div>
       </div>
 
-      <Table data={dialogList?.data} sort={sortDialog} action={true} pagintion={dialogList?.total_pages} showDetail={showDetailNotif} />
+      <Table data={dialogList?.data} sort={sortDialog} action={true} pagintion={dialogList?.total_pages}  showDetailStatus={false} />
 
       {modal === true ?
         <AddDialog canceladd={() => setModal(false)} />
