@@ -94,7 +94,7 @@ function ModalSetting(props) {
           {
             props.gameName === 'uno' || props.gameName === 'ludo' ?
               <div className="col-xl-2 col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <SelectOption name={'playersLength'} readOnly={false} defaultValue={'playersLength'} value={'playersLength'} type={'name'} data={playersLength} changeOptinValue={updateOptionData} />
+                <SelectOption title={"playersLength"} name={'playersLength'} readOnly={false} defaultValue={'playersLength'} value={'playersLength'} type={'name'} data={playersLength} changeOptinValue={updateOptionData} />
               </div>
               : ''
           }
