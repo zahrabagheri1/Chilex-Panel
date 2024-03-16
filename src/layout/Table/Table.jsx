@@ -51,8 +51,9 @@ function Table(props) {
                                             {Array.isArray(props.sort) ?
                                                 props.sort.map((name, index) => (
                                                     name.status === true ?
-                                                        <th className="thhead" key={index} colSpan={name.child ? name.child.length : '1'}>
-                                                            {name.name}</th>
+                                                        <th className="thhead" key={index} colSpan={name.child ? (name.child.length) : '1'}>
+                                                            {name.name}
+                                                        </th>
                                                         :
                                                         ""
                                                 ))
@@ -97,9 +98,37 @@ function Table(props) {
 
                                                                                         :
                                                                                         name.child ?
-                                                                                            <td className='tdbody'>have child</td>
+                                                                                            name.name === 'prices' ?
+
+                                                                                                <td className='tdbody'>have </td>
+
+                                                                                                :
+
+                                                                                                <td className='tdbody'>have child</td>
                                                                                             :
                                                                                             <td className="tdbody" key={index}>{value}</td>
+
+
+
+
+
+                                                                    // {
+                                                                    //     name: 'prices', status: true, list: false, date: false,
+                                                                    //     child: [
+                                                                    //         { name: 'id', status: false },
+                                                                    //         { name: 'amount', status: true, list: false, date: false },
+                                                                    //         { name: 'priceTypes', status: true, list: false, date: false },
+                                                                    //         { name: 'priceStatus', status: true, list: ['Active', 'Inactive'], date: false }
+                                                                    //     ]
+                                                                    // },
+                                                                    // {
+                                                                    //     name: 'activityIntervalTime', status: true, list: false, date: false,
+                                                                    //     child: [
+                                                                    //         { name: 'day', status: true, list: false, date: false },
+                                                                    //         { name: 'hour', status: true, list: false, date: false },
+                                                                    //         { name: 'minute', status: true, list: false, date: false },
+                                                                    //     ]
+                                                                    // },
 
                                                                     : null
                                                             ))
