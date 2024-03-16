@@ -15,7 +15,23 @@ function Table(props) {
     }
 
     const pagintionHandler = (page) => {
-        console.log(page+1)
+        props.offsetTable(page + 1)
+    }
+
+    const previousPagntion = () => {
+        if (props.list.current_page === 1 ) {
+            props.offsetTable(props.list.current_page)
+        } else {
+            props.offsetTable(props.list.current_page - 1)
+        }
+    }
+
+    const nextPagntion = () => {
+        if (props.list.current_page === props.list.total_pages) {
+            props.offsetTable(props.list.current_page)
+        } else {
+            props.offsetTable(props.list.current_page + 1)
+        }
     }
 
     return (
@@ -100,13 +116,13 @@ function Table(props) {
 
                         <div className="tablePagintion">
                             <div className="pagintion">
-                                <div className="previousbtn"><HiChevronLeft /></div>
+                                <div className="previousbtn" onClick={previousPagntion}><HiChevronLeft /></div>
                                 {
-                                    [...Array(props.pagintion).keys()].map((index) => (
+                                    [...Array(props.list.total_pages).keys()].map((index) => (
                                         <div className="pagenumber" key={index} onClick={() => pagintionHandler(index)} >{index + 1}</div>
                                     ))
                                 }
-                                <div className="nextbtn"><HiChevronRight /></div>
+                                <div className="nextbtn" onClick={nextPagntion}><HiChevronRight /></div>
                             </div>
                         </div>
 

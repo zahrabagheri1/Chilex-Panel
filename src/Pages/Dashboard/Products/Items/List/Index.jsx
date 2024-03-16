@@ -5,7 +5,7 @@ import { HiOutlineTrash, HiPlus } from "react-icons/hi2";
 import { sortItems } from '../../../../../Data/Sort';
 import Table from '../../../../../layout/Table/Table';
 import ModalAddProducts from '../../../../../layout/ModalAddProducts/ModalAddProducts';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Input from '../../../../../Components/Input/Input';
 import SelectOption from '../../../../../Components/SelectOption/SelectOption';
 import { useCookies } from 'react-cookie';
@@ -31,7 +31,7 @@ function Index() {
         gameItemTypes: null,
         priceStatus: null,
         limit: 20,
-        offset: null,
+        offset: 1,
         sortBy: 2,
         orderBy: 1,
     })
@@ -70,20 +70,22 @@ function Index() {
         navigate(`${id}`)
     }
 
-    const handelOpenModal = () => {
-        setModal(true)
-    }
-
-    const handlerCloseModal = () => {
-        setModal(false)
-    }
-
     const updateOptionData = (name, id) => {
         setFilters((prev) => ({ ...prev, [name]: id }))
     }
 
+    const updateOptionDataForLimit = (name, id) => {
+        setFilters((prev) => ({ ...prev, [name]: id, 'offset': 1 }))
+        setResetFlag(true)
+    }
+
     const updateInputData = (e) => {
         setFilters((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+    }
+
+    const offsetTableHandler = (page) => {
+        setFilters((prev) => ({ ...prev, 'offset': page }))
+        setResetFlag(true)
     }
 
     const resetFillters = () => {
@@ -92,8 +94,9 @@ function Index() {
             itemStatus: null,
             priceStatus: null,
             limit: 20,
-            offset: null,
-            orderBy: null,
+            offset: 1,
+            orderBy: 1,
+            sortBy: 2,
         })
         setResetFlag(true);
     }
@@ -180,7 +183,7 @@ function Index() {
                         ]}
                     />
 
-                    <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.limit} name={'limit'} defaultValue={'20'} type={'status'} changeOptinValue={updateOptionData}
+                    <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.limit} name={'limit'} defaultValue={'20'} type={'status'} changeOptinValue={updateOptionDataForLimit}
                         data={[
                             { id: 30, status: 30 },
                             { id: 40, status: 40 },
@@ -195,13 +198,13 @@ function Index() {
                     </div>
                 </div>
 
-                <div className='addItem' onClick={handelOpenModal}>
+                <div className='addItem' onClick={() => setModal(true)}>
                     <HiPlus className='icon' />
                     <div>Add Items</div>
                 </div>
             </div>
 
-            <Table data={itemList?.data} sort={sortItems} action={true} pagintion={itemList?.total_pages} showDetail={showDetailItem} />
+            <Table data={itemList?.data} sort={sortItems} action={true} list={itemList} offsetTable={offsetTableHandler} showDetail={showDetailItem} />
 
             {modal === true ?
                 <ModalAddProducts
@@ -209,8 +212,8 @@ function Index() {
                     data={itemList?.data}
                     type={'item'}
                     path={'items'}
-                    handelerSubmit={handelOpenModal}
-                    handlerClose={handlerCloseModal}
+                    handelerSubmit={() => setModal(true)}
+                    handlerClose={() => setModal(false)}
                 />
                 : ''
             }
