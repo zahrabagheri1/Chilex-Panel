@@ -89,12 +89,12 @@ function ModalItem(props) {
           </div>
 
           <div className="col-xl-2 col-lg-4 col-md-4 col-sm-6 col-xs-12">
-            <SelectOption name={'botLevel'} readOnly={false} defaultValue={'botLevel'} value={'botLevel'} type={'name'} data={botLevel} changeOptinValue={updateOptionData} />
+            <SelectOption name={'botLevel'} title={"botLevel"} readOnly={false} defaultValue={'botLevel'} value={'botLevel'} type={'name'} data={botLevel} changeOptinValue={updateOptionData} />
           </div>
           {
             props.gameName === 'uno' || props.gameName === 'ludo' ?
               <div className="col-xl-2 col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                <SelectOption name={'playersLength'} readOnly={false} defaultValue={'playersLength'} value={'playersLength'} type={'name'} data={playersLength} changeOptinValue={updateOptionData} />
+                <SelectOption name={'playersLength'} title={"playersLength"} readOnly={false} defaultValue={'playersLength'} value={'playersLength'} type={'name'} data={playersLength} changeOptinValue={updateOptionData} />
               </div>
               : ''
           }
