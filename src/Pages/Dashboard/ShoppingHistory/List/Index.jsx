@@ -100,6 +100,12 @@ function Index() {
         setFilters((prev) => ({ ...prev, 'offset': page }))
         setResetFlag(true)
     }
+    
+    const updateOptionDataForLimit = (name, id) => {
+        setFilters((prev) => ({ ...prev, [name]: id, 'offset': 1 }))
+        setResetFlag(true)
+    }
+
 
     return (
         <div className='shoppingHistoryList'>
@@ -146,7 +152,7 @@ function Index() {
                             { id: 1, status: 'Item' },
                         ]}
                     />
-                    <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.limit} name={'limit'} defaultValue={'20'} type={'status'} changeOptinValue={updateOptionData}
+                    <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.limit} name={'limit'} defaultValue={'20'} type={'status'} changeOptinValue={updateOptionDataForLimit}
                         data={[
                             { id: 30, status: 30 },
                             { id: 40, status: 40 },
