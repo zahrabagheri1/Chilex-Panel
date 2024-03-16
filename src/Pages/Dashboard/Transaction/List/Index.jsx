@@ -10,7 +10,7 @@ import SelectOption from '../../../../Components/SelectOption/SelectOption';
 import { useCookies } from 'react-cookie';
 import { LoadingContext } from '../../../Loading/LoadingContext';
 import { LoginContext } from '../../../Login/LoginContext';
-import { HiOutlineTrash } from 'react-icons/hi2';
+import { HiMiniArrowUpTray, HiOutlineTrash } from 'react-icons/hi2';
 import { API_URL } from '../../../../API_URL';
 import Button from '../../../../Components/Button/Button';
 
@@ -103,56 +103,65 @@ function Index() {
     const filterhandler = () => {
         reqFilterTransaction()
     }
+
+    const exportUsers = () => {
+        setFilters((prev) => ({ ...prev, ["exportUserIds"]: true }))
+        setResetFlag(true);
+    }
+    
     return (
         <div className='transactionList'>
-            <div className='filter'>
-                        <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.statuses} name={'statuses'} defaultValue={'statuses'} type={'status'} changeOptinValue={updateOptionData}
-                            data={[
-                                { id: 0, status: 'Pending ENDING' },
-                                { id: 1, status: 'True check result' },
-                                { id: 2, status: 'False check result' },
-                                { id: 3, status: 'Failed' },
-                                { id: 4, status: 'Successful' },
-                                { id: 5, status: 'Refunded' }
-                            ]}
-                        />
-                        <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.gatewayTypes} name={'gatewayTypes'} defaultValue={'gatewayTypes'} type={'status'} changeOptinValue={updateOptionData}
-                            data={[
-                                { id: 0, status: 'Pasargad' },
-                                { id: 1, status: 'Cafe Bazar' }
-                            ]}
-                        />
+            <div className="top">
+                <div className='filter'>
+                    <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.statuses} name={'statuses'} defaultValue={'statuses'} type={'status'} changeOptinValue={updateOptionData}
+                        data={[
+                            { id: 0, status: 'Pending ENDING' },
+                            { id: 1, status: 'True check result' },
+                            { id: 2, status: 'False check result' },
+                            { id: 3, status: 'Failed' },
+                            { id: 4, status: 'Successful' },
+                            { id: 5, status: 'Refunded' }
+                        ]}
+                    />
+                    <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.gatewayTypes} name={'gatewayTypes'} defaultValue={'gatewayTypes'} type={'status'} changeOptinValue={updateOptionData}
+                        data={[
+                            { id: 0, status: 'Pasargad' },
+                            { id: 1, status: 'Cafe Bazar' }
+                        ]}
+                    />
 
-                        <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.sortBy} name={'sortBy'} defaultValue={'id'} type={'status'} changeOptinValue={updateOptionData}
-                            data={[
-                                { id: 0, status: 'createdAt' },
-                                { id: 1, status: 'updatedAt' },
-                                { id: 2, status: 'amount' },
-                                { id: 3, status: 'id' },
-                                { id: 4, status: 'userName' },
-                                { id: 5, status: 'status' }
-                            ]}
-                        />
-                        <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.orderBy} name={'orderBy'} defaultValue={'ASC'} type={'status'} changeOptinValue={updateOptionData}
-                            data={[
-                                { id: 0, status: 'DESC' },
-                                { id: 1, status: 'ASC' },
-                            ]}
-                        />
+                    <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.sortBy} name={'sortBy'} defaultValue={'id'} type={'status'} changeOptinValue={updateOptionData}
+                        data={[
+                            { id: 0, status: 'createdAt' },
+                            { id: 1, status: 'updatedAt' },
+                            { id: 2, status: 'amount' },
+                            { id: 3, status: 'id' },
+                            { id: 4, status: 'userName' },
+                            { id: 5, status: 'status' }
+                        ]}
+                    />
+                    <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.orderBy} name={'orderBy'} defaultValue={'ASC'} type={'status'} changeOptinValue={updateOptionData}
+                        data={[
+                            { id: 0, status: 'DESC' },
+                            { id: 1, status: 'ASC' },
+                        ]}
+                    />
 
-                        <Input classname={'filerinput'} value={filters.userId} type={'text'} name={"userId..."} placeholder={'userId'} changeInputValue={updateInputData} />
+                    <Input classname={'filerinput'} value={filters.userId} type={'text'} name={"userId..."} placeholder={'userId'} changeInputValue={updateInputData} />
 
-                        <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
-                    
-                        <Button title={'Export'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
+                    <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
 
-                <div className="resetFillters" onClick={resetFillters}>
-                    <HiOutlineTrash />
+                    <div className="resetFillters" onClick={resetFillters}>
+                        <HiOutlineTrash />
+                    </div>
+                </div>
+
+                <div className='addnotif' onClick={exportUsers}>
+                    <HiMiniArrowUpTray className='icon' />
+                    <div>Export</div>
                 </div>
             </div>
-
-
-                <Table data={transaction} sort={adminTransaction} action={true} showDetail={showDetailTransaction} />
+            <Table data={transaction} sort={adminTransaction} action={true} showDetail={showDetailTransaction} />
         </div>
     );
 }

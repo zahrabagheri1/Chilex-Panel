@@ -8,35 +8,68 @@
     justify-content: space-between;
     gap: 20px;
 
-    .filter {
-        z-index: 1;
+    .top {
         position: relative;
-        padding: 20px 30px;
+        display: flex;
         flex-direction: row;
-        height: auto;
-        background: $Gray;
-        border-radius: 6px;
-        border: 2px solid $lightGray;
-        align-items: center;
+        justify-content: space-between;
+        align-items: flex-end;
         gap: 10px;
+        height: auto;
+        z-index: 1;
+
+        .filter {
+            display: flex;
+            position: relative;
+            flex-direction: row;
+            height: auto;
+            width: 100%;
+            align-items: flex-end;
+            gap: 10px;
+
+            .filerinput {
+                width: 100px;
+            }
+
+        }
 
         .filterBtnBox {
             display: flex;
             align-items: flex-end;
+            width: 100px;
 
             .filterBtn {
                 height: 32px;
             }
-
         }
-    }
 
-    .resetFillters {
-        position: absolute;
-        top: 10px;
-        right: 15px;
-        font-size: 18px;
-        color: $white;
-        cursor: pointer;
+        .resetFillters {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 18px;
+            color: $white;
+            cursor: pointer;
+        }
+
+        .addnotif {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 10px;
+            width: 100px;
+            height: 32px;
+            font-size: 14px;
+            background: $Gray;
+            border-radius: 6px;
+            border: 2px solid $lightGray;
+            justify-content: center;
+            cursor: pointer;
+            color: $iconColor;
+
+            .icon {
+                font-size: 16px;
+            }
+        }
     }
 }

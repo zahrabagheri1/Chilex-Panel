@@ -10,16 +10,22 @@
     gap: 20px;
 
     .filterReportUser {
+        display: flex;
         z-index: 1;
         position: relative;
         flex-direction: row;
         height: auto;
         align-items: flex-end;
         gap: 10px;
-
+        width: 100%;
+        .filerinput {
+            width: 100px;
+        }
+        
         .filterBtnBox {
             display: flex;
             align-items: flex-end;
+            width: 100px;
 
             .filterBtn {
                 height: 32px;

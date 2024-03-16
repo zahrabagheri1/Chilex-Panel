@@ -67,16 +67,16 @@ function List() {
     }
 
     const updateOptionData = (name, id) => {
-        setFilter((prev) => ({ ...prev, [name]: id }))
+        name === 'types' ?
+            setFilter((prev) => ({ ...prev, 'types': [id]}))
+            :
+            setFilter((prev) => ({ ...prev, [name]: id }))
     }
 
     const updateInputData = (e) => {
         setFilter((prev) => ({ ...prev, [e.target.name]: e.target.value }))
     }
 
-    const showDetailBanUser = (id) => {
-        navigate(`${id}`)
-    }
     const resetFillters = () => {
         setFilter({
             limit: 15,
@@ -109,7 +109,7 @@ function List() {
                     ]}
                 />
 
-                <SelectOption classnameBox={'filerinput'} readOnly={false} value={value} name={'sortBy'} defaultValue={'id'} type={'status'} changeOptinValue={updateOptionData}
+                <SelectOption classnameBox={'filerinput'} readOnly={false} value={value} name={'sortBy'} defaultValue={'sortBy id'} type={'status'} changeOptinValue={updateOptionData}
                     data={[
                         { id: 0, status: 'createdAt' },
                         { id: 1, status: 'updatedAt' },
@@ -119,7 +119,7 @@ function List() {
                     ]}
                 />
 
-                <SelectOption classnameBox={'filerinput'} readOnly={false} value={value} name={'orderBy'} defaultValue={'ASC'} type={'status'} changeOptinValue={updateOptionData}
+                <SelectOption classnameBox={'filerinput'} readOnly={false} value={value} name={'orderBy'} defaultValue={'orderBy ASC'} type={'status'} changeOptinValue={updateOptionData}
                     data={[
                         { id: 0, status: 'DESC' },
                         { id: 1, status: 'ASC' },
@@ -133,7 +133,7 @@ function List() {
                 </div>
             </div>
 
-            <Table data={reportuserList} sort={sortReportUsers} action={true} showDetail={showDetailBanUser} />
+            <Table data={reportuserList} sort={sortReportUsers} action={true} showDetailStatus={false} />
         </div>
     );
 }

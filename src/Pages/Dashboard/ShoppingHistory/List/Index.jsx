@@ -94,6 +94,7 @@ function Index() {
     const filterhandler = () => {
         reqFilterShopHistory()
     }
+    
     const exportUsers = () => {
         setFilters((prev) => ({ ...prev, ["exportUserIds"]: true }))
         setResetFlag(true);
@@ -146,6 +147,7 @@ function Index() {
                     />
 
                     <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
+                   
                     <div className="resetFillters" onClick={resetFillters}>
                         <HiOutlineTrash />
                     </div>
