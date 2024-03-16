@@ -100,7 +100,7 @@ function Index() {
         setFilters((prev) => ({ ...prev, 'offset': page }))
         setResetFlag(true)
     }
-    
+
     const updateOptionDataForLimit = (name, id) => {
         setFilters((prev) => ({ ...prev, [name]: id, 'offset': 1 }))
         setResetFlag(true)
@@ -154,6 +154,7 @@ function Index() {
                     />
                     <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.limit} name={'limit'} defaultValue={'20'} type={'status'} changeOptinValue={updateOptionDataForLimit}
                         data={[
+                            { id: 20, status: 20 },
                             { id: 30, status: 30 },
                             { id: 40, status: 40 },
                             { id: 50, status: 50 },
