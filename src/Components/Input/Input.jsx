@@ -1,23 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Input.scss';
 import { HiUser, HiOutlineUser, HiMiniMagnifyingGlass, HiOutlineEye, HiLockClosed, HiOutlineEyeSlash, HiMiniEyeSlash, HiMiniEye } from "react-icons/hi2";
-
-// const props = {
-//   title: 'name',
-//   name: '',
-//   icon: 'HiUser',
-//   classname: 'name',
-//   type: '',
-//   dir: '',
-//   disabled: '',
-//   maxlength: '',
-//   inputclassname: '',
-//   readOnly: true,
-//   checked: false,
-//   ref: '',
-//   error: 'errorrrrr! you shitting on it',
-// }
-
 function Input(props) {
   const [value, setValue] = useState(props.value)
   const [eye, setEye] = useState(false)
