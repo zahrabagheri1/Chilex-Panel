@@ -24,7 +24,7 @@ function Played() {
     const [filters, setFilters] = useState({
         startDate: moment(dateNow).subtract(1, 'months').format('jYYYY-jM-jD'),
         endDate: moment(dateNow).format('jYYYY-jM-jD'),
-        limit: 20,
+        limit: 15,
         offset: 1,
         orderBy: 1
     })
@@ -82,7 +82,7 @@ function Played() {
         setFilters({
             startDate: null,
             endDate: null,
-            limit: 20,
+            limit: 15,
             offset: 1,
             orderBy: 1
         })
@@ -109,7 +109,7 @@ function Played() {
                     ]}
                 />
 
-                <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.limit} name={'limit'} defaultValue={'20'} type={'status'} changeOptinValue={updateOptionDataForLimit}
+                <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.limit} name={'limit'} defaultValue={'15'} type={'status'} changeOptinValue={updateOptionDataForLimit}
                     data={[
                         { id: 30, status: 30 },
                         { id: 40, status: 30 },

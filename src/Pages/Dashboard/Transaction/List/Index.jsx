@@ -24,7 +24,7 @@ function Index() {
     const [filters, setFilters] = useState({
         statuses: null,
         gatewayTypes: null,
-        limit: 20,
+        limit: 15,
         offset: null,
         orderBy: 3,
         orderBy: 1,
@@ -81,7 +81,7 @@ function Index() {
         setFilters({
             statuses: null,
             gatewayTypes: null,
-            limit: 20,
+            limit: 15,
             offset: null,
             orderBy: 3,
             orderBy: 1,
@@ -144,8 +144,9 @@ function Index() {
                         ]}
                     />
 
-                    <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.limit} name={'limit'} defaultValue={'20'} type={'status'} changeOptinValue={updateOptionDataForLimit}
+                    <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.limit} name={'limit'} defaultValue={'15'} type={'status'} changeOptinValue={updateOptionDataForLimit}
                         data={[
+                            { id: 15, status: 15 },
                             { id: 20, status: 20 },
                             { id: 30, status: 30 },
                             { id: 40, status: 40 },

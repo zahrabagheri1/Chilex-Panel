@@ -30,7 +30,7 @@ function Index() {
         sortBy: 4,
         orderBy: 1,
         offset: null,
-        limit: 20,
+        limit: 15,
         exportUserIds: false
     })
 
@@ -86,7 +86,7 @@ function Index() {
             sortBy: 3,
             orderBy: 1,
             offset: null,
-            limit: 20,
+            limit: 15,
         })
         setResetFlag(true);
     }
@@ -152,7 +152,7 @@ function Index() {
                             { id: 1, status: 'Item' },
                         ]}
                     />
-                    <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.limit} name={'limit'} defaultValue={'20'} type={'status'} changeOptinValue={updateOptionDataForLimit}
+                    <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.limit} name={'limit'} defaultValue={'15'} type={'status'} changeOptinValue={updateOptionDataForLimit}
                         data={[
                             { id: 20, status: 20 },
                             { id: 30, status: 30 },

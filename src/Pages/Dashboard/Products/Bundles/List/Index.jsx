@@ -27,7 +27,7 @@ function Index() {
         sku: null,
         bundleStatus: null,
         priceStatus: null,
-        limit: 20,
+        limit: 15,
         offset: null,
         sortBy: 3,
         orderBy: 1,
@@ -69,7 +69,7 @@ function Index() {
             sku: null,
             bundleStatus: null,
             priceStatus: null,
-            limit: 20,
+            limit: 15,
             offset: null,
             sortBy: 3,
             orderBy: 1,
@@ -146,8 +146,9 @@ function Index() {
                         ]}
                     />
 
-                    <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.limit} name={'limit'} defaultValue={'20'} type={'status'} changeOptinValue={updateOptionDataForLimit}
+                    <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.limit} name={'limit'} defaultValue={'15'} type={'status'} changeOptinValue={updateOptionDataForLimit}
                         data={[
+                            { id: 15, status: 15 },
                             { id: 20, status: 20 },
                             { id: 30, status: 30 },
                             { id: 40, status: 40 },
