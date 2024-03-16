@@ -76,12 +76,9 @@ function Index() {
         setFilters((prev) => ({ ...prev, [e.target.name]: e.target.value }))
     }
 
-    const updateOptionData = (name, id) => {
-        setFilters((prev) => ({ ...prev, [name]: id }))
-    }
-
-    const filterhandler = () => {
-        reqNotifiction()
+    const updateOptionDataForLimit = (name, id) => {
+        setFilters((prev) => ({ ...prev, [name]: id, 'offset': 1 }))
+        setResetFlag(true)
     }
 
     return (
@@ -90,7 +87,7 @@ function Index() {
                 <div className='filters'>
                     <Input name={'userId'} classname={'filerinput'} type={'text'} placeholder={'userId'} value={filters.userId} changeInputValue={updateInputData} />
 
-                    <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.limit} name={'limit'} defaultValue={'20'} type={'status'} changeOptinValue={updateOptionData}
+                    <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.limit} name={'limit'} defaultValue={'20'} type={'status'} changeOptinValue={updateOptionDataForLimit}
                         data={[
                             { id: 30, status: 30 },
                             { id: 40, status: 40 },
@@ -99,7 +96,7 @@ function Index() {
                         ]}
                     />
 
-                    <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
+                    <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={() => reqNotifiction()} />
 
                     <div className="resetFillters" onClick={resetFillters}>
                         <HiOutlineTrash />
