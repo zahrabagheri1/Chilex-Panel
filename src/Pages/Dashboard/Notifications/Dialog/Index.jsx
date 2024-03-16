@@ -84,6 +84,10 @@ function Index() {
   const updateOptionData = (name, id) => {
     setFilters((prev) => ({ ...prev, [name]: id }))
   }
+  const updateOptionDataForLimit = (name, id) => {
+    setFilters((prev) => ({ ...prev, [name]: id, 'offset': 1 }))
+    setResetFlag(true)
+}
 
   const filterhandler = () => {
     reqDialog()
@@ -95,7 +99,7 @@ function Index() {
         <div className='filters'>
           <Input name={'userId'} classname={'filerinput'} type={'text'} placeholder={'userId'} value={filters.userId} changeInputValue={updateInputData} />
 
-          <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.limit} name={'limit'} defaultValue={'20'} type={'status'} changeOptinValue={updateOptionData}
+          <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.limit} name={'limit'} defaultValue={'20'} type={'status'} changeOptinValue={updateOptionDataForLimit}
             data={[
               { id: 30, status: 30 },
               { id: 40, status: 40 },
