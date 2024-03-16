@@ -101,10 +101,6 @@ function Index() {
         setResetFlag(true);
     }
 
-    const filtershandler = () => {
-        reqFiltersItem()
-    }
-
     return (
         <div className='itemList'>
             <div className='top'>
@@ -191,7 +187,7 @@ function Index() {
                             { id: 60, status: 60 },
                         ]}
                     />
-                    <Button title={'Filters'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filtershandler} />
+                    <Button title={'Filters'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={() => reqFiltersItem()} />
 
                     <div className="resetFillters" onClick={resetFillters}>
                         <HiOutlineTrash />

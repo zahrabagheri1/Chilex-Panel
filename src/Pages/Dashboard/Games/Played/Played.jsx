@@ -18,6 +18,7 @@ function Played() {
     const dateNow = Date.now()
     const [playedList, setPlayedList] = useState()
     const [cookies] = useCookies(['accessToken']);
+    const [resetFlag, setResetFlag] = useState(false);
     const { loading, setLoading } = useContext(LoadingContext);
     const { goToLoginPage } = useContext(LoginContext);
     const [filters, setFilters] = useState({
@@ -32,8 +33,14 @@ function Played() {
 
     useEffect(() => {
         goToLoginPage(cookies.accessToken);
-        getPlayed()
-    }, [])
+        if (resetFlag) {
+            getPlayed()
+            setResetFlag(false);
+        } else {
+            getPlayed()
+        }
+
+    }, [resetFlag])
 
     //dixo.diacostudios.com/games/played/uno?startDate=2023-05-12&endDate=2023-10-12&limit=10&offset=2&orderBy=1
     const getPlayed = () => {
@@ -58,6 +65,11 @@ function Played() {
             )
     }
 
+    const offsetTableHandler = (page) => {
+        setFilters((prev) => ({ ...prev, 'offset': page }))
+        setResetFlag(true)
+    }
+
     const updateOptionData = (name, id) => {
         setFilters((prev) => ({ ...prev, [name]: id }))
     }
@@ -74,10 +86,12 @@ function Played() {
             offset: 1,
             orderBy: 1
         })
+        setResetFlag(true);
     }
 
-    const filtershandler = () => {
-        getPlayed()
+    const updateOptionDataForLimit = (name, id) => {
+        setFilters((prev) => ({ ...prev, [name]: id, 'offset': 1 }))
+        setResetFlag(true)
     }
 
     return (
@@ -95,7 +109,7 @@ function Played() {
                     ]}
                 />
 
-                <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.limit} name={'limit'} defaultValue={'20'} type={'status'} changeOptinValue={updateOptionData}
+                <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.limit} name={'limit'} defaultValue={'20'} type={'status'} changeOptinValue={updateOptionDataForLimit}
                     data={[
                         { id: 30, status: 30 },
                         { id: 40, status: 30 },
@@ -104,14 +118,14 @@ function Played() {
                     ]}
                 />
 
-                <Button title={'Filters'} className={'filtersBtn'} classnameBtn={'filtersBtnBox'} btnhandler={filtershandler} />
+                <Button title={'Filters'} className={'filtersBtn'} classnameBtn={'filtersBtnBox'} btnhandler={() => getPlayed()} />
 
                 <div className="resetFillters" onClick={resetFillters}>
                     <HiOutlineTrash />
                 </div>
             </div>
 
-            <Table data={playedList?.data} sort={sortGamePlayed} pagintion={playedList?.total_pages} action={true} showDetailStatus={false} />
+            <Table data={playedList?.data} sort={sortGamePlayed} list={playedList} offsetTable={offsetTableHandler} action={true} showDetailStatus={false} />
         </div>
     );
 }
