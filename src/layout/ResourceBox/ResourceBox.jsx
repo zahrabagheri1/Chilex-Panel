@@ -154,7 +154,7 @@ function ResourceBox(props) {
                     <div key={index} className="resourceItem col-xl-2 col-lg-2 col-md-3 col-sm-4 col-xs-6">
                         {
                             key === 'type' ?
-                                <SelectOption name={key} readOnly={edit === false ? true : false} defaultValue={key} value={value} type={'name'} data={resourceType} changeOptinValue={updateOptionData} />
+                                <SelectOption name={key} title={"type"} readOnly={edit === false ? true : false} defaultValue={key} value={value} type={'name'} data={resourceType} changeOptinValue={updateOptionData} />
                                 :
                                 key === 'createdAt' || key === 'updatedAt' || key === 'id' || key === 'rank' ?
                                     key === 'createdAt' || key === 'updatedAt' ?
