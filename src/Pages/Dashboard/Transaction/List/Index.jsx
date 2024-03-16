@@ -102,13 +102,15 @@ function Index() {
         })
         setResetFlag(true);
     }
-    const filterhandler = () => {
-        reqFilterTransaction()
-    }
 
     const exportUsers = () => {
         setFilters((prev) => ({ ...prev, ["exportUserIds"]: true }))
         setResetFlag(true);
+    }
+
+    const offsetTableHandler = (page) => {
+        setFilters((prev) => ({ ...prev, 'offset': page }))
+        setResetFlag(true)
     }
 
     return (
@@ -159,7 +161,7 @@ function Index() {
                             { id: 60, status: 60 },
                         ]}
                     />
-                    <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
+                    <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={() => reqFilterTransaction()} />
 
                     <div className="resetFillters" onClick={resetFillters}>
                         <HiOutlineTrash />
@@ -171,7 +173,7 @@ function Index() {
                     <div>Export</div>
                 </div>
             </div>
-            <Table data={transactionList?.data} pagintion={transactionList?.total_pages} sort={adminTransaction} action={true} showDetail={showDetailTransaction} />
+            <Table data={transactionList?.data} list={transactionList} offsetTable={offsetTableHandler} sort={adminTransaction} action={true} showDetail={showDetailTransaction} />
         </div>
     );
 }
