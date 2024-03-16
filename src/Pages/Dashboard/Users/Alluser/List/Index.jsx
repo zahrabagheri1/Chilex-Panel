@@ -22,7 +22,7 @@ function Index() {
   const [resetFlag, setResetFlag] = useState(false);
   const { goToLoginPage } = useContext(LoginContext);
   const [cookies] = useCookies(['accessToken']);
-  const [filter, setFilter] = useState({
+  const [filters, setFilters] = useState({
     name: null,
     email: null,
     phone: null,
@@ -33,7 +33,7 @@ function Index() {
     register: 0,
     inviteBy: 0,
     lastOnline: 0,
-    limit: 15,
+    limit: 20,
     online: 2,
     unfinishedGame: 0,
     page: 1,
@@ -44,7 +44,7 @@ function Index() {
   const navigate = useNavigate()
 
   const resetFillters = () => {
-    setFilter({
+    setFilters({
       name: null,
       email: null,
       phone: null,
@@ -55,7 +55,7 @@ function Index() {
       register: 0,
       inviteBy: 0,
       lastOnline: 0,
-      limit: 15,
+      limit: 20,
       online: 2,
       unfinishedGame: 0,
       page: 1,
@@ -65,16 +65,16 @@ function Index() {
     setResetFlag(true);
   }
 
-  const filterhandler = () => {
+  const filtershandler = () => {
     banUser()
   }
 
   const updateOptionData = (name, id) => {
-    setFilter((prev) => ({ ...prev, [name]: id }))
+    setFilters((prev) => ({ ...prev, [name]: id }))
   }
 
   const updateInputData = (e) => {
-    setFilter((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+    setFilters((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
   const showDetailBanUser = (id) => {
@@ -82,7 +82,7 @@ function Index() {
   }
 
   const updateDataPiker = (e, title) => {
-    setFilter((prev) => ({ ...prev, [title]: e }))
+    setFilters((prev) => ({ ...prev, [title]: e }))
   }
 
   const handelOpenModal = () => {
@@ -101,7 +101,7 @@ function Index() {
 
   const banUser = () => {
     setLoading(true)
-    axios.get(`${API_URL === undefined ? '' : API_URL}/admin/users?${filter.name === undefined || filter.name === null ? '' : 'name=' + filter.name + '&'}${filter.email === undefined || filter.email === null ? '' : 'email=' + filter.email + '&'}${filter.phone === undefined || filter.phone === null ? '' : 'phone=' + filter.phone + '&'}${filter.ban === undefined || filter.ban === null ? '' : 'ban=' + filter.ban + '&'}${filter.createdAt === undefined || filter.createdAt === null ? '' : 'createdAt=' + filter.createdAt + '&'}${filter.createdAtType === undefined || filter.createdAtType === null ? '' : 'createdAtType=' + filter.createdAtType + '&'}${filter.register === undefined || filter.register === null ? '' : 'register=' + filter.register + '&'}${filter.inviteBy === undefined || filter.inviteBy === null ? '' : 'inviteBy=' + filter.inviteBy + '&'}${filter.lastOnline === undefined || filter.lastOnline === null ? '' : 'lastOnline=' + filter.lastOnline + '&'}${filter.limit === undefined || filter.limit === null ? '' : 'limit=' + filter.limit + '&'}${filter.online === undefined || filter.online === null ? '' : 'online=' + filter.online + '&'}${filter.unfinishedGame === undefined || filter.unfinishedGame === null ? '' : 'unfinishedGame=' + filter.unfinishedGame + '&'}${filter.page === undefined || filter.page === null ? '' : 'page=' + filter.page + '&'}${filter.sortBy === undefined || filter.sortBy === null ? '' : 'sortBy=' + filter.sortBy + '&'}${filter.order === undefined || filter.order === null ? '' : 'order=' + filter.order}`,
+    axios.get(`${API_URL === undefined ? '' : API_URL}/admin/users?${filters.name === undefined || filters.name === null ? '' : 'name=' + filters.name + '&'}${filters.email === undefined || filters.email === null ? '' : 'email=' + filters.email + '&'}${filters.phone === undefined || filters.phone === null ? '' : 'phone=' + filters.phone + '&'}${filters.ban === undefined || filters.ban === null ? '' : 'ban=' + filters.ban + '&'}${filters.createdAt === undefined || filters.createdAt === null ? '' : 'createdAt=' + filters.createdAt + '&'}${filters.createdAtType === undefined || filters.createdAtType === null ? '' : 'createdAtType=' + filters.createdAtType + '&'}${filters.register === undefined || filters.register === null ? '' : 'register=' + filters.register + '&'}${filters.inviteBy === undefined || filters.inviteBy === null ? '' : 'inviteBy=' + filters.inviteBy + '&'}${filters.lastOnline === undefined || filters.lastOnline === null ? '' : 'lastOnline=' + filters.lastOnline + '&'}${filters.limit === undefined || filters.limit === null ? '' : 'limit=' + filters.limit + '&'}${filters.online === undefined || filters.online === null ? '' : 'online=' + filters.online + '&'}${filters.unfinishedGame === undefined || filters.unfinishedGame === null ? '' : 'unfinishedGame=' + filters.unfinishedGame + '&'}${filters.page === undefined || filters.page === null ? '' : 'page=' + filters.page + '&'}${filters.sortBy === undefined || filters.sortBy === null ? '' : 'sortBy=' + filters.sortBy + '&'}${filters.order === undefined || filters.order === null ? '' : 'order=' + filters.order}`,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -124,7 +124,7 @@ function Index() {
   return (
     <div className='userList'>
       <div className="top">
-        <div className="filter">
+        <div className="filters">
           <Input type={'text'} placeholder={'name...'} name={'name'} changeInputValue={updateInputData} />
 
           <Input type={'text'} placeholder={'email...'} name={'email'} changeInputValue={updateInputData} />
@@ -182,7 +182,16 @@ function Index() {
             ]}
           />
 
-          <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
+          <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.limit} name={'limit'} defaultValue={'20'} type={'status'} changeOptinValue={updateOptionData}
+            data={[
+              { id: 30, status: 30 },
+              { id: 40, status: 40 },
+              { id: 50, status: 50 },
+              { id: 60, status: 60 },
+            ]}
+          />
+          
+          <Button title={'Filters'} className={'filtersBtn'} classnameBtn={'filtersBtnBox'} btnhandler={filtershandler} />
 
 
           <div className="resetFillters" onClick={resetFillters}>

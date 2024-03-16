@@ -16,28 +16,28 @@ function Index() {
     const [cookies] = useCookies(['accessToken'])
     const { loading, setLoading } = useContext(LoadingContext)
     const { goToLoginPage } = useContext(LoginContext)
-    const [filter, setFilter] = useState({
+    const [filters, setFilters] = useState({
         startDate: moment(dateNow).subtract(1, 'months').format('jYYYY-jM-jD'),
         endDate: moment(dateNow).format('jYYYY-jM-jD'),
         type: 3
     })
 
     const updateOptionData = (name, id) => {
-        setFilter(prev => ({ ...prev, [name]: id }))
+        setFilters(prev => ({ ...prev, [name]: id }))
     }
 
     const updateDataPiker = (e, title) => {
-        setFilter((prev) => ({ ...prev, [title]: e }))
+        setFilters((prev) => ({ ...prev, [title]: e }))
     }
 
     useEffect(() => {
         goToLoginPage(cookies.accessToken)
         getAllGamesChart()
-    }, [filter])
+    }, [filters])
 
     const getAllGamesChart = () => {
         setLoading(true)
-        axios.get(`${API_URL === undefined ? '' : API_URL}/admin/charts/allgames?${filter.startDate === null || filter.startDate === undefined ? '' : ('startDate=' + filter.startDate + '&')}${filter.endDate === null || filter.endDate === undefined ? '' : ('endDate=' + filter.endDate + '&')}${filter.type === null || filter.type === undefined ? '' : ('type=' + filter.type)}`,
+        axios.get(`${API_URL === undefined ? '' : API_URL}/admin/charts/allgames?${filters.startDate === null || filters.startDate === undefined ? '' : ('startDate=' + filters.startDate + '&')}${filters.endDate === null || filters.endDate === undefined ? '' : ('endDate=' + filters.endDate + '&')}${filters.type === null || filters.type === undefined ? '' : ('type=' + filters.type)}`,
             {
                 headers: {
                     'Content-Type': 'application/json',
@@ -133,7 +133,7 @@ function Index() {
                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-6">
                         <DatePikerFarsi
                             handlerChangeDate={updateDataPiker}
-                            value={filter.startDate}
+                            value={filters.startDate}
                             title="startDate"
                         />
                     </div>
@@ -141,7 +141,7 @@ function Index() {
                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-6">
                         <DatePikerFarsi
                             handlerChangeDate={updateDataPiker}
-                            value={filter.endDate}
+                            value={filters.endDate}
                             title="endtDate"
                         />
                     </div>

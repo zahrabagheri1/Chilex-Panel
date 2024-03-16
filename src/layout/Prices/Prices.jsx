@@ -55,7 +55,7 @@ function Prices(props) {
                                 {
                                     // stuffType => Gem Bindle: 0 , Coin Bundle: 1
                                     props.stuffType === 0 ?
-                                        <SelectOption classnameBox={'control'} readOnly={false} name={'type'} defaultValue={'Price'} type={'status'}
+                                        <SelectOption classnameBox={'control'} title={'type'} readOnly={false} name={'type'} defaultValue={'Price'} type={'status'}
                                             changeOptinValue={selectChange}
                                             data={[
                                                 { id: 2, status: 'Tonam' },
@@ -67,7 +67,7 @@ function Prices(props) {
                                 }
                                 {
                                     props.stuffType === 1 ?
-                                        <SelectOption classnameBox={'control'} readOnly={false} name={'type'} defaultValue={'Price'} type={'status'}
+                                        <SelectOption classnameBox={'control'} title={'type'} readOnly={false} name={'type'} defaultValue={'Price'} type={'status'}
                                             changeOptinValue={selectChange}
                                             data={[
                                                 { id: 0, status: 'Gem' },
@@ -79,7 +79,7 @@ function Prices(props) {
                                 }
                                 {
                                     props.stuffType === 2 ?
-                                        <SelectOption classnameBox={'control'} readOnly={false} name={'type'} defaultValue={'Price'} type={'status'}
+                                        <SelectOption classnameBox={'control'} title={'type'} readOnly={false} name={'type'} defaultValue={'Price'} type={'status'}
                                             changeOptinValue={selectChange}
                                             data={[
                                                 { id: 0, status: 'Gem' },
@@ -91,7 +91,7 @@ function Prices(props) {
                                 }
                                 {
                                     props.stuffType === null || props.stuffType === undefined ?
-                                        <SelectOption classnameBox={'control'} readOnly={false} name={'type'} defaultValue={'Price'} type={'status'}
+                                        <SelectOption classnameBox={'control'} title={'type'} readOnly={false} name={'type'} defaultValue={'Price'} type={'status'}
                                             changeOptinValue={selectChange}
                                             data={[
                                                 { id: 0, status: 'Gem' },

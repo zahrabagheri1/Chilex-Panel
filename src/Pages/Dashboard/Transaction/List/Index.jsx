@@ -38,14 +38,15 @@ function Index() {
     const [filters, setFilters] = useState({
         statuses: null,
         gatewayTypes: null,
-        limit: null,
+        limit: 20,
         offset: null,
-        sortBy: 3,
+        orderBy: 3,
         orderBy: 1,
-        userId: null
+        userId: null,
+        exportUserIds: false
     })
 
-    //admin-transaction/all?all?statuses%5B%5D=0&gatewayTypes%5B%5D=0&limit=0&offset=0&sortBy=0&orderBy=0&userId=0
+    //admin-transaction/all?all?statuses%5B%5D=0&gatewayTypes%5B%5D=0&limit=0&offset=0&orderBy=0&orderBy=0&userId=0
     useEffect(() => {
         goToLoginPage(cookies.accessToken);
 
@@ -59,7 +60,8 @@ function Index() {
 
     const reqFilterTransaction = () => {
         setLoading(true)
-        axios.get(`${API_URL === undefined ? '' : API_URL}/admin-transaction/all?${filters.statuses === null || filters.statuses === undefined ? '' : 'statuses[]=' + filters.statuses + '&'}${filters.gatewayTypes === null || filters.gatewayTypes === undefined ? '' : 'gatewayTypes[]=' + filters.gatewayTypes + '&'}${filters.limit === null || filters.limit === undefined ? '' : 'limit=' + filters.limit + '&'}${filters.offset === null || filters.offset === undefined ? '' : 'offset=' + filters.offset + '&'}${filters.sortBy === null || filters.sortBy === undefined ? '' : 'sortBy=' + filters.sortBy + '&'}${filters.userId === null || filters.userId === undefined ? '' : 'userId=' + filters.userId}`,
+
+        axios.get(`${API_URL === undefined ? '' : API_URL}/admin-transaction/all?${filters.statuses === null || filters.statuses === undefined ? '' : 'statuses[]=' + filters.statuses + '&'}${filters.gatewayTypes === null || filters.gatewayTypes === undefined ? '' : 'gatewayTypes[]=' + filters.gatewayTypes + '&'}${filters.limit === null || filters.limit === undefined ? '' : 'limit=' + filters.limit + '&'}${filters.offset === null || filters.offset === undefined ? '' : 'offset=' + filters.offset + '&'}${filters.orderBy === null || filters.orderBy === undefined ? '' : 'orderBy=' + filters.orderBy + '&'}${filters.userId === null || filters.userId === undefined ? '' : 'userId=' + filters.userId + "&"}${filters.exportUserIds === null || filters.exportUserIds === undefined ? '' : 'exportUserIds=' + filters.exportUserIds}`,
             {
                 headers: {
                     'Content-Type': 'application/json',
@@ -93,9 +95,9 @@ function Index() {
         setFilters({
             statuses: null,
             gatewayTypes: null,
-            limit: null,
+            limit: 20,
             offset: null,
-            sortBy: 3,
+            orderBy: 3,
             orderBy: 1,
         })
         setResetFlag(true);
@@ -108,11 +110,12 @@ function Index() {
         setFilters((prev) => ({ ...prev, ["exportUserIds"]: true }))
         setResetFlag(true);
     }
-    
+
     return (
         <div className='transactionList'>
             <div className="top">
-                <div className='filter'>
+                <div className='filters'>
+                    <Input classname={'filerinput'} value={filters.userId} type={'text'} name={"userId..."} placeholder={'userId'} changeInputValue={updateInputData} />
                     <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.statuses} name={'statuses'} defaultValue={'statuses'} type={'status'} changeOptinValue={updateOptionData}
                         data={[
                             { id: 0, status: 'Pending ENDING' },
@@ -130,7 +133,7 @@ function Index() {
                         ]}
                     />
 
-                    <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.sortBy} name={'sortBy'} defaultValue={'id'} type={'status'} changeOptinValue={updateOptionData}
+                    <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.orderBy} name={'orderBy'} defaultValue={'id'} type={'status'} changeOptinValue={updateOptionData}
                         data={[
                             { id: 0, status: 'createdAt' },
                             { id: 1, status: 'updatedAt' },
@@ -140,6 +143,7 @@ function Index() {
                             { id: 5, status: 'status' }
                         ]}
                     />
+
                     <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.orderBy} name={'orderBy'} defaultValue={'ASC'} type={'status'} changeOptinValue={updateOptionData}
                         data={[
                             { id: 0, status: 'DESC' },
@@ -147,8 +151,14 @@ function Index() {
                         ]}
                     />
 
-                    <Input classname={'filerinput'} value={filters.userId} type={'text'} name={"userId..."} placeholder={'userId'} changeInputValue={updateInputData} />
-
+                    <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.limit} name={'limit'} defaultValue={'20'} type={'status'} changeOptinValue={updateOptionData}
+                        data={[
+                            { id: 30, status: 30 },
+                            { id: 40, status: 40 },
+                            { id: 50, status: 50 },
+                            { id: 60, status: 60 },
+                        ]}
+                    />
                     <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
 
                     <div className="resetFillters" onClick={resetFillters}>

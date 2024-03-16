@@ -23,7 +23,7 @@ function Index() {
     const [resetFlag, setResetFlag] = useState(false);
     const [filters, setFilters] = useState({
         userId: null,
-        limit: 15,
+        limit: 20,
         page: 1
     })
 
@@ -62,7 +62,7 @@ function Index() {
     const resetFillters = () => {
         setFilters({
             userId: null,
-            limit: 15,
+            limit: 20,
             page: 1
         })
 
@@ -87,15 +87,15 @@ function Index() {
     return (
         <div className='notifList'>
             <div className='top'>
-                <div className='filter'>
+                <div className='filters'>
                     <Input name={'userId'} classname={'filerinput'} type={'text'} placeholder={'userId'} value={filters.userId} changeInputValue={updateInputData} />
 
-                    <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.limit} name={'limit'} defaultValue={'15'} type={'status'} changeOptinValue={updateOptionData}
+                    <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.limit} name={'limit'} defaultValue={'20'} type={'status'} changeOptinValue={updateOptionData}
                         data={[
-                            { id: 15, status: 15 },
-                            { id: 20, status: 20 },
-                            { id: 25, status: 25 },
                             { id: 30, status: 30 },
+                            { id: 40, status: 40 },
+                            { id: 50, status: 50 },
+                            { id: 60, status: 60 },
                         ]}
                     />
 

@@ -20,7 +20,7 @@ function Played() {
     const [cookies] = useCookies(['accessToken']);
     const { loading, setLoading } = useContext(LoadingContext);
     const { goToLoginPage } = useContext(LoginContext);
-    const [filter, setFilter] = useState({
+    const [filters, setFilters] = useState({
         startDate: moment(dateNow).subtract(1, 'months').format('jYYYY-jM-jD'),
         endDate: moment(dateNow).format('jYYYY-jM-jD'),
         limit: 20,
@@ -38,7 +38,7 @@ function Played() {
     //dixo.diacostudios.com/games/played/uno?startDate=2023-05-12&endDate=2023-10-12&limit=10&offset=2&orderBy=1
     const getPlayed = () => {
         setLoading(true)
-        axios.get(`${API_URL === undefined ? '' : API_URL}/games/played/${id}?${filter.startDate === null || filter.startDate === undefined ? '' : 'startDate=' + filter.startDate + '&'}${filter.endDate === null || filter.endDate === undefined ? '' : 'endDate=' + filter.endDate + '&'}${filter.limit === null || filter.limit === undefined ? '' : 'limit=' + filter.limit + '&'}${'offset=' + filter.offset + '&orderBy=' + filter.orderBy}`,
+        axios.get(`${API_URL === undefined ? '' : API_URL}/games/played/${id}?${filters.startDate === null || filters.startDate === undefined ? '' : 'startDate=' + filters.startDate + '&'}${filters.endDate === null || filters.endDate === undefined ? '' : 'endDate=' + filters.endDate + '&'}${filters.limit === null || filters.limit === undefined ? '' : 'limit=' + filters.limit + '&'}${'offset=' + filters.offset + '&orderBy=' + filters.orderBy}`,
             {
                 headers: {
                     'Content-Type': 'application/json',
@@ -59,34 +59,34 @@ function Played() {
     }
 
     const updateOptionData = (name, id) => {
-        setFilter((prev) => ({ ...prev, [name]: id }))
+        setFilters((prev) => ({ ...prev, [name]: id }))
     }
 
     const updateDataPiker = (e, title) => {
-        setFilter((prev) => ({ ...prev, [title]: e }))
+        setFilters((prev) => ({ ...prev, [title]: e }))
     }
 
     const resetFillters = () => {
-        setFilter({
+        setFilters({
             startDate: null,
             endDate: null,
-            limit: 15,
+            limit: 20,
             offset: 1,
             orderBy: 1
         })
     }
 
-    const filterhandler = () => {
+    const filtershandler = () => {
         getPlayed()
     }
 
     return (
         <div className='played'>
-            <div className="filter">
+            <div className="filters">
 
-                <DatePikerFarsi classnamedatepicker={'playeddatepiker'} title={'startDate:'} value={filter.startDate} name={'startDate'} handlerChangeDate={updateDataPiker} />
+                <DatePikerFarsi classnamedatepicker={'playeddatepiker'} title={'startDate:'} value={filters.startDate} name={'startDate'} handlerChangeDate={updateDataPiker} />
 
-                <DatePikerFarsi classnamedatepicker={'playeddatepiker'} title={'endDate:'} value={filter.endDate} name={'endDate'} handlerChangeDate={updateDataPiker} />
+                <DatePikerFarsi classnamedatepicker={'playeddatepiker'} title={'endDate:'} value={filters.endDate} name={'endDate'} handlerChangeDate={updateDataPiker} />
 
                 <SelectOption classnameBox={'playeddatepiker'} readOnly={false} title={'orderby:'} name={'orderBy'} defaultValue={'ASC'} type={'status'} changeOptinValue={updateOptionData}
                     data={[
@@ -95,7 +95,16 @@ function Played() {
                     ]}
                 />
 
-                <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
+                <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.limit} name={'limit'} defaultValue={'20'} type={'status'} changeOptinValue={updateOptionData}
+                    data={[
+                        { id: 30, status: 30 },
+                        { id: 40, status: 30 },
+                        { id: 50, status: 30 },
+                        { id: 60, status: 30 },
+                    ]}
+                />
+
+                <Button title={'Filters'} className={'filtersBtn'} classnameBtn={'filtersBtnBox'} btnhandler={filtershandler} />
 
                 <div className="resetFillters" onClick={resetFillters}>
                     <HiOutlineTrash />

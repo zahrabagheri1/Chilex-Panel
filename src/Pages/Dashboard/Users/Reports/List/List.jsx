@@ -19,8 +19,8 @@ function List() {
     const { loading, setLoading } = useContext(LoadingContext);
     const { goToLoginPage } = useContext(LoginContext);
     const [resetFlag, setResetFlag] = useState(false);
-    const [filter, setFilter] = useState({
-        limit: 15,
+    const [filters, setFilters] = useState({
+        limit: 20,
         offset: null,
         types: [],
         userId: null,
@@ -45,7 +45,7 @@ function List() {
     //reports/all?limit=1&offset=1&types%5B%5D=1&userId=1&sortBy=1&orderBy=1
     const listOfReportuser = () => {
         setLoading(true)
-        axios.get(`${API_URL === undefined ? '' : API_URL}/reports/all?${filter.limit === undefined || filter.limit === null ? '' : 'limit=' + filter.limit + '&'}${filter.offset === undefined || filter.offset === null ? '' : 'offset=' + filter.offset + '&'}${filter.types === undefined || filter.types === null ? '' : 'types[]=' + filter.types + '&'}${filter.userId === undefined || filter.userId === null ? '' : 'userId=' + filter.userId + '&'}${filter.sortBy === undefined || filter.sortBy === null ? '' : 'sortBy=' + filter.sortBy + '&'}${filter.orderBy === undefined || filter.orderBy === null ? '' : 'orderBy=' + filter.orderBy}`,
+        axios.get(`${API_URL === undefined ? '' : API_URL}/reports/all?${filters.limit === undefined || filters.limit === null ? '' : 'limit=' + filters.limit + '&'}${filters.offset === undefined || filters.offset === null ? '' : 'offset=' + filters.offset + '&'}${filters.types === undefined || filters.types === null ? '' : 'types[]=' + filters.types + '&'}${filters.userId === undefined || filters.userId === null ? '' : 'userId=' + filters.userId + '&'}${filters.sortBy === undefined || filters.sortBy === null ? '' : 'sortBy=' + filters.sortBy + '&'}${filters.orderBy === undefined || filters.orderBy === null ? '' : 'orderBy=' + filters.orderBy}`,
             {
                 headers: {
                     'Content-Type': 'application/json',
@@ -68,18 +68,18 @@ function List() {
 
     const updateOptionData = (name, id) => {
         name === 'types' ?
-            setFilter((prev) => ({ ...prev, 'types': [id]}))
+            setFilters((prev) => ({ ...prev, 'types': [id] }))
             :
-            setFilter((prev) => ({ ...prev, [name]: id }))
+            setFilters((prev) => ({ ...prev, [name]: id }))
     }
 
     const updateInputData = (e) => {
-        setFilter((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+        setFilters((prev) => ({ ...prev, [e.target.name]: e.target.value }))
     }
 
     const resetFillters = () => {
-        setFilter({
-            limit: 15,
+        setFilters({
+            limit: 20,
             offset: null,
             types: [],
             userId: null,
@@ -91,7 +91,7 @@ function List() {
     }
 
 
-    const filterhandler = () => {
+    const filtershandler = () => {
         listOfReportuser()
     }
 
@@ -126,7 +126,16 @@ function List() {
                     ]}
                 />
 
-                <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
+                <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.limit} name={'limit'} defaultValue={'20'} type={'status'} changeOptinValue={updateOptionData}
+                    data={[
+                        { id: 30, status: 30 },
+                        { id: 40, status: 40 },
+                        { id: 50, status: 50 },
+                        { id: 60, status: 60 },
+                    ]}
+                />
+                
+                <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filtershandler} />
 
                 <div className="resetFillters" onClick={resetFillters}>
                     <HiOutlineTrash />

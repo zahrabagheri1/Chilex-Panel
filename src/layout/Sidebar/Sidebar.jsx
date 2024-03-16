@@ -7,12 +7,12 @@ import { useCookies } from 'react-cookie';
 
 function Sidebar() {
   const [isActive, setActive] = useState(null)
-  const [removeCookie] = useCookies(['accessToken']);
+  const [cookies, setCookie, removeCookie] = useCookies(['accessToken']);
   const navigate = useNavigate()
 
   const activeTab = (item) => {
     if (item.logout === true) {
-      document.cookie = "accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+      // document.cookie = "accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
       removeCookie('accessToken', {
         expires: 'Thu, 01 Jan 1970 00:00:00 UTC',
         path: '/',

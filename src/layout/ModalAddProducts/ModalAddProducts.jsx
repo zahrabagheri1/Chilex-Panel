@@ -5,7 +5,6 @@ import Input from '../../Components/Input/Input';
 import SelectOption from '../../Components/SelectOption/SelectOption';
 import './ModalAddProducts.scss';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import Alert from '../Alert/Alert';
 import Prices from '../Prices/Prices';
 import Time from '../Time/Time';
@@ -99,7 +98,7 @@ function ModalAddProducts(props) {
           {
             props.type === 'bundle' ?
               <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
-                <SelectOption readOnly={false} name={'stuffType'} important={true} defaultValue={'stuffType'} type={'status'} changeOptinValue={addOptionData}
+                <SelectOption readOnly={false} title={'stuffType'}  name={'stuffType'} important={true} defaultValue={'stuffType'} type={'status'} changeOptinValue={addOptionData}
                   data={[
                     { id: 0, status: 'Gem bundle' },
                     { id: 1, status: 'Coin bundle' }
@@ -132,7 +131,7 @@ function ModalAddProducts(props) {
 
           {/* Tier */}
           <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
-            <SelectOption readOnly={false} name={'tier'} defaultValue={'tier'} type={'status'} changeOptinValue={addOptionData}
+            <SelectOption readOnly={false} title={'tier'}  name={'tier'} defaultValue={'tier'} type={'status'} changeOptinValue={addOptionData}
               data={[
                 { id: 0, status: 'DEFAULT' },
                 { id: 1, status: 'COMMON' },
@@ -145,7 +144,7 @@ function ModalAddProducts(props) {
 
           {/* ExpireTime */}
           <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
-            <DatePikerFarsi inputClass={'controlinput'} value={moment(Date.now()).format('jYYYY/jM/jD')} title={'expireTime'} handlerChangeDate={addDataPiker} />
+            <DatePikerFarsi classnamedatepicker={'controlDatePiker'} value={moment(Date.now()).format('jYYYY/jM/jD')} title={'expireTime'} handlerChangeDate={addDataPiker} />
           </div>
 
           {/* emoteItemType */}
@@ -154,7 +153,7 @@ function ModalAddProducts(props) {
               // emoteItemType 
               <>
                 <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
-                  <SelectOption readOnly={false} name={'emoteItemType'} defaultValue={'emoteItemType'} type={'status'} changeOptinValue={addOptionData}
+                  <SelectOption readOnly={false}  name={'emoteItemType'} title={'emoteItemType'}  defaultValue={'emoteItemType'} type={'status'} changeOptinValue={addOptionData}
                     data={[
                       { id: 0, status: 'Aninations' },
                     ]}
@@ -162,7 +161,7 @@ function ModalAddProducts(props) {
                 </div>
                 {/* Category */}
                 <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
-                  <SelectOption readOnly={false} important={true} name={'category'} defaultValue={'category'} type={'status'} changeOptinValue={addOptionData}
+                  <SelectOption readOnly={false} important={true} name={'category'} title={'category'}  defaultValue={'category'} type={'status'} changeOptinValue={addOptionData}
                     data={[
                       { id: 0, status: 'ELSE' },
                       { id: 1, status: 'GAME' },
@@ -173,7 +172,7 @@ function ModalAddProducts(props) {
 
                 {/* characterItemType */}
                 <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
-                  <SelectOption readOnly={false} name={'characterItemType'} defaultValue={'characterItemType'} type={'status'} changeOptinValue={addOptionData} disable={addElement.category === 2 ? false : true}
+                  <SelectOption readOnly={false} name={'characterItemType'} defaultValue={'characterItemType'} title={'characterItemType'} type={'status'} changeOptinValue={addOptionData} disable={addElement.category === 2 ? false : true}
                     data={[
                       { id: 0, status: 'CLOTHES' },
                       { id: 1, status: 'FACE' },
@@ -190,7 +189,7 @@ function ModalAddProducts(props) {
 
                 {/* GameId */}
                 <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
-                  <SelectOption readOnly={false} name={'gameId'} defaultValue={'Game'} type={'status'} changeOptinValue={addOptionData} disable={addElement.category === 1 ? false : true}
+                  <SelectOption readOnly={false} title={'gameId'}  name={'gameId'} defaultValue={'Game'} type={'status'} changeOptinValue={addOptionData} disable={addElement.category === 1 ? false : true}
                     data={[
                       { id: 0, status: 'Ludo' },
                       { id: 1, status: 'Uno' },
@@ -203,7 +202,7 @@ function ModalAddProducts(props) {
 
                 {/* gameItemType */}
                 <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
-                  <SelectOption readOnly={false} name={'gameItemType'} defaultValue={'gameItemType'} type={'status'} changeOptinValue={addOptionData} disable={addElement.category === 1 ? false : true}
+                  <SelectOption readOnly={false} title={'gameItemType'}  name={'gameItemType'} defaultValue={'gameItemType'} type={'status'} changeOptinValue={addOptionData} disable={addElement.category === 1 ? false : true}
                     data={[
                       { id: 0, status: 'DICE SKIN' },
                       { id: 1, status: 'CARD SKIN' },
@@ -228,7 +227,7 @@ function ModalAddProducts(props) {
 
           {/* status */}
           <div className="col-xl-2 col-lg-2 col-md-2 col-sm-6 col-xs-12">
-            <SelectOption readOnly={false} name={'status'} important={true} defaultValue={'Status'} type={'status'} changeOptinValue={addOptionData}
+            <SelectOption readOnly={false} title={'status'}  name={'status'} important={true} defaultValue={'Status'} type={'status'} changeOptinValue={addOptionData}
               data={[
                 { id: 0, status: 'Active' },
                 { id: 1, status: 'Deactive' }

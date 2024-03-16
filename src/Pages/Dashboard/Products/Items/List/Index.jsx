@@ -23,7 +23,7 @@ function Index() {
     const { goToLoginPage } = useContext(LoginContext);
     const [resetFlag, setResetFlag] = useState(false);
     const navigate = useNavigate()
-    const [filter, setFilter] = useState({
+    const [filters, setFilters] = useState({
         sku: null,
         itemStatus: null,
         itemGameId: null,
@@ -31,7 +31,7 @@ function Index() {
         characterItemTypes: null,
         gameItemTypes: null,
         priceStatus: null,
-        limit: null,
+        limit: 20,
         offset: null,
         sortBy: 2,
         orderBy: 1,
@@ -40,17 +40,17 @@ function Index() {
     useEffect(() => {
         goToLoginPage(cookies.accessToken);
         if (resetFlag) {
-            reqFilterItem();
+            reqFiltersItem();
             setResetFlag(false);
         } else {
-            reqFilterItem()
+            reqFiltersItem()
         }
     }, [resetFlag])
 
 
-    const reqFilterItem = () => {
+    const reqFiltersItem = () => {
         setLoading(true)
-        axios.get(`${API_URL === undefined ? '' : API_URL}/admin-stuff/items-all?${filter.sku === null || filter.sku === undefined ? '' : "sku=" + filter.sku + '&'}${filter.itemStatus === null || filter.itemStatus === undefined ? '' : "itemStatus=" + filter.itemStatus + '&'}${filter.itemGameId === null || filter.itemGameId === undefined ? '' : "itemGameId=" + filter.itemGameId + '&'}${filter.priceStatus === null || filter.priceStatus === undefined ? '' : "priceStatus=" + filter.priceStatus + '&'}${filter.limit === null || filter.limit === undefined ? '' : "limit=" + filter.limit + '&'}${filter.offset === null || filter.offset === undefined ? '' : "offset=" + filter.offset + '&'}${filter.sortBy === null || filter.sortBy === undefined ? '' : "sortBy=" + filter.sortBy + '&'}${filter.orderBy === null || filter.orderBy === undefined ? '' : "orderBy=" + filter.orderBy}`,
+        axios.get(`${API_URL === undefined ? '' : API_URL}/admin-stuff/items-all?${filters.sku === null || filters.sku === undefined ? '' : "sku=" + filters.sku + '&'}${filters.itemStatus === null || filters.itemStatus === undefined ? '' : "itemStatus=" + filters.itemStatus + '&'}${filters.itemGameId === null || filters.itemGameId === undefined ? '' : "itemGameId=" + filters.itemGameId + '&'}${filters.priceStatus === null || filters.priceStatus === undefined ? '' : "priceStatus=" + filters.priceStatus + '&'}${filters.limit === null || filters.limit === undefined ? '' : "limit=" + filters.limit + '&'}${filters.offset === null || filters.offset === undefined ? '' : "offset=" + filters.offset + '&'}${filters.sortBy === null || filters.sortBy === undefined ? '' : "sortBy=" + filters.sortBy + '&'}${filters.orderBy === null || filters.orderBy === undefined ? '' : "orderBy=" + filters.orderBy}`,
             {
                 headers: {
                     'Content-Type': 'application/json',
@@ -80,43 +80,43 @@ function Index() {
     }
 
     const updateOptionData = (name, id) => {
-        setFilter((prev) => ({ ...prev, [name]: id }))
+        setFilters((prev) => ({ ...prev, [name]: id }))
     }
 
     const updateInputData = (e) => {
-        setFilter((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+        setFilters((prev) => ({ ...prev, [e.target.name]: e.target.value }))
     }
 
     const resetFillters = () => {
-        setFilter({
+        setFilters({
             sku: null,
             itemStatus: null,
             priceStatus: null,
-            limit: null,
+            limit: 20,
             offset: null,
             orderBy: null,
         })
         setResetFlag(true);
     }
 
-    const filterhandler = () => {
-        reqFilterItem()
+    const filtershandler = () => {
+        reqFiltersItem()
     }
 
     return (
         <div className='itemList'>
             <div className='top'>
-                <div className='filter'>
-                    <Input  classname={'filerinput'} value={filter.sku} type={'text'} placeholder={'sku'} name={'sku'} changeInputValue={updateInputData} />
+                <div className='filters'>
+                    <Input classname={'filerinput'} value={filters.sku} type={'text'} placeholder={'sku'} name={'sku'} changeInputValue={updateInputData} />
 
-                    <SelectOption  classnameBox={'filerinput'} readOnly={false} value={filter.itemStatus} name={'itemStatus'} defaultValue={'itemStatus'} type={'status'} changeOptinValue={updateOptionData}
+                    <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.itemStatus} name={'itemStatus'} defaultValue={'itemStatus'} type={'status'} changeOptinValue={updateOptionData}
                         data={[
                             { id: 0, status: 'Active' },
                             { id: 1, status: 'Deactive' },
                         ]}
                     />
 
-                    <SelectOption  classnameBox={'filerinput'} readOnly={false} value={filter.itemGameId} name={'itemGameId'} defaultValue={'itemGameId'} type={'status'} changeOptinValue={updateOptionData}
+                    <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.itemGameId} name={'itemGameId'} defaultValue={'itemGameId'} type={'status'} changeOptinValue={updateOptionData}
                         data={[
                             { id: 0, status: 'Ludo' },
                             { id: 1, status: 'Uno' },
@@ -126,7 +126,7 @@ function Index() {
                         ]}
                     />
 
-                    <SelectOption  classnameBox={'filerinput'} readOnly={false} value={filter.characterItemTypes} name={'characterItemTypes'} defaultValue={'characterItemTypes'} type={'status'} changeOptinValue={updateOptionData}
+                    <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.characterItemTypes} name={'characterItemTypes'} defaultValue={'characterItemTypes'} type={'status'} changeOptinValue={updateOptionData}
                         data={[
                             { id: 0, status: 'CLOTHES' },
                             { id: 1, status: 'FACE' },
@@ -140,7 +140,7 @@ function Index() {
                         ]}
                     />
 
-                    <SelectOption  classnameBox={'filerinput'} readOnly={false} value={filter.gameItemTypes} name={'gameItemTypes'} defaultValue={'gameItemTypes'} type={'status'} changeOptinValue={updateOptionData}
+                    <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.gameItemTypes} name={'gameItemTypes'} defaultValue={'gameItemTypes'} type={'status'} changeOptinValue={updateOptionData}
                         data={[
                             { id: 0, status: 'DICE_SKIN' },
                             { id: 1, status: 'CARD_SKIN ' },
@@ -149,7 +149,7 @@ function Index() {
                         ]}
                     />
 
-                    <SelectOption  classnameBox={'filerinput'} readOnly={false} value={filter.itemCategories} name={'itemCategories'} defaultValue={'itemCategories'} type={'status'} changeOptinValue={updateOptionData}
+                    <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.itemCategories} name={'itemCategories'} defaultValue={'itemCategories'} type={'status'} changeOptinValue={updateOptionData}
                         data={[
                             { id: 0, status: 'ELSE' },
                             { id: 1, status: 'GAME' },
@@ -157,14 +157,14 @@ function Index() {
                         ]}
                     />
 
-                    <SelectOption  classnameBox={'filerinput'} readOnly={false} value={filter.priceStatus} name={'priceStatus'} defaultValue={'priceStatus'} type={'status'} changeOptinValue={updateOptionData}
+                    <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.priceStatus} name={'priceStatus'} defaultValue={'priceStatus'} type={'status'} changeOptinValue={updateOptionData}
                         data={[
                             { id: 0, status: 'Active' },
                             { id: 1, status: 'Deactive' },
                         ]}
                     />
 
-                    <SelectOption  classnameBox={'filerinput'} readOnly={false} value={filter.sortBy} name={'sortBy'} defaultValue={'id'} type={'status'} changeOptinValue={updateOptionData}
+                    <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.sortBy} name={'sortBy'} defaultValue={'id'} type={'status'} changeOptinValue={updateOptionData}
                         data={[
                             { id: 0, status: 'createdAt' },
                             { id: 1, status: 'updatedAt' },
@@ -174,22 +174,22 @@ function Index() {
                         ]}
                     />
 
-                    <SelectOption  classnameBox={'filerinput'} readOnly={false} value={filter.orderBy} name={'orderBy'} defaultValue={'ASC'} type={'status'} changeOptinValue={updateOptionData}
+                    <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.orderBy} name={'orderBy'} defaultValue={'ASC'} type={'status'} changeOptinValue={updateOptionData}
                         data={[
                             { id: 0, status: 'DESC' },
                             { id: 1, status: 'ASC' },
                         ]}
                     />
-                    <SelectOption classnameBox={'filerinput'} readOnly={false} value={filter.limit} name={'limit'} defaultValue={'15'} type={'status'} changeOptinValue={updateOptionData}
+
+                    <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.limit} name={'limit'} defaultValue={'20'} type={'status'} changeOptinValue={updateOptionData}
                         data={[
-                            { id: 15, status: 15 },
-                            { id: 20, status: 20 },
-                            { id: 25, status: 25 },
                             { id: 30, status: 30 },
+                            { id: 40, status: 40 },
+                            { id: 50, status: 50 },
+                            { id: 60, status: 60 },
                         ]}
                     />
-
-                    <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
+                    <Button title={'Filters'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filtershandler} />
 
                     <div className="resetFillters" onClick={resetFillters}>
                         <HiOutlineTrash />
@@ -197,7 +197,7 @@ function Index() {
                 </div>
 
                 <div className='addItem' onClick={handelOpenModal}>
-                <HiPlus className='icon' />
+                    <HiPlus className='icon' />
                     <div>Add Items</div>
                 </div>
             </div>

@@ -19,8 +19,8 @@ function Index() {
     const { loading, setLoading } = useContext(LoadingContext);
     const { goToLoginPage } = useContext(LoginContext);
     const [resetFlag, setResetFlag] = useState(false);
-    const [filter, setFilter] = useState({
-        limit: 15,
+    const [filters, setFilters] = useState({
+        limit: 20,
         offset: null,
         type: null,
         userId: null,
@@ -44,7 +44,7 @@ function Index() {
     //admin-ban/get-all?limit=1&offset=1&type=1&userId=1&sortBy=0&orderBy=0
     const listOfBanUsers = () => {
         setLoading(true)
-        axios.get(`${API_URL === undefined ? '' : API_URL}/admin-ban/get-all?${filter.limit === undefined || filter.limit === null ? '' : 'limit=' + filter.limit + '&'}${filter.offset === undefined || filter.offset === null ? '' : 'offset=' + filter.offset + '&'}${filter.type === undefined || filter.type === null ? '' : 'type=' + filter.type + '&'}${filter.userId === undefined || filter.userId === null ? '' : 'userId=' + filter.userId + '&'}${filter.sortBy === undefined || filter.sortBy === null ? '' : 'sortBy=' + filter.sortBy + '&'}${filter.orderBy === undefined || filter.orderBy === null ? '' : 'orderBy=' + filter.orderBy}`,
+        axios.get(`${API_URL === undefined ? '' : API_URL}/admin-ban/get-all?${filters.limit === undefined || filters.limit === null ? '' : 'limit=' + filters.limit + '&'}${filters.offset === undefined || filters.offset === null ? '' : 'offset=' + filters.offset + '&'}${filters.type === undefined || filters.type === null ? '' : 'type=' + filters.type + '&'}${filters.userId === undefined || filters.userId === null ? '' : 'userId=' + filters.userId + '&'}${filters.sortBy === undefined || filters.sortBy === null ? '' : 'sortBy=' + filters.sortBy + '&'}${filters.orderBy === undefined || filters.orderBy === null ? '' : 'orderBy=' + filters.orderBy}`,
             {
                 headers: {
                     'Content-Type': 'application/json',
@@ -64,8 +64,8 @@ function Index() {
     }
 
     const resetFillters = () => {
-        setFilter({
-            limit: null,
+        setFilters({
+            limit: 20,
             offset: null,
             type: null,
             userId: null,
@@ -75,16 +75,16 @@ function Index() {
         setResetFlag(true);
     }
 
-    const filterhandler = () => {
+    const filtershandler = () => {
         listOfBanUsers()
     }
 
     const updateOptionData = (name, id) => {
-        setFilter((prev) => ({ ...prev, [name]: id }))
+        setFilters((prev) => ({ ...prev, [name]: id }))
     }
 
     const updateInputData = (e) => {
-        setFilter((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+        setFilters((prev) => ({ ...prev, [e.target.name]: e.target.value }))
     }
 
     const showDetailBanUser = (id) => {
@@ -93,7 +93,7 @@ function Index() {
 
     return (
         <div className='banUserlist'>
-            <div className="filterBanUser">
+            <div className="filtersBanUser">
 
                 <Input classname={'filerinput'} value={value} type={'text'} placeholder={'type...'} changeInputValue={updateInputData} />
 
@@ -115,8 +115,17 @@ function Index() {
                         { id: 1, status: 'ASC' },
                     ]}
                 />
+                
+                <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.limit} name={'limit'} defaultValue={'20'} type={'status'} changeOptinValue={updateOptionData}
+                    data={[
+                        { id: 30, status: 30 },
+                        { id: 40, status: 40 },
+                        { id: 50, status: 50 },
+                        { id: 60, status: 60 },
+                    ]}
+                />
 
-                <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
+                <Button title={'Filters'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filtershandler} />
 
                 <div className="resetFillters" onClick={resetFillters}>
                     <HiOutlineTrash />

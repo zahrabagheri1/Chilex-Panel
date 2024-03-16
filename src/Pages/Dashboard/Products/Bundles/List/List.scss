@@ -17,7 +17,7 @@
         height: auto;
         z-index: 1;
 
-        .filter {
+        .filters {
             display: flex;
             position: relative;
             flex-direction: row;
@@ -26,9 +26,14 @@
             align-items: center;
             gap: 10px;
 
+            .filerinput {
+                width: 100px;
+            }
+
             .filterBtnBox {
                 display: flex;
                 align-items: flex-end;
+                width: 100px;
 
                 .filterBtn {
                     height: 32px;
@@ -46,9 +51,7 @@
             cursor: pointer;
         }
 
-        .filerinput {
-            width: 100px;
-        }
+
 
         .addBundle {
             display: flex;

@@ -30,7 +30,7 @@ function Index() {
         sortBy: 4,
         orderBy: 1,
         offset: null,
-        limit: 1000,
+        limit: 20,
         exportUserIds: false
     })
 
@@ -86,7 +86,7 @@ function Index() {
             sortBy: 3,
             orderBy: 1,
             offset: null,
-            limit: null,
+            limit: 20,
         })
         setResetFlag(true);
     }
@@ -94,7 +94,7 @@ function Index() {
     const filterhandler = () => {
         reqFilterShopHistory()
     }
-    
+
     const exportUsers = () => {
         setFilters((prev) => ({ ...prev, ["exportUserIds"]: true }))
         setResetFlag(true);
@@ -103,7 +103,7 @@ function Index() {
     return (
         <div className='shoppingHistoryList'>
             <div className="top">
-                <div className='filter'>
+                <div className='filters'>
                     <Input classname={'filerinput'} value={filters.userId} name={'userId'} type={'text'} placeholder={'userId...'} changeInputValue={updateInputData} />
                     <SelectOption classnameBox={'filerinput'} value={filters.gatewayTypes} name={'gatewayTypes'} defaultValue={'gatewayTypes'} type={'status'} readOnly={false} changeOptinValue={updateOptionData}
                         data={[
@@ -145,9 +145,16 @@ function Index() {
                             { id: 1, status: 'Item' },
                         ]}
                     />
-
+                    <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.limit} name={'limit'} defaultValue={'20'} type={'status'} changeOptinValue={updateOptionData}
+                        data={[
+                            { id: 30, status: 30 },
+                            { id: 40, status: 40 },
+                            { id: 50, status: 50 },
+                            { id: 60, status: 60 },
+                        ]}
+                    />
                     <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
-                   
+
                     <div className="resetFillters" onClick={resetFillters}>
                         <HiOutlineTrash />
                     </div>
