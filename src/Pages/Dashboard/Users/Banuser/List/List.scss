@@ -9,24 +9,26 @@
     justify-content: space-between;
     gap: 20px;
 
+
     .filterBanUser {
         z-index: 1;
+        display: flex;
         position: relative;
-        padding: 20px 30px;
         flex-direction: row;
         height: auto;
-        width: calc(100% - 60px);
-        background: $Gray;
-        border-radius: 6px;
-        border: 2px solid $lightGray;
-        align-items: center;
+        align-items: flex-end;
         gap: 10px;
 
+        .filerinput {
+            width: 100px;
+        }
+        
         .filterBtnBox {
             display: flex;
             align-items: flex-end;
-
+            
             .filterBtn {
+                width: 100px;
                 height: 32px;
             }
 

@@ -22,9 +22,14 @@
             position: relative;
             flex-direction: row;
             height: auto;
-            width: calc(100% - 60px);
-            align-items: center;
+            align-items: flex-end;
+            width: 100%;
             gap: 10px;
+
+            .filerinput {
+                width: 100px;
+            }
+            
             .filterBtnBox {
                 display: flex;
                 align-items: flex-end;

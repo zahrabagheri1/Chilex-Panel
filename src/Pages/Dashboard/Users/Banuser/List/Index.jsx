@@ -20,7 +20,7 @@ function Index() {
     const { goToLoginPage } = useContext(LoginContext);
     const [resetFlag, setResetFlag] = useState(false);
     const [filter, setFilter] = useState({
-        limit: null,
+        limit: 15,
         offset: null,
         type: null,
         userId: null,
@@ -33,10 +33,10 @@ function Index() {
     useEffect(() => {
         goToLoginPage(cookies.accessToken);
         if (resetFlag) {
-           listOfBanUsers()
+            listOfBanUsers()
             setResetFlag(false)
-        }else{
-           listOfBanUsers()
+        } else {
+            listOfBanUsers()
         }
     }, [resetFlag])
 
@@ -76,7 +76,7 @@ function Index() {
     }
 
     const filterhandler = () => {
-       listOfBanUsers()
+        listOfBanUsers()
     }
 
     const updateOptionData = (name, id) => {
@@ -94,47 +94,36 @@ function Index() {
     return (
         <div className='banUserlist'>
             <div className="filterBanUser">
-                <div className="row">
-                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <Input value={value} type={'text'} title={"type"} placeholder={'type'} changeInputValue={updateInputData} />
-                    </div>
 
-                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <Input value={value} type={'text'} title={"userId"} placeholder={'userId'} changeInputValue={updateInputData} />
-                    </div>
+                <Input classname={'filerinput'} value={value} type={'text'} placeholder={'type...'} changeInputValue={updateInputData} />
 
-                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <SelectOption readOnly={false} value={value} name={'sortBy'} defaultValue={'id'} type={'status'} changeOptinValue={updateOptionData}
-                            data={[
-                                { id: 0, status: 'createdAt' },
-                                { id: 1, status: 'updatedAt' },
-                                { id: 2, status: 'id' },
-                                { id: 3, status: 'type' },
-                                { id: 4, status: 'userId' }
-                            ]}
-                        />
-                    </div>
+                <Input classname={'filerinput'} value={value} type={'text'} placeholder={'userId...'} changeInputValue={updateInputData} />
 
-                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <SelectOption readOnly={false} value={value} name={'orderBy'} defaultValue={'id'} type={'status'} changeOptinValue={updateOptionData}
-                            data={[
-                                { id: 0, status: 'DESC' },
-                                { id: 1, status: 'ASC' },
-                            ]}
-                        />
-                    </div>
+                <SelectOption classnameBox={'filerinput'} readOnly={false} value={value} name={'sortBy'} defaultValue={'sortBy id'} type={'status'} changeOptinValue={updateOptionData}
+                    data={[
+                        { id: 0, status: 'createdAt' },
+                        { id: 1, status: 'updatedAt' },
+                        { id: 2, status: 'id' },
+                        { id: 3, status: 'type' },
+                        { id: 4, status: 'userId' }
+                    ]}
+                />
 
-                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                            <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
-                        </div>
-                </div>
+                <SelectOption classnameBox={'filerinput'} readOnly={false} value={value} name={'orderBy'} defaultValue={'orderBy '} type={'status'} changeOptinValue={updateOptionData}
+                    data={[
+                        { id: 0, status: 'DESC' },
+                        { id: 1, status: 'ASC' },
+                    ]}
+                />
+
+                <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
 
                 <div className="resetFillters" onClick={resetFillters}>
                     <HiOutlineTrash />
                 </div>
             </div>
 
-                <Table data={banuserList} sort={sortBanUsers} action={true} showDetail={showDetailBanUser} />
+            <Table data={banuserList} sort={sortBanUsers} action={true} showDetail={showDetailBanUser} />
         </div>
     );
 }

@@ -20,7 +20,7 @@ function List() {
     const { goToLoginPage } = useContext(LoginContext);
     const [resetFlag, setResetFlag] = useState(false);
     const [filter, setFilter] = useState({
-        limit: null,
+        limit: 15,
         offset: null,
         types: [],
         userId: null,
@@ -59,7 +59,7 @@ function List() {
                 }
             ).catch(
                 err => {
-                    
+
                     console.log(err.response.status)
 
                 }
@@ -79,7 +79,7 @@ function List() {
     }
     const resetFillters = () => {
         setFilter({
-            limit: null,
+            limit: 15,
             offset: null,
             types: [],
             userId: null,
@@ -98,55 +98,42 @@ function List() {
     return (
         <div className='reportUserslist'>
             <div className="filterReportUser">
-                <div className="row">
+                <Input classname={'filerinput'} value={value} type={'text'} placeholder={'userId...'} changeInputValue={updateInputData} />
 
-                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <SelectOption readOnly={false} value={value} name={'types'} defaultValue={'types'} type={'status'} changeOptinValue={updateOptionData}
-                            data={[
-                                { id: 0, status: 'PLAYER NAME OFFENSIVE' },
-                                { id: 1, status: 'INACTIVE' },
-                                { id: 2, status: 'CHEATING' },
-                                { id: 3, status: 'VOICE CHAT OFFENSIVE' }
-                            ]}
-                        />
-                    </div>
+                <SelectOption classnameBox={'filerinput'} readOnly={false} value={value} name={'types'} defaultValue={'types'} type={'status'} changeOptinValue={updateOptionData}
+                    data={[
+                        { id: 0, status: 'PLAYER NAME OFFENSIVE' },
+                        { id: 1, status: 'INACTIVE' },
+                        { id: 2, status: 'CHEATING' },
+                        { id: 3, status: 'VOICE CHAT OFFENSIVE' }
+                    ]}
+                />
 
-                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <Input value={value} type={'text'} title={"userId"} placeholder={'userId'} changeInputValue={updateInputData} />
-                    </div>
+                <SelectOption classnameBox={'filerinput'} readOnly={false} value={value} name={'sortBy'} defaultValue={'id'} type={'status'} changeOptinValue={updateOptionData}
+                    data={[
+                        { id: 0, status: 'createdAt' },
+                        { id: 1, status: 'updatedAt' },
+                        { id: 2, status: 'id' },
+                        { id: 3, status: 'reportedId' },
+                        { id: 4, status: 'reporterId' }
+                    ]}
+                />
 
-                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <SelectOption readOnly={false} value={value} name={'sortBy'} defaultValue={'id'} type={'status'} changeOptinValue={updateOptionData}
-                            data={[
-                                { id: 0, status: 'createdAt' },
-                                { id: 1, status: 'updatedAt' },
-                                { id: 2, status: 'id' },
-                                { id: 3, status: 'reportedId' },
-                                { id: 4, status: 'reporterId' }
-                            ]}
-                        />
-                    </div>
+                <SelectOption classnameBox={'filerinput'} readOnly={false} value={value} name={'orderBy'} defaultValue={'ASC'} type={'status'} changeOptinValue={updateOptionData}
+                    data={[
+                        { id: 0, status: 'DESC' },
+                        { id: 1, status: 'ASC' },
+                    ]}
+                />
 
-                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <SelectOption readOnly={false} value={value} name={'orderBy'} defaultValue={'ASC'} type={'status'} changeOptinValue={updateOptionData}
-                            data={[
-                                { id: 0, status: 'DESC' },
-                                { id: 1, status: 'ASC' },
-                            ]}
-                        />
-                    </div>
+                <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
 
-                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
-                    </div>
-
-                </div>
                 <div className="resetFillters" onClick={resetFillters}>
                     <HiOutlineTrash />
                 </div>
             </div>
 
-                <Table data={reportuserList} sort={sortReportUsers} action={true} showDetail={showDetailBanUser} />
+            <Table data={reportuserList} sort={sortReportUsers} action={true} showDetail={showDetailBanUser} />
         </div>
     );
 }

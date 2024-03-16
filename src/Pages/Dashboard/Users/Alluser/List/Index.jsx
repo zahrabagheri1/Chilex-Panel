@@ -26,16 +26,16 @@ function Index() {
     name: null,
     email: null,
     phone: null,
-    ban: null,
+    ban: 0,
     // createdAt:  moment(dateNow).format('jYYYY-jM-jD'),
     createdAt: null,
-    createdAtType: null,
-    register: null,
-    inviteBy: null,
-    lastOnline: null,
-    limit: 122,
+    createdAtType: 1,
+    register: 0,
+    inviteBy: 0,
+    lastOnline: 0,
+    limit: 15,
     online: 2,
-    unfinishedGame: null,
+    unfinishedGame: 0,
     page: 1,
     sortBy: 1,
     order: 0
@@ -55,7 +55,7 @@ function Index() {
       register: 0,
       inviteBy: 0,
       lastOnline: 0,
-      limit: 200,
+      limit: 15,
       online: 2,
       unfinishedGame: 0,
       page: 1,
@@ -131,7 +131,7 @@ function Index() {
 
           <Input type={'text'} placeholder={'phone...'} name={'phone'} changeInputValue={updateInputData} />
 
-          <SelectOption readOnly={false} name={'ban'} defaultValue={'all users'} type={'status'} changeOptinValue={updateOptionData}
+          <SelectOption readOnly={false} name={'ban'} defaultValue={'ban or all'} type={'status'} changeOptinValue={updateOptionData}
             data={[
               { id: 0, status: 'all users' },
               { id: 1, status: 'ban users' }
@@ -140,7 +140,7 @@ function Index() {
 
           <DatePikerFarsi value={Date.now()} handlerChangeDate={updateDataPiker} />
 
-          <SelectOption readOnly={false} name={'register'} defaultValue={'all'} type={'status'} changeOptinValue={updateOptionData}
+          <SelectOption readOnly={false} name={'register'} defaultValue={'register'} type={'status'} changeOptinValue={updateOptionData}
             data={[
               { id: 0, status: 'all' },
               { id: 1, status: 'guest' },
@@ -149,15 +149,7 @@ function Index() {
             ]}
           />
 
-          <SelectOption readOnly={false} name={'register'} defaultValue={'all'} type={'status'} changeOptinValue={updateOptionData}
-            data={[
-              { id: 0, status: 'all' },
-              { id: 1, status: 'guest' },
-              { id: 2, status: 'google' },
-              { id: 3, status: 'phone' }
-            ]}
-          />
-          <SelectOption readOnly={false} name={'online'} defaultValue={'offline and online users'} type={'status'} changeOptinValue={updateOptionData}
+          <SelectOption readOnly={false} name={'online'} defaultValue={'off or online users'} type={'status'} changeOptinValue={updateOptionData}
             data={[
               { id: 0, status: 'offline users' },
               { id: 1, status: 'online users' },
@@ -191,11 +183,6 @@ function Index() {
           />
 
           <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
-
-
-
-          <Button title={'Export'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
-
 
 
           <div className="resetFillters" onClick={resetFillters}>

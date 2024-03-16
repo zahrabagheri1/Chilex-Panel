@@ -106,9 +106,7 @@ function Index() {
     return (
         <div className='transactionList'>
             <div className='filter'>
-                <div className="row">
-                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <SelectOption readOnly={false} value={filters.statuses} name={'statuses'} defaultValue={'statuses'} type={'status'} changeOptinValue={updateOptionData}
+                        <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.statuses} name={'statuses'} defaultValue={'statuses'} type={'status'} changeOptinValue={updateOptionData}
                             data={[
                                 { id: 0, status: 'Pending ENDING' },
                                 { id: 1, status: 'True check result' },
@@ -118,25 +116,14 @@ function Index() {
                                 { id: 5, status: 'Refunded' }
                             ]}
                         />
-                    </div>
-                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <SelectOption readOnly={false} value={filters.gatewayTypes} name={'gatewayTypes'} defaultValue={'gatewayTypes'} type={'status'} changeOptinValue={updateOptionData}
+                        <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.gatewayTypes} name={'gatewayTypes'} defaultValue={'gatewayTypes'} type={'status'} changeOptinValue={updateOptionData}
                             data={[
                                 { id: 0, status: 'Pasargad' },
                                 { id: 1, status: 'Cafe Bazar' }
                             ]}
                         />
-                    </div>
 
-                    {/* <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                    <Input value={filters.limit} type={'text'} title={"limit"} placeholder={'limit'} changeInputValue={updateInputData} />
-                </div>
-                <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                    <Input value={filters.offset} type={'text'} title={"offset"} placeholder={'offset'} changeInputValue={updateInputData} />
-                </div> */}
-
-                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <SelectOption readOnly={false} value={filters.sortBy} name={'sortBy'} defaultValue={'id'} type={'status'} changeOptinValue={updateOptionData}
+                        <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.sortBy} name={'sortBy'} defaultValue={'id'} type={'status'} changeOptinValue={updateOptionData}
                             data={[
                                 { id: 0, status: 'createdAt' },
                                 { id: 1, status: 'updatedAt' },
@@ -146,28 +133,18 @@ function Index() {
                                 { id: 5, status: 'status' }
                             ]}
                         />
-                    </div>
-                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <SelectOption readOnly={false} value={filters.orderBy} name={'orderBy'} defaultValue={'ASC'} type={'status'} changeOptinValue={updateOptionData}
+                        <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.orderBy} name={'orderBy'} defaultValue={'ASC'} type={'status'} changeOptinValue={updateOptionData}
                             data={[
                                 { id: 0, status: 'DESC' },
                                 { id: 1, status: 'ASC' },
                             ]}
                         />
-                    </div>
 
-                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
-                        <Input value={filters.userId} type={'text'} title={"userId"} name={"userId"} placeholder={'userId'} changeInputValue={updateInputData} />
-                    </div>
+                        <Input classname={'filerinput'} value={filters.userId} type={'text'} name={"userId..."} placeholder={'userId'} changeInputValue={updateInputData} />
 
-                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
                         <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
-                    </div>
                     
-                    <div className="col-xl-2 col-lg-2 col-md-2 col-sm-3 col-xs-12">
                         <Button title={'Export'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
-                    </div>
-                </div>
 
                 <div className="resetFillters" onClick={resetFillters}>
                     <HiOutlineTrash />
