@@ -2,21 +2,6 @@ import React, { useEffect, useState } from 'react';
 import './SelectOption.scss';
 import { HiOutlineChevronDown } from "react-icons/hi2";
 
-
-// const props = {
-//   dataKey: "id",
-//   name: 'stufftype',
-//   defaultValue: "color",
-//   type: 'bundle',
-//   value: { value },
-//   onChange: (nextValue) => setValue(nextValue.id),
-//   data: [
-//     { id: 0, bundle: 'Gem bundle' },
-//     { id: 1, bundle: 'Coin bundle' },
-//     { id: 2, bundle: 'Item' }
-//   ],
-// }
-
 function SelectOption(props) {
   const [data, setData] = useState(props.data)
   const [changeTitle, setChangeTitle] = useState();
@@ -31,9 +16,7 @@ function SelectOption(props) {
     setClick(!click)
     props.changeOptinValue(props.name, id)
   }
-
-  // props.sendBackData()
-
+  
   useEffect(() => {
     data.map(item => (
       item.id === props.value ?
