@@ -75,10 +75,6 @@ function Index() {
         setResetFlag(true);
     }
 
-    const filtershandler = () => {
-        listOfBanUsers()
-    }
-
     const updateOptionData = (name, id) => {
         setFilters((prev) => ({ ...prev, [name]: id }))
     }
@@ -89,6 +85,11 @@ function Index() {
 
     const showDetailBanUser = (id) => {
         navigate(`${id}`)
+    }
+
+    const offsetTableHandler = (page) => {
+        setFilters((prev) => ({ ...prev, 'offset': page }))
+        setResetFlag(true)
     }
 
     return (
@@ -115,7 +116,7 @@ function Index() {
                         { id: 1, status: 'ASC' },
                     ]}
                 />
-                
+
                 <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.limit} name={'limit'} defaultValue={'20'} type={'status'} changeOptinValue={updateOptionData}
                     data={[
                         { id: 30, status: 30 },
@@ -125,14 +126,14 @@ function Index() {
                     ]}
                 />
 
-                <Button title={'Filters'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filtershandler} />
+                <Button title={'Filters'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={() => listOfBanUsers()} />
 
                 <div className="resetFillters" onClick={resetFillters}>
                     <HiOutlineTrash />
                 </div>
             </div>
 
-            <Table data={banuserList?.data} pagintion={banuserList?.total_pages} sort={sortBanUsers} action={true} showDetail={showDetailBanUser} />
+            <Table data={banuserList?.data} list={banuserList} offsetTable={offsetTableHandler} sort={sortBanUsers} action={true} showDetail={showDetailBanUser} />
         </div>
     );
 }
