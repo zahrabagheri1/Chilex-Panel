@@ -15,7 +15,7 @@ import SelectOption from '../../../../Components/SelectOption/SelectOption'
 
 
 function Index() {
-  const [dialog, setDialog] = useState(null);
+  const [dialogList, setDialogList] = useState(null);
   const [modal, setModal] = useState(false);
   const [cookies] = useCookies(['accessToken']);
   const { loading, setLoading } = useContext(LoadingContext);
@@ -51,7 +51,7 @@ function Index() {
       })
       .then(
         res => {
-          setDialog(res.data.data)
+          setDialogList(res.data)
           setLoading(false)
         }
       )
@@ -116,7 +116,7 @@ function Index() {
         </div>
       </div>
 
-      <Table data={dialog} sort={sortDialog} action={true} showDetail={showDetailNotif} />
+      <Table data={dialogList?.data} sort={sortDialog} action={true} pagintion={dialogList?.total_pages} showDetail={showDetailNotif} />
 
       {modal === true ?
         <AddDialog canceladd={() => setModal(false)} />

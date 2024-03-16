@@ -16,7 +16,7 @@ import moment from 'moment-jalaali';
 
 function Played() {
     const dateNow = Date.now()
-    const [data, setData] = useState()
+    const [playedList, setPlayedList] = useState()
     const [cookies] = useCookies(['accessToken']);
     const { loading, setLoading } = useContext(LoadingContext);
     const { goToLoginPage } = useContext(LoginContext);
@@ -47,7 +47,7 @@ function Played() {
             })
             .then(
                 res => {
-                    setData(res.data.data)
+                    setPlayedList(res.data)
                     setLoading(false)
                 }
             )
@@ -111,7 +111,7 @@ function Played() {
                 </div>
             </div>
 
-            <Table data={data} sort={sortGamePlayed} action={true} showDetailStatus={false} />
+            <Table data={playedList?.data} sort={sortGamePlayed} pagintion={playedList?.total_pages} action={true} showDetailStatus={false} />
         </div>
     );
 }

@@ -15,9 +15,8 @@ import { API_URL } from '../../../../../API_URL';
 import Button from '../../../../../Components/Button/Button';
 
 function Index() {
-    const [items, setItems] = useState(null);
+    const [itemList, setItemList] = useState(null);
     const [modal, setModal] = useState(false);
-    const [value, setValue] = useState();
     const [cookies] = useCookies(['accessToken']);
     const { loading, setLoading } = useContext(LoadingContext)
     const { goToLoginPage } = useContext(LoginContext);
@@ -59,7 +58,7 @@ function Index() {
             })
             .then(
                 res => {
-                    setItems(res.data.data)
+                    setItemList(res.data)
                     setLoading(false)
                 }
             ).catch(
@@ -202,12 +201,12 @@ function Index() {
                 </div>
             </div>
 
-            <Table data={items} sort={sortItems} action={true} showDetail={showDetailItem} />
+            <Table data={itemList?.data} sort={sortItems} action={true} pagintion={itemList?.total_pages} showDetail={showDetailItem} />
 
             {modal === true ?
                 <ModalAddProducts
                     modalTitle={'Add New Item'}
-                    data={items}
+                    data={itemList?.data}
                     type={'item'}
                     path={'items'}
                     handelerSubmit={handelOpenModal}

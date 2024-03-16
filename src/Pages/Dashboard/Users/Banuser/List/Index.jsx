@@ -53,7 +53,7 @@ function Index() {
             })
             .then(
                 res => {
-                    setBanuserList(res.data.data)
+                    setBanuserList(res.data)
                     setLoading(false)
                 }
             ).catch(
@@ -132,7 +132,7 @@ function Index() {
                 </div>
             </div>
 
-            <Table data={banuserList} sort={sortBanUsers} action={true} showDetail={showDetailBanUser} />
+            <Table data={banuserList?.data} pagintion={banuserList?.total_pages} sort={sortBanUsers} action={true} showDetail={showDetailBanUser} />
         </div>
     );
 }

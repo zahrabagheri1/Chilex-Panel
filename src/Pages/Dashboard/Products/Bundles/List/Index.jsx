@@ -15,7 +15,7 @@ import { API_URL } from '../../../../../API_URL';
 import Button from '../../../../../Components/Button/Button';
 
 function Index() {
-    const [bundles, setBundles] = useState(null);
+    const [bundleList, setBundleList] = useState(null);
     const [modal, setModal] = useState(false);
     const [cookies] = useCookies(['accessToken']);
     const { loading, setLoading } = useContext(LoadingContext);
@@ -54,7 +54,7 @@ function Index() {
             })
             .then(
                 res => {
-                    setBundles(res.data.data)
+                    setBundleList(res.data)
                     setLoading(false)
                 }
             )
@@ -170,13 +170,13 @@ function Index() {
 
             </div>
 
-            <Table data={bundles} sort={sortBundles} action={true} showDetail={showDetailBandle} />
+            <Table data={bundleList?.data} sort={sortBundles} pagintion={bundleList?.total_pages} action={true} showDetail={showDetailBandle} />
 
             {modal === true ?
 
                 <ModalAddProducts
                     modalTitle={'Add New bundle'}
-                    data={bundles}
+                    data={bundleList}
                     type={'bundle'}
                     path={'bundles'}
                     hundelerSubmit={hundelOpenModal}

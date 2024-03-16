@@ -15,7 +15,7 @@ import SelectOption from '../../../../Components/SelectOption/SelectOption';
 
 
 function Index() {
-    const [history, setHistory] = useState(null);
+    const [historyList, setHistoryList] = useState(null);
     const { setLoading } = useContext(LoadingContext)
     const navigate = useNavigate();
     const [cookies] = useCookies(['accessToken']);
@@ -56,7 +56,7 @@ function Index() {
             })
             .then(
                 res => {
-                    setHistory(res.data.data)
+                    setHistoryList(res.data)
                     setLoading(false)
                 }
             )
@@ -165,7 +165,7 @@ function Index() {
                 </div>
             </div>
 
-            <Table data={history} sort={sortHistory} action={true} showDetail={showDetailHistory} />
+            <Table data={historyList?.data} pagintion={historyList?.total_pages} sort={sortHistory} action={true} showDetail={showDetailHistory} />
 
         </div>
     );

@@ -54,7 +54,7 @@ function List() {
             })
             .then(
                 res => {
-                    setReportuserList(res.data.data)
+                    setReportuserList(res.data)
                     setLoading(false)
                 }
             ).catch(
@@ -142,7 +142,7 @@ function List() {
                 </div>
             </div>
 
-            <Table data={reportuserList} sort={sortReportUsers} action={true} showDetailStatus={false} />
+            <Table data={reportuserList} pagintion={reportuserList?.total_pages} sort={sortReportUsers} action={true} showDetailStatus={false} />
         </div>
     );
 }

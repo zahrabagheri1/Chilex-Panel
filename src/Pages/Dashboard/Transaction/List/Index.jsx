@@ -29,7 +29,7 @@ const transaction = [
 ]
 
 function Index() {
-    const [transaction, setTransaction] = useState(null);
+    const [transactionList, setTransactionList] = useState(null);
     const { setLoading } = useContext(LoadingContext);
     const { goToLoginPage } = useContext(LoginContext);
     const navigate = useNavigate()
@@ -70,7 +70,7 @@ function Index() {
             })
             .then(
                 res => {
-                    setTransaction(res.data.data);
+                    setTransactionList(res.data);
                     setLoading(false)
                 }
             )
@@ -171,7 +171,7 @@ function Index() {
                     <div>Export</div>
                 </div>
             </div>
-            <Table data={transaction} sort={adminTransaction} action={true} showDetail={showDetailTransaction} />
+            <Table data={transactionList?.data} pagintion={transactionList?.total_pages} sort={adminTransaction} action={true} showDetail={showDetailTransaction} />
         </div>
     );
 }

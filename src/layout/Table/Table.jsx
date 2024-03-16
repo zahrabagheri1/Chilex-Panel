@@ -14,6 +14,9 @@ function Table(props) {
         }
     }
 
+    const pagintionHandler = (page) => {
+        console.log(page+1)
+    }
 
     return (
         <div className='showData'>
@@ -95,16 +98,14 @@ function Table(props) {
                             </div>
                         </ScrollContainer>
 
-
                         <div className="tablePagintion">
                             <div className="pagintion">
                                 <div className="previousbtn"><HiChevronLeft /></div>
-                                <div className="pagenumber">1</div>
-                                <div className="pagenumber">2</div>
-                                <div className="pagenumber">4</div>
-                                <div className="pagenumber">5</div>
-                                <div className="pagenumber">6</div>
-                                <div className="pagenumber">7</div>
+                                {
+                                    [...Array(props.pagintion).keys()].map((index) => (
+                                        <div className="pagenumber" key={index} onClick={() => pagintionHandler(index)} >{index + 1}</div>
+                                    ))
+                                }
                                 <div className="nextbtn"><HiChevronRight /></div>
                             </div>
                         </div>

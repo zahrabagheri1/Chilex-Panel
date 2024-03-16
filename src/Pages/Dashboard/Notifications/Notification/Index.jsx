@@ -15,7 +15,7 @@ import './Notification.scss';
 import SelectOption from '../../../../Components/SelectOption/SelectOption';
 
 function Index() {
-    const [notifiction, setNotifiction] = useState(null);
+    const [notifictionList, setNotifictionList] = useState(null);
     const [modal, setModal] = useState(false);
     const [cookies] = useCookies(['accessToken']);
     const { loading, setLoading } = useContext(LoadingContext);
@@ -50,7 +50,7 @@ function Index() {
             })
             .then(
                 res => {
-                    setNotifiction(res.data.data)
+                    setNotifictionList(res.data)
                     setLoading(false)
                 }
             )
@@ -112,7 +112,7 @@ function Index() {
                 </div>
             </div>
 
-            <Table data={notifiction} sort={sortNotification} action={true} showDetailStatus={false} />
+            <Table data={notifictionList?.data} sort={sortNotification} pagintion={notifictionList?.total_pages} action={true} showDetailStatus={false} />
 
             {modal === true ?
                 <AddNotification canceladd={() => setModal(false)} />

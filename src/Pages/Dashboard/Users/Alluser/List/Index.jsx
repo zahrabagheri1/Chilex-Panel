@@ -110,7 +110,7 @@ function Index() {
       })
       .then(
         res => {
-          setUserList(res.data.data)
+          setUserList(res.data)
           setLoading(false)
         }
       )
@@ -211,7 +211,7 @@ function Index() {
       </div>
 
 
-      <Table data={userList} sort={sortUserList} action={true} showDetail={showDetailBanUser} />
+      <Table data={userList?.data} sort={sortUserList} action={true} pagintion={userList?.total_pages} showDetail={showDetailBanUser} />
 
 
 
