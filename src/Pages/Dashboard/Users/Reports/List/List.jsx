@@ -90,9 +90,9 @@ function List() {
         setResetFlag(true);
     }
 
-
-    const filtershandler = () => {
-        listOfReportuser()
+    const offsetTableHandler = (page) => {
+        setFilters((prev) => ({ ...prev, 'offset': page }))
+        setResetFlag(true)
     }
 
     return (
@@ -134,15 +134,15 @@ function List() {
                         { id: 60, status: 60 },
                     ]}
                 />
-                
-                <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filtershandler} />
+
+                <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={() => listOfReportuser()} />
 
                 <div className="resetFillters" onClick={resetFillters}>
                     <HiOutlineTrash />
                 </div>
             </div>
 
-            <Table data={reportuserList} pagintion={reportuserList?.total_pages} sort={sortReportUsers} action={true} showDetailStatus={false} />
+            <Table data={reportuserList} list={reportuserList} offsetTable={offsetTableHandler} sort={sortReportUsers} action={true} showDetailStatus={false} />
         </div>
     );
 }
