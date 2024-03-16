@@ -83,7 +83,7 @@ function ModalPrizes(props) {
             <Input type={'number'} name={'amount'} important={true}  title={'amount'} readOnly={false} changeInputValue={changeValueInput} />
           </div>
           <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-6">
-            <SelectOption name={'type'} important={true} readOnly={false} defaultValue={'type'} type={'name'} data={resourceType} changeOptinValue={updateOptionData} />
+            <SelectOption name={'type'} title={"type"} important={true} readOnly={false} defaultValue={'type'} type={'name'} data={resourceType} changeOptinValue={updateOptionData} />
           </div>
           <div className="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-6">
             <Input type={'number'} important={true} name={'rank'}  title={'rank'} readOnly={false} changeInputValue={changeValueInput} />
