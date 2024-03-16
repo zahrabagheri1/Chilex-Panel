@@ -91,13 +91,14 @@ function Index() {
         setResetFlag(true);
     }
 
-    const filterhandler = () => {
-        reqFilterShopHistory()
-    }
-
     const exportUsers = () => {
         setFilters((prev) => ({ ...prev, ["exportUserIds"]: true }))
         setResetFlag(true);
+    }
+
+    const offsetTableHandler = (page) => {
+        setFilters((prev) => ({ ...prev, 'offset': page }))
+        setResetFlag(true)
     }
 
     return (
@@ -153,7 +154,7 @@ function Index() {
                             { id: 60, status: 60 },
                         ]}
                     />
-                    <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
+                    <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={() => reqFilterShopHistory()} />
 
                     <div className="resetFillters" onClick={resetFillters}>
                         <HiOutlineTrash />
@@ -165,7 +166,7 @@ function Index() {
                 </div>
             </div>
 
-            <Table data={historyList?.data} pagintion={historyList?.total_pages} sort={sortHistory} action={true} showDetail={showDetailHistory} />
+            <Table data={historyList?.data} list={historyList} offsetTable={offsetTableHandler} sort={sortHistory} action={true} showDetail={showDetailHistory} />
 
         </div>
     );
