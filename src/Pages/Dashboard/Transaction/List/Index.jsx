@@ -14,20 +14,6 @@ import { HiMiniArrowUpTray, HiOutlineTrash } from 'react-icons/hi2';
 import { API_URL } from '../../../../API_URL';
 import Button from '../../../../Components/Button/Button';
 
-const transaction = [
-    {
-        id: 3,
-        status: 0,
-        amount: 1000,
-        maskedCardNumber: null,
-        hashedCardNumber: null,
-        shaparakRefNumber: null,
-        createdAt: "2024-01-23T07:16:00.691Z",
-        updatedAt: "2024-01-23T07:16:00.691Z",
-        userName: "tofigh"
-    }
-]
-
 function Index() {
     const [transactionList, setTransactionList] = useState();
     const { setLoading } = useContext(LoadingContext);

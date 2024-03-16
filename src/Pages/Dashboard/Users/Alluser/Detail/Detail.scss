@@ -19,10 +19,9 @@
             color: $fontColor;
         }
 
-        .backUser,
-        .addItem {
-            width: 36px;
-            height: 36px;
+        .backUser{
+            width: 32px;
+            height: 32px;
             background: $Gray;
             border-radius: 6px;
             border: 2px solid $lightGray;
@@ -33,6 +32,26 @@
             color: $iconColor;
             cursor: pointer;
             position: relative;
+        }
+
+        .addItem{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 10px;
+            width: 150px;
+            height: 32px;
+            font-size: 14px;
+            background: $Gray;
+            border-radius: 6px;
+            border: 2px solid $lightGray;
+            justify-content: center;
+            cursor: pointer;
+            color: $iconColor;
+
+            .icon {
+                font-size: 16px;
+            }
         }
     }
 

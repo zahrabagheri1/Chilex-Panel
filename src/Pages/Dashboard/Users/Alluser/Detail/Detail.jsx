@@ -54,6 +54,10 @@ function Detail() {
     navigate(-1)
   }
 
+  const hundelOpenModal = () => {
+
+  }
+
   return (
     <div className='allUserItem'>
       {showAlert.status === true ?
@@ -65,17 +69,36 @@ function Detail() {
         <div className='backUser' onClick={hundelBack}>
           <HiChevronLeft />
         </div>
+
         <div className="titleUserName">Details Of {id}</div>
-        <div></div>
-        {/* <div className='addItem' onClick={hundelOpenModal}>
-          <HiPlus />
-        </div> */}
+
+        <div className='addItem' onClick={hundelOpenModal}>
+          <HiPlus className='icon' />
+          <div>Add Item For User</div>
+        </div>
       </div>
 
-        <Table data={userItem?.data} sort={sortUserItems} list={userItem} action={true} showDetailStatus={false}/>
+      <Table data={userItem?.data} sort={sortUserItems} list={false} action={true} showDetailStatus={false} />
 
       {/* {openModal === true ? <ModalItem gameName={id} canceladd={() => setOpenModal(false)} /> : null} */}
+      {/* 
+      name	string
+user name
 
+email	string
+user email
+
+phone	string
+user phone
+
+ban	number
+default: -1
+    -1 => unban
+    0 => ban user (everything)
+    1 => ban user (chat)
+coin	number
+gem	number
+} */}
     </div>
   );
 }

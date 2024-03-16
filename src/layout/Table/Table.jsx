@@ -19,7 +19,7 @@ function Table(props) {
     }
 
     const previousPagntion = () => {
-        if (props.list.current_page === 1 ) {
+        if (props.list.current_page === 1) {
             props.offsetTable(props.list.current_page)
         } else {
             props.offsetTable(props.list.current_page - 1)
@@ -114,18 +114,21 @@ function Table(props) {
                             </div>
                         </ScrollContainer>
 
-                        <div className="tablePagintion">
-                            <div className="pagintion">
-                                <div className="previousbtn" onClick={previousPagntion}><HiChevronLeft /></div>
-                                {
-                                    [...Array(props.list.total_pages).keys()].map((index) => (
-                                        <div className="pagenumber" key={index} onClick={() => pagintionHandler(index)} >{index + 1}</div>
-                                    ))
-                                }
-                                <div className="nextbtn" onClick={nextPagntion}><HiChevronRight /></div>
-                            </div>
-                        </div>
-
+                        {
+                            props.list ?
+                                <div className="tablePagintion">
+                                    <div className="pagintion">
+                                        <div className="previousbtn" onClick={previousPagntion}><HiChevronLeft /></div>
+                                        {
+                                            [...Array(props.list.total_pages).keys()].map((index) => (
+                                                <div className="pagenumber" key={index} onClick={() => pagintionHandler(index)} >{index + 1}</div>
+                                            ))
+                                        }
+                                        <div className="nextbtn" onClick={nextPagntion}><HiChevronRight /></div>
+                                    </div>
+                                </div>
+                                : null
+                        }
                     </div>
             }
         </div>

@@ -149,7 +149,7 @@ function List() {
                 </div>
             </div>
 
-            <Table data={reportuserList} list={reportuserList} offsetTable={offsetTableHandler} sort={sortReportUsers} action={true} showDetailStatus={false} />
+            <Table data={reportuserList?.data} list={reportuserList} offsetTable={offsetTableHandler} sort={sortReportUsers} action={true} showDetailStatus={false} />
         </div>
     );
 }
