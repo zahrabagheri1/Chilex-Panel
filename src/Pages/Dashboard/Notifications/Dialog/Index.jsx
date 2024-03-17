@@ -100,8 +100,9 @@ function Index() {
             ]}
           />
 
-          <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={filterhandler} />
-          <div className="resetFillters" onClick={() => reqDialog()}>
+          <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={() => reqDialog()} />
+          
+          <div className="resetFillters" onClick={() => resetFillters()}>
             <HiOutlineTrash />
           </div>
         </div>
