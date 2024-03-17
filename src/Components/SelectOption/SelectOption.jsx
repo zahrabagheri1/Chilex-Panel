@@ -3,11 +3,10 @@ import './SelectOption.scss';
 import { HiOutlineChevronDown } from "react-icons/hi2";
 
 function SelectOption(props) {
-  const [data, setData] = useState(props.data)
   const [changeTitle, setChangeTitle] = useState();
   const [click, setClick] = useState(false);
 
-  const clickHandler = (e) => {
+  const clickHandler = () => {
     setClick(!click)
   }
 
@@ -18,7 +17,7 @@ function SelectOption(props) {
   }
   
   useEffect(() => {
-    data.map(item => (
+    props.data.map(item => (
       item.id === props.value ?
         setChangeTitle(item.name)
         : ''
@@ -52,7 +51,7 @@ function SelectOption(props) {
               <HiOutlineChevronDown className='chevronDown' style={{ transform: (click === true ? "rotate(180deg)" : 'rotate(0)') }} />
             </div>
             <div className='box' style={{ display: (click === true ? "flex" : 'none') }}>
-              {data?.map((item, index) => (
+              {props.data?.map((item, index) => (
                 <div  key={index} className='option' value={item.id} onClick={() => changeTitleHandler(item[props.type], item.id)}>{item[props.type]}</div>
               ))}
             </div>

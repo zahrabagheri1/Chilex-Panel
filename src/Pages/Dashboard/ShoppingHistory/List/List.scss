@@ -13,47 +13,40 @@
         position: relative;
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: flex-end;
         align-items: flex-end;
         gap: 10px;
         height: auto;
         z-index: 1;
 
-        .filters {
+        .filterBox {
             display: flex;
             position: relative;
-            flex-direction: row;
-            height: auto;
-            width: 100%;
-            align-items: flex-end;
-            gap: 10px;
 
-            .filerinput {
-                width: 100px;
+            .filter {
+                display: none;
+                width: 550px;
+                height: 250px;
+                right: 0px;
+                top: 50px;
+                padding: 20px;
+                position: absolute;
+                flex-direction: row;
+                background-color: #272a2fe9;
+                border-radius: 8px;
+                box-shadow: 4px 7px 10px rgba(0, 0, 0, .4);
+                gap: 10px;
+                z-index: 2;
+
+                &.activeFilter {
+                    display: grid;
+                }
             }
 
         }
 
-        .filterBtnBox {
-            display: flex;
-            align-items: flex-end;
-            width: 100px;
-
-            .filterBtn {
-                height: 32px;
-            }
-        }
-
-        .resetFillters {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 18px;
-            color: $white;
-            cursor: pointer;
-        }
-
-        .addnotif {
+        .filterBtn,
+        .exportBtn {
             display: flex;
             flex-direction: row;
             align-items: center;

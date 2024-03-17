@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { HiMiniArrowUpTray, HiOutlineTrash } from "react-icons/hi2";
+import { HiOutlineFilter } from "react-icons/hi";
 import Table from '../../../../layout/Table/Table';
 import { sortHistory } from '../../../../Data/Sort';
 import './List.scss';
@@ -12,6 +13,8 @@ import { LoginContext } from '../../../Login/LoginContext';
 import { API_URL } from '../../../../API_URL';
 import Button from '../../../../Components/Button/Button';
 import SelectOption from '../../../../Components/SelectOption/SelectOption';
+import ButtonActionBlue from '../../../../Components/ButtonActionBlue/ButtonActionBlue';
+import ButtonActionGray from '../../../../Components/ButtonActionGray/ButtonActionGray';
 
 
 function Index() {
@@ -21,6 +24,7 @@ function Index() {
     const [cookies] = useCookies(['accessToken']);
     const { goToLoginPage } = useContext(LoginContext);
     const [resetFlag, setResetFlag] = useState(false);
+    const [filterBox, setFilterBox] = useState(true);
     const [filters, setFilters] = useState({
         userId: null,
         gatewayTypes: null,
@@ -110,64 +114,104 @@ function Index() {
     return (
         <div className='shoppingHistoryList'>
             <div className="top">
-                <div className='filters'>
-                    <Input classname={'filerinput'} value={filters.userId} name={'userId'} type={'text'} placeholder={'userId...'} changeInputValue={updateInputData} />
-                    <SelectOption classnameBox={'filerinput'} value={filters.gatewayTypes} name={'gatewayTypes'} defaultValue={'gatewayTypes'} type={'status'} readOnly={false} changeOptinValue={updateOptionData}
-                        data={[
-                            { id: 0, status: 'Pasargad' },
-                            { id: 1, status: 'cafe bazaar' },
-                            { id: 2, status: 'exchange' },
-                        ]}
-                    />
-                    <Input classname={'filerinput'} value={filters.maxAmount} name={'maxAmount'} type={'text'} placeholder={'maxAmount...'} changeInputValue={updateInputData} />
-                    <SelectOption classnameBox={'filerinput'} value={filters.orderBy} name={'orderBy'} defaultValue={'ASC'} type={'status'} readOnly={false} changeOptinValue={updateOptionData}
-                        data={[
-                            { id: 0, status: 'DESC' },
-                            { id: 1, status: 'ASC' },
-                        ]}
-                    />
-                    <Input classname={'filerinput'} value={filters.minAmount} name={'minAmount'} type={'text'} placeholder={'minAmount...'} changeInputValue={updateInputData} />
-                    <SelectOption classnameBox={'filerinput'} value={filters.sortBy} name={'sortBy'} defaultValue={'userId'} type={'status'} readOnly={false} changeOptinValue={updateOptionData}
-                        data={[
-                            { id: 0, status: 'createdAt' },
-                            { id: 1, status: 'referenceType' },
-                            { id: 2, status: 'amount' },
-                            { id: 3, status: 'referenceId' },
-                            { id: 4, status: 'userId' },
-                            { id: 5, status: 'name' },
-                        ]}
-                    />
-                    <SelectOption classnameBox={'filerinput'} value={filters.referenceType} name={'referenceType'} defaultValue={'referenceType'} type={'status'} readOnly={false} changeOptinValue={updateOptionData}
-                        data={[
-                            { id: 0, status: 'bundle' },
-                            { id: 1, status: 'item' },
-                            { id: 1, status: 'transaction' },
-                            { id: 1, status: 'setting' }
-                        ]}
-                    />
-                    <SelectOption classnameBox={'filerinput'} value={filters.type} name={'type'} defaultValue={'type'} type={'status'} readOnly={false} changeOptinValue={updateOptionData}
-                        data={[
-                            { id: 0, status: 'Gem' },
-                            { id: 1, status: 'Coin' },
-                            { id: 1, status: 'Item' },
-                        ]}
-                    />
-                    <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.limit} name={'limit'} defaultValue={'15'} type={'status'} changeOptinValue={updateOptionDataForLimit}
-                        data={[
-                            { id: 20, status: 20 },
-                            { id: 30, status: 30 },
-                            { id: 40, status: 40 },
-                            { id: 50, status: 50 },
-                            { id: 60, status: 60 },
-                        ]}
-                    />
-                    <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={() => reqFilterShopHistory()} />
 
-                    <div className="resetFillters" onClick={resetFillters}>
-                        <HiOutlineTrash />
+                <div className="filterBox">
+                    <div className='filterBtn' onClick={() => setFilterBox(!filterBox)}>
+                        <HiOutlineFilter className='icon' />
+                        <div>Filter</div>
                     </div>
+
+                    <div className={`filter row ${filterBox ? 'activeFilter' : ''}`}>
+
+                        <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
+                            <Input classname={'filerinput'} value={filters.userId} title={'userId'} name={'userId'} type={'text'} placeholder={'userId...'} changeInputValue={updateInputData} />
+                        </div>
+
+                        <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
+                            <SelectOption classnameBox={'filerinput'} title={"gatewayTypes"} value={filters.gatewayTypes} name={'gatewayTypes'} defaultValue={'gatewayTypes'} type={'status'} readOnly={false} changeOptinValue={updateOptionData}
+                                data={[
+                                    { id: 0, status: 'Pasargad' },
+                                    { id: 1, status: 'cafe bazaar' },
+                                    { id: 2, status: 'exchange' },
+                                ]}
+                            />
+                        </div>
+                        <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
+                            <Input classname={'filerinput'} value={filters.maxAmount} title={'maxAmount'} name={'maxAmount'} type={'text'} placeholder={'maxAmount...'} changeInputValue={updateInputData} />
+                        </div>
+
+                        <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
+                            <SelectOption classnameBox={'filerinput'} value={filters.orderBy} title={'orderBy'} name={'orderBy'} defaultValue={'ASC'} type={'status'} readOnly={false} changeOptinValue={updateOptionData}
+                                data={[
+                                    { id: 0, status: 'DESC' },
+                                    { id: 1, status: 'ASC' },
+                                ]}
+                            />
+                        </div>
+
+                        <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
+                            <Input classname={'filerinput'} value={filters.minAmount} title={'minAmount'} name={'minAmount'} type={'text'} placeholder={'minAmount...'} changeInputValue={updateInputData} />
+                        </div>
+
+                        <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
+                            <SelectOption classnameBox={'filerinput'} value={filters.sortBy} title={'sortBy'} name={'sortBy'} defaultValue={'userId'} type={'status'} readOnly={false} changeOptinValue={updateOptionData}
+                                data={[
+                                    { id: 0, status: 'createdAt' },
+                                    { id: 1, status: 'referenceType' },
+                                    { id: 2, status: 'amount' },
+                                    { id: 3, status: 'referenceId' },
+                                    { id: 4, status: 'userId' },
+                                    { id: 5, status: 'name' },
+                                ]}
+                            />
+                        </div>
+
+                        <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
+                            <SelectOption classnameBox={'filerinput'} value={filters.referenceType} name={'referenceType'} defaultValue={'referenceType'} type={'status'} readOnly={false} changeOptinValue={updateOptionData}
+                                data={[
+                                    { id: 0, status: 'bundle' },
+                                    { id: 1, status: 'item' },
+                                    { id: 1, status: 'transaction' },
+                                    { id: 1, status: 'setting' }
+                                ]}
+                            />
+                        </div>
+
+                        <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
+                            <SelectOption classnameBox={'filerinput'} value={filters.type} name={'type'} defaultValue={'type'} type={'status'} readOnly={false} changeOptinValue={updateOptionData}
+                                data={[
+                                    { id: 0, status: 'Gem' },
+                                    { id: 1, status: 'Coin' },
+                                    { id: 1, status: 'Item' },
+                                ]}
+                            />
+                        </div>
+
+                        <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
+                            <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.limit} name={'limit'} defaultValue={'15'} type={'status'} changeOptinValue={updateOptionDataForLimit}
+                                data={[
+                                    { id: 20, status: 20 },
+                                    { id: 30, status: 30 },
+                                    { id: 40, status: 40 },
+                                    { id: 50, status: 50 },
+                                    { id: 60, status: 60 },
+                                ]}
+                            />
+                        </div>
+
+                        <ButtonActionBlue title={'Filter'} classnameBtn={'filterBtnBox'} handler={reqFilterShopHistory} />
+                        <Button title={'Reset Filter'} classnameBtn={'filterBtnBox'} btnhandler={resetFillters} />
+                    </div>
+
+                    {/* <div className='filters'>
+
+                        <div className="resetFillters" onClick={resetFillters}>
+                            <HiOutlineTrash />
+                        </div>
+                    </div> */}
                 </div>
-                <div className='addnotif' onClick={exportUsers}>
+
+                <div className='exportBtn' onClick={exportUsers}>
                     <HiMiniArrowUpTray className='icon' />
                     <div>Export</div>
                 </div>
