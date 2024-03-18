@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './List.scss';
 import Table from '../../../../../layout/Table/Table';
 import { sortBundles } from '../../../../../Data/Sort';
-import { HiOutlineTrash, HiPlus } from "react-icons/hi2";
+import { HiPlus } from "react-icons/hi2";
 import axios from 'axios';
 import ModalAddProducts from '../../../../../layout/ModalAddProducts/ModalAddProducts';
 import { useNavigate } from 'react-router-dom';
@@ -12,7 +12,6 @@ import { useCookies } from 'react-cookie';
 import { LoadingContext } from '../../../../Loading/LoadingContext';
 import { LoginContext } from '../../../../Login/LoginContext';
 import { API_URL } from '../../../../../API_URL';
-import Button from '../../../../../Components/Button/Button';
 import ButtonActionBlue from '../../../../../Components/ButtonActionBlue/ButtonActionBlue';
 import ButtonActionGray from '../../../../../Components/ButtonActionGray/ButtonActionGray';
 import { HiOutlineFilter } from 'react-icons/hi';
@@ -187,7 +186,7 @@ function Index() {
                     </div>
                 </div>
 
-                <div className='addBundle' onClick={() => setModal(true)}>
+                <div className='addBundleBtn' onClick={() => setModal(true)}>
                     <HiPlus className='icon' />
                     <div>Add Bundle</div>
                 </div>
