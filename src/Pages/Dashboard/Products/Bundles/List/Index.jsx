@@ -13,6 +13,9 @@ import { LoadingContext } from '../../../../Loading/LoadingContext';
 import { LoginContext } from '../../../../Login/LoginContext';
 import { API_URL } from '../../../../../API_URL';
 import Button from '../../../../../Components/Button/Button';
+import ButtonActionBlue from '../../../../../Components/ButtonActionBlue/ButtonActionBlue';
+import ButtonActionGray from '../../../../../Components/ButtonActionGray/ButtonActionGray';
+import { HiOutlineFilter } from 'react-icons/hi';
 
 function Index() {
     const [bundleList, setBundleList] = useState(null);
@@ -22,6 +25,7 @@ function Index() {
     const { goToLoginPage } = useContext(LoginContext);
     const navigate = useNavigate();
     const [resetFlag, setResetFlag] = useState(false);
+    const [filterBox, setFilterBox] = useState(false);
     const [filters, setFilters] = useState({
         bundleType: null,
         sku: null,
@@ -103,64 +107,83 @@ function Index() {
     return (
         <div className='bundleList'>
             <div className='top'>
-                <div className='filters'>
-                    <SelectOption readOnly={false} name={'bundleType'} defaultValue={'bundleType'} value={filters.bundleType} type={'status'} changeOptinValue={updateOptionData}
-                        data={[
-                            { id: 0, status: 'Gem bundle' },
-                            { id: 1, status: 'Coin bundle' },
-                        ]}
-                    />
+                <div className="filterBox">
+                    <div className='filterBtn' onClick={() => setFilterBox(!filterBox)}>
+                        <HiOutlineFilter className='icon' />
+                        <div>Filter</div>
+                    </div>
 
+                    <div className={`filter row ${filterBox ? 'activeFilter' : ''}`}>
+                        <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
+                            <SelectOption readOnly={false} name={'bundleType'} title={'bundleType'} defaultValue={'bundleType'} value={filters.bundleType} type={'status'} changeOptinValue={updateOptionData}
+                                data={[
+                                    { id: 0, status: 'Gem bundle' },
+                                    { id: 1, status: 'Coin bundle' },
+                                ]}
+                            />
+                        </div>
 
-                    <Input name={'sku'} type={'text'} placeholder={'sku'} value={filters.sku} changeInputValue={updateInputData} />
+                        <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
+                            <Input name={'sku'} type={'text'} title={'sku'} placeholder={'sku'} value={filters.sku} changeInputValue={updateInputData} />
+                        </div>
 
-                    <SelectOption readOnly={false} name={'bundleStatus'} defaultValue={'bundleStatus'} value={filters.bundleStatus} type={'status'} changeOptinValue={updateOptionData}
-                        data={[
-                            { id: 0, status: 'Active' },
-                            { id: 1, status: 'Deactive' },
-                        ]}
-                    />
+                        <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
 
-                    <SelectOption readOnly={false} name={'priceStatus'} defaultValue={'priceStatus'} value={filters.priceStatus} type={'status'} changeOptinValue={updateOptionData}
-                        data={[
-                            { id: 0, status: 'Active' },
-                            { id: 1, status: 'Deactive' },
-                        ]}
-                    />
+                            <SelectOption readOnly={false} name={'bundleStatus'} title={'bundleStatus'} defaultValue={'bundleStatus'} value={filters.bundleStatus} type={'status'} changeOptinValue={updateOptionData}
+                                data={[
+                                    { id: 0, status: 'Active' },
+                                    { id: 1, status: 'Deactive' },
+                                ]}
+                            />
+                        </div>
 
-                    <SelectOption readOnly={false} name={'sortBy'} defaultValue={'id'} type={'status'} changeOptinValue={updateOptionData}
-                        data={[
-                            { id: 0, status: 'createdAt' },
-                            { id: 1, status: 'updatedAt' },
-                            { id: 2, status: 'amount' },
-                            { id: 3, status: 'id' },
-                            { id: 4, status: 'name' },
-                            { id: 5, status: 'status' },
-                        ]}
-                    />
+                        <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
+                            <SelectOption readOnly={false} name={'priceStatus'} title={'priceStatus'} defaultValue={'priceStatus'} value={filters.priceStatus} type={'status'} changeOptinValue={updateOptionData}
+                                data={[
+                                    { id: 0, status: 'Active' },
+                                    { id: 1, status: 'Deactive' },
+                                ]}
+                            />
+                        </div>
+                        <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
+                            <SelectOption readOnly={false} name={'sortBy'} title={'sortBy'} defaultValue={'id'} type={'status'} changeOptinValue={updateOptionData}
+                                data={[
+                                    { id: 0, status: 'createdAt' },
+                                    { id: 1, status: 'updatedAt' },
+                                    { id: 2, status: 'amount' },
+                                    { id: 3, status: 'id' },
+                                    { id: 4, status: 'name' },
+                                    { id: 5, status: 'status' },
+                                ]}
+                            />
+                        </div>
 
-                    <SelectOption readOnly={false} name={'orderBy'} defaultValue={'ASC'} type={'status'} changeOptinValue={updateOptionData}
-                        data={[
-                            { id: 0, status: 'DESC' },
-                            { id: 1, status: 'ASC' },
-                        ]}
-                    />
+                        <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
+                            <SelectOption readOnly={false} name={'orderBy'} defaultValue={'ASC'} title={'orderBy'} type={'status'} changeOptinValue={updateOptionData}
+                                data={[
+                                    { id: 0, status: 'DESC' },
+                                    { id: 1, status: 'ASC' },
+                                ]}
+                            />
+                        </div>
 
-                    <SelectOption readOnly={false} value={filters.limit} name={'limit'} defaultValue={'15'} type={'status'} changeOptinValue={updateOptionDataForLimit}
-                        data={[
-                            { id: 15, status: 15 },
-                            { id: 20, status: 20 },
-                            { id: 30, status: 30 },
-                            { id: 40, status: 40 },
-                            { id: 50, status: 50 },
-                            { id: 60, status: 60 },
-                        ]}
-                    />
+                        <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
+                            <SelectOption readOnly={false} value={filters.limit} name={'limit'} title={'limit'} defaultValue={'15'} type={'status'} changeOptinValue={updateOptionDataForLimit}
+                                data={[
+                                    { id: 15, status: 15 },
+                                    { id: 20, status: 20 },
+                                    { id: 30, status: 30 },
+                                    { id: 40, status: 40 },
+                                    { id: 50, status: 50 },
+                                    { id: 60, status: 60 },
+                                ]}
+                            />
+                        </div>
 
-                    <Button title={'Filter'} className={'filterBtn'} classnameBtn={'filterBtnBox'} btnhandler={() => reqFilterBundle()} />
-
-                    <div className="resetFillters" onClick={resetFillters}>
-                        <HiOutlineTrash />
+                        <div className="filterResetBtn col-xl-12 col-lg-12 col-md-12 col-ms-12 col-xs-12">
+                            <ButtonActionBlue title={'Filter'} classnameBtn={'filterBtnBox'} handler={reqFilterBundle} />
+                            <ButtonActionGray title={'Reset Filter'} classnameBtn={'filterBtnBox'} handler={resetFillters} />
+                        </div>
                     </div>
                 </div>
 
@@ -186,6 +209,7 @@ function Index() {
 
                 : ''
             }
+
         </div>
     );
 }
