@@ -135,7 +135,7 @@ function Index() {
                         </div>
 
                         <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
-                            <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.statuses} title={'statuses'} name={'statuses'} defaultValue={'statuses'} type={'status'} changeOptinValue={updateOptionData}
+                            <SelectOption   readOnly={false} value={filters.statuses} title={'statuses'} name={'statuses'} defaultValue={'statuses'} type={'status'} changeOptinValue={updateOptionData}
                                 data={[
                                     { id: 0, status: 'Pending ENDING' },
                                     { id: 1, status: 'True check result' },
@@ -148,7 +148,7 @@ function Index() {
                         </div>
 
                         <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
-                            <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.gatewayTypes} title={'gatewayTypes'} name={'gatewayTypes'} defaultValue={'gatewayTypes'} type={'status'} changeOptinValue={updateOptionData}
+                            <SelectOption   readOnly={false} value={filters.gatewayTypes} title={'gatewayTypes'} name={'gatewayTypes'} defaultValue={'gatewayTypes'} type={'status'} changeOptinValue={updateOptionData}
                                 data={[
                                     { id: 0, status: 'Pasargad' },
                                     { id: 1, status: 'Cafe Bazar' }
@@ -157,7 +157,7 @@ function Index() {
                         </div>
 
                         <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
-                            <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.orderBy} title={'orderBy'} name={'orderBy'} defaultValue={'id'} type={'status'} changeOptinValue={updateOptionData}
+                            <SelectOption   readOnly={false} value={filters.orderBy} title={'orderBy'} name={'orderBy'} defaultValue={'id'} type={'status'} changeOptinValue={updateOptionData}
                                 data={[
                                     { id: 0, status: 'createdAt' },
                                     { id: 1, status: 'updatedAt' },
@@ -171,7 +171,7 @@ function Index() {
 
                         <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
 
-                            <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.orderBy} title={'sortBy'} name={'sortBy'} defaultValue={'ASC'} type={'status'} changeOptinValue={updateOptionData}
+                            <SelectOption   readOnly={false} value={filters.orderBy} title={'sortBy'} name={'sortBy'} defaultValue={'ASC'} type={'status'} changeOptinValue={updateOptionData}
                                 data={[
                                     { id: 0, status: 'DESC' },
                                     { id: 1, status: 'ASC' },
@@ -180,7 +180,7 @@ function Index() {
                         </div>
 
                         <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
-                            <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.limit} title={'limit'} name={'limit'} defaultValue={'15'} type={'status'} changeOptinValue={updateOptionDataForLimit}
+                            <SelectOption   readOnly={false} value={filters.limit} title={'limit'} name={'limit'} defaultValue={'15'} type={'status'} changeOptinValue={updateOptionDataForLimit}
                                 data={[
                                     { id: 15, status: 15 },
                                     { id: 20, status: 20 },

@@ -104,7 +104,7 @@ function Index() {
         <div className='bundleList'>
             <div className='top'>
                 <div className='filters'>
-                    <SelectOption classnameBox={'filerinput'} readOnly={false} name={'bundleType'} defaultValue={'bundleType'} value={filters.bundleType} type={'status'} changeOptinValue={updateOptionData}
+                    <SelectOption readOnly={false} name={'bundleType'} defaultValue={'bundleType'} value={filters.bundleType} type={'status'} changeOptinValue={updateOptionData}
                         data={[
                             { id: 0, status: 'Gem bundle' },
                             { id: 1, status: 'Coin bundle' },
@@ -112,24 +112,23 @@ function Index() {
                     />
 
 
-                    <Input  
- name={'sku'} type={'text'} placeholder={'sku'} value={filters.sku} changeInputValue={updateInputData} />
+                    <Input name={'sku'} type={'text'} placeholder={'sku'} value={filters.sku} changeInputValue={updateInputData} />
 
-                    <SelectOption classnameBox={'filerinput'} readOnly={false} name={'bundleStatus'} defaultValue={'bundleStatus'} value={filters.bundleStatus} type={'status'} changeOptinValue={updateOptionData}
+                    <SelectOption readOnly={false} name={'bundleStatus'} defaultValue={'bundleStatus'} value={filters.bundleStatus} type={'status'} changeOptinValue={updateOptionData}
                         data={[
                             { id: 0, status: 'Active' },
                             { id: 1, status: 'Deactive' },
                         ]}
                     />
 
-                    <SelectOption classnameBox={'filerinput'} readOnly={false} name={'priceStatus'} defaultValue={'priceStatus'} value={filters.priceStatus} type={'status'} changeOptinValue={updateOptionData}
+                    <SelectOption readOnly={false} name={'priceStatus'} defaultValue={'priceStatus'} value={filters.priceStatus} type={'status'} changeOptinValue={updateOptionData}
                         data={[
                             { id: 0, status: 'Active' },
                             { id: 1, status: 'Deactive' },
                         ]}
                     />
 
-                    <SelectOption classnameBox={'filerinput'} readOnly={false} name={'sortBy'} defaultValue={'id'} type={'status'} changeOptinValue={updateOptionData}
+                    <SelectOption readOnly={false} name={'sortBy'} defaultValue={'id'} type={'status'} changeOptinValue={updateOptionData}
                         data={[
                             { id: 0, status: 'createdAt' },
                             { id: 1, status: 'updatedAt' },
@@ -140,14 +139,14 @@ function Index() {
                         ]}
                     />
 
-                    <SelectOption classnameBox={'filerinput'} readOnly={false} name={'orderBy'} defaultValue={'ASC'} type={'status'} changeOptinValue={updateOptionData}
+                    <SelectOption readOnly={false} name={'orderBy'} defaultValue={'ASC'} type={'status'} changeOptinValue={updateOptionData}
                         data={[
                             { id: 0, status: 'DESC' },
                             { id: 1, status: 'ASC' },
                         ]}
                     />
 
-                    <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.limit} name={'limit'} defaultValue={'15'} type={'status'} changeOptinValue={updateOptionDataForLimit}
+                    <SelectOption readOnly={false} value={filters.limit} name={'limit'} defaultValue={'15'} type={'status'} changeOptinValue={updateOptionDataForLimit}
                         data={[
                             { id: 15, status: 15 },
                             { id: 20, status: 20 },

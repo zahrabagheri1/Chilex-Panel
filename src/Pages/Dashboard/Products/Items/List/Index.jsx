@@ -105,17 +105,16 @@ function Index() {
         <div className='itemList'>
             <div className='top'>
                 <div className='filters'>
-                    <Input  
- value={filters.sku} type={'text'} placeholder={'sku'} name={'sku'} changeInputValue={updateInputData} />
+                    <Input value={filters.sku} type={'text'} placeholder={'sku'} name={'sku'} changeInputValue={updateInputData} />
 
-                    <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.itemStatus} name={'itemStatus'} defaultValue={'itemStatus'} type={'status'} changeOptinValue={updateOptionData}
+                    <SelectOption readOnly={false} value={filters.itemStatus} name={'itemStatus'} defaultValue={'itemStatus'} type={'status'} changeOptinValue={updateOptionData}
                         data={[
                             { id: 0, status: 'Active' },
                             { id: 1, status: 'Deactive' },
                         ]}
                     />
 
-                    <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.itemGameId} name={'itemGameId'} defaultValue={'itemGameId'} type={'status'} changeOptinValue={updateOptionData}
+                    <SelectOption readOnly={false} value={filters.itemGameId} name={'itemGameId'} defaultValue={'itemGameId'} type={'status'} changeOptinValue={updateOptionData}
                         data={[
                             { id: 0, status: 'Ludo' },
                             { id: 1, status: 'Uno' },
@@ -125,7 +124,7 @@ function Index() {
                         ]}
                     />
 
-                    <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.characterItemTypes} name={'characterItemTypes'} defaultValue={'characterItemTypes'} type={'status'} changeOptinValue={updateOptionData}
+                    <SelectOption readOnly={false} value={filters.characterItemTypes} name={'characterItemTypes'} defaultValue={'characterItemTypes'} type={'status'} changeOptinValue={updateOptionData}
                         data={[
                             { id: 0, status: 'CLOTHES' },
                             { id: 1, status: 'FACE' },
@@ -139,7 +138,7 @@ function Index() {
                         ]}
                     />
 
-                    <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.gameItemTypes} name={'gameItemTypes'} defaultValue={'gameItemTypes'} type={'status'} changeOptinValue={updateOptionData}
+                    <SelectOption readOnly={false} value={filters.gameItemTypes} name={'gameItemTypes'} defaultValue={'gameItemTypes'} type={'status'} changeOptinValue={updateOptionData}
                         data={[
                             { id: 0, status: 'DICE_SKIN' },
                             { id: 1, status: 'CARD_SKIN ' },
@@ -148,7 +147,7 @@ function Index() {
                         ]}
                     />
 
-                    <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.itemCategories} name={'itemCategories'} defaultValue={'itemCategories'} type={'status'} changeOptinValue={updateOptionData}
+                    <SelectOption readOnly={false} value={filters.itemCategories} name={'itemCategories'} defaultValue={'itemCategories'} type={'status'} changeOptinValue={updateOptionData}
                         data={[
                             { id: 0, status: 'ELSE' },
                             { id: 1, status: 'GAME' },
@@ -156,14 +155,14 @@ function Index() {
                         ]}
                     />
 
-                    <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.priceStatus} name={'priceStatus'} defaultValue={'priceStatus'} type={'status'} changeOptinValue={updateOptionData}
+                    <SelectOption readOnly={false} value={filters.priceStatus} name={'priceStatus'} defaultValue={'priceStatus'} type={'status'} changeOptinValue={updateOptionData}
                         data={[
                             { id: 0, status: 'Active' },
                             { id: 1, status: 'Deactive' },
                         ]}
                     />
 
-                    <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.sortBy} name={'sortBy'} defaultValue={'id'} type={'status'} changeOptinValue={updateOptionData}
+                    <SelectOption readOnly={false} value={filters.sortBy} name={'sortBy'} defaultValue={'id'} type={'status'} changeOptinValue={updateOptionData}
                         data={[
                             { id: 0, status: 'createdAt' },
                             { id: 1, status: 'updatedAt' },
@@ -173,14 +172,14 @@ function Index() {
                         ]}
                     />
 
-                    <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.orderBy} name={'orderBy'} defaultValue={'ASC'} type={'status'} changeOptinValue={updateOptionData}
+                    <SelectOption readOnly={false} value={filters.orderBy} name={'orderBy'} defaultValue={'ASC'} type={'status'} changeOptinValue={updateOptionData}
                         data={[
                             { id: 0, status: 'DESC' },
                             { id: 1, status: 'ASC' },
                         ]}
                     />
 
-                    <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.limit} name={'limit'} defaultValue={'15'} type={'status'} changeOptinValue={updateOptionDataForLimit}
+                    <SelectOption readOnly={false} value={filters.limit} name={'limit'} defaultValue={'15'} type={'status'} changeOptinValue={updateOptionDataForLimit}
                         data={[
                             { id: 15, status: 15 },
                             { id: 20, status: 20 },

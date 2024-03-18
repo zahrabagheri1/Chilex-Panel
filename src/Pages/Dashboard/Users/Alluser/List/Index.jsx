@@ -228,7 +228,7 @@ function Index() {
             </div>
 
             <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
-              <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.limit} title={'limit'} name={'limit'} defaultValue={'15'} type={'status'} changeOptinValue={updateOptionDataForLimit}
+              <SelectOption   readOnly={false} value={filters.limit} title={'limit'} name={'limit'} defaultValue={'15'} type={'status'} changeOptinValue={updateOptionDataForLimit}
                 data={[
                   { id: 15, status: 15 },
                   { id: 20, status: 20 },

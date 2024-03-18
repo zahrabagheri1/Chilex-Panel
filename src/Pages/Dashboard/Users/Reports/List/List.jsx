@@ -107,7 +107,7 @@ function List() {
                 <Input  
  value={value} type={'text'} placeholder={'userId...'} changeInputValue={updateInputData} />
 
-                <SelectOption classnameBox={'filerinput'} readOnly={false} value={value} name={'types'} defaultValue={'types'} type={'status'} changeOptinValue={updateOptionData}
+                <SelectOption   readOnly={false} value={value} name={'types'} defaultValue={'types'} type={'status'} changeOptinValue={updateOptionData}
                     data={[
                         { id: 0, status: 'PLAYER NAME OFFENSIVE' },
                         { id: 1, status: 'INACTIVE' },
@@ -116,7 +116,7 @@ function List() {
                     ]}
                 />
 
-                <SelectOption classnameBox={'filerinput'} readOnly={false} value={value} name={'sortBy'} defaultValue={'sortBy id'} type={'status'} changeOptinValue={updateOptionData}
+                <SelectOption   readOnly={false} value={value} name={'sortBy'} defaultValue={'sortBy id'} type={'status'} changeOptinValue={updateOptionData}
                     data={[
                         { id: 0, status: 'createdAt' },
                         { id: 1, status: 'updatedAt' },
@@ -126,14 +126,14 @@ function List() {
                     ]}
                 />
 
-                <SelectOption classnameBox={'filerinput'} readOnly={false} value={value} name={'orderBy'} defaultValue={'orderBy ASC'} type={'status'} changeOptinValue={updateOptionData}
+                <SelectOption   readOnly={false} value={value} name={'orderBy'} defaultValue={'orderBy ASC'} type={'status'} changeOptinValue={updateOptionData}
                     data={[
                         { id: 0, status: 'DESC' },
                         { id: 1, status: 'ASC' },
                     ]}
                 />
 
-                <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.limit} name={'limit'} defaultValue={'15'} type={'status'} changeOptinValue={updateOptionDataForLimit}
+                <SelectOption   readOnly={false} value={filters.limit} name={'limit'} defaultValue={'15'} type={'status'} changeOptinValue={updateOptionDataForLimit}
                     data={[
                         { id: 15, status: 15 },
                         { id: 20, status: 20 },

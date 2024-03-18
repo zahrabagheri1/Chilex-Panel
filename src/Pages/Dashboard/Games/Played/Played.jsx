@@ -109,7 +109,7 @@ function Played() {
                     ]}
                 />
 
-                <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.limit} name={'limit'} defaultValue={'15'} type={'status'} changeOptinValue={updateOptionDataForLimit}
+                <SelectOption readOnly={false} value={filters.limit} name={'limit'} defaultValue={'15'} type={'status'} changeOptinValue={updateOptionDataForLimit}
                     data={[
                         { id: 30, status: 30 },
                         { id: 40, status: 30 },
