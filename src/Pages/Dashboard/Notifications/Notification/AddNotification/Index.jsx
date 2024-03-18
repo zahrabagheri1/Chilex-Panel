@@ -75,15 +75,15 @@ function Index(props) {
                     </div>
 
                     <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
-                        <Input name={'title'} type={'text'} title={'title'} changeInputValue={updateInputData} />
+                        <Input name={'title'} type={'text'} title={'title'} placeholder={'title...'} changeInputValue={updateInputData} />
                     </div>
 
                     <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
-                        <Input name={'image'} type={'text'} title={'image'} changeInputValue={updateInputData} />
+                        <Input name={'image'} type={'text'} title={'image'} placeholder={'image...'} changeInputValue={updateInputData} />
                     </div>
 
                     <div className="col-xl-12 col-lg-12 col-md-12 col-ms-12 col-xs-12">
-                        <Input name={'body'} type={'text'} title={'body'} changeInputValue={updateInputData} />
+                        <Input name={'body'} type={'text'} title={'body'} placeholder={'body on notif...'}  changeInputValue={updateInputData} />
                     </div>
 
                     <div className="addNotifcancelBtn col-xl-12 col-lg-12 col-md-12 col-ms-12 col-xs-12">
