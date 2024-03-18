@@ -132,7 +132,8 @@ function Index() {
 
                     <div className={`filter row ${filterBox ? 'activeFilter' : ''}`}>
                         <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
-                            <Input classname={'filerinput'} value={filters.userId} title={'userId'} name={'userId'} type={'text'} placeholder={'userId...'} changeInputValue={updateInputData} />
+                            <Input
+                                value={filters.userId} title={'userId'} name={'userId'} type={'text'} placeholder={'userId...'} changeInputValue={updateInputData} />
                         </div>
 
                         <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
@@ -167,11 +168,11 @@ function Index() {
                         </div>
 
                         <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
-                            <Input classname={'filerinput'} value={filters.maxAmount} title={'maxAmount'} name={'maxAmount'} type={'text'} placeholder={'maxAmount...'} changeInputValue={updateInputData} />
+                            <Input value={filters.maxAmount} title={'maxAmount'} name={'maxAmount'} type={'text'} placeholder={'maxAmount...'} changeInputValue={updateInputData} />
                         </div>
 
                         <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
-                            <Input classname={'filerinput'} value={filters.minAmount} title={'minAmount'} name={'minAmount'} type={'text'} placeholder={'minAmount...'} changeInputValue={updateInputData} />
+                            <Input value={filters.minAmount} title={'minAmount'} name={'minAmount'} type={'text'} placeholder={'minAmount...'} changeInputValue={updateInputData} />
                         </div>
 
                         <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">

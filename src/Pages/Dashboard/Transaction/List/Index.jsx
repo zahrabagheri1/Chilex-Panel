@@ -130,7 +130,8 @@ function Index() {
 
                     <div className={`filter row ${filterBox ? 'activeFilter' : ''}`} >
                         <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
-                            <Input classname={'filerinput'} value={filters.userId} title={'userId'} type={'text'} name={"userId..."} placeholder={'userId'} changeInputValue={updateInputData} />
+                            <Input  
+ value={filters.userId} title={'userId'} type={'text'} name={"userId..."} placeholder={'userId'} changeInputValue={updateInputData} />
                         </div>
 
                         <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
