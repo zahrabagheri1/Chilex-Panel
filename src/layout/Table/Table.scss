@@ -5,10 +5,11 @@
     height: calc(100vh - 50vh);
 
     .emptyTable {
-        height: calc(100vh - 40vh);
+        height: calc(100vh - 20vh);
         width: calc(100% - 4px);
-        background-color: $Gray;
+        // background-color: $Gray;
         border-radius: 16px;
+        font-size: 20px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -19,6 +20,12 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+
+        .indiana-scroll-container {
+            overflow-y: unset !important;
+            overflow-x: auto !important;
+        }
+
         .tableBody {
             border: 2px solid $lightGray;
             border-radius: 6px;

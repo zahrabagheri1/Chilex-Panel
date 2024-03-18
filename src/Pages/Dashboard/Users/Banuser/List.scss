@@ -1,7 +1,7 @@
-@import '../../../../../Assets/scss/mixin';
-@import '../../../../../Assets/scss/variable';
+@import '../../../../Assets/scss/mixin';
+@import '../../../../Assets/scss/variable';
 
-.userList {
+.banUserlist {
     width: 95%;
     margin: auto;
     display: flex;
@@ -10,28 +10,29 @@
     gap: 20px;
 
     .top {
+        position: relative;
         display: flex;
         flex-direction: row;
         justify-content: flex-end;
+        align-items: flex-end;
         gap: 10px;
         height: auto;
         z-index: 1;
 
         .filterBox,
-        .banuserBox {
+        .unbanuserBox {
             display: flex;
             position: relative;
 
-            .filter {
+            .filter{
                 width: 450px;
             }
-
-            .banuser {
+            .unbanuser{
                 width: 250px;
             }
 
             .filter,
-            .banuser {
+            .unbanuser {
                 display: none;
                 right: 0px;
                 top: 50px;
@@ -45,7 +46,7 @@
                 z-index: 2;
 
                 &.activeFilter,
-                &.activebanuser {
+                &.activeunbanuser {
                     display: grid;
                 }
 
@@ -61,8 +62,7 @@
         }
 
         .filterBtn,
-        .exportBtn,
-        .banuserBtn {
+        .unbanuserBtn {
             display: flex;
             flex-direction: row;
             align-items: center;

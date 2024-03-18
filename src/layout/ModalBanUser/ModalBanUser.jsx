@@ -8,6 +8,7 @@ import { useCookies } from 'react-cookie';
 import axios from 'axios';
 import Alert from '../Alert/Alert';
 import { API_URL } from '../../API_URL';
+import { RiUserForbidFill } from 'react-icons/ri';
 
 const props = {
     modalTitle: '',
@@ -19,6 +20,7 @@ const props = {
 }
 
 function ModalBanUser(props) {
+    const [banuserBox, setBanuserBox] = useState(false)
     const [banuser, setBanuser] = useState();
     const [cookies] = useCookies(['accessToken']);
     const [showAlert, setShowAlert] = useState({
@@ -35,10 +37,6 @@ function ModalBanUser(props) {
 
     const updateOptionData = (name, id) => {
         setBanuser((prev) => ({ ...prev, [name]: parseInt(id) }))
-    }
-
-    const handlerClose = () => {
-        props.canceladd()
     }
 
     const banUser = () => {
@@ -72,41 +70,42 @@ function ModalBanUser(props) {
     }
 
     return (
-        <div className='modalBanUser'>
+        <div className="banuserBox">
             {showAlert.status === true ?
                 <Alert message={showAlert.msg} success={showAlert.success} />
                 :
                 ''
             }
-            <div className="mainbanuser">
-                <div className="titlebanuser">Ban User</div>
-                <div className="row">
-                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <Input name={'userId'} type={'text'} title={'userId'} changeInputValue={updateInputData} />
-                    </div>
+            <div className="banuserBtn" onClick={() => setBanuserBox(!banuserBox)}>
+                <RiUserForbidFill className='icon' />
+                <div>Ban user</div>
+            </div>
 
-                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <SelectOption readOnly={false} title={"type"} name={'type'} defaultValue={'type'} type={'status'} changeOptinValue={updateOptionData}
-                            data={[
-                                { id: 0, status: 'Player name is offensive' },
-                                { id: 1, status: 'inactive' },
-                                { id: 2, status: 'chating' },
-                                { id: 3, status: 'voice chat is offensive' },
-                            ]}
-                        />
-                    </div>
-
-                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <Input name={'description'} type={'text'} title={'description'} changeInputValue={updateInputData} />
-                    </div>
+            <div className={`banuser row ${banuserBox ? 'activebanuser' : ''}`}>
+                <div className="col-xl-6 col-lg-6 col-md-6 col-ms-12 col-xs-12">
+                    <Input name={'userId'} type={'text'} title={'userId'} placeholder={'userId...'} changeInputValue={updateInputData} />
                 </div>
 
-                <div className="banuserbtn">
-                    <ButtonActionGray title={'Cancel'} handler={handlerClose} />
+                <div className="col-xl-6 col-lg-6 col-md-6 col-ms-12 col-xs-12">
+                    <SelectOption readOnly={false} title={"type"} name={'type'} defaultValue={'type'} type={'status'} changeOptinValue={updateOptionData}
+                        data={[
+                            { id: 0, status: 'Player name is offensive' },
+                            { id: 1, status: 'inactive' },
+                            { id: 2, status: 'chating' },
+                            { id: 3, status: 'voice chat is offensive' },
+                        ]}
+                    />
+                </div>
+
+                <div className="col-xl-12 col-lg-12 col-md-12 col-ms-12 col-xs-12">
+                    <Input name={'description'} type={'text'} placeholder={'description...'} title={'description'} changeInputValue={updateInputData} />
+
+                </div>
+
+                <div className="banusercancelbtn col-xl-12 col-lg-12 col-md-12 col-ms-12 col-xs-12">
                     <ButtonActionBlue title={'Ban User'} handler={banUser} />
+                    <ButtonActionGray title={'Cancel'} handler={() => setBanuserBox(false)} />
                 </div>
-
-
             </div>
         </div>
     );

@@ -10,18 +10,24 @@ import Alert from '../../../../../layout/Alert/Alert';
 import { API_URL } from '../../../../../API_URL';
 import Table from '../../../../../layout/Table/Table';
 import { sortUserItems } from '../../../../../Data/Sort';
+import Input from '../../../../../Components/Input/Input';
+import SelectOption from '../../../../../Components/SelectOption/SelectOption';
+import ButtonActionBlue from '../../../../../Components/ButtonActionBlue/ButtonActionBlue';
+import ButtonActionGray from '../../../../../Components/ButtonActionGray/ButtonActionGray';
 
 function Detail() {
+  const { id } = useParams()
+  const navigate = useNavigate()
   const [userItem, setUserItem] = useState()
+  const [addItemsUserBox, setaddItemsUserBox] = useState(false)
   const [showAlert, setShowAlert] = useState({ status: false, msg: '' })
   const { loading, setLoading } = useContext(LoadingContext)
-  const [openModal, setOpenModal] = useState()
   const [cookies] = useCookies(['accessToken']);
-  const [editAble, setEditAble] = useState(false)
   const { goToLoginPage } = useContext(LoginContext);
-  const navigate = useNavigate()
-  const { id } = useParams()
-
+  const [removeItem, setRemoveItem] = useState({
+    userId: parseInt(id),
+    itemId: null
+  })
 
   useEffect(() => {
     goToLoginPage(cookies.accessToken);
@@ -30,6 +36,7 @@ function Detail() {
 
   const getUserItems = () => {
     setLoading(true)
+    setaddItemsUserBox(false)
     axios.get(`${API_URL === undefined ? '' : API_URL}/admin-stuff/get-items-of-user/${id}`,
       {
         headers: {
@@ -50,12 +57,29 @@ function Detail() {
       )
   }
 
+
+  const removeItemFromUser = () => {
+    axios.post(`${API_URL === undefined ? '' : API_URL}/admin-stuff/remove-item-for-user`, removeItem, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + cookies.accessToken
+      }
+    }).then(
+      res => {
+        console.log(res)
+      }
+    ).catch(
+      err => {
+        console.log(err)
+      }
+    )
+  }
   const hundelBack = () => {
     navigate(-1)
   }
 
-  const hundelOpenModal = () => {
-
+  const updateInputData = (e) => {
+    setRemoveItem((prev) => ({ ...prev, [e.target.name]: parseInt(e.target.value) }))
   }
 
   return (
@@ -70,35 +94,34 @@ function Detail() {
           <HiChevronLeft />
         </div>
 
-        <div className="titleUserName">Details Of {id}</div>
+        <div className="titleUserName">Details Of user {id}</div>
 
-        <div className='addItem' onClick={hundelOpenModal}>
-          <HiPlus className='icon' />
-          <div>Add Item For User</div>
+
+        <div className="addItemsUserBox">
+          <div className="addItemsUserBtn" onClick={() => setaddItemsUserBox(!addItemsUserBox)}>
+            <HiPlus className='icon' />
+            <div>Remove Item</div>
+          </div>
+
+          <div className={`addItemsUser row ${addItemsUserBox ? 'activeaddItemsUser' : ''}`}>
+            <div className="col-xl-6 col-lg-6 col-md-6 col-ms-12 col-xs-12">
+              <Input name={'userId'} value={removeItem.userId} type={'number'} readOnly={true} title={'userId'} placeholder={'userId...'} changeInputValue={updateInputData} />
+            </div>
+
+            <div className="col-xl-6 col-lg-6 col-md-6 col-ms-12 col-xs-12">
+              <Input name={'itemId'} type={'number'} placeholder={'itemId...'} title={'itemId'} changeInputValue={updateInputData} />
+            </div>
+
+            <div className="addItemsUsercancelbtn col-xl-12 col-lg-12 col-md-12 col-ms-12 col-xs-12">
+              <ButtonActionBlue title={'remove Item'} handler={removeItemFromUser} />
+              <ButtonActionGray title={'Cancel'} handler={() => setaddItemsUserBox(false)} />
+            </div>
+          </div>
         </div>
       </div>
 
       <Table data={userItem?.data} sort={sortUserItems} list={false} action={true} showDetailStatus={false} />
 
-      {/* {openModal === true ? <ModalItem gameName={id} canceladd={() => setOpenModal(false)} /> : null} */}
-      {/* 
-      name	string
-user name
-
-email	string
-user email
-
-phone	string
-user phone
-
-ban	number
-default: -1
-    -1 => unban
-    0 => ban user (everything)
-    1 => ban user (chat)
-coin	number
-gem	number
-} */}
     </div>
   );
 }

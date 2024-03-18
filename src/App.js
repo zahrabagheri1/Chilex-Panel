@@ -18,8 +18,7 @@ import Settings from './Pages/Dashboard/Games/Settings/Settings';
 import Notfound from './Pages/NotFound/Notfound';
 import Resources from './Pages/Dashboard/Games/Resources/Resources';
 import Charts from './Pages/Dashboard/Charts/Charts';
-import BanUserList from './Pages/Dashboard/Users/Banuser/List/Index';
-import BanUserDetail from './Pages/Dashboard/Users/Banuser/Detail/Detail';
+import BanUserList from './Pages/Dashboard/Users/Banuser/Index';
 import Notification from './Pages/Dashboard/Notifications/Notification/Index';
 import Dialog from './Pages/Dashboard/Notifications/Dialog/Index';
 import ReportsList from './Pages/Dashboard/Users/Reports/List/List';
@@ -54,7 +53,6 @@ function App() {
                 <Route path='alluser/:id' element={<AlluserDetail />} />
                 <Route path='reports' element={<ReportsList />} />
                 <Route path='banuser' element={<BanUserList />} />
-                <Route path='banuser/:id' element={<BanUserDetail />} />
                 <Route path='shopping-history' element={<SHList />} />
                 <Route path='shopping-history/:id' element={<SHDetail />} />
                 <Route path='Notification' element={<Notification/>}/>

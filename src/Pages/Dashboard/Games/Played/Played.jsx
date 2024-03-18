@@ -3,22 +3,24 @@ import React, { useContext, useEffect, useState } from 'react';
 import Table from '../../../../layout/Table/Table';
 import { sortGamePlayed } from '../../../../Data/Sort';
 import './Played.scss';
-import Button from '../../../../Components/Button/Button';
 import SelectOption from '../../../../Components/SelectOption/SelectOption';
 import DatePikerFarsi from '../../../../Components/DatePikerFarsi/DatePikerFarsi';
 import { useParams } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { LoadingContext } from '../../../Loading/LoadingContext';
 import { LoginContext } from '../../../Login/LoginContext';
-import { HiOutlineTrash } from 'react-icons/hi2';
 import { API_URL } from '../../../../API_URL';
 import moment from 'moment-jalaali';
+import { HiOutlineFilter } from 'react-icons/hi';
+import ButtonActionBlue from '../../../../Components/ButtonActionBlue/ButtonActionBlue';
+import ButtonActionGray from '../../../../Components/ButtonActionGray/ButtonActionGray';
 
 function Played() {
     const dateNow = Date.now()
     const [playedList, setPlayedList] = useState()
     const [cookies] = useCookies(['accessToken']);
     const [resetFlag, setResetFlag] = useState(false);
+    const [filterBox, setFilterBox] = useState(false)
     const { loading, setLoading } = useContext(LoadingContext);
     const { goToLoginPage } = useContext(LoginContext);
     const [filters, setFilters] = useState({
@@ -45,6 +47,7 @@ function Played() {
     //dixo.diacostudios.com/games/played/uno?startDate=2023-05-12&endDate=2023-10-12&limit=10&offset=2&orderBy=1
     const getPlayed = () => {
         setLoading(true)
+        setFilterBox(false)
         axios.get(`${API_URL === undefined ? '' : API_URL}/games/played/${id}?${filters.startDate === null || filters.startDate === undefined ? '' : 'startDate=' + filters.startDate + '&'}${filters.endDate === null || filters.endDate === undefined ? '' : 'endDate=' + filters.endDate + '&'}${filters.limit === null || filters.limit === undefined ? '' : 'limit=' + filters.limit + '&'}${'offset=' + filters.offset + '&orderBy=' + filters.orderBy}`,
             {
                 headers: {
@@ -80,8 +83,8 @@ function Played() {
 
     const resetFillters = () => {
         setFilters({
-            startDate: null,
-            endDate: null,
+            startDate: moment(dateNow).subtract(1, 'months').format('jYYYY-jM-jD'),
+            endDate: moment(dateNow).format('jYYYY-jM-jD'),
             limit: 15,
             offset: 1,
             orderBy: 1
@@ -96,32 +99,49 @@ function Played() {
 
     return (
         <div className='played'>
-            <div className="filters">
+            <div className="top">
+                <div className="filterBox">
+                    <div className='filterBtn' onClick={() => setFilterBox(!filterBox)}>
+                        <HiOutlineFilter className='icon' />
+                        <div>Filter</div>
+                    </div>
 
-                <DatePikerFarsi classnamedatepicker={'playeddatepiker'} title={'startDate:'} value={filters.startDate} name={'startDate'} handlerChangeDate={updateDataPiker} />
+                    <div className={`filter row ${filterBox ? 'activeFilter' : ''}`}>
+                        <div className="col-xl-6 col-lg-6 col-md-6 col-ms-12 col-xs-12">
+                            <DatePikerFarsi title={'startDate'} value={filters.startDate} name={'startDate'} handlerChangeDate={updateDataPiker} />
+                        </div>
 
-                <DatePikerFarsi classnamedatepicker={'playeddatepiker'} title={'endDate:'} value={filters.endDate} name={'endDate'} handlerChangeDate={updateDataPiker} />
+                        <div className="col-xl-6 col-lg-6 col-md-6 col-ms-12 col-xs-12">
+                            <DatePikerFarsi title={'endDate'} value={filters.endDate} name={'endDate'} handlerChangeDate={updateDataPiker} />
+                        </div>
 
-                <SelectOption classnameBox={'playeddatepiker'} readOnly={false} title={'orderby:'} name={'orderBy'} defaultValue={'ASC'} type={'status'} changeOptinValue={updateOptionData}
-                    data={[
-                        { id: 0, status: 'DESC' },
-                        { id: 1, status: 'ASC' },
-                    ]}
-                />
+                        <div className="col-xl-6 col-lg-6 col-md-6 col-ms-12 col-xs-12">
+                            <SelectOption readOnly={false} title={'orderby'} name={'orderBy'} defaultValue={'ASC'} type={'status'} changeOptinValue={updateOptionData}
+                                data={[
+                                    { id: 0, status: 'DESC' },
+                                    { id: 1, status: 'ASC' },
+                                ]}
+                            />
+                        </div>
 
-                <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.limit} name={'limit'} defaultValue={'15'} type={'status'} changeOptinValue={updateOptionDataForLimit}
-                    data={[
-                        { id: 30, status: 30 },
-                        { id: 40, status: 30 },
-                        { id: 50, status: 30 },
-                        { id: 60, status: 30 },
-                    ]}
-                />
+                        <div className="col-xl-6 col-lg-6 col-md-6 col-ms-12 col-xs-12">
+                            <SelectOption readOnly={false} value={filters.limit} title={"limit"} name={'limit'} defaultValue={'15'} type={'status'} changeOptinValue={updateOptionDataForLimit}
+                                data={[
+                                    { id: 15, status: 15 },
+                                    { id: 20, status: 20 },
+                                    { id: 30, status: 30 },
+                                    { id: 40, status: 40 },
+                                    { id: 50, status: 50 },
+                                    { id: 60, status: 60 },
+                                ]}
+                            />
+                        </div>
 
-                <Button title={'Filters'} className={'filtersBtn'} classnameBtn={'filtersBtnBox'} btnhandler={() => getPlayed()} />
-
-                <div className="resetFillters" onClick={resetFillters}>
-                    <HiOutlineTrash />
+                        <div className="filterResetBtn col-xl-12 col-lg-12 col-md-12 col-ms-12 col-xs-12">
+                            <ButtonActionBlue title={'Filter'} classnameBtn={'filterBtnBox'} handler={getPlayed} />
+                            <ButtonActionGray title={'Reset Filter'} classnameBtn={'filterBtnBox'} handler={resetFillters} />
+                        </div>
+                    </div>
                 </div>
             </div>
 

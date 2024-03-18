@@ -60,6 +60,7 @@
             }
             
             &.readonlytext{
+                background-color: #45454500 !important;
                 cursor: default	!important;
                 color: $fontColor;
             }
