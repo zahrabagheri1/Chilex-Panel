@@ -105,6 +105,10 @@ function Index() {
         setFilters((prev) => ({ ...prev, [name]: id, 'offset': 1 }))
     }
 
+    const makeUserUnban = ()=>{
+
+    }
+    
     return (
         <div className='banUserlist'>
             <div className="top">
@@ -173,17 +177,23 @@ function Index() {
                     </div>
 
                     <div className={`unbanuser row ${unbanuserBox ? 'activeunbanuser' : ''}`}>
-                        <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
+                        <div className="col-xl-6 col-lg-6 col-md-6 col-ms-6 col-xs-12">
                             <Input value={filters.userId} type={'text'} title={'userId'} placeholder={'userId...'} changeInputValue={updateInputData} />
                         </div>
 
-                        <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
-                            <SelectOption value={filters.orderBy} title={'orderBy'} name={'orderBy'} defaultValue={'ASC'} type={'status'} readOnly={false} changeOptinValue={updateOptionData}
+                        <div className="col-xl-6 col-lg-6 col-md-6 col-ms-6 col-xs-12">
+                            <SelectOption value={filters.type} title={'type'} name={'type'} defaultValue={'type'} type={'status'} readOnly={false} changeOptinValue={updateOptionData}
                                 data={[
-                                    { id: 0, status: 'DESC' },
-                                    { id: 1, status: 'ASC' },
+                                    { id: 0, status: 'everything' },
+                                    { id: 1, status: 'chating' },
+                                    { id: 2, status: 'chat with support' }
                                 ]}
                             />
+                        </div>
+
+                        <div className="filterResetBtn col-xl-12 col-lg-12 col-md-12 col-ms-12 col-xs-12">
+                            <ButtonActionBlue title={'un ban user'} classnameBtn={'filterBtnBox'} handler={makeUserUnban} />
+                            <ButtonActionGray title={'cansel'} classnameBtn={'filterBtnBox'} handler={() => setUnbanuserBox(false)} />
                         </div>
                     </div>
 

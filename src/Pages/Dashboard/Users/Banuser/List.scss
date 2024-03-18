@@ -24,11 +24,16 @@
             display: flex;
             position: relative;
 
+            .filter{
+                width: 450px;
+            }
+            .unbanuser{
+                width: 250px;
+            }
+
             .filter,
             .unbanuser {
                 display: none;
-                width: 550px;
-                max-height: 250px;
                 right: 0px;
                 top: 50px;
                 padding: 20px;
