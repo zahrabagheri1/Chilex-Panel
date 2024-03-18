@@ -7,6 +7,7 @@ import Input from '../../../../../Components/Input/Input';
 import ButtonActionGray from '../../../../../Components/ButtonActionGray/ButtonActionGray';
 import ButtonActionBlue from '../../../../../Components/ButtonActionBlue/ButtonActionBlue';
 import './AddDialog.scss';
+import { HiPlus } from 'react-icons/hi2';
 
 function Index(props) {
     const [dialog, setDialog] = useState();
@@ -74,49 +75,25 @@ function Index(props) {
                 </div>
 
                 <div className={`addDialog row ${addDialogBox ? 'activeaddDialog' : ''}`}>
-                    <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
+                    <div className="col-xl-6 col-lg-6 col-md-6 col-ms-12 col-xs-12">
                         <Input name={'usersIds'} type={'number'} title={'usersIds'} placeholder={'userId...'} changeInputValue={updateInputData} />
                     </div>
 
-                    <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
-                        <Input name={'title'} type={'text'} title={'title'} placeholder={'title...'} changeInputValue={updateInputData} />
-                    </div>
-
-                    <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
-                        <Input name={'image'} type={'text'} title={'image'} placeholder={'image...'} changeInputValue={updateInputData} />
-                    </div>
-
-                    <div className="col-xl-12 col-lg-12 col-md-12 col-ms-12 col-xs-12">
-                        <Input name={'body'} type={'text'} title={'body'} placeholder={'body on notif...'} changeInputValue={updateInputData} />
+                    <div className="col-xl-6 col-lg-6 col-md-6 col-ms-12 col-xs-12">
+                        <Input name={'message'} type={'text'} title={'message'} placeholder={'message of Dialog...'} changeInputValue={updateInputData} />
                     </div>
 
                     <div className="addDialogcancelBtn col-xl-12 col-lg-12 col-md-12 col-ms-12 col-xs-12">
-                        <ButtonActionBlue title={'Done'} handler={addDialogication} />
+                        <ButtonActionBlue title={'Done'} handler={addDialog} />
                         <ButtonActionGray title={'Cancel'} handler={() => setaddDialogBox(false)} />
                     </div>
                 </div>
             </div>
-            <div className="mainDialog">
-                <div className="titleDialog">Add New Dialog</div>
-                <div className="row">
-                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <Input name={'usersIds'} type={'number'} title={'usersIds'} changeInputValue={updateInputData} />
-                    </div>
-
-                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <Input name={'message'} type={'text'} title={'message'} changeInputValue={updateInputData} />
-                    </div>
 
                 </div>
 
-                <div className="dialogbtn">
-                    <ButtonActionGray title={'Cancel'} handler={handlerClose} />
-                    <ButtonActionBlue title={'Done'} handler={addDialog} />
-                </div>
 
 
-            </div>
-        </div>
     )
 }
 
