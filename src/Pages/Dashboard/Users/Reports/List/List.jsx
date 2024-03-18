@@ -104,7 +104,8 @@ function List() {
     return (
         <div className='reportUserslist'>
             <div className="filterReportUser">
-                <Input classname={'filerinput'} value={value} type={'text'} placeholder={'userId...'} changeInputValue={updateInputData} />
+                <Input  
+ value={value} type={'text'} placeholder={'userId...'} changeInputValue={updateInputData} />
 
                 <SelectOption classnameBox={'filerinput'} readOnly={false} value={value} name={'types'} defaultValue={'types'} type={'status'} changeOptinValue={updateOptionData}
                     data={[

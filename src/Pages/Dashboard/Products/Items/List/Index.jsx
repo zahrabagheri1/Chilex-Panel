@@ -105,7 +105,8 @@ function Index() {
         <div className='itemList'>
             <div className='top'>
                 <div className='filters'>
-                    <Input classname={'filerinput'} value={filters.sku} type={'text'} placeholder={'sku'} name={'sku'} changeInputValue={updateInputData} />
+                    <Input  
+ value={filters.sku} type={'text'} placeholder={'sku'} name={'sku'} changeInputValue={updateInputData} />
 
                     <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.itemStatus} name={'itemStatus'} defaultValue={'itemStatus'} type={'status'} changeOptinValue={updateOptionData}
                         data={[

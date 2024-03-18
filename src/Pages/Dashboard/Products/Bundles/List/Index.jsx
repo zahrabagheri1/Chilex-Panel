@@ -112,7 +112,8 @@ function Index() {
                     />
 
 
-                    <Input classname={'filerinput'} name={'sku'} type={'text'} placeholder={'sku'} value={filters.sku} changeInputValue={updateInputData} />
+                    <Input  
+ name={'sku'} type={'text'} placeholder={'sku'} value={filters.sku} changeInputValue={updateInputData} />
 
                     <SelectOption classnameBox={'filerinput'} readOnly={false} name={'bundleStatus'} defaultValue={'bundleStatus'} value={filters.bundleStatus} type={'status'} changeOptinValue={updateOptionData}
                         data={[

@@ -87,7 +87,8 @@ function Index() {
         <div className='notifList'>
             <div className='top'>
                 <div className='filters'>
-                    <Input name={'userId'} classname={'filerinput'} type={'text'} placeholder={'userId'} value={filters.userId} changeInputValue={updateInputData} />
+                    <Input name={'userId'}  
+ type={'text'} placeholder={'userId'} value={filters.userId} changeInputValue={updateInputData} />
 
                     <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.limit} name={'limit'} defaultValue={'15'} type={'status'} changeOptinValue={updateOptionDataForLimit}
                         data={[
