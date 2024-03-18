@@ -125,7 +125,6 @@ function Index() {
     return (
         <div className='shoppingHistoryList'>
             <div className="top">
-
                 <div className="filterBox">
                     <div className='filterBtn' onClick={() => setFilterBox(!filterBox)}>
                         <HiOutlineFilter className='icon' />
