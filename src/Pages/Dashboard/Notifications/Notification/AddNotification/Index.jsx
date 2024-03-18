@@ -7,9 +7,11 @@ import Input from '../../../../../Components/Input/Input';
 import ButtonActionGray from '../../../../../Components/ButtonActionGray/ButtonActionGray';
 import ButtonActionBlue from '../../../../../Components/ButtonActionBlue/ButtonActionBlue';
 import './AddNotification.scss';
+import { HiPlus } from 'react-icons/hi2';
 
 function Index(props) {
     const [notification, setNotification] = useState();
+    const [addNotifBox, setaddNotifBox] = useState(false);
     const [cookies] = useCookies(['accessToken']);
     const [showAlert, setShowAlert] = useState({
         status: false, msg: '', success: null
@@ -21,10 +23,6 @@ function Index(props) {
         } else {
             setNotification((prev) => ({ ...prev, [e.target.name]: e.target.value }))
         }
-    }
-
-    const handlerClose = () => {
-        props.canceladd()
     }
 
     const addNotification = () => {
@@ -41,7 +39,7 @@ function Index(props) {
                     setTimeout(() => {
                         setShowAlert({ status: false })
                         setTimeout(() => {
-                            props.canceladd()
+                            setaddNotifBox(false)
                         }, 0)
                     }, 3000)
                 }
@@ -64,33 +62,35 @@ function Index(props) {
                 :
                 ''
             }
-            <div className="mainNotif">
-                <div className="titleNotif">Add New Notification</div>
-                <div className="row">
-                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <Input name={'usersIds'} type={'number'} title={'usersIds'} changeInputValue={updateInputData} />
+
+            <div className="addNotifBox">
+                <div className='addNotifBtn' onClick={() => setaddNotifBox(!addNotifBox)}>
+                    <HiPlus className='icon' />
+                    <div className="">New Notif</div>
+                </div>
+
+                <div className={`addNotif row ${addNotifBox ? 'activeaddNotif' : ''}`}>
+                    <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
+                        <Input name={'usersIds'} type={'number'} title={'usersIds'} placeholder={'userId...'} changeInputValue={updateInputData} />
                     </div>
 
-                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
                         <Input name={'title'} type={'text'} title={'title'} changeInputValue={updateInputData} />
                     </div>
 
-                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <Input name={'body'} type={'text'} title={'body'} changeInputValue={updateInputData} />
-                    </div>
-
-                    <div className="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
                         <Input name={'image'} type={'text'} title={'image'} changeInputValue={updateInputData} />
                     </div>
 
+                    <div className="col-xl-12 col-lg-12 col-md-12 col-ms-12 col-xs-12">
+                        <Input name={'body'} type={'text'} title={'body'} changeInputValue={updateInputData} />
+                    </div>
+
+                    <div className="addNotifcancelBtn col-xl-12 col-lg-12 col-md-12 col-ms-12 col-xs-12">
+                        <ButtonActionBlue title={'Done'} handler={addNotification} />
+                        <ButtonActionGray title={'Cancel'} handler={() => setaddNotifBox(false)} />
+                    </div>
                 </div>
-
-                <div className="notifbtn">
-                    <ButtonActionGray title={'Cancel'} handler={handlerClose} />
-                    <ButtonActionBlue title={'Done'} handler={addNotification} />
-                </div>
-
-
             </div>
         </div>
     )
