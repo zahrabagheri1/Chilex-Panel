@@ -3,7 +3,8 @@ import Table from '../../../../../layout/Table/Table';
 import axios from 'axios';
 import { sortUserList } from '../../../../../Data/Sort';
 import { useNavigate } from 'react-router-dom';
-import { HiMiniArrowUpTray, HiUserMinus } from "react-icons/hi2";
+import { HiLockClosed, HiMiniArrowUpTray, HiUser } from "react-icons/hi2";
+import { RiUserForbidFill } from "react-icons/ri";
 import { HiOutlineFilter } from "react-icons/hi";
 import './List.scss';
 import SelectOption from '../../../../../Components/SelectOption/SelectOption';
@@ -92,8 +93,6 @@ function Index() {
 
   const updateOptionDataForLimit = (name, id) => {
     setFilters((prev) => ({ ...prev, [name]: id, 'offset': 1 }))
-    setFilterBox(false)
-    // setResetFlag(true)
   }
 
 
@@ -254,7 +253,7 @@ function Index() {
         </div>
 
         <div className="banuserBtn" onClick={() => setModal(true)}>
-          <HiUserMinus className='icon' />
+          <RiUserForbidFill className='icon' />
           <div>Ban user</div>
         </div>
       </div>
