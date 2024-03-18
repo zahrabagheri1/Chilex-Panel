@@ -19,6 +19,12 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+
+        .indiana-scroll-container {
+            overflow-y: unset !important;
+            overflow-x: auto !important;
+        }
+
         .tableBody {
             border: 2px solid $lightGray;
             border-radius: 6px;

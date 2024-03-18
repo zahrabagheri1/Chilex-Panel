@@ -32,7 +32,7 @@
                 padding: 20px;
                 position: absolute;
                 flex-direction: row;
-                background-color: #272a2fe9;
+                background-color: #272a2f;
                 border-radius: 8px;
                 box-shadow: 4px 7px 10px rgba(0, 0, 0, .4);
                 gap: 10px;
@@ -40,6 +40,14 @@
 
                 &.activeFilter {
                     display: grid;
+                }
+
+
+                .filterResetBtn{
+                    display: flex;
+                    flex-direction: row;
+                    padding-top: 15px;
+                    gap: 20px;
                 }
             }
 
