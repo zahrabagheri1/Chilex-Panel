@@ -10,6 +10,7 @@ import './AddDialog.scss';
 
 function Index(props) {
     const [dialog, setDialog] = useState();
+    const [addDialogBox, setaddDialogBox] = useState(false);
     const [cookies] = useCookies(['accessToken']);
     const [showAlert, setShowAlert] = useState({
         status: false, msg: '', success: null
@@ -42,7 +43,7 @@ function Index(props) {
                     setTimeout(() => {
                         setShowAlert({ status: false })
                         setTimeout(() => {
-                            props.canceladd()
+                            setaddDialogBox(false)
                         }, 0)
                     }, 3000)
                 }
@@ -65,6 +66,36 @@ function Index(props) {
                 :
                 ''
             }
+
+            <div className="addDialogBox">
+                <div className='addDialogBtn' onClick={() => setaddDialogBox(!addDialogBox)}>
+                    <HiPlus className='icon' />
+                    <div className="">New Dialog</div>
+                </div>
+
+                <div className={`addDialog row ${addDialogBox ? 'activeaddDialog' : ''}`}>
+                    <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
+                        <Input name={'usersIds'} type={'number'} title={'usersIds'} placeholder={'userId...'} changeInputValue={updateInputData} />
+                    </div>
+
+                    <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
+                        <Input name={'title'} type={'text'} title={'title'} placeholder={'title...'} changeInputValue={updateInputData} />
+                    </div>
+
+                    <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
+                        <Input name={'image'} type={'text'} title={'image'} placeholder={'image...'} changeInputValue={updateInputData} />
+                    </div>
+
+                    <div className="col-xl-12 col-lg-12 col-md-12 col-ms-12 col-xs-12">
+                        <Input name={'body'} type={'text'} title={'body'} placeholder={'body on notif...'} changeInputValue={updateInputData} />
+                    </div>
+
+                    <div className="addDialogcancelBtn col-xl-12 col-lg-12 col-md-12 col-ms-12 col-xs-12">
+                        <ButtonActionBlue title={'Done'} handler={addDialogication} />
+                        <ButtonActionGray title={'Cancel'} handler={() => setaddDialogBox(false)} />
+                    </div>
+                </div>
+            </div>
             <div className="mainDialog">
                 <div className="titleDialog">Add New Dialog</div>
                 <div className="row">

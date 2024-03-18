@@ -120,18 +120,11 @@ function Index() {
           </div>
         </div>
 
-        <div className='adddialogbtn' onClick={() => setModal(true)}>
-          <HiPlus className='icon' />
-          <div>Add Dialog</div>
-        </div>
+        <AddDialog />
       </div>
 
       <Table data={dialogList?.data} sort={sortDialog} action={true} list={dialogList} offsetTable={offsetTableHandler} showDetailStatus={false} />
 
-      {modal === true ?
-        <AddDialog canceladd={() => setModal(false)} />
-        : ''
-      }
     </div>
   )
 }
