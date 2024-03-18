@@ -95,10 +95,10 @@ function Index() {
                     </div>
 
                     <div className={`filter row ${filterBox ? 'activeFilter' : ''}`}>
-                        <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
+                        <div className="col-xl-6 col-lg-6 col-md-6 col-ms-12 col-xs-12">
                             <Input name={'userId'} type={'text'} placeholder={'userId...'} title={'userId'} value={filters.userId} changeInputValue={updateInputData} />
                         </div>
-                        <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
+                        <div className="col-xl-6 col-lg-6 col-md-6 col-ms-12 col-xs-12">
                             <SelectOption readOnly={false} value={filters.limit} title={"limit"} name={'limit'} defaultValue={'15'} type={'status'} changeOptinValue={updateOptionDataForLimit}
                                 data={[
                                     { id: 15, status: 15 },

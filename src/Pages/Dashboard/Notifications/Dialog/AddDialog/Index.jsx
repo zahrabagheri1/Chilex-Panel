@@ -80,7 +80,7 @@ function Index(props) {
                     </div>
 
                     <div className="col-xl-6 col-lg-6 col-md-6 col-ms-12 col-xs-12">
-                        <Input name={'message'} type={'text'} title={'message'} placeholder={'message of Dialog...'} changeInputValue={updateInputData} />
+                        <Input name={'message'} type={'text'} title={'message'} placeholder={'message...'} changeInputValue={updateInputData} />
                     </div>
 
                     <div className="addDialogcancelBtn col-xl-12 col-lg-12 col-md-12 col-ms-12 col-xs-12">
