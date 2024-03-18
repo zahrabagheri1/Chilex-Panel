@@ -29,10 +29,7 @@ function List() {
         sortBy: 2,
         orderBy: 1,
     })
-
-    const navigate = useNavigate()
-    const [value, setValue] = useState()
-
+    
     useEffect(() => {
         goToLoginPage(cookies.accessToken);
 
@@ -116,11 +113,11 @@ function List() {
 
                     <div className={`filter row ${filterBox ? 'activeFilter' : ''}`}>
                         <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
-                            <Input value={value} type={'text'} title={'userId'} placeholder={'userId...'} changeInputValue={updateInputData} />
+                            <Input value={filters.userId} type={'text'} title={'userId'} name={'userId'} placeholder={'userId...'} changeInputValue={updateInputData} />
 
                         </div>
                         <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
-                            <SelectOption readOnly={false} value={value} name={'types'} title={'types'} defaultValue={'types'} type={'status'} changeOptinValue={updateOptionData}
+                            <SelectOption readOnly={false} value={filters.types} name={'types'} title={'types'} defaultValue={'types'} type={'status'} changeOptinValue={updateOptionData}
                                 data={[
                                     { id: 0, status: 'PLAYER NAME OFFENSIVE' },
                                     { id: 1, status: 'INACTIVE' },
@@ -130,7 +127,7 @@ function List() {
                             />
                         </div>
                         <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
-                            <SelectOption readOnly={false} value={value} name={'sortBy'} title={'sortBy'} defaultValue={'id'} type={'status'} changeOptinValue={updateOptionData}
+                            <SelectOption readOnly={false} value={filters.sortBy} name={'sortBy'} title={'sortBy'} defaultValue={'id'} type={'status'} changeOptinValue={updateOptionData}
                                 data={[
                                     { id: 0, status: 'createdAt' },
                                     { id: 1, status: 'updatedAt' },
@@ -141,7 +138,7 @@ function List() {
                             />
                         </div>
                         <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
-                            <SelectOption readOnly={false} value={value} name={'orderBy'} title={'orderBy'} defaultValue={'ASC'} type={'status'} changeOptinValue={updateOptionData}
+                            <SelectOption readOnly={false} value={filters.orderBy} name={'orderBy'} title={'orderBy'} defaultValue={'ASC'} type={'status'} changeOptinValue={updateOptionData}
                                 data={[
                                     { id: 0, status: 'DESC' },
                                     { id: 1, status: 'ASC' },
