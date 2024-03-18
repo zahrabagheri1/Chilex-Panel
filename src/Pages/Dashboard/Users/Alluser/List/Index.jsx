@@ -195,7 +195,7 @@ function Index() {
             </div>
 
             <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
-              <SelectOption readOnly={false} name={'unfinishedGame'} title={'lastOnline'} defaultValue={'all users'} type={'status'} changeOptinValue={updateOptionData}
+              <SelectOption readOnly={false} name={'unfinishedGame'} title={'unfinishedGame'} defaultValue={'all users'} type={'status'} changeOptinValue={updateOptionData}
                 data={[
                   { id: 0, status: 'all users' },
                   { id: 1, status: 'createdat' },
@@ -207,7 +207,7 @@ function Index() {
 
             <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
 
-              <SelectOption readOnly={false} name={'sortBy'} title={'lastOnline'} defaultValue={'createdat'} type={'status'} changeOptinValue={updateOptionData}
+              <SelectOption readOnly={false} name={'sortBy'} title={'sortBy'} defaultValue={'createdat'} type={'status'} changeOptinValue={updateOptionData}
                 data={[
                   { id: 0, status: 'bot' },
                   { id: 1, status: 'createdat' },
@@ -218,7 +218,7 @@ function Index() {
             </div>
 
             <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
-              <SelectOption readOnly={false} name={'order'} title={'orderB'} defaultValue={'ASC'} type={'status'} changeOptinValue={updateOptionData}
+              <SelectOption readOnly={false} name={'order'} title={'orderBy'} defaultValue={'ASC'} type={'status'} changeOptinValue={updateOptionData}
                 data={[
                   { id: 0, status: 'ASC' },
                   { id: 1, status: 'DESC' },
