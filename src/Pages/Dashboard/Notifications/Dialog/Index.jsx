@@ -1,19 +1,19 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Table from '../../../../layout/Table/Table'
-import { HiOutlineTrash, HiPlus } from 'react-icons/hi2'
-import Button from '../../../../Components/Button/Button'
+import { HiPlus } from 'react-icons/hi2'
 import Input from '../../../../Components/Input/Input'
-import AddDialog from './AddDialog/Index';
+import AddDialog from './AddDialog/Index'
 import { LoadingContext } from '../../../Loading/LoadingContext'
 import { LoginContext } from '../../../Login/LoginContext'
 import { useCookies } from 'react-cookie'
 import { useNavigate } from 'react-router-dom'
 import { sortDialog } from '../../../../Data/Sort'
-import { API_URL } from '../../../../API_URL';
+import { API_URL } from '../../../../API_URL'
 import axios from 'axios'
 import SelectOption from '../../../../Components/SelectOption/SelectOption'
 import ButtonActionGray from '../../../../Components/ButtonActionGray/ButtonActionGray'
 import ButtonActionBlue from '../../../../Components/ButtonActionBlue/ButtonActionBlue'
+import './Dialog.scss'
 import { HiOutlineFilter } from 'react-icons/hi'
 
 
@@ -88,7 +88,7 @@ function Index() {
   }
 
   return (
-    <div className='notifList'>
+    <div className='dialogList'>
       <div className='top'>
         <div className="filterBox">
           <div className='filterBtn' onClick={() => setFilterBox(!filterBox)}>
@@ -120,7 +120,7 @@ function Index() {
           </div>
         </div>
 
-        <div className='addnotif' onClick={() => setModal(true)}>
+        <div className='adddialogbtn' onClick={() => setModal(true)}>
           <HiPlus className='icon' />
           <div>Add Dialog</div>
         </div>

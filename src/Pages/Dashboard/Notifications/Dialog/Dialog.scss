@@ -1,5 +1,7 @@
 
-.notifList {
+@import '../../../../../Assets/scss/variable';
+
+.dialogList {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -52,7 +54,7 @@
         }
 
         .filterBtn,
-        .addnotifBtn {
+        .adddialogbtn {
             display: flex;
             flex-direction: row;
             align-items: center;
