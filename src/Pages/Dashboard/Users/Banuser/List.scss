@@ -19,11 +19,13 @@
         height: auto;
         z-index: 1;
 
-        .filterBox {
+        .filterBox,
+        .unbanuserBox {
             display: flex;
             position: relative;
 
-            .filter {
+            .filter,
+            .unbanuser {
                 display: none;
                 width: 550px;
                 max-height: 250px;
@@ -38,7 +40,8 @@
                 gap: 10px;
                 z-index: 2;
 
-                &.activeFilter {
+                &.activeFilter,
+                &.activeunbanuser {
                     display: grid;
                 }
 
@@ -53,12 +56,13 @@
 
         }
 
-        .filterBtn {
+        .filterBtn,
+        .unbanuserBtn {
             display: flex;
             flex-direction: row;
             align-items: center;
             gap: 10px;
-            width: 100px;
+            width: 110px;
             height: 32px;
             font-size: 14px;
             background: $Gray;

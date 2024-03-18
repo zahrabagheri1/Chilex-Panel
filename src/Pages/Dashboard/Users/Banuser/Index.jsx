@@ -11,7 +11,6 @@ import { LoadingContext } from '../../../Loading/LoadingContext';
 import { LoginContext } from '../../../Login/LoginContext';
 import { RiUserForbidFill, RiUserHeartFill } from "react-icons/ri";
 import { API_URL } from '../../../../API_URL';
-import Button from '../../../../Components/Button/Button';
 import ButtonActionBlue from '../../../../Components/ButtonActionBlue/ButtonActionBlue';
 import ButtonActionGray from '../../../../Components/ButtonActionGray/ButtonActionGray';
 import { HiOutlineFilter } from 'react-icons/hi';
@@ -23,6 +22,7 @@ function Index() {
     const { goToLoginPage } = useContext(LoginContext);
     const [resetFlag, setResetFlag] = useState(false);
     const [filterBox, setFilterBox] = useState(false);
+    const [unbanuserBox, setUnbanuserBox] = useState(false);
     const navigate = useNavigate()
     const [filters, setFilters] = useState({
         limit: 15,
@@ -96,10 +96,6 @@ function Index() {
         setFilters((prev) => ({ ...prev, [e.target.name]: e.target.value }))
     }
 
-    const showDetailBanUser = (id) => {
-        navigate(`${id}`)
-    }
-
     const offsetTableHandler = (page) => {
         setFilters((prev) => ({ ...prev, 'offset': page }))
         setResetFlag(true)
@@ -120,14 +116,20 @@ function Index() {
 
                     <div className={`filter row ${filterBox ? 'activeFilter' : ''}`}>
                         <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
-                            <Input classname={'filerinput'} value={filters.type} type={'text'} title={'type'} placeholder={'type...'} changeInputValue={updateInputData} />
-                        </div>
-                        <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
-                            <Input classname={'filerinput'} value={filters.userId} type={'text'} title={'userId'} placeholder={'userId...'} changeInputValue={updateInputData} />
+                            <Input value={filters.userId} type={'text'} title={'userId'} placeholder={'userId...'} changeInputValue={updateInputData} />
                         </div>
 
                         <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
-                            <SelectOption classnameBox={'filerinput'} value={filters.sortBy} title={'sortBy'} name={'sortBy'} defaultValue={'id'} type={'status'} readOnly={false} changeOptinValue={updateOptionData}
+                            <SelectOption value={filters.type} title={'type'} name={'type'} defaultValue={'type'} type={'status'} readOnly={false} changeOptinValue={updateOptionData}
+                                data={[
+                                    { id: 0, status: 'everything' },
+                                    { id: 1, status: 'chating' },
+                                    { id: 2, status: 'chat with support' }
+                                ]}
+                            />
+                        </div>
+                        <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
+                            <SelectOption value={filters.sortBy} title={'sortBy'} name={'sortBy'} defaultValue={'id'} type={'status'} readOnly={false} changeOptinValue={updateOptionData}
                                 data={[
                                     { id: 0, status: 'createdAt' },
                                     { id: 1, status: 'updatedAt' },
@@ -138,7 +140,7 @@ function Index() {
                             />
                         </div>
                         <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
-                            <SelectOption classnameBox={'filerinput'} value={filters.orderBy} title={'orderBy'} name={'orderBy'} defaultValue={'ASC'} type={'status'} readOnly={false} changeOptinValue={updateOptionData}
+                            <SelectOption value={filters.orderBy} title={'orderBy'} name={'orderBy'} defaultValue={'ASC'} type={'status'} readOnly={false} changeOptinValue={updateOptionData}
                                 data={[
                                     { id: 0, status: 'DESC' },
                                     { id: 1, status: 'ASC' },
@@ -146,7 +148,7 @@ function Index() {
                             />
                         </div>
                         <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
-                            <SelectOption classnameBox={'filerinput'} readOnly={false} value={filters.limit} title={'limit'} name={'limit'} defaultValue={'15'} type={'status'} changeOptinValue={updateOptionDataForLimit}
+                            <SelectOption readOnly={false} value={filters.limit} title={'limit'} name={'limit'} defaultValue={'15'} type={'status'} changeOptinValue={updateOptionDataForLimit}
                                 data={[
                                     { id: 20, status: 20 },
                                     { id: 30, status: 30 },
@@ -164,13 +166,31 @@ function Index() {
                     </div>
                 </div>
 
-                <div className='exportBtn'>
-                    <RiUserHeartFill  className='icon' />
-                    <div>Unban user</div>
+                <div className="unbanuserBox">
+                    <div className='unbanuserBtn' onClick={() => setUnbanuserBox(!unbanuserBox)}>
+                        <RiUserHeartFill className='icon' />
+                        <div>Unban user</div>
+                    </div>
+
+                    <div className={`unbanuser row ${unbanuserBox ? 'activeunbanuser' : ''}`}>
+                        <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
+                            <Input value={filters.userId} type={'text'} title={'userId'} placeholder={'userId...'} changeInputValue={updateInputData} />
+                        </div>
+
+                        <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
+                            <SelectOption value={filters.orderBy} title={'orderBy'} name={'orderBy'} defaultValue={'ASC'} type={'status'} readOnly={false} changeOptinValue={updateOptionData}
+                                data={[
+                                    { id: 0, status: 'DESC' },
+                                    { id: 1, status: 'ASC' },
+                                ]}
+                            />
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
-            <Table data={banuserList?.data} list={banuserList} offsetTable={offsetTableHandler} sort={sortBanUsers} action={true} showDetail={showDetailBanUser} />
+            <Table data={banuserList?.data} list={banuserList} offsetTable={offsetTableHandler} sort={sortBanUsers} action={true} showDetailStatus={false} />
         </div>
     );
 }
