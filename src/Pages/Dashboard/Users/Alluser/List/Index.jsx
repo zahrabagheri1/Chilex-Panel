@@ -3,7 +3,7 @@ import Table from '../../../../../layout/Table/Table';
 import axios from 'axios';
 import { sortUserList } from '../../../../../Data/Sort';
 import { useNavigate } from 'react-router-dom';
-import { HiLockClosed, HiMiniArrowUpTray, HiUser } from "react-icons/hi2";
+import { HiMiniArrowUpTray } from "react-icons/hi2";
 import { RiUserForbidFill } from "react-icons/ri";
 import { HiOutlineFilter } from "react-icons/hi";
 import './List.scss';
@@ -19,7 +19,7 @@ import ButtonActionBlue from '../../../../../Components/ButtonActionBlue/ButtonA
 import ButtonActionGray from '../../../../../Components/ButtonActionGray/ButtonActionGray';
 
 function Index() {
-  const [modal, setModal] = useState()
+  const [banuserBox, setBanuserBox] = useState()
   const [userList, setUserList] = useState()
   const [cookies, setCookie, removeCookie] = useCookies(['accessToken']);
   const { loading, setLoading } = useContext(LoadingContext);
@@ -169,7 +169,7 @@ function Index() {
             </div>
 
             <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
-              <DatePikerFarsi value={Date.now()} title={'lastOnline'} name={'lastOnline'}  handlerChangeDate={updateDataPiker} />
+              <DatePikerFarsi value={Date.now()} title={'lastOnline'} name={'lastOnline'} handlerChangeDate={updateDataPiker} />
             </div>
 
             <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
@@ -228,7 +228,7 @@ function Index() {
             </div>
 
             <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
-              <SelectOption   readOnly={false} value={filters.limit} title={'limit'} name={'limit'} defaultValue={'15'} type={'status'} changeOptinValue={updateOptionDataForLimit}
+              <SelectOption readOnly={false} value={filters.limit} title={'limit'} name={'limit'} defaultValue={'15'} type={'status'} changeOptinValue={updateOptionDataForLimit}
                 data={[
                   { id: 15, status: 15 },
                   { id: 20, status: 20 },
@@ -247,25 +247,17 @@ function Index() {
           </div>
         </div>
 
-        <div className="exportBtn" onClick={() => setModal(true)}>
+        <div className="exportBtn">
           <HiMiniArrowUpTray className='icon' />
           <div>Export</div>
         </div>
 
-        <div className="banuserBtn" onClick={() => setModal(true)}>
-          <RiUserForbidFill className='icon' />
-          <div>Ban user</div>
-        </div>
+        <ModalBanUser />
+
       </div>
 
 
       <Table data={userList?.data} sort={sortUserList} list={userList} offsetTable={offsetTableHandler} action={true} pagintion={userList?.total_pages} showDetail={showDetailBanUser} />
-
-
-
-      {modal === true ?
-        <ModalBanUser canceladd={() => setModal(false)} />
-        : ''}
     </div>
   );
 }
