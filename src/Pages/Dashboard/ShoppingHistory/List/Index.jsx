@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { HiMiniArrowUpTray, HiOutlineTrash } from "react-icons/hi2";
+import { HiMiniArrowUpTray } from "react-icons/hi2";
 import { HiOutlineFilter } from "react-icons/hi";
 import Table from '../../../../layout/Table/Table';
 import { sortHistory } from '../../../../Data/Sort';
