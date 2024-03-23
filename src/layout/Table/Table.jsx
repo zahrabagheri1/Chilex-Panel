@@ -43,8 +43,8 @@ function Table(props) {
                     </div>
                     :
                     <div className="tableBox">
-                        <div className='tableBody'>
-                            <ScrollContainer>
+                        {/* <ScrollContainer> */}
+                            <div className='tableBody'>
                                 <table className='table'>
                                     <thead className='header'>
                                         <tr className='trhead'>
@@ -140,8 +140,8 @@ function Table(props) {
                                             : null}
                                     </tbody>
                                 </table>
-                            </ScrollContainer>
-                        </div>
+                            </div>
+                        {/* </ScrollContainer> */}
 
                         {
                             props.list || props.list?.total_pages > 1 ?

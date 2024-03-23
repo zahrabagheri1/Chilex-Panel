@@ -16,11 +16,12 @@ import ButtonActionGray from '../../../../../Components/ButtonActionGray/ButtonA
 
 function List() {
     const [reportuserList, setReportuserList] = useState(null)
-    const [cookies] = useCookies(['accessToken'])
-    const { loading, setLoading } = useContext(LoadingContext);
-    const { goToLoginPage } = useContext(LoginContext);
-    const [resetFlag, setResetFlag] = useState(false);
-    const [filterBox, setFilterBox] = useState(false);
+    const [cookies, setCookies, removeCookie] = useCookies(['accessToken'])
+    const { loading, setLoading } = useContext(LoadingContext)
+    const { goToLoginPage } = useContext(LoginContext)
+    const [resetFlag, setResetFlag] = useState(false)
+    const [filterBox, setFilterBox] = useState(false)
+    const navigate = useNavigate()
     const [filters, setFilters] = useState({
         limit: 15,
         offset: null,
@@ -29,7 +30,7 @@ function List() {
         sortBy: 2,
         orderBy: 1,
     })
-    
+
     useEffect(() => {
         goToLoginPage(cookies.accessToken);
 
@@ -59,8 +60,15 @@ function List() {
                 }
             ).catch(
                 err => {
+                    if (err.response.status === 500 || err.response.data.message === "Unauthorized") {
+                        document.cookie = "accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+                        // removeCookie('accessToken')
+                        navigate('/')
+                        console.log('SFASSSSSSSSSSSSSSSSS')
+                    } else {
+                        console.log(err)
 
-                    console.log(err.response.status)
+                    }
 
                 }
             )

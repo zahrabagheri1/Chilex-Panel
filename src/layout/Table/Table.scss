@@ -17,19 +17,21 @@
 
     .tableBox {
         height: 80vh;
+        width: 100%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
 
-        .indiana-scroll-container {
-            overflow-y: unset !important;
-            overflow-x: auto !important;
-        }
+        // .indiana-scroll-container {
+        //     overflow-y: unset !important;
+        //     overflow-x: auto !important;
+        // }
 
         .tableBody {
             border: 2px solid $lightGray;
             border-radius: 6px;
             overflow: auto;
+            width: 100%;
             max-height: calc(100vh - 25vh);
             background-color: #111315b4;
             position: relative;
