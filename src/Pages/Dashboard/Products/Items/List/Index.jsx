@@ -214,10 +214,10 @@ function Index() {
                                 data={[
                                     { id: 15, status: 15 },
                                     { id: 20, status: 20 },
-                                     { id: 40, status: 40 },
                                     { id: 40, status: 40 },
-                                    { id: 50, status: 50 },
                                     { id: 60, status: 60 },
+                                    { id: 80, status: 80 },
+                                    { id: 100, status: 100 },
                                 ]}
                             />
                         </div>
