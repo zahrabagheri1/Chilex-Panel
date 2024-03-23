@@ -161,7 +161,7 @@ function List() {
                                     { id: 40, status: 40 },
                                     { id: 60, status: 60 },
                                     { id: 80, status: 80 },
-                                    { id: 100, status: 100 },
+                                    { id: 100, status: 100 }
                                 ]}
                             />
                         </div>
