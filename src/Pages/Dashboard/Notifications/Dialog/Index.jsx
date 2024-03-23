@@ -100,11 +100,11 @@ function Index() {
               <Input name={'userId'} type={'text'} placeholder={'userId...'} title={'userId'} value={filters.userId} changeInputValue={updateInputData} />
             </div>
             <div className="col-xl-6 col-lg-6 col-md-6 col-ms-12 col-xs-12">
-              <SelectOption readOnly={false} value={filters.limit} title={"limit"} name={'limit'} defaultValue={'15'} type={'status'} changeOptinValue={updateOptionDataForLimit}
+              <SelectOption readOnly={false} value={filters.limit} title={"limit"} name={'limit'} defaultValue={'20'} type={'status'} changeOptinValue={updateOptionDataForLimit}
                 data={[
                   { id: 15, status: 15 },
                   { id: 20, status: 20 },
-                  { id: 30, status: 30 },
+                   { id: 40, status: 40 },
                   { id: 40, status: 40 },
                   { id: 50, status: 50 },
                   { id: 60, status: 60 },
