@@ -26,7 +26,7 @@ function Played() {
     const [filters, setFilters] = useState({
         startDate: moment(dateNow).subtract(1, 'months').format('jYYYY-jM-jD'),
         endDate: moment(dateNow).format('jYYYY-jM-jD'),
-        limit: 15,
+        limit: 20,
         offset: 1,
         orderBy: 1
     })
@@ -85,7 +85,7 @@ function Played() {
         setFilters({
             startDate: moment(dateNow).subtract(1, 'months').format('jYYYY-jM-jD'),
             endDate: moment(dateNow).format('jYYYY-jM-jD'),
-            limit: 15,
+             limit: 20,
             offset: 1,
             orderBy: 1
         })

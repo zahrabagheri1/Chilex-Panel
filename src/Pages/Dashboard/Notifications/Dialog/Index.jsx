@@ -27,7 +27,7 @@ function Index() {
   const [filterBox, setFilterBox] = useState(false);
   const [filters, setFilters] = useState({
     userId: null,
-    limit: 15,
+     limit: 20,
     page: 1
   })
 
@@ -67,7 +67,7 @@ function Index() {
   const resetFillters = () => {
     setFilters({
       userId: null,
-      limit: 15,
+       limit: 20,
       page: 1
     })
     setResetFlag(true)

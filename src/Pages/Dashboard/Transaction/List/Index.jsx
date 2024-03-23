@@ -28,7 +28,7 @@ function Index() {
     const [filters, setFilters] = useState({
         statuses: null,
         gatewayTypes: null,
-        limit: 15,
+         limit: 20,
         offset: null,
         orderBy: 3,
         orderBy: 1,
@@ -95,7 +95,7 @@ function Index() {
         setFilters({
             statuses: null,
             gatewayTypes: null,
-            limit: 15,
+             limit: 20,
             offset: null,
             orderBy: 3,
             orderBy: 1,

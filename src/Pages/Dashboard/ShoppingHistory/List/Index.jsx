@@ -33,7 +33,7 @@ function Index() {
         sortBy: 4,
         orderBy: 1,
         offset: null,
-        limit: 15,
+         limit: 20,
         exportUserIds: false
     })
 
@@ -100,7 +100,7 @@ function Index() {
             sortBy: 3,
             orderBy: 1,
             offset: null,
-            limit: 15,
+             limit: 20,
         })
         setResetFlag(true);
     }

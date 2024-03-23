@@ -25,7 +25,7 @@ function Index() {
     const [unbanuserBox, setUnbanuserBox] = useState(false);
     const navigate = useNavigate()
     const [filters, setFilters] = useState({
-        limit: 15,
+         limit: 20,
         offset: null,
         type: null,
         userId: null,
@@ -82,7 +82,7 @@ function Index() {
 
     const resetFillters = () => {
         setFilters({
-            limit: 15,
+             limit: 20,
             offset: null,
             type: null,
             userId: null,

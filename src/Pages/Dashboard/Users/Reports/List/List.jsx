@@ -23,7 +23,7 @@ function List() {
     const [filterBox, setFilterBox] = useState(false)
     const navigate = useNavigate()
     const [filters, setFilters] = useState({
-        limit: 15,
+         limit: 20,
         offset: null,
         types: [],
         userId: null,
@@ -87,7 +87,7 @@ function List() {
 
     const resetFillters = () => {
         setFilters({
-            limit: 15,
+             limit: 20,
             offset: null,
             types: [],
             userId: null,
