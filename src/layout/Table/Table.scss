@@ -68,6 +68,10 @@
                 position: relative;
                 border-collapse: collapse;
 
+                // display: block;
+                overflow-x: auto;
+                // white-space: nowrap;
+
                 .header {
                     background-color: $Gray;
 
@@ -81,9 +85,12 @@
                         }
                     }
                 }
+                
 
                 .tbody {
-                    overflow: auto;
+                    // overflow: auto;
+                    // display: table;
+                    // width: 100%;
 
                     .trbody {
                         text-align: center;
