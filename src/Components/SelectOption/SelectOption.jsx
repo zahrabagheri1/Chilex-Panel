@@ -15,7 +15,7 @@ function SelectOption(props) {
     setClick(!click)
     props.changeOptinValue(props.name, id)
   }
-  
+
   useEffect(() => {
     props.data.map(item => (
       item.id === props.value ?
@@ -38,7 +38,7 @@ function SelectOption(props) {
       </div>
       {
         props.readOnly === false ?
-          <div className={`btn ${props.classname} ${props.disable === true ? 'disableSelect' : ''}`} >
+          <div className={`btn ${props.classname} ${props.disable ? 'disableSelect' : ''} ${props.editAble ? ' editAbleOPtion' : ''}`} >
             <div className='btnTitle' onClick={clickHandler} >
               <div className="btnTitleText">
                 {
@@ -52,7 +52,7 @@ function SelectOption(props) {
             </div>
             <div className='box' style={{ display: (click === true ? "flex" : 'none') }}>
               {props.data?.map((item, index) => (
-                <div  key={index} className='option' value={item.id} onClick={() => changeTitleHandler(item[props.type], item.id)}>{item[props.type]}</div>
+                <div key={index} className='option' value={item.id} onClick={() => changeTitleHandler(item[props.type], item.id)}>{item[props.type]}</div>
               ))}
             </div>
           </div>

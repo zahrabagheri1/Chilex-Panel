@@ -137,7 +137,7 @@ function Index() {
                         <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
                             <SelectOption   readOnly={false} value={filters.statuses} title={'statuses'} name={'statuses'} defaultValue={'statuses'} type={'status'} changeOptinValue={updateOptionData}
                                 data={[
-                                    { id: 0, status: 'Pending ENDING' },
+                                    { id: 0, status: 'Pending' },
                                     { id: 1, status: 'True check result' },
                                     { id: 2, status: 'False check result' },
                                     { id: 3, status: 'Failed' },

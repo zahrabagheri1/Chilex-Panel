@@ -9,8 +9,8 @@ import { LoadingContext } from '../../../Loading/LoadingContext';
 import { LoginContext } from '../../../Login/LoginContext';
 import moment from 'moment-jalaali';
 import { API_URL } from '../../../../API_URL';
-import Switch from '../../../../Components/Switch/Switch';
 import Alert from '../../../../layout/Alert/Alert';
+import SelectOption from '../../../../Components/SelectOption/SelectOption';
 
 function Index() {
     const [transaction, setTransaction] = useState({});
@@ -61,6 +61,12 @@ function Index() {
     const editData = () => {
         setEditAble(!editAble)
     }
+
+    const updateOptionData = (name, id) => {
+        // setFilters((prev) => ({ ...prev, [name]: id }))
+    }
+
+    console.log(transaction.status)
 
     const switchHandler = (boolean, id) => {
         axios.patch(`${API_URL === undefined ? '' : API_URL}/admin-transaction/change_status/${id}`, {
@@ -138,13 +144,17 @@ function Index() {
                                 :
                                 key == "status" ?
                                     <div key={index} className='titleB col-xl-3 col-lg-4 col-md-4 col-ms-6 col-xs-6'>
-                                        <Switch
-                                            id={id}
-                                            title={key}
-                                            defaultChecked={value === 0 ? true : false}
-                                            disabled={editAble === false ? true : false}
-                                            onChange={switchHandler}
+                                        <SelectOption readOnly={false} name={'status'} value={transaction.status} editAble={!editAble} title={'status'} type={'status'} changeOptinValue={updateOptionData}
+                                            data={[
+                                                { id: 0, status: 'Pending' },
+                                                { id: 1, status: 'True check result' },
+                                                { id: 2, status: 'False check result' },
+                                                { id: 3, status: 'Failed' },
+                                                { id: 4, status: 'Successful' },
+                                                { id: 5, status: 'Refunded' }
+                                            ]}
                                         />
+
                                     </div>
                                     :
                                     <div key={index} className='titleB col-xl-3 col-lg-4 col-md-4 col-ms-6 col-xs-6'>
