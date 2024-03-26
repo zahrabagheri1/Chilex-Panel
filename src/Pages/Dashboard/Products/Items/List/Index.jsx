@@ -20,7 +20,8 @@ import { HiOutlineFilter } from 'react-icons/hi';
 function Index() {
     const [itemList, setItemList] = useState(null);
     const [modal, setModal] = useState(false);
-    const [cookies] = useCookies(['accessToken']);
+        const [cookies, setCookies, removeCookie] = useCookies(['accessToken'])
+
     const { loading, setLoading } = useContext(LoadingContext)
     const { goToLoginPage } = useContext(LoginContext);
     const [resetFlag, setResetFlag] = useState(false);
@@ -67,7 +68,17 @@ function Index() {
                     setLoading(false)
                 }
             ).catch(
-                err => console.log(err)
+                err => {
+                    if (err.response.data.statusCode === 401 && err.response.data.message === "Unauthorized") {
+                      removeCookie('accessToken', {
+                        expires: 'Thu, 01 Jan 1970 00:00:00 UTC',
+                      })
+                      navigate('/')
+                    } else {
+                      console.log(err)
+          
+                    }
+                  }
             )
     }
 

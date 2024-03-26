@@ -14,7 +14,8 @@ import { API_URL } from '../../../../API_URL';
 
 function Resources() {
     const [data, setData] = useState()
-    const [cookies] = useCookies(['accessToken']);
+        const [cookies, setCookies, removeCookie] = useCookies(['accessToken'])
+
     const [openResource, setOpenResource] = useState('')
     const { loading, setLoading } = useContext(LoadingContext)
     const { goToLoginPage } = useContext(LoginContext);
@@ -36,7 +37,17 @@ function Resources() {
                 }
             )
             .catch(
-                err => console.log(err.message)
+                err => {
+                    if (err.response.data.statusCode === 401 && err.response.data.message === "Unauthorized") {
+                      removeCookie('accessToken', {
+                        expires: 'Thu, 01 Jan 1970 00:00:00 UTC',
+                      })
+                      navigate('/')
+                    } else {
+                      console.log(err)
+          
+                    }
+                  }
             )
     }
 

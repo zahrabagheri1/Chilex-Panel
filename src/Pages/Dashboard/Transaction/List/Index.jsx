@@ -23,12 +23,14 @@ function Index() {
     const { setLoading } = useContext(LoadingContext);
     const { goToLoginPage } = useContext(LoginContext);
     const [cookies, setCookie, removeCookie] = useCookies(['accessToken']);
-    const [resetFlag, setResetFlag] = useState(false);
-    const [filterBox, setFilterBox] = useState(false);
+    const [resetFlag, setResetFlag] = useState(false)
+    const [filterBox, setFilterBox] = useState(false)
+    const [exportBox, setExportBox] = useState(false)
+    const [userIds, setUserIds] = useState([])
     const [filters, setFilters] = useState({
         statuses: null,
         gatewayTypes: null,
-         limit: 20,
+        limit: 20,
         offset: null,
         orderBy: 3,
         orderBy: 1,
@@ -95,7 +97,7 @@ function Index() {
         setFilters({
             statuses: null,
             gatewayTypes: null,
-             limit: 20,
+            limit: 20,
             offset: null,
             orderBy: 3,
             orderBy: 1,
@@ -105,8 +107,9 @@ function Index() {
     }
 
     const exportUsers = () => {
+        setExportBox(!exportBox)
         setFilters((prev) => ({ ...prev, ["exportUserIds"]: true }))
-        setResetFlag(true);
+        setUserIds(transactionList.data[transactionList.data.length - 1].userIds)
     }
 
     const offsetTableHandler = (page) => {
@@ -130,12 +133,11 @@ function Index() {
 
                     <div className={`filter row ${filterBox ? 'activeFilter' : ''}`} >
                         <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
-                            <Input  
- value={filters.userId} title={'userId'} type={'text'} name={"userId..."} placeholder={'userId'} changeInputValue={updateInputData} />
+                            <Input value={filters.userId} title={'userId'} type={'text'} name={"userId..."} placeholder={'userId'} changeInputValue={updateInputData} />
                         </div>
 
                         <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
-                            <SelectOption   readOnly={false} value={filters.statuses} title={'statuses'} name={'statuses'} defaultValue={'statuses'} type={'status'} changeOptinValue={updateOptionData}
+                            <SelectOption readOnly={false} value={filters.statuses} title={'statuses'} name={'statuses'} defaultValue={'statuses'} type={'status'} changeOptinValue={updateOptionData}
                                 data={[
                                     { id: 0, status: 'Pending' },
                                     { id: 1, status: 'True check result' },
@@ -148,7 +150,7 @@ function Index() {
                         </div>
 
                         <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
-                            <SelectOption   readOnly={false} value={filters.gatewayTypes} title={'gatewayTypes'} name={'gatewayTypes'} defaultValue={'gatewayTypes'} type={'status'} changeOptinValue={updateOptionData}
+                            <SelectOption readOnly={false} value={filters.gatewayTypes} title={'gatewayTypes'} name={'gatewayTypes'} defaultValue={'gatewayTypes'} type={'status'} changeOptinValue={updateOptionData}
                                 data={[
                                     { id: 0, status: 'Pasargad' },
                                     { id: 1, status: 'Cafe Bazar' }
@@ -157,7 +159,7 @@ function Index() {
                         </div>
 
                         <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
-                            <SelectOption   readOnly={false} value={filters.orderBy} title={'orderBy'} name={'orderBy'} defaultValue={'id'} type={'status'} changeOptinValue={updateOptionData}
+                            <SelectOption readOnly={false} value={filters.orderBy} title={'orderBy'} name={'orderBy'} defaultValue={'id'} type={'status'} changeOptinValue={updateOptionData}
                                 data={[
                                     { id: 0, status: 'createdAt' },
                                     { id: 1, status: 'updatedAt' },
@@ -171,7 +173,7 @@ function Index() {
 
                         <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
 
-                            <SelectOption   readOnly={false} value={filters.orderBy} title={'sortBy'} name={'sortBy'} defaultValue={'ASC'} type={'status'} changeOptinValue={updateOptionData}
+                            <SelectOption readOnly={false} value={filters.orderBy} title={'sortBy'} name={'sortBy'} defaultValue={'ASC'} type={'status'} changeOptinValue={updateOptionData}
                                 data={[
                                     { id: 0, status: 'DESC' },
                                     { id: 1, status: 'ASC' },
@@ -180,7 +182,7 @@ function Index() {
                         </div>
 
                         <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
-                            <SelectOption   readOnly={false} value={filters.limit} title={'limit'} name={'limit'} defaultValue={'20'} type={'status'} changeOptinValue={updateOptionDataForLimit}
+                            <SelectOption readOnly={false} value={filters.limit} title={'limit'} name={'limit'} defaultValue={'20'} type={'status'} changeOptinValue={updateOptionDataForLimit}
                                 data={[
                                     { id: 15, status: 15 },
                                     { id: 20, status: 20 },
@@ -199,9 +201,17 @@ function Index() {
                     </div>
                 </div>
 
-                <div className='exportBtn' onClick={exportUsers}>
-                    <HiMiniArrowUpTray className='icon' />
-                    <div>Export</div>
+                <div className="exportBtnBox">
+                    <div className='exportBtn' onClick={exportUsers}>
+                        <HiMiniArrowUpTray className='icon' />
+                        <div>Export</div>
+                    </div>
+
+                    <div className={`export ${exportBox ? 'activeExport' : ''}`}>
+                        {userIds?.map((user) => (
+                            <div className='data-title'>{user}</div>
+                        ))}
+                    </div>
                 </div>
             </div>
             <Table data={transactionList?.data} list={transactionList} offsetTable={offsetTableHandler} sort={adminTransaction} action={true} showDetail={showDetailTransaction} />

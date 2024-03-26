@@ -10,7 +10,8 @@ import { useCookies } from 'react-cookie';
 import { API_URL } from '../../API_URL';
 
 function ModalItem(props) {
-  const [cookies] = useCookies(['accessToken']);
+      const [cookies, setCookies, removeCookie] = useCookies(['accessToken'])
+
   const [addSetting, setAddSetting] = useState({ game: props.gameName})
   const [showAlert, setShowAlert] = useState({
     status: false, msg: '', success: null

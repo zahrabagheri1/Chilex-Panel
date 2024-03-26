@@ -10,7 +10,8 @@ import { useCookies } from 'react-cookie';
 import { API_URL } from '../../../API_URL';
 
 function ModalEntries(props) {
-  const [cookies] = useCookies(['accessToken']);
+      const [cookies, setCookies, removeCookie] = useCookies(['accessToken'])
+
   const [addEntry, setAddEntry] = useState({
     settingId: parseInt(props.settingId),
     type: 1

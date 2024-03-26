@@ -14,7 +14,8 @@ function ModalPrizes(props) {
     settingId: parseInt(props.settingId),
     type: 1
   })
-  const [cookies] = useCookies(['accessToken']);
+      const [cookies, setCookies, removeCookie] = useCookies(['accessToken'])
+
   const [showAlert, setShowAlert] = useState({
     status: false, msg: '', success: null
   })

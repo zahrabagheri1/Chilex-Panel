@@ -23,7 +23,8 @@ function ModalAddProducts(props) {
     stuffType: props.type === 'bundle' ? null : 2,
   })
 
-  const [cookies] = useCookies(['accessToken']);
+      const [cookies, setCookies, removeCookie] = useCookies(['accessToken'])
+
   const handlerClose = (e) => {
     props.handlerClose()
   }

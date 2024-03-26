@@ -22,7 +22,8 @@ const props = {
 function ModalBanUser(props) {
     const [banuserBox, setBanuserBox] = useState(false)
     const [banuser, setBanuser] = useState();
-    const [cookies] = useCookies(['accessToken']);
+        const [cookies, setCookies, removeCookie] = useCookies(['accessToken'])
+
     const [showAlert, setShowAlert] = useState({
         status: false, msg: '', success: null
     })

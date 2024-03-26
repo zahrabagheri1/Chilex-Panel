@@ -12,15 +12,26 @@ import { HiPlus } from 'react-icons/hi2';
 function Index(props) {
     const [dialog, setDialog] = useState();
     const [addDialogBox, setaddDialogBox] = useState(false);
-    const [cookies] = useCookies(['accessToken']);
+    const [cookies, setCookies, removeCookie] = useCookies(['accessToken'])
+
     const [showAlert, setShowAlert] = useState({
         status: false, msg: '', success: null
     })
 
     const updateInputData = (e) => {
         if (e.target.name === 'usersIds') {
-            setDialog((prev) => ({ ...prev, [e.target.name]: parseInt(e.target.value) }))
-            console.log(typeof parseInt(e.target.value))
+            let userIds = e.target.value
+            let userIdsArray = userIds.split('\n')
+            let userIdsArray3 = []
+            userIdsArray.map(item => {
+                if( item !== null){
+                    userIdsArray3.push(parseInt(item.trim()))
+
+                }
+            })
+
+            setDialog((prev) => ({ ...prev, [e.target.name]: userIdsArray3 }))
+
         } else {
             setDialog((prev) => ({ ...prev, [e.target.name]: e.target.value }))
         }
@@ -51,7 +62,7 @@ function Index(props) {
             )
             .catch(
                 err => {
-                    setShowAlert({ status: true, msg: err.message + ".   Filling the blank", success: false })
+                    setShowAlert({ status: true, msg: err.response.data.message, success: false })
                     setTimeout(() => {
                         setShowAlert({ status: false })
 
@@ -76,7 +87,7 @@ function Index(props) {
 
                 <div className={`addDialog row ${addDialogBox ? 'activeaddDialog' : ''}`}>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-ms-12 col-xs-12">
-                        <Input name={'usersIds'} type={'number'} title={'usersIds'} placeholder={'userId...'} changeInputValue={updateInputData} />
+                        <Input name={'usersIds'} type={'textarea'} title={'usersIds'} placeholder={'userId...'} changeInputValue={updateInputData} />
                     </div>
 
                     <div className="col-xl-6 col-lg-6 col-md-6 col-ms-12 col-xs-12">
@@ -90,7 +101,7 @@ function Index(props) {
                 </div>
             </div>
 
-                </div>
+        </div>
 
 
 

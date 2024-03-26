@@ -5,7 +5,7 @@ import { sortGamePlayed } from '../../../../Data/Sort';
 import './Played.scss';
 import SelectOption from '../../../../Components/SelectOption/SelectOption';
 import DatePikerFarsi from '../../../../Components/DatePikerFarsi/DatePikerFarsi';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { LoadingContext } from '../../../Loading/LoadingContext';
 import { LoginContext } from '../../../Login/LoginContext';
@@ -18,7 +18,8 @@ import ButtonActionGray from '../../../../Components/ButtonActionGray/ButtonActi
 function Played() {
     const dateNow = Date.now()
     const [playedList, setPlayedList] = useState()
-    const [cookies] = useCookies(['accessToken']);
+    const [cookies, setCookies, removeCookie] = useCookies(['accessToken'])
+    const navigate = useNavigate()
     const [resetFlag, setResetFlag] = useState(false);
     const [filterBox, setFilterBox] = useState(false)
     const { loading, setLoading } = useContext(LoadingContext);
@@ -63,8 +64,16 @@ function Played() {
             )
             .catch(
                 err => {
-                    console.log(err)
-                }
+                    if (err.response.data.statusCode === 401 && err.response.data.message === "Unauthorized") {
+                      removeCookie('accessToken', {
+                        expires: 'Thu, 01 Jan 1970 00:00:00 UTC',
+                      })
+                      navigate('/')
+                    } else {
+                      console.log(err)
+          
+                    }
+                  }
             )
     }
 
