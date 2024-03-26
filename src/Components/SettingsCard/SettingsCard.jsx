@@ -115,7 +115,7 @@ function SettingsCard(props) {
     };
 
     const botLevel = [{ id: 0, name: 'Easy' }, { id: 1, name: 'Medium' }, { id: 2, name: 'Hard' }]
-    const playersLength = [{ id: 0, name: '2 Player' }, { id: 1, name: '3 Player' }, { id: 2, name: '4 Player' }]
+    const playersLength = [{ id: 2, name: '2 Player' }, { id: 3, name: '3 Player' }, { id: 4, name: '4 Player' }]
 
     return (
         <div className='settingCard'>
