@@ -23,6 +23,17 @@ function Index() {
         type: 3
     })
 
+    const dataOFChartX = []
+    const dataOFChartY = []
+
+    backgammon?.map(item => (
+        dataOFChartX.push(item.x)
+    ))
+    backgammon?.map(item => (
+        dataOFChartY.push(item.y)
+    ))
+
+
     const updateOptionData = (name, id) => {
         setFilters(prev => ({ ...prev, [name]: id }))
     }
@@ -68,7 +79,7 @@ function Index() {
         series: [
             {
                 name: 'backgammon',
-                data: backgammon
+                data: dataOFChartY
             },
         ],
         options: {
@@ -114,7 +125,10 @@ function Index() {
                     shadeTo: 'dark',
                     shadeIntensity: 1
                 },
-            }
+            },
+            xaxis: {
+                categories: dataOFChartX,
+              }
         },
     };
 
@@ -123,7 +137,8 @@ function Index() {
             <div className="chart-filter-box row">
                 <div className="chart-filter-title col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">Backgammon</div>
                 <div className="chart-box col-xl-9 col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                    <ReactApexChart options={chartDataOption.options} series={chartDataOption.series} type="area" />
+                              <ReactApexChart options={chartDataOption.options} series={chartDataOption.series} type="line" height={250} width={350} />
+
                 </div>
 
                 <div className="filter-chart col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-3">
