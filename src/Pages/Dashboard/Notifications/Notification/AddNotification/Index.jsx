@@ -12,7 +12,7 @@ import { HiPlus } from 'react-icons/hi2';
 function Index(props) {
     const [notification, setNotification] = useState();
     const [addNotifBox, setaddNotifBox] = useState(false);
-        const [cookies, setCookies, removeCookie] = useCookies(['accessToken'])
+    const [cookies, setCookies, removeCookie] = useCookies(['accessToken'])
 
     const [showAlert, setShowAlert] = useState({
         status: false, msg: '', success: null
@@ -20,7 +20,17 @@ function Index(props) {
 
     const updateInputData = (e) => {
         if (e.target.name === 'usersIds') {
-            setNotification((prev) => ({ ...prev, [e.target.name]: [parseInt(e.target.value)] }))
+            let userIds = e.target.value
+            let userIdsArray = userIds.split('\n')
+            let userIdsArray3 = []
+            userIdsArray.map(item => {
+                if( item !== ''){
+                    userIdsArray3.push(parseInt(item.trim()))
+
+                }
+            })
+            setNotification((prev) => ({ ...prev, [e.target.name]: userIdsArray3 }))
+
         } else {
             setNotification((prev) => ({ ...prev, [e.target.name]: e.target.value }))
         }
@@ -47,7 +57,7 @@ function Index(props) {
             )
             .catch(
                 err => {
-                    setShowAlert({ status: true, msg: err.message + ".   Filling the blank", success: false })
+                    setShowAlert({ status: true, msg: err.response.data.message , success: false })
                     setTimeout(() => {
                         setShowAlert({ status: false })
 
@@ -72,7 +82,7 @@ function Index(props) {
 
                 <div className={`addNotif row ${addNotifBox ? 'activeaddNotif' : ''}`}>
                     <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
-                        <Input name={'usersIds'} type={'number'} title={'usersIds'} placeholder={'userId...'} changeInputValue={updateInputData} />
+                        <Input name={'usersIds'} type={'textarea'} title={'usersIds'} placeholder={'userId...'} changeInputValue={updateInputData} />
                     </div>
 
                     <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
@@ -84,7 +94,7 @@ function Index(props) {
                     </div>
 
                     <div className="col-xl-12 col-lg-12 col-md-12 col-ms-12 col-xs-12">
-                        <Input name={'body'} type={'text'} title={'body'} placeholder={'body on notif...'}  changeInputValue={updateInputData} />
+                        <Input name={'body'} type={'text'} title={'body'} placeholder={'body on notif...'} changeInputValue={updateInputData} />
                     </div>
 
                     <div className="addNotifcancelBtn col-xl-12 col-lg-12 col-md-12 col-ms-12 col-xs-12">
