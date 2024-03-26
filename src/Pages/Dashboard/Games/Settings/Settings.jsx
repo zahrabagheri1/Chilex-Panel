@@ -16,7 +16,8 @@ const props = {
 
 function Settings() {
   const [data, setData] = useState()
-  const [cookies] = useCookies(['accessToken']);
+      const [cookies, setCookies, removeCookie] = useCookies(['accessToken'])
+
   const [openModal, setOpenModal] = useState()
   const { loading, setLoading } = useContext(LoadingContext);
   const { goToLoginPage } = useContext(LoginContext);
@@ -44,7 +45,15 @@ function Settings() {
         }
       ).catch(
         err => {
-          console.log(err)
+          if (err.response.data.statusCode === 401 && err.response.data.message === "Unauthorized") {
+            removeCookie('accessToken', {
+              expires: 'Thu, 01 Jan 1970 00:00:00 UTC',
+            })
+            navigate('/')
+          } else {
+            console.log(err)
+
+          }
         }
       )
   }
