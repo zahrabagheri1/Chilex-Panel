@@ -19,31 +19,32 @@ import ButtonActionBlue from '../../../../../Components/ButtonActionBlue/ButtonA
 import ButtonActionGray from '../../../../../Components/ButtonActionGray/ButtonActionGray';
 
 function Index() {
-  const [banuserBox, setBanuserBox] = useState()
   const [userList, setUserList] = useState()
   const [cookies, setCookie, removeCookie] = useCookies(['accessToken']);
   const { loading, setLoading } = useContext(LoadingContext);
   const { goToLoginPage } = useContext(LoginContext);
   const [resetFlag, setResetFlag] = useState(false);
   const [filterBox, setFilterBox] = useState(false);
+  const [exportBox, setExportBox] = useState(false)
+  const [userIds, setUserIds] = useState([])
   const navigate = useNavigate()
   const [filters, setFilters] = useState({
     name: null,
     email: null,
     phone: null,
     ban: 0,
-    // createdAt:  moment(dateNow).format('jYYYY-jM-jD'),
     createdAt: null,
     createdAtType: 1,
     register: 0,
     inviteBy: 0,
     lastOnline: 0,
-     limit: 20,
+    limit: 20,
     online: 2,
     unfinishedGame: 0,
     page: 1,
     sortBy: 1,
-    order: 0
+    order: 0,
+    exportUserIds: false
   })
 
 
@@ -59,7 +60,7 @@ function Index() {
       register: 0,
       inviteBy: 0,
       lastOnline: 0,
-       limit: 20,
+      limit: 20,
       online: 2,
       unfinishedGame: 0,
       page: 1,
@@ -95,6 +96,11 @@ function Index() {
     setFilters((prev) => ({ ...prev, [name]: id, 'page': 1 }))
   }
 
+  const exportUsers = () => {
+    setExportBox(!exportBox)
+    setFilters((prev) => ({ ...prev, ["exportUserIds"]: true }))
+    setUserIds(userList.data[userList.data.length - 1].userIds)
+  }
 
   useEffect(() => {
     goToLoginPage(cookies.accessToken);
@@ -109,7 +115,7 @@ function Index() {
   const banUser = () => {
     setLoading(true)
     setFilterBox(false)
-    axios.get(`${API_URL === undefined ? '' : API_URL}/admin/users?${filters.name === undefined || filters.name === null ? '' : 'name=' + filters.name + '&'}${filters.email === undefined || filters.email === null ? '' : 'email=' + filters.email + '&'}${filters.phone === undefined || filters.phone === null ? '' : 'phone=' + filters.phone + '&'}${filters.ban === undefined || filters.ban === null ? '' : 'ban=' + filters.ban + '&'}${filters.createdAt === undefined || filters.createdAt === null ? '' : 'createdAt=' + filters.createdAt + '&'}${filters.createdAtType === undefined || filters.createdAtType === null ? '' : 'createdAtType=' + filters.createdAtType + '&'}${filters.register === undefined || filters.register === null ? '' : 'register=' + filters.register + '&'}${filters.inviteBy === undefined || filters.inviteBy === null ? '' : 'inviteBy=' + filters.inviteBy + '&'}${filters.lastOnline === undefined || filters.lastOnline === null ? '' : 'lastOnline=' + filters.lastOnline + '&'}${filters.limit === undefined || filters.limit === null ? '' : 'limit=' + filters.limit + '&'}${filters.online === undefined || filters.online === null ? '' : 'online=' + filters.online + '&'}${filters.unfinishedGame === undefined || filters.unfinishedGame === null ? '' : 'unfinishedGame=' + filters.unfinishedGame + '&'}${filters.page === undefined || filters.page === null ? '' : 'page=' + filters.page + '&'}${filters.sortBy === undefined || filters.sortBy === null ? '' : 'sortBy=' + filters.sortBy + '&'}${filters.order === undefined || filters.order === null ? '' : 'order=' + filters.order}`,
+    axios.get(`${API_URL === undefined ? '' : API_URL}/admin/users?${filters.name === undefined || filters.name === null ? '' : 'name=' + filters.name + '&'}${filters.email === undefined || filters.email === null ? '' : 'email=' + filters.email + '&'}${filters.phone === undefined || filters.phone === null ? '' : 'phone=' + filters.phone + '&'}${filters.ban === undefined || filters.ban === null ? '' : 'ban=' + filters.ban + '&'}${filters.createdAt === undefined || filters.createdAt === null ? '' : 'createdAt=' + filters.createdAt + '&'}${filters.createdAtType === undefined || filters.createdAtType === null ? '' : 'createdAtType=' + filters.createdAtType + '&'}${filters.register === undefined || filters.register === null ? '' : 'register=' + filters.register + '&'}${filters.inviteBy === undefined || filters.inviteBy === null ? '' : 'inviteBy=' + filters.inviteBy + '&'}${filters.lastOnline === undefined || filters.lastOnline === null ? '' : 'lastOnline=' + filters.lastOnline + '&'}${filters.limit === undefined || filters.limit === null ? '' : 'limit=' + filters.limit + '&'}${filters.online === undefined || filters.online === null ? '' : 'online=' + filters.online + '&'}${filters.unfinishedGame === undefined || filters.unfinishedGame === null ? '' : 'unfinishedGame=' + filters.unfinishedGame + '&'}${filters.page === undefined || filters.page === null ? '' : 'page=' + filters.page + '&'}${filters.sortBy === undefined || filters.sortBy === null ? '' : 'sortBy=' + filters.sortBy + '&'}${filters.order === undefined || filters.order === null ? '' : 'order=' + filters.order + "&"}${filters.exportUserIds === null || filters.exportUserIds === undefined ? '' : 'exportUserIds=' + filters.exportUserIds}`,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -247,9 +253,17 @@ function Index() {
           </div>
         </div>
 
-        <div className="exportBtn">
-          <HiMiniArrowUpTray className='icon' />
-          <div>Export</div>
+        <div className="exportBtnBox">
+          <div className='exportBtn' onClick={exportUsers}>
+            <HiMiniArrowUpTray className='icon' />
+            <div>Export</div>
+          </div>
+
+          <div className={`export ${exportBox ? 'activeExport' : ''}`}>
+            {userIds?.map((user) => (
+              <div className='data-title'>{user}</div>
+            ))}
+          </div>
         </div>
 
         <ModalBanUser />
