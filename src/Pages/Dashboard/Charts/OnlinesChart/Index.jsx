@@ -54,38 +54,36 @@ function Index() {
 
   useEffect(() => {
     goToLoginPage(cookies.accessToken)
-    // getOnlineChart()
+    getOnlineChart()
   }, [filters])
 
-  // const getOnlineChart = () => {
-  //   setLoading(true)
-  //   axios.get(`${API_URL === undefined ? '' : API_URL}/admin/charts/onlines?${filters.startDate === null || filters.startDate === undefined ? '' : ('startDate=' + filters.startDate + '&')}${filters.endDate === null || filters.endDate === undefined ? '' : ('endDate=' + filters.endDate + '&')}${filters.type === null || filters.type === undefined ? '' : ('type=' + filters.type)}`,
-  //     {
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //         Authorization: 'Bearer ' + cookies.accessToken
-  //       }
-  //     }).then(
-  //       res => {
-  //         setOnlineUser(res.data.data)
-  //         setLoading(false)
-  //       }
-  //     ).catch(
-  //       err => {
-  //                err => {
-  //   if (err.response.data.statusCode === 401 && err.response.data.message === "Unauthorized") {
-  //     removeCookie('accessToken', {
-  //       expires: 'Thu, 01 Jan 1970 00:00:00 UTC',
-  //     })
-  //     navigate('/')
-  //   } else {
-  //     console.log(err)
+  const getOnlineChart = () => {
+    setLoading(true)
+    axios.get(`${API_URL === undefined ? '' : API_URL}/admin/charts/onlines?${filters.startDate === null || filters.startDate === undefined ? '' : ('startDate=' + filters.startDate + '&')}${filters.endDate === null || filters.endDate === undefined ? '' : ('endDate=' + filters.endDate + '&')}${filters.type === null || filters.type === undefined ? '' : ('type=' + filters.type)}`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + cookies.accessToken
+        }
+      }).then(
+        res => {
+          setOnlineUser(res.data.data)
+          setLoading(false)
+        }
+      ).catch(
+        err => {
+          if (err.response.data.statusCode === 401 && err.response.data.message === "Unauthorized") {
+            removeCookie('accessToken', {
+              expires: 'Thu, 01 Jan 1970 00:00:00 UTC',
+            })
+            navigate('/')
+          } else {
+            console.log(err)
 
-  //   }
-  // }
-  //       }
-  //     )
-  // }
+          }
+        }
+      )
+  }
 
   const chartDataOption = {
     series: [
@@ -150,7 +148,7 @@ function Index() {
         <div className="chart-filter-title col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">Online Users</div>
 
         <div className="chart-box col-xl-9 col-lg-9 col-md-9 col-sm-9 col-xs-9">
-          <ReactApexChart options={chartDataOption.options} series={chartDataOption.series} type="line" height={350} />
+          <ReactApexChart options={chartDataOption.options} series={chartDataOption.series} type="line" height={250} width={350} />
         </div>
 
         <div className="filter-chart col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-3">

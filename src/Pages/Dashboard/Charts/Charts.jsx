@@ -71,7 +71,7 @@ function Charts() {
     return (
         <div className='charts'>
 
-            <div className="dashbordBoxs">
+            {/* <div className="dashbordBoxs">
                 <div className="usersonlineBox">
 
                 </div>
@@ -81,22 +81,34 @@ function Charts() {
                 <div className="yatzyBox"></div>
                 <div className="unoBox"></div>
                 <div className="backgammonBox"></div>
-            </div>
+            </div> */}
 
-            <div className="">
+            <div className="row">
                 {/* <div className="chartBox">
                     <ReactApexChart options={items.options} series={items.series} type="line" height={350} />
                 </div> */}
 
-                <div className="chartBox col-xl-8 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                <div className="chartBox col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
                     <OnlinesChart />
                 </div>
-                {/* <AllGamesChart /> */}
-                {/* <SoccerChart /> */}
-                {/* <LudoChart /> */}
-                {/* <YatzyChart /> */}
-                {/* <UnoChart /> */}
-                {/* <BackgammonChart /> */}
+                <div className="chartBox col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                    <AllGamesChart />
+                </div>
+                <div className="chartBox col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                    <SoccerChart />
+                </div>
+                <div className="chartBox col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                    <LudoChart />
+                </div>
+                <div className="chartBox col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                    <YatzyChart />
+                </div>
+                <div className="chartBox col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                    <UnoChart />
+                </div>
+                <div className="chartBox col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                    <BackgammonChart />
+                </div>
             </div>
         </div>
     );
