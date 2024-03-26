@@ -12,7 +12,8 @@ import { HiPlus } from 'react-icons/hi2';
 function Index(props) {
     const [dialog, setDialog] = useState();
     const [addDialogBox, setaddDialogBox] = useState(false);
-    const [cookies] = useCookies(['accessToken']);
+        const [cookies, setCookies, removeCookie] = useCookies(['accessToken'])
+
     const [showAlert, setShowAlert] = useState({
         status: false, msg: '', success: null
     })

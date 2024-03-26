@@ -13,17 +13,19 @@ import SelectOption from '../../../../Components/SelectOption/SelectOption';
 import ButtonActionBlue from '../../../../Components/ButtonActionBlue/ButtonActionBlue';
 import { HiOutlineFilter } from 'react-icons/hi';
 import ButtonActionGray from '../../../../Components/ButtonActionGray/ButtonActionGray';
+import { useNavigate } from 'react-router-dom';
 
 function Index() {
     const [notifictionList, setNotifictionList] = useState();
-    const [cookies] = useCookies(['accessToken']);
+    const [cookies, setCookies, removeCookie] = useCookies(['accessToken'])
+    const navigate = useNavigate()
     const { loading, setLoading } = useContext(LoadingContext);
     const { goToLoginPage } = useContext(LoginContext);
     const [resetFlag, setResetFlag] = useState(false);
     const [filterBox, setFilterBox] = useState(false);
     const [filters, setFilters] = useState({
         userId: null,
-         limit: 20,
+        limit: 20,
         page: 1
     })
 
@@ -55,14 +57,24 @@ function Index() {
                 }
             )
             .catch(
-                err => console.log(err)
+                err => {
+                    if (err.response.data.statusCode === 401 && err.response.data.message === "Unauthorized") {
+                        removeCookie('accessToken', {
+                            expires: 'Thu, 01 Jan 1970 00:00:00 UTC',
+                        })
+                        navigate('/')
+                    } else {
+                        console.log(err)
+
+                    }
+                }
             )
     }
 
     const resetFillters = () => {
         setFilters({
             userId: null,
-             limit: 20,
+            limit: 20,
             page: 1
         })
         setResetFlag(true);

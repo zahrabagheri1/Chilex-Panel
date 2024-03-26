@@ -12,7 +12,8 @@ import { HiPlus } from 'react-icons/hi2';
 function Index(props) {
     const [notification, setNotification] = useState();
     const [addNotifBox, setaddNotifBox] = useState(false);
-    const [cookies] = useCookies(['accessToken']);
+        const [cookies, setCookies, removeCookie] = useCookies(['accessToken'])
+
     const [showAlert, setShowAlert] = useState({
         status: false, msg: '', success: null
     })
