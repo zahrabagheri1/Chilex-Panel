@@ -47,7 +47,8 @@ function SettingsCard(props) {
     const navigate = useNavigate()
     const [edit, setEdit] = useState(false)
     const [updatedata, setUpdateData] = useState({})
-    const [cookies] = useCookies(['accessToken']);
+        const [cookies, setCookies, removeCookie] = useCookies(['accessToken'])
+
     const [showAlert, setShowAlert] = useState({
         status: false, msg: '', success: ''
     })
