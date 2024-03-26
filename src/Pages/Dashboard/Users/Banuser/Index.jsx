@@ -25,7 +25,7 @@ function Index() {
     const [unbanuserBox, setUnbanuserBox] = useState(false);
     const navigate = useNavigate()
     const [filters, setFilters] = useState({
-         limit: 20,
+        limit: 20,
         offset: null,
         type: null,
         userId: null,
@@ -82,7 +82,7 @@ function Index() {
 
     const resetFillters = () => {
         setFilters({
-             limit: 20,
+            limit: 20,
             offset: null,
             type: null,
             userId: null,
@@ -126,8 +126,17 @@ function Index() {
                 }
             ).catch(
                 err => {
-                    console.log(err)
-                })
+                    if (err.response.data.statusCode === 401 && err.response.data.message === "Unauthorized") {
+                        removeCookie('accessToken', {
+                            expires: 'Thu, 01 Jan 1970 00:00:00 UTC',
+                        })
+                        navigate('/')
+                    } else {
+                        console.log(err)
+
+                    }
+                }
+            )
     }
 
     return (
@@ -200,7 +209,7 @@ function Index() {
 
                     <div className={`unbanuser row ${unbanuserBox ? 'activeunbanuser' : ''}`}>
                         <div className="col-xl-6 col-lg-6 col-md-6 col-ms-6 col-xs-12">
-                            <Input value={unbanuser.userId} type={'text'} title={'userId'} name={'userId'}placeholder={'userId...'} changeInputValue={updateInputDataunban} />
+                            <Input value={unbanuser.userId} type={'text'} title={'userId'} name={'userId'} placeholder={'userId...'} changeInputValue={updateInputDataunban} />
                         </div>
 
                         <div className="col-xl-6 col-lg-6 col-md-6 col-ms-6 col-xs-12">
