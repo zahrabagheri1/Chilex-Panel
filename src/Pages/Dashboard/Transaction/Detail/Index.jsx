@@ -17,7 +17,8 @@ function Index() {
     const { id } = useParams();
     const [editAble, setEditAble] = useState(false)
     const { loading, setLoading } = useContext(LoadingContext)
-    const [cookies] = useCookies(['accessToken']);
+        const [cookies, setCookies, removeCookie] = useCookies(['accessToken'])
+
     const { goToLoginPage } = useContext(LoginContext);
     const [showAlert, setShowAlert] = useState({
         status: false, msg: '', status: false
@@ -40,7 +41,17 @@ function Index() {
                 }
             )
             .catch(
-                err => { console.log(err) }
+                err => {
+                    if (err.response.data.statusCode === 401 && err.response.data.message === "Unauthorized") {
+                      removeCookie('accessToken', {
+                        expires: 'Thu, 01 Jan 1970 00:00:00 UTC',
+                      })
+                      navigate('/')
+                    } else {
+                      console.log(err)
+          
+                    }
+                  }
             )
     }
 
