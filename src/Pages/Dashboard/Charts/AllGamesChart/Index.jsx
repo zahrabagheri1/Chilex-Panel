@@ -9,11 +9,13 @@ import { LoginContext } from '../../../Login/LoginContext'
 import { API_URL } from '../../../../API_URL'
 import axios from 'axios'
 import moment from 'moment-jalaali'
+import { useNavigate } from 'react-router-dom'
 
 function Index() {
     const dateNow = Date.now();
     const [allGames, setAllGames] = useState()
-    const [cookies] = useCookies(['accessToken'])
+    const [cookies, setCookies, removeCookie] = useCookies(['accessToken'])
+    const navigate = useNavigate()
     const { loading, setLoading } = useContext(LoadingContext)
     const { goToLoginPage } = useContext(LoginContext)
     const [filters, setFilters] = useState({
@@ -50,8 +52,16 @@ function Index() {
                 }
             ).catch(
                 err => {
-                    console.log(err)
-                }
+                    if (err.response.data.statusCode === 401 && err.response.data.message === "Unauthorized") {
+                      removeCookie('accessToken', {
+                        expires: 'Thu, 01 Jan 1970 00:00:00 UTC',
+                      })
+                      navigate('/')
+                    } else {
+                      console.log(err)
+          
+                    }
+                  }
             )
     }
 

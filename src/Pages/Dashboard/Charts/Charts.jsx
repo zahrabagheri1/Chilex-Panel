@@ -84,13 +84,13 @@ function Charts() {
             </div>
 
             <div className="">
-                <div className="chartBox">
+                {/* <div className="chartBox">
                     <ReactApexChart options={items.options} series={items.series} type="line" height={350} />
-                </div>
-
-                {/* <div className="chartBox col-xl-8 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                    <OnlinesChart />
                 </div> */}
+
+                <div className="chartBox col-xl-8 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                    <OnlinesChart />
+                </div>
                 {/* <AllGamesChart /> */}
                 {/* <SoccerChart /> */}
                 {/* <LudoChart /> */}

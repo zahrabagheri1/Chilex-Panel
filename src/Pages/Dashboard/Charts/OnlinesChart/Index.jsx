@@ -9,11 +9,22 @@ import moment from 'moment-jalaali';
 import ReactApexChart from 'react-apexcharts';
 import SelectOption from '../../../../Components/SelectOption/SelectOption';
 import DatePikerFarsi from '../../../../Components/DatePikerFarsi/DatePikerFarsi';
+import { useNavigate } from 'react-router-dom';
+
 
 function Index() {
+  const dataOFChart = [
+    { x: 35, y: "Jan" },
+    { x: 65, y: "Feb" },
+    { x: 24, y: "Mar" },
+    { x: 54, y: "Apr" },
+    { x: 12, y: "May" },
+    { x: 74, y: "Jun" },
+  ]
   const dateNow = Date.now();
-  const [onlineUser, setOnlineUser] = useState()
-  const [cookies] = useCookies(['accessToken'])
+  const [onlineUser, setOnlineUser] = useState(dataOFChart)
+  const [cookies, setCookies, removeCookie] = useCookies(['accessToken'])
+  const navigate = useNavigate()
   const { loading, setLoading } = useContext(LoadingContext)
   const { goToLoginPage } = useContext(LoginContext)
   const [filters, setFilters] = useState({
@@ -21,6 +32,7 @@ function Index() {
     endDate: moment(dateNow).format('jYYYY-jM-jD'),
     type: 3
   })
+
 
   const dataOFChartX = []
   const dataOFChartY = []
@@ -42,28 +54,38 @@ function Index() {
 
   useEffect(() => {
     goToLoginPage(cookies.accessToken)
-    getOnlineChart()
+    // getOnlineChart()
   }, [filters])
 
-  const getOnlineChart = () => {
-    setLoading(true)
-    axios.get(`${API_URL === undefined ? '' : API_URL}/admin/charts/onlines?${filters.startDate === null || filters.startDate === undefined ? '' : ('startDate=' + filters.startDate + '&')}${filters.endDate === null || filters.endDate === undefined ? '' : ('endDate=' + filters.endDate + '&')}${filters.type === null || filters.type === undefined ? '' : ('type=' + filters.type)}`,
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + cookies.accessToken
-        }
-      }).then(
-        res => {
-          setOnlineUser(res.data.data)
-          setLoading(false)
-        }
-      ).catch(
-        err => {
-          console.log(err)
-        }
-      )
-  }
+  // const getOnlineChart = () => {
+  //   setLoading(true)
+  //   axios.get(`${API_URL === undefined ? '' : API_URL}/admin/charts/onlines?${filters.startDate === null || filters.startDate === undefined ? '' : ('startDate=' + filters.startDate + '&')}${filters.endDate === null || filters.endDate === undefined ? '' : ('endDate=' + filters.endDate + '&')}${filters.type === null || filters.type === undefined ? '' : ('type=' + filters.type)}`,
+  //     {
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         Authorization: 'Bearer ' + cookies.accessToken
+  //       }
+  //     }).then(
+  //       res => {
+  //         setOnlineUser(res.data.data)
+  //         setLoading(false)
+  //       }
+  //     ).catch(
+  //       err => {
+  //                err => {
+  //   if (err.response.data.statusCode === 401 && err.response.data.message === "Unauthorized") {
+  //     removeCookie('accessToken', {
+  //       expires: 'Thu, 01 Jan 1970 00:00:00 UTC',
+  //     })
+  //     navigate('/')
+  //   } else {
+  //     console.log(err)
+
+  //   }
+  // }
+  //       }
+  //     )
+  // }
 
   const chartDataOption = {
     series: [
@@ -128,7 +150,7 @@ function Index() {
         <div className="chart-filter-title col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">Online Users</div>
 
         <div className="chart-box col-xl-9 col-lg-9 col-md-9 col-sm-9 col-xs-9">
-          <ReactApexChart options={chartDataOption.options} series={chartDataOption.series} type="area" />
+          <ReactApexChart options={chartDataOption.options} series={chartDataOption.series} type="line" height={350} />
         </div>
 
         <div className="filter-chart col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-3">
