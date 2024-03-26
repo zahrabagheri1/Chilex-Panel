@@ -53,6 +53,36 @@
 
         }
 
+
+        .exportBtnBox {
+            display: flex;
+            position: relative;
+
+            .export {
+                display: none;
+                width: 550px;
+                max-height: 350px;
+                right: 0px;
+                top: 50px;
+                padding: 20px;
+                position: absolute;
+                flex-direction: row;
+                background-color: #272a2f;
+                border-radius: 8px;
+                box-shadow: 4px 7px 10px rgba(0, 0, 0, .4);
+                gap: 10px;
+                z-index: 2;
+                flex-wrap: wrap;
+                flex-direction: row;
+
+
+                &.activeExport {
+                    display: flex;
+                }
+            }
+        }
+
+
         .filterBtn,
         .exportBtn {
             display: flex;

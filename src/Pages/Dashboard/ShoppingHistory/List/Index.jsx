@@ -18,7 +18,9 @@ import ButtonActionGray from '../../../../Components/ButtonActionGray/ButtonActi
 
 function Index() {
     const [historyList, setHistoryList] = useState(null);
-    const [cookies, setCookie, removeCookie] = useCookies(['accessToken']);
+    const [cookies, setCookie, removeCookie] = useCookies(['accessToken'])
+    const [exportBox, setExportBox] = useState(false)
+    const [userIds, setUserIds] = useState([])
     const { setLoading } = useContext(LoadingContext)
     const navigate = useNavigate();
     const { goToLoginPage } = useContext(LoginContext);
@@ -105,11 +107,6 @@ function Index() {
         setResetFlag(true);
     }
 
-    const exportUsers = () => {
-        setFilters((prev) => ({ ...prev, ["exportUserIds"]: true }))
-        setResetFlag(true);
-    }
-
     const offsetTableHandler = (page) => {
         setFilters((prev) => ({ ...prev, 'offset': page }))
         setResetFlag(true)
@@ -120,6 +117,11 @@ function Index() {
         setResetFlag(true)
     }
 
+    const exportUsers = () => {
+        setExportBox(!exportBox)
+        setFilters((prev) => ({ ...prev, ["exportUserIds"]: true }))
+        setUserIds(historyList.data[historyList.data.length - 1].userIds)
+    }
 
     return (
         <div className='shoppingHistoryList'>
