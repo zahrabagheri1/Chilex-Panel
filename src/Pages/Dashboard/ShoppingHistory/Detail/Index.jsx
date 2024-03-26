@@ -14,7 +14,8 @@ function Index() {
     const [history, setHistory] = useState({});
     const { loading, setLoading } = useContext(LoadingContext)
     const { id } = useParams()
-    const [cookies] = useCookies(['accessToken']);
+        const [cookies, setCookies, removeCookie] = useCookies(['accessToken'])
+
     const { goToLoginPage } = useContext(LoginContext);
     const referenceType = ['BUNDLE', 'ITEM', 'TRANSACTION', 'SETTING']
     const type = ['Gem', 'Coin', 'Item']
@@ -36,7 +37,17 @@ function Index() {
                 }
             )
             .catch(
-                err => console.log(err)
+                err => {
+                    if (err.response.data.statusCode === 401 && err.response.data.message === "Unauthorized") {
+                      removeCookie('accessToken', {
+                        expires: 'Thu, 01 Jan 1970 00:00:00 UTC',
+                      })
+                      navigate('/')
+                    } else {
+                      console.log(err)
+          
+                    }
+                  }
             )
     }
     
