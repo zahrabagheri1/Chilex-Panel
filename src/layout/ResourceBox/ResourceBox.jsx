@@ -3,6 +3,7 @@ import SelectOption from '../../Components/SelectOption/SelectOption';
 import Input from '../../Components/Input/Input';
 import ButtonActionBlue from '../../Components/ButtonActionBlue/ButtonActionBlue';
 import ButtonActionGray from '../../Components/ButtonActionGray/ButtonActionGray';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import Alert from '../Alert/Alert';
 import './ResourceBox.scss';
@@ -11,8 +12,9 @@ import { API_URL } from '../../API_URL';
 import moment from 'moment';
 
 function ResourceBox(props) {
-    const [cookies] = useCookies(['accessToken']);
+    const [cookies, setCookies, removeCookie] = useCookies(['accessToken']);
     const [edit, setEdit] = useState(false)
+    const navigate = useNavigate()
     const [addRequirment, setAddRequirment] = useState({})
     const [showAlert, setShowAlert] = useState({
         status: false, msg: '', success: null
@@ -81,7 +83,15 @@ function ResourceBox(props) {
             )
             .catch(
                 err => {
-                    console.log(err)
+                    if (err.response.data.statusCode === 401 && err.response.data.message === "Unauthorized") {
+                        removeCookie('accessToken', {
+                            expires: 'Thu, 01 Jan 1970 00:00:00 UTC',
+                        })
+                        navigate('/')
+                    } else {
+                        console.log(err)
+
+                    }
                 }
             )
     }
@@ -108,7 +118,15 @@ function ResourceBox(props) {
             )
             .catch(
                 err => {
-                    console.log(err)
+                    if (err.response.data.statusCode === 401 && err.response.data.message === "Unauthorized") {
+                        removeCookie('accessToken', {
+                            expires: 'Thu, 01 Jan 1970 00:00:00 UTC',
+                        })
+                        navigate('/')
+                    } else {
+                        console.log(err)
+
+                    }
                 }
             )
 

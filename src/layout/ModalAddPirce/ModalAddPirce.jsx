@@ -31,7 +31,8 @@ function ModalAddPirce(props) {
             type: null
         }
     );
-    const [cookies] = useCookies(['accessToken']);
+        const [cookies, setCookies, removeCookie] = useCookies(['accessToken'])
+
     const [showAlert, setShowAlert] = useState
         ({
             status: false, msg: '', success: null

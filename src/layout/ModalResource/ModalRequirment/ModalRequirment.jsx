@@ -11,7 +11,8 @@ import { API_URL } from '../../../API_URL';
 
 function ModalRequirment(props) {
   const [value, setValue] = useState()
-  const [cookies] = useCookies(['accessToken']);
+      const [cookies, setCookies, removeCookie] = useCookies(['accessToken'])
+
   const [addRequirment, setAddRequirment] = useState({
     settingId: parseInt(props.settingId),
     type: 1
