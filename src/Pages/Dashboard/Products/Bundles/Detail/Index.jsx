@@ -22,7 +22,8 @@ function Index() {
     const { id } = useParams()
     const navigate = useNavigate()
     const [updateData, setUpdateData] = useState({})
-    const [cookies] = useCookies(['accessToken']);
+        const [cookies, setCookies, removeCookie] = useCookies(['accessToken'])
+
     const { loading, setLoading } = useContext(LoadingContext);
     const { goToLoginPage } = useContext(LoginContext);
     const [showAlert, setShowAlert] = useState({
