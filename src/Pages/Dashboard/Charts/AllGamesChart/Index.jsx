@@ -13,26 +13,53 @@ import { useNavigate } from 'react-router-dom'
 
 function Index() {
     const dateNow = Date.now();
-    const [allGames, setAllGames] = useState()
+    const [allGamesListChart, setAllGamesListChart] = useState()
     const [cookies, setCookies, removeCookie] = useCookies(['accessToken'])
     const navigate = useNavigate()
     const { loading, setLoading } = useContext(LoadingContext)
     const { goToLoginPage } = useContext(LoginContext)
     const [filters, setFilters] = useState({
-        startDate: moment(dateNow).subtract(1, 'months').format('jYYYY-jM-jD'),
-        endDate: moment(dateNow).format('jYYYY-jM-jD'),
-        type: 3
+        startDate: moment(dateNow).subtract(1, 'months').format('YYYY-M-D'),
+        endDate: moment(dateNow).format('YYYY-M-D'),
+        type: 1
     })
 
     const dataOFChartX = []
     const dataOFChartY = []
 
-    allGames?.map(item => (
-        dataOFChartX.push(item.x)
-    ))
-    allGames?.map(item => (
+    allGamesListChart?.map(item => (
         dataOFChartY.push(item.y)
     ))
+
+    switch (filters.type) {
+        case 0:
+            allGamesListChart?.map(item => (
+                dataOFChartX.push(moment(item.x).format('hh:mm A'))
+            ))
+            break;
+        case 1:
+            allGamesListChart?.map(item => (
+                dataOFChartX.push(moment(item.x).format('D MMMM'))
+            ))
+            break;
+        case  2 :
+            allGamesListChart?.map(item => (
+                dataOFChartX.push(moment(item.x).format('MMMM'))
+            ))
+            break;
+        case 3:
+            allGamesListChart?.map(item => (
+                dataOFChartX.push(moment(item.x).format('MMMM'))
+            ))
+            break;
+            case 4:
+            allGamesListChart?.map(item => (
+                dataOFChartX.push(moment(item.x).format('YYYY'))
+            ))
+            break;
+        default:
+            console.log("default");
+    }
 
     const updateOptionData = (name, id) => {
         setFilters(prev => ({ ...prev, [name]: id }))
@@ -57,7 +84,7 @@ function Index() {
                 }
             }).then(
                 res => {
-                    setAllGames(res.data.data)
+                    setAllGamesListChart(res.data.data)
                     setLoading(false)
                 }
             ).catch(
@@ -138,13 +165,13 @@ function Index() {
             <div className="chart-filter-box row">
                 <div className="chart-filter-title col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">All Games</div>
                 <div className="chart-box col-xl-9 col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                    <ReactApexChart options={chartDataOption.options} series={chartDataOption.series} type="line" height={250} width={350} />
+                    <ReactApexChart options={chartDataOption.options} series={chartDataOption.series} type="area" height={250}  />
 
                 </div>
 
                 <div className="filter-chart col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-3">
                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-6">
-                        <SelectOption name={'type'} defaultValue={'monthly'} readOnly={false} type={'name'} changeOptinValue={updateOptionData}
+                        <SelectOption name={'type'} defaultValue={'daily'}  readOnly={false} type={'name'} changeOptinValue={updateOptionData}
                             data={[
                                 { id: 0, name: 'hourly' },
                                 { id: 1, name: 'daily' },
@@ -159,6 +186,7 @@ function Index() {
                             handlerChangeDate={updateDataPiker}
                             value={filters.startDate}
                             title="startDate"
+              name="startDate"
                         />
                     </div>
 
@@ -167,6 +195,9 @@ function Index() {
                             handlerChangeDate={updateDataPiker}
                             value={filters.endDate}
                             title="endtDate"
+              name="endtDate"
+              name="endtDate"
+              name="endtDate"
                         />
                     </div>
 
