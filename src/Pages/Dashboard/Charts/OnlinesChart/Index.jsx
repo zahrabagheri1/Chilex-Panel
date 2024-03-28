@@ -22,33 +22,62 @@ function Index() {
     { x: 74, y: "Jun" },
   ]
   const dateNow = Date.now();
-  const [onlineUser, setOnlineUser] = useState(dataOFChart)
+  const [onlineUserList, setOnlineUserList] = useState(dataOFChart)
   const [cookies, setCookies, removeCookie] = useCookies(['accessToken'])
   const navigate = useNavigate()
   const { loading, setLoading } = useContext(LoadingContext)
   const { goToLoginPage } = useContext(LoginContext)
   const [filters, setFilters] = useState({
-    startDate: moment(dateNow).subtract(1, 'months').format('jYYYY-jM-jD'),
-    endDate: moment(dateNow).format('jYYYY-jM-jD'),
-    type: 3
+    startDate: moment(dateNow).subtract(1, 'months').format('YYYY-M-D'),
+    endDate: moment(dateNow).format('YYYY-M-D'),
+    type: 1
   })
 
 
   const dataOFChartX = []
   const dataOFChartY = []
 
-  onlineUser?.map(item => (
-    dataOFChartX.push(item.x)
-  ))
-  onlineUser?.map(item => (
+  onlineUserList?.map(item => (
     dataOFChartY.push(item.y)
   ))
+
+
+  switch (filters.type) {
+    case 0:
+        onlineUserList?.map(item => (
+            dataOFChartX.push(moment(item.x).format('hh:mm A'))
+        ))
+        break;
+    case 1:
+        onlineUserList?.map(item => (
+            dataOFChartX.push(moment(item.x).format('D MMMM'))
+        ))
+        break;
+    case  2 :
+        onlineUserList?.map(item => (
+            dataOFChartX.push(moment(item.x).format('MMMM'))
+        ))
+        break;
+    case 3:
+        onlineUserList?.map(item => (
+            dataOFChartX.push(moment(item.x).format('MMMM'))
+        ))
+        break;
+        case 4:
+        onlineUserList?.map(item => (
+            dataOFChartX.push(moment(item.x).format('YYYY'))
+        ))
+        break;
+    default:
+        console.log("default");
+}
 
   const updateOptionData = (name, id) => {
     setFilters(prev => ({ ...prev, [name]: id }))
   }
 
   const updateDataPiker = (e, title) => {
+    console.log('datePiker' , title , e)
     setFilters((prev) => ({ ...prev, [title]: e }))
   }
 
@@ -67,7 +96,7 @@ function Index() {
         }
       }).then(
         res => {
-          setOnlineUser(res.data.data)
+          setOnlineUserList(res.data.data)
           setLoading(false)
         }
       ).catch(
@@ -88,7 +117,7 @@ function Index() {
   const chartDataOption = {
     series: [
       {
-        name: 'onlineUser',
+        name: 'onlineUserList',
         data: dataOFChartY
       },
     ],
@@ -105,7 +134,7 @@ function Index() {
           }
         },
         toolbar: {
-          show: false
+          show: true
         },
         zoom: {
           enabled: true,
@@ -113,7 +142,7 @@ function Index() {
       },
       stroke: {
         curve: 'smooth',
-        width: 2
+        width: 3
       },
       colors: ['#0C499B'],
       dataLabels: {
@@ -138,7 +167,14 @@ function Index() {
       },
       xaxis: {
         categories: dataOFChartX,
+      },
+
+      yaxis: {
+        title: {
+          // text: 'Bytes Received'
+        }
       }
+
     },
   };
 
@@ -148,12 +184,12 @@ function Index() {
         <div className="chart-filter-title col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">Online Users</div>
 
         <div className="chart-box col-xl-9 col-lg-9 col-md-9 col-sm-9 col-xs-9">
-          <ReactApexChart options={chartDataOption.options} series={chartDataOption.series} type="line" height={250} width={350} />
+          <ReactApexChart options={chartDataOption.options} series={chartDataOption.series} type="area" height={250} />
         </div>
 
         <div className="filter-chart col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-3">
           <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-6">
-            <SelectOption name={'type'} title={'type'} defaultValue={'monthly'} readOnly={false} type={'name'} changeOptinValue={updateOptionData}
+            <SelectOption name={'type'} title={'type'} defaultValue={'daily'} readOnly={false} type={'name'} changeOptinValue={updateOptionData}
               data={[
                 { id: 0, name: 'hourly' },
                 { id: 1, name: 'daily' },
@@ -168,6 +204,7 @@ function Index() {
               handlerChangeDate={updateDataPiker}
               value={filters.startDate}
               title="startDate"
+              name="startDate"
             />
           </div>
 
@@ -176,6 +213,7 @@ function Index() {
               handlerChangeDate={updateDataPiker}
               value={filters.endDate}
               title="endtDate"
+              name="endtDate"
             />
           </div>
 
