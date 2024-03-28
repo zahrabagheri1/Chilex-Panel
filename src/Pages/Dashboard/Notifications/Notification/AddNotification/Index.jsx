@@ -21,7 +21,7 @@ function Index(props) {
     const updateInputData = (e) => {
         if (e.target.name === 'usersIds') {
             let userIds = e.target.value
-            let userIdsArray = userIds.split('\n')
+            let userIdsArray = userIds.split(',')
             let userIdsArray3 = []
             userIdsArray.map(item => {
                 if( item !== ''){
