@@ -35,7 +35,7 @@ function Index() {
         sortBy: 4,
         orderBy: 1,
         offset: null,
-         limit: 20,
+        limit: 20,
         exportUserIds: false
     })
 
@@ -102,7 +102,7 @@ function Index() {
             sortBy: 3,
             orderBy: 1,
             offset: null,
-             limit: 20,
+            limit: 20,
         })
         setResetFlag(true);
     }
@@ -218,9 +218,17 @@ function Index() {
                     </div>
                 </div>
 
-                <div className='exportBtn' onClick={exportUsers}>
-                    <HiMiniArrowUpTray className='icon' />
-                    <div>Export</div>
+
+                <div className="exportBtnBox">
+                    <div className='exportBtn' onClick={exportUsers}>
+                        <HiMiniArrowUpTray className='icon' />
+                        <div>Export</div>
+                    </div>
+
+                    <div className={`export ${exportBox ? 'activeExport' : ''}`}>
+                        <div className="data-title">All User Ids</div>
+                        <textarea className="data-text" name="" id="" value={userIds} ></textarea>
+                    </div>
                 </div>
             </div>
 
