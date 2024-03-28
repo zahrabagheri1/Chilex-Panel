@@ -54,7 +54,7 @@ function Index() {
       email: null,
       phone: null,
       ban: 0,
-      // createdAt:  moment(dateNow).format('jYYYY-jM-jD'),
+      // createdAt:  moment(dateNow).format('YYYY-M-D'),
       createdAt: null,
       createdAtType: 1,
       register: 0,
