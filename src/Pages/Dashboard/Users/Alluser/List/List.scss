@@ -66,24 +66,70 @@
 
             .export {
                 display: none;
-                width: 550px;
-                max-height: 350px;
+                width: 450px;
+                max-height: 550px;
                 right: 0px;
                 top: 50px;
                 padding: 20px;
                 position: absolute;
-                flex-direction: row;
                 background-color: #272a2f;
                 border-radius: 8px;
                 box-shadow: 4px 7px 10px rgba(0, 0, 0, .4);
                 gap: 10px;
                 z-index: 2;
                 flex-wrap: wrap;
-                flex-direction: row;
-
-
+                flex-direction: column;
+                
                 &.activeExport {
                     display: flex;
+                }
+                
+                .data-title{
+                    font-size: 18px;
+                    color: #838485;
+                    font-weight: 700;
+                }
+                
+                .data-text{
+                    font-size: 18px;
+                    color: #ffffff;
+                    font-weight: 700;
+                    width: 430px;
+                    resize: none;
+                    height: 100px;
+                    padding: 10px;
+                    background-color: #272a2f;
+                    border: none;
+                    
+                    &:hover,
+                    &:focus,
+                    &:link,
+                    &:visited,
+                    &:active {
+                        outline: none;
+                    }
+
+                    
+                    &::-webkit-scrollbar {
+                        width: 5px;
+                    }
+
+                    &::-webkit-scrollbar-track {
+                        background: #44444434;
+                        border-radius: 50px;
+
+                    }
+
+                    &::-webkit-scrollbar-thumb {
+                        background: #555;
+                        border-radius: 50px;
+
+                    }
+
+                    &::-webkit-scrollbar-thumb:hover {
+                        background: #555;
+                    }
+
                 }
             }
         }
