@@ -25,8 +25,8 @@ function Played() {
     const { loading, setLoading } = useContext(LoadingContext);
     const { goToLoginPage } = useContext(LoginContext);
     const [filters, setFilters] = useState({
-        startDate: moment(dateNow).subtract(1, 'months').format('jYYYY-jM-jD'),
-        endDate: moment(dateNow).format('jYYYY-jM-jD'),
+        startDate: moment(dateNow).subtract(1, 'months').format('YYYY-M-D'),
+        endDate: moment(dateNow).format('YYYY-M-D'),
         limit: 20,
         offset: 1,
         orderBy: 1
@@ -92,8 +92,8 @@ function Played() {
 
     const resetFillters = () => {
         setFilters({
-            startDate: moment(dateNow).subtract(1, 'months').format('jYYYY-jM-jD'),
-            endDate: moment(dateNow).format('jYYYY-jM-jD'),
+            startDate: moment(dateNow).subtract(1, 'months').format('YYYY-M-D'),
+            endDate: moment(dateNow).format('YYYY-M-D'),
              limit: 20,
             offset: 1,
             orderBy: 1
