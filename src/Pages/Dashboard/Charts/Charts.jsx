@@ -85,7 +85,7 @@ function Charts() {
 
             <div className="row">
                 {/* <div className="chartBox">
-                    <ReactApexChart options={items.options} series={items.series} type="line" height={350} />
+                    <ReactApexChart options={items.options} series={items.series} type="area" height={350} />
                 </div> */}
 
                 <div className="chartBox col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
