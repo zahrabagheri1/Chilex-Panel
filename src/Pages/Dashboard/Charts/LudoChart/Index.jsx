@@ -123,7 +123,7 @@ function Index() {
                     }
                 },
                 toolbar: {
-                    show: false
+                    show: true
                 },
                 zoom: {
                     enabled: true,
