@@ -209,9 +209,6 @@ function Index() {
                     <div className={`export ${exportBox ? 'activeExport' : ''}`}>
                         <div className="data-title">All User Ids</div>
                         <textarea className="data-text" name="" id="" value={userIds} ></textarea>
-                        {/* {userIds?.map((user) => (
-                            <div className='data-title'>{user}</div>
-                        ))} */}
                     </div>
                 </div>
             </div>
