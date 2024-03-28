@@ -10,9 +10,8 @@ import SelectOption from '../../../../Components/SelectOption/SelectOption';
 import { useCookies } from 'react-cookie';
 import { LoadingContext } from '../../../Loading/LoadingContext';
 import { LoginContext } from '../../../Login/LoginContext';
-import { HiMiniArrowUpTray, HiOutlineTrash } from 'react-icons/hi2';
+import { HiMiniArrowUpTray } from 'react-icons/hi2';
 import { API_URL } from '../../../../API_URL';
-import Button from '../../../../Components/Button/Button';
 import ButtonActionBlue from '../../../../Components/ButtonActionBlue/ButtonActionBlue';
 import ButtonActionGray from '../../../../Components/ButtonActionGray/ButtonActionGray';
 import { HiOutlineFilter } from 'react-icons/hi';
@@ -126,10 +125,10 @@ function Index() {
         <div className='transactionList'>
             <div className="top" >
                 <div className="filterBox">
-                    <div className='filterBtn' onClick={() => setFilterBox(!filterBox)}>
+                    <button className='filterBtn' onClick={() => setFilterBox(!filterBox)}>
                         <HiOutlineFilter className='icon' />
                         <div>Filter</div>
-                    </div>
+                    </button>
 
                     <div className={`filter row ${filterBox ? 'activeFilter' : ''}`} >
                         <div className="col-xl-4 col-lg-4 col-md-6 col-ms-12 col-xs-12">
@@ -202,15 +201,17 @@ function Index() {
                 </div>
 
                 <div className="exportBtnBox">
-                    <div className='exportBtn' onClick={exportUsers}>
+                    <button className='exportBtn' onClick={exportUsers}>
                         <HiMiniArrowUpTray className='icon' />
                         <div>Export</div>
-                    </div>
+                    </button>
 
                     <div className={`export ${exportBox ? 'activeExport' : ''}`}>
-                        {userIds?.map((user) => (
+                        <div className="data-title">All User Ids</div>
+                        <textarea className="data-text" name="" id="" value={userIds} ></textarea>
+                        {/* {userIds?.map((user) => (
                             <div className='data-title'>{user}</div>
-                        ))}
+                        ))} */}
                     </div>
                 </div>
             </div>
