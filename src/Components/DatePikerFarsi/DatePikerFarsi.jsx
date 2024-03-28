@@ -7,6 +7,7 @@ import persian_fa from "react-date-object/locales/persian_fa";
 
 function DatePikerFarsi(props) {
     const changeDate = (e) => {
+        console.log(e.year , e.month.number , e.day)
         props.handlerChangeDate((e.year + '-' + e.month.number + '-' + e.day), props.name)
     }
 
@@ -15,8 +16,8 @@ function DatePikerFarsi(props) {
             <div className="title">{props.title}</div>
             <DatePicker
                 className={props.readOnly === true ? 'ableInupt' : false}
-                calendar={persian}
-                locale={persian_fa}
+                // calendar={persian}
+                // locale={persian_fa}
                 onChange={changeDate}
                 showOtherDays={true}
                 buttons={true}
