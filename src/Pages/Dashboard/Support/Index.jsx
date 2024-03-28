@@ -29,14 +29,14 @@ function Index() {
   // const gotopvuser = (key, value) => {
   //   setDataAccount(prev => ({ ...prev, [key]: value }))
   // }
+
   const [cookie] = useCookies(['accessToken']);
   const searchUser = (e) => {
     console.log('searchUser')
   }
 
   useEffect(() => {
-    // console.log(" USE EFF",cookie.accessToken)
-
+    console.log(" USE EFF",cookie.accessToken)
     socket.on("connect", () => {
       console.table('Connected in support');
       GetResiveAllChats();
@@ -52,12 +52,12 @@ function Index() {
 
   }, []);
 
-  // console.log(listChats)
+  console.log(listChats)
   function GetResiveAllChats() {
     setLoading(true);
-    // console.log("EMIT GET ALL SUPPORT CHATS",socket)
+    console.log("EMIT GET ALL SUPPORT CHATS",socket)
     socket.emit('adminMessage', 'get-all-support-chats', (response) => {
-      // console.log("res",response)
+      console.log("res",response)
       setLoading(false);
       setListChats(response)
     });
@@ -67,9 +67,9 @@ function Index() {
     setIdChat({ status: true, userId: id, image: img, username: username })
   }
 
-  if (listChats === null || listChats === undefined) {
-    console.log('Not Load')
-  } else {
+  // if (listChats === null || listChats === undefined) {
+  //   console.log('Not Load')
+  // } else {
     return (
       <div className='support'>
         <div className="chatMenu">
@@ -102,7 +102,7 @@ function Index() {
       </div>
     );
   }
-}
+// }
 
 
 export default Index;
