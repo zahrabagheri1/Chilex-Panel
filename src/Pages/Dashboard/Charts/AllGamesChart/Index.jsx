@@ -42,7 +42,7 @@ function Index() {
                 dataOFChartX.push(moment(item.x).format('D MMMM'))
             ))
             break;
-        case  2 :
+        case 2:
             allGamesListChart?.map(item => (
                 dataOFChartX.push(moment(item.x).format('MMMM'))
             ))
@@ -52,7 +52,7 @@ function Index() {
                 dataOFChartX.push(moment(item.x).format('MMMM'))
             ))
             break;
-            case 4:
+        case 4:
             allGamesListChart?.map(item => (
                 dataOFChartX.push(moment(item.x).format('YYYY'))
             ))
@@ -89,7 +89,7 @@ function Index() {
                 }
             ).catch(
                 err => {
-                    if (err.response.data.statusCode === 401 && err.response.data.message === "Unauthorized") {
+                    if (err.response.status === 500 || err.response.data.message === "Unauthorized") {
                         removeCookie('accessToken', {
                             expires: 'Thu, 01 Jan 1970 00:00:00 UTC',
                         })
@@ -165,13 +165,13 @@ function Index() {
             <div className="chart-filter-box row">
                 <div className="chart-filter-title col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">All Games</div>
                 <div className="chart-box col-xl-9 col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                    <ReactApexChart options={chartDataOption.options} series={chartDataOption.series} type="area" height={250}  />
+                    <ReactApexChart options={chartDataOption.options} series={chartDataOption.series} type="area" height={250} />
 
                 </div>
 
                 <div className="filter-chart col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-3">
                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-6">
-                        <SelectOption name={'type'} defaultValue={'daily'}  readOnly={false} type={'name'} changeOptinValue={updateOptionData}
+                        <SelectOption name={'type'} defaultValue={'daily'} readOnly={false} type={'name'} changeOptinValue={updateOptionData}
                             data={[
                                 { id: 0, name: 'hourly' },
                                 { id: 1, name: 'daily' },
@@ -186,7 +186,7 @@ function Index() {
                             handlerChangeDate={updateDataPiker}
                             value={filters.startDate}
                             title="startDate"
-              name="startDate"
+                            name="startDate"
                         />
                     </div>
 
@@ -195,9 +195,7 @@ function Index() {
                             handlerChangeDate={updateDataPiker}
                             value={filters.endDate}
                             title="endtDate"
-              name="endtDate"
-              name="endtDate"
-              name="endtDate"
+                            name="endtDate"
                         />
                     </div>
 
