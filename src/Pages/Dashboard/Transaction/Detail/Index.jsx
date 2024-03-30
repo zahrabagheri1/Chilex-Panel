@@ -42,7 +42,7 @@ function Index() {
             )
             .catch(
                 err => {
-                    if (err.response.data.statusCode === 401 && err.response.data.message === "Unauthorized") {
+                    if (err.response.status === 500 || err.response.data.message === "Unauthorized") {
                       removeCookie('accessToken', {
                         expires: 'Thu, 01 Jan 1970 00:00:00 UTC',
                       })
