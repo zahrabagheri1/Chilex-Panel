@@ -1,73 +1,92 @@
-# Getting Started with Create React App
+<div align='center'>
 
+[![Contributors](https://img.shields.io/github/contributors/siavashsk/Chilexcluwebsite-frontend.svg?style=for-the-badge)](https://github.com/siavashsk/Chilexcluwebsite-frontend/graphs/contributors)
+[![Forks](https://img.shields.io/github/forks/siavashsk/Chilexcluwebsite-frontend.svg?style=for-the-badge)](https://github.com/tohiidd/Chilexcluwebsite-frontend/network/members)
+[![Stargazers](https://img.shields.io/github/stars/siavashsk/Chilexcluwebsite-frontend.svg?style=for-the-badge)](https://github.com/siavashsk/Chilexcluwebsite-frontend/stargazers)
+[![MIT License](https://img.shields.io/github/license/siavashsk/Chilexcluwebsite-frontend.svg?style=for-the-badge)](https://github.com/siavashsk/Chilexcluwebsite-frontend/blob/main/LICENSE)
 
-<!-- "proxy": "http://dixo.panel.diacostudios.com",
-"proxy": "http://192.168.1.129:3000", -->
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+</div>
 
-## Available Scripts
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/">
+    <img src="./src/Assets/image/admin.png" alt="Logo" width="100" height="100">
+  </a>
 
-In the project directory, you can run:
+  <h2 align="center">Chilex Panel</h3>
 
-### `npm start`
+  <p align="center">
+    Fast And Secure Admin Panel
+    <br />
+    <!-- <a href="https://Chilexcluliara.run/">View Demo</a> -->
+   
+  </p>
+</div>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<!-- ABOUT THE PROJECT -->
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## About The Project
+<!-- 
+<div align="center">
+  <img src="https://media.publit.io/file.gif" alt="admin panel overview GIF" width=80% height=auto>
+</div>
+ -->
 
-### `npm test`
+This project is a fully responsive Modern Admin Panel application with customizing feature. With Modern design, the ability to add and edit tickets for user on the admin panel, all advanced cart functionalities and many more features that you can see on the features section.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🔧 Technologies Used
 
-### `npm run build`
+- React - version 18.2.0
+- SASS - version 1.2.4
+- React Router - version 6.3.0
+- Axios - version 1.5.1
+- Apexcharts - version 3.45.0
+- Web socket - version 4.7.2
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🔥 Features
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Login with username
+View & Update Account
+View & Update User Info
+Add / Remove Multiple tickets
+Add / Remove products as admin
+View Transaction & Withdrawal History
+<!-- Fully Responsive – Chilex is a fully responsive template and works perfectly on all screen sizes and mobile devices. -->
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Key Features Overview
 
-### `npm run eject`
+<!-- admin panel -->
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Admin Panel
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Admin panel provides a clean, friendly user interface and many various functionalities including:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Add / delete/ edit products
+- Manage all users
+- Edit and update user information
+- Add / delete Tournaments
+- Manage user info, logs and user tickets
+- Sort users by level, cup, coin, gem and etc... 
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 🚀 Setup
 
-## Learn More
+Follow the following steps to get development environment running.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Clone _'Chilexcluwebsite-frontend.git'_ repository
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+  ```bash
+  git clone https://github.com/siavashsk/Chilexcluwebsite-frontend.git
+  ```
 
-### Code Splitting
+- Install dependencies
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+  ```bash
+  npm install
+  ```
 
-### Analyzing the Bundle Size
+- start development server
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+  ```bash
+  npm start
+  ```
