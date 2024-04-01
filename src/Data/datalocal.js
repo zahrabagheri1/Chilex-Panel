@@ -110,7 +110,6 @@ export const sideBarMenu = [
         path: '/',
         children: null,
         logout: true
-    },
-
+    }
 ]
 
