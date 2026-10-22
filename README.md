@@ -7,6 +7,7 @@
 
 </div>
 
+  <!-- "proxy": "http://chilexdev.diacostudios.com/", -->
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
